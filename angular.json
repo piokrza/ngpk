@@ -27,9 +27,19 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/vela-green/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "src/styles.scss"
+              "src/assets/styles/tailwind/tailwind.css",
+              "src/styles.scss",
+              {
+                "input": "src/assets/styles/themes/dark-theme.scss",
+                "bundleName": "dark-theme",
+                "inject": false
+              },
+              {
+                "input": "src/assets/styles/themes/light-theme.scss",
+                "bundleName": "light-theme",
+                "inject": false
+              }
             ],
             "scripts": []
           },
