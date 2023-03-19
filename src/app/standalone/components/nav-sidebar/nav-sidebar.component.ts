@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuItem } from 'primeng/api';
-import { ContainerComponent } from '@standalone/components/container/container.component';
-import { RouterModule } from '@angular/router';
-import { UserInfoComponent } from '@standalone/components/user-info/user-info.component';
-import { ToggleButtonModule } from 'primeng/togglebutton';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ContainerComponent } from '@standalone/components/container/container.component';
+import { UserInfoComponent } from '@standalone/components/user-info/user-info.component';
+import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 const NavSidebarImports = [
   CommonModule,

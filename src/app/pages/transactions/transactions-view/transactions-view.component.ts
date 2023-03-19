@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'cctrl-transactions-view',
+  selector: 'ctrl-transactions-view',
   templateUrl: './transactions-view.component.html',
   styleUrls: ['./transactions-view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TransactionsViewComponent {
-
-}
+export class TransactionsViewComponent {}

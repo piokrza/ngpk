@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'cctrl-incomes-view',
+  selector: 'ctrl-incomes-view',
   templateUrl: './incomes-view.component.html',
   styleUrls: ['./incomes-view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IncomesViewComponent {
-
-}
+export class IncomesViewComponent {}

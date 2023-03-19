@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsViewComponent } from './transactions-view/transactions-view.component';

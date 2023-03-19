@@ -1,16 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MenuService } from '@common/services/menu.service';
+import { PersistanceService } from '@common/services/persistance.service';
+import { ThemeService } from '@common/services/theme.service';
+import { ContainerComponent } from '@standalone/components/container/container.component';
+import { NavSidebarComponent } from '@standalone/components/nav-sidebar/nav-sidebar.component';
+import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-import { MenuItem } from 'primeng/api';
-import { MenuService } from '@common/services/menu.service';
-import { Observable } from 'rxjs';
-import { NavSidebarComponent } from '@standalone/components/nav-sidebar/nav-sidebar.component';
-import { ContainerComponent } from '@standalone/components/container/container.component';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { FormsModule } from '@angular/forms';
-import { ThemeService } from '@common/services/theme.service';
-import { PersistanceService } from '@common/services/persistance.service';
+import { Observable } from 'rxjs';
 
 const NavigationImports: Array<any> = [
   CommonModule,

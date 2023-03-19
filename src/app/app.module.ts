@@ -1,15 +1,15 @@
 import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
+import { AppInitService } from '@common/services/app-init.service';
+import { injectThemeLink } from '@common/utils/injectThemeLink';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ButtonModule } from 'primeng/button';
-import { injectThemeLink } from '@common/utils/injectThemeLink';
-import { AppInitService } from '@common/services/app-init.service';
 import { NavigationComponent } from '@standalone/components/navigation/navigation.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
 
 const declarations: Array<any> = [AppComponent];
 const imports: Array<any> = [

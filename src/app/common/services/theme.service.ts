@@ -1,6 +1,6 @@
-import { PersistanceService } from '@common/services/persistance.service';
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
+import { PersistanceService } from '@common/services/persistance.service';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {

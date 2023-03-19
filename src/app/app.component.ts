@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ctrl-root',
   template: `
     <ctrl-navigation></ctrl-navigation>
 
