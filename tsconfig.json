@@ -25,7 +25,10 @@
       "@common/*": ["src/app/common/*"],
       "@standalone/*": ["src/app/standalone/*"],
       "@store/*": ["src/app/store/*"],
-      "@pages/*": ["src/app/pages/*"]
+      "@dashboard/*": ["src/app/pages/dashboard/*"],
+      "@transactions/*": ["src/app/pages/transactions/*"],
+      "@expenses/*": ["src/app/pages/expenses/*"],
+      "@incomes/*": ["src/app/pages/incomes/*"]
     }
   },
   "angularCompilerOptions": {

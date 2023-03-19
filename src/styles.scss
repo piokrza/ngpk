@@ -1,8 +1,6 @@
 @use 'src/assets/styles/custom-styles/index.scss';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
 
-*,
-*::before,
-*::after {
+body {
   font-family: 'Inter', sans-serif;
 }

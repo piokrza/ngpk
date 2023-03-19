@@ -8,12 +8,16 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ButtonModule } from 'primeng/button';
 import { injectThemeLink } from '@common/utils/injectThemeLink';
 import { AppInitService } from '@common/services/app-init.service';
+import { NavigationComponent } from '@standalone/components/navigation/navigation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const declarations: Array<any> = [AppComponent];
 const imports: Array<any> = [
   BrowserModule,
+  BrowserAnimationsModule,
   AppRoutingModule,
   ButtonModule,
+  NavigationComponent,
 
   // NgRx
   StoreModule.forRoot({}, {}),

@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <h1 class="text-center">Hello</h1>
-    <button pButton label="dwa"></button>
+    <div class="flex">
+      <cctrl-navigation></cctrl-navigation>
+    </div>
+    <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.scss'],
 })
