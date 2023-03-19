@@ -1,0 +1,8 @@
+.sidebar-link {
+  background-color: var(--surface-card);
+
+  &:hover,
+  &.active {
+    background-color: var(--surface-hover);
+  }
+}

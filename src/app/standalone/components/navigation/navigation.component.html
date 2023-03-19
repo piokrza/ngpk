@@ -1,4 +1,22 @@
 <ng-container *ngIf="menuLinks$ | async as links">
-  <p-tieredMenu #menu [model]="links" [popup]="true"></p-tieredMenu>
-  <button type="button" pButton icon="pi pi-fw pi-list" (click)="menu.toggle($event)"></button>
+  <div class="p-5 xl:hidden">
+    <p-tieredMenu #menu [model]="links" [popup]="true" />
+
+    <div class="flex justify-between">
+      <button type="button" pButton icon="pi pi-fw pi-list" (click)="menu.toggle($event)"></button>
+
+      <p-toggleButton
+        [(ngModel)]="isLightMode"
+        (onChange)="themeService.setTheme(isLightMode)"
+        onIcon="pi pi-sun"
+        offIcon="pi pi-moon" />
+    </div>
+  </div>
+
+  <ctrl-container class="fixed top-0 bottom-0 w-[22.5rem] p-5 hidden xl:block">
+    <ctrl-nav-sidebar
+      [menuLinks]="links"
+      [isLightMode]="isLightMode"
+      (toggleThemeMode)="themeService.setTheme($event)" />
+  </ctrl-container>
 </ng-container>

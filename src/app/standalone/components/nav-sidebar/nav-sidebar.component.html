@@ -1,0 +1,28 @@
+<div class="h-full flex flex-col justify-between">
+  <nav>
+    <div class="mb-10">
+      <ctrl-user-info></ctrl-user-info>
+    </div>
+
+    <ul class="flex flex-col gap-3">
+      <li
+        *ngFor="let link of menuLinks"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        class="cursor-pointer rounded-lg p-2 transition sidebar-link">
+        <a class="block" [routerLink]="link.routerLink">{{ link.label }}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div>
+    <p-toggleButton
+      [(ngModel)]="isLightMode"
+      (onChange)="toggleThemeMode.emit(isLightMode)"
+      onIcon="pi pi-sun"
+      offIcon="pi pi-moon">
+    </p-toggleButton>
+
+    <button pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
+  </div>
+</div>

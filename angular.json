@@ -13,7 +13,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "cctrl",
+      "prefix": "ctrl",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
