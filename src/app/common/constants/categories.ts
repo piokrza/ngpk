@@ -1,6 +1,6 @@
 import { Category } from '@common/models/category.model';
 
-export const Categories: Category[] = [
+export const MockedCategories: Category[] = [
   {
     name: 'Food',
     code: '0',

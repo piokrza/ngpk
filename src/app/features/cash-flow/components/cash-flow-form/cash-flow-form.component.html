@@ -7,11 +7,12 @@
   </span>
 
   <span class="p-float-label my-6">
-    <p-inputNumber id="amount" mode="decimal" [minFractionDigits]="2" formControlName="amount"></p-inputNumber>
+    <p-inputNumber id="amount" mode="decimal" [minFractionDigits]="2" formControlName="amount" />
     <label for="amount">Income amount</label>
   </span>
 
   <p-dropdown
+    *ngIf="categories$ | async as categories"
     styleClass="w-full"
     [options]="categories"
     optionLabel="name"
@@ -19,7 +20,7 @@
     formControlName="category" />
 
   <span class="p-float-label my-6">
-    <p-calendar id="date" class="w-full" formControlName="date"></p-calendar>
+    <p-calendar id="date" class="w-full" formControlName="date" />
     <label for="date">Pick date</label>
   </span>
 

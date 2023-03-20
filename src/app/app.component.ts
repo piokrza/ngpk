@@ -1,5 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { PrimeNGConfig } from 'primeng/api';
+import { CategoriesActions } from '@store/categories';
 
 @Component({
   selector: 'ctrl-root',
@@ -17,8 +19,14 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
   private primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
+  private store: Store = inject(Store);
 
   public ngOnInit(): void {
     this.primengConfig.ripple = true;
+    this.dispatchStoreActions();
+  }
+
+  private dispatchStoreActions(): void {
+    this.store.dispatch(CategoriesActions.getCategories());
   }
 }

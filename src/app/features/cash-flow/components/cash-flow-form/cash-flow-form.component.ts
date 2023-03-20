@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Category } from '@common/models/category.model';
-import { Categories } from '@common/constants/categories';
+import { CategoriesSelectors } from '@app/store/categories';
 import { CashFlowForm } from '@common/models/cash-flow-form.model';
-import { CashFlowFormService } from '@common/services/cash-flow-form.service';
 import { CashFlowPayload } from '@common/models/cash-flow-payload.model';
+import { Category } from '@common/models/category.model';
+import { CashFlowFormService } from '@common/services/cash-flow-form.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ctrl-cash-flow-form',
@@ -15,8 +17,10 @@ import { CashFlowPayload } from '@common/models/cash-flow-payload.model';
 export class CashFlowFormComponent {
   @Output() public cashFlowData: EventEmitter<CashFlowPayload> = new EventEmitter<CashFlowPayload>();
 
+  private store: Store = inject(Store);
+
   public form: FormGroup<CashFlowForm>;
-  public categories: Category[] = Categories;
+  public categories$: Observable<Category[]> = this.store.select(CategoriesSelectors.categories);
 
   constructor(private cashFlowFormService: CashFlowFormService) {
     this.form = this.cashFlowFormService.createIncomeForm();
@@ -28,6 +32,6 @@ export class CashFlowFormComponent {
       return;
     }
 
-    this.cashFlowData.emit(this.cashFlowFormService.getCashFlowPayload(this.form));
+    this.cashFlowData.emit(this.form.value as CashFlowPayload);
   }
 }

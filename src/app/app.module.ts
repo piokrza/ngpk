@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +11,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ContainerComponent } from '@standalone/components/container/container.component';
+import { CategoriesEffects } from '@store/categories/categories.effects';
+import { ROOT_REDUCERS } from '@store/root-reducer';
 
 // PrimeNg
 import { ButtonModule } from 'primeng/button';
@@ -22,10 +25,11 @@ const imports: Array<any> = [
   UiModule,
   ContainerComponent,
   ButtonModule,
+  HttpClientModule,
 
   // NgRx
-  StoreModule.forRoot({}, {}),
-  EffectsModule.forRoot(),
+  StoreModule.forRoot(ROOT_REDUCERS),
+  EffectsModule.forRoot(CategoriesEffects),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 ];
 const providers: Array<any> = [
