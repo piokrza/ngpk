@@ -16,6 +16,8 @@ import { ROOT_REDUCERS } from '@store/root-reducer';
 
 // PrimeNg
 import { ButtonModule } from 'primeng/button';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 const declarations: Array<any> = [AppComponent];
 const imports: Array<any> = [
@@ -26,6 +28,7 @@ const imports: Array<any> = [
   ContainerComponent,
   ButtonModule,
   HttpClientModule,
+  ToastModule,
 
   // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),
@@ -39,6 +42,7 @@ const providers: Array<any> = [
     deps: [AppInitService],
     multi: true,
   },
+  MessageService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

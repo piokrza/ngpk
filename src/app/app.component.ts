@@ -15,6 +15,8 @@ import { CategoriesActions } from '@store/categories';
         </ctrl-container>
       </main>
     </div>
+
+    <p-toast position="top-right"></p-toast>
   `,
 })
 export class AppComponent implements OnInit {
