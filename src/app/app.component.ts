@@ -4,11 +4,15 @@ import { PrimeNGConfig } from 'primeng/api';
 @Component({
   selector: 'ctrl-root',
   template: `
-    <ctrl-navigation></ctrl-navigation>
+    <div class="max-w-[130rem] mx-auto">
+      <ctrl-navigation></ctrl-navigation>
 
-    <main class="min-h-screen xl:pl-[22.5rem] px-3 xl:p-5">
-      <router-outlet></router-outlet>
-    </main>
+      <main class="h-[calc(100vh-82px)] p-3 xl:pl-[22.5rem] xl:h-[100vh] xl:p-5">
+        <ctrl-container>
+          <router-outlet></router-outlet>
+        </ctrl-container>
+      </main>
+    </div>
   `,
 })
 export class AppComponent implements OnInit {

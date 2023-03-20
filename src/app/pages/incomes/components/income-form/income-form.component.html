@@ -1,0 +1,27 @@
+<!-- <div>errors here</div> -->
+
+<form>
+  <span class="p-float-label my-6">
+    <input id="name" type="text" pInputText class="w-full" />
+    <label for="name">Income name</label>
+  </span>
+
+  <span class="p-float-label my-6">
+    <p-inputNumber id="amount" mode="decimal" [minFractionDigits]="2"></p-inputNumber>
+    <label for="amount">Income amount</label>
+  </span>
+
+  <span class="p-float-label my-6">
+    <p-calendar id="date" class="w-full"></p-calendar>
+    <label for="date">Pick date</label>
+  </span>
+
+  <span class="p-float-label my-6">
+    <textarea id="description" class="w-full" pInputTextarea></textarea>
+    <label for="description">Add description</label>
+  </span>
+
+  <ctrl-separator>
+    <button pButton label="Add Income" type="submit"></button>
+  </ctrl-separator>
+</form>

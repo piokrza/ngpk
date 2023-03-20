@@ -5,9 +5,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'ctrl-container',
   standalone: true,
   imports: [CommonModule],
+  styleUrls: ['./container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="rounded-xl border h-full p-6">
+    <section class="rounded-xl h-full p-6 overflow-y-auto">
       <ng-content></ng-content>
     </section>
   `,

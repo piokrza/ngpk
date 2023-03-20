@@ -8,7 +8,10 @@ import { injectThemeLink$ } from '@common/utils/injectThemeLink';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ContainerComponent } from '@standalone/components/container/container.component';
 import { UiModule } from '@ui/ui.module';
+
+// PrimeNg
 import { ButtonModule } from 'primeng/button';
 
 const declarations: Array<any> = [AppComponent];
@@ -16,8 +19,9 @@ const imports: Array<any> = [
   BrowserModule,
   BrowserAnimationsModule,
   AppRoutingModule,
-  ButtonModule,
   UiModule,
+  ContainerComponent,
+  ButtonModule,
 
   // NgRx
   StoreModule.forRoot({}, {}),
