@@ -6,7 +6,6 @@ import { IncomesViewComponent } from '@incomes/incomes-view/incomes-view.compone
 import { IncomeFormComponent } from '@incomes/components/income-form/income-form.component';
 import { IncomeDetailsComponent } from '@incomes/components/income-details/income-details.component';
 import { IncomeDetailsListComponent } from '@incomes/components/income-details-list/income-details-list.component';
-import { SeparatorComponent } from '@standalone/components/separator/separator.component';
 
 // PrimeNg
 import { CalendarModule } from 'primeng/calendar';
@@ -33,7 +32,6 @@ const imports: Array<any> = [
   InputTextareaModule,
   CalendarModule,
   DropdownModule,
-  SeparatorComponent,
 ];
 
 @NgModule({ declarations, imports })

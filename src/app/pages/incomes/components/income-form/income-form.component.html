@@ -1,27 +1,25 @@
-<!-- <div>errors here</div> -->
+<div>errors here</div>
 
-<form>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <span class="p-float-label my-6">
-    <input id="name" type="text" pInputText class="w-full" />
+    <input id="name" type="text" pInputText class="w-full" formControlName="name" />
     <label for="name">Income name</label>
   </span>
 
   <span class="p-float-label my-6">
-    <p-inputNumber id="amount" mode="decimal" [minFractionDigits]="2"></p-inputNumber>
+    <p-inputNumber id="amount" mode="decimal" [minFractionDigits]="2" formControlName="amount"></p-inputNumber>
     <label for="amount">Income amount</label>
   </span>
 
   <span class="p-float-label my-6">
-    <p-calendar id="date" class="w-full"></p-calendar>
+    <p-calendar id="date" class="w-full" formControlName="date"></p-calendar>
     <label for="date">Pick date</label>
   </span>
 
   <span class="p-float-label my-6">
-    <textarea id="description" class="w-full" pInputTextarea></textarea>
+    <textarea id="description" class="w-full" pInputTextarea formControlName="description"></textarea>
     <label for="description">Add description</label>
   </span>
 
-  <ctrl-separator>
-    <button pButton label="Add Income" type="submit"></button>
-  </ctrl-separator>
+  <button pButton label="Add Income" type="submit"></button>
 </form>
