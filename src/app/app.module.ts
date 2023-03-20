@@ -5,11 +5,11 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { AppInitService } from '@common/services/app-init.service';
 import { injectThemeLink$ } from '@common/utils/injectThemeLink';
+import { UiModule } from '@features/ui/ui.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ContainerComponent } from '@standalone/components/container/container.component';
-import { UiModule } from '@ui/ui.module';
 
 // PrimeNg
 import { ButtonModule } from 'primeng/button';

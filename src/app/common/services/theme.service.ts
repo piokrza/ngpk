@@ -12,13 +12,6 @@ export class ThemeService {
 
   public setTheme(isLightMode: boolean): void {
     this._themeLink.href = isLightMode ? 'light-theme.css' : 'dark-theme.css';
-    this.handleBodyThemeModeClass(isLightMode);
     this.persistanceService.set('isLightMode', isLightMode);
-  }
-
-  private handleBodyThemeModeClass(isLightMode: boolean): void {
-    isLightMode
-      ? this.document.body.classList.contains('dark') && this.document.body.classList.remove('dark')
-      : this.document.body.classList.add('dark');
   }
 }

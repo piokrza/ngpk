@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-income-details-box',
+  selector: 'ctrl-cash-flow-details-box',
   template: `
     <div class="flex flex-wrap gap-3">
       <i [class]="'pi pi-' + iconName"></i>
@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IncomeDetailsBoxComponent {
+export class CashFlowDetailsBoxComponent {
   @Input() public detail!: string;
   @Input() public iconName!: string;
 }

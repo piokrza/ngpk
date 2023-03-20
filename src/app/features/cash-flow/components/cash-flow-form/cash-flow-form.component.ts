@@ -1,19 +1,18 @@
-import { ChangeDetectionStrategy, Component, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CashFlowForm } from '@common/models/cash-flow-form.model';
 import { CashFlowFormService } from '@common/services/cash-flow-form.service';
 
 @Component({
-  selector: 'ctrl-income-form',
-  templateUrl: './income-form.component.html',
-  styleUrls: ['./income-form.component.scss'],
-  providers: [CashFlowFormService],
+  selector: 'ctrl-cash-flow-form',
+  templateUrl: './cash-flow-form.component.html',
+  styleUrls: ['./cash-flow-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IncomeFormComponent {
+export class CashFlowFormComponent {
   public form: FormGroup<CashFlowForm>;
 
-  constructor(@Self() private cashFlowFormService: CashFlowFormService) {
+  constructor(private cashFlowFormService: CashFlowFormService) {
     this.form = this.cashFlowFormService.createIncomeForm();
   }
 
@@ -22,5 +21,8 @@ export class IncomeFormComponent {
       this.form.markAsDirty();
       return;
     }
+
+    console.log(2);
+    console.log(this.form.value);
   }
 }
