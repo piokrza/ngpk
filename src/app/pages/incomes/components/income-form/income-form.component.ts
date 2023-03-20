@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component, Self } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IncomeForm } from '@incomes/models/income-form.model';
-import { IncomeFormService } from '@incomes/services/income-form.service';
+import { CashFlowForm } from '@common/models/cash-flow-form.model';
+import { CashFlowFormService } from '@common/services/cash-flow-form.service';
 
 @Component({
   selector: 'ctrl-income-form',
   templateUrl: './income-form.component.html',
   styleUrls: ['./income-form.component.scss'],
-  providers: [IncomeFormService],
+  providers: [CashFlowFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IncomeFormComponent {
-  public form: FormGroup<IncomeForm>;
+  public form: FormGroup<CashFlowForm>;
 
-  constructor(@Self() private incomeFormService: IncomeFormService) {
-    this.form = this.incomeFormService.createIncomeForm();
+  constructor(@Self() private cashFlowFormService: CashFlowFormService) {
+    this.form = this.cashFlowFormService.createIncomeForm();
   }
 
   public onSubmit(): void {

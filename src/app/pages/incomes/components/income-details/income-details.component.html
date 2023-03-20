@@ -1,1 +1,25 @@
-<p>income-details works!</p>
+<div class="flex justify-between items-center">
+  <div class="flex items-center">
+    <div class="mr-3 w-[70px] h-[70px] bg-red-300">
+      <img src="" alt="category" class="w-full h-full border object-cover rounded-xl" />
+    </div>
+
+    <div>
+      <div class="flex items-center">
+        <span class="inline-block w-[.5rem] h-[.5rem] rounded-full bg-green-500 mr-3"></span>
+        {{ 'Bitcoin' }}
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <ctrl-income-details-box detail="2500" iconName="calendar" />
+        <ctrl-income-details-box detail="21/02/2023" iconName="calendar" />
+        <ctrl-income-details-box detail="This is short description" iconName="comment" />
+      </div>
+    </div>
+  </div>
+
+  <button
+    pButton
+    class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
+    icon="pi pi-times"></button>
+</div>
