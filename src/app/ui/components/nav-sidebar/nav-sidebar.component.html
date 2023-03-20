@@ -10,7 +10,10 @@
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="active"
         class="cursor-pointer rounded-lg p-2 transition sidebar-link">
-        <a class="block" [routerLink]="link.routerLink"> <i [class]="link.icon + ' mr-2'"></i> {{ link.label }}</a>
+        <a class="block" [routerLink]="link.routerLink">
+          <i [class]="link.icon + ' mr-2'"></i>
+          {{ link.label }}
+        </a>
       </li>
     </ul>
   </nav>
@@ -19,10 +22,8 @@
     <p-toggleButton
       [(ngModel)]="isLightMode"
       (onChange)="toggleThemeMode.emit(isLightMode)"
-      onIcon="pi pi-sun"
-      offIcon="pi pi-moon">
-    </p-toggleButton>
-
+      [onIcon]="'pi pi-sun'"
+      [offIcon]="'pi pi-moon'" />
     <button pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
   </div>
 </div>

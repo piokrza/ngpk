@@ -6,11 +6,11 @@ import { Observable, of, take, tap } from 'rxjs';
 export class AppInitService {
   private document: Document = inject(DOCUMENT);
 
-  public injectThemeLink(): Observable<HTMLLinkElement> {
+  public injectThemeLink$(): Observable<HTMLLinkElement> {
     return this.themeLink$().pipe(
       take(1),
-      tap((link: HTMLLinkElement): void => {
-        this.document.head.appendChild(link);
+      tap((themeLink: HTMLLinkElement): void => {
+        this.document.head.appendChild(themeLink);
       })
     );
   }

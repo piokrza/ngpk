@@ -23,6 +23,7 @@
     "paths": {
       "@app/*": ["src/app/*"],
       "@common/*": ["src/app/common/*"],
+      "@ui/*": ["src/app/ui/*"],
       "@standalone/*": ["src/app/standalone/*"],
       "@store/*": ["src/app/store/*"],
       "@dashboard/*": ["src/app/pages/dashboard/*"],
