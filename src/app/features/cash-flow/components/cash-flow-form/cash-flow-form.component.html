@@ -1,4 +1,4 @@
-<div>errors here</div>
+<!-- <div>errors here</div> -->
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <span class="p-float-label my-6">
@@ -10,6 +10,13 @@
     <p-inputNumber id="amount" mode="decimal" [minFractionDigits]="2" formControlName="amount"></p-inputNumber>
     <label for="amount">Income amount</label>
   </span>
+
+  <p-dropdown
+    styleClass="w-full"
+    [options]="categories"
+    optionLabel="name"
+    optionValue="code"
+    formControlName="category" />
 
   <span class="p-float-label my-6">
     <p-calendar id="date" class="w-full" formControlName="date"></p-calendar>
