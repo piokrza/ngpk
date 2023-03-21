@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { ToastStatus } from '@common/enums/toast-status.enum';
-import { ToastService } from '@common/services/toast.service';
 import { MockedCategories } from '@common/constants/categories';
+import { ToastStatus } from '@common/enums/toast-status.enum';
 import { Category } from '@common/models/category.model';
 import { CategoriesService } from '@common/services/categories.service';
+import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CategoriesActions } from '@store/categories';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, exhaustMap, map, of } from 'rxjs';
 
 @Injectable()
 export class CategoriesEffects {
@@ -14,10 +14,10 @@ export class CategoriesEffects {
   private categoriesService: CategoriesService = inject(CategoriesService);
   private toastService: ToastService = inject(ToastService);
 
-  getCategories$ = createEffect(() => {
+  public getCategories$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CategoriesActions.getCategories),
-      switchMap(() => {
+      exhaustMap(() => {
         return this.categoriesService.getCategories$().pipe(
           map((categories: Category[]) => {
             return CategoriesActions.getCategoriesSuccess({ categories });

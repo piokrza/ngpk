@@ -2,7 +2,7 @@ import { Category } from '@app/common/models/category.model';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { FeatureKey, State as CategoriesState } from '@store/categories';
 
-export const CategoriesStateSelector = createFeatureSelector<CategoriesState>(FeatureKey);
+const CategoriesStateSelector = createFeatureSelector<CategoriesState>(FeatureKey);
 
 export const isLoading = createSelector(
   CategoriesStateSelector,

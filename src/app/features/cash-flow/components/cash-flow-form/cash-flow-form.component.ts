@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CategoriesSelectors } from '@app/store/categories';
 import { CashFlowForm } from '@common/models/cash-flow-form.model';
-import { CashFlowPayload } from '@common/models/cash-flow-payload.model';
+import { CashFlow } from '@common/models/cash-flow.model';
 import { Category } from '@common/models/category.model';
 import { CashFlowFormService } from '@common/services/cash-flow-form.service';
 import { Store } from '@ngrx/store';
+import { CategoriesSelectors } from '@store/categories';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,16 +15,11 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowFormComponent {
-  @Output() public cashFlowData: EventEmitter<CashFlowPayload> = new EventEmitter<CashFlowPayload>();
+  @Output() public cashFlowData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
-  private store: Store = inject(Store);
+  public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createIncomeForm();
 
-  public form: FormGroup<CashFlowForm>;
-  public categories$: Observable<Category[]> = this.store.select(CategoriesSelectors.categories);
-
-  constructor(private cashFlowFormService: CashFlowFormService) {
-    this.form = this.cashFlowFormService.createIncomeForm();
-  }
+  public categories$: Observable<Category[]> = inject(Store).select(CategoriesSelectors.categories);
 
   public onSubmit(): void {
     if (this.form.invalid) {
@@ -32,6 +27,6 @@ export class CashFlowFormComponent {
       return;
     }
 
-    this.cashFlowData.emit(this.form.value as CashFlowPayload);
+    this.cashFlowData.emit(this.form.getRawValue());
   }
 }

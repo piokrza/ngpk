@@ -13,12 +13,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ContainerComponent } from '@standalone/components/container/container.component';
 import { CategoriesEffects } from '@store/categories/categories.effects';
 import { ROOT_REDUCERS } from '@store/root-reducer';
+import { IncomesEffects } from '@store/incomes/incomes.effects';
 
 // PrimeNg
-import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 
+const StoreEffects: Array<any> = [CategoriesEffects, IncomesEffects];
 const declarations: Array<any> = [AppComponent];
 const imports: Array<any> = [
   BrowserModule,
@@ -32,7 +34,7 @@ const imports: Array<any> = [
 
   // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),
-  EffectsModule.forRoot(CategoriesEffects),
+  EffectsModule.forRoot(StoreEffects),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
 ];
 const providers: Array<any> = [

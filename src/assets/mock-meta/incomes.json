@@ -1,0 +1,16 @@
+[
+  {
+    "name": "bread",
+    "amount": "2",
+    "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
+    "category": "1",
+    "description": "this is desc"
+  },
+  {
+    "name": "new keyboard",
+    "amount": "1",
+    "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
+    "category": "2",
+    "description": "this is another keyboard"
+  }
+]

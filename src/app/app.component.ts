@@ -1,7 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { PrimeNGConfig } from 'primeng/api';
 import { CategoriesActions } from '@store/categories';
+import { PrimeNGConfig } from 'primeng/api';
+import { IncomesActions } from '@store/incomes';
+import { IncomesService } from './pages/incomes/services/incomes.service';
 
 @Component({
   selector: 'ctrl-root',
@@ -23,6 +25,8 @@ export class AppComponent implements OnInit {
   private primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
   private store: Store = inject(Store);
 
+  incomes = inject(IncomesService);
+
   public ngOnInit(): void {
     this.primengConfig.ripple = true;
     this.dispatchStoreActions();
@@ -30,5 +34,6 @@ export class AppComponent implements OnInit {
 
   private dispatchStoreActions(): void {
     this.store.dispatch(CategoriesActions.getCategories());
+    this.store.dispatch(IncomesActions.getIncomes());
   }
 }

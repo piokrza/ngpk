@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CashFlowPayload } from '@common/models/cash-flow-payload.model';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { IncomesActions, IncomesSelectors } from '@app/store/incomes';
+import { CashFlow } from '@common/models/cash-flow.model';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ctrl-incomes-view',
@@ -8,7 +10,9 @@ import { CashFlowPayload } from '@common/models/cash-flow-payload.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IncomesViewComponent {
-  public onSubmit(incomeData: CashFlowPayload): void {
+  private store: Store = inject(Store);
+
+  public onSubmit(incomeData: CashFlow): void {
     console.log(incomeData);
   }
 }

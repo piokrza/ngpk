@@ -1,5 +1,5 @@
 export enum ActionTypes {
-  getCategories = '[Categories] Get categories',
-  getCategoriesSuccess = '[Categories] Get categories success',
-  getCategoriesFailure = '[Categories] Get categories failure',
+  GET_CATEGORIES = '[Categories] Get categories',
+  GET_CATEGORIES_SUCCESS = '[Categories] Get categories success',
+  GET_CATEGORIES_FAILURE = '[Categories] Get categories failure',
 }

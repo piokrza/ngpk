@@ -1,6 +1,6 @@
 import { Category } from '@common/models/category.model';
 import { createReducer, on } from '@ngrx/store';
-import { CategoriesActions } from '.';
+import { CategoriesActions } from '@store/categories';
 
 export const FeatureKey = 'categories';
 
@@ -24,7 +24,7 @@ export const Reducer = createReducer(
   on(CategoriesActions.getCategoriesSuccess, (_, { categories }) => {
     return { categories, isLoading: false };
   }),
-  on(CategoriesActions.getCategoriesFailure, (state, { mockedCategories }) => {
+  on(CategoriesActions.getCategoriesFailure, (_, { mockedCategories }) => {
     return { categories: mockedCategories, isLoading: true };
   })
 );
