@@ -5,13 +5,13 @@ import { CashFlow } from '@common/models/cash-flow.model';
   selector: 'ctrl-cash-flow-details-list',
   template: `
     <ng-container *ngIf="cashFlowList.length">
-      <ul class="w-full flex flex-col gap-6">
-        <li *ngFor="let detailsItem of cashFlowList">
+      <p-dataView [value]="cashFlowList" [paginator]="true" [rows]="3">
+        <ng-template let-detailsItem pTemplate="listItem">
           <p-card>
             <ctrl-cash-flow-details [details]="detailsItem" />
           </p-card>
-        </li>
-      </ul>
+        </ng-template>
+      </p-dataView>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

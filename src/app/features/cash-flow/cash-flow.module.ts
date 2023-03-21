@@ -14,6 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DataViewModule } from 'primeng/dataview';
 
 const declarations: Array<any> = [
   CashFlowDetailsComponent,
@@ -31,6 +32,7 @@ const imports: Array<any> = [
   DropdownModule,
   CalendarModule,
   ReactiveFormsModule,
+  DataViewModule,
 ];
 const exports: Array<any> = [...declarations];
 
