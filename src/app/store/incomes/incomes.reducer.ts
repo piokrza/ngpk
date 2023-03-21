@@ -26,5 +26,10 @@ export const Reducer = createReducer(
   }),
   on(IncomesActions.getIncomesFailure, (state: State): State => {
     return { ...state, isLoading: false };
+  }),
+
+  // add income
+  on(IncomesActions.addIncome, (state, { income }) => {
+    return { ...state, incomes: [...state.incomes, income] };
   })
 );

@@ -5,8 +5,8 @@ import { ToastService } from '@common/services/toast.service';
 import { IncomesService } from '@incomes/services/incomes.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, exhaustMap, map, of } from 'rxjs';
 import { IncomesActions } from '@store/incomes';
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 
 @Injectable()
 export class IncomesEffects {
@@ -33,6 +33,15 @@ export class IncomesEffects {
             return of(IncomesActions.getIncomesFailure());
           })
         );
+      })
+    );
+  });
+
+  public addIncome$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(IncomesActions.addIncome),
+      tap((income) => {
+        console.log(income);
       })
     );
   });

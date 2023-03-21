@@ -12,8 +12,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ContainerComponent } from '@standalone/components/container/container.component';
 import { CategoriesEffects } from '@store/categories/categories.effects';
-import { ROOT_REDUCERS } from '@store/root-reducer';
 import { IncomesEffects } from '@store/incomes/incomes.effects';
+import { ROOT_REDUCERS } from '@store/root-reducer';
 
 // PrimeNg
 import { MessageService } from 'primeng/api';

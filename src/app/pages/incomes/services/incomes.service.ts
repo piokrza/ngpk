@@ -10,4 +10,8 @@ export class IncomesService {
   public getIncomes$(): Observable<CashFlow[]> {
     return this.http.get<CashFlow[]>('assets/mock-meta/incomes.json');
   }
+
+  public addIncome$(income: CashFlow): Observable<any> {
+    return this.http.post<any>('', income);
+  }
 }

@@ -28,5 +28,6 @@ export class CashFlowFormComponent {
     }
 
     this.cashFlowData.emit(this.form.getRawValue());
+    this.form.reset();
   }
 }

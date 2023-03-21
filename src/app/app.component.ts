@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CategoriesActions } from '@store/categories';
-import { PrimeNGConfig } from 'primeng/api';
 import { IncomesActions } from '@store/incomes';
+import { PrimeNGConfig } from 'primeng/api';
 import { IncomesService } from './pages/incomes/services/incomes.service';
 
 @Component({
