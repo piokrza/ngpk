@@ -8,7 +8,4 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavSidebarComponent {
   @Input() public menuLinks!: MenuItem[];
-  @Input() public isLightMode!: boolean;
-
-  @Output() public toggleThemeMode: EventEmitter<boolean> = new EventEmitter<boolean>(this.isLightMode);
 }

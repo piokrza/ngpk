@@ -18,12 +18,5 @@
     </ul>
   </nav>
 
-  <div>
-    <p-toggleButton
-      [(ngModel)]="isLightMode"
-      (onChange)="toggleThemeMode.emit(isLightMode)"
-      [onIcon]="'pi pi-sun'"
-      [offIcon]="'pi pi-moon'" />
-    <button pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
-  </div>
+  <button pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
 </div>
