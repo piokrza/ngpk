@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlowSelectors } from '@app/store/cash-flow';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ctrl-expenses-view',
@@ -6,4 +10,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./expenses-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExpensesViewComponent {}
+export class ExpensesViewComponent {
+  private store: Store = inject(Store);
+
+  public expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
+
+  public onSubmit(expensesData: CashFlow): void {
+    console.log(expensesData);
+  }
+}
