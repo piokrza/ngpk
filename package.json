@@ -23,6 +23,7 @@
     "@ngrx/effects": "^15.4.0",
     "@ngrx/store": "^15.4.0",
     "@ngrx/store-devtools": "^15.4.0",
+    "chart.js": "^4.2.1",
     "eslint-plugin-import": "^2.27.5",
     "primeicons": "^6.0.1",
     "primeng": "^15.2.0",

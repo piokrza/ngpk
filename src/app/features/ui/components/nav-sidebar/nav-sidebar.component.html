@@ -9,8 +9,8 @@
         *ngFor="let link of menuLinks"
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="active"
-        class="cursor-pointer rounded-lg p-2 transition sidebar-link">
-        <a class="block" [routerLink]="link.routerLink">
+        class="cursor-pointer rounded-lg transition sidebar-link">
+        <a class="block p-2" [routerLink]="link.routerLink">
           <i [class]="link.icon + ' mr-2'"></i>
           {{ link.label }}
         </a>

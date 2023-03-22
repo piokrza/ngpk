@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TransactionsViewComponent } from '@transactions/transactions-view/transactions-view.component';
+import { SettingsViewComponent } from '@settings/settings-view/settings-view.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TransactionsViewComponent,
+    component: SettingsViewComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TransactionsRoutingModule {}
+export class SettingsRoutingModule {}

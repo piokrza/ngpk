@@ -3,20 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardModule } from '@dashboard/dashboard.module';
 import { ExpensesModule } from '@expenses/expenses.module';
 import { IncomesModule } from '@incomes/incomes.module';
-import { TransactionsModule } from '@transactions/transactions.module';
+import { SettingsModule } from '@settings/settings.module';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: (): Promise<any> =>
       import('@dashboard/dashboard.module').then(({ DashboardModule }): DashboardModule => DashboardModule),
-  },
-  {
-    path: 'transactions',
-    loadChildren: (): Promise<any> =>
-      import('@transactions/transactions.module').then(
-        ({ TransactionsModule }): TransactionsModule => TransactionsModule
-      ),
   },
   {
     path: 'incomes',
@@ -27,6 +20,11 @@ const routes: Routes = [
     path: 'expenses',
     loadChildren: (): Promise<any> =>
       import('@expenses/expenses.module').then(({ ExpensesModule }): ExpensesModule => ExpensesModule),
+  },
+  {
+    path: 'settings',
+    loadChildren: (): Promise<any> =>
+      import('@settings/settings.module').then(({ SettingsModule }): SettingsModule => SettingsModule),
   },
 ];
 

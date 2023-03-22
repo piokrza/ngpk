@@ -34,7 +34,7 @@ export class IncomesViewComponent {
 
   public removeIncome(incomeId: string): void {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
+      message: 'Are you sure that you want to remove this income?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: (): void => {

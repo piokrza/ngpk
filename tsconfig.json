@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -28,7 +27,7 @@
       "@standalone/*": ["src/app/standalone/*"],
       "@store/*": ["src/app/store/*"],
       "@dashboard/*": ["src/app/pages/dashboard/*"],
-      "@transactions/*": ["src/app/pages/transactions/*"],
+      "@settings/*": ["src/app/pages/settings/*"],
       "@expenses/*": ["src/app/pages/expenses/*"],
       "@incomes/*": ["src/app/pages/incomes/*"]
     }

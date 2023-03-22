@@ -16,19 +16,19 @@ export class MenuService {
         routerLinkActiveOptions: { exact: true },
       },
       {
-        label: 'View Transactions',
-        routerLink: '/transactions',
-        icon: 'pi pi-fw pi-wallet',
-      },
-      {
         label: 'Incomes',
         routerLink: '/incomes',
-        icon: 'pi pi-fw pi-pound',
+        icon: 'pi pi-fw pi-sign-in',
       },
       {
         label: 'Expenses',
         routerLink: '/expenses',
-        icon: 'pi pi-fw pi-pound',
+        icon: 'pi pi-fw pi-sign-out',
+      },
+      {
+        label: 'Settings',
+        routerLink: '/settings',
+        icon: 'pi pi-fw pi-sliders-v',
       },
     ];
 
