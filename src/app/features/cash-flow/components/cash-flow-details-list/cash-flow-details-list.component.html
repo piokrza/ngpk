@@ -1,0 +1,17 @@
+<ng-container *ngIf="isLoading; else loaded">
+  <p-progressSpinner />
+</ng-container>
+
+<ng-template #loaded>
+  <ng-container *ngIf="cashFlowList.length; else noCashFlowToDisplay">
+    <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > 3" [rows]="3">
+      <ng-template let-detailsItem pTemplate="listItem">
+        <p-card>
+          <ctrl-cash-flow-details [details]="detailsItem" />
+        </p-card>
+      </ng-template>
+    </p-dataView>
+  </ng-container>
+
+  <ng-template #noCashFlowToDisplay>No {{ isIncomeMode ? 'incomes' : 'expenses' }} to display </ng-template>
+</ng-template>

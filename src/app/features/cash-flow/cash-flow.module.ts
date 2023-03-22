@@ -6,7 +6,7 @@ import { CashFlowDetailsBoxComponent } from '@features/cash-flow/components/cash
 import { CashFlowDetailsListComponent } from '@features/cash-flow/components/cash-flow-details-list/cash-flow-details-list.component';
 import { CashFlowFormComponent } from '@features/cash-flow/components/cash-flow-form/cash-flow-form.component';
 import { CashFlowHeadingComponent } from '@features/cash-flow/components/cash-flow-heading/cash-flow-heading.component';
-import { CashFlowViewComponent } from '@features/cash-flow/components/cash-flow-view/cash-flow-view.component';
+import { CashFlowPanelComponent } from '@features/cash-flow/components/cash-flow-view/cash-flow-panel.component';
 
 // PrimeNg
 import { CalendarModule } from 'primeng/calendar';
@@ -17,6 +17,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DividerModule } from 'primeng/divider';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 const declarations: Array<any> = [
   CashFlowDetailsComponent,
@@ -24,7 +25,7 @@ const declarations: Array<any> = [
   CashFlowDetailsListComponent,
   CashFlowFormComponent,
   CashFlowHeadingComponent,
-  CashFlowViewComponent,
+  CashFlowPanelComponent,
 ];
 const imports: Array<any> = [
   CommonModule,
@@ -36,6 +37,7 @@ const imports: Array<any> = [
   CalendarModule,
   ReactiveFormsModule,
   DataViewModule,
+  ProgressSpinnerModule,
   DividerModule,
 ];
 const exports: Array<any> = [...declarations];

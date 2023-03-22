@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'ctrl-incomes-view',
   template: `
-    <ctrl-cash-flow-view
+    <ctrl-cash-flow-panel
       (cashFlowSubmitData)="onSubmit($event)"
       [cashFlowData]="(incomes$ | async)!"
       [isIncomeMode]="true" />

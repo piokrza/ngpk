@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CashFlowViewComponent } from './cash-flow-view.component';
+import { CashFlowViewComponent } from './cash-flow-panel.component';
 
 describe('CashFlowViewComponent', () => {
   let component: CashFlowViewComponent;
@@ -8,9 +8,8 @@ describe('CashFlowViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CashFlowViewComponent ]
-    })
-    .compileComponents();
+      declarations: [CashFlowViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CashFlowViewComponent);
     component = fixture.componentInstance;

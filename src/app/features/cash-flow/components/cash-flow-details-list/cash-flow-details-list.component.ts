@@ -3,19 +3,11 @@ import { CashFlow } from '@common/models/cash-flow.model';
 
 @Component({
   selector: 'ctrl-cash-flow-details-list',
-  template: `
-    <ng-container *ngIf="cashFlowList.length">
-      <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > 3" [rows]="3">
-        <ng-template let-detailsItem pTemplate="listItem">
-          <p-card>
-            <ctrl-cash-flow-details [details]="detailsItem" />
-          </p-card>
-        </ng-template>
-      </p-dataView>
-    </ng-container>
-  `,
+  templateUrl: './cash-flow-details-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowDetailsListComponent {
   @Input() public cashFlowList!: CashFlow[];
+  @Input() public isLoading!: boolean;
+  @Input() public isIncomeMode!: boolean;
 }

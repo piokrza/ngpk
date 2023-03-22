@@ -7,9 +7,10 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'ctrl-expenses-view',
   template: `
-    <ctrl-cash-flow-view
+    <ctrl-cash-flow-panel
       (cashFlowSubmitData)="onSubmit($event)"
       [cashFlowData]="(expenses$ | async)!"
+      [isLoading]="(isLoading$ | async)!"
       [isIncomeMode]="false" />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,6 +19,7 @@ export class ExpensesViewComponent {
   private store: Store = inject(Store);
 
   public expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
+  public isLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
 
   public onSubmit(expensesData: CashFlow): void {
     console.log(expensesData);

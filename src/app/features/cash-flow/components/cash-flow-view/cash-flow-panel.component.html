@@ -10,5 +10,5 @@
     <p-divider />
   </div>
 
-  <ctrl-cash-flow-details-list *ngIf="cashFlowData.length" [cashFlowList]="cashFlowData" class="w-full" />
+  <ctrl-cash-flow-details-list [isLoading]="isLoading" [cashFlowList]="cashFlowData" class="w-full" />
 </div>
