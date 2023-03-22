@@ -6,8 +6,12 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ctrl-expenses-view',
-  templateUrl: './expenses-view.component.html',
-  styleUrls: ['./expenses-view.component.scss'],
+  template: `
+    <ctrl-cash-flow-view
+      (cashFlowSubmitData)="onSubmit($event)"
+      [cashFlowData]="(expenses$ | async)!"
+      [isIncomeMode]="false" />
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExpensesViewComponent {
