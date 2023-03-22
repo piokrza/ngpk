@@ -6,7 +6,7 @@ import { CashFlowDetailsBoxComponent } from '@features/cash-flow/components/cash
 import { CashFlowDetailsListComponent } from '@features/cash-flow/components/cash-flow-details-list/cash-flow-details-list.component';
 import { CashFlowFormComponent } from '@features/cash-flow/components/cash-flow-form/cash-flow-form.component';
 import { CashFlowHeadingComponent } from '@features/cash-flow/components/cash-flow-heading/cash-flow-heading.component';
-import { CashFlowPanelComponent } from '@features/cash-flow/components/cash-flow-view/cash-flow-panel.component';
+import { CashFlowPanelComponent } from '@features/cash-flow/components/cash-flow-panel/cash-flow-panel.component';
 
 // PrimeNg
 import { CalendarModule } from 'primeng/calendar';

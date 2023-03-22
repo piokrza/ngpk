@@ -1,5 +1,7 @@
 <ng-container *ngIf="isLoading; else loaded">
-  <p-progressSpinner />
+  <div class="flex justify-center">
+    <p-progressSpinner />
+  </div>
 </ng-container>
 
 <ng-template #loaded>
@@ -7,7 +9,7 @@
     <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > 3" [rows]="3">
       <ng-template let-detailsItem pTemplate="listItem">
         <p-card>
-          <ctrl-cash-flow-details [details]="detailsItem" />
+          <ctrl-cash-flow-details [isIncomeMode]="isIncomeMode" [details]="detailsItem" />
         </p-card>
       </ng-template>
     </p-dataView>

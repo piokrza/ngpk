@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { MockedCategories } from '@common/constants/categories';
 import { ToastStatus } from '@common/enums/toast-status.enum';
-import { Category } from '@common/models/category.model';
+import { Categories } from '@common/models/category.model';
 import { CategoriesService } from '@common/services/categories.service';
 import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -19,7 +19,8 @@ export class CategoriesEffects {
       ofType(CategoriesActions.getCategories),
       exhaustMap(() => {
         return this.categoriesService.getCategories$().pipe(
-          map((categories: Category[]) => {
+          map((categories: Categories) => {
+            console.log(categories.expenses);
             return CategoriesActions.getCategoriesSuccess({ categories });
           }),
           catchError((e) => {

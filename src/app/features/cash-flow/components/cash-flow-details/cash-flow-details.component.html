@@ -1,12 +1,14 @@
 <div class="flex justify-between items-center">
   <div class="flex items-center">
-    <div class="mr-3 w-[70px] h-[70px] bg-red-300">
+    <div class="mr-3 w-[70px] h-[70px] bg-red-300 hidden lg:block">
       <img src="" alt="category" class="w-full h-full border object-cover rounded-xl" />
     </div>
 
     <div>
       <div class="flex items-center">
-        <span class="inline-block w-[.5rem] h-[.5rem] rounded-full bg-green-500 mr-3"></span>
+        <span
+          class="inline-block w-[.5rem] h-[.5rem] rounded-full mr-3"
+          [ngClass]="{ 'bg-green-600': isIncomeMode, 'bg-red-600': !isIncomeMode }"></span>
         {{ details.name | titlecase }}
       </div>
 

@@ -1,16 +1,16 @@
-import { Category } from '@common/models/category.model';
+import { Categories } from '@common/models/category.model';
 import { createReducer, on } from '@ngrx/store';
 import { CategoriesActions } from '@store/categories';
 
 export const FeatureKey = 'categories';
 
 export interface State {
-  categories: Category[];
+  categories: Categories | null;
   isLoading: boolean;
 }
 
 const initialState: State = {
-  categories: [],
+  categories: null,
   isLoading: false,
 };
 

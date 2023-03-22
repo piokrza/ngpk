@@ -4,13 +4,15 @@
     "amount": "10 000",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
     "category": "1",
-    "description": "this is desc"
+    "description": "this is desc",
+    "id": "0"
   },
   {
     "name": "awiw",
     "amount": "150",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
     "category": "2",
-    "description": "this is another keyboard"
+    "description": "this is another keyboard",
+    "id": "1"
   }
 ]

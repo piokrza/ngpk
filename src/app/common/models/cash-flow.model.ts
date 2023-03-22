@@ -4,4 +4,5 @@ export interface CashFlow {
   date: Date | null;
   category: string;
   description: string;
+  id: string;
 }

@@ -1,4 +1,4 @@
-import { Category } from '@app/common/models/category.model';
+import { Categories } from '@app/common/models/category.model';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { FeatureKey, State as CategoriesState } from '@store/categories';
 
@@ -10,5 +10,5 @@ export const isLoading = createSelector(
 );
 export const categories = createSelector(
   CategoriesStateSelector,
-  ({ categories }: CategoriesState): Category[] => categories
+  ({ categories }: CategoriesState): Categories | null => categories
 );
