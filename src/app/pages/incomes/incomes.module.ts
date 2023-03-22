@@ -6,9 +6,10 @@ import { IncomesViewComponent } from '@incomes/incomes-view/incomes-view.compone
 
 // PrimeNg
 import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
 
 const declarations: Array<any> = [IncomesViewComponent];
-const imports: Array<any> = [CommonModule, IncomesRoutingModule, CardModule, CashFlowModule];
+const imports: Array<any> = [CommonModule, IncomesRoutingModule, CardModule, CashFlowModule, DividerModule];
 
 @NgModule({ declarations, imports })
 export class IncomesModule {}

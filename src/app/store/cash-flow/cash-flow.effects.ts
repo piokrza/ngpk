@@ -46,4 +46,26 @@ export class IncomesEffects {
     },
     { dispatch: false }
   );
+
+  public getExpenses$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashFlowActions.getIncomes),
+      exhaustMap(() => {
+        return this.cashFlowService.getExpenses$().pipe(
+          map((expenses: CashFlow[]) => {
+            return CashFlowActions.getExpensesSuccess({ expenses });
+          }),
+          catchError((e) => {
+            console.error(e);
+            this.toastService.showMessage(
+              ToastStatus.WARN,
+              'Error!',
+              'Something went wrong during fetching expensess from database'
+            );
+            return of(CashFlowActions.getIncomesFailure());
+          })
+        );
+      })
+    );
+  });
 }

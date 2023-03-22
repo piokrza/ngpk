@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CashFlowForm } from '@common/models/cash-flow-form.model';
 import { CashFlow } from '@common/models/cash-flow.model';
@@ -15,6 +15,8 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowFormComponent {
+  @Input() public isIncomeMode!: boolean;
+
   @Output() public cashFlowData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
   public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createIncomeForm();

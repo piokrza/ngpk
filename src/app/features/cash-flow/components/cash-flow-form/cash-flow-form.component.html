@@ -30,5 +30,5 @@
     <label for="description">Add description</label>
   </span>
 
-  <button pButton label="Add Income" type="submit"></button>
+  <button pButton [label]="isIncomeMode ? 'Add Income' : 'Add Expense'" type="submit"></button>
 </form>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CashFlow } from '@common/models/cash-flow.model';
-import { CashFlowSelectors } from '@app/store/cash-flow';
+import { CashFlowSelectors } from '@store/cash-flow';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 

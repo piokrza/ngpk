@@ -32,5 +32,6 @@ export class AppComponent implements OnInit {
   private dispatchStoreActions(): void {
     this.store.dispatch(CategoriesActions.getCategories());
     this.store.dispatch(CashFlowActions.getIncomes());
+    this.store.dispatch(CashFlowActions.getExpenses());
   }
 }

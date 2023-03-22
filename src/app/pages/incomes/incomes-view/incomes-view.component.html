@@ -1,7 +1,9 @@
 <ctrl-cash-flow-heading [isIncomeMode]="true" />
 
 <div class="mt-10 gap-12 xl:flex">
-  <ctrl-cash-flow-form (cashFlowData)="onSubmit($event)" class="w-full mb-5 xl:max-w-[300px]" />
+  <ctrl-cash-flow-form (cashFlowData)="onSubmit($event)" [isIncomeMode]="true" class="w-full mb-5 xl:max-w-[300px]" />
+
+  <p-divider></p-divider>
 
   <ctrl-cash-flow-details-list [cashFlowList]="(incomes$ | async)!" class="w-full" />
 </div>
