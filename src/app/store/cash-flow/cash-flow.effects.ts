@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { CashFlowService } from '@app/common/services/cash-flow.service';
+import { CashFlowService } from '@common/services/cash-flow.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import { CashFlow } from '@common/models/cash-flow.model';
 import { ToastService } from '@common/services/toast.service';
@@ -39,7 +39,21 @@ export class IncomesEffects {
     () => {
       return this.actions$.pipe(
         ofType(CashFlowActions.addIncome),
-        tap((income) => {})
+        tap((): void => {
+          this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully added');
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  public removeIncome$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(CashFlowActions.removeIncome),
+        tap((): void => {
+          this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully removed');
+        })
       );
     },
     { dispatch: false }
@@ -66,4 +80,28 @@ export class IncomesEffects {
       })
     );
   });
+
+  public addExpense$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(CashFlowActions.addExpense),
+        tap((): void => {
+          this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully added');
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  public removeExpense$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(CashFlowActions.removeExpense),
+        tap((): void => {
+          this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully removed');
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }

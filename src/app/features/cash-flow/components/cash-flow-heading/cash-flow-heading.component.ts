@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       <h3 class="text-center text-2xl">
         Total {{ isIncomeMode ? 'income:' : 'expences:' }}
         <span [ngClass]="{ 'text-green-600': isIncomeMode, 'text-red-600': !isIncomeMode }">
-          {{ value ? value : 0 }}PLN
+          {{ amount ? amount : 0 }} PLN
         </span>
       </h3>
     </p-card>
@@ -16,5 +16,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class CashFlowHeadingComponent {
   @Input() public isIncomeMode!: boolean;
-  @Input() public value!: string;
+  @Input() public amount!: number;
 }

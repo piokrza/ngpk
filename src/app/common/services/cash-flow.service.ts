@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 export class CashFlowService {
   private http: HttpClient = inject(HttpClient);
 
+  // API
   public getIncomes$(): Observable<CashFlow[]> {
     return this.http.get<CashFlow[]>('assets/mock-meta/incomes.json');
   }
@@ -18,4 +19,5 @@ export class CashFlowService {
   public getExpenses$(): Observable<CashFlow[]> {
     return this.http.get<CashFlow[]>('assets/mock-meta/expenses.json');
   }
+  // API end
 }

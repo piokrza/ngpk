@@ -6,9 +6,10 @@ import { ExpensesViewComponent } from '@expenses/expenses-view/expenses-view.com
 
 // PrimeNg
 import { DividerModule } from 'primeng/divider';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 const declarations: Array<any> = [ExpensesViewComponent];
-const imports: Array<any> = [CommonModule, ExpensesRoutingModule, CashFlowModule, DividerModule];
+const imports: Array<any> = [CommonModule, ExpensesRoutingModule, CashFlowModule, DividerModule, ConfirmDialogModule];
 
 @NgModule({ declarations, imports })
 export class ExpensesModule {}

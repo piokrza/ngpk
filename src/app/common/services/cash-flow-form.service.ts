@@ -9,7 +9,7 @@ export class CashFlowFormService {
   public createIncomeForm(): FormGroup<CashFlowForm> {
     return this.fb.group<CashFlowForm>({
       name: this.fb.nonNullable.control('', { validators: [Validators.required] }),
-      amount: this.fb.nonNullable.control('', { validators: [Validators.required] }),
+      amount: this.fb.nonNullable.control(0, { validators: [Validators.required] }),
       date: this.fb.control(null, { validators: [Validators.required] }),
       category: this.fb.nonNullable.control('', { validators: [Validators.required] }),
       description: this.fb.nonNullable.control(''),

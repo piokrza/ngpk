@@ -16,7 +16,7 @@ import { CategoriesEffects } from '@store/categories/categories.effects';
 import { ROOT_REDUCERS } from '@store/root-reducer';
 
 // PrimeNg
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 
@@ -45,6 +45,7 @@ const providers: Array<any> = [
     multi: true,
   },
   MessageService,
+  ConfirmationService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

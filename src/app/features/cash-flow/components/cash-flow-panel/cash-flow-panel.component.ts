@@ -10,6 +10,7 @@ export class CashFlowPanelComponent {
   @Input() public cashFlowData!: CashFlow[];
   @Input() public isIncomeMode!: boolean;
   @Input() public isLoading!: boolean;
+  @Input() public totalCashFlowAmount: number = 0;
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
   @Output() public itemToRemoveId: EventEmitter<string> = new EventEmitter<string>();

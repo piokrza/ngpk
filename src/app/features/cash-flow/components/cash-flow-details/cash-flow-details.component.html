@@ -13,7 +13,7 @@
       </div>
 
       <div class="flex flex-wrap gap-3">
-        <ctrl-cash-flow-details-box [detail]="details.amount" iconName="calendar" />
+        <ctrl-cash-flow-details-box [detail]="details.amount.toString()" iconName="calendar" />
         <ctrl-cash-flow-details-box [detail]="(details.date | date)!" iconName="calendar" />
         <ctrl-cash-flow-details-box [detail]="details.description" iconName="comment" />
       </div>
