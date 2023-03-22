@@ -33,8 +33,6 @@ export class ExpensesViewComponent {
   }
 
   public removeExpense(expenseId: string): void {
-    this.store.dispatch(CashFlowActions.removeExpense({ expenseId }));
-
     this.confirmationService.confirm({
       message: 'Are you sure that you want to remove this expense?',
       header: 'Confirmation',

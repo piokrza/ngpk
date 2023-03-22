@@ -1,28 +1,30 @@
-<div class="flex justify-between items-center">
-  <div class="flex items-center">
-    <div class="mr-3 w-[70px] h-[70px] bg-red-300 hidden lg:block">
-      <img src="" alt="category" class="w-full h-full border object-cover rounded-xl" />
-    </div>
-
-    <div>
-      <div class="flex items-center">
-        <span
-          class="inline-block w-[.5rem] h-[.5rem] rounded-full mr-3"
-          [ngClass]="{ 'bg-green-600': isIncomeMode, 'bg-red-600': !isIncomeMode }"></span>
-        {{ details.name | titlecase }}
+<p-card>
+  <div class="flex justify-between items-center">
+    <div class="flex items-center">
+      <div class="mr-3 w-[70px] h-[70px] bg-red-300 hidden lg:block">
+        <img src="" alt="category" class="w-full h-full border object-cover rounded-xl" />
       </div>
 
-      <div class="flex flex-wrap gap-3">
-        <ctrl-cash-flow-details-box [detail]="details.amount.toString()" iconName="calendar" />
-        <ctrl-cash-flow-details-box [detail]="(details.date | date)!" iconName="calendar" />
-        <ctrl-cash-flow-details-box [detail]="details.description" iconName="comment" />
+      <div>
+        <div class="flex items-center">
+          <span
+            class="inline-block w-[.5rem] h-[.5rem] rounded-full mr-3"
+            [ngClass]="{ 'bg-green-600': isIncomeMode, 'bg-red-600': !isIncomeMode }"></span>
+          {{ details.name | titlecase }}
+        </div>
+
+        <div class="flex flex-wrap gap-6">
+          <ctrl-cash-flow-details-box [detail]="details.amount.toString()" iconName="dollar" />
+          <ctrl-cash-flow-details-box [detail]="(details.date | date)!" iconName="calendar" />
+          <ctrl-cash-flow-details-box *ngIf="details.description" [detail]="details.description" iconName="comment" />
+        </div>
       </div>
     </div>
+
+    <button
+      (click)="itemToRemoveId.emit(details.id)"
+      pButton
+      class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
+      icon="pi pi-trash"></button>
   </div>
-
-  <button
-    (click)="itemToRemoveId.emit(details.id)"
-    pButton
-    class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
-    icon="pi pi-trash"></button>
-</div>
+</p-card>
