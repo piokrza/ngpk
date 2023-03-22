@@ -5,7 +5,7 @@ import { CashFlow } from '@common/models/cash-flow.model';
   selector: 'ctrl-cash-flow-details-list',
   template: `
     <ng-container *ngIf="cashFlowList.length">
-      <p-dataView [value]="cashFlowList" [paginator]="true" [rows]="3">
+      <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > 3" [rows]="3">
         <ng-template let-detailsItem pTemplate="listItem">
           <p-card>
             <ctrl-cash-flow-details [details]="detailsItem" />

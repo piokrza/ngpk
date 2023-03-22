@@ -1,6 +1,6 @@
+import { ActionTypes } from '@app/store/cash-flow/action-types';
 import { CashFlow } from '@common/models/cash-flow.model';
 import { createAction, props } from '@ngrx/store';
-import { ActionTypes } from '@store/incomes/action-types';
 
 // get incomes
 export const getIncomes = createAction(ActionTypes.GET_INCOMES);

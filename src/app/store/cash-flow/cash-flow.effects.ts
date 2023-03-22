@@ -1,27 +1,25 @@
 import { inject, Injectable } from '@angular/core';
+import { CashFlowService } from '@app/common/services/cash-flow.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import { CashFlow } from '@common/models/cash-flow.model';
 import { ToastService } from '@common/services/toast.service';
-import { IncomesService } from '@incomes/services/incomes.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { IncomesActions } from '@store/incomes';
+import { CashFlowActions } from '@store/cash-flow';
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 
 @Injectable()
 export class IncomesEffects {
-  private actions$: Actions = inject(Store);
-  private incomesService: IncomesService = inject(IncomesService);
+  private actions$: Actions = inject(Actions);
+  private cashFlowService: CashFlowService = inject(CashFlowService);
   private toastService: ToastService = inject(ToastService);
 
   public getIncomes$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(IncomesActions.getIncomes),
+      ofType(CashFlowActions.getIncomes),
       exhaustMap(() => {
-        return this.incomesService.getIncomes$().pipe(
+        return this.cashFlowService.getIncomes$().pipe(
           map((incomes: CashFlow[]) => {
-            console.log(incomes);
-            return IncomesActions.getIncomesSuccess({ incomes });
+            return CashFlowActions.getIncomesSuccess({ incomes });
           }),
           catchError((e) => {
             console.error(e);
@@ -30,19 +28,22 @@ export class IncomesEffects {
               'Error!',
               'Something went wrong during fetching incomes from database'
             );
-            return of(IncomesActions.getIncomesFailure());
+            return of(CashFlowActions.getIncomesFailure());
           })
         );
       })
     );
   });
 
-  public addIncome$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(IncomesActions.addIncome),
-      tap((income) => {
-        console.log(income);
-      })
-    );
-  });
+  public addIncome$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(CashFlowActions.addIncome),
+        tap((income) => {
+          console.log('to jest add income');
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }

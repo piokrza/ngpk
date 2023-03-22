@@ -4,7 +4,7 @@ import { CashFlow } from '@common/models/cash-flow.model';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class IncomesService {
+export class CashFlowService {
   private http: HttpClient = inject(HttpClient);
 
   public getIncomes$(): Observable<CashFlow[]> {

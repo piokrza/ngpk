@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
+import { IncomesEffects } from '@app/store/cash-flow/cash-flow.effects';
 import { AppInitService } from '@common/services/app-init.service';
 import { injectThemeLink$ } from '@common/utils/injectThemeLink';
 import { UiModule } from '@features/ui/ui.module';
@@ -12,7 +13,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ContainerComponent } from '@standalone/components/container/container.component';
 import { CategoriesEffects } from '@store/categories/categories.effects';
-import { IncomesEffects } from '@store/incomes/incomes.effects';
 import { ROOT_REDUCERS } from '@store/root-reducer';
 
 // PrimeNg

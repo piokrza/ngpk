@@ -10,11 +10,11 @@ import { CashFlowHeadingComponent } from '@features/cash-flow/components/cash-fl
 // PrimeNg
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { DataViewModule } from 'primeng/dataview';
 
 const declarations: Array<any> = [
   CashFlowDetailsComponent,

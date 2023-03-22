@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CashFlow } from '@common/models/cash-flow.model';
 import { Store } from '@ngrx/store';
-import { IncomesActions, IncomesSelectors } from '@store/incomes';
+import { CashFlowActions, CashFlowSelectors } from '@store/cash-flow';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,9 +13,9 @@ import { Observable } from 'rxjs';
 export class IncomesViewComponent {
   private store: Store = inject(Store);
 
-  public incomes$: Observable<CashFlow[]> = this.store.select(IncomesSelectors.incomes);
+  public incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
 
   public onSubmit(incomeData: CashFlow): void {
-    this.store.dispatch(IncomesActions.addIncome({ income: incomeData }));
+    this.store.dispatch(CashFlowActions.addIncome({ income: incomeData }));
   }
 }
