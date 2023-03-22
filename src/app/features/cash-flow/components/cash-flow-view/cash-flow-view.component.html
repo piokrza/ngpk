@@ -1,0 +1,14 @@
+<ctrl-cash-flow-heading [isIncomeMode]="isIncomeMode" />
+
+<div class="mt-10 gap-12 xl:flex">
+  <ctrl-cash-flow-form
+    (cashFlowSubmitData)="emitCashFlowSubmitData($event)"
+    [isIncomeMode]="true"
+    class="w-full mb-5 xl:max-w-[300px]" />
+
+  <div class="xl:hidden">
+    <p-divider />
+  </div>
+
+  <ctrl-cash-flow-details-list *ngIf="cashFlowData.length" [cashFlowList]="cashFlowData" class="w-full" />
+</div>

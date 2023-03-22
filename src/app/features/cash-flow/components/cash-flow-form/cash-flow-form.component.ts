@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
 export class CashFlowFormComponent {
   @Input() public isIncomeMode!: boolean;
 
-  @Output() public cashFlowData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
+  @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
   public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createIncomeForm();
 
@@ -29,7 +29,7 @@ export class CashFlowFormComponent {
       return;
     }
 
-    this.cashFlowData.emit(this.form.getRawValue());
+    this.cashFlowSubmitData.emit(this.form.getRawValue());
     this.form.reset();
   }
 }
