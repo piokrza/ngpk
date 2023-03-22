@@ -11,6 +11,7 @@
   </div>
 
   <ctrl-cash-flow-details-list
+    (itemToRemoveId)="emitItemIdToRemove($event)"
     [isIncomeMode]="isIncomeMode"
     [isLoading]="isLoading"
     [cashFlowList]="cashFlowData"

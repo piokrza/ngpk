@@ -35,6 +35,12 @@ export const Reducer = createReducer(
     return { ...state, incomes: [...state.incomes, income] };
   }),
 
+  // remove income
+  on(CashFlowActions.removeIncome, (state, { incomeId }): State => {
+    const filteredIncomes: CashFlow[] = state.incomes.filter((income: CashFlow): boolean => income.id !== incomeId);
+    return { ...state, incomes: filteredIncomes };
+  }),
+
   // get expenses
   on(CashFlowActions.getExpenses, (state): State => {
     return { ...state, isLoading: false };
@@ -44,5 +50,18 @@ export const Reducer = createReducer(
   }),
   on(CashFlowActions.getExpensesFailure, (state): State => {
     return { ...state, isLoading: false };
+  }),
+
+  // add expense
+  on(CashFlowActions.addExpense, (state, { expense }): State => {
+    return { ...state, incomes: [...state.expenses, expense] };
+  }),
+
+  // remove expense
+  on(CashFlowActions.removeExpense, (state, { expenseId }): State => {
+    const filteredExpenses: CashFlow[] = state.expenses.filter(
+      (expense: CashFlow): boolean => expense.id !== expenseId
+    );
+    return { ...state, expenses: filteredExpenses };
   })
 );

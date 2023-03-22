@@ -39,9 +39,7 @@ export class IncomesEffects {
     () => {
       return this.actions$.pipe(
         ofType(CashFlowActions.addIncome),
-        tap((income) => {
-          console.log('to jest add income');
-        })
+        tap((income) => {})
       );
     },
     { dispatch: false }

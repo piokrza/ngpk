@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
   template: `
     <ctrl-cash-flow-panel
       (cashFlowSubmitData)="onSubmit($event)"
+      (itemToRemoveId)="removeIncome($event)"
       [cashFlowData]="(incomes$ | async)!"
       [isLoading]="(isLoading$ | async)!"
       [isIncomeMode]="true" />
@@ -23,5 +24,9 @@ export class IncomesViewComponent {
 
   public onSubmit(incomeData: CashFlow): void {
     this.store.dispatch(CashFlowActions.addIncome({ income: incomeData }));
+  }
+
+  public removeIncome(incomeId: string): void {
+    this.store.dispatch(CashFlowActions.removeIncome({ incomeId }));
   }
 }

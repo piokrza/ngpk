@@ -20,7 +20,6 @@ export class CategoriesEffects {
       exhaustMap(() => {
         return this.categoriesService.getCategories$().pipe(
           map((categories: Categories) => {
-            console.log(categories.expenses);
             return CategoriesActions.getCategoriesSuccess({ categories });
           }),
           catchError((e) => {

@@ -21,6 +21,7 @@
   </div>
 
   <button
+    (click)="itemToRemoveId.emit(details.id)"
     pButton
     class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
     icon="pi pi-trash"></button>

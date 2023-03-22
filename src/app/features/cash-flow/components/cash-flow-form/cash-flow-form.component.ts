@@ -18,7 +18,6 @@ import uniqid from 'uniqid';
 })
 export class CashFlowFormComponent implements OnInit {
   @Input() public isIncomeMode!: boolean;
-
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
   private store: Store = inject(Store);

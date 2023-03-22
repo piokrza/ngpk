@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CashFlow } from '@common/models/cash-flow.model';
-import { CashFlowSelectors } from '@store/cash-flow';
+import { CashFlowActions, CashFlowSelectors } from '@store/cash-flow';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
   template: `
     <ctrl-cash-flow-panel
       (cashFlowSubmitData)="onSubmit($event)"
+      (itemToRemoveId)="removeExpense($event)"
       [cashFlowData]="(expenses$ | async)!"
       [isLoading]="(isLoading$ | async)!"
       [isIncomeMode]="false" />
@@ -23,5 +24,9 @@ export class ExpensesViewComponent {
 
   public onSubmit(expensesData: CashFlow): void {
     console.log(expensesData);
+  }
+
+  public removeExpense(expenseId: string): void {
+    this.store.dispatch(CashFlowActions.removeExpense({ expenseId }));
   }
 }
