@@ -21,7 +21,7 @@ export class CashFlowFormComponent {
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
   private store: Store = inject(Store);
-  public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createIncomeForm();
+  public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createCashFlowForm();
 
   public categories$: Observable<Category[]> = this.getCategories$();
 

@@ -11,11 +11,7 @@ import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {
-  public form: FormGroup<RegisterForm>;
-
-  constructor() {
-    this.form = inject(AuthFormService).createRegisterForm();
-  }
+  public form: FormGroup<RegisterForm> = inject(AuthFormService).createRegisterForm();
 
   public onSubmit(): void {
     if (this.form.invalid) {

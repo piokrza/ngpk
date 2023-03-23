@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { LoginForm } from '@auth/models/login-form.model';
 import { AuthFormService } from '@auth/services/auth-form.service';
@@ -10,13 +10,7 @@ import { AuthFormService } from '@auth/services/auth-form.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {
-  @Input() public isLoginMode!: boolean;
-
-  public form: FormGroup<LoginForm>;
-
-  constructor() {
-    this.form = inject(AuthFormService).createLoginForm();
-  }
+  public form: FormGroup<LoginForm> = inject(AuthFormService).createLoginForm();
 
   public onSubmit(): void {
     if (this.form.invalid) {

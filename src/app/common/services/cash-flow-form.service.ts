@@ -6,7 +6,7 @@ import { CashFlowForm } from '@common/models/cash-flow-form.model';
 export class CashFlowFormService {
   private fb: FormBuilder = inject(FormBuilder);
 
-  public createIncomeForm(): FormGroup<CashFlowForm> {
+  public createCashFlowForm(): FormGroup<CashFlowForm> {
     return this.fb.group<CashFlowForm>({
       name: this.fb.nonNullable.control('', { validators: [Validators.required] }),
       amount: this.fb.nonNullable.control(0, { validators: [Validators.required] }),
