@@ -1,10 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <span class="p-float-label my-6">
+  <span class="p-float-label my-7">
     <input id="name" type="text" pInputText class="w-full" formControlName="name" />
     <label for="name">Income name</label>
   </span>
 
-  <span class="p-float-label my-6">
+  <span class="p-float-label my-7">
     <p-inputNumber id="amount" mode="decimal" [minFractionDigits]="2" formControlName="amount" />
     <label for="amount">Income amount</label>
   </span>
@@ -18,12 +18,12 @@
     optionValue="code"
     formControlName="category" />
 
-  <span class="p-float-label my-6">
+  <span class="p-float-label my-7">
     <p-calendar id="date" class="w-full" formControlName="date" />
     <label for="date">Pick date</label>
   </span>
 
-  <span class="p-float-label my-6">
+  <span class="p-float-label my-7">
     <textarea id="description" class="w-full" pInputTextarea formControlName="description"></textarea>
     <label for="description">Add description</label>
   </span>

@@ -2,7 +2,11 @@
   <div class="p-5 xl:hidden">
     <p-tieredMenu #menu [model]="links" [popup]="true" />
 
-    <button type="button" pButton icon="pi pi-fw pi-list" (click)="menu.toggle($event)"></button>
+    <div class="flex justify-between">
+      <button type="button" pButton icon="pi pi-fw pi-list" (click)="menu.toggle($event)"></button>
+
+      <button type="button" pButton icon="pi pi-fw pi-power-off"></button>
+    </div>
   </div>
 
   <div class="w-[22.5rem] hidden xl:block">

@@ -4,8 +4,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'ctrl-auth-view',
   templateUrl: './auth-view.component.html',
   styleUrls: ['./auth-view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthViewComponent {
-
+  public onAuthSubmit(formValue: any): void {
+    console.log(formValue);
+  }
 }

@@ -1,0 +1,32 @@
+<div class="px-6">
+  <h1 class="text-2xl font-semibold">Register</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <span class="p-float-label my-7">
+      <input pInputText id="email" class="w-full" formControlName="email" />
+      <label htmlFor="email">Email</label>
+    </span>
+
+    <span class="p-float-label my-7">
+      <input pInputText id="password" class="w-full" formControlName="password" />
+      <label htmlFor="password">Password</label>
+    </span>
+
+    <span class="p-float-label my-7">
+      <input pInputText id="passwordConfirmation" class="w-full" formControlName="passwordConfirmation" />
+      <label htmlFor="passwordConfirmation">Password confirmation</label>
+    </span>
+
+    <div *ngIf="form.errors?.['passwordMismatch'] && form.get('passwordConfirmation')?.touched" class="my-6">
+      <small class="text-red-400">Password and password confirmation does not match</small>
+    </div>
+
+    <button [disabled]="form.invalid" class="w-full" pButton label="Register"></button>
+  </form>
+
+  <small class="block mt-10">
+    Have an account?
+    <a [routerLink]="['../login']" class="underline cursor-pointer">click</a>
+    to login
+  </small>
+</div>
