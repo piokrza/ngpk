@@ -4,6 +4,7 @@ import { CashFlowActions } from '@store/cash-flow';
 import { CategoriesActions } from '@store/categories';
 import { PrimeNGConfig } from 'primeng/api';
 import { ThemeService } from '@common/services/theme.service';
+import { PersistanceService } from '@common/services/persistance.service';
 
 @Component({
   selector: 'ctrl-root',
@@ -18,9 +19,11 @@ export class AppComponent implements OnInit {
   private store: Store = inject(Store);
   private themeService: ThemeService = inject(ThemeService);
 
+  private isLightMode: boolean = inject(PersistanceService).get('isLightMode');
+
   public ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.themeService.setTheme();
+    this.themeService.setTheme(this.isLightMode);
     this.dispatchStoreActions();
   }
 

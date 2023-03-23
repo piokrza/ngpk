@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CATEGORIES } from '@common/enums/categories.enum';
 import { CashFlowForm } from '@common/models/cash-flow-form.model';
@@ -16,17 +16,17 @@ import uniqid from 'uniqid';
   styleUrls: ['./cash-flow-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowFormComponent implements OnInit {
+export class CashFlowFormComponent {
   @Input() public isIncomeMode!: boolean;
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
   private store: Store = inject(Store);
   public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createIncomeForm();
 
-  public categories$!: Observable<Category[]>;
+  public categories$: Observable<Category[]> = this.getCategories$();
 
-  public ngOnInit(): void {
-    this.categories$ = this.store.select(CategoriesSelectors.categories).pipe(
+  private getCategories$(): Observable<Category[]> {
+    return this.store.select(CategoriesSelectors.categories).pipe(
       filter(Boolean),
       map((categories: Categories): Category[] => {
         const categoriesType: CATEGORIES = this.isIncomeMode ? CATEGORIES.INCOMES : CATEGORIES.EXPENSES;

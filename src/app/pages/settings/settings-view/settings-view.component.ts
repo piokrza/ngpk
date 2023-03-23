@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { PersistanceService } from '@app/common/services/persistance.service';
 import { ThemeService } from '@common/services/theme.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ThemeService } from '@common/services/theme.service';
 export class SettingsViewComponent implements OnInit {
   public themeService: ThemeService = inject(ThemeService);
 
-  public isLightMode: boolean = this.themeService.isLightMode;
+  public isLightMode: boolean = inject(PersistanceService).get('isLightMode');
 
   public ngOnInit(): void {
     this.themeService.setTheme(this.isLightMode);

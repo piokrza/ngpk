@@ -28,5 +28,9 @@
     <label for="description">Add description</label>
   </span>
 
-  <button pButton [label]="isIncomeMode ? 'Add Income' : 'Add Expense'" type="submit"></button>
+  <button
+    [disabled]="form.invalid"
+    pButton
+    [label]="isIncomeMode ? 'Add Income' : 'Add Expense'"
+    type="submit"></button>
 </form>
