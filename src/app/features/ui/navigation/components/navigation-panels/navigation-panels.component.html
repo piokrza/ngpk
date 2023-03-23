@@ -5,7 +5,9 @@
     <button type="button" pButton icon="pi pi-fw pi-list" (click)="menu.toggle($event)"></button>
   </div>
 
-  <ctrl-container class="fixed top-0 bottom-0 w-[22.5rem] p-5 hidden xl:block">
-    <ctrl-nav-sidebar [menuLinks]="links" />
-  </ctrl-container>
+  <div class="w-[22.5rem] hidden xl:block">
+    <ctrl-container>
+      <ctrl-nav-sidebar [menuLinks]="links" />
+    </ctrl-container>
+  </div>
 </ng-container>

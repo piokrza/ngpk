@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavigationComponent } from './navigation.component';
+import { AuthViewComponent } from './auth-view.component';
 
-describe('NavigationComponent', () => {
-  let component: NavigationComponent;
-  let fixture: ComponentFixture<NavigationComponent>;
+describe('AuthViewComponent', () => {
+  let component: AuthViewComponent;
+  let fixture: ComponentFixture<AuthViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ NavigationComponent ]
+      declarations: [ AuthViewComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NavigationComponent);
+    fixture = TestBed.createComponent(AuthViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

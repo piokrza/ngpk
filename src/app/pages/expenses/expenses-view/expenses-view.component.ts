@@ -8,13 +8,15 @@ import { ConfirmationService } from 'primeng/api';
 @Component({
   selector: 'ctrl-expenses-view',
   template: `
-    <ctrl-cash-flow-panel
-      (cashFlowSubmitData)="onSubmit($event)"
-      (itemToRemoveId)="removeExpense($event)"
-      [cashFlowData]="(expenses$ | async)!"
-      [totalCashFlowAmount]="(totalExpensesAmount$ | async)!"
-      [isLoading]="(isLoading$ | async)!"
-      [isIncomeMode]="false" />
+    <ctrl-navigation>
+      <ctrl-cash-flow-panel
+        (cashFlowSubmitData)="onSubmit($event)"
+        (itemToRemoveId)="removeExpense($event)"
+        [cashFlowData]="(expenses$ | async)!"
+        [totalCashFlowAmount]="(totalExpensesAmount$ | async)!"
+        [isLoading]="(isLoading$ | async)!"
+        [isIncomeMode]="false" />
+    </ctrl-navigation>
 
     <p-confirmDialog />
   `,

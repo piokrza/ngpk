@@ -4,11 +4,11 @@ import { MenuItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'ctrl-navigation',
+  selector: 'ctrl-navigation-panels',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './navigation.component.html',
+  templateUrl: './navigation-panels.component.html',
 })
-export class NavigationComponent implements OnInit {
+export class NavigationPanelsComponent implements OnInit {
   private menuService: MenuService = inject(MenuService);
 
   public menuLinks$: Observable<MenuItem[]> = this.menuService.menuLinks$;

@@ -26,7 +26,6 @@ const imports: Array<any> = [
   BrowserModule,
   BrowserAnimationsModule,
   AppRoutingModule,
-  UiModule,
   ContainerComponent,
   ButtonModule,
   HttpClientModule,

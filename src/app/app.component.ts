@@ -3,20 +3,12 @@ import { Store } from '@ngrx/store';
 import { CashFlowActions } from '@store/cash-flow';
 import { CategoriesActions } from '@store/categories';
 import { PrimeNGConfig } from 'primeng/api';
-import { ThemeService } from './common/services/theme.service';
+import { ThemeService } from '@common/services/theme.service';
 
 @Component({
   selector: 'ctrl-root',
   template: `
-    <div class="max-w-[130rem] mx-auto">
-      <ctrl-navigation></ctrl-navigation>
-
-      <main class="h-[calc(100vh-82px)] px-3 pb-3 xl:pl-[22.5rem] xl:h-[100vh] xl:p-5">
-        <ctrl-container>
-          <router-outlet></router-outlet>
-        </ctrl-container>
-      </main>
-    </div>
+    <main><router-outlet></router-outlet></main>
 
     <p-toast position="top-right"></p-toast>
   `,

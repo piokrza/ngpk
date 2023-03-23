@@ -8,13 +8,15 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'ctrl-incomes-view',
   template: `
-    <ctrl-cash-flow-panel
-      (cashFlowSubmitData)="onSubmit($event)"
-      (itemToRemoveId)="removeIncome($event)"
-      [cashFlowData]="(incomes$ | async)!"
-      [totalCashFlowAmount]="(totalIncomeAmount$ | async)!"
-      [isLoading]="(isLoading$ | async)!"
-      [isIncomeMode]="true" />
+    <ctrl-navigation>
+      <ctrl-cash-flow-panel
+        (cashFlowSubmitData)="onSubmit($event)"
+        (itemToRemoveId)="removeIncome($event)"
+        [cashFlowData]="(incomes$ | async)!"
+        [totalCashFlowAmount]="(totalIncomeAmount$ | async)!"
+        [isLoading]="(isLoading$ | async)!"
+        [isIncomeMode]="true" />
+    </ctrl-navigation>
 
     <p-confirmDialog />
   `,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthModule } from '@auth/auth.module';
 import { DashboardModule } from '@dashboard/dashboard.module';
 import { ExpensesModule } from '@expenses/expenses.module';
 import { IncomesModule } from '@incomes/incomes.module';
@@ -20,6 +21,10 @@ const routes: Routes = [
     path: 'expenses',
     loadChildren: (): Promise<any> =>
       import('@expenses/expenses.module').then(({ ExpensesModule }): ExpensesModule => ExpensesModule),
+  },
+  {
+    path: 'authentication',
+    loadChildren: (): Promise<any> => import('@auth/auth.module').then(({ AuthModule }): AuthModule => AuthModule),
   },
   {
     path: 'settings',
