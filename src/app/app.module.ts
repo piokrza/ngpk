@@ -19,6 +19,10 @@ import { ROOT_REDUCERS } from '@store/root-reducer';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment.prod';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 const StoreEffects: Array<any> = [CategoriesEffects, IncomesEffects];
 const declarations: Array<any> = [AppComponent];
@@ -35,6 +39,11 @@ const imports: Array<any> = [
   StoreModule.forRoot(ROOT_REDUCERS),
   EffectsModule.forRoot(StoreEffects),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+
+  // Firebase
+  provideFirebaseApp(() => initializeApp(environment.firebase)),
+  provideAuth(() => getAuth()),
+  provideFirestore(() => getFirestore()),
 ];
 const providers: Array<any> = [
   {
