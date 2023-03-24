@@ -6,12 +6,14 @@ import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CashFlowActions } from '@store/cash-flow';
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
+import { DbService } from '@common/services/db.service';
 
 @Injectable()
 export class IncomesEffects {
   private actions$: Actions = inject(Actions);
   private cashFlowService: CashFlowService = inject(CashFlowService);
   private toastService: ToastService = inject(ToastService);
+  private db: DbService = inject(DbService);
 
   public getIncomes$ = createEffect(() => {
     return this.actions$.pipe(
@@ -39,7 +41,8 @@ export class IncomesEffects {
     () => {
       return this.actions$.pipe(
         ofType(CashFlowActions.addIncome),
-        tap((): void => {
+        tap((income: any): void => {
+          this.db.addIncome(income);
           this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully added');
         })
       );

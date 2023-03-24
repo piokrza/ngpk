@@ -4,10 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
-import { IncomesEffects } from '@app/store/cash-flow/cash-flow.effects';
+import { IncomesEffects } from '@store/cash-flow/cash-flow.effects';
 import { AppInitService } from '@common/services/app-init.service';
 import { injectThemeLink$ } from '@common/utils/injectThemeLink';
-import { UiModule } from '@features/ui/ui.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -20,7 +19,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
+import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
@@ -42,6 +42,7 @@ const imports: Array<any> = [
 
   // Firebase
   provideFirebaseApp(() => initializeApp(environment.firebase)),
+  provideAnalytics(() => getAnalytics()),
   provideAuth(() => getAuth()),
   provideFirestore(() => getFirestore()),
 ];
@@ -54,6 +55,8 @@ const providers: Array<any> = [
   },
   MessageService,
   ConfirmationService,
+  ScreenTrackingService,
+  UserTrackingService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })
