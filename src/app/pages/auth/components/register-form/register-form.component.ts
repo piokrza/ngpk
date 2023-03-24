@@ -19,7 +19,6 @@ export class RegisterFormComponent {
       return;
     }
 
-    console.log(this.form.getRawValue());
     this.form.reset();
   }
 }

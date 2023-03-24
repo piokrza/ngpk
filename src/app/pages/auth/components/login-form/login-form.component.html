@@ -1,5 +1,14 @@
 <div class="px-6">
-  <h1 class="text-2xl font-semibold">Login</h1>
+  <h1 class="text-4xl font-semibold text-center">Login</h1>
+
+  <button
+    (click)="signinWithGoogle()"
+    pButton
+    icon="pi pi-google"
+    label="Login with your google"
+    class="w-full my-6"></button>
+
+  <div class="text-sm text-center">Or login with your email & password</div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <span class="p-float-label my-7">
@@ -12,7 +21,7 @@
       <label htmlFor="password">Password</label>
     </span>
 
-    <button class="w-full" pButton label="Login"></button>
+    <button [disabled]="form.invalid" class="w-full" pButton label="Login" type="submit"></button>
   </form>
 
   <small class="block mt-10">

@@ -13,18 +13,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ContainerComponent } from '@standalone/components/container/container.component';
 import { CategoriesEffects } from '@store/categories/categories.effects';
 import { ROOT_REDUCERS } from '@store/root-reducer';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from 'src/environments/environment';
 
 // PrimeNg
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AuthEffects } from '@store/auth/auth.effects';
 
-const StoreEffects: Array<any> = [CategoriesEffects, IncomesEffects];
+const StoreEffects: Array<any> = [CategoriesEffects, IncomesEffects, AuthEffects];
 const declarations: Array<any> = [AppComponent];
 const imports: Array<any> = [
   BrowserModule,
@@ -45,6 +48,7 @@ const imports: Array<any> = [
   provideAnalytics(() => getAnalytics()),
   provideAuth(() => getAuth()),
   provideFirestore(() => getFirestore()),
+  AngularFireAuthModule,
 ];
 const providers: Array<any> = [
   {
@@ -53,6 +57,7 @@ const providers: Array<any> = [
     deps: [AppInitService],
     multi: true,
   },
+  { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   MessageService,
   ConfirmationService,
   ScreenTrackingService,

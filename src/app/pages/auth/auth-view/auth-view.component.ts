@@ -7,7 +7,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthViewComponent {
-  public onAuthSubmit(formValue: any): void {
-    console.log(formValue);
-  }
+  public onAuthSubmit(formValue: any): void {}
 }

@@ -9,6 +9,11 @@ import { SettingsModule } from '@settings/settings.module';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
+    path: 'dashboard',
     loadChildren: (): Promise<any> =>
       import('@dashboard/dashboard.module').then(({ DashboardModule }): DashboardModule => DashboardModule),
   },
