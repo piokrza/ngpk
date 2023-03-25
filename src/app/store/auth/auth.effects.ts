@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { User } from '@common/models/user.model';
 import { ToastService } from '@common/services/toast.service';
 import { AuthService } from '@auth/services/auth.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, from, map, of, tap } from 'rxjs';
+import { catchError, EMPTY, exhaustMap, from, map, of, tap } from 'rxjs';
 import { AuthActions } from '@store/auth';
 import { Router } from '@angular/router';
 import { ToastStatus } from '@common/enums/toast-status.enum';
@@ -69,7 +68,23 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthActions.signInWithEmailAndPassword),
         exhaustMap(({ payload }) => {
-          return this.authService.signInWithEmailAndPassword(payload);
+          return from(this.authService.signInWithEmailAndPassword(payload)).pipe(
+            tap(() => {
+              this.router.navigateByUrl('/dashboard');
+            }),
+
+            catchError(() => {
+              //TODO: Set form errors
+
+              this.toastService.showMessage(
+                ToastStatus.ERROR,
+                'Error!',
+                'Something went wrong during google authorization'
+              );
+
+              return EMPTY;
+            })
+          );
         })
       );
     },

@@ -33,16 +33,11 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  async signInWithEmailAndPassword(payload: AuthFormPayload): Promise<void> {
-    try {
-      const result = await this.afAuth.signInWithEmailAndPassword(payload.email, payload.password);
-      this.router.navigate(['dashboard']);
-    } catch (error: any) {
-      console.error(error);
-    }
+  public async signInWithEmailAndPassword(payload: AuthFormPayload): Promise<firebase.auth.UserCredential> {
+    return await this.afAuth.signInWithEmailAndPassword(payload.email, payload.password);
   }
 
-  async signUp(email: string, password: string): Promise<void> {
+  public async signUp(email: string, password: string): Promise<void> {
     try {
       const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
       this.sendVerificationMail();
@@ -51,7 +46,7 @@ export class AuthService {
     }
   }
 
-  async sendVerificationMail(): Promise<void | firebase.User | null> {
+  public async sendVerificationMail(): Promise<void | firebase.User | null> {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
