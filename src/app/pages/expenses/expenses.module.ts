@@ -7,17 +7,9 @@ import { UiModule } from '@features/ui/ui.module';
 
 // PrimeNg
 import { DividerModule } from 'primeng/divider';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 const declarations: Array<any> = [ExpensesViewComponent];
-const imports: Array<any> = [
-  CommonModule,
-  ExpensesRoutingModule,
-  CashFlowModule,
-  DividerModule,
-  ConfirmDialogModule,
-  UiModule,
-];
+const imports: Array<any> = [CommonModule, ExpensesRoutingModule, CashFlowModule, DividerModule, UiModule];
 
 @NgModule({ declarations, imports })
 export class ExpensesModule {}

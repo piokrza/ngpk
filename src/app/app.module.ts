@@ -26,6 +26,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AuthEffects } from '@store/auth/auth.effects';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 const StoreEffects: Array<any> = [CategoriesEffects, IncomesEffects, AuthEffects];
 const declarations: Array<any> = [AppComponent];
@@ -37,6 +38,7 @@ const imports: Array<any> = [
   ButtonModule,
   HttpClientModule,
   ToastModule,
+  ConfirmDialogModule,
 
   // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),

@@ -8,6 +8,7 @@ import { AuthActions } from '@store/auth';
 import { Router } from '@angular/router';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import firebase from 'firebase/compat';
+import { setUser } from '@common/utils/set-user';
 
 @Injectable()
 export class AuthEffects {
@@ -23,17 +24,7 @@ export class AuthEffects {
         return from(this.authService.signinWithGoogle()).pipe(
           map(({ user }: firebase.auth.UserCredential) => {
             if (user !== null) {
-              return AuthActions.signInWithGoogleSuccess({
-                user: {
-                  displayName: user.displayName,
-                  email: user.email,
-                  emailVerified: user.emailVerified,
-                  phoneNumber: user.phoneNumber,
-                  photoURL: user.photoURL,
-                  refreshToken: user.refreshToken,
-                  uid: user.uid,
-                } as User,
-              });
+              return AuthActions.signInWithGoogleSuccess({ user: setUser(user) });
             }
 
             console.error('Provided account does not exist');
@@ -66,6 +57,19 @@ export class AuthEffects {
         }),
         tap((): void => {
           this.router.navigateByUrl('/authentication');
+          this.toastService.showMessage(ToastStatus.INFO, 'Success!', 'You were successfully logged out');
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  signInWithEmailAndPassword$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.signInWithEmailAndPassword),
+        exhaustMap(({ payload }) => {
+          return this.authService.signInWithEmailAndPassword(payload);
         })
       );
     },

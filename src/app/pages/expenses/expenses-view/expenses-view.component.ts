@@ -17,8 +17,6 @@ import { ConfirmationService } from 'primeng/api';
         [isLoading]="(isLoading$ | async)!"
         [isIncomeMode]="false" />
     </ctrl-navigation>
-
-    <p-confirmDialog />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

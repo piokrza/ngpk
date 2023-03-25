@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { AuthActions } from '@app/store/auth';
 import { MenuService } from '@common/services/menu.service';
-import { MenuItem } from 'primeng/api';
+import { Store } from '@ngrx/store';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,10 +12,22 @@ import { Observable } from 'rxjs';
 })
 export class NavigationPanelsComponent implements OnInit {
   private menuService: MenuService = inject(MenuService);
+  private store: Store = inject(Store);
+  private confirmationService: ConfirmationService = inject(ConfirmationService);
 
   public menuLinks$: Observable<MenuItem[]> = this.menuService.menuLinks$;
 
   public ngOnInit(): void {
     this.menuService.setLinks();
+  }
+
+  public signOut(): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to signout?',
+      header: 'Confirmation',
+      accept: (): void => {
+        this.store.dispatch(AuthActions.signOut());
+      },
+    });
   }
 }

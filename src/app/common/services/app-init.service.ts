@@ -4,7 +4,7 @@ import { Observable, of, take, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AppInitService {
-  private document: Document = inject(DOCUMENT);
+  private readonly document: Document = inject(DOCUMENT);
 
   public injectThemeLink$(): Observable<HTMLLinkElement> {
     return this.themeLink$().pipe(

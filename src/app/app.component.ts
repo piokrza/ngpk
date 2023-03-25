@@ -12,6 +12,7 @@ import { PersistanceService } from '@common/services/persistance.service';
     <main><router-outlet></router-outlet></main>
 
     <p-toast position="top-right"></p-toast>
+    <p-confirmDialog />
   `,
 })
 export class AppComponent implements OnInit {

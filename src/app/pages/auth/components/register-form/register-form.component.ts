@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RegisterForm } from '@auth/models/register-form.model';
 import { AuthFormService } from '@auth/services/auth-form.service';
-import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ctrl-register-form',
@@ -11,6 +11,7 @@ import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {
+  private store: Store = inject(Store);
   public form: FormGroup<RegisterForm> = inject(AuthFormService).createRegisterForm();
 
   public onSubmit(): void {

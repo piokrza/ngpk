@@ -17,8 +17,6 @@ import { Observable } from 'rxjs';
         [isLoading]="(isLoading$ | async)!"
         [isIncomeMode]="true" />
     </ctrl-navigation>
-
-    <p-confirmDialog />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

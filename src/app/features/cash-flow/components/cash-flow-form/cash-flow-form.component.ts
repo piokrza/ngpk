@@ -23,7 +23,7 @@ export class CashFlowFormComponent {
   private store: Store = inject(Store);
   public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createCashFlowForm();
 
-  public categories$: Observable<Category[]> = this.getCategories$();
+  public readonly categories$: Observable<Category[]> = this.getCategories$();
 
   private getCategories$(): Observable<Category[]> {
     return this.store.select(CategoriesSelectors.categories).pipe(

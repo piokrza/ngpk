@@ -10,10 +10,18 @@ import { AuthService } from '@auth/services/auth.service';
 
 // PrimeNg
 import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 
 const declarations: Array<any> = [AuthViewComponent, LoginFormComponent, RegisterFormComponent];
-const imports: Array<any> = [CommonModule, AuthRoutingModule, ReactiveFormsModule, InputTextModule, ButtonModule];
+const imports: Array<any> = [
+  CommonModule,
+  AuthRoutingModule,
+  ReactiveFormsModule,
+  InputTextModule,
+  ButtonModule,
+  PasswordModule,
+];
 const providers: Array<any> = [AuthFormService, AuthService];
 
 @NgModule({ declarations, imports, providers })

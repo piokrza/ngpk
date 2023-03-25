@@ -25,6 +25,6 @@ export class LoginFormComponent {
       return;
     }
 
-    this.form.reset();
+    this.store.dispatch(AuthActions.signInWithEmailAndPassword({ payload: this.form.getRawValue() }));
   }
 }
