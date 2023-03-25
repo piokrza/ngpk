@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import firebase from 'firebase/compat';
 import { setUser } from '@common/utils/set-user';
+import { ActionTypes } from './action-types';
 
 @Injectable()
 export class AuthEffects {
@@ -63,7 +64,7 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  signInWithEmailAndPassword$ = createEffect(
+  public signInWithEmailAndPassword$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.signInWithEmailAndPassword),
@@ -82,6 +83,31 @@ export class AuthEffects {
                 'Something went wrong during google authorization'
               );
 
+              return EMPTY;
+            })
+          );
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  public signUpWithEmailAndPassword$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
+        exhaustMap(({ payload }) => {
+          return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
+            tap(() => {
+              this.router.navigateByUrl('/dashboard');
+            }),
+
+            catchError(() => {
+              this.toastService.showMessage(
+                ToastStatus.ERROR,
+                'Error!',
+                'Something went wrong during google authorization'
+              );
               return EMPTY;
             })
           );

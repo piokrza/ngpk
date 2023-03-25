@@ -13,3 +13,10 @@ export const signInWithEmailAndPassword = createAction(
   ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD,
   props<{ payload: AuthFormPayload }>()
 );
+
+///////////
+
+export const signUpWithEmailAndPassword = createAction(
+  ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD,
+  props<{ payload: AuthFormPayload }>()
+);

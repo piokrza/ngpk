@@ -36,7 +36,7 @@ export class ExpensesViewComponent {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to remove this expense?',
       header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
+      icon: 'pi pi-trash',
       accept: (): void => {
         this.store.dispatch(CashFlowActions.removeExpense({ expenseId }));
       },

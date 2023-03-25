@@ -36,7 +36,7 @@ export class IncomesViewComponent {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to remove this income?',
       header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
+      icon: 'pi pi-trash',
       accept: (): void => {
         this.store.dispatch(CashFlowActions.removeIncome({ incomeId }));
       },
