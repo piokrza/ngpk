@@ -11,14 +11,6 @@ export class CashFlowService {
   http = inject(HttpClient);
   private angularFirestore: AngularFirestore = inject(AngularFirestore);
 
-  public getIncomes$(): Observable<CashFlow[]> {
-    return this.http.get<CashFlow[]>('assets/mock-meta/incomes.json');
-  }
-
-  public getExpenses$(): Observable<CashFlow[]> {
-    return this.http.get<CashFlow[]>('assets/mock-meta/expenses.json');
-  }
-
   public loadUserCashFlowData$(uid: string): Observable<CashFlowUserData> {
     const expenses$: AngularFirestoreCollection<CashFlow> = this.angularFirestore.collection<CashFlow>(
       Collection.EXPENSES,

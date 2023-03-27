@@ -11,6 +11,8 @@ import { AuthActions } from '@store/auth';
 import { ActionTypes } from '@store/auth/action-types';
 import firebase from 'firebase/compat';
 import { catchError, EMPTY, exhaustMap, from, map, of, switchMap, tap } from 'rxjs';
+import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
+import { CashFlowActions } from '../cash-flow';
 
 @Injectable()
 export class AuthEffects {
@@ -27,7 +29,7 @@ export class AuthEffects {
         return from(this.authService.signinWithGoogle()).pipe(
           map(({ user }: firebase.auth.UserCredential) => {
             if (user !== null) {
-              return AuthActions.signInWithGoogleSuccess({ user: setUser(user) });
+              return AuthActions.userAuthenticated({ user: setUser(user) });
             }
 
             console.error('Provided account does not exist');
@@ -53,13 +55,6 @@ export class AuthEffects {
     );
   });
 
-  public signInWithGoogleSuccess$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.signInWithGoogleSuccess),
-      switchMap(() => of(AuthActions.loadUserData()))
-    );
-  });
-
   public signOut$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signOut),
@@ -77,8 +72,8 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthActions.signInWithEmailAndPassword),
         exhaustMap(({ payload }) => {
-          return from(this.authService.signInWithEmailAndPassword(payload)).pipe(
-            tap(() => {
+          return from(this.authService.signInWithEmailAndPassword(payload as AuthFormPayload)).pipe(
+            tap((): void => {
               this.router.navigateByUrl('/dashboard');
             }),
 
@@ -104,7 +99,7 @@ export class AuthEffects {
         ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
         exhaustMap(({ payload }) => {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
-            tap(() => {
+            tap((): void => {
               this.router.navigateByUrl('/dashboard');
             }),
 
@@ -148,17 +143,10 @@ export class AuthEffects {
     );
   });
 
-  public loadUserData$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.userAuthenticated),
-        switchMap(({ user }) => this.cashFlowService.loadUserCashFlowData$(user.uid)),
-        map((data) => {
-          console.log(data);
-          return data;
-        })
-      );
-    },
-    { dispatch: false }
-  );
+  public loadUserData$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.userAuthenticated),
+      switchMap(({ user }) => of(CashFlowActions.getCashFlowUserData({ uid: user.uid })))
+    );
+  });
 }

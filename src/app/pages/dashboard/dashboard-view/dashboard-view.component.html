@@ -1,7 +1,26 @@
 <ctrl-navigation>
-  <div class="max-w-[15rem] flex gap-10">
-    <p-chart *ngIf="expensesChartData" type="pie" [data]="expensesChartData" [options]="chartsOptions"></p-chart>
+  <div class="mb-12">
+    <p-card>
+      <ng-container *ngIf="totalBalance$ | async as totalBalance; else balanceLoading">
+        <h3 class="text-center text-2xl">
+          Balance
+          <span [class]="totalBalance > 0 ? 'text-green-500' : 'text-red-500'"> {{ totalBalance }}PLN </span>
+        </h3>
+      </ng-container>
 
-    <p-chart *ngIf="expensesChartData" type="pie" [data]="incomesChartData" [options]="chartsOptions"></p-chart>
+      <ng-template #balanceLoading> <div class="text-center text-2xl">Loading...</div></ng-template>
+    </p-card>
   </div>
+
+  <section class="flex flex-wrap">
+    <div>
+      <div class="text-xl font-semibold mb-3">Expenses</div>
+      <p-chart type="pie" [data]="expensesChartData" [options]="chartsOptions"></p-chart>
+    </div>
+
+    <div>
+      <div class="text-xl font-semibold mb-3">Incomes</div>
+      <p-chart type="pie" [data]="incomesChartData" [options]="chartsOptions"></p-chart>
+    </div>
+  </section>
 </ctrl-navigation>

@@ -5,10 +5,11 @@ import { DashboardViewComponent } from '@dashboard/dashboard-view/dashboard-view
 import { UiModule } from '@features/ui/ui.module';
 
 // PrimeNg
+import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 
 const declarations: Array<any> = [DashboardViewComponent];
-const imports: Array<any> = [CommonModule, DashboardRoutingModule, ChartModule, UiModule];
+const imports: Array<any> = [CommonModule, DashboardRoutingModule, ChartModule, UiModule, CardModule];
 
 @NgModule({ declarations, imports })
 export class DashboardModule {}

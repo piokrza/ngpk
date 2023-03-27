@@ -6,7 +6,7 @@ import { DbService } from '@common/services/db.service';
 import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CashFlowActions } from '@store/cash-flow';
-import { catchError, exhaustMap, map, of, tap } from 'rxjs';
+import { catchError, EMPTY, exhaustMap, map, of, tap } from 'rxjs';
 
 @Injectable()
 export class IncomesEffects {
@@ -14,28 +14,6 @@ export class IncomesEffects {
   private cashFlowService: CashFlowService = inject(CashFlowService);
   private toastService: ToastService = inject(ToastService);
   private db: DbService = inject(DbService);
-
-  public getIncomes$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashFlowActions.getIncomes),
-      exhaustMap(() => {
-        return this.cashFlowService.getIncomes$().pipe(
-          map((incomes: CashFlow[]) => {
-            return CashFlowActions.getIncomesSuccess({ incomes });
-          }),
-          catchError((e) => {
-            console.error(e);
-            this.toastService.showMessage(
-              ToastStatus.WARN,
-              'Error!',
-              'Something went wrong during fetching incomes from database'
-            );
-            return of(CashFlowActions.getIncomesFailure());
-          })
-        );
-      })
-    );
-  });
 
   public addIncome$ = createEffect(
     () => {
@@ -62,28 +40,6 @@ export class IncomesEffects {
     { dispatch: false }
   );
 
-  public getExpenses$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashFlowActions.getIncomes),
-      exhaustMap(() => {
-        return this.cashFlowService.getExpenses$().pipe(
-          map((expenses: CashFlow[]) => {
-            return CashFlowActions.getExpensesSuccess({ expenses });
-          }),
-          catchError((e) => {
-            console.error(e);
-            this.toastService.showMessage(
-              ToastStatus.WARN,
-              'Error!',
-              'Something went wrong during fetching expensess from database'
-            );
-            return of(CashFlowActions.getIncomesFailure());
-          })
-        );
-      })
-    );
-  });
-
   public addExpense$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -107,4 +63,23 @@ export class IncomesEffects {
     },
     { dispatch: false }
   );
+
+  public getCashFlowUserData$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashFlowActions.getCashFlowUserData),
+
+      exhaustMap(({ uid }) => {
+        return this.cashFlowService.loadUserCashFlowData$(uid).pipe(
+          map((cashFlowData) => {
+            return CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData });
+          }),
+          catchError((e) => {
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
+            console.error();
+            return EMPTY;
+          })
+        );
+      })
+    );
+  });
 }

@@ -14,4 +14,8 @@ export enum ActionTypes {
   ADD_EXPENSE = '[Incomes] Add expense',
 
   REMOVE_EXPENSE = '[Incomes] Remove expense',
+
+  GET_CASH_FLOW_USER_DATA = '[Cash flow] Get cash flow user data',
+  GET_CASH_FLOW_USER_DATA_SUCCESS = '[Cash flow] Get cash flow user data success',
+  GET_CASH_FLOW_USER_DATA_FAILURE = '[Cash flow] Get cash flow user data failure',
 }

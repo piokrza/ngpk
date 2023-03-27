@@ -4,7 +4,8 @@ import { ChartService } from '@dashboard/services/chart.service';
 import { Store } from '@ngrx/store';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { CashFlowSelectors } from '@store/cash-flow';
-import { combineLatestWith, Observable, takeUntil } from 'rxjs';
+import { combineLatestWith, map, Observable, takeUntil } from 'rxjs';
+import { CustomChartData } from '@dashboard/models/custom-chart-data.model';
 
 @Component({
   selector: 'ctrl-dashboard-view',
@@ -19,11 +20,12 @@ export class DashboardViewComponent extends DestroyComponent implements OnInit {
 
   private expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
   private incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
+  public totalBalance$: Observable<number> = this.getTotalBalance$();
 
   public chartsOptions = this.chartService.getChartOptions();
 
-  public expensesChartData: any;
-  public incomesChartData: any;
+  public expensesChartData!: CustomChartData;
+  public incomesChartData!: CustomChartData;
 
   constructor() {
     super();
@@ -38,5 +40,12 @@ export class DashboardViewComponent extends DestroyComponent implements OnInit {
         this.cdr.markForCheck();
       },
     });
+  }
+
+  private getTotalBalance$(): Observable<number> {
+    return this.store.select(CashFlowSelectors.totalIncomes).pipe(
+      combineLatestWith(this.store.select(CashFlowSelectors.totalExpenses)),
+      map(([incomes, expenses]: [number, number]): number => incomes - expenses)
+    );
   }
 }

@@ -23,3 +23,8 @@ export const totalExpenses = createSelector(CashFlowStateSelector, ({ expenses }
 
   return totalExpenses;
 });
+
+export const totalBalance = createSelector(totalIncomes, totalExpenses, (): number => {
+  console.log(totalIncomes);
+  return Number(totalIncomes) - Number(totalExpenses);
+});

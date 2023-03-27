@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { CashFlowExpenseChartData, CashFlowIncomesChartData } from '@dashboard/models/cash-flow-chart-data.model';
+import { CustomChartData } from '@dashboard/models/custom-chart-data.model';
 
 @Injectable({ providedIn: 'root' })
 export class ChartService {
@@ -42,7 +43,7 @@ export class ChartService {
     };
   }
 
-  public setChartExpensesData(cashFlows: CashFlow[]) {
+  public setChartExpensesData(cashFlows: CashFlow[]): CustomChartData {
     const { rentalFees, food, travel, entertainment } = this.mapChartExpensesData(cashFlows);
 
     return {
@@ -64,7 +65,7 @@ export class ChartService {
     };
   }
 
-  public setChartIncomesData(cashFlows: CashFlow[]) {
+  public setChartIncomesData(cashFlows: CashFlow[]): CustomChartData {
     const { concerts, salary, gifts } = this.mapChartIncomesData(cashFlows);
 
     return {
