@@ -1,13 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { User } from '@common/models/user.model';
+import { AuthService } from '@auth/services/auth.service';
 import { CATEGORIES } from '@common/enums/categories.enum';
-import { CashFlowForm } from '@common/models/cash-flow-form.model';
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlowForm } from '@features/cash-flow/models/cash-flow-form.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { Categories, Category } from '@common/models/category.model';
 import { CashFlowFormService } from '@dashboard/services/cash-flow-form.service';
 import { Store } from '@ngrx/store';
 import { CategoriesSelectors } from '@store/categories';
-import { filter, map, Observable } from 'rxjs';
+import { filter, map, Observable, take } from 'rxjs';
 import uniqid from 'uniqid';
 
 @Component({
@@ -15,15 +17,31 @@ import uniqid from 'uniqid';
   templateUrl: './cash-flow-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowFormComponent {
+export class CashFlowFormComponent implements OnInit {
   @Input() public isIncomeMode!: boolean;
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
   private store: Store = inject(Store);
+  private authService: AuthService = inject(AuthService);
   public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createCashFlowForm();
 
   public readonly categories$: Observable<Category[]> = this.getCategories$();
+  private userId!: string;
+
+  public ngOnInit(): void {
+    this.authService.authState$
+      .pipe(
+        take(1),
+        filter(Boolean),
+        map((user: User) => user?.uid)
+      )
+      .subscribe({
+        next: (userId: string): void => {
+          this.userId = userId;
+        },
+      });
+  }
 
   private getCategories$(): Observable<Category[]> {
     return this.store.select(CategoriesSelectors.categories).pipe(
@@ -41,7 +59,7 @@ export class CashFlowFormComponent {
       return;
     }
 
-    const newCashFlow: CashFlow = { ...this.form.getRawValue(), id: uniqid() };
+    const newCashFlow: CashFlow = { ...this.form.getRawValue(), id: uniqid(), uid: this.userId };
 
     this.cashFlowSubmitData.emit(newCashFlow);
     this.form.reset();

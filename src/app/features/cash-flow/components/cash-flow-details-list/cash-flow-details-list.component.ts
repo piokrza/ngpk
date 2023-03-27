@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 
 @Component({
   selector: 'ctrl-cash-flow-details-list',

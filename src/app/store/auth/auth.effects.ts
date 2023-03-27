@@ -1,5 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '@common/models/user.model';
+import { CashFlowService } from '@dashboard/services/cash-flow.service';
 import { AuthService } from '@auth/services/auth.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import { ToastService } from '@common/services/toast.service';
@@ -8,7 +10,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthActions } from '@store/auth';
 import { ActionTypes } from '@store/auth/action-types';
 import firebase from 'firebase/compat';
-import { catchError, EMPTY, exhaustMap, from, map, of, tap } from 'rxjs';
+import { catchError, EMPTY, exhaustMap, from, map, of, switchMap, tap } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
@@ -16,6 +18,7 @@ export class AuthEffects {
   private toastService: ToastService = inject(ToastService);
   private authService: AuthService = inject(AuthService);
   private router: Router = inject(Router);
+  private cashFlowService = inject(CashFlowService);
 
   public signInWithGoogle$ = createEffect(() => {
     return this.actions$.pipe(
@@ -28,8 +31,9 @@ export class AuthEffects {
             }
 
             console.error('Provided account does not exist');
-            return AuthActions.signInWithGoogleFailure();
+            return AuthActions.userNotAuthenticated();
           }),
+          map(() => AuthActions.loadUserData()),
           tap((): void => {
             this.router.navigateByUrl('/dashboard');
           }),
@@ -42,28 +46,31 @@ export class AuthEffects {
             );
 
             console.error(e);
-            return of(AuthActions.signInWithGoogleFailure());
+            return of(AuthActions.userNotAuthenticated());
           })
         );
       })
     );
   });
 
-  public signOut$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.signOut),
-        exhaustMap((): Promise<void> => {
-          return this.authService.signOut();
-        }),
-        tap((): void => {
-          this.router.navigateByUrl('/authentication');
-          this.toastService.showMessage(ToastStatus.INFO, 'Success!', 'You were successfully logged out');
-        })
-      );
-    },
-    { dispatch: false }
-  );
+  public signInWithGoogleSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.signInWithGoogleSuccess),
+      switchMap(() => of(AuthActions.loadUserData()))
+    );
+  });
+
+  public signOut$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.signOut),
+      exhaustMap((): Promise<void> => this.authService.signOut()),
+      map(() => AuthActions.userNotAuthenticated()),
+      tap((): void => {
+        this.router.navigateByUrl('/authentication');
+        this.toastService.showMessage(ToastStatus.INFO, 'Success!', 'You were successfully logged out');
+      })
+    );
+  });
 
   public signInWithEmailAndPassword$ = createEffect(
     () => {
@@ -76,8 +83,6 @@ export class AuthEffects {
             }),
 
             catchError(() => {
-              //TODO: Set form errors
-
               this.toastService.showMessage(
                 ToastStatus.ERROR,
                 'Error!',
@@ -112,6 +117,45 @@ export class AuthEffects {
               return EMPTY;
             })
           );
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  public loadUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.loadUserData),
+      exhaustMap(() => this.authService.authState$),
+      switchMap((user: firebase.User | null) => {
+        return this.authService.loadUserData(user).pipe(
+          map((user: User | undefined) => {
+            if (user) {
+              return AuthActions.userAuthenticated({ user });
+            }
+
+            return AuthActions.userNotAuthenticated();
+          }),
+
+          catchError((e) => {
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
+            console.error(e);
+            AuthActions.userNotAuthenticated();
+            return EMPTY;
+          })
+        );
+      })
+    );
+  });
+
+  public loadUserData$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.userAuthenticated),
+        switchMap(({ user }) => this.cashFlowService.loadUserCashFlowData$(user.uid)),
+        map((data) => {
+          console.log(data);
+          return data;
         })
       );
     },

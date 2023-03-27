@@ -1,4 +1,4 @@
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { FeatureKey, State as CashFlowState } from '@store/cash-flow';
 

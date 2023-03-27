@@ -24,13 +24,20 @@ export const Reducer = createReducer(
   initialState,
 
   // sign in with google
-  on(AuthActions.signInWithGoogle, (state): State => {
-    return { ...state };
-  }),
-  on(AuthActions.signInWithGoogleSuccess, (state, { user }): State => {
+  on(AuthActions.userAuthenticated, (state, { user }): State => {
     return { ...state, user };
   }),
-  on(AuthActions.signInWithGoogleFailure, (state): State => {
-    return { ...state };
+  on(AuthActions.userNotAuthenticated, (state): State => {
+    return {
+      user: {
+        displayName: '',
+        email: '',
+        emailVerified: false,
+        phoneNumber: null,
+        photoURL: '',
+        refreshToken: '',
+        uid: '',
+      },
+    };
   })
 );

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { CashFlowService } from '@dashboard/services/cash-flow.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { DbService } from '@common/services/db.service';
 import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';

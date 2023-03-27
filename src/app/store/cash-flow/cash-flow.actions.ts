@@ -1,4 +1,4 @@
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { createAction, props } from '@ngrx/store';
 import { ActionTypes } from '@store/cash-flow/action-types';
 

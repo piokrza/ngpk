@@ -1,17 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
+import { User } from '@common/models/user.model';
 import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
-import { ToastService } from '@common/services/toast.service';
 import firebase from 'firebase/compat';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Collection } from '@common/enums/collection.enum';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private afAuth: AngularFireAuth = inject(AngularFireAuth);
-  private router: Router = inject(Router);
-  private toastService: ToastService = inject(ToastService);
+  private readonly afAuth: AngularFireAuth = inject(AngularFireAuth);
+  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public async signinWithGoogle(): Promise<firebase.auth.UserCredential> {
     return this.afAuth.signInWithPopup(new GoogleAuthProvider());
@@ -29,7 +29,15 @@ export class AuthService {
     return await this.afAuth.createUserWithEmailAndPassword(payload.email, payload.password);
   }
 
-  public getAuthState(): Observable<firebase.User | null> {
+  public get authState$(): Observable<firebase.User | null> {
     return this.afAuth.authState;
+  }
+
+  public loadUserData(user: firebase.User | null): Observable<User | undefined> {
+    if (!user) {
+      return of(undefined);
+    }
+
+    return this.angularFirestore.doc<User>(`${Collection.USERS}/${user.uid}`).valueChanges();
   }
 }

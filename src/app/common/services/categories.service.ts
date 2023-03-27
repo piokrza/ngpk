@@ -6,12 +6,12 @@ import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
-  private readonly angularFirestore = inject(AngularFirestore);
+  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public getCategories$(): Observable<Categories> {
     return this.angularFirestore
       .collection<Categories>(Collection.CATEGORIES)
       .valueChanges()
-      .pipe(map((cats: Categories[]) => cats[0]));
+      .pipe(map((cats: Categories[]): Categories => cats[0]));
   }
 }

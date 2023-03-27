@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { ChartService } from '@dashboard/services/chart.service';
 import { Store } from '@ngrx/store';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';

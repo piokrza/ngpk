@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { Store } from '@ngrx/store';
 import { CashFlowActions, CashFlowSelectors } from '@store/cash-flow';
 import { ConfirmationService } from 'primeng/api';

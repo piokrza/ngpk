@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { PersistanceService } from '@common/services/persistance.service';
+import { isLightMode } from '@common/constants/is-light-mode';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
@@ -10,8 +11,8 @@ export class ThemeService {
     this._themeLink = this.document.getElementById('theme-link') as HTMLLinkElement;
   }
 
-  public setTheme(isLightMode: boolean): void {
-    this._themeLink.href = isLightMode ? 'light-theme.css' : 'dark-theme.css';
-    this.persistanceService.set('isLightMode', isLightMode);
+  public setTheme(isLightModeFlag: boolean): void {
+    this._themeLink.href = isLightModeFlag ? 'light-theme.css' : 'dark-theme.css';
+    this.persistanceService.set(isLightMode, isLightModeFlag);
   }
 }

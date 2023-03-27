@@ -5,4 +5,5 @@ export interface CashFlow {
   categoryCode: number | null;
   description: string;
   id: string;
+  uid: string;
 }

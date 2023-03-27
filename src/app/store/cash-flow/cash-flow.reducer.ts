@@ -1,4 +1,4 @@
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { createReducer, on } from '@ngrx/store';
 import { CashFlowActions } from '@store/cash-flow';
 

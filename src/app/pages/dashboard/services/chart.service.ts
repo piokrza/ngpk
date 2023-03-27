@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CashFlow } from '@common/models/cash-flow.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { CashFlowExpenseChartData, CashFlowIncomesChartData } from '@dashboard/models/cash-flow-chart-data.model';
 
 @Injectable({ providedIn: 'root' })
