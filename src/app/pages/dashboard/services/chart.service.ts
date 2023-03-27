@@ -128,7 +128,6 @@ export class ChartService {
       concerts: {
         label: 'Concerts',
         amount: concertsCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
-          console.log(cashFlow);
           return acc + Number(cashFlow.amount);
         }, 0),
       },

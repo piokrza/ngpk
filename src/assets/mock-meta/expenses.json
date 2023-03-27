@@ -3,7 +3,7 @@
     "name": "Flat fee",
     "amount": "900",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "categoryId": "0",
+    "categoryCode": "0",
     "description": "Month payment",
     "id": "0"
   },
@@ -11,7 +11,7 @@
     "name": "SPC gear GK630 Onyx White Brown",
     "amount": "3",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "categoryId": "3",
+    "categoryCode": "3",
     "description": "Another keyboard to clection",
     "id": "1"
   },
@@ -19,7 +19,7 @@
     "name": "Spain holiday",
     "amount": "2000",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "categoryId": "1",
+    "categoryCode": "1",
     "description": "Vacation in Barcelona",
     "id": "2"
   },
@@ -27,7 +27,7 @@
     "name": "Italy holiday",
     "amount": "1180",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "categoryId": "1",
+    "categoryCode": "1",
     "description": "Vacation in Rome",
     "id": "3"
   }
