@@ -5,17 +5,22 @@
   </span>
 
   <span class="p-float-label my-7">
-    <p-inputNumber id="amount" mode="decimal" [minFractionDigits]="2" formControlName="amount" />
+    <p-inputNumber
+      [minFractionDigits]="1"
+      id="amount"
+      mode="currency"
+      inputId="currency-poland"
+      currency="PLN"
+      formControlName="amount" />
     <label for="amount">Income amount</label>
   </span>
 
   <p-dropdown
-    *ngIf="categories$ | async as categories"
-    styleClass="w-full"
-    [options]="categories"
-    placeholder="Select category"
+    [options]="(categories$ | async)!"
     optionLabel="name"
     optionValue="code"
+    styleClass="w-full"
+    placeholder="Select category"
     formControlName="categoryCode" />
 
   <span class="p-float-label my-7">

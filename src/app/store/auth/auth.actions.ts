@@ -7,7 +7,6 @@ export const userAuthenticated = createAction(ActionTypes.USER_AUTHENTICATED, pr
 export const userNotAuthenticated = createAction(ActionTypes.USER_NOT_AUTHENTICATED);
 
 export const signInWithGoogle = createAction(ActionTypes.SIGN_IN_WITH_GOOGLE);
-export const signInWithGoogleSuccess = createAction(ActionTypes.SIGN_IN_WITH_GOOGLE_SUCCESS, props<{ user: User }>());
 
 export const signOut = createAction(ActionTypes.SIGN_OUT);
 

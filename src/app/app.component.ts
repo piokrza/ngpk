@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { AuthService } from '@auth/services/auth.service';
+import { isLightMode } from '@common/constants/is-light-mode';
 import { PersistanceService } from '@common/services/persistance.service';
 import { ThemeService } from '@common/services/theme.service';
 import { Store } from '@ngrx/store';
-import { CategoriesActions } from '@store/categories';
-import { PrimeNGConfig } from 'primeng/api';
-import { AuthService } from '@auth/services/auth.service';
-import { take, tap } from 'rxjs';
-import firebase from 'firebase/compat';
 import { AuthActions } from '@store/auth';
-import { isLightMode } from '@common/constants/is-light-mode';
+import { CategoriesActions } from '@store/categories';
+import firebase from 'firebase/compat';
+import { PrimeNGConfig } from 'primeng/api';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'ctrl-root',
@@ -33,7 +33,6 @@ export class AppComponent implements OnInit {
 
     this.authState.authState$
       .pipe(
-        take(1),
         tap((user: firebase.User | null): void => {
           user && this.dispatchStoreActions();
         })

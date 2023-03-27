@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
+import { CustomChartData } from '@dashboard/models/custom-chart-data.model';
 import { ChartService } from '@dashboard/services/chart.service';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { Store } from '@ngrx/store';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { CashFlowSelectors } from '@store/cash-flow';
 import { combineLatestWith, map, Observable, takeUntil } from 'rxjs';
-import { CustomChartData } from '@dashboard/models/custom-chart-data.model';
 
 @Component({
   selector: 'ctrl-dashboard-view',

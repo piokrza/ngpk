@@ -1,18 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '@common/models/user.model';
-import { CashFlowService } from '@dashboard/services/cash-flow.service';
+import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
 import { AuthService } from '@auth/services/auth.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
+import { User } from '@common/models/user.model';
 import { ToastService } from '@common/services/toast.service';
 import { setUser } from '@common/utils/set-user';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthActions } from '@store/auth';
 import { ActionTypes } from '@store/auth/action-types';
+import { CashFlowActions } from '@store/cash-flow';
 import firebase from 'firebase/compat';
 import { catchError, EMPTY, exhaustMap, from, map, of, switchMap, tap } from 'rxjs';
-import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
-import { CashFlowActions } from '../cash-flow';
 
 @Injectable()
 export class AuthEffects {
@@ -20,7 +19,6 @@ export class AuthEffects {
   private toastService: ToastService = inject(ToastService);
   private authService: AuthService = inject(AuthService);
   private router: Router = inject(Router);
-  private cashFlowService = inject(CashFlowService);
 
   public signInWithGoogle$ = createEffect(() => {
     return this.actions$.pipe(
@@ -67,31 +65,29 @@ export class AuthEffects {
     );
   });
 
-  public signInWithEmailAndPassword$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.signInWithEmailAndPassword),
-        exhaustMap(({ payload }) => {
-          return from(this.authService.signInWithEmailAndPassword(payload as AuthFormPayload)).pipe(
-            tap((): void => {
-              this.router.navigateByUrl('/dashboard');
-            }),
+  public signInWithEmailAndPassword$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.signInWithEmailAndPassword),
+      exhaustMap(({ payload }) => {
+        return from(this.authService.signInWithEmailAndPassword(payload as AuthFormPayload)).pipe(
+          map(() => AuthActions.loadUserData()),
+          tap((): void => {
+            this.router.navigateByUrl('/dashboard');
+          }),
 
-            catchError(() => {
-              this.toastService.showMessage(
-                ToastStatus.ERROR,
-                'Error!',
-                'Something went wrong during google authorization'
-              );
+          catchError(() => {
+            this.toastService.showMessage(
+              ToastStatus.ERROR,
+              'Error!',
+              'Something went wrong during google authorization'
+            );
 
-              return EMPTY;
-            })
-          );
-        })
-      );
-    },
-    { dispatch: false }
-  );
+            return EMPTY;
+          })
+        );
+      })
+    );
+  });
 
   public signUpWithEmailAndPassword$ = createEffect(
     () => {
@@ -123,7 +119,7 @@ export class AuthEffects {
       ofType(AuthActions.loadUserData),
       exhaustMap(() => this.authService.authState$),
       switchMap((user: firebase.User | null) => {
-        return this.authService.loadUserData(user).pipe(
+        return this.authService.loadUserData$(user).pipe(
           map((user: User | undefined) => {
             if (user) {
               return AuthActions.userAuthenticated({ user });

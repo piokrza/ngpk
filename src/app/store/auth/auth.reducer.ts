@@ -23,11 +23,11 @@ const initialState: State = {
 export const Reducer = createReducer(
   initialState,
 
-  // sign in with google
+  // user authenticated
   on(AuthActions.userAuthenticated, (state, { user }): State => {
     return { ...state, user };
   }),
-  on(AuthActions.userNotAuthenticated, (state): State => {
+  on(AuthActions.userNotAuthenticated, (): State => {
     return {
       user: {
         displayName: '',

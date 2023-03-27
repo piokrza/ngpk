@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { AuthActions } from '@store/auth';
 import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
 import { RegisterForm } from '@auth/models/register-form.model';
 import { AuthFormService } from '@auth/services/auth-form.service';
 import { Store } from '@ngrx/store';
+import { AuthActions } from '@store/auth';
 
 @Component({
   selector: 'ctrl-register-form',
@@ -22,13 +22,9 @@ export class RegisterFormComponent {
       return;
     }
 
-    const payload: AuthFormPayload = {
-      email: this.form.get('email')!.value,
-      password: this.form.get('password')!.value,
-    };
+    const { email, password } = this.form.getRawValue();
 
-    this.store.dispatch(AuthActions.signUpWithEmailAndPassword({ payload }));
-
+    this.store.dispatch(AuthActions.signUpWithEmailAndPassword({ payload: { email, password } as AuthFormPayload }));
     this.form.reset();
   }
 }

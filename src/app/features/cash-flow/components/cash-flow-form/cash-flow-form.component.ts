@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
-import { User } from '@common/models/user.model';
 import { AuthService } from '@auth/services/auth.service';
 import { CATEGORIES } from '@common/enums/categories.enum';
+import { Categories, Category } from '@common/models/category.model';
+import { User } from '@common/models/user.model';
+import { CashFlowFormService } from '@dashboard/services/cash-flow-form.service';
 import { CashFlowForm } from '@features/cash-flow/models/cash-flow-form.model';
 import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
-import { Categories, Category } from '@common/models/category.model';
-import { CashFlowFormService } from '@dashboard/services/cash-flow-form.service';
 import { Store } from '@ngrx/store';
 import { CategoriesSelectors } from '@store/categories';
 import { filter, map, Observable, take } from 'rxjs';
@@ -22,8 +23,8 @@ export class CashFlowFormComponent implements OnInit {
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
-  private store: Store = inject(Store);
-  private authService: AuthService = inject(AuthService);
+  private readonly store: Store = inject(Store);
+  private readonly authService: AuthService = inject(AuthService);
   public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createCashFlowForm();
 
   public readonly categories$: Observable<Category[]> = this.getCategories$();
@@ -34,7 +35,7 @@ export class CashFlowFormComponent implements OnInit {
       .pipe(
         take(1),
         filter(Boolean),
-        map((user: User) => user?.uid)
+        map((user: User): string => user?.uid)
       )
       .subscribe({
         next: (userId: string): void => {
@@ -59,7 +60,12 @@ export class CashFlowFormComponent implements OnInit {
       return;
     }
 
-    const newCashFlow: CashFlow = { ...this.form.getRawValue(), id: uniqid(), uid: this.userId };
+    const newCashFlow: CashFlow = {
+      ...this.form.getRawValue(),
+      date: Timestamp.fromDate(this.form.getRawValue().date!),
+      id: uniqid(),
+      uid: this.userId,
+    };
 
     this.cashFlowSubmitData.emit(newCashFlow);
     this.form.reset();

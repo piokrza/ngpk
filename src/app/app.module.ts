@@ -24,8 +24,8 @@ import { ROOT_REDUCERS } from '@store/root-reducer';
 // PrimeNg
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 import { environment } from 'src/environments/environment';
 
 const StoreEffects: Array<any> = [CategoriesEffects, IncomesEffects, AuthEffects];

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
-import { combineLatestWith, map, Observable, tap } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { CashFlowUserData } from '@features/cash-flow/models/cash-flow-user-data.model';
 import { Collection } from '@common/enums/collection.enum';
-import { CashFlowUserData } from '@app/features/cash-flow/models/cash-flow-user-data.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
+import { combineLatestWith, map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowService {

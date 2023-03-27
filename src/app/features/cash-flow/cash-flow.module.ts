@@ -7,6 +7,7 @@ import { CashFlowDetailsListComponent } from '@features/cash-flow/components/cas
 import { CashFlowFormComponent } from '@features/cash-flow/components/cash-flow-form/cash-flow-form.component';
 import { CashFlowHeadingComponent } from '@features/cash-flow/components/cash-flow-heading/cash-flow-heading.component';
 import { CashFlowPanelComponent } from '@features/cash-flow/components/cash-flow-panel/cash-flow-panel.component';
+import { TimestampToDatePipe } from '@standalone/pipes/timestamp-to-date.pipe';
 
 // PrimeNg
 import { CalendarModule } from 'primeng/calendar';
@@ -39,6 +40,7 @@ const imports: Array<any> = [
   DataViewModule,
   ProgressSpinnerModule,
   DividerModule,
+  TimestampToDatePipe,
 ];
 const exports: Array<any> = [...declarations];
 

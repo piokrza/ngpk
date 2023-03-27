@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { CashFlowService } from '@dashboard/services/cash-flow.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { DbService } from '@common/services/db.service';
 import { ToastService } from '@common/services/toast.service';
+import { CashFlowService } from '@dashboard/services/cash-flow.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CashFlowActions } from '@store/cash-flow';
 import { catchError, EMPTY, exhaustMap, map, of, tap } from 'rxjs';
@@ -67,16 +66,13 @@ export class IncomesEffects {
   public getCashFlowUserData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.getCashFlowUserData),
-
       exhaustMap(({ uid }) => {
         return this.cashFlowService.loadUserCashFlowData$(uid).pipe(
-          map((cashFlowData) => {
-            return CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData });
-          }),
+          map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
           catchError((e) => {
             this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
-            console.error();
-            return EMPTY;
+            console.error(e);
+            return of(CashFlowActions.getCashFlowUserDataFailure());
           })
         );
       })

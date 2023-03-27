@@ -15,7 +15,10 @@
 
         <div class="flex flex-wrap gap-6">
           <ctrl-cash-flow-details-box [detail]="details.amount.toString()" iconName="dollar" />
-          <ctrl-cash-flow-details-box [detail]="(details.date | date)!" iconName="calendar" />
+          <ctrl-cash-flow-details-box
+            *ngIf="details.date"
+            [detail]="(details.date | timestampToDate | date)!"
+            iconName="calendar" />
           <ctrl-cash-flow-details-box *ngIf="details.description" [detail]="details.description" iconName="comment" />
         </div>
       </div>

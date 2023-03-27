@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { CashFlowExpenseChartData, CashFlowIncomesChartData } from '@dashboard/models/cash-flow-chart-data.model';
 import { CustomChartData } from '@dashboard/models/custom-chart-data.model';
+import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 
 @Injectable({ providedIn: 'root' })
 export class ChartService {
