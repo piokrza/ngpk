@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { UiModule } from '@features/ui/ui.module';
 import { DashboardRoutingModule } from '@dashboard/dashboard-routing.module';
 import { DashboardViewComponent } from '@dashboard/dashboard-view/dashboard-view.component';
+import { UiModule } from '@features/ui/ui.module';
 
 // PrimeNg
 import { ChartModule } from 'primeng/chart';

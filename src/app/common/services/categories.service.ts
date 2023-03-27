@@ -1,13 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Collection } from '@common/enums/collection.enum';
 import { Categories } from '@common/models/category.model';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
-  private http: HttpClient = inject(HttpClient);
+  private readonly angularFirestore = inject(AngularFirestore);
 
   public getCategories$(): Observable<Categories> {
-    return this.http.get<Categories>('assets/mock-meta/categories.json');
+    return this.angularFirestore
+      .collection<Categories>(Collection.CATEGORIES)
+      .valueChanges()
+      .pipe(map((cats: Categories[]) => cats[0]));
   }
 }

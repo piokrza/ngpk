@@ -19,7 +19,7 @@ export class CashFlowPanelComponent {
     this.cashFlowSubmitData.emit(cashFlowSubmitData);
   }
 
-  public emitItemIdToRemove(itemId: string) {
+  public emitItemIdToRemove(itemId: string): void {
     this.itemToRemoveId.emit(itemId);
   }
 }

@@ -1,3 +1,7 @@
 <ctrl-navigation>
-  <p>dashboard-view works!</p>
+  <div class="max-w-[15rem] flex gap-10">
+    <p-chart *ngIf="expensesChartData" type="pie" [data]="expensesChartData" [options]="chartsOptions"></p-chart>
+
+    <p-chart *ngIf="expensesChartData" type="pie" [data]="incomesChartData" [options]="chartsOptions"></p-chart>
+  </div>
 </ctrl-navigation>

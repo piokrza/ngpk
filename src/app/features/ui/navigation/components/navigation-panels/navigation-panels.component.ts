@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { AuthActions } from '@app/store/auth';
 import { MenuService } from '@common/services/menu.service';
 import { Store } from '@ngrx/store';
+import { AuthActions } from '@store/auth';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 

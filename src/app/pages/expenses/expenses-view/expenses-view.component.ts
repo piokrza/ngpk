@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CashFlow } from '@common/models/cash-flow.model';
-import { CashFlowActions, CashFlowSelectors } from '@store/cash-flow';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { CashFlowActions, CashFlowSelectors } from '@store/cash-flow';
 import { ConfirmationService } from 'primeng/api';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ctrl-expenses-view',

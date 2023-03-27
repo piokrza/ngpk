@@ -1,34 +1,34 @@
 [
   {
-    "name": "bread",
-    "amount": "2",
+    "name": "Flat fee",
+    "amount": "900",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "category": "1",
-    "description": "this is desc",
+    "categoryId": "0",
+    "description": "Month payment",
     "id": "0"
   },
   {
-    "name": "new keyboard",
-    "amount": "1",
+    "name": "SPC gear GK630 Onyx White Brown",
+    "amount": "3",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "category": "2",
-    "description": "this is another keyboard",
+    "categoryId": "3",
+    "description": "Another keyboard to clection",
     "id": "1"
   },
   {
-    "name": "new keyboard",
-    "amount": "1",
+    "name": "Spain holiday",
+    "amount": "2000",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "category": "2",
-    "description": "this is another keyboard",
+    "categoryId": "1",
+    "description": "Vacation in Barcelona",
     "id": "2"
   },
   {
-    "name": "new keyboard",
-    "amount": "1",
+    "name": "Italy holiday",
+    "amount": "1180",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "category": "2",
-    "description": "this is another keyboard",
+    "categoryId": "1",
+    "description": "Vacation in Rome",
     "id": "3"
   }
 ]

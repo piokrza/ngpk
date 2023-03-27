@@ -6,12 +6,10 @@ export const FeatureKey = 'categories';
 
 export interface State {
   categories: Categories | null;
-  isLoading: boolean;
 }
 
 const initialState: State = {
   categories: null,
-  isLoading: false,
 };
 
 export const Reducer = createReducer(
@@ -19,12 +17,12 @@ export const Reducer = createReducer(
 
   // get categories
   on(CategoriesActions.getCategories, (state) => {
-    return { ...state, isLoading: true };
+    return { ...state };
   }),
   on(CategoriesActions.getCategoriesSuccess, (_, { categories }) => {
-    return { categories, isLoading: false };
+    return { categories };
   }),
-  on(CategoriesActions.getCategoriesFailure, (_, { mockedCategories }) => {
-    return { categories: mockedCategories, isLoading: true };
+  on(CategoriesActions.getCategoriesFailure, (state) => {
+    return { ...state };
   })
 );

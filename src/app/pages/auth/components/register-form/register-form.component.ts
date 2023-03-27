@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthActions } from '@app/store/auth';
+import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
 import { RegisterForm } from '@auth/models/register-form.model';
 import { AuthFormService } from '@auth/services/auth-form.service';
 import { Store } from '@ngrx/store';
-import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
 
 @Component({
   selector: 'ctrl-register-form',

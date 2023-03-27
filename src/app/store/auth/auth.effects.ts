@@ -1,14 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import { ToastService } from '@common/services/toast.service';
-import { AuthService } from '@auth/services/auth.service';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, EMPTY, exhaustMap, from, map, of, tap } from 'rxjs';
-import { AuthActions } from '@store/auth';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth/services/auth.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
-import firebase from 'firebase/compat';
+import { ToastService } from '@common/services/toast.service';
 import { setUser } from '@common/utils/set-user';
-import { ActionTypes } from './action-types';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { AuthActions } from '@store/auth';
+import { ActionTypes } from '@store/auth/action-types';
+import firebase from 'firebase/compat';
+import { catchError, EMPTY, exhaustMap, from, map, of, tap } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
@@ -41,6 +41,7 @@ export class AuthEffects {
               'Something went wrong during google authorisation'
             );
 
+            console.error(e);
             return of(AuthActions.signInWithGoogleFailure());
           })
         );

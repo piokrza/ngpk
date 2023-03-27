@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from '@auth/auth.module';
 import { DashboardModule } from '@dashboard/dashboard.module';
 import { ExpensesModule } from '@expenses/expenses.module';
 import { IncomesModule } from '@incomes/incomes.module';
 import { SettingsModule } from '@settings/settings.module';
-import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 
 const routes: Routes = [
   {

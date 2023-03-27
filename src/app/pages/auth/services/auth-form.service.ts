@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordMatchValidator } from '@auth/validators/password-match';
 import { LoginForm } from '@auth/models/login-form.model';
 import { RegisterForm } from '@auth/models/register-form.model';
+import { passwordMatchValidator } from '@auth/validators/password-match';
 
 @Injectable()
 export class AuthFormService {

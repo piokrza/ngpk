@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { PersistanceService } from '@common/services/persistance.service';
+import { ThemeService } from '@common/services/theme.service';
 import { Store } from '@ngrx/store';
 import { CashFlowActions } from '@store/cash-flow';
 import { CategoriesActions } from '@store/categories';
 import { PrimeNGConfig } from 'primeng/api';
-import { ThemeService } from '@common/services/theme.service';
-import { PersistanceService } from '@common/services/persistance.service';
 
 @Component({
   selector: 'ctrl-root',

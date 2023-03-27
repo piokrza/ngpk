@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CashFlowPanelComponent } from '@features/cash-flow/components/cash-flow-panel/cash-flow-panel.component';
 
-import { CashFlowViewComponent } from './cash-flow-panel.component';
-
-describe('CashFlowViewComponent', () => {
-  let component: CashFlowViewComponent;
-  let fixture: ComponentFixture<CashFlowViewComponent>;
+describe('CashFlowPanelComponent', () => {
+  let component: CashFlowPanelComponent;
+  let fixture: ComponentFixture<CashFlowPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CashFlowViewComponent],
+      declarations: [CashFlowPanelComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CashFlowViewComponent);
+    fixture = TestBed.createComponent(CashFlowPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

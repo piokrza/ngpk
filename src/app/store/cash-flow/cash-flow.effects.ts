@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { CashFlowService } from '@common/services/cash-flow.service';
+import { CashFlowService } from '@dashboard/services/cash-flow.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import { CashFlow } from '@common/models/cash-flow.model';
+import { DbService } from '@common/services/db.service';
 import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CashFlowActions } from '@store/cash-flow';
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
-import { DbService } from '@common/services/db.service';
 
 @Injectable()
 export class IncomesEffects {

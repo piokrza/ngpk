@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { MockedCategories } from '@common/constants/categories';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import { Categories } from '@common/models/category.model';
 import { CategoriesService } from '@common/services/categories.service';
@@ -26,10 +25,10 @@ export class CategoriesEffects {
             console.error(e);
             this.toastService.showMessage(
               ToastStatus.WARN,
-              'Error during fetching categories from database',
-              'Categories were injected from mockData'
+              'Error!',
+              'Something went wrong during fetching categories from database'
             );
-            return of(CategoriesActions.getCategoriesFailure({ mockedCategories: MockedCategories }));
+            return of(CategoriesActions.getCategoriesFailure());
           })
         );
       })

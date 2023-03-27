@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs';
-import firebase from 'firebase/compat';
 import { Router } from '@angular/router';
 import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
 import { ToastService } from '@common/services/toast.service';
+import firebase from 'firebase/compat';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

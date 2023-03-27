@@ -1,6 +1,6 @@
 export interface Category {
   name: string;
-  code: string;
+  code: number;
 }
 
 export interface Categories {

@@ -7,7 +7,4 @@ export const getCategoriesSuccess = createAction(
   ActionTypes.GET_CATEGORIES_SUCCESS,
   props<{ categories: Categories }>()
 );
-export const getCategoriesFailure = createAction(
-  ActionTypes.GET_CATEGORIES_FAILURE,
-  props<{ mockedCategories: Categories }>()
-);
+export const getCategoriesFailure = createAction(ActionTypes.GET_CATEGORIES_FAILURE);

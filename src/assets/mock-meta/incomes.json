@@ -3,16 +3,32 @@
     "name": "britenet salary",
     "amount": "10000",
     "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "category": "1",
-    "description": "this is desc",
+    "categoryId": "5",
+    "description": "03.2023",
     "id": "0"
   },
   {
-    "name": "awiw",
+    "name": "Awiw",
     "amount": "150",
-    "date": "Fri Mar 17 2023 00:00:00 GMT+0100",
-    "category": "2",
-    "description": "this is another keyboard",
+    "date": "Fri Mar 16 2023 00:00:00 GMT+0100",
+    "categoryId": "4",
+    "description": "Awiw monday",
+    "id": "1"
+  },
+  {
+    "name": "Awiw",
+    "amount": "140",
+    "date": "Fri Mar 18 2023 00:00:00 GMT+0100",
+    "categoryId": "4",
+    "description": "Awiw wednesday",
+    "id": "1"
+  },
+  {
+    "name": "Awiw",
+    "amount": "250",
+    "date": "Fri Mar 19 2023 00:00:00 GMT+0100",
+    "categoryId": "4",
+    "description": "Awiw sunday",
     "id": "1"
   }
 ]
