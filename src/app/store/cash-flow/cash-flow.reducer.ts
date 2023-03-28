@@ -20,19 +20,25 @@ export const Reducer = createReducer(
   initialState,
 
   // get user cash flow data
-  on(CashFlowActions.getCashFlowUserData, (state) => {
+  on(CashFlowActions.getCashFlowUserData, (state): State => {
     return { ...state, isLoading: true };
   }),
-  on(CashFlowActions.getCashFlowUserDataSuccess, (state, { cashFlowData: { expenses, incomes } }) => {
+  on(CashFlowActions.getCashFlowUserDataSuccess, (_, { cashFlowData: { expenses, incomes } }): State => {
     return { expenses, incomes, isLoading: false };
   }),
-  on(CashFlowActions.getCashFlowUserDataFailure, (state) => {
+  on(CashFlowActions.getCashFlowUserDataFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
 
   // add income
   on(CashFlowActions.addIncome, (state, { income }): State => {
     return { ...state, incomes: [...state.incomes, income] };
+  }),
+  on(CashFlowActions.addIncomeSuccess, (state): State => {
+    return { ...state, isLoading: false };
+  }),
+  on(CashFlowActions.addIncomeFailure, (state): State => {
+    return { ...state, isLoading: false };
   }),
 
   // remove income
@@ -43,7 +49,13 @@ export const Reducer = createReducer(
 
   // add expense
   on(CashFlowActions.addExpense, (state, { expense }): State => {
-    return { ...state, expenses: [...state.expenses, expense] };
+    return { ...state, expenses: [...state.expenses, expense], isLoading: true };
+  }),
+  on(CashFlowActions.addExpenseSuccess, (state): State => {
+    return { ...state, isLoading: false };
+  }),
+  on(CashFlowActions.addExpenseFailure, (state): State => {
+    return { ...state, isLoading: false };
   }),
 
   // remove expense

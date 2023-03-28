@@ -1,13 +1,37 @@
 import { inject, Injectable } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/compat/firestore';
+import { CashFlowUserData } from '@features/cash-flow/models/cash-flow-user-data.model';
 import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
-import firebase from 'firebase/compat';
+import { Observable, combineLatestWith, map } from 'rxjs';
+import { Collection } from '@common/enums/collection.enum';
 
 @Injectable({ providedIn: 'root' })
 export class DbService {
-  firestore: Firestore = inject(Firestore);
+  private angularFirestore: AngularFirestore = inject(AngularFirestore);
 
-  public addIncome(income: CashFlow) {}
+  public loadUserCashFlowData$(uid: string): Observable<CashFlowUserData> {
+    const expenses$: AngularFirestoreCollection<CashFlow> = this.angularFirestore.collection<CashFlow>(
+      Collection.EXPENSES,
+      (ref) => ref.where('uid', '==', uid)
+    );
 
-  public getUserData$(user: firebase.User | null) {}
+    const incomes$: AngularFirestoreCollection<CashFlow> = this.angularFirestore.collection<CashFlow>(
+      Collection.INCOMES,
+      (ref) => ref.where('uid', '==', uid)
+    );
+
+    return expenses$.valueChanges().pipe(
+      combineLatestWith(incomes$.valueChanges()),
+      map(([expenses, incomes]: [CashFlow[], CashFlow[]]): CashFlowUserData => {
+        return {
+          expenses,
+          incomes,
+        };
+      })
+    );
+  }
+
+  public addCashFlow$(cashFlow: CashFlow, type: Collection): Promise<DocumentReference<CashFlow>> {
+    return this.angularFirestore.collection<CashFlow>(type).add(cashFlow);
+  }
 }
