@@ -6,6 +6,6 @@ export interface CashFlow {
   date: Timestamp | null;
   categoryCode: number | null;
   description: string;
-  id: string;
+  id?: string;
   uid: string;
 }

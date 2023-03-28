@@ -1,5 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+  DocumentReference,
+} from '@angular/fire/compat/firestore';
 import { CashFlowUserData } from '@features/cash-flow/models/cash-flow-user-data.model';
 import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { Observable, combineLatestWith, map } from 'rxjs';
@@ -20,8 +25,8 @@ export class DbService {
       (ref) => ref.where('uid', '==', uid)
     );
 
-    return expenses$.valueChanges().pipe(
-      combineLatestWith(incomes$.valueChanges()),
+    return expenses$.valueChanges({ idField: 'id' }).pipe(
+      combineLatestWith(incomes$.valueChanges({ idField: 'id' })),
       map(([expenses, incomes]: [CashFlow[], CashFlow[]]): CashFlowUserData => {
         return {
           expenses,
@@ -31,7 +36,15 @@ export class DbService {
     );
   }
 
-  public addCashFlow$(cashFlow: CashFlow, type: Collection): Promise<DocumentReference<CashFlow>> {
-    return this.angularFirestore.collection<CashFlow>(type).add(cashFlow);
+  public addCashFlow$(collectionName: Collection, cashFlow: CashFlow): Promise<DocumentReference<CashFlow>> {
+    return this.angularFirestore.collection<CashFlow>(collectionName).add(cashFlow);
+  }
+
+  public removeCashFlow$(collectionName: Collection, cashFlowId: string): Promise<void> {
+    const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore
+      .collection(collectionName)
+      .doc(cashFlowId);
+
+    return cashFlow.delete();
   }
 }

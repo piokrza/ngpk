@@ -5,10 +5,10 @@ import { DbService } from '@common/services/db.service';
 import { ToastService } from '@common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CashFlowActions } from '@store/cash-flow';
-import { catchError, exhaustMap, from, map, of, tap } from 'rxjs';
+import { catchError, exhaustMap, from, map, of } from 'rxjs';
 
 @Injectable()
-export class IncomesEffects {
+export class CashFlowEffects {
   private actions$: Actions = inject(Actions);
   private toastService: ToastService = inject(ToastService);
   private dbService: DbService = inject(DbService);
@@ -17,19 +17,19 @@ export class IncomesEffects {
     return this.actions$.pipe(
       ofType(CashFlowActions.addIncome),
       exhaustMap(({ income }) => {
-        console.log(income);
-        return from(this.dbService.addCashFlow$(income, Collection.INCOMES)).pipe(
+        return from(this.dbService.addCashFlow$(Collection.INCOMES, income)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully added');
             return CashFlowActions.addIncomeSuccess();
           }),
-          catchError((e) => {
+
+          catchError((err) => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
               'Error!',
               'Something went wrong during storing data in database'
             );
-            console.error(e);
+            console.error(err);
             return of(CashFlowActions.addIncomeFailure());
           })
         );
@@ -37,34 +37,23 @@ export class IncomesEffects {
     );
   });
 
-  public removeIncome$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(CashFlowActions.removeIncome),
-        tap((): void => {
-          this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully removed');
-        })
-      );
-    },
-    { dispatch: false }
-  );
-
   public addExpense$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.addExpense),
       exhaustMap(({ expense }) => {
-        return from(this.dbService.addCashFlow$(expense, Collection.EXPENSES)).pipe(
+        return from(this.dbService.addCashFlow$(Collection.EXPENSES, expense)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully added');
             return CashFlowActions.addExpenseSuccess();
           }),
-          catchError((e) => {
+
+          catchError((err) => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
               'Error!',
               'Something went wrong during storing data in database'
             );
-            console.error(e);
+            console.error(err);
             return of(CashFlowActions.addExpenseFailure());
           })
         );
@@ -72,17 +61,52 @@ export class IncomesEffects {
     );
   });
 
-  public removeExpense$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(CashFlowActions.removeExpense),
-        tap((): void => {
-          this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully removed');
-        })
-      );
-    },
-    { dispatch: false }
-  );
+  public removeIncome$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashFlowActions.removeIncome),
+      exhaustMap(({ incomeId }) => {
+        return of(this.dbService.removeCashFlow$(Collection.INCOMES, incomeId)).pipe(
+          map(() => {
+            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully removed');
+            return CashFlowActions.removeIncomeSuccess();
+          }),
+
+          catchError((err) => {
+            this.toastService.showMessage(
+              ToastStatus.ERROR,
+              'Error!',
+              'Something went wrong during storing data in database'
+            );
+            console.error(err);
+            return of(CashFlowActions.removeIncomeFailure());
+          })
+        );
+      })
+    );
+  });
+
+  public removeExpense$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashFlowActions.removeExpense),
+      exhaustMap(({ expenseId }) => {
+        return of(this.dbService.removeCashFlow$(Collection.EXPENSES, expenseId)).pipe(
+          map(() => {
+            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully removed');
+            return CashFlowActions.removeExpenseSuccess();
+          }),
+
+          catchError(() => {
+            this.toastService.showMessage(
+              ToastStatus.ERROR,
+              'Error!',
+              'Something went wrong during storing data in database'
+            );
+            return of(CashFlowActions.removeExpenseFailure());
+          })
+        );
+      })
+    );
+  });
 
   public getCashFlowUserData$ = createEffect(() => {
     return this.actions$.pipe(
@@ -90,9 +114,10 @@ export class IncomesEffects {
       exhaustMap(({ uid }) => {
         return this.dbService.loadUserCashFlowData$(uid).pipe(
           map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
-          catchError((e) => {
+
+          catchError((err) => {
             this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
-            console.error(e);
+            console.error(err);
             return of(CashFlowActions.getCashFlowUserDataFailure());
           })
         );

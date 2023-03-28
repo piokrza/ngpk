@@ -2,7 +2,7 @@ import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { createReducer, on } from '@ngrx/store';
 import { CashFlowActions } from '@store/cash-flow';
 
-export const FeatureKey = 'incomes';
+export const FeatureKey = 'cashflow';
 
 export interface State {
   incomes: CashFlow[];
@@ -49,7 +49,7 @@ export const Reducer = createReducer(
 
   // add expense
   on(CashFlowActions.addExpense, (state, { expense }): State => {
-    return { ...state, expenses: [...state.expenses, expense], isLoading: true };
+    return { ...state, incomes: [...state.incomes, expense] };
   }),
   on(CashFlowActions.addExpenseSuccess, (state): State => {
     return { ...state, isLoading: false };

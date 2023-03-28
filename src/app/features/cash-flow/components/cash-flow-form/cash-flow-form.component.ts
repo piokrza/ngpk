@@ -11,7 +11,6 @@ import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { Store } from '@ngrx/store';
 import { CategoriesSelectors } from '@store/categories';
 import { filter, map, Observable, take } from 'rxjs';
-import uniqid from 'uniqid';
 
 @Component({
   selector: 'ctrl-cash-flow-form',
@@ -63,7 +62,6 @@ export class CashFlowFormComponent implements OnInit {
     const newCashFlow: CashFlow = {
       ...this.form.getRawValue(),
       date: Timestamp.fromDate(this.form.getRawValue().date!),
-      id: uniqid(),
       uid: this.userId,
     };
 

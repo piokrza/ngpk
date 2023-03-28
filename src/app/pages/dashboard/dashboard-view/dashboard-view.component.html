@@ -4,7 +4,7 @@
       <ng-container *ngIf="totalBalance$ | async as totalBalance; else balanceLoading">
         <h3 class="text-center text-2xl">
           Balance
-          <span [class]="totalBalance > 0 ? 'text-green-500' : 'text-red-500'"> {{ totalBalance }}PLN </span>
+          <span [class]="totalBalance > 0 ? 'text-green-500' : 'text-red-500'"> {{ totalBalance | number }}PLN </span>
         </h3>
       </ng-container>
 

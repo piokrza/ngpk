@@ -17,7 +17,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ContainerComponent } from '@standalone/components/container/container.component';
 import { AuthEffects } from '@store/auth/auth.effects';
-import { IncomesEffects } from '@store/cash-flow/cash-flow.effects';
+import { CashFlowEffects } from '@store/cash-flow/cash-flow.effects';
 import { CategoriesEffects } from '@store/categories/categories.effects';
 import { ROOT_REDUCERS } from '@store/root-reducer';
 
@@ -28,7 +28,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { environment } from 'src/environments/environment';
 
-const StoreEffects: Array<any> = [CategoriesEffects, IncomesEffects, AuthEffects];
+const StoreEffects: Array<any> = [CategoriesEffects, CashFlowEffects, AuthEffects];
 const declarations: Array<any> = [AppComponent];
 const imports: Array<any> = [
   BrowserModule,
