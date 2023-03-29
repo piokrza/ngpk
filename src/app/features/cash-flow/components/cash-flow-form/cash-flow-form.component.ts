@@ -34,12 +34,10 @@ export class CashFlowFormComponent implements OnInit {
       .pipe(
         take(1),
         filter(Boolean),
-        map((user: User): string => user?.uid)
+        map((user: User): string => user.uid)
       )
       .subscribe({
-        next: (userId: string): void => {
-          this.userId = userId;
-        },
+        next: (userId: string): string => (this.userId = userId),
       });
   }
 

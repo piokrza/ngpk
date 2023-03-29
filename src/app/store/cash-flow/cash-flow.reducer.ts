@@ -50,7 +50,6 @@ export const Reducer = createReducer(
 
   // add expense
   on(CashFlowActions.addExpense, (state, { expense }): State => {
-    console.log(expense);
     return { ...state, expenses: [...state.expenses, expense] };
   }),
   on(CashFlowActions.addExpenseSuccess, (state): State => {

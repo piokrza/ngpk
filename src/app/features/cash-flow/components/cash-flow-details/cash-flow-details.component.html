@@ -1,8 +1,8 @@
 <p-card>
   <div class="flex justify-between items-center">
     <div class="flex items-center">
-      <div class="mr-3 w-[70px] h-[70px] bg-red-300 hidden lg:block">
-        <img src="" alt="category" class="w-full h-full border object-cover rounded-xl" />
+      <div class="w-[40px] h-[40px] mr-3 hidden md:flex md:items-center md:justify-center">
+        <i [class]="'text-2xl ' + (details.categoryCode! | icon)"></i>
       </div>
 
       <div>

@@ -4,11 +4,11 @@ import { AuthActions } from '@store/auth';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'ctrl-nav-sidebar',
-  templateUrl: './nav-sidebar.component.html',
+  selector: 'ctrl-navigation-sidebar',
+  templateUrl: './navigation-sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavSidebarComponent {
+export class NavigationSidebarComponent {
   @Input() public menuLinks!: MenuItem[];
 
   private store: Store = inject(Store);

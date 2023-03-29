@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { CATEGORIES_DIC } from '@app/common/dictionaries/category.dictionary';
 import { CashFlowExpenseChartData, CashFlowIncomesChartData } from '@dashboard/models/cash-flow-chart-data.model';
 import { CustomChartData } from '@dashboard/models/custom-chart-data.model';
 import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 
 @Injectable({ providedIn: 'root' })
 export class ChartService {
-  public getChartOptions() {
+  public getChartOptions(): any {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
     const textColor: string = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary: string = documentStyle.getPropertyValue('--text-color-secondary');
@@ -94,25 +95,25 @@ export class ChartService {
 
     return {
       rentalFees: {
-        label: 'Rental fees',
+        label: CATEGORIES_DIC[0],
         amount: rentalFeesCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       travel: {
-        label: 'Travel',
+        label: CATEGORIES_DIC[1],
         amount: travelCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       food: {
-        label: 'Food',
+        label: CATEGORIES_DIC[2],
         amount: foodCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       entertainment: {
-        label: 'Entertainment',
+        label: CATEGORIES_DIC[3],
         amount: entertainmentCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
@@ -127,19 +128,19 @@ export class ChartService {
 
     return {
       concerts: {
-        label: 'Concerts',
+        label: CATEGORIES_DIC[4],
         amount: concertsCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       salary: {
-        label: 'Salary',
+        label: CATEGORIES_DIC[5],
         amount: salaryCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       gifts: {
-        label: 'Gifts',
+        label: CATEGORIES_DIC[6],
         amount: giftsCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
