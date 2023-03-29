@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { isLightMode } from '@common/constants/is-light-mode';
-import { PersistanceService } from '@common/services/persistance.service';
-import { ThemeService } from '@common/services/theme.service';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { User } from '@common/models/user.model';
+import { Store } from '@ngrx/store';
+import { AuthSelectors } from '@store/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ctrl-settings-view',
@@ -9,12 +10,8 @@ import { ThemeService } from '@common/services/theme.service';
   styleUrls: ['./settings-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SettingsViewComponent implements OnInit {
-  public themeService: ThemeService = inject(ThemeService);
+export class SettingsViewComponent {
+  private store: Store = inject(Store);
 
-  public isLightMode: boolean = inject(PersistanceService).get(isLightMode);
-
-  public ngOnInit(): void {
-    this.themeService.setTheme(this.isLightMode);
-  }
+  public user$: Observable<User> = this.store.select(AuthSelectors.user);
 }

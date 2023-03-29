@@ -42,10 +42,7 @@ export class DbService {
       combineLatestWith(incomes$.valueChanges({ idField: 'id' })),
       take(1),
       map(([expenses, incomes]: [CashFlow[], CashFlow[]]): CashFlowUserData => {
-        return {
-          expenses,
-          incomes,
-        };
+        return { expenses, incomes };
       })
     );
   }

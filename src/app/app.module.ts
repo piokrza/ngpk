@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { AppInitService } from '@common/services/app-init.service';
-import { injectThemeLink$ } from '@common/utils/injectThemeLink';
+import { injectThemeLink$ } from '@common/utils/inject-theme-link';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -25,6 +25,7 @@ import { ROOT_REDUCERS } from '@store/root-reducer';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { environment } from 'src/environments/environment';
 
@@ -64,6 +65,7 @@ const providers: Array<any> = [
   ConfirmationService,
   ScreenTrackingService,
   UserTrackingService,
+  DialogService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })
