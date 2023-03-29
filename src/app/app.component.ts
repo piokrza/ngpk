@@ -14,7 +14,7 @@ import { tap } from 'rxjs';
 @Component({
   selector: 'ctrl-root',
   template: `
-    <main><router-outlet></router-outlet></main>
+    <main class="h-[calc100vh-82px)] xl:h-[100vh]"><router-outlet></router-outlet></main>
 
     <p-toast position="top-right"></p-toast>
     <p-confirmDialog />

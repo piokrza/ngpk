@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'ctrl-auth-view',
   template: `
     <div class="h-screen flex justify-center items-center">
-      <section class="w-full max-w-[25rem]">
+      <section class="w-full h-full max-w-[25rem]">
         <router-outlet></router-outlet>
       </section>
     </div>

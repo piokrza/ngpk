@@ -14,12 +14,14 @@ import { combineLatestWith, map, Observable, takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardViewComponent extends DestroyComponent implements OnInit {
-  private chartService: ChartService = inject(ChartService);
   private store: Store = inject(Store);
+  private chartService: ChartService = inject(ChartService);
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   private expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
   private incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
+
+  public isCashFlowLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
   public totalBalance$: Observable<number> = this.getTotalBalance$();
 
   public chartsOptions = this.chartService.getChartOptions();
