@@ -1,25 +1,19 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MenuService } from '@common/services/menu.service';
 import { Store } from '@ngrx/store';
 import { AuthActions } from '@store/auth';
 import { ConfirmationService, MenuItem } from 'primeng/api';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ctrl-navigation-panels',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './navigation-panels.component.html',
 })
-export class NavigationPanelsComponent implements OnInit {
-  private menuService: MenuService = inject(MenuService);
+export class NavigationPanelsComponent {
   private store: Store = inject(Store);
   private confirmationService: ConfirmationService = inject(ConfirmationService);
 
-  public menuLinks$: Observable<MenuItem[]> = this.menuService.menuLinks$;
-
-  public ngOnInit(): void {
-    this.menuService.setLinks();
-  }
+  public menuLinks: MenuItem[] = inject(MenuService).getMenuLinks();
 
   public signOut(): void {
     this.confirmationService.confirm({

@@ -14,10 +14,12 @@ export const signInWithEmailAndPassword = createAction(
   ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD,
   props<{ payload: AuthFormPayload }>()
 );
+export const signInWithEmailAndPasswordSuccess = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_SUCCESS);
+export const signInWithEmailAndPasswordFailure = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_FAILURE);
 
 export const signUpWithEmailAndPassword = createAction(
   ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD,
   props<{ payload: AuthFormPayload }>()
 );
 
-export const loadUserData = createAction(ActionTypes.LOAD_USER);
+export const loadUserData = createAction(ActionTypes.LOAD_USER_DATA);

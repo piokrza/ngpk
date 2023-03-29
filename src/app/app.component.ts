@@ -5,6 +5,7 @@ import { PersistanceService } from '@common/services/persistance.service';
 import { ThemeService } from '@common/services/theme.service';
 import { Store } from '@ngrx/store';
 import { AuthActions } from '@store/auth';
+import { CashFlowActions } from '@store/cash-flow';
 import { CategoriesActions } from '@store/categories';
 import firebase from 'firebase/compat';
 import { PrimeNGConfig } from 'primeng/api';
@@ -34,14 +35,15 @@ export class AppComponent implements OnInit {
     this.authState.authState$
       .pipe(
         tap((user: firebase.User | null): void => {
-          user && this.dispatchStoreActions();
+          user && this.dispatchStoreActions(user.uid);
         })
       )
       .subscribe();
   }
 
-  private dispatchStoreActions(): void {
+  private dispatchStoreActions(uid: string): void {
     this.store.dispatch(CategoriesActions.getCategories());
     this.store.dispatch(AuthActions.loadUserData());
+    this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid }));
   }
 }

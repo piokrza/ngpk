@@ -1,5 +1,6 @@
 import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { createReducer, on } from '@ngrx/store';
+import { AuthActions } from '@store/auth';
 import { CashFlowActions } from '@store/cash-flow';
 
 export const FeatureKey = 'cashflow';
@@ -32,7 +33,7 @@ export const Reducer = createReducer(
 
   // add income
   on(CashFlowActions.addIncome, (state, { income }): State => {
-    return { ...state, incomes: [...state.incomes, income] };
+    return { ...state, incomes: [...state.incomes, income], isLoading: true };
   }),
   on(CashFlowActions.addIncomeSuccess, (state): State => {
     return { ...state, isLoading: false };
@@ -49,7 +50,7 @@ export const Reducer = createReducer(
 
   // add expense
   on(CashFlowActions.addExpense, (state, { expense }): State => {
-    return { ...state, incomes: [...state.incomes, expense] };
+    return { ...state, incomes: [...state.incomes, expense], isLoading: true };
   }),
   on(CashFlowActions.addExpenseSuccess, (state): State => {
     return { ...state, isLoading: false };
@@ -64,5 +65,10 @@ export const Reducer = createReducer(
       (expense: CashFlow): boolean => expense.id !== expenseId
     );
     return { ...state, expenses: filteredExpenses };
+  }),
+
+  // on signout
+  on(AuthActions.signOut, (): State => {
+    return { incomes: [], expenses: [], isLoading: false };
   })
 );

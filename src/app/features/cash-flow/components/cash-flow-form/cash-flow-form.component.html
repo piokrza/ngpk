@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <span class="p-float-label my-7">
     <input id="name" type="text" pInputText class="w-full" formControlName="name" />
-    <label for="name">Income name</label>
+    <label for="name">{{ isIncomeMode ? 'Income' : 'Expense' }} name</label>
   </span>
 
   <span class="p-float-label my-7">
@@ -12,7 +12,7 @@
       inputId="currency-poland"
       currency="PLN"
       formControlName="amount" />
-    <label for="amount">Income amount</label>
+    <label for="amount">{{ isIncomeMode ? 'Income' : 'Expense' }} amount</label>
   </span>
 
   <p-dropdown

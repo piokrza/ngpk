@@ -1,12 +1,13 @@
-import { Injectable, NgZone } from '@angular/core';
+import { inject, Injectable, NgZone } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
-  constructor(private messageService: MessageService, private ngZone: NgZone) {}
+  private readonly messageService: MessageService = inject(MessageService);
+  private readonly ngZone: NgZone = inject(NgZone);
 
   public showMessage(severity: string, summary: string, detail: string): void {
-    this.ngZone.run(() => {
+    this.ngZone.run((): void => {
       this.messageService.clear();
       this.messageService.add({
         severity,

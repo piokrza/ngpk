@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   public async signOut(): Promise<void> {
-    await this.afAuth.signOut();
+    return await this.afAuth.signOut();
   }
 
   public async signInWithEmailAndPassword({ email, password }: AuthFormPayload): Promise<firebase.auth.UserCredential> {
@@ -30,9 +30,7 @@ export class AuthService {
   }
 
   public loadUserData$(user: firebase.User | null): Observable<User | undefined> {
-    if (!user) {
-      return of(undefined);
-    }
+    if (!user) return of(undefined);
 
     return this.angularFirestore.doc<User>(`${Collection.USERS}/${user.uid}`).valueChanges();
   }

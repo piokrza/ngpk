@@ -9,9 +9,9 @@ import { catchError, exhaustMap, map, of } from 'rxjs';
 
 @Injectable()
 export class CategoriesEffects {
-  private actions$: Actions = inject(Actions);
-  private categoriesService: CategoriesService = inject(CategoriesService);
-  private toastService: ToastService = inject(ToastService);
+  private readonly actions$: Actions = inject(Actions);
+  private readonly categoriesService: CategoriesService = inject(CategoriesService);
+  private readonly toastService: ToastService = inject(ToastService);
 
   public getCategories$ = createEffect(() => {
     return this.actions$.pipe(

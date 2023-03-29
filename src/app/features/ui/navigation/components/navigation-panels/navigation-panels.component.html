@@ -1,6 +1,6 @@
-<ng-container *ngIf="menuLinks$ | async as links">
+<ng-container *ngIf="menuLinks">
   <div class="p-5 xl:hidden">
-    <p-tieredMenu #menu [model]="links" [popup]="true" />
+    <p-tieredMenu #menu [model]="menuLinks" [popup]="true" />
 
     <div class="flex justify-between">
       <button type="button" pButton icon="pi pi-fw pi-list" (click)="menu.toggle($event)"></button>
@@ -11,7 +11,7 @@
 
   <div class="w-[22.5rem] hidden xl:block">
     <ctrl-container>
-      <ctrl-nav-sidebar [menuLinks]="links" />
+      <ctrl-nav-sidebar [menuLinks]="menuLinks" />
     </ctrl-container>
   </div>
 </ng-container>

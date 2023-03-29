@@ -21,8 +21,8 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IncomesViewComponent {
-  private store: Store = inject(Store);
-  private confirmationService: ConfirmationService = inject(ConfirmationService);
+  private readonly store: Store = inject(Store);
+  private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
   public incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
   public isLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);

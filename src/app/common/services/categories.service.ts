@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Collection } from '@common/enums/collection.enum';
 import { Categories } from '@common/models/category.model';
-import { map, Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
@@ -12,6 +12,9 @@ export class CategoriesService {
     return this.angularFirestore
       .collection<Categories>(Collection.CATEGORIES)
       .valueChanges()
-      .pipe(map((cats: Categories[]): Categories => cats[0]));
+      .pipe(
+        take(1),
+        map((cats: Categories[]): Categories => cats[0])
+      );
   }
 }

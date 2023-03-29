@@ -1,6 +1,7 @@
 import { Categories } from '@common/models/category.model';
 import { createReducer, on } from '@ngrx/store';
 import { CategoriesActions } from '@store/categories';
+import { AuthActions } from '../auth';
 
 export const FeatureKey = 'categories';
 
@@ -24,5 +25,8 @@ export const Reducer = createReducer(
   }),
   on(CategoriesActions.getCategoriesFailure, (state) => {
     return { ...state };
-  })
+  }),
+
+  // on signout
+  on(AuthActions.signOut, () => ({ categories: null }))
 );

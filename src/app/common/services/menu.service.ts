@@ -4,10 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
-  private _menuLinks$: BehaviorSubject<MenuItem[]> = new BehaviorSubject<MenuItem[]>([]);
-
-  public setLinks(): void {
-    const links: MenuItem[] = [
+  public getMenuLinks(): MenuItem[] {
+    return [
       {
         label: 'Dashboard',
         routerLink: '/',
@@ -31,11 +29,5 @@ export class MenuService {
         icon: 'pi pi-fw pi-sliders-v',
       },
     ];
-
-    this._menuLinks$.next(links);
-  }
-
-  public get menuLinks$(): Observable<MenuItem[]> {
-    return this._menuLinks$.asObservable();
   }
 }

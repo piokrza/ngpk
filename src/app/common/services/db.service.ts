@@ -5,14 +5,27 @@ import {
   AngularFirestoreDocument,
   DocumentReference,
 } from '@angular/fire/compat/firestore';
+import { Collection } from '@common/enums/collection.enum';
+import { User } from '@common/models/user.model';
 import { CashFlowUserData } from '@features/cash-flow/models/cash-flow-user-data.model';
 import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
-import { Observable, combineLatestWith, map } from 'rxjs';
-import { Collection } from '@common/enums/collection.enum';
+import { Observable, combineLatestWith, map, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DbService {
-  private angularFirestore: AngularFirestore = inject(AngularFirestore);
+  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
+
+  public addUserToDatabase$(user: User) {
+    const usersCollectionRef: AngularFirestoreCollection<User> = this.angularFirestore.collection(Collection.USERS);
+
+    return usersCollectionRef
+      .doc(user.uid)
+      .get()
+      .pipe(
+        take(1),
+        map((data): false | Promise<void> => !data.exists && usersCollectionRef.doc(data.id).set(user))
+      );
+  }
 
   public loadUserCashFlowData$(uid: string): Observable<CashFlowUserData> {
     const expenses$: AngularFirestoreCollection<CashFlow> = this.angularFirestore.collection<CashFlow>(
@@ -27,6 +40,7 @@ export class DbService {
 
     return expenses$.valueChanges({ idField: 'id' }).pipe(
       combineLatestWith(incomes$.valueChanges({ idField: 'id' })),
+      take(1),
       map(([expenses, incomes]: [CashFlow[], CashFlow[]]): CashFlowUserData => {
         return {
           expenses,

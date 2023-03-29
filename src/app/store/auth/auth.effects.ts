@@ -4,6 +4,7 @@ import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
 import { AuthService } from '@auth/services/auth.service';
 import { ToastStatus } from '@common/enums/toast-status.enum';
 import { User } from '@common/models/user.model';
+import { DbService } from '@common/services/db.service';
 import { ToastService } from '@common/services/toast.service';
 import { setUser } from '@common/utils/set-user';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -11,14 +12,15 @@ import { AuthActions } from '@store/auth';
 import { ActionTypes } from '@store/auth/action-types';
 import { CashFlowActions } from '@store/cash-flow';
 import firebase from 'firebase/compat';
-import { catchError, EMPTY, exhaustMap, from, map, of, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
-  private actions$: Actions = inject(Actions);
-  private toastService: ToastService = inject(ToastService);
-  private authService: AuthService = inject(AuthService);
-  private router: Router = inject(Router);
+  private readonly actions$: Actions = inject(Actions);
+  private readonly toastService: ToastService = inject(ToastService);
+  private readonly authService: AuthService = inject(AuthService);
+  private readonly router: Router = inject(Router);
+  private readonly dbService: DbService = inject(DbService);
 
   public signInWithGoogle$ = createEffect(() => {
     return this.actions$.pipe(
@@ -27,13 +29,12 @@ export class AuthEffects {
         return from(this.authService.signinWithGoogle()).pipe(
           map(({ user }: firebase.auth.UserCredential) => {
             if (user !== null) {
+              this.dbService.addUserToDatabase$(setUser(user)).subscribe();
               return AuthActions.userAuthenticated({ user: setUser(user) });
             }
 
-            console.error('Provided account does not exist');
             return AuthActions.userNotAuthenticated();
           }),
-          map(() => AuthActions.loadUserData()),
           tap((): void => {
             this.router.navigateByUrl('/dashboard');
           }),
@@ -70,7 +71,9 @@ export class AuthEffects {
       ofType(AuthActions.signInWithEmailAndPassword),
       exhaustMap(({ payload }) => {
         return from(this.authService.signInWithEmailAndPassword(payload as AuthFormPayload)).pipe(
-          map(() => AuthActions.loadUserData()),
+          map(() => {
+            return AuthActions.signInWithEmailAndPasswordSuccess();
+          }),
           tap((): void => {
             this.router.navigateByUrl('/dashboard');
           }),
@@ -82,7 +85,7 @@ export class AuthEffects {
               'Something went wrong during google authorization'
             );
 
-            return EMPTY;
+            return of(AuthActions.signInWithEmailAndPasswordFailure());
           })
         );
       })
@@ -95,16 +98,26 @@ export class AuthEffects {
         ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
         exhaustMap(({ payload }) => {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
+            map(({ user }) => {
+              if (user !== null) {
+                this.dbService.addUserToDatabase$(setUser(user)).subscribe();
+                return AuthActions.userAuthenticated({ user: setUser(user) });
+              }
+
+              return AuthActions.userNotAuthenticated();
+            }),
             tap((): void => {
               this.router.navigateByUrl('/dashboard');
             }),
 
-            catchError(() => {
+            catchError((err) => {
               this.toastService.showMessage(
                 ToastStatus.ERROR,
                 'Error!',
                 'Something went wrong during google authorization'
               );
+
+              console.error(err);
               return EMPTY;
             })
           );
@@ -121,18 +134,9 @@ export class AuthEffects {
       switchMap((user: firebase.User | null) => {
         return this.authService.loadUserData$(user).pipe(
           map((user: User | undefined) => {
-            if (user) {
-              return AuthActions.userAuthenticated({ user });
-            }
+            if (user) return AuthActions.userAuthenticated({ user });
 
             return AuthActions.userNotAuthenticated();
-          }),
-
-          catchError((e) => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
-            console.error(e);
-            AuthActions.userNotAuthenticated();
-            return EMPTY;
           })
         );
       })
@@ -142,7 +146,11 @@ export class AuthEffects {
   public loadUserData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.userAuthenticated),
-      switchMap(({ user }) => of(CashFlowActions.getCashFlowUserData({ uid: user.uid })))
+      switchMap(({ user }) => {
+        if (!user) return of(AuthActions.userNotAuthenticated());
+
+        return of(CashFlowActions.getCashFlowUserData({ uid: user.uid })).pipe(take(1));
+      })
     );
   });
 }
