@@ -98,13 +98,8 @@ export class AuthEffects {
         ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
         exhaustMap(({ payload }) => {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
-            map(({ user }) => {
-              if (user !== null) {
-                this.dbService.addUserToDatabase$(setUser(user)).subscribe();
-                return AuthActions.userAuthenticated({ user: setUser(user) });
-              }
-
-              return AuthActions.userNotAuthenticated();
+            map(() => {
+              return AuthActions.signUpWithEmailAndPasswordSuccess();
             }),
             tap((): void => {
               this.router.navigateByUrl('/dashboard');
@@ -118,7 +113,7 @@ export class AuthEffects {
               );
 
               console.error(err);
-              return EMPTY;
+              return of(AuthActions.signUpWithEmailAndPasswordFailure());
             })
           );
         })

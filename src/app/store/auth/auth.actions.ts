@@ -21,5 +21,7 @@ export const signUpWithEmailAndPassword = createAction(
   ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD,
   props<{ payload: AuthFormPayload }>()
 );
+export const signUpWithEmailAndPasswordSuccess = createAction(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD_SUCCESS);
+export const signUpWithEmailAndPasswordFailure = createAction(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD_FAILURE);
 
 export const loadUserData = createAction(ActionTypes.LOAD_USER_DATA);

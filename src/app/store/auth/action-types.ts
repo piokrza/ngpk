@@ -11,6 +11,8 @@ export enum ActionTypes {
   SIGN_IN_WITH_EMAIL_AND_PASSWORD_FAILURE = '[Auth] Sign in with email and password failure',
 
   SIGN_UP_WITH_EMAIL_AND_PASSWORD = '[Auth] Sign up with email and password',
+  SIGN_UP_WITH_EMAIL_AND_PASSWORD_SUCCESS = '[Auth] Sign up with email and password success',
+  SIGN_UP_WITH_EMAIL_AND_PASSWORD_FAILURE = '[Auth] Sign up with email and password failure',
 
   LOAD_USER_DATA = '[Auth] Load User',
 }
