@@ -33,13 +33,13 @@ export const Reducer = createReducer(
 
   // add income
   on(CashFlowActions.addIncome, (state, { income }): State => {
-    return { ...state, incomes: [...state.incomes, income], isLoading: true };
+    return { ...state, incomes: [...state.incomes, income] };
   }),
   on(CashFlowActions.addIncomeSuccess, (state): State => {
-    return { ...state, isLoading: false };
+    return { ...state };
   }),
   on(CashFlowActions.addIncomeFailure, (state): State => {
-    return { ...state, isLoading: false };
+    return { ...state };
   }),
 
   // remove income
@@ -50,13 +50,14 @@ export const Reducer = createReducer(
 
   // add expense
   on(CashFlowActions.addExpense, (state, { expense }): State => {
-    return { ...state, incomes: [...state.incomes, expense], isLoading: true };
+    console.log(expense);
+    return { ...state, expenses: [...state.expenses, expense] };
   }),
   on(CashFlowActions.addExpenseSuccess, (state): State => {
-    return { ...state, isLoading: false };
+    return { ...state };
   }),
   on(CashFlowActions.addExpenseFailure, (state): State => {
-    return { ...state, isLoading: false };
+    return { ...state };
   }),
 
   // remove expense
