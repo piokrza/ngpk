@@ -6,4 +6,5 @@ export interface User {
   photoURL: string | null;
   refreshToken: string | null;
   uid: string;
+  id?: string;
 }

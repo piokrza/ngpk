@@ -29,6 +29,8 @@ export class AccountSettingsFormComponent implements OnInit {
   public onSubmit(): void {
     const { displayName, email, phoneNumber, photoURL } = this.form.getRawValue();
 
+    console.log(this.userData);
+
     this.dialogRef.close({
       displayName,
       email,

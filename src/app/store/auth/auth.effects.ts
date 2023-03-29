@@ -98,7 +98,8 @@ export class AuthEffects {
         ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
         exhaustMap(({ payload }) => {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
-            map(() => {
+            map(({ user }) => {
+              this.dbService.addUserToDatabase$(setUser(user!)).subscribe();
               return AuthActions.signUpWithEmailAndPasswordSuccess();
             }),
             tap((): void => {
@@ -106,11 +107,7 @@ export class AuthEffects {
             }),
 
             catchError((err) => {
-              this.toastService.showMessage(
-                ToastStatus.ERROR,
-                'Error!',
-                'Something went wrong during google authorization'
-              );
+              this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during authorization');
 
               console.error(err);
               return of(AuthActions.signUpWithEmailAndPasswordFailure());
@@ -145,6 +142,32 @@ export class AuthEffects {
         if (!user) return of(AuthActions.userNotAuthenticated());
 
         return of(CashFlowActions.getCashFlowUserData({ uid: user.uid })).pipe(take(1));
+      })
+    );
+  });
+
+  public updateAccount$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.updateAccount),
+      exhaustMap(({ updatedUserData }) => {
+        return from(this.dbService.updateUser$(updatedUserData)).pipe(
+          map(() => {
+            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Account data successfully updated');
+
+            return AuthActions.updateAccountSuccess();
+          }),
+
+          catchError((err) => {
+            this.toastService.showMessage(
+              ToastStatus.ERROR,
+              'Error!',
+              'Something went wrong during updated account data'
+            );
+
+            console.error(err);
+            return of(AuthActions.updateAccountFailure());
+          })
+        );
       })
     );
   });

@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -20,6 +19,7 @@ import { AuthEffects } from '@store/auth/auth.effects';
 import { CashFlowEffects } from '@store/cash-flow/cash-flow.effects';
 import { CategoriesEffects } from '@store/categories/categories.effects';
 import { ROOT_REDUCERS } from '@store/root-reducer';
+import { environment } from 'src/environments/environment';
 
 // PrimeNg
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -27,7 +27,6 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
-import { environment } from 'src/environments/environment';
 
 const StoreEffects: Array<any> = [CategoriesEffects, CashFlowEffects, AuthEffects];
 const declarations: Array<any> = [AppComponent];
@@ -37,7 +36,6 @@ const imports: Array<any> = [
   AppRoutingModule,
   ContainerComponent,
   ButtonModule,
-  HttpClientModule,
   ConfirmDialogModule,
   ToastModule,
 

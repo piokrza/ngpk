@@ -3,7 +3,7 @@ import { User } from '@common/models/user.model';
 import { Store } from '@ngrx/store';
 import { AccountSettingsFormComponent } from '@settings/components/account-settings-form/account-settings-form.component';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { AuthSelectors } from '@store/auth';
+import { AuthActions, AuthSelectors } from '@store/auth';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, takeUntil } from 'rxjs';
 
@@ -34,8 +34,8 @@ export class AccountSettingsComponent extends DestroyComponent implements OnInit
     });
 
     dialogRef.onClose.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (updatedUser: User) => {
-        console.log(updatedUser);
+      next: (updatedUserData: User) => {
+        updatedUserData && this.store.dispatch(AuthActions.updateAccount({ updatedUserData }));
       },
     });
   }

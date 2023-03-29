@@ -41,9 +41,7 @@ export class DbService {
     return expenses$.valueChanges({ idField: 'id' }).pipe(
       combineLatestWith(incomes$.valueChanges({ idField: 'id' })),
       take(1),
-      map(([expenses, incomes]: [CashFlow[], CashFlow[]]): CashFlowUserData => {
-        return { expenses, incomes };
-      })
+      map(([expenses, incomes]: [CashFlow[], CashFlow[]]): CashFlowUserData => ({ expenses, incomes }))
     );
   }
 
@@ -57,5 +55,11 @@ export class DbService {
       .doc(cashFlowId);
 
     return cashFlow.delete();
+  }
+
+  public updateUser$(updatedUserData: User) {
+    const user = this.angularFirestore.collection(Collection.USERS).doc(updatedUserData.uid);
+
+    return user.update(updatedUserData);
   }
 }
