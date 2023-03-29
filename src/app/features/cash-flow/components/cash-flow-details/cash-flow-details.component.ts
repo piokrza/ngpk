@@ -10,5 +10,6 @@ export class CashFlowDetailsComponent {
   @Input() public details!: CashFlow;
   @Input() public isIncomeMode!: boolean;
 
-  @Output() public itemToRemoveId: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 }

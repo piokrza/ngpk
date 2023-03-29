@@ -9,7 +9,8 @@
   <p-divider class="xl:hidden" />
 
   <ctrl-cash-flow-details-list
-    (itemToRemoveId)="emitItemIdToRemove($event)"
+    (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
+    (cashFlowToUpdate)="emitCashFlowToUpdate($event)"
     [isIncomeMode]="isIncomeMode"
     [isLoading]="isLoading"
     [cashFlowList]="cashFlowData"

@@ -24,10 +24,17 @@
       </div>
     </div>
 
-    <button
-      (click)="itemToRemoveId.emit(details.id)"
-      pButton
-      class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
-      icon="pi pi-trash"></button>
+    <div class="flex gap-3">
+      <button
+        (click)="cashFlowToUpdate.emit(details)"
+        pButton
+        class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
+        icon="pi pi-align-center"></button>
+      <button
+        (click)="cashFlowToRemoveId.emit(details.id)"
+        pButton
+        class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
+        icon="pi pi-trash"></button>
+    </div>
   </div>
 </p-card>

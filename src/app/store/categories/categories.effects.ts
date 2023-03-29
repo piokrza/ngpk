@@ -21,13 +21,15 @@ export class CategoriesEffects {
           map((categories: Categories) => {
             return CategoriesActions.getCategoriesSuccess({ categories });
           }),
+
           catchError((e) => {
-            console.error(e);
             this.toastService.showMessage(
               ToastStatus.WARN,
               'Error!',
               'Something went wrong during fetching categories from database'
             );
+
+            console.error(e);
             return of(CategoriesActions.getCategoriesFailure());
           })
         );

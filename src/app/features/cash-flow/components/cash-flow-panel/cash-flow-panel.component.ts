@@ -13,13 +13,18 @@ export class CashFlowPanelComponent {
   @Input() public totalCashFlowAmount: number = 0;
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
-  @Output() public itemToRemoveId: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
+  @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
 
   public emitCashFlowSubmitData(cashFlowSubmitData: CashFlow): void {
     this.cashFlowSubmitData.emit(cashFlowSubmitData);
   }
 
-  public emitItemIdToRemove(itemId: string): void {
-    this.itemToRemoveId.emit(itemId);
+  public emitCashFlowIdToRemove(cashFlowId: string): void {
+    this.cashFlowToRemoveId.emit(cashFlowId);
+  }
+
+  public emitCashFlowToUpdate(cashFlow: CashFlow): void {
+    this.cashFlowToUpdate.emit(cashFlow);
   }
 }

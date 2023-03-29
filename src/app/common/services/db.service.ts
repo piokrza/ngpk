@@ -58,7 +58,7 @@ export class DbService {
   }
 
   public updateUser$(updatedUserData: User) {
-    const user = this.angularFirestore.collection(Collection.USERS).doc(updatedUserData.uid);
+    const user = this.angularFirestore.collection<User>(Collection.USERS).doc(updatedUserData.uid);
 
     return user.update(updatedUserData);
   }

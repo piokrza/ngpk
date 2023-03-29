@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
     <ctrl-navigation>
       <ctrl-cash-flow-panel
         (cashFlowSubmitData)="onSubmit($event)"
-        (itemToRemoveId)="removeExpense($event)"
+        (cashFlowToRemoveId)="removeExpense($event)"
+        (cashFlowToUpdate)="updateExpense($event)"
         [cashFlowData]="(expenses$ | async)!"
         [totalCashFlowAmount]="(totalExpensesAmount$ | async)!"
         [isLoading]="(isLoading$ | async)!"
@@ -41,5 +42,9 @@ export class ExpensesViewComponent {
         this.store.dispatch(CashFlowActions.removeExpense({ expenseId }));
       },
     });
+  }
+
+  public updateExpense(expense: CashFlow): void {
+    console.log(expense);
   }
 }

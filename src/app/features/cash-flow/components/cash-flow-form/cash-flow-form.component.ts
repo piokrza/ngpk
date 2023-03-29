@@ -24,7 +24,7 @@ export class CashFlowFormComponent implements OnInit {
 
   private readonly store: Store = inject(Store);
   private readonly authService: AuthService = inject(AuthService);
-  public form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createCashFlowForm();
+  public readonly form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createCashFlowForm();
 
   public readonly categories$: Observable<Category[]> = this.getCategories$();
   private userId!: string;

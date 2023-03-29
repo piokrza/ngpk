@@ -2,9 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountSettingsForm } from '@settings/models/account-settings-form.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AccountSettingsFormService {
   private fb: FormBuilder = inject(FormBuilder);
 

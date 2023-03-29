@@ -1,4 +1,4 @@
-export const CATEGORIES_DIC: Record<number, string> = {
+export const CATEGORY_DIC: Record<number, string> = {
   0: 'Rental Fees',
   1: 'Travel',
   2: 'Food',
@@ -8,7 +8,7 @@ export const CATEGORIES_DIC: Record<number, string> = {
   6: 'Gifts',
 };
 
-export const CATEGORIES_ICONS: Record<number, string> = {
+export const CATEGORY_ICONS: Record<number, string> = {
   0: 'fa-solid fa-dollar-sign',
   1: 'fa-solid fa-plane',
   2: 'fa-solid fa-bowl-food',

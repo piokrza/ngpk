@@ -11,9 +11,14 @@ export class CashFlowDetailsListComponent {
   @Input() public isLoading!: boolean;
   @Input() public isIncomeMode!: boolean;
 
-  @Output() public itemToRemoveId: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
-  public emitItemIdToRemove(itemId: string): void {
-    this.itemToRemoveId.emit(itemId);
+  public emitCashFlowIdToRemove(cashFlowId: string): void {
+    this.cashFlowToRemoveId.emit(cashFlowId);
+  }
+
+  public emitCashFlowToUpdate(cashFlow: CashFlow): void {
+    this.cashFlowToUpdate.emit(cashFlow);
   }
 }
