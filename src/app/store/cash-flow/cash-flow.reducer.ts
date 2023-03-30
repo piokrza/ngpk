@@ -42,6 +42,23 @@ export const Reducer = createReducer(
     return { ...state };
   }),
 
+  // update income
+  on(CashFlowActions.updateIncome, (state, { updatedIncome }): State => {
+    console.log(updatedIncome.id);
+
+    const incomes: CashFlow[] = state.incomes.map((income: CashFlow) =>
+      income.id === updatedIncome.id ? updatedIncome : income
+    );
+
+    return { ...state, incomes };
+  }),
+  on(CashFlowActions.updateIncomeSuccess, (state): State => {
+    return { ...state };
+  }),
+  on(CashFlowActions.updateIncomeFailure, (state): State => {
+    return { ...state };
+  }),
+
   // remove income
   on(CashFlowActions.removeIncome, (state, { incomeId }): State => {
     const filteredIncomes: CashFlow[] = state.incomes.filter((income: CashFlow): boolean => income.id !== incomeId);

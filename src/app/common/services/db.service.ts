@@ -62,4 +62,10 @@ export class DbService {
 
     return user.update(updatedUserData);
   }
+
+  public updateCashFlow$(collectionName: Collection, updatedCashFlowData: CashFlow) {
+    const cashFlow = this.angularFirestore.collection<CashFlow>(collectionName).doc(updatedCashFlowData.id);
+
+    return cashFlow.update(updatedCashFlowData);
+  }
 }

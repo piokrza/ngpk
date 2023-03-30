@@ -21,6 +21,11 @@ export const removeIncome = createAction(ActionTypes.REMOVE_INCOME, props<{ inco
 export const removeIncomeSuccess = createAction(ActionTypes.REMOVE_INCOME_SUCCESS);
 export const removeIncomeFailure = createAction(ActionTypes.REMOVE_INCOME_FAILURE);
 
+// update income
+export const updateIncome = createAction(ActionTypes.UPDATE_INCOME, props<{ updatedIncome: CashFlow }>());
+export const updateIncomeSuccess = createAction(ActionTypes.UPDATE_INCOME);
+export const updateIncomeFailure = createAction(ActionTypes.UPDATE_INCOME);
+
 // add expense
 export const addExpense = createAction(ActionTypes.ADD_EXPENSE, props<{ expense: CashFlow }>());
 export const addExpenseSuccess = createAction(ActionTypes.ADD_EXPENSE_SUCCESS);

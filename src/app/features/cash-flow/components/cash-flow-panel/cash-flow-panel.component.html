@@ -1,7 +1,7 @@
 <ctrl-cash-flow-heading [amount]="totalCashFlowAmount" [isIncomeMode]="isIncomeMode" />
 
 <div class="mt-10 xl:flex xl:gap-12">
-  <ctrl-cash-flow-form
+  <ctrl-cash-flow-add-form
     (cashFlowSubmitData)="emitCashFlowSubmitData($event)"
     [isIncomeMode]="isIncomeMode"
     class="w-full mb-5 xl:max-w-[18.75rem]" />

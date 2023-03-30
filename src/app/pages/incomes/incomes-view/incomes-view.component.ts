@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { CashFlowUpdateFormComponent } from '@features/cash-flow/components/cash-flow-update-form/cash-flow-update-form.component';
 import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
 import { Store } from '@ngrx/store';
 import { CashFlowActions, CashFlowSelectors } from '@store/cash-flow';
 import { ConfirmationService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Observable, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'ctrl-incomes-view',
@@ -16,18 +19,25 @@ import { Observable } from 'rxjs';
         [cashFlowData]="(incomes$ | async)!"
         [totalCashFlowAmount]="(totalIncomeAmount$ | async)!"
         [isLoading]="(isLoading$ | async)!"
-        [isIncomeMode]="true" />
+        [isIncomeMode]="isIncomeMode" />
     </ctrl-navigation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IncomesViewComponent {
+export class IncomesViewComponent extends DestroyComponent {
   private readonly store: Store = inject(Store);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
+  private readonly dialogService: DialogService = inject(DialogService);
+
+  public isIncomeMode: boolean = true;
 
   public incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
   public isLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
   public totalIncomeAmount$: Observable<number> = this.store.select(CashFlowSelectors.totalIncomes);
+
+  constructor() {
+    super();
+  }
 
   public onSubmit(incomeData: CashFlow): void {
     this.store.dispatch(CashFlowActions.addIncome({ income: incomeData }));
@@ -44,7 +54,17 @@ export class IncomesViewComponent {
     });
   }
 
-  public updateIncome(income: CashFlow): void {
-    console.log(income);
+  public updateIncome(updatedIncome: CashFlow): void {
+    const dialogRef: DynamicDialogRef = this.dialogService.open(CashFlowUpdateFormComponent, {
+      header: 'Update account',
+      style: { width: '90%', maxWidth: '600px' },
+      data: { updatedIncome, isIncomeMode: this.isIncomeMode },
+    });
+
+    dialogRef.onClose.pipe(takeUntil(this.destroy$)).subscribe({
+      next: (updatedIncome: CashFlow): void => {
+        updatedIncome && this.store.dispatch(CashFlowActions.updateIncome({ updatedIncome }));
+      },
+    });
   }
 }

@@ -85,6 +85,31 @@ export class CashFlowEffects {
     );
   });
 
+  public updateIncome$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashFlowActions.updateIncome),
+      exhaustMap(({ updatedIncome }) => {
+        console.log(updatedIncome);
+        return of(this.dbService.updateCashFlow$(Collection.INCOMES, updatedIncome)).pipe(
+          map(() => {
+            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully updated');
+            return CashFlowActions.removeIncomeSuccess();
+          }),
+
+          catchError((err) => {
+            this.toastService.showMessage(
+              ToastStatus.ERROR,
+              'Error!',
+              'Something went wrong during storing data in database'
+            );
+            console.error(err);
+            return of(CashFlowActions.removeIncomeFailure());
+          })
+        );
+      })
+    );
+  });
+
   public removeExpense$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.removeExpense),

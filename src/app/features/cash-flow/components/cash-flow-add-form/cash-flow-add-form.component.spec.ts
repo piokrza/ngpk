@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CashFlowFormComponent } from './cash-flow-form.component';
+import { CashFlowAddFormComponent } from './cash-flow-add-form.component';
 
 describe('CashFlowFormComponent', () => {
-  let component: CashFlowFormComponent;
-  let fixture: ComponentFixture<CashFlowFormComponent>;
+  let component: CashFlowAddFormComponent;
+  let fixture: ComponentFixture<CashFlowAddFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CashFlowFormComponent ]
-    })
-    .compileComponents();
+      declarations: [CashFlowAddFormComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(CashFlowFormComponent);
+    fixture = TestBed.createComponent(CashFlowAddFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

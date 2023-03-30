@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <span class="p-float-label my-7">
+    <input id="name" type="text" pInputText class="w-full" formControlName="name" />
+    <label for="name">{{ cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense' }} name</label>
+  </span>
+
+  <span class="p-float-label my-7">
+    <p-inputNumber id="amount" mode="currency" inputId="currency-poland" currency="PLN" formControlName="amount" />
+    <label for="amount">{{ cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense' }} amount</label>
+  </span>
+
+  <p-dropdown
+    [options]="(categories$ | async)!"
+    optionLabel="name"
+    optionValue="code"
+    styleClass="w-full"
+    placeholder="Select category"
+    formControlName="categoryCode" />
+
+  <span class="p-float-label my-7">
+    <p-calendar id="date" class="w-full" formControlName="date" />
+    <label for="date">Pick date</label>
+  </span>
+
+  <span class="p-float-label my-7">
+    <textarea id="description" class="w-full" pInputTextarea formControlName="description"></textarea>
+    <label for="description">Add description</label>
+  </span>
+
+  <button
+    [disabled]="form.invalid"
+    pButton
+    [label]="cashFlowUpdateFormData.isIncomeMode ? 'Update Income' : 'Update Expense'"
+    type="submit"
+    class="w-full"></button>
+</form>
