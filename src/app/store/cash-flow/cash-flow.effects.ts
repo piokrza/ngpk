@@ -13,6 +13,23 @@ export class CashFlowEffects {
   private toastService: ToastService = inject(ToastService);
   private dbService: DbService = inject(DbService);
 
+  public getCashFlowUserData$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashFlowActions.getCashFlowUserData),
+      exhaustMap(({ uid }) => {
+        return this.dbService.loadUserCashFlowData$(uid).pipe(
+          map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
+
+          catchError((err) => {
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
+            console.error(err);
+            return of(CashFlowActions.getCashFlowUserDataFailure());
+          })
+        );
+      })
+    );
+  });
+
   public addIncome$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.addIncome),
@@ -85,31 +102,6 @@ export class CashFlowEffects {
     );
   });
 
-  public updateIncome$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashFlowActions.updateIncome),
-      exhaustMap(({ updatedIncome }) => {
-        console.log(updatedIncome);
-        return of(this.dbService.updateCashFlow$(Collection.INCOMES, updatedIncome)).pipe(
-          map(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully updated');
-            return CashFlowActions.removeIncomeSuccess();
-          }),
-
-          catchError((err) => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during storing data in database'
-            );
-            console.error(err);
-            return of(CashFlowActions.removeIncomeFailure());
-          })
-        );
-      })
-    );
-  });
-
   public removeExpense$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.removeExpense),
@@ -133,17 +125,48 @@ export class CashFlowEffects {
     );
   });
 
-  public getCashFlowUserData$ = createEffect(() => {
+  public updateIncome$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashFlowActions.getCashFlowUserData),
-      exhaustMap(({ uid }) => {
-        return this.dbService.loadUserCashFlowData$(uid).pipe(
-          map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
+      ofType(CashFlowActions.updateIncome),
+      exhaustMap(({ updatedIncome }) => {
+        return of(this.dbService.updateCashFlow$(Collection.INCOMES, updatedIncome)).pipe(
+          map(() => {
+            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully updated');
+            return CashFlowActions.removeIncomeSuccess();
+          }),
 
           catchError((err) => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
+            this.toastService.showMessage(
+              ToastStatus.ERROR,
+              'Error!',
+              'Something went wrong during storing data in database'
+            );
             console.error(err);
-            return of(CashFlowActions.getCashFlowUserDataFailure());
+            return of(CashFlowActions.removeIncomeFailure());
+          })
+        );
+      })
+    );
+  });
+
+  public updateExpense$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashFlowActions.updateExpense),
+      exhaustMap(({ updatedExpense }) => {
+        return of(this.dbService.updateCashFlow$(Collection.EXPENSES, updatedExpense)).pipe(
+          map(() => {
+            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully updated');
+            return CashFlowActions.removeExpenseSuccess();
+          }),
+
+          catchError((err) => {
+            this.toastService.showMessage(
+              ToastStatus.ERROR,
+              'Error!',
+              'Something went wrong during storing data in database'
+            );
+            console.error(err);
+            return of(CashFlowActions.removeExpenseFailure());
           })
         );
       })

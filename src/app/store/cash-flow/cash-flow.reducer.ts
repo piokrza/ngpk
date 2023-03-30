@@ -44,11 +44,9 @@ export const Reducer = createReducer(
 
   // update income
   on(CashFlowActions.updateIncome, (state, { updatedIncome }): State => {
-    console.log(updatedIncome.id);
-
-    const incomes: CashFlow[] = state.incomes.map((income: CashFlow) =>
-      income.id === updatedIncome.id ? updatedIncome : income
-    );
+    const incomes: CashFlow[] = state.incomes.map((income: CashFlow) => {
+      return income.id === updatedIncome.id ? updatedIncome : income;
+    });
 
     return { ...state, incomes };
   }),
@@ -82,6 +80,21 @@ export const Reducer = createReducer(
       (expense: CashFlow): boolean => expense.id !== expenseId
     );
     return { ...state, expenses: filteredExpenses };
+  }),
+
+  // update expense
+  on(CashFlowActions.updateExpense, (state, { updatedExpense }): State => {
+    const expenses: CashFlow[] = state.expenses.map((expense: CashFlow) => {
+      return expense.id === updatedExpense.id ? updatedExpense : expense;
+    });
+
+    return { ...state, expenses };
+  }),
+  on(CashFlowActions.updateExpenseSuccess, (state): State => {
+    return { ...state };
+  }),
+  on(CashFlowActions.updateExpenseFailure, (state): State => {
+    return { ...state };
   }),
 
   // on signout

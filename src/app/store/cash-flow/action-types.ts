@@ -7,9 +7,9 @@ export enum ActionTypes {
   ADD_INCOME_SUCCESS = '[Incomes] Add income success',
   ADD_INCOME_FAILURE = '[Incomes] Add income failure',
 
-  UPDATE_INCOME = '[Incomes] Update Income',
-  UPDATE_INCOME_SUCCESS = '[Incomes] Update Income success',
-  UPDATE_INCOME_FAILURE = '[Incomes] Update Income failure',
+  UPDATE_INCOME = '[Incomes] Update income',
+  UPDATE_INCOME_SUCCESS = '[Incomes] Update income success',
+  UPDATE_INCOME_FAILURE = '[Incomes] Update income failure',
 
   REMOVE_INCOME = '[Incomes] Remove income',
   REMOVE_INCOME_SUCCESS = '[Incomes] Remove income success',
@@ -22,4 +22,8 @@ export enum ActionTypes {
   REMOVE_EXPENSE = '[Incomes] Remove expense',
   REMOVE_EXPENSE_SUCCESS = '[Incomes] Remove expense success',
   REMOVE_EXPENSE_FAILURE = '[Incomes] Remove expense failure',
+
+  UPDATE_EXPENSE = '[Incomes] Update expense',
+  UPDATE_EXPENSE_SUCCESS = '[Incomes] Update expense success',
+  UPDATE_EXPENSE_FAILURE = '[Incomes] Update expense failure',
 }

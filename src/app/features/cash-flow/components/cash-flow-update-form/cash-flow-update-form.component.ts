@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { Category } from '@app/common/models/category.model';
+import { Category } from '@common/models/category.model';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { BaseCashFlowForm } from '@features/cash-flow/abstract/base-cash-flow-form';
@@ -23,7 +23,7 @@ export class CashFlowUpdateFormComponent extends BaseCashFlowForm implements OnI
   }
 
   private pathCashFlowUpdateFormValue(): void {
-    const { name, amount, categoryCode, date, description, id } = this.cashFlowUpdateFormData.updatedIncome;
+    const { name, amount, categoryCode, date, description } = this.cashFlowUpdateFormData.updatedCashFlow;
 
     this.form.patchValue({
       name,
@@ -35,7 +35,7 @@ export class CashFlowUpdateFormComponent extends BaseCashFlowForm implements OnI
   }
 
   public onSubmit(): void {
-    const id: string = this.cashFlowUpdateFormData.updatedIncome.id;
+    const id: string = this.cashFlowUpdateFormData.updatedCashFlow.id;
     const date: Timestamp = Timestamp.fromDate(this.form.getRawValue().date!);
 
     this.dialogRef.close({ ...this.form.getRawValue(), date, id });

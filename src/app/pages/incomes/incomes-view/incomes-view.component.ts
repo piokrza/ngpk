@@ -26,14 +26,14 @@ import { Observable, takeUntil } from 'rxjs';
 })
 export class IncomesViewComponent extends DestroyComponent {
   private readonly store: Store = inject(Store);
-  private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
   private readonly dialogService: DialogService = inject(DialogService);
-
-  public isIncomeMode: boolean = true;
+  private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
   public incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
   public isLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
   public totalIncomeAmount$: Observable<number> = this.store.select(CashFlowSelectors.totalIncomes);
+
+  public isIncomeMode: boolean = true;
 
   constructor() {
     super();
@@ -56,9 +56,9 @@ export class IncomesViewComponent extends DestroyComponent {
 
   public updateIncome(updatedIncome: CashFlow): void {
     const dialogRef: DynamicDialogRef = this.dialogService.open(CashFlowUpdateFormComponent, {
-      header: 'Update account',
+      header: 'Update income',
       style: { width: '90%', maxWidth: '600px' },
-      data: { updatedIncome, isIncomeMode: this.isIncomeMode },
+      data: { updatedCashFlow: updatedIncome, isIncomeMode: this.isIncomeMode },
     });
 
     dialogRef.onClose.pipe(takeUntil(this.destroy$)).subscribe({
