@@ -20,7 +20,7 @@ import { ThemeService } from '@common/services/theme.service';
 export class ThemeTogglerComponent implements OnInit {
   public themeService: ThemeService = inject(ThemeService);
 
-  public isLightMode: boolean = inject(PersistanceService).get(isLightMode);
+  public isLightMode: boolean | null = inject(PersistanceService).get(isLightMode);
 
   public ngOnInit(): void {
     this.themeService.setTheme(this.isLightMode);

@@ -6,13 +6,13 @@ export class PersistanceService {
     try {
       localStorage.setItem(key, JSON.stringify(data));
     } catch (e) {
-      console.error('Error saving to localStorage', e);
+      console.error('Error saving data to localStorage', e);
     }
   }
 
-  public get(key: string): any {
+  public get<T>(key: string): T | null {
     try {
-      return JSON.parse(localStorage.getItem(key)!);
+      return JSON.parse(localStorage.getItem(key)!) as T;
     } catch (e) {
       console.error('Error getting data from localStorage', e);
       return null;

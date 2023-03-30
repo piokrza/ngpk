@@ -57,14 +57,18 @@ export class DbService {
     return cashFlow.delete();
   }
 
-  public updateUser$(updatedUserData: User) {
-    const user = this.angularFirestore.collection<User>(Collection.USERS).doc(updatedUserData.uid);
+  public updateUser$(updatedUserData: User): Promise<void> {
+    const user: AngularFirestoreDocument<User> = this.angularFirestore
+      .collection<User>(Collection.USERS)
+      .doc(updatedUserData.uid);
 
     return user.update(updatedUserData);
   }
 
-  public updateCashFlow$(collectionName: Collection, updatedCashFlowData: CashFlow) {
-    const cashFlow = this.angularFirestore.collection<CashFlow>(collectionName).doc(updatedCashFlowData.id);
+  public updateCashFlow$(collectionName: Collection, updatedCashFlowData: CashFlow): Promise<void> {
+    const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore
+      .collection<CashFlow>(collectionName)
+      .doc(updatedCashFlowData.id);
 
     return cashFlow.update(updatedCashFlowData);
   }

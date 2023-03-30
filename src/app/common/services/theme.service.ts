@@ -11,7 +11,7 @@ export class ThemeService {
     this._themeLink = this.document.getElementById('theme-link') as HTMLLinkElement;
   }
 
-  public setTheme(isLightModeFlag: boolean): void {
+  public setTheme(isLightModeFlag: boolean | null): void {
     this._themeLink.href = isLightModeFlag ? 'light-theme.css' : 'dark-theme.css';
     this.persistanceService.set(isLightMode, isLightModeFlag);
   }

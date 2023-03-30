@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   private themeService: ThemeService = inject(ThemeService);
   private authState: AuthService = inject(AuthService);
 
-  private isLightMode: boolean = inject(PersistanceService).get(isLightMode);
+  private isLightMode: boolean | null = inject(PersistanceService).get<boolean>(isLightMode);
 
   public ngOnInit(): void {
     this.primengConfig.ripple = true;

@@ -44,8 +44,8 @@ export class ChartService {
     };
   }
 
-  public setChartExpensesData(cashFlows: CashFlow[]): CustomChartData {
-    const { rentalFees, food, travel, entertainment } = this.mapChartExpensesData(cashFlows);
+  public setChartExpensesData(expenses: CashFlow[]): CustomChartData {
+    const { rentalFees, food, travel, entertainment } = this.mapChartExpensesData(expenses);
 
     return {
       labels: [rentalFees.label, food.label, travel.label, entertainment.label],
@@ -66,8 +66,8 @@ export class ChartService {
     };
   }
 
-  public setChartIncomesData(cashFlows: CashFlow[]): CustomChartData {
-    const { concerts, salary, gifts } = this.mapChartIncomesData(cashFlows);
+  public setChartIncomesData(incomes: CashFlow[]): CustomChartData {
+    const { concerts, salary, gifts } = this.mapChartIncomesData(incomes);
 
     return {
       labels: [concerts.label, salary.label, gifts.label],
@@ -83,13 +83,11 @@ export class ChartService {
     };
   }
 
-  private mapChartExpensesData(cashFlows: CashFlow[]): CashFlowExpenseChartData {
-    const rentalFeesCashFlow: CashFlow[] = cashFlows.filter(
-      (cashFlow: CashFlow): boolean => cashFlow.categoryCode == 0
-    );
-    const travelCashFlow: CashFlow[] = cashFlows.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 1);
-    const foodCashFlow: CashFlow[] = cashFlows.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 2);
-    const entertainmentCashFlow: CashFlow[] = cashFlows.filter(
+  private mapChartExpensesData(expenses: CashFlow[]): CashFlowExpenseChartData {
+    const rentalFeesCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 0);
+    const travelCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 1);
+    const foodCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 2);
+    const entertainmentCashFlow: CashFlow[] = expenses.filter(
       (cashFlow: CashFlow): boolean => cashFlow.categoryCode == 3
     );
 
@@ -121,10 +119,10 @@ export class ChartService {
     };
   }
 
-  private mapChartIncomesData(cashFlows: CashFlow[]): CashFlowIncomesChartData {
-    const concertsCashFlow: CashFlow[] = cashFlows.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 4);
-    const salaryCashFlow: CashFlow[] = cashFlows.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 5);
-    const giftsCashFlow: CashFlow[] = cashFlows.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 6);
+  private mapChartIncomesData(incomes: CashFlow[]): CashFlowIncomesChartData {
+    const concertsCashFlow: CashFlow[] = incomes.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 4);
+    const salaryCashFlow: CashFlow[] = incomes.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 5);
+    const giftsCashFlow: CashFlow[] = incomes.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 6);
 
     return {
       concerts: {
