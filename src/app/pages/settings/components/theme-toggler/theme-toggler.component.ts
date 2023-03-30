@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { isLightMode } from '@common/constants/is-light-mode';
 import { PersistanceService } from '@common/services/persistance.service';
 import { ThemeService } from '@common/services/theme.service';
@@ -17,7 +17,7 @@ import { ThemeService } from '@common/services/theme.service';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ThemeTogglerComponent {
+export class ThemeTogglerComponent implements OnInit {
   public themeService: ThemeService = inject(ThemeService);
 
   public isLightMode: boolean = inject(PersistanceService).get(isLightMode);

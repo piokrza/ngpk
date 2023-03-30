@@ -12,7 +12,7 @@ import { AuthActions } from '@store/auth';
 import { ActionTypes } from '@store/auth/action-types';
 import { CashFlowActions } from '@store/cash-flow';
 import firebase from 'firebase/compat';
-import { catchError, EMPTY, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
+import { catchError, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {

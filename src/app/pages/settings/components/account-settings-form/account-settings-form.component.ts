@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { User } from '@common/models/user.model';
 import { AccountSettingsForm } from '@settings/models/account-settings-form.model';

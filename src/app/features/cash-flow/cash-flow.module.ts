@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CashFlowAddFormComponent } from '@features/cash-flow/components/cash-flow-add-form/cash-flow-add-form.component';
 import { CashFlowDetailsComponent } from '@features/cash-flow/components/cash-flow-details/cash-flow-details.component';
 import { CashFlowDetailsBoxComponent } from '@features/cash-flow/components/cash-flow-details-box/cash-flow-details-box.component';
 import { CashFlowDetailsListComponent } from '@features/cash-flow/components/cash-flow-details-list/cash-flow-details-list.component';
-import { CashFlowAddFormComponent } from '@features/cash-flow/components/cash-flow-add-form/cash-flow-add-form.component';
 import { CashFlowHeadingComponent } from '@features/cash-flow/components/cash-flow-heading/cash-flow-heading.component';
 import { CashFlowPanelComponent } from '@features/cash-flow/components/cash-flow-panel/cash-flow-panel.component';
-import { TimestampToDatePipe } from '@standalone/pipes/timestamp-to-date.pipe';
 import { CashFlowUpdateFormComponent } from '@features/cash-flow/components/cash-flow-update-form/cash-flow-update-form.component';
 import { IconPipe } from '@standalone/pipes/icon.pipe';
+import { TimestampToDatePipe } from '@standalone/pipes/timestamp-to-date.pipe';
 
 // PrimeNg
 import { CalendarModule } from 'primeng/calendar';
