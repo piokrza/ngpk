@@ -14,15 +14,17 @@ import { tap } from 'rxjs';
 @Component({
   selector: 'ctrl-root',
   template: `
-    <main class="h-[calc(100vh-82px)] xl:h-screen"><router-outlet></router-outlet></main>
+    <main class="h-[calc(100vh-82px)] xl:h-screen">
+      <router-outlet></router-outlet>
+    </main>
 
-    <p-toast position="top-right"></p-toast>
+    <p-toast position="top-right" />
     <p-confirmDialog />
   `,
 })
 export class AppComponent implements OnInit {
-  private primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
   private store: Store = inject(Store);
+  private primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
   private themeService: ThemeService = inject(ThemeService);
   private authState: AuthService = inject(AuthService);
 
