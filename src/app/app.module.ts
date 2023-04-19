@@ -19,6 +19,7 @@ import { AuthEffects } from '@store/auth/auth.effects';
 import { CashFlowEffects } from '@store/cash-flow/cash-flow.effects';
 import { CategoriesEffects } from '@store/categories/categories.effects';
 import { ROOT_REDUCERS } from '@store/root-reducer';
+import { ParentFormComponent } from '@standalone/components/parent-form/parent-form.component';
 
 // PrimeNg
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -38,6 +39,7 @@ const imports: Array<any> = [
   ButtonModule,
   ConfirmDialogModule,
   ToastModule,
+  ParentFormComponent,
 
   // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),

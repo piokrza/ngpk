@@ -1,0 +1,18 @@
+<ng-container [formGroup]="form">
+  <span class="p-float-label my-7">
+    <input id="one" type="text" pInputText class="w-full" formControlName="oneOne" />
+    <label for="one">one one</label>
+  </span>
+
+  <span class="p-float-label my-7">
+    <input id="two" type="text" pInputText class="w-full" formControlName="oneTwo" />
+    <label for="two">one two</label>
+    <small *ngIf=""></small>
+  </span>
+
+  <span class="p-float-label my-7">
+    <input id="three" type="text" pInputText class="w-full" formControlName="oneThree" />
+    <label for="three">one two</label>
+  </span>
+</ng-container>
+<ng-container *ngIf="rootFormDirective.statusChanges | async" />

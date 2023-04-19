@@ -1,0 +1,8 @@
+<div class="max-w-md mx-auto mt-[100px]">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-10">
+    <ctrl-form-one formGroupName="one" />
+    <ctrl-form-two formGroupName="two" />
+
+    <button class="mt-10" pButton type="submit" label="Submit"></button>
+  </form>
+</div>
