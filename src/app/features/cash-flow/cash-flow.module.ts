@@ -8,8 +8,7 @@ import { CashFlowDetailsListComponent } from '@features/cash-flow/components/cas
 import { CashFlowHeadingComponent } from '@features/cash-flow/components/cash-flow-heading/cash-flow-heading.component';
 import { CashFlowPanelComponent } from '@features/cash-flow/components/cash-flow-panel/cash-flow-panel.component';
 import { CashFlowUpdateFormComponent } from '@features/cash-flow/components/cash-flow-update-form/cash-flow-update-form.component';
-import { IconPipe } from '@standalone/pipes/icon.pipe';
-import { TimestampToDatePipe } from '@standalone/pipes/timestamp-to-date.pipe';
+import { IconPipe, TimestampToDatePipe } from '@shared/pipes';
 
 // PrimeNg
 import { CalendarModule } from 'primeng/calendar';

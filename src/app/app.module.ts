@@ -14,12 +14,12 @@ import { injectThemeLink$ } from '@common/utils/inject-theme-link';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ContainerComponent } from '@standalone/components/container/container.component';
+import { ContainerComponent } from '@shared/components/container/container.component';
 import { AuthEffects } from '@store/auth/auth.effects';
 import { CashFlowEffects } from '@store/cash-flow/cash-flow.effects';
 import { CategoriesEffects } from '@store/categories/categories.effects';
 import { ROOT_REDUCERS } from '@store/root-reducer';
-import { ParentFormComponent } from '@standalone/components/parent-form/parent-form.component';
+import { ParentFormComponent } from '@shared/components/parent-form/parent-form.component';
 
 // PrimeNg
 import { ConfirmationService, MessageService } from 'primeng/api';

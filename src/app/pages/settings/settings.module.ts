@@ -7,7 +7,7 @@ import { AccountSettingsFormComponent } from '@settings/components/account-setti
 import { ThemeTogglerComponent } from '@settings/components/theme-toggler/theme-toggler.component';
 import { SettingsRoutingModule } from '@settings/settings-routing.module';
 import { SettingsViewComponent } from '@settings/settings-view/settings-view.component';
-import { ContainerComponent } from '@standalone/components/container/container.component';
+import { ContainerComponent } from '@shared/components/container/container.component';
 
 // PrimeNg
 import { ButtonModule } from 'primeng/button';

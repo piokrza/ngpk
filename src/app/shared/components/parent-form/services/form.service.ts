@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormOne, FormTwo, Form } from '@standalone/components/parent-form/models/form.model';
+import { FormOne, FormTwo, Form } from '@shared/components/parent-form/models/form.model';
 
 @Injectable()
 export class FormService {

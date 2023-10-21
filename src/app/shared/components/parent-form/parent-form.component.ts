@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormOneComponent } from '@standalone/components/parent-form/components/form-one/form-one.component';
-import { FormTwoComponent } from '@standalone/components/parent-form/components/form-two/form-two.component';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Form } from '@shared/components/parent-form//models/form.model';
+import { FormOneComponent, FormTwoComponent } from '@shared/components/parent-form/components';
 import { ButtonModule } from 'primeng/button';
-import { Form } from '@standalone/components/parent-form//models/form.model';
 import { FormService } from './services/form.service';
 
 const ParentFormImports: Array<any> = [

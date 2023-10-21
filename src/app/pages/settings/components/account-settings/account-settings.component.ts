@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { User } from '@common/models/user.model';
 import { Store } from '@ngrx/store';
 import { AccountSettingsFormComponent } from '@settings/components/account-settings-form/account-settings-form.component';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { DestroyComponent } from '@shared/components/destroy/destroy.component';
 import { AuthActions, AuthSelectors } from '@store/auth';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, takeUntil } from 'rxjs';

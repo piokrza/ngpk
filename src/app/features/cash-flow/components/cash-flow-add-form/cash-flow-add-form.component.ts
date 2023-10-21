@@ -22,7 +22,7 @@ export class CashFlowAddFormComponent extends BaseCashFlowForm {
 
   public readonly categories$: Observable<Category[]> = this.getCategories$(this.isIncomeMode);
 
-  constructor() {
+  public constructor() {
     super();
 
     inject(AuthService)

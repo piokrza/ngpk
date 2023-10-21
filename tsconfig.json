@@ -25,7 +25,7 @@
       "@app/*": ["src/app/*"],
       "@common/*": ["src/app/common/*"],
       "@features/*": ["src/app/features/*"],
-      "@standalone/*": ["src/app/standalone/*"],
+      "@shared/*": ["src/app/shared/*"],
       "@store/*": ["src/app/store/*"],
       "@dashboard/*": ["src/app/pages/dashboard/*"],
       "@settings/*": ["src/app/pages/settings/*"],
