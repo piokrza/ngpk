@@ -29,6 +29,7 @@ const declarations: Array<any> = [
   CashFlowPanelComponent,
   CashFlowUpdateFormComponent,
 ];
+
 const imports: Array<any> = [
   CommonModule,
   CardModule,
@@ -44,6 +45,7 @@ const imports: Array<any> = [
   TimestampToDatePipe,
   IconPipe,
 ];
+
 const exports: Array<any> = [...declarations];
 
 @NgModule({ declarations, imports, exports })

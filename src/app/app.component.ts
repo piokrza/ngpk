@@ -11,16 +11,12 @@ import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
 import { CategoriesActions } from '#store/categories';
 
-
 @Component({
   selector: 'ctrl-root',
   template: `
-    <main class="h-[calc(100vh-82px)] xl:h-screen">
+    <ctrl-layout>
       <router-outlet></router-outlet>
-    </main>
-
-    <p-toast position="top-right" />
-    <p-confirmDialog />
+    </ctrl-layout>
   `,
 })
 export class AppComponent implements OnInit {
@@ -36,11 +32,7 @@ export class AppComponent implements OnInit {
     this.themeService.setTheme(this.isLightMode);
 
     this.authState.authState$
-      .pipe(
-        tap((user: firebase.User | null): void => {
-          user && this.dispatchStoreActions(user.uid);
-        })
-      )
+      .pipe(tap((user: firebase.User | null) => user && this.dispatchStoreActions(user.uid)))
       .subscribe();
   }
 

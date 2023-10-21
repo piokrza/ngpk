@@ -9,20 +9,17 @@ import { CashFlow } from '#features/cash-flow/models';
 import { DestroyComponent } from '#shared/components/destroy';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
-
 @Component({
   selector: 'ctrl-expenses-view',
   template: `
-    <ctrl-navigation>
-      <ctrl-cash-flow-panel
-        (cashFlowSubmitData)="onSubmit($event)"
-        (cashFlowToRemoveId)="removeExpense($event)"
-        (cashFlowToUpdate)="updateExpense($event)"
-        [cashFlowData]="(expenses$ | async)!"
-        [totalCashFlowAmount]="(totalExpensesAmount$ | async)!"
-        [isLoading]="(isLoading$ | async)!"
-        [isIncomeMode]="isIncomeMode" />
-    </ctrl-navigation>
+    <ctrl-cash-flow-panel
+      (cashFlowSubmitData)="onSubmit($event)"
+      (cashFlowToRemoveId)="removeExpense($event)"
+      (cashFlowToUpdate)="updateExpense($event)"
+      [cashFlowData]="(expenses$ | async)!"
+      [totalCashFlowAmount]="(totalExpensesAmount$ | async)!"
+      [isLoading]="(isLoading$ | async)!"
+      [isIncomeMode]="isIncomeMode" />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

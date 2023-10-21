@@ -1,8 +1,38 @@
+// PrimeNg
+@use 'node_modules/primeng/resources/primeng.css';
+@use 'node_modules/primeicons/primeicons.css';
+
+// Custom styles
 @use 'src/assets/styles/custom-styles/custom';
 @use 'src/assets/styles/custom-styles/primeNg';
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
 
 body {
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }

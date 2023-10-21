@@ -9,9 +9,7 @@ export class AppInitService {
   public injectThemeLink$(): Observable<HTMLLinkElement> {
     return this.themeLink$().pipe(
       take(1),
-      tap((themeLink: HTMLLinkElement): void => {
-        this.document.head.appendChild(themeLink);
-      })
+      tap((themeLink: HTMLLinkElement) => this.document.head.appendChild(themeLink))
     );
   }
 

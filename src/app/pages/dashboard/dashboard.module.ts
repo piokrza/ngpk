@@ -4,13 +4,12 @@ import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-import { UiModule } from '#features/ui/ui.module';
 import { DashboardRoutingModule, DashboardViewComponent } from '#pages/dashboard';
 import { ContainerComponent } from '#shared/components';
-
-// PrimeNg
+import { UiModule } from '#shared/ui';
 
 const declarations: Type<any>[] = [DashboardViewComponent];
+
 const imports: Type<any>[] = [
   CommonModule,
   DashboardRoutingModule,

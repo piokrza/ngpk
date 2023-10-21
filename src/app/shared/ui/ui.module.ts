@@ -2,23 +2,25 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { NavigationComponent } from '#features/ui/navigation/components/navigation/navigation.component';
-import { NavigationPanelsComponent } from '#features/ui/navigation/components/navigation-panels/navigation-panels.component';
-import { NavigationSidebarComponent } from '#features/ui/navigation/components/navigation-sidebar/navigation-sidebar.component';
-import { UserInfoComponent } from '#features/ui/navigation/components/user-info/user-info.component';
-import { ContainerComponent } from '#shared/components/container/container.component';
-
-// PrimeNg
+import { ContainerComponent } from '#shared/components';
+import { LayoutComponent } from '#shared/ui/layout';
+import {
+  NavigationPanelsComponent,
+  NavigationSidebarComponent,
+  UserInfoComponent,
+} from '#shared/ui/navigation/components';
 
 const declarations: Array<any> = [
   NavigationPanelsComponent,
   NavigationSidebarComponent,
   UserInfoComponent,
-  NavigationComponent,
+  LayoutComponent,
 ];
 
 const imports: Array<any> = [
@@ -29,9 +31,11 @@ const imports: Array<any> = [
   ToggleButtonModule,
   FormsModule,
   ProgressSpinnerModule,
+  ToastModule,
+  ConfirmDialogModule,
 ];
 
-const exports: Array<any> = [NavigationComponent];
+const exports: Array<any> = [LayoutComponent];
 
 @NgModule({ declarations, imports, exports })
 export class UiModule {}

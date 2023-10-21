@@ -1,44 +1,42 @@
-<ctrl-navigation>
-  <ng-container *ngIf="isCashFlowLoading$ | async; else cashFlowLoaded">
-    <div class="h-[calc(100vh-82px)] flex justify-center items-center">
-      <p-progressSpinner />
+<ng-container *ngIf="isCashFlowLoading$ | async; else cashFlowLoaded">
+  <div class="h-[calc(100vh-82px)] flex justify-center items-center">
+    <p-progressSpinner />
+  </div>
+</ng-container>
+
+<ng-template #cashFlowLoaded>
+  <p-card>
+    <ng-container *ngIf="totalBalance$ | async as totalBalance; else noTotalBalance">
+      <h3 class="text-center text-2xl">
+        Total balance:
+        <span [class]="totalBalance > 0 ? 'text-green-500' : 'text-red-500'"> {{ totalBalance | number }} PLN </span>
+      </h3>
+    </ng-container>
+
+    <ng-template #noTotalBalance>
+      <div class="text-center text-2xl">
+        No provided data, add
+        <a [routerLink]="['/expenses']" class="underline">expense</a>
+        or
+        <a [routerLink]="['/incomes']" class="underline">income</a>
+        to calculate your balance
+      </div>
+    </ng-template>
+  </p-card>
+
+  <section *ngIf="totalBalance$ | async" class="flex flex-wrap mt-6">
+    <div class="w-full lg:w-[50%]">
+      <ctrl-container>
+        <div class="text-xl font-semibold mb-3">Expenses</div>
+        <p-chart type="pie" [data]="expensesChartData" [options]="chartsOptions" />
+      </ctrl-container>
     </div>
-  </ng-container>
 
-  <ng-template #cashFlowLoaded>
-    <p-card>
-      <ng-container *ngIf="totalBalance$ | async as totalBalance; else noTotalBalance">
-        <h3 class="text-center text-2xl">
-          Total balance:
-          <span [class]="totalBalance > 0 ? 'text-green-500' : 'text-red-500'"> {{ totalBalance | number }} PLN </span>
-        </h3>
-      </ng-container>
-
-      <ng-template #noTotalBalance>
-        <div class="text-center text-2xl">
-          No provided data, add
-          <a [routerLink]="['/expenses']" class="underline">expense</a>
-          or
-          <a [routerLink]="['/incomes']" class="underline">income</a>
-          to calculate your balance
-        </div>
-      </ng-template>
-    </p-card>
-
-    <section *ngIf="totalBalance$ | async" class="flex flex-wrap mt-6">
-      <div class="w-full lg:w-[50%]">
-        <ctrl-container>
-          <div class="text-xl font-semibold mb-3">Expenses</div>
-          <p-chart type="pie" [data]="expensesChartData" [options]="chartsOptions" />
-        </ctrl-container>
-      </div>
-
-      <div class="w-full lg:w-[50%]">
-        <ctrl-container>
-          <div class="text-xl font-semibold mb-3">Incomes</div>
-          <p-chart type="pie" [data]="incomesChartData" [options]="chartsOptions" />
-        </ctrl-container>
-      </div>
-    </section>
-  </ng-template>
-</ctrl-navigation>
+    <div class="w-full lg:w-[50%]">
+      <ctrl-container>
+        <div class="text-xl font-semibold mb-3">Incomes</div>
+        <p-chart type="pie" [data]="incomesChartData" [options]="chartsOptions" />
+      </ctrl-container>
+    </div>
+  </section>
+</ng-template>

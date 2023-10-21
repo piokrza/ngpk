@@ -1,0 +1,12 @@
+@use 'src/assets/styles/variables/sizes' as s;
+@use 'src/assets/styles/variables/breakpoints' as b;
+
+main {
+  height: calc(100vh - s.$menubarHeight);
+}
+
+@media only screen and (max-width: b.$xl) {
+  main {
+    height: 100vh;
+  }
+}

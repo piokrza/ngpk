@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
+import { APP_INITIALIZER, isDevMode, NgModule, Provider } from '@angular/core';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
@@ -23,24 +23,21 @@ import { AppInitService } from '#common/services/app-init.service';
 import { injectThemeLink$ } from '#common/utils/inject-theme-link';
 import { ContainerComponent } from '#shared/components/container/container.component';
 import { ParentFormComponent } from '#shared/components/parent-form/parent-form.component';
+import { UiModule } from '#shared/ui';
 import { AuthEffects } from '#store/auth/auth.effects';
 import { CashFlowEffects } from '#store/cash-flow/cash-flow.effects';
 import { CategoriesEffects } from '#store/categories/categories.effects';
 import { ROOT_REDUCERS } from '#store/root-reducer';
 
-// PrimeNg
-
 const StoreEffects: Array<any> = [CategoriesEffects, CashFlowEffects, AuthEffects];
+
 const declarations: Array<any> = [AppComponent];
+
 const imports: Array<any> = [
   BrowserModule,
   BrowserAnimationsModule,
   AppRoutingModule,
-  ContainerComponent,
-  ButtonModule,
-  ConfirmDialogModule,
-  ToastModule,
-  ParentFormComponent,
+  UiModule,
 
   // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),
@@ -54,7 +51,7 @@ const imports: Array<any> = [
   provideFirestore(() => getFirestore()),
   AngularFireAuthModule,
 ];
-const providers: Array<any> = [
+const providers: Array<Provider> = [
   {
     provide: APP_INITIALIZER,
     useFactory: injectThemeLink$,

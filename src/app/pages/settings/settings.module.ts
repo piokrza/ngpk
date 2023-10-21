@@ -7,7 +7,6 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { UiModule } from '#features/ui/ui.module';
 import { SettingsViewComponent, SettingsRoutingModule } from '#pages/settings';
 import {
   AccountSettingsComponent,
@@ -15,6 +14,7 @@ import {
   ThemeTogglerComponent,
 } from '#pages/settings/components';
 import { ContainerComponent } from '#shared/components';
+import { UiModule } from '#shared/ui';
 
 const declarations: Array<any> = [
   SettingsViewComponent,
@@ -22,6 +22,7 @@ const declarations: Array<any> = [
   AccountSettingsComponent,
   AccountSettingsFormComponent,
 ];
+
 const imports: Array<any> = [
   CommonModule,
   SettingsRoutingModule,
