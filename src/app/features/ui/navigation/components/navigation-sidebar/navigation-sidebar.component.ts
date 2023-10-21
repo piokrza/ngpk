@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthActions } from '#store/auth';
 import { ConfirmationService, MenuItem } from 'primeng/api';
+
+import { AuthActions } from '#store/auth';
 
 @Component({
   selector: 'ctrl-navigation-sidebar',

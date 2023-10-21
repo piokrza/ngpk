@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { CATEGORY_DIC } from '#common/dictionaries';
 import { CashFlow } from '#features/cash-flow/models';
 import { CashFlowExpenseChartData, CashFlowIncomesChartData, CustomChartData } from '#pages/dashboard/models';

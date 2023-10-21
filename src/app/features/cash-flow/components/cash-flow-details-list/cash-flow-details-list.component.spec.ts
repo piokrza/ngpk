@@ -1,6 +1,6 @@
+import { CashFlowDetailsListComponent } from './cash-flow-details-list.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CashFlowDetailsListComponent } from './cash-flow-details-list.component';
 
 describe('CashFlowDetailsListComponent', () => {
   let component: CashFlowDetailsListComponent;

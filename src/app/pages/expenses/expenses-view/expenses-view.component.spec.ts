@@ -1,6 +1,6 @@
+import { ExpensesViewComponent } from './expenses-view.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpensesViewComponent } from './expenses-view.component';
 
 describe('ExpensesViewComponent', () => {
   let component: ExpensesViewComponent;

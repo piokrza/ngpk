@@ -1,6 +1,6 @@
+import { DashboardViewComponent } from './dashboard-view.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardViewComponent } from './dashboard-view.component';
 
 describe('DashboardViewComponent', () => {
   let component: DashboardViewComponent;

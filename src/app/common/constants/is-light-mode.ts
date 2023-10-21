@@ -1,1 +1,1 @@
-export const isLightMode: string = 'isLightMode';
+export const isLightMode = 'isLightMode';

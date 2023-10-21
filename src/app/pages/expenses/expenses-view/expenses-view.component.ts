@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CashFlowUpdateFormComponent } from '#features/cash-flow/components';
-import { CashFlow } from '#features/cash-flow/models';
 import { Store } from '@ngrx/store';
-import { DestroyComponent } from '#shared/components/destroy';
-import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, takeUntil } from 'rxjs';
+
+import { CashFlowUpdateFormComponent } from '#features/cash-flow/components';
+import { CashFlow } from '#features/cash-flow/models';
+import { DestroyComponent } from '#shared/components/destroy';
+import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
+
 
 @Component({
   selector: 'ctrl-expenses-view',
@@ -33,7 +35,7 @@ export class ExpensesViewComponent extends DestroyComponent {
   public isLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
   public totalExpensesAmount$: Observable<number> = this.store.select(CashFlowSelectors.totalExpenses);
 
-  public isIncomeMode: boolean = false;
+  public isIncomeMode = false;
 
   constructor() {
     super();

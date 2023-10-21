@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
 import { FormGroup, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
-import { FormOne } from '#shared/components/parent-form/models';
 import { InputTextModule } from 'primeng/inputtext';
+
+import { FormOne } from '#shared/components/parent-form/models';
 
 const imports: Array<any> = [CommonModule, ReactiveFormsModule, InputTextModule];
 

@@ -1,6 +1,6 @@
+import { AccountSettingsComponent } from './account-settings.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountSettingsComponent } from './account-settings.component';
 
 describe('AccountSettingsComponent', () => {
   let component: AccountSettingsComponent;

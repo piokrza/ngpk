@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+
 import { User } from '#common/models';
 import { AccountSettingsForm } from '#pages/settings/models';
 import { AccountSettingsFormService } from '#pages/settings/services';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'ctrl-account-settings-form',

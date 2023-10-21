@@ -1,6 +1,6 @@
+import { ThemeTogglerComponent } from './theme-toggler.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThemeTogglerComponent } from './theme-toggler.component';
 
 describe('ThemeTogglerComponent', () => {
   let component: ThemeTogglerComponent;

@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+
 import { NavigationComponent } from '#features/ui/navigation/components/navigation/navigation.component';
 import { NavigationPanelsComponent } from '#features/ui/navigation/components/navigation-panels/navigation-panels.component';
 import { NavigationSidebarComponent } from '#features/ui/navigation/components/navigation-sidebar/navigation-sidebar.component';
@@ -8,10 +13,6 @@ import { UserInfoComponent } from '#features/ui/navigation/components/user-info/
 import { ContainerComponent } from '#shared/components/container/container.component';
 
 // PrimeNg
-import { ButtonModule } from 'primeng/button';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { TieredMenuModule } from 'primeng/tieredmenu';
-import { ToggleButtonModule } from 'primeng/togglebutton';
 
 const declarations: Array<any> = [
   NavigationPanelsComponent,

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthModule } from '#pages/auth';
 import { DashboardModule } from '#pages/dashboard';
 import { ExpensesModule } from '#pages/expenses';

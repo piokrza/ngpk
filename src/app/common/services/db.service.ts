@@ -5,11 +5,12 @@ import {
   AngularFirestoreDocument,
   DocumentReference,
 } from '@angular/fire/compat/firestore';
+import { Observable, combineLatestWith, map, take } from 'rxjs';
+
 import { Collection } from '#common/enums/collection.enum';
 import { User } from '#common/models/user.model';
 import { CashFlowUserData } from '#features/cash-flow/models/cash-flow-user-data.model';
 import { CashFlow } from '#features/cash-flow/models/cash-flow.model';
-import { Observable, combineLatestWith, map, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DbService {

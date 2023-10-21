@@ -1,10 +1,11 @@
+import { FormService } from './services/form.service';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Provider, inject } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+
 import { FormOneComponent, FormTwoComponent } from '#shared/components/parent-form/components';
 import { Form } from '#shared/components/parent-form/models';
-import { ButtonModule } from 'primeng/button';
-import { FormService } from './services/form.service';
 
 const imports: Array<any> = [CommonModule, FormOneComponent, FormTwoComponent, ReactiveFormsModule, ButtonModule];
 const providers: Array<Provider> = [FormService];
@@ -34,7 +35,5 @@ export class ParentFormComponent {
 
       return;
     }
-
-    console.log(this.form.getRawValue());
   }
 }

@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { User } from '#common/models';
 import { Store } from '@ngrx/store';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Observable, takeUntil } from 'rxjs';
+
+import { User } from '#common/models';
 import { AccountSettingsFormComponent } from '#pages/settings/components';
 import { DestroyComponent } from '#shared/components/destroy';
 import { AuthActions, AuthSelectors } from '#store/auth';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, takeUntil } from 'rxjs';
+
 
 @Component({
   selector: 'ctrl-account-settings',

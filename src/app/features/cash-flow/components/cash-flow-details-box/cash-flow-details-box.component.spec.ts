@@ -1,6 +1,6 @@
+import { CashFlowDetailsBoxComponent } from './cash-flow-details-box.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CashFlowDetailsBoxComponent } from './cash-flow-details-box.component';
 
 describe('CashFlowDetailsBoxComponent', () => {
   let component: CashFlowDetailsBoxComponent;

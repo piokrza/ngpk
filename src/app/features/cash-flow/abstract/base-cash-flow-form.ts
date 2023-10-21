@@ -1,12 +1,14 @@
 import { inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable, filter, map } from 'rxjs';
+
 import { CATEGORIES } from '#common/enums';
 import { Category, Categories } from '#common/models';
 import { CashFlowForm } from '#features/cash-flow/models';
-import { Store } from '@ngrx/store';
 import { CashFlowFormService } from '#pages/dashboard/services';
 import { CategoriesSelectors } from '#store/categories';
-import { Observable, filter, map } from 'rxjs';
+
 
 export abstract class BaseCashFlowForm {
   protected readonly store: Store = inject(Store);

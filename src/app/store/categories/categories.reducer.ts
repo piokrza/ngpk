@@ -1,7 +1,9 @@
-import { Categories } from '#common/models/category.model';
-import { createReducer, on } from '@ngrx/store';
-import { CategoriesActions } from '#store/categories';
 import { AuthActions } from '../auth';
+import { createReducer, on } from '@ngrx/store';
+
+import { Categories } from '#common/models/category.model';
+import { CategoriesActions } from '#store/categories';
+
 
 export const FeatureKey = 'categories';
 

@@ -1,6 +1,6 @@
+import { ParentFormComponent } from './parent-form.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParentFormComponent } from './parent-form.component';
 
 describe('ParentFormComponent', () => {
   let component: ParentFormComponent;

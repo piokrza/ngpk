@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { User } from '#common/models/user.model';
 import { Store } from '@ngrx/store';
-import { AuthSelectors } from '#store/auth';
 import { Observable } from 'rxjs';
+
+import { User } from '#common/models/user.model';
+import { AuthSelectors } from '#store/auth';
+
 
 @Component({
   selector: 'ctrl-user-info',

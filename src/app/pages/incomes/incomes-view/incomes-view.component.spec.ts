@@ -1,6 +1,6 @@
+import { IncomesViewComponent } from './incomes-view.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IncomesViewComponent } from './incomes-view.component';
 
 describe('IncomesViewComponent', () => {
   let component: IncomesViewComponent;

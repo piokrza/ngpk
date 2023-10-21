@@ -1,14 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import firebase from 'firebase/compat';
+import { PrimeNGConfig } from 'primeng/api';
+import { tap } from 'rxjs';
+
 import { isLightMode } from '#common/constants';
 import { PersistanceService, ThemeService } from '#common/services';
-import { Store } from '@ngrx/store';
 import { AuthService } from '#pages/auth/services';
 import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
 import { CategoriesActions } from '#store/categories';
-import firebase from 'firebase/compat';
-import { PrimeNGConfig } from 'primeng/api';
-import { tap } from 'rxjs';
+
 
 @Component({
   selector: 'ctrl-root',

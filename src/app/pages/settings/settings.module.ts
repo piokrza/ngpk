@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+
 import { UiModule } from '#features/ui/ui.module';
 import { SettingsViewComponent, SettingsRoutingModule } from '#pages/settings';
 import {
@@ -9,13 +15,6 @@ import {
   ThemeTogglerComponent,
 } from '#pages/settings/components';
 import { ContainerComponent } from '#shared/components';
-
-// PrimeNg
-import { ButtonModule } from 'primeng/button';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { InputTextModule } from 'primeng/inputtext';
-import { ToggleButtonModule } from 'primeng/togglebutton';
 
 const declarations: Array<any> = [
   SettingsViewComponent,

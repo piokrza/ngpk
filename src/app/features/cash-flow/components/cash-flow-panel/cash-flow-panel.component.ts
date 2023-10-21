@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { CashFlow } from '#features/cash-flow/models';
 
 @Component({
@@ -10,7 +11,7 @@ export class CashFlowPanelComponent {
   @Input() public cashFlowData!: CashFlow[];
   @Input() public isIncomeMode!: boolean;
   @Input() public isLoading!: boolean;
-  @Input() public totalCashFlowAmount: number = 0;
+  @Input() public totalCashFlowAmount = 0;
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
   @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();

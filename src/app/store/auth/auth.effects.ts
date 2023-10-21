@@ -1,17 +1,18 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import firebase from 'firebase/compat';
+import { catchError, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
+
 import { ToastStatus } from '#common/enums';
 import { User } from '#common/models';
 import { DbService, ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthFormPayload } from '#pages/auth/models';
 import { AuthService } from '#pages/auth/services';
 import { AuthActions } from '#store/auth';
 import { ActionTypes } from '#store/auth/action-types';
 import { CashFlowActions } from '#store/cash-flow';
-import firebase from 'firebase/compat';
-import { catchError, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
@@ -38,14 +39,13 @@ export class AuthEffects {
             this.router.navigateByUrl('/dashboard');
           }),
 
-          catchError((e) => {
+          catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
               'Error!',
               'Something went wrong during google authorisation'
             );
 
-            console.error(e);
             return of(AuthActions.userNotAuthenticated());
           })
         );
@@ -105,10 +105,9 @@ export class AuthEffects {
               this.router.navigateByUrl('/dashboard');
             }),
 
-            catchError((err) => {
+            catchError(() => {
               this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during authorization');
 
-              console.error(err);
               return of(AuthActions.signUpWithEmailAndPasswordFailure());
             })
           );
@@ -156,14 +155,13 @@ export class AuthEffects {
             return AuthActions.updateAccountSuccess();
           }),
 
-          catchError((err) => {
+          catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
               'Error!',
               'Something went wrong during updated account data'
             );
 
-            console.error(err);
             return of(AuthActions.updateAccountFailure());
           })
         );

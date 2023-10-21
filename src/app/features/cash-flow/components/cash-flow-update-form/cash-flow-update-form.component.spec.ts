@@ -1,6 +1,6 @@
+import { CashFlowUpdateFormComponent } from './cash-flow-update-form.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CashFlowUpdateFormComponent } from './cash-flow-update-form.component';
 
 describe('CashFlowUpdateFormComponent', () => {
   let component: CashFlowUpdateFormComponent;

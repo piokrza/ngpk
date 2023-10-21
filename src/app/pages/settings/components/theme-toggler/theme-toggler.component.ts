@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+
 import { isLightMode } from '#common/constants/is-light-mode';
 import { PersistanceService, ThemeService } from '#common/services';
 

@@ -1,6 +1,6 @@
+import { AccountSettingsFormComponent } from './account-settings-form.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountSettingsFormComponent } from './account-settings-form.component';
 
 describe('AccountSettingsFormComponent', () => {
   let component: AccountSettingsFormComponent;

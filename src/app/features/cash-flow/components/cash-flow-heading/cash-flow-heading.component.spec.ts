@@ -1,6 +1,6 @@
+import { CashFlowHeadingComponent } from './cash-flow-heading.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CashFlowHeadingComponent } from './cash-flow-heading.component';
 
 describe('CashFlowHeadingComponent', () => {
   let component: CashFlowHeadingComponent;

@@ -1,6 +1,6 @@
+import { FormOneComponent } from './form-one.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormOneComponent } from './form-one.component';
 
 describe('FormOneComponent', () => {
   let component: FormOneComponent;

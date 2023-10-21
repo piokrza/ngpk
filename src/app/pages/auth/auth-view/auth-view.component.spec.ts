@@ -1,6 +1,6 @@
+import { AuthViewComponent } from './auth-view.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthViewComponent } from './auth-view.component';
 
 describe('AuthViewComponent', () => {
   let component: AuthViewComponent;

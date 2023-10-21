@@ -1,15 +1,9 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
-  "plugins": ["import", "unused-imports"],
   "overrides": [
     {
       "files": ["*.ts"],
-      "parserOptions": {
-        "project": ["tsconfig.json", "e2e/tsconfig.json"],
-        "createDefaultProgram": true,
-        "ecmaVersion": "latest"
-      },
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
@@ -22,14 +16,11 @@
         "no-debugger": 1,
         "import/first": 1,
         "prefer-const": 1,
-        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "app", "style": "kebab-case" }],
+        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "ctrl", "style": "kebab-case" }],
         "import/no-unresolved": "off",
-        "import/named": "warn",
-        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
         "import/namespace": "warn",
         "import/no-named-as-default": "off",
         "import/export": "warn",
-        "unused-imports/no-unused-imports": "error",
         "import/order": [
           "error",
           {
@@ -38,15 +29,6 @@
             "newlines-between": "always"
           }
         ]
-      }
-    },
-    {
-      "files": ["*.js"],
-      "env": {
-        "es6": true,
-        "parserOptions": {
-          "ecmaVersion": "latest"
-        }
       }
     },
     {
