@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap } from '@ngrx/store';
-import * as fromAuth from '@store/auth';
-import * as fromIncomes from '@store/cash-flow';
-import * as fromCategories from '@store/categories';
+import * as fromAuth from '#store/auth';
+import * as fromIncomes from '#store/cash-flow';
+import * as fromCategories from '#store/categories';
 
 export interface AppState {
   [fromCategories.FeatureKey]: fromCategories.State;

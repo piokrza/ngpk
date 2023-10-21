@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export abstract class DestroyComponent implements OnDestroy {
-  protected destroy$: Subject<void> = new Subject<void>();
+  protected readonly destroy$: Subject<void> = new Subject<void>();
 
   public ngOnDestroy(): void {
     this.destroy$.next();

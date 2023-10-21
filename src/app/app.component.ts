@@ -1,12 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AuthService } from '@auth/services/auth.service';
-import { isLightMode } from '@common/constants/is-light-mode';
-import { PersistanceService } from '@common/services/persistance.service';
-import { ThemeService } from '@common/services/theme.service';
+import { isLightMode } from '#common/constants';
+import { PersistanceService, ThemeService } from '#common/services';
 import { Store } from '@ngrx/store';
-import { AuthActions } from '@store/auth';
-import { CashFlowActions } from '@store/cash-flow';
-import { CategoriesActions } from '@store/categories';
+import { AuthService } from '#pages/auth/services';
+import { AuthActions } from '#store/auth';
+import { CashFlowActions } from '#store/cash-flow';
+import { CategoriesActions } from '#store/categories';
 import firebase from 'firebase/compat';
 import { PrimeNGConfig } from 'primeng/api';
 import { tap } from 'rxjs';
@@ -24,9 +23,9 @@ import { tap } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   private store: Store = inject(Store);
-  private primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
-  private themeService: ThemeService = inject(ThemeService);
   private authState: AuthService = inject(AuthService);
+  private themeService: ThemeService = inject(ThemeService);
+  private primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
 
   private isLightMode: boolean | null = inject(PersistanceService).get<boolean>(isLightMode);
 

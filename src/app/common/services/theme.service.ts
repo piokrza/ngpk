@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { isLightMode } from '@common/constants/is-light-mode';
-import { PersistanceService } from '@common/services/persistance.service';
+import { isLightMode } from '#common/constants/is-light-mode';
+import { PersistanceService } from '#common/services/persistance.service';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {

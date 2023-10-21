@@ -1,26 +1,25 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
-import { AuthService } from '@auth/services/auth.service';
-import { ToastStatus } from '@common/enums/toast-status.enum';
-import { User } from '@common/models/user.model';
-import { DbService } from '@common/services/db.service';
-import { ToastService } from '@common/services/toast.service';
-import { setUser } from '@common/utils/set-user';
+import { ToastStatus } from '#common/enums';
+import { User } from '#common/models';
+import { DbService, ToastService } from '#common/services';
+import { setUser } from '#common/utils/set-user';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AuthActions } from '@store/auth';
-import { ActionTypes } from '@store/auth/action-types';
-import { CashFlowActions } from '@store/cash-flow';
+import { AuthFormPayload } from '#pages/auth/models';
+import { AuthService } from '#pages/auth/services';
+import { AuthActions } from '#store/auth';
+import { ActionTypes } from '#store/auth/action-types';
+import { CashFlowActions } from '#store/cash-flow';
 import firebase from 'firebase/compat';
 import { catchError, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
-  private readonly actions$: Actions = inject(Actions);
-  private readonly toastService: ToastService = inject(ToastService);
-  private readonly authService: AuthService = inject(AuthService);
   private readonly router: Router = inject(Router);
+  private readonly actions$: Actions = inject(Actions);
   private readonly dbService: DbService = inject(DbService);
+  private readonly authService: AuthService = inject(AuthService);
+  private readonly toastService: ToastService = inject(ToastService);
 
   public signInWithGoogle$ = createEffect(() => {
     return this.actions$.pipe(

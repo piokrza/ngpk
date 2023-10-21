@@ -22,16 +22,11 @@
     "skipLibCheck": true,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@common/*": ["src/app/common/*"],
-      "@features/*": ["src/app/features/*"],
-      "@shared/*": ["src/app/shared/*"],
-      "@store/*": ["src/app/store/*"],
-      "@dashboard/*": ["src/app/pages/dashboard/*"],
-      "@settings/*": ["src/app/pages/settings/*"],
-      "@expenses/*": ["src/app/pages/expenses/*"],
-      "@incomes/*": ["src/app/pages/incomes/*"],
-      "@auth/*": ["src/app/pages/auth/*"]
+      "#common/*": ["src/app/common/*"],
+      "#features/*": ["src/app/features/*"],
+      "#shared/*": ["src/app/shared/*"],
+      "#store/*": ["src/app/store/*"],
+      "#pages/*": ["src/app/pages/*"]
     }
   },
   "angularCompilerOptions": {

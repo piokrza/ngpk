@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ExpensesRoutingModule } from '@expenses/expenses-routing.module';
-import { ExpensesViewComponent } from '@expenses/expenses-view/expenses-view.component';
-import { CashFlowModule } from '@features/cash-flow/cash-flow.module';
-import { UiModule } from '@features/ui/ui.module';
+import { CashFlowModule } from '#features/cash-flow/cash-flow.module';
+import { UiModule } from '#features/ui/ui.module';
+import { ExpensesRoutingModule, ExpensesViewComponent } from '#pages/expenses';
 
 // PrimeNg
 import { DividerModule } from 'primeng/divider';

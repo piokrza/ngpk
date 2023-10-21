@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { CustomChartData } from '@dashboard/models/custom-chart-data.model';
-import { ChartService } from '@dashboard/services/chart.service';
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
+import { CashFlow } from '#features/cash-flow/models';
 import { Store } from '@ngrx/store';
-import { DestroyComponent } from '@shared/components/destroy/destroy.component';
-import { CashFlowSelectors } from '@store/cash-flow';
+import { CustomChartData } from '#pages/dashboard/models';
+import { ChartService } from '#pages/dashboard/services';
+import { DestroyComponent } from '#shared/components/destroy';
+import { CashFlowSelectors } from '#store/cash-flow';
 import { combineLatestWith, map, Observable, takeUntil } from 'rxjs';
 
 @Component({
@@ -18,18 +18,18 @@ export class DashboardViewComponent extends DestroyComponent implements OnInit {
   private readonly chartService: ChartService = inject(ChartService);
   private readonly cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  private expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
-  private incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
+  private readonly expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
+  private readonly incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
 
-  public totalBalance$: Observable<number> = this.getTotalBalance$();
-  public isCashFlowLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
+  public readonly totalBalance$: Observable<number> = this.getTotalBalance$();
+  public readonly isCashFlowLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
 
   public readonly chartsOptions = this.chartService.getChartOptions();
 
   public expensesChartData!: CustomChartData;
   public incomesChartData!: CustomChartData;
 
-  constructor() {
+  public constructor() {
     super();
   }
 

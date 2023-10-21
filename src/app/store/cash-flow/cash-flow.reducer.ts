@@ -1,7 +1,7 @@
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
+import { CashFlow } from '#features/cash-flow/models/cash-flow.model';
 import { createReducer, on } from '@ngrx/store';
-import { AuthActions } from '@store/auth';
-import { CashFlowActions } from '@store/cash-flow';
+import { AuthActions } from '#store/auth';
+import { CashFlowActions } from '#store/cash-flow';
 
 export const FeatureKey = 'cashflow';
 

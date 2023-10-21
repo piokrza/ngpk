@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthActions } from '@store/auth';
+import { AuthActions } from '#store/auth';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormOne, FormTwo, Form } from '@shared/components/parent-form/models/form.model';
+import { FormOne, FormTwo, Form } from '#shared/components/parent-form/models';
 
 @Injectable()
 export class FormService {
@@ -10,6 +10,13 @@ export class FormService {
     return this.fb.group<Form>({
       one: this.buildFormOne(),
       two: this.buildFormTwo(),
+    });
+  }
+
+  public markAllAsDirty(formGroup: FormGroup<any>): void {
+    Object.keys(formGroup.controls).forEach((key: string): void => {
+      const control: AbstractControl | null = formGroup.get(key);
+      control && control instanceof FormGroup ? this.markAllAsDirty(control) : control!.markAsDirty();
     });
   }
 
@@ -25,13 +32,6 @@ export class FormService {
     return this.fb.group({
       twoOne: this.fb.nonNullable.control('', { validators: [Validators.required] }),
       twoTwo: this.fb.nonNullable.control('', { validators: [Validators.required, Validators.email] }),
-    });
-  }
-
-  public markAllAsDirty(formGroup: FormGroup<any>): void {
-    Object.keys(formGroup.controls).forEach((key: string): void => {
-      const control: AbstractControl | null = formGroup.get(key);
-      control && control instanceof FormGroup ? this.markAllAsDirty(control) : control!.markAsDirty();
     });
   }
 }

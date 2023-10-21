@@ -1,7 +1,7 @@
-import { CashFlowUserData } from '@features/cash-flow/models/cash-flow-user-data.model';
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
+import { CashFlowUserData } from '#features/cash-flow/models/cash-flow-user-data.model';
+import { CashFlow } from '#features/cash-flow/models/cash-flow.model';
 import { createAction, props } from '@ngrx/store';
-import { ActionTypes } from '@store/cash-flow/action-types';
+import { ActionTypes } from '#store/cash-flow/action-types';
 
 // get cash flow user data
 export const getCashFlowUserData = createAction(ActionTypes.GET_CASH_FLOW_USER_DATA, props<{ uid: string }>());

@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { ToastStatus } from '@common/enums/toast-status.enum';
-import { Categories } from '@common/models/category.model';
-import { CategoriesService } from '@common/services/categories.service';
-import { ToastService } from '@common/services/toast.service';
+import { ToastStatus } from '#common/enums/toast-status.enum';
+import { Categories } from '#common/models/category.model';
+import { CategoriesService } from '#common/services/categories.service';
+import { ToastService } from '#common/services/toast.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { CategoriesActions } from '@store/categories';
+import { CategoriesActions } from '#store/categories';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 
 @Injectable()

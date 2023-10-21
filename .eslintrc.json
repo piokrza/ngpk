@@ -1,13 +1,14 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
-  "plugins": ["import"],
+  "plugins": ["import", "unused-imports"],
   "overrides": [
     {
       "files": ["*.ts"],
       "parserOptions": {
         "project": ["tsconfig.json", "e2e/tsconfig.json"],
-        "createDefaultProgram": true
+        "createDefaultProgram": true,
+        "ecmaVersion": "latest"
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
@@ -17,45 +18,35 @@
         "plugin:import/typescript"
       ],
       "rules": {
-        "@typescript-eslint/no-unused-vars": ["error"],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "ctrl",
-            "style": "camelCase"
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "ctrl",
-            "style": "kebab-case"
-          }
-        ],
+        "no-console": 1,
+        "no-debugger": 1,
+        "import/first": 1,
+        "prefer-const": 1,
+        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "app", "style": "kebab-case" }],
         "import/no-unresolved": "off",
         "import/named": "warn",
+        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
         "import/namespace": "warn",
         "import/no-named-as-default": "off",
         "import/export": "warn",
+        "unused-imports/no-unused-imports": "error",
         "import/order": [
           "error",
           {
-            "pathGroups": [
-              {
-                "pattern": "@**/",
-                "group": "internal"
-              }
-            ],
-            "groups": ["external", "builtin", "internal", "sibling", "parent", "index"],
-            "newlines-between": "ignore",
-            "alphabetize": {
-              "order": "asc",
-              "caseInsensitive": true
-            }
+            "alphabetize": { "order": "asc", "caseInsensitive": true },
+            "groups": [["builtin", "sibling", "parent", "index", "external"], ["internal"]],
+            "newlines-between": "always"
           }
         ]
+      }
+    },
+    {
+      "files": ["*.js"],
+      "env": {
+        "es6": true,
+        "parserOptions": {
+          "ecmaVersion": "latest"
+        }
       }
     },
     {

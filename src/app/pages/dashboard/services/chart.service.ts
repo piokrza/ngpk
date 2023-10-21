@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CATEGORY_DIC } from '@common/dictionaries/category.dictionary';
-import { CashFlowExpenseChartData, CashFlowIncomesChartData } from '@dashboard/models/cash-flow-chart-data.model';
-import { CustomChartData } from '@dashboard/models/custom-chart-data.model';
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
+import { CATEGORY_DIC } from '#common/dictionaries';
+import { CashFlow } from '#features/cash-flow/models';
+import { CashFlowExpenseChartData, CashFlowIncomesChartData, CustomChartData } from '#pages/dashboard/models';
 
 @Injectable({ providedIn: 'root' })
 export class ChartService {
-  public getChartOptions(): any {
+  public getChartOptions() {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
     const textColor: string = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary: string = documentStyle.getPropertyValue('--text-color-secondary');

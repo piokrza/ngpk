@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CashFlowForm } from '@features/cash-flow/models/cash-flow-form.model';
+import { CashFlowForm } from '#features/cash-flow/models';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFormService {

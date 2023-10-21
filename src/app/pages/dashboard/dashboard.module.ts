@@ -1,17 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { DashboardRoutingModule } from '@dashboard/dashboard-routing.module';
-import { DashboardViewComponent } from '@dashboard/dashboard-view/dashboard-view.component';
-import { UiModule } from '@features/ui/ui.module';
-import { ContainerComponent } from '@shared/components/container/container.component';
+import { NgModule, Type } from '@angular/core';
+import { UiModule } from '#features/ui/ui.module';
+import { DashboardRoutingModule, DashboardViewComponent } from '#pages/dashboard';
+import { ContainerComponent } from '#shared/components';
 
 // PrimeNg
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-const declarations: Array<any> = [DashboardViewComponent];
-const imports: Array<any> = [
+const declarations: Type<any>[] = [DashboardViewComponent];
+const imports: Type<any>[] = [
   CommonModule,
   DashboardRoutingModule,
   ChartModule,

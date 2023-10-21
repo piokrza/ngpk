@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { LoginForm } from '@auth/models/login-form.model';
-import { AuthFormService } from '@auth/services/auth-form.service';
 import { Store } from '@ngrx/store';
-import { AuthActions } from '@store/auth';
+import { LoginForm } from '#pages/auth/models';
+import { AuthFormService } from '#pages/auth/services';
+import { AuthActions } from '#store/auth';
 
 @Component({
   selector: 'ctrl-login-form',
