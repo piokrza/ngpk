@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CashFlowModule } from '@features/cash-flow/cash-flow.module';
+import { CashFlowModule } from '@features/cash-flow';
 import { UiModule } from '@features/ui/ui.module';
-import { IncomesRoutingModule } from '@incomes/incomes-routing.module';
-import { IncomesViewComponent } from '@incomes/incomes-view/incomes-view.component';
+import { IncomesRoutingModule, IncomesViewComponent } from '@pages/incomes';
 
 const declarations: Array<any> = [IncomesViewComponent];
 const imports: Array<any> = [CommonModule, IncomesRoutingModule, CashFlowModule, UiModule];

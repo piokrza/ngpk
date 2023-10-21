@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
-import { AuthService } from '@auth/services/auth.service';
+import { User } from '@common/models';
 import { Category } from '@common/models/category.model';
-import { User } from '@common/models/user.model';
-import { BaseCashFlowForm } from '@features/cash-flow/abstract/base-cash-flow-form';
-import { CashFlow } from '@features/cash-flow/models/cash-flow.model';
+import { BaseCashFlowForm } from '@features/cash-flow/abstract';
+import { CashFlow } from '@features/cash-flow/models';
+import { AuthService } from '@pages/auth/services';
 import { filter, Observable, take, tap } from 'rxjs';
 import uniqid from 'uniqid';
 
@@ -22,7 +22,7 @@ export class CashFlowAddFormComponent extends BaseCashFlowForm {
 
   public readonly categories$: Observable<Category[]> = this.getCategories$(this.isIncomeMode);
 
-  constructor() {
+  public constructor() {
     super();
 
     inject(AuthService)

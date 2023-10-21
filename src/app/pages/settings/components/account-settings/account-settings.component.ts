@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { User } from '@common/models/user.model';
+import { User } from '@common/models';
 import { Store } from '@ngrx/store';
-import { AccountSettingsFormComponent } from '@settings/components/account-settings-form/account-settings-form.component';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { AccountSettingsFormComponent } from '@pages/settings/components';
+import { DestroyComponent } from '@shared/components/destroy';
 import { AuthActions, AuthSelectors } from '@store/auth';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, takeUntil } from 'rxjs';
@@ -14,11 +14,11 @@ import { Observable, takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsComponent extends DestroyComponent implements OnInit {
-  private store: Store = inject(Store);
-  private dialogService: DialogService = inject(DialogService);
+  private readonly store: Store = inject(Store);
+  private readonly dialogService: DialogService = inject(DialogService);
 
-  public user$: Observable<User> = this.store.select(AuthSelectors.user);
-  private _user!: User;
+  public readonly user$: Observable<User> = this.store.select(AuthSelectors.user);
+  private _user!: User; // remove dashes
 
   public ngOnInit(): void {
     this.user$.pipe(takeUntil(this.destroy$)).subscribe({

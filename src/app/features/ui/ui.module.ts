@@ -5,7 +5,7 @@ import { NavigationComponent } from '@features/ui/navigation/components/navigati
 import { NavigationPanelsComponent } from '@features/ui/navigation/components/navigation-panels/navigation-panels.component';
 import { NavigationSidebarComponent } from '@features/ui/navigation/components/navigation-sidebar/navigation-sidebar.component';
 import { UserInfoComponent } from '@features/ui/navigation/components/user-info/user-info.component';
-import { ContainerComponent } from '@standalone/components/container/container.component';
+import { ContainerComponent } from '@shared/components/container/container.component';
 
 // PrimeNg
 import { ButtonModule } from 'primeng/button';

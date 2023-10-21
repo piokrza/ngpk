@@ -1,10 +1,10 @@
 import { inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CATEGORIES } from '@common/enums/categories.enum';
-import { Category, Categories } from '@common/models/category.model';
-import { CashFlowFormService } from '@dashboard/services/cash-flow-form.service';
-import { CashFlowForm } from '@features/cash-flow/models/cash-flow-form.model';
+import { CATEGORIES } from '@common/enums';
+import { Category, Categories } from '@common/models';
+import { CashFlowForm } from '@features/cash-flow/models';
 import { Store } from '@ngrx/store';
+import { CashFlowFormService } from '@pages/dashboard/services';
 import { CategoriesSelectors } from '@store/categories';
 import { Observable, filter, map } from 'rxjs';
 

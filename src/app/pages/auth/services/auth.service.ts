@@ -2,9 +2,9 @@ import { inject, Injectable } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
-import { Collection } from '@common/enums/collection.enum';
-import { User } from '@common/models/user.model';
+import { Collection } from '@common/enums';
+import { User } from '@common/models';
+import { AuthFormPayload } from '@pages/auth/models';
 import firebase from 'firebase/compat';
 import { Observable, of } from 'rxjs';
 

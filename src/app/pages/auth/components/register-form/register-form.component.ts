@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { AuthFormPayload } from '@auth/models/auth-form-payload.model';
-import { RegisterForm } from '@auth/models/register-form.model';
-import { AuthFormService } from '@auth/services/auth-form.service';
 import { Store } from '@ngrx/store';
+import { AuthFormPayload, RegisterForm } from '@pages/auth/models';
+import { AuthFormService } from '@pages/auth/services';
 import { AuthActions } from '@store/auth';
 
 @Component({
