@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthRoutingModule } from '@auth/auth-routing.module';
-import { AuthViewComponent } from '@auth/auth-view/auth-view.component';
-import { LoginFormComponent } from '@auth/components/login-form/login-form.component';
-import { RegisterFormComponent } from '@auth/components/register-form/register-form.component';
-import { AuthFormService } from '@auth/services/auth-form.service';
-import { AuthService } from '@auth/services/auth.service';
+import { AuthRoutingModule, AuthViewComponent } from '@pages/auth';
+import { LoginFormComponent, RegisterFormComponent } from '@pages/auth/components';
+import { AuthFormService, AuthService } from '@pages/auth/services';
 
 // PrimeNg
 import { ButtonModule } from 'primeng/button';
@@ -22,7 +19,7 @@ const imports: Array<any> = [
   ButtonModule,
   PasswordModule,
 ];
-const providers: Array<any> = [AuthFormService, AuthService];
+const providers: Array<Provider> = [AuthFormService, AuthService];
 
 @NgModule({ declarations, imports, providers })
 export class AuthModule {}

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { User } from '@common/models/user.model';
-import { AccountSettingsForm } from '@settings/models/account-settings-form.model';
-import { AccountSettingsFormService } from '@settings/services/account-settings-form.service';
+import { User } from '@common/models';
+import { AccountSettingsForm } from '@pages/settings/models';
+import { AccountSettingsFormService } from '@pages/settings/services';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -12,12 +12,13 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsFormComponent implements OnInit {
+  private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+
+  private readonly userData: User = inject(DynamicDialogConfig).data;
   public form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).createUserSettingsForm();
-  private dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-  private userData: User = inject(DynamicDialogConfig).data;
 
   public ngOnInit(): void {
-    this.patchAccountFormValues();
+    this.userData && this.patchAccountFormValues();
   }
 
   private patchAccountFormValues(): void {

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
-import { Category } from '@common/models/category.model';
-import { BaseCashFlowForm } from '@features/cash-flow/abstract/base-cash-flow-form';
-import { CashFlowUpdateFormData } from '@features/cash-flow/models/cash-flow-update-form-data.model';
+import { Category } from '@common/models';
+import { BaseCashFlowForm } from '@features/cash-flow/abstract';
+import { CashFlowUpdateFormData } from '@features/cash-flow/models';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 
@@ -22,6 +22,13 @@ export class CashFlowUpdateFormComponent extends BaseCashFlowForm implements OnI
     this.pathCashFlowUpdateFormValue();
   }
 
+  public onSubmit(): void {
+    const id: string = this.cashFlowUpdateFormData.updatedCashFlow.id;
+    const date: Timestamp = Timestamp.fromDate(this.form.getRawValue().date!);
+
+    this.dialogRef.close({ ...this.form.getRawValue(), date, id });
+  }
+
   private pathCashFlowUpdateFormValue(): void {
     const { name, amount, categoryCode, date, description } = this.cashFlowUpdateFormData.updatedCashFlow;
 
@@ -32,12 +39,5 @@ export class CashFlowUpdateFormComponent extends BaseCashFlowForm implements OnI
       date: date!.toDate(),
       description,
     });
-  }
-
-  public onSubmit(): void {
-    const id: string = this.cashFlowUpdateFormData.updatedCashFlow.id;
-    const date: Timestamp = Timestamp.fromDate(this.form.getRawValue().date!);
-
-    this.dialogRef.close({ ...this.form.getRawValue(), date, id });
   }
 }
