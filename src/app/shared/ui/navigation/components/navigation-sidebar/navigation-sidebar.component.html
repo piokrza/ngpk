@@ -6,7 +6,7 @@
 
         <ul class="gap-3">
           <li
-            *ngFor="let link of menuLinks"
+            *ngFor="let link of menuLinks; trackBy: trackByLabel"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="active"
             class="rounded sidebar__link">

@@ -17,16 +17,4 @@ export class CashFlowPanelComponent {
   @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
   @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
-
-  public emitCashFlowSubmitData(cashFlowSubmitData: CashFlow): void {
-    this.cashFlowSubmitData.emit(cashFlowSubmitData);
-  }
-
-  public emitCashFlowIdToRemove(cashFlowId: string): void {
-    this.cashFlowToRemoveId.emit(cashFlowId);
-  }
-
-  public emitCashFlowToUpdate(cashFlow: CashFlow): void {
-    this.cashFlowToUpdate.emit(cashFlow);
-  }
 }

@@ -4,13 +4,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'ctrl-layout',
   template: `
     <div class="wrapper">
-      <ctrl-navigation-panels />
+      <ctrl-navigation />
 
-      <main>
-        <ctrl-container>
+      <ctrl-container>
+        <main>
           <ng-content />
-        </ctrl-container>
-      </main>
+        </main>
+      </ctrl-container>
     </div>
 
     <p-toast position="top-right" />

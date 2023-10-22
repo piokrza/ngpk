@@ -16,6 +16,10 @@
     cursor: pointer;
     transition: ease-in-out 150ms;
     border: 1px solid var(--color-primary);
+
+    &:last-of-type {
+      display: none;
+    }
   }
 }
 

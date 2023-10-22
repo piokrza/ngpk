@@ -2,15 +2,15 @@
 
 <div class="mt-10 xl:gap-12">
   <ctrl-cash-flow-add-form
-    (cashFlowSubmitData)="emitCashFlowSubmitData($event)"
+    (cashFlowSubmitData)="cashFlowSubmitData.emit($event)"
     [isIncomeMode]="isIncomeMode"
     class="w-full mb-5 form" />
 
-  <p-divider class="mobile" />
+  <p-divider />
 
   <ctrl-cash-flow-details-list
-    (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
-    (cashFlowToUpdate)="emitCashFlowToUpdate($event)"
+    (cashFlowToRemoveId)="cashFlowToRemoveId.emit($event)"
+    (cashFlowToUpdate)="cashFlowToUpdate.emit($event)"
     [isIncomeMode]="isIncomeMode"
     [isLoading]="isLoading"
     [cashFlowList]="cashFlowData"

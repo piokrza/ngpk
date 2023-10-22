@@ -10,13 +10,9 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { ContainerComponent } from '#shared/components';
 import { LayoutComponent } from '#shared/ui/layout';
-import {
-  NavigationPanelsComponent,
-  NavigationSidebarComponent,
-  UserInfoComponent,
-} from '#shared/ui/navigation/components';
+import { NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#shared/ui/navigation/components';
 
-const declarations = [NavigationPanelsComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent];
+const declarations = [NavigationComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent];
 
 const imports = [
   CommonModule,
