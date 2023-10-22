@@ -98,16 +98,12 @@ export class AuthEffects {
         exhaustMap(({ payload }) => {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
             map(({ user }) => {
-              this.dbService.addUserToDatabase$(setUser(user!)).subscribe();
+              user && this.dbService.addUserToDatabase$(setUser(user)).pipe(take(1)).subscribe();
               return AuthActions.signUpWithEmailAndPasswordSuccess();
             }),
-            tap((): void => {
-              this.router.navigateByUrl('/dashboard');
-            }),
-
+            tap(() => this.router.navigateByUrl('/dashboard')),
             catchError(() => {
               this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during authorization');
-
               return of(AuthActions.signUpWithEmailAndPasswordFailure());
             })
           );
@@ -149,12 +145,10 @@ export class AuthEffects {
       ofType(AuthActions.updateAccount),
       exhaustMap(({ updatedUserData }) => {
         return from(this.dbService.updateUser$(updatedUserData)).pipe(
-          map(() => {
+          map(() => AuthActions.updateAccountSuccess()),
+          tap(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Account data successfully updated');
-
-            return AuthActions.updateAccountSuccess();
           }),
-
           catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,

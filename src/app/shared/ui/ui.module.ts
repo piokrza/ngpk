@@ -16,14 +16,9 @@ import {
   UserInfoComponent,
 } from '#shared/ui/navigation/components';
 
-const declarations: Array<any> = [
-  NavigationPanelsComponent,
-  NavigationSidebarComponent,
-  UserInfoComponent,
-  LayoutComponent,
-];
+const declarations = [NavigationPanelsComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent];
 
-const imports: Array<any> = [
+const imports = [
   CommonModule,
   ButtonModule,
   TieredMenuModule,
@@ -35,7 +30,7 @@ const imports: Array<any> = [
   ConfirmDialogModule,
 ];
 
-const exports: Array<any> = [LayoutComponent];
+const exports = [LayoutComponent];
 
 @NgModule({ declarations, imports, exports })
 export class UiModule {}

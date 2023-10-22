@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { filter, Observable, take, tap } from 'rxjs';
@@ -6,7 +7,7 @@ import uniqid from 'uniqid';
 import { User } from '#common/models';
 import { Category } from '#common/models/category.model';
 import { BaseCashFlowForm } from '#features/cash-flow/abstract';
-import { CashFlow } from '#features/cash-flow/models';
+import { CashFlow, CashFlowForm } from '#features/cash-flow/models';
 import { AuthService } from '#pages/auth/services';
 
 @Component({
@@ -19,9 +20,17 @@ export class CashFlowAddFormComponent extends BaseCashFlowForm {
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
+  public readonly categories$: Observable<Category[]> = this.getCategories$(this.isIncomeMode);
+
   private userId!: string;
 
-  public readonly categories$: Observable<Category[]> = this.getCategories$(this.isIncomeMode);
+  public get formControls(): CashFlowForm {
+    return this.form.controls;
+  }
+
+  public get modeLabel(): string {
+    return this.isIncomeMode ? 'Income' : 'Expense';
+  }
 
   public constructor() {
     super();

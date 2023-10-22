@@ -12,13 +12,12 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   font: inherit;
 }
 
 body {
   min-height: 100vh;
+  margin: 0;
   font-family: 'Inter', sans-serif;
 }
 
@@ -29,6 +28,7 @@ svg {
 }
 
 ul {
+  padding-left: 0;
   list-style: none;
 }
 

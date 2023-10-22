@@ -1,0 +1,43 @@
+@use 'src/assets/styles/variables/breakpoints' as b;
+
+.spinner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.desktop {
+  display: none;
+}
+
+.rounded {
+  border-radius: 0.75rem;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.text {
+  &--success {
+    color: #189c18;
+  }
+
+  &--danger {
+    color: #d13131;
+  }
+}
+
+@media only screen and (min-width: b.$lg) {
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+}

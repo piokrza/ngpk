@@ -1,5 +1,5 @@
-<div class="h-full flex flex-col justify-between">
-  <nav>
+<nav class="sidebar desktop">
+  <ctrl-container class="h-full flex flex-col justify-between">
     <ctrl-user-info class="block mb-10"></ctrl-user-info>
 
     <ul class="flex flex-col gap-3">
@@ -14,7 +14,7 @@
         </a>
       </li>
     </ul>
-  </nav>
 
-  <button (click)="signOut()" pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
-</div>
+    <button (click)="signOut()" pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
+  </ctrl-container>
+</nav>

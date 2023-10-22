@@ -5,7 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { FormTwo } from '#shared/components/parent-form/models';
 
-const imports: Array<any> = [CommonModule, ReactiveFormsModule, InputTextModule];
+const imports = [CommonModule, ReactiveFormsModule, InputTextModule];
 
 @Component({
   selector: 'ctrl-form-two',

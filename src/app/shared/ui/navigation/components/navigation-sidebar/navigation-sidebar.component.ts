@@ -7,13 +7,14 @@ import { AuthActions } from '#store/auth';
 @Component({
   selector: 'ctrl-navigation-sidebar',
   templateUrl: './navigation-sidebar.component.html',
+  styleUrls: ['./navigation-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationSidebarComponent {
-  @Input() public menuLinks!: MenuItem[];
+  private readonly store: Store = inject(Store);
+  private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
-  private store: Store = inject(Store);
-  private confirmationService: ConfirmationService = inject(ConfirmationService);
+  @Input() public menuLinks!: MenuItem[];
 
   public signOut(): void {
     this.confirmationService.confirm({

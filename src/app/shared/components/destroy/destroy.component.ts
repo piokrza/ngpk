@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'ctrl-destroy',
-  standalone: true,
   template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export abstract class DestroyComponent implements OnDestroy {
   protected readonly destroy$: Subject<void> = new Subject<void>();

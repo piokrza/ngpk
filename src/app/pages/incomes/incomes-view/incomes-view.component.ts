@@ -34,7 +34,7 @@ export class IncomesViewComponent extends DestroyComponent {
 
   public isIncomeMode = true;
 
-  constructor() {
+  public constructor() {
     super();
   }
 

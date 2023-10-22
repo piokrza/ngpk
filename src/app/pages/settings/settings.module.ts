@@ -16,14 +16,14 @@ import {
 import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 
-const declarations: Array<any> = [
+const declarations = [
   SettingsViewComponent,
   ThemeTogglerComponent,
   AccountSettingsComponent,
   AccountSettingsFormComponent,
 ];
 
-const imports: Array<any> = [
+const imports = [
   CommonModule,
   SettingsRoutingModule,
   ToggleButtonModule,

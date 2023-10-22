@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -5,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import { Category } from '#common/models';
 import { BaseCashFlowForm } from '#features/cash-flow/abstract';
-import { CashFlowUpdateFormData } from '#features/cash-flow/models';
+import { CashFlowForm, CashFlowUpdateFormData } from '#features/cash-flow/models';
 
 @Component({
   selector: 'ctrl-cash-flow-update-form',
@@ -14,10 +15,15 @@ import { CashFlowUpdateFormData } from '#features/cash-flow/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowUpdateFormComponent extends BaseCashFlowForm implements OnInit {
-  private dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-  public cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;
+  private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+
+  public readonly cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;
 
   public categories$: Observable<Category[]> = this.getCategories$(this.cashFlowUpdateFormData.isIncomeMode);
+
+  public get formControls(): CashFlowForm {
+    return this.form.controls;
+  }
 
   public ngOnInit(): void {
     this.pathCashFlowUpdateFormValue();

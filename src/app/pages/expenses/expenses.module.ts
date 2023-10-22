@@ -6,8 +6,8 @@ import { CashFlowModule } from '#features/cash-flow';
 import { ExpensesRoutingModule, ExpensesViewComponent } from '#pages/expenses';
 import { UiModule } from '#shared/ui';
 
-const declarations: Array<any> = [ExpensesViewComponent];
-const imports: Array<any> = [CommonModule, ExpensesRoutingModule, CashFlowModule, DividerModule, UiModule];
+const declarations = [ExpensesViewComponent];
+const imports = [CommonModule, ExpensesRoutingModule, CashFlowModule, DividerModule, UiModule];
 
 @NgModule({ declarations, imports })
 export class ExpensesModule {}

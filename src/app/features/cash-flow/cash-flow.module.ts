@@ -20,7 +20,7 @@ import { CashFlowPanelComponent } from '#features/cash-flow/components/cash-flow
 import { CashFlowUpdateFormComponent } from '#features/cash-flow/components/cash-flow-update-form/cash-flow-update-form.component';
 import { IconPipe, TimestampToDatePipe } from '#shared/pipes';
 
-const declarations: Array<any> = [
+const declarations = [
   CashFlowDetailsComponent,
   CashFlowDetailsBoxComponent,
   CashFlowDetailsListComponent,
@@ -30,7 +30,7 @@ const declarations: Array<any> = [
   CashFlowUpdateFormComponent,
 ];
 
-const imports: Array<any> = [
+const imports = [
   CommonModule,
   CardModule,
   InputTextareaModule,
@@ -46,7 +46,7 @@ const imports: Array<any> = [
   IconPipe,
 ];
 
-const exports: Array<any> = [...declarations];
+const exports = [...declarations];
 
 @NgModule({ declarations, imports, exports })
 export class CashFlowModule {}

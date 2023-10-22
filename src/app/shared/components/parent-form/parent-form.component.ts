@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { FormOneComponent, FormTwoComponent } from '#shared/components/parent-form/components';
 import { Form } from '#shared/components/parent-form/models';
 
-const imports: Array<any> = [CommonModule, FormOneComponent, FormTwoComponent, ReactiveFormsModule, ButtonModule];
+const imports = [CommonModule, FormOneComponent, FormTwoComponent, ReactiveFormsModule, ButtonModule];
 const providers: Array<Provider> = [FormService];
 
 @Component({
@@ -20,7 +20,7 @@ const providers: Array<Provider> = [FormService];
   imports,
 })
 export class ParentFormComponent {
-  private formService = inject(FormService);
+  private readonly formService: FormService = inject(FormService);
 
   public form: FormGroup<Form>;
 

@@ -1,12 +1,12 @@
 <ctrl-cash-flow-heading [amount]="totalCashFlowAmount" [isIncomeMode]="isIncomeMode" />
 
-<div class="mt-10 xl:flex xl:gap-12">
+<div class="mt-10 xl:gap-12">
   <ctrl-cash-flow-add-form
     (cashFlowSubmitData)="emitCashFlowSubmitData($event)"
     [isIncomeMode]="isIncomeMode"
-    class="w-full mb-5 xl:max-w-[18.75rem]" />
+    class="w-full mb-5 form" />
 
-  <p-divider class="xl:hidden" />
+  <p-divider class="mobile" />
 
   <ctrl-cash-flow-details-list
     (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"

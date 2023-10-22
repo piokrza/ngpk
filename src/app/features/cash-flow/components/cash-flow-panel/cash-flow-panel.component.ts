@@ -5,6 +5,7 @@ import { CashFlow } from '#features/cash-flow/models';
 @Component({
   selector: 'ctrl-cash-flow-panel',
   templateUrl: './cash-flow-panel.component.html',
+  styleUrls: ['./cash-flow-panel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowPanelComponent {
@@ -13,9 +14,9 @@ export class CashFlowPanelComponent {
   @Input() public isLoading!: boolean;
   @Input() public totalCashFlowAmount = 0;
 
-  @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
-  @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
   @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
+  @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
   public emitCashFlowSubmitData(cashFlowSubmitData: CashFlow): void {
     this.cashFlowSubmitData.emit(cashFlowSubmitData);

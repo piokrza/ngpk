@@ -1,17 +1,12 @@
 <ng-container *ngIf="menuLinks">
-  <div class="p-5 xl:hidden">
+  <div class="p-3 mobile rounded">
     <p-tieredMenu #menu [model]="menuLinks" [popup]="true" />
 
-    <div class="flex justify-between">
-      <button type="button" pButton icon="pi pi-fw pi-list" (click)="menu.toggle($event)"></button>
-
-      <button (click)="signOut()" type="button" pButton icon="pi pi-fw pi-power-off"></button>
+    <div class="buttons">
+      <button (click)="menu.toggle($event)" icon="pi pi-fw pi-list" type="button" pButton></button>
+      <button (click)="signOut()" icon="pi pi-fw pi-power-off" type="button" pButton></button>
     </div>
   </div>
 
-  <div class="w-[22.5rem] h-full hidden xl:block">
-    <ctrl-container>
-      <ctrl-navigation-sidebar [menuLinks]="menuLinks" />
-    </ctrl-container>
-  </div>
+  <ctrl-navigation-sidebar [menuLinks]="menuLinks" />
 </ng-container>

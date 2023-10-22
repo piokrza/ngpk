@@ -3,12 +3,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'ctrl-auth-view',
   template: `
-    <section class="h-screen flex justify-center items-center">
-      <div class="w-full max-w-[25rem]">
+    <section class="section">
+      <div class="w-full section__inner">
         <router-outlet></router-outlet>
       </div>
     </section>
   `,
+  styleUrls: ['./auth-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthViewComponent {}

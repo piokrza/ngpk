@@ -1,0 +1,50 @@
+@use 'src/assets/styles/variables/breakpoints' as b;
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    display: none;
+  }
+
+  &__category {
+    font-size: 1.5rem;
+  }
+
+  &__dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+
+    &--success {
+      background-color: #189c18;
+    }
+
+    &--danger {
+      background-color: #d13131;
+    }
+  }
+
+  .card__flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (min-width: b.$md) {
+  .card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

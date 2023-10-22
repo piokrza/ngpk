@@ -1,19 +1,19 @@
 <p-card>
-  <div class="flex justify-between items-center">
-    <div class="flex items-center">
-      <div class="w-[40px] h-[40px] mr-3 hidden md:flex md:items-center md:justify-center">
-        <i [class]="'text-2xl ' + (details.categoryCode! | icon)"></i>
+  <div class="card">
+    <div class="card__inner">
+      <div class="mr-3 card__icon">
+        <i [class]="'card__category ' + (details.categoryCode! | icon)"></i>
       </div>
 
       <div>
-        <div class="flex items-center">
+        <div class="mb-2 card__inner">
           <span
-            class="inline-block w-[.5rem] h-[.5rem] rounded-full mr-3"
-            [ngClass]="{ 'bg-green-600': isIncomeMode, 'bg-red-600': !isIncomeMode }"></span>
+            [ngClass]="{ 'card__dot--success': isIncomeMode, 'card__dot--danger': !isIncomeMode }"
+            class="mr-3 card__dot"></span>
           {{ details.name | titlecase }}
         </div>
 
-        <div class="flex flex-wrap gap-6">
+        <div class="card__flex-wrap gap-6">
           <ctrl-cash-flow-details-box [detail]="details.amount.toString()" iconName="dollar" />
           <ctrl-cash-flow-details-box
             *ngIf="details.date"
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="flex gap-3">
+    <div class="card__inner gap-3">
       <button
         (click)="cashFlowToUpdate.emit(details)"
         pButton

@@ -34,7 +34,7 @@ export class ExpensesViewComponent extends DestroyComponent {
 
   public isIncomeMode = false;
 
-  constructor() {
+  public constructor() {
     super();
   }
 

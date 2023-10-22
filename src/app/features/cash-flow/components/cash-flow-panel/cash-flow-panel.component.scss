@@ -1,0 +1,11 @@
+@use 'src/assets/styles/variables/breakpoints' as b;
+
+@media only screen and (min-width: b.$xl) {
+  .flex {
+    display: flex;
+  }
+
+  .form {
+    max-width: 18.75rem;
+  }
+}

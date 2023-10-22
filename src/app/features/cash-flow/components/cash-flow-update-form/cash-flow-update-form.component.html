@@ -1,29 +1,34 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <span class="p-float-label my-7">
-    <input id="name" type="text" pInputText class="w-full" formControlName="name" />
+    <input [formControl]="formControls.name" id="name" type="text" pInputText class="w-full" />
     <label for="name">{{ cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense' }} name</label>
   </span>
 
   <span class="p-float-label my-7">
-    <p-inputNumber id="amount" mode="currency" inputId="currency-poland" currency="PLN" formControlName="amount" />
+    <p-inputNumber
+      [formControl]="formControls.amount"
+      id="amount"
+      mode="currency"
+      inputId="currency-poland"
+      currency="PLN" />
     <label for="amount">{{ cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense' }} amount</label>
   </span>
 
   <p-dropdown
+    [formControl]="formControls.categoryCode"
     [options]="(categories$ | async)!"
     optionLabel="name"
     optionValue="code"
     styleClass="w-full"
-    placeholder="Select category"
-    formControlName="categoryCode" />
+    placeholder="Select category" />
 
   <span class="p-float-label my-7">
-    <p-calendar id="date" class="w-full" formControlName="date" />
+    <p-calendar [formControl]="formControls.date" id="date" class="w-full" />
     <label for="date">Pick date</label>
   </span>
 
   <span class="p-float-label my-7">
-    <textarea id="description" class="w-full" pInputTextarea formControlName="description"></textarea>
+    <textarea [formControl]="formControls.description" id="description" class="w-full" pInputTextarea></textarea>
     <label for="description">Add description</label>
   </span>
 

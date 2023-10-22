@@ -1,12 +1,22 @@
 @use 'src/assets/styles/variables/sizes' as s;
 @use 'src/assets/styles/variables/breakpoints' as b;
 
-main {
-  height: calc(100vh - s.$menubarHeight);
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  main {
+    height: calc(100vh - s.$menubarHeight);
+    max-width: 100vw;
+  }
 }
 
-@media only screen and (max-width: b.$xl) {
-  main {
-    height: 100vh;
+@media only screen and (min-width: b.$xl) {
+  .wrapper {
+    grid-template-columns: s.$sidebarWidth 1fr;
+
+    main {
+      height: 100vh;
+    }
   }
 }

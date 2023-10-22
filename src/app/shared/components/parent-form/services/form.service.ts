@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -17,7 +18,7 @@ export class FormService {
   public markAllAsDirty(formGroup: FormGroup<any>): void {
     Object.keys(formGroup.controls).forEach((key: string): void => {
       const control: AbstractControl | null = formGroup.get(key);
-      control && control instanceof FormGroup ? this.markAllAsDirty(control) : control!.markAsDirty();
+      control instanceof FormGroup ? this.markAllAsDirty(control) : control?.markAsDirty();
     });
   }
 

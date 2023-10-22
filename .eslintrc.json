@@ -5,20 +5,23 @@
     {
       "files": ["*.ts"],
       "extends": [
+        "eslint:recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:import/errors",
         "plugin:import/warnings",
-        "plugin:import/typescript"
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
+        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "ctrl", "style": "kebab-case" }],
         "no-console": 1,
         "no-debugger": 1,
         "import/first": 1,
         "prefer-const": 1,
-        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "ctrl", "style": "kebab-case" }],
-        "import/no-unresolved": "off",
         "import/namespace": "warn",
+        "import/no-unresolved": "off",
         "import/no-named-as-default": "off",
         "import/export": "warn",
         "import/order": [

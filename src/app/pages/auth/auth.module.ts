@@ -9,16 +9,9 @@ import { AuthRoutingModule, AuthViewComponent } from '#pages/auth';
 import { LoginFormComponent, RegisterFormComponent } from '#pages/auth/components';
 import { AuthFormService, AuthService } from '#pages/auth/services';
 
-const declarations: Array<any> = [AuthViewComponent, LoginFormComponent, RegisterFormComponent];
+const declarations = [AuthViewComponent, LoginFormComponent, RegisterFormComponent];
 
-const imports: Array<any> = [
-  CommonModule,
-  AuthRoutingModule,
-  ReactiveFormsModule,
-  InputTextModule,
-  ButtonModule,
-  PasswordModule,
-];
+const imports = [CommonModule, AuthRoutingModule, ReactiveFormsModule, InputTextModule, ButtonModule, PasswordModule];
 
 const providers: Array<Provider> = [AuthFormService, AuthService];
 
