@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, takeUntil } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { CashFlowUpdateFormComponent } from '#features/cash-flow/components/cash-flow-update-form/cash-flow-update-form.component';
 import { CashFlow } from '#features/cash-flow/models/cash-flow.model';
-import { DestroyComponent } from '#shared/components/destroy/destroy.component';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
+@UntilDestroy()
 @Component({
   selector: 'ctrl-incomes-view',
   template: `
@@ -23,7 +24,7 @@ import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IncomesViewComponent extends DestroyComponent {
+export class IncomesViewComponent {
   private readonly store: Store = inject(Store);
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
@@ -34,10 +35,6 @@ export class IncomesViewComponent extends DestroyComponent {
 
   public isIncomeMode = true;
 
-  public constructor() {
-    super();
-  }
-
   public onSubmit(incomeData: CashFlow): void {
     this.store.dispatch(CashFlowActions.addIncome({ income: incomeData }));
   }
@@ -45,11 +42,9 @@ export class IncomesViewComponent extends DestroyComponent {
   public removeIncome(incomeId: string): void {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to remove this income?',
-      header: 'Confirmation',
+      header: 'Remove income',
       icon: 'pi pi-trash',
-      accept: (): void => {
-        this.store.dispatch(CashFlowActions.removeIncome({ incomeId }));
-      },
+      accept: (): void => this.store.dispatch(CashFlowActions.removeIncome({ incomeId })),
     });
   }
 
@@ -60,10 +55,13 @@ export class IncomesViewComponent extends DestroyComponent {
       data: { updatedCashFlow: updatedIncome, isIncomeMode: this.isIncomeMode },
     });
 
-    dialogRef.onClose.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (updatedIncome: CashFlow): void => {
-        updatedIncome && this.store.dispatch(CashFlowActions.updateIncome({ updatedIncome }));
-      },
-    });
+    dialogRef.onClose
+      .pipe(
+        tap((updatedIncome: CashFlow): void => {
+          updatedIncome && this.store.dispatch(CashFlowActions.updateIncome({ updatedIncome }));
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe();
   }
 }

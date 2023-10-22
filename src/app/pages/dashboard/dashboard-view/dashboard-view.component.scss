@@ -1,4 +1,10 @@
 :host {
   display: block;
   height: 100%;
+
+  .heading {
+    margin: 0;
+    text-align: center;
+    font-size: 1.5rem;
+  }
 }

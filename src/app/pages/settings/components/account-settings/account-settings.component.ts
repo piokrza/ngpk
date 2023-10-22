@@ -1,44 +1,50 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, takeUntil } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { User } from '#common/models';
 import { AccountSettingsFormComponent } from '#pages/settings/components';
-import { DestroyComponent } from '#shared/components/destroy';
 import { AuthActions, AuthSelectors } from '#store/auth';
 
-
+@UntilDestroy()
 @Component({
   selector: 'ctrl-account-settings',
   templateUrl: './account-settings.component.html',
   styleUrls: ['./account-settings.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountSettingsComponent extends DestroyComponent implements OnInit {
+export class AccountSettingsComponent implements OnInit {
   private readonly store: Store = inject(Store);
   private readonly dialogService: DialogService = inject(DialogService);
 
   public readonly user$: Observable<User> = this.store.select(AuthSelectors.user);
-  private _user!: User; // remove dashes
+  private user!: User;
 
   public ngOnInit(): void {
-    this.user$.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (user: User): User => (this._user = user),
-    });
+    this.user$
+      .pipe(
+        tap((user: User): User => (this.user = user)),
+        untilDestroyed(this)
+      )
+      .subscribe();
   }
 
   public openAccountSettingsDialog(): void {
     const dialogRef: DynamicDialogRef = this.dialogService.open(AccountSettingsFormComponent, {
       header: 'Update account',
       style: { width: '90%', maxWidth: '600px' },
-      data: this._user,
+      data: this.user,
     });
 
-    dialogRef.onClose.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (updatedUserData: User) => {
-        updatedUserData && this.store.dispatch(AuthActions.updateAccount({ updatedUserData }));
-      },
-    });
+    dialogRef.onClose
+      .pipe(
+        tap((updatedUserData?: User): void => {
+          updatedUserData && this.store.dispatch(AuthActions.updateAccount({ updatedUserData }));
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe();
   }
 }

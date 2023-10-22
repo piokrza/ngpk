@@ -1,20 +1,18 @@
 <ng-container *ngIf="isCashFlowLoading$ | async; else cashFlowLoaded">
-  <div class="h-[calc(100vh-82px)] flex justify-center items-center">
-    <p-progressSpinner />
-  </div>
+  <p-progressSpinner class="spinner" />
 </ng-container>
 
 <ng-template #cashFlowLoaded>
   <p-card>
     <ng-container *ngIf="totalBalance$ | async as totalBalance; else noTotalBalance">
-      <h3 class="text-center text-2xl">
+      <h3 class="heading">
         Total balance:
-        <span [class]="totalBalance > 0 ? 'text-green-500' : 'text-red-500'"> {{ totalBalance | number }} PLN </span>
+        <span [class]="totalBalance > 0 ? 'text--success' : 'text--danger'"> {{ totalBalance | number }} PLN </span>
       </h3>
     </ng-container>
 
     <ng-template #noTotalBalance>
-      <div class="text-center text-2xl">
+      <div class="heading">
         No provided data, add
         <a [routerLink]="['/expenses']" class="underline">expense</a>
         or
@@ -25,18 +23,14 @@
   </p-card>
 
   <section *ngIf="totalBalance$ | async" class="flex flex-wrap mt-6">
-    <div class="w-full lg:w-[50%]">
-      <ctrl-container>
-        <div class="text-xl font-semibold mb-3">Expenses</div>
-        <p-chart type="pie" [data]="expensesChartData" [options]="chartsOptions" />
-      </ctrl-container>
-    </div>
+    <ctrl-container>
+      <div class="heading">Expenses</div>
+      <p-chart [data]="expensesChartData" [options]="chartsOptions" type="pie" class="block mt-6" />
+    </ctrl-container>
 
-    <div class="w-full lg:w-[50%]">
-      <ctrl-container>
-        <div class="text-xl font-semibold mb-3">Incomes</div>
-        <p-chart type="pie" [data]="incomesChartData" [options]="chartsOptions" />
-      </ctrl-container>
-    </div>
+    <ctrl-container>
+      <div class="heading">Incomes</div>
+      <p-chart [data]="incomesChartData" [options]="chartsOptions" type="pie" class="block mt-6" />
+    </ctrl-container>
   </section>
 </ng-template>

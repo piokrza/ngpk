@@ -6,23 +6,32 @@ import { PersistanceService, ThemeService } from '#common/services';
 @Component({
   selector: 'ctrl-theme-toggler',
   template: `
-    <div class="flex justify-between items-center">
+    <div class="container">
       Dark/Light mode
       <p-toggleButton
         [(ngModel)]="isLightMode"
-        (onChange)="themeService.setTheme(isLightMode)"
+        (onChange)="toggleTheme()"
         [onIcon]="'pi pi-sun'"
         [offIcon]="'pi pi-moon'" />
     </div>
   `,
+  styles: [
+    `
+      @import '../common-settings-styles';
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeTogglerComponent implements OnInit {
-  public themeService: ThemeService = inject(ThemeService);
+  private readonly themeService: ThemeService = inject(ThemeService);
 
   public isLightMode: boolean | null = inject(PersistanceService).get(isLightMode);
 
   public ngOnInit(): void {
+    this.themeService.setTheme(this.isLightMode);
+  }
+
+  public toggleTheme(): void {
     this.themeService.setTheme(this.isLightMode);
   }
 }

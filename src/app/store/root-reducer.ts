@@ -11,7 +11,7 @@ export interface AppState {
   [fromAuth.FeatureKey]: fromAuth.State;
 }
 
-export const ROOT_REDUCER_TOKEN = 'Root reducers token';
+export const ROOT_REDUCER_TOKEN = 'ROOT_REDUCERS';
 
 export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState>>(ROOT_REDUCER_TOKEN, {
   factory: (): ActionReducerMap<AppState> => ({

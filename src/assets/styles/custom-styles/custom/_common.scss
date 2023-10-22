@@ -6,6 +6,14 @@
   justify-content: center;
 }
 
+.block {
+  display: block;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .w-full {
   width: 100%;
 }
@@ -32,7 +40,7 @@
   }
 }
 
-@media only screen and (min-width: b.$lg) {
+@media only screen and (min-width: b.$xl) {
   .mobile {
     display: none;
   }

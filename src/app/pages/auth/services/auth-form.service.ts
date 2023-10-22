@@ -17,9 +17,7 @@ export class AuthFormService {
           validators: [Validators.required, Validators.minLength(6)],
         }),
       },
-      {
-        validators: [passwordMatchValidator('password', 'passwordConfirmation')],
-      }
+      { validators: [passwordMatchValidator('password', 'passwordConfirmation')] }
     );
   }
 

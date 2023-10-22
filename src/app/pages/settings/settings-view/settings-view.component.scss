@@ -1,0 +1,10 @@
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 20rem;
+}
