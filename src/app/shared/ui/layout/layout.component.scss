@@ -13,10 +13,11 @@
 
 @media only screen and (min-width: b.$xl) {
   .wrapper {
+    height: 100vh;
     grid-template-columns: s.$sidebarWidth 1fr;
 
     main {
-      height: 100vh;
+      height: 100%;
     }
   }
 }

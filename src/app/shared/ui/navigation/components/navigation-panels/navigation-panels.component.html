@@ -1,10 +1,12 @@
 <ng-container *ngIf="menuLinks">
-  <div class="p-3 mobile rounded">
-    <p-tieredMenu #menu [model]="menuLinks" [popup]="true" />
+  <div class="mobile">
+    <div class="p-3 rounded panel">
+      <div *ngIf="(isUser$ | async)?.email">
+        <p-tieredMenu #menu [model]="menuLinks" [popup]="true" />
+        <button (click)="menu.toggle($event)" icon="pi pi-fw pi-list" type="button" pButton></button>
+      </div>
 
-    <div class="buttons">
-      <button (click)="menu.toggle($event)" icon="pi pi-fw pi-list" type="button" pButton></button>
-      <button (click)="signOut()" icon="pi pi-fw pi-power-off" type="button" pButton></button>
+      <p>CashFlow</p>
     </div>
   </div>
 

@@ -7,15 +7,18 @@ import { AuthSelectors } from '#store/auth';
 
 @Component({
   selector: 'ctrl-user-info',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./user-info.component.scss'],
   template: `
-    <section *ngIf="user$ | async as user" class="user-info gap-4">
+    <div *ngIf="user$ | async as user" class="user-info gap-4">
       <img *ngIf="user.photoURL" [src]="user.photoURL" alt="profile" class="user-info__img" />
-      <div class="user-info__name">{{ user.displayName }}</div>
-    </section>
+      <div>
+        <p class="user-info__name">{{ user.displayName }}</p>
+        <small>{{ user.email }}</small>
+      </div>
+    </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInfoComponent {
-  public user$: Observable<User> = inject(Store).select(AuthSelectors.user);
+  public readonly user$: Observable<User> = inject(Store).select(AuthSelectors.user);
 }

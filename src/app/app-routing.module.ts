@@ -4,10 +4,6 @@ import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/comp
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthModule } from '#pages/auth';
-import { DashboardModule } from '#pages/dashboard';
-import { ExpensesModule } from '#pages/expenses';
-import { IncomesModule } from '#pages/incomes';
-import { SettingsModule } from '#pages/settings';
 
 const routes: Routes = [
   {
@@ -17,29 +13,25 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: (): Promise<any> =>
-      import('#pages/dashboard/dashboard.module').then((m): DashboardModule => m.DashboardModule),
+    loadChildren: (): Promise<any> => import('#pages/dashboard/dashboard.module'),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectUnauthorizedTo(['authentication']) },
   },
   {
     path: 'incomes',
-    loadChildren: (): Promise<any> =>
-      import('#pages/incomes/incomes.module').then((m): IncomesModule => m.IncomesModule),
+    loadChildren: (): Promise<any> => import('#pages/incomes/incomes.module'),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectUnauthorizedTo(['authentication']) },
   },
   {
     path: 'expenses',
-    loadChildren: (): Promise<any> =>
-      import('#pages/expenses/expenses.module').then((m): ExpensesModule => m.ExpensesModule),
+    loadChildren: (): Promise<any> => import('#pages/expenses/expenses.module'),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectUnauthorizedTo(['authentication']) },
   },
   {
     path: 'settings',
-    loadChildren: (): Promise<any> =>
-      import('#pages/settings/settings.module').then((m): SettingsModule => m.SettingsModule),
+    loadChildren: (): Promise<any> => import('#pages/settings/settings.module'),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectUnauthorizedTo(['authentication']) },
   },

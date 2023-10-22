@@ -10,4 +10,4 @@ const declarations = [ExpensesViewComponent];
 const imports = [CommonModule, ExpensesRoutingModule, CashFlowModule, DividerModule, UiModule];
 
 @NgModule({ declarations, imports })
-export class ExpensesModule {}
+export default class ExpensesModule {}

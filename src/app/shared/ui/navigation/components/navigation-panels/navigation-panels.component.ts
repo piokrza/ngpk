@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ConfirmationService, MenuItem } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
+import { Observable } from 'rxjs';
 
-import { MenuService } from '#common/services/menu.service';
-import { AuthActions } from '#store/auth';
+import { User } from '#common/models';
+import { MenuService } from '#common/services';
+import { AuthSelectors } from '#store/auth';
 
 @Component({
   selector: 'ctrl-navigation-panels',
@@ -12,16 +14,7 @@ import { AuthActions } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationPanelsComponent {
-  private store: Store = inject(Store);
-  private confirmationService: ConfirmationService = inject(ConfirmationService);
+  public readonly isUser$: Observable<User> = inject(Store).select(AuthSelectors.user);
 
   public menuLinks: MenuItem[] = inject(MenuService).getMenuLinks();
-
-  public signOut(): void {
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to signout?',
-      header: 'Signout',
-      accept: (): void => this.store.dispatch(AuthActions.signOut()),
-    });
-  }
 }

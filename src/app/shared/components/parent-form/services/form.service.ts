@@ -6,7 +6,7 @@ import { FormOne, FormTwo, Form } from '#shared/components/parent-form/models';
 
 @Injectable()
 export class FormService {
-  private fb: FormBuilder = inject(FormBuilder);
+  private readonly fb: FormBuilder = inject(FormBuilder);
 
   public buildForm(): FormGroup<Form> {
     return this.fb.group<Form>({

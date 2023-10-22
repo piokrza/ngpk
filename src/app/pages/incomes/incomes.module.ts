@@ -9,4 +9,4 @@ const declarations = [IncomesViewComponent];
 const imports = [CommonModule, IncomesRoutingModule, CashFlowModule, UiModule];
 
 @NgModule({ declarations, imports })
-export class IncomesModule {}
+export default class IncomesModule {}

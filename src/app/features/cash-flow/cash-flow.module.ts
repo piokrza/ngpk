@@ -11,13 +11,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-import { CashFlowAddFormComponent } from '#features/cash-flow/components/cash-flow-add-form/cash-flow-add-form.component';
-import { CashFlowDetailsComponent } from '#features/cash-flow/components/cash-flow-details/cash-flow-details.component';
-import { CashFlowDetailsBoxComponent } from '#features/cash-flow/components/cash-flow-details-box/cash-flow-details-box.component';
-import { CashFlowDetailsListComponent } from '#features/cash-flow/components/cash-flow-details-list/cash-flow-details-list.component';
-import { CashFlowHeadingComponent } from '#features/cash-flow/components/cash-flow-heading/cash-flow-heading.component';
-import { CashFlowPanelComponent } from '#features/cash-flow/components/cash-flow-panel/cash-flow-panel.component';
-import { CashFlowUpdateFormComponent } from '#features/cash-flow/components/cash-flow-update-form/cash-flow-update-form.component';
+import {
+  CashFlowAddFormComponent,
+  CashFlowDetailsComponent,
+  CashFlowDetailsBoxComponent,
+  CashFlowDetailsListComponent,
+  CashFlowHeadingComponent,
+  CashFlowPanelComponent,
+  CashFlowUpdateFormComponent,
+} from '#features/cash-flow/components';
 import { IconPipe, TimestampToDatePipe } from '#shared/pipes';
 
 const declarations = [

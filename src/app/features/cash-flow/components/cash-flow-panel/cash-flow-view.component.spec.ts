@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CashFlowPanelComponent } from '#features/cash-flow/components/cash-flow-panel/cash-flow-panel.component';
+import { CashFlowPanelComponent } from '#features/cash-flow/components';
 
 describe('CashFlowPanelComponent', () => {
   let component: CashFlowPanelComponent;

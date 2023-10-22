@@ -6,7 +6,7 @@ import { passwordMatchValidator } from '#pages/auth/validators';
 
 @Injectable()
 export class AuthFormService {
-  private fb: FormBuilder = inject(FormBuilder);
+  private readonly fb: FormBuilder = inject(FormBuilder);
 
   public createRegisterForm(): FormGroup<RegisterForm> {
     return this.fb.group<RegisterForm>(

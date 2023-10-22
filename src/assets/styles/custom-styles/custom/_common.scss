@@ -32,11 +32,11 @@
 
 .text {
   &--success {
-    color: #189c18;
+    color: var(--green-500);
   }
 
   &--danger {
-    color: #d13131;
+    color: var(--pink-500);
   }
 }
 

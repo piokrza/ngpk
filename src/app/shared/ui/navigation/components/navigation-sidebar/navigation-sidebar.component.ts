@@ -19,10 +19,8 @@ export class NavigationSidebarComponent {
   public signOut(): void {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to signout?',
-      header: 'Confirmation',
-      accept: (): void => {
-        this.store.dispatch(AuthActions.signOut());
-      },
+      header: 'Signout',
+      accept: (): void => this.store.dispatch(AuthActions.signOut()),
     });
   }
 }

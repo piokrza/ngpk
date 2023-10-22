@@ -5,8 +5,8 @@ import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, tap } from 'rxjs';
 
-import { CashFlowUpdateFormComponent } from '#features/cash-flow/components/cash-flow-update-form/cash-flow-update-form.component';
-import { CashFlow } from '#features/cash-flow/models/cash-flow.model';
+import { CashFlowUpdateFormComponent } from '#features/cash-flow/components';
+import { CashFlow } from '#features/cash-flow/models';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
 @UntilDestroy()

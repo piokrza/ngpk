@@ -1,4 +1,15 @@
-.buttons {
+.header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    margin-left: auto;
+  }
 }

@@ -15,8 +15,9 @@
   </span>
 
   <p-dropdown
+    *ngIf="categories$ | async as categories"
     [formControl]="formControls.categoryCode"
-    [options]="(categories$ | async)!"
+    [options]="categories"
     optionLabel="name"
     optionValue="code"
     styleClass="w-full"

@@ -1,32 +1,30 @@
-<div class="px-6">
-  <h1 class="text-4xl font-semibold text-center mb-12">Register</h1>
+<h1 class="heading text-center">Register</h1>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <span class="p-float-label my-7">
-      <input pInputText id="email" class="w-full" formControlName="email" />
-      <label htmlFor="email">Email</label>
-    </span>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <span class="p-float-label my-7">
+    <input [formControl]="form.controls.email" pInputText id="email" class="w-full" />
+    <label htmlFor="email">Email</label>
+  </span>
 
-    <span class="p-float-label my-7">
-      <p-password formControlName="password" [feedback]="false" [toggleMask]="true" />
-      <label htmlFor="password">Password</label>
-    </span>
+  <span class="p-float-label my-7">
+    <p-password [formControl]="form.controls.password" [feedback]="false" [toggleMask]="true" />
+    <label htmlFor="password">Password</label>
+  </span>
 
-    <span class="p-float-label my-7">
-      <p-password formControlName="passwordConfirmation" [feedback]="false" [toggleMask]="true" />
-      <label htmlFor="passwordConfirmation">Password confirmation</label>
-    </span>
+  <span class="p-float-label my-7">
+    <p-password [formControl]="form.controls.passwordConfirmation" [feedback]="false" [toggleMask]="true" />
+    <label htmlFor="passwordConfirmation">Password confirmation</label>
+  </span>
 
-    <div *ngIf="form.errors?.['passwordMismatch'] && form.get('passwordConfirmation')?.touched" class="my-6">
-      <small class="text-red-400">Password and password confirmation does not match</small>
-    </div>
+  <div *ngIf="form.errors?.['passwordMismatch'] && form.get('passwordConfirmation')?.touched" class="my-6">
+    <small class="text-red-400">Password and password confirmation does not match</small>
+  </div>
 
-    <button [disabled]="form.invalid" class="w-full" type="submit" pButton label="Register"></button>
-  </form>
+  <button [disabled]="form.invalid" class="w-full" type="submit" pButton label="Register"></button>
+</form>
 
-  <small class="block mt-10">
-    Have an account?
-    <a [routerLink]="['../login']" class="underline cursor-pointer">click</a>
-    to login
-  </small>
-</div>
+<small class="block text-center mt-10">
+  Have an account?
+  <a [routerLink]="['../login']" class="underline cursor-pointer">click</a>
+  to login
+</small>

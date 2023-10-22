@@ -21,4 +21,4 @@ const imports = [
 ];
 
 @NgModule({ declarations, imports })
-export class DashboardModule {}
+export default class DashboardModule {}

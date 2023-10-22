@@ -38,4 +38,4 @@ const imports = [
 ];
 
 @NgModule({ declarations, imports })
-export class SettingsModule {}
+export default class SettingsModule {}

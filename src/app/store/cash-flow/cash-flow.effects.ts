@@ -10,9 +10,9 @@ import { CashFlowActions } from '#store/cash-flow';
 
 @Injectable()
 export class CashFlowEffects {
-  private actions$: Actions = inject(Actions);
-  private toastService: ToastService = inject(ToastService);
-  private dbService: DbService = inject(DbService);
+  private readonly actions$: Actions = inject(Actions);
+  private readonly toastService: ToastService = inject(ToastService);
+  private readonly dbService: DbService = inject(DbService);
 
   public getCashFlowUserData$ = createEffect(() => {
     return this.actions$.pipe(
@@ -23,7 +23,6 @@ export class CashFlowEffects {
 
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
-
             return of(CashFlowActions.getCashFlowUserDataFailure());
           })
         );
@@ -47,7 +46,6 @@ export class CashFlowEffects {
               'Error!',
               'Something went wrong during storing data in database'
             );
-
             return of(CashFlowActions.addIncomeFailure());
           })
         );
@@ -71,7 +69,6 @@ export class CashFlowEffects {
               'Error!',
               'Something went wrong during storing data in database'
             );
-
             return of(CashFlowActions.addExpenseFailure());
           })
         );
@@ -95,7 +92,6 @@ export class CashFlowEffects {
               'Error!',
               'Something went wrong during storing data in database'
             );
-
             return of(CashFlowActions.removeIncomeFailure());
           })
         );
@@ -142,7 +138,6 @@ export class CashFlowEffects {
               'Error!',
               'Something went wrong during storing data in database'
             );
-
             return of(CashFlowActions.removeIncomeFailure());
           })
         );
@@ -166,7 +161,6 @@ export class CashFlowEffects {
               'Error!',
               'Something went wrong during storing data in database'
             );
-
             return of(CashFlowActions.removeExpenseFailure());
           })
         );

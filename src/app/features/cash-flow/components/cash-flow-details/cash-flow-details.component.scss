@@ -27,11 +27,11 @@
     border-radius: 50%;
 
     &--success {
-      background-color: #189c18;
+      background-color: var(--green-500);
     }
 
     &--danger {
-      background-color: #d13131;
+      background-color: var(--pink-500);
     }
   }
 

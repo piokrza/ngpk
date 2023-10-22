@@ -1,20 +1,24 @@
 <nav class="sidebar desktop">
   <ctrl-container class="h-full flex flex-col justify-between">
-    <ctrl-user-info class="block mb-10"></ctrl-user-info>
+    <div class="sidebar__inner">
+      <div>
+        <ctrl-user-info class="block mb-10"></ctrl-user-info>
 
-    <ul class="flex flex-col gap-3">
-      <li
-        *ngFor="let link of menuLinks"
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="active"
-        class="cursor-pointer rounded-lg transition sidebar-link">
-        <a class="block p-2" [routerLink]="link.routerLink">
-          <i [class]="link.icon + ' mr-2'"></i>
-          {{ link.label }}
-        </a>
-      </li>
-    </ul>
+        <ul class="gap-3">
+          <li
+            *ngFor="let link of menuLinks"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="active"
+            class="rounded sidebar__link">
+            <a [routerLink]="link.routerLink" class="block p-2">
+              <i [class]="link.icon + ' mr-2'"></i>
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
 
-    <button (click)="signOut()" pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
+      <button (click)="signOut()" pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
+    </div>
   </ctrl-container>
 </nav>
