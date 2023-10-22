@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { filter, Observable, take, tap } from 'rxjs';
 import uniqid from 'uniqid';
@@ -15,22 +15,14 @@ import { AuthService } from '#pages/auth/services';
   templateUrl: './cash-flow-add-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowAddFormComponent extends BaseCashFlowForm {
-  @Input() public isIncomeMode!: boolean;
+export class CashFlowAddFormComponent extends BaseCashFlowForm implements OnInit {
+  @Input({ required: true }) public isIncomeMode!: boolean;
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
-  public readonly categories$: Observable<Category[]> = this.getCategories$(this.isIncomeMode);
+  public categories$!: Observable<Category[]>;
 
   private userId!: string;
-
-  public get formControls(): CashFlowForm {
-    return this.form.controls;
-  }
-
-  public get modeLabel(): string {
-    return this.isIncomeMode ? 'Income' : 'Expense';
-  }
 
   public constructor() {
     super();
@@ -44,20 +36,31 @@ export class CashFlowAddFormComponent extends BaseCashFlowForm {
       .subscribe();
   }
 
+  public ngOnInit(): void {
+    this.categories$ = this.getCategories$(this.isIncomeMode);
+  }
+
   public onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const newCashFlow: CashFlow = {
+    this.cashFlowSubmitData.emit(<CashFlow>{
       ...this.form.getRawValue(),
       date: Timestamp.fromDate(this.form.getRawValue().date!),
       uid: this.userId,
       id: uniqid(),
-    };
+    });
 
-    this.cashFlowSubmitData.emit(newCashFlow);
     this.form.reset();
+  }
+
+  public get formControls(): CashFlowForm {
+    return this.form.controls;
+  }
+
+  public get modeLabel(): string {
+    return this.isIncomeMode ? 'Income' : 'Expense';
   }
 }

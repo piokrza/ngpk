@@ -29,11 +29,11 @@ export class ExpensesViewComponent {
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
-  public readonly expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
   public readonly isLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
+  public readonly expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
   public readonly totalExpensesAmount$: Observable<number> = this.store.select(CashFlowSelectors.totalExpenses);
 
-  public isIncomeMode = false;
+  public readonly isIncomeMode = false;
 
   public onSubmit(expense: CashFlow): void {
     this.store.dispatch(CashFlowActions.addExpense({ expense }));

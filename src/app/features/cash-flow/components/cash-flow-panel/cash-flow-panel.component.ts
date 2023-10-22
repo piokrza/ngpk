@@ -10,7 +10,7 @@ import { CashFlow } from '#features/cash-flow/models';
 })
 export class CashFlowPanelComponent {
   @Input() public cashFlowData!: CashFlow[];
-  @Input() public isIncomeMode!: boolean;
+  @Input({ required: true }) public isIncomeMode!: boolean;
   @Input() public isLoading!: boolean;
   @Input() public totalCashFlowAmount = 0;
 

@@ -9,7 +9,6 @@ import { CashFlowForm } from '#features/cash-flow/models';
 import { CashFlowFormService } from '#pages/dashboard/services';
 import { CategoriesSelectors } from '#store/categories';
 
-
 export abstract class BaseCashFlowForm {
   protected readonly store: Store = inject(Store);
   protected readonly form: FormGroup<CashFlowForm> = inject(CashFlowFormService).createCashFlowForm();
