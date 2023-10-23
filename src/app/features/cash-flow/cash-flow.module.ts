@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
@@ -12,24 +12,25 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import {
-  CashFlowAddFormComponent,
-  CashFlowDetailsComponent,
-  CashFlowDetailsBoxComponent,
-  CashFlowDetailsListComponent,
-  CashFlowHeadingComponent,
-  CashFlowPanelComponent,
-  CashFlowUpdateFormComponent,
+  AddFormComponent,
+  DetailsComponent,
+  DetailsBoxComponent,
+  DetailsListComponent,
+  HeadingComponent,
+  PanelComponent,
+  UpdateFormComponent,
 } from '#features/cash-flow/components';
+import { CashFlowFormService } from '#features/cash-flow/services';
 import { IconPipe, TimestampToDatePipe } from '#shared/pipes';
 
 const declarations = [
-  CashFlowDetailsComponent,
-  CashFlowDetailsBoxComponent,
-  CashFlowDetailsListComponent,
-  CashFlowAddFormComponent,
-  CashFlowHeadingComponent,
-  CashFlowPanelComponent,
-  CashFlowUpdateFormComponent,
+  DetailsComponent,
+  DetailsBoxComponent,
+  DetailsListComponent,
+  AddFormComponent,
+  HeadingComponent,
+  PanelComponent,
+  UpdateFormComponent,
 ];
 
 const imports = [
@@ -48,7 +49,9 @@ const imports = [
   IconPipe,
 ];
 
-const exports = [...declarations];
+const providers: Array<Provider> = [CashFlowFormService];
 
-@NgModule({ declarations, imports, exports })
+const exports: Array<typeof PanelComponent> = [PanelComponent];
+
+@NgModule({ declarations, imports, providers, exports })
 export class CashFlowModule {}

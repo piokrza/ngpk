@@ -3,12 +3,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { CashFlow } from '#features/cash-flow/models';
 
 @Component({
-  selector: 'ctrl-cash-flow-details',
-  templateUrl: './cash-flow-details.component.html',
-  styleUrls: ['./cash-flow-details.component.scss'],
+  selector: 'ctrl-details',
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowDetailsComponent {
+export class DetailsComponent {
   @Input({ required: true }) details!: CashFlow;
   @Input({ required: true }) isIncomeMode!: boolean;
 

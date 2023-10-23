@@ -6,7 +6,7 @@ import { Observable, filter, map } from 'rxjs';
 import { CATEGORIES } from '#common/enums';
 import { Category, Categories } from '#common/models';
 import { CashFlowForm } from '#features/cash-flow/models';
-import { CashFlowFormService } from '#pages/dashboard/services';
+import { CashFlowFormService } from '#features/cash-flow/services';
 import { CategoriesSelectors } from '#store/categories';
 
 export abstract class BaseCashFlowForm {

@@ -5,7 +5,7 @@ import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, tap } from 'rxjs';
 
-import { CashFlowUpdateFormComponent } from '#features/cash-flow/components';
+import { UpdateFormComponent } from '#features/cash-flow/components';
 import { CashFlow } from '#features/cash-flow/models';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
@@ -49,7 +49,7 @@ export class IncomesViewComponent {
   }
 
   public updateIncome(updatedIncome: CashFlow): void {
-    const dialogRef: DynamicDialogRef = this.dialogService.open(CashFlowUpdateFormComponent, {
+    const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
       header: 'Update income',
       style: { width: '90%', maxWidth: '600px' },
       data: { updatedCashFlow: updatedIncome, isIncomeMode: this.isIncomeMode },

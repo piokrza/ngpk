@@ -9,12 +9,12 @@ import { BaseCashFlowForm } from '#features/cash-flow/abstract';
 import { CashFlowForm, CashFlowUpdateFormData } from '#features/cash-flow/models';
 
 @Component({
-  selector: 'ctrl-cash-flow-update-form',
-  templateUrl: './cash-flow-update-form.component.html',
-  styleUrls: ['./cash-flow-update-form.component.scss'],
+  selector: 'ctrl-update-form',
+  templateUrl: './update-form.component.html',
+  styleUrls: ['./update-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowUpdateFormComponent extends BaseCashFlowForm implements OnInit {
+export class UpdateFormComponent extends BaseCashFlowForm implements OnInit {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;

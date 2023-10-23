@@ -6,7 +6,7 @@
   <ng-container *ngIf="cashFlowList.length; else noCashFlowToDisplay">
     <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > 6" [rows]="6">
       <ng-template let-detailsItem pTemplate="listItem">
-        <ctrl-cash-flow-details
+        <ctrl-details
           (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
           (cashFlowToUpdate)="emitCashFlowToUpdate($event)"
           [isIncomeMode]="isIncomeMode"

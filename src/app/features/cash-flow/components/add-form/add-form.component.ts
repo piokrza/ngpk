@@ -11,11 +11,11 @@ import { CashFlow, CashFlowForm } from '#features/cash-flow/models';
 import { AuthService } from '#pages/auth/services';
 
 @Component({
-  selector: 'ctrl-cash-flow-add-form',
-  templateUrl: './cash-flow-add-form.component.html',
+  selector: 'ctrl-add-form',
+  templateUrl: './add-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowAddFormComponent extends BaseCashFlowForm implements OnInit {
+export class AddFormComponent extends BaseCashFlowForm implements OnInit {
   @Input({ required: true }) public isIncomeMode!: boolean;
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();

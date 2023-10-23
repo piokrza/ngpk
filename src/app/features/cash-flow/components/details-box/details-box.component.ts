@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-cash-flow-details-box',
-  styleUrls: ['./cash-flow-details-box.component.scss'],
+  selector: 'ctrl-details-box',
+  styleUrls: ['./details-box.component.scss'],
   template: `
     <div class="gap-2 box">
       <i [class]="'mr-1 pi pi-' + iconName"></i>
@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowDetailsBoxComponent {
+export class DetailsBoxComponent {
   @Input() public detail!: string;
   @Input() public iconName!: string;
 }

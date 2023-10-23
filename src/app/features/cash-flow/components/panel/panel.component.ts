@@ -4,11 +4,11 @@ import { CashFlow } from '#features/cash-flow/models';
 
 @Component({
   selector: 'ctrl-cash-flow-panel',
-  templateUrl: './cash-flow-panel.component.html',
-  styleUrls: ['./cash-flow-panel.component.scss'],
+  templateUrl: './panel.component.html',
+  styleUrls: ['./panel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowPanelComponent {
+export class PanelComponent {
   @Input() public cashFlowData!: CashFlow[];
   @Input({ required: true }) public isIncomeMode!: boolean;
   @Input() public isLoading!: boolean;

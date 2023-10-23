@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-cash-flow-heading',
-  styleUrls: ['./cash-flow-heading.component.scss'],
+  selector: 'ctrl-heading',
+  styleUrls: ['./heading.component.scss'],
   template: `
     <p-card>
       <h3 class="heading">
@@ -15,7 +15,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowHeadingComponent {
+export class HeadingComponent {
   @Input() public isIncomeMode!: boolean;
   @Input() public amount!: number;
 }
