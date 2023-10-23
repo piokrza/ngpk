@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { CATEGORY_DIC } from '#common/dictionaries';
 import { CashFlow } from '#features/cash-flow/models';
-import { CashFlowExpenseChartData, CashFlowIncomesChartData, CustomChartData } from '#pages/dashboard/models';
+import { ExpenseChartData, IncomesChartData, CustomChartData } from '#pages/dashboard/models';
 
 @Injectable({ providedIn: 'root' })
 export class ChartService {
@@ -83,7 +83,7 @@ export class ChartService {
     };
   }
 
-  private mapChartExpensesData(expenses: CashFlow[]): CashFlowExpenseChartData {
+  private mapChartExpensesData(expenses: CashFlow[]): ExpenseChartData {
     const rentalFeesCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 0);
     const travelCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 1);
     const foodCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 2);
@@ -119,7 +119,7 @@ export class ChartService {
     };
   }
 
-  private mapChartIncomesData(incomes: CashFlow[]): CashFlowIncomesChartData {
+  private mapChartIncomesData(incomes: CashFlow[]): IncomesChartData {
     const concertsCashFlow: CashFlow[] = incomes.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 4);
     const salaryCashFlow: CashFlow[] = incomes.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 5);
     const giftsCashFlow: CashFlow[] = incomes.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 6);

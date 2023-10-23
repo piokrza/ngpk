@@ -18,11 +18,11 @@ const imports = [CommonModule, ReactiveFormsModule, InputTextModule];
 export class FormTwoComponent implements OnInit {
   public readonly rootFormDirective: FormGroupDirective = inject(FormGroupDirective);
 
-  @Input() public formGroupName!: string;
+  @Input({ required: true }) public formGroupName!: string;
 
   public form!: FormGroup<FormTwo>;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.form = this.rootFormDirective.control.get(this.formGroupName) as FormGroup<FormTwo>;
   }
 }

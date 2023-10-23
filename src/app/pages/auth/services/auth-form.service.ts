@@ -1,30 +1,43 @@
-import { inject, Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Injectable } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { LoginForm, RegisterForm } from '#pages/auth/models';
 import { passwordMatchValidator } from '#pages/auth/validators';
 
 @Injectable()
 export class AuthFormService {
-  private readonly fb: FormBuilder = inject(FormBuilder);
-
   public createRegisterForm(): FormGroup<RegisterForm> {
-    return this.fb.group<RegisterForm>(
+    return new FormGroup<RegisterForm>(
       {
-        email: this.fb.nonNullable.control('', { validators: [Validators.required, Validators.email] }),
-        password: this.fb.nonNullable.control('', { validators: [Validators.required, Validators.minLength(6)] }),
-        passwordConfirmation: this.fb.nonNullable.control('', {
+        email: new FormControl<string>('', {
+          validators: [Validators.required, Validators.email],
+          nonNullable: true,
+        }),
+        password: new FormControl<string>('', {
           validators: [Validators.required, Validators.minLength(6)],
+          nonNullable: true,
+        }),
+        passwordConfirmation: new FormControl<string>('', {
+          validators: [Validators.required, Validators.minLength(6)],
+          nonNullable: true,
         }),
       },
-      { validators: [passwordMatchValidator('password', 'passwordConfirmation')] }
+      {
+        validators: [passwordMatchValidator('password', 'passwordConfirmation')],
+      }
     );
   }
 
   public createLoginForm(): FormGroup<LoginForm> {
-    return this.fb.group<LoginForm>({
-      email: this.fb.nonNullable.control('', { validators: [Validators.required, Validators.email] }),
-      password: this.fb.nonNullable.control('', { validators: [Validators.required] }),
+    return new FormGroup<LoginForm>({
+      email: new FormControl<string>('', {
+        validators: [Validators.required, Validators.email],
+        nonNullable: true,
+      }),
+      password: new FormControl<string>('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
     });
   }
 }

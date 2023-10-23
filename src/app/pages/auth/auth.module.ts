@@ -10,10 +10,8 @@ import { LoginFormComponent, RegisterFormComponent } from '#pages/auth/component
 import { AuthFormService, AuthService } from '#pages/auth/services';
 
 const declarations = [AuthViewComponent, LoginFormComponent, RegisterFormComponent];
-
 const imports = [CommonModule, AuthRoutingModule, ReactiveFormsModule, InputTextModule, ButtonModule, PasswordModule];
-
-const providers: Array<Provider> = [AuthFormService, AuthService];
+const providers: Provider[] = [AuthFormService, AuthService];
 
 @NgModule({ declarations, imports, providers })
-export class AuthModule {}
+export default class AuthModule {}

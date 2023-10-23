@@ -5,7 +5,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, tap } from 'rxjs';
 
 import { User } from '#common/models';
-import { AccountSettingsFormComponent } from '#pages/settings/components';
+import { AccountSettingsFormComponent } from '#pages/dashboard/pages/settings/components';
 import { AuthActions, AuthSelectors } from '#store/auth';
 
 @UntilDestroy()

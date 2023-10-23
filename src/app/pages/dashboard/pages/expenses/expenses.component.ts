@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
@@ -5,9 +6,12 @@ import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, tap } from 'rxjs';
 
+import { CashFlowModule } from '#features/cash-flow';
 import { UpdateFormComponent } from '#features/cash-flow/components';
 import { CashFlow } from '#features/cash-flow/models';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
+
+const imports = [AsyncPipe, CashFlowModule];
 
 @UntilDestroy()
 @Component({
@@ -23,8 +27,10 @@ import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
       [isIncomeMode]="isIncomeMode" />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports,
 })
-export class ExpensesViewComponent {
+export default class ExpensesComponent {
   private readonly store: Store = inject(Store);
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);

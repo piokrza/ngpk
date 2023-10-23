@@ -3,8 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { User } from '#common/models';
-import { AccountSettingsForm } from '#pages/settings/models';
-import { AccountSettingsFormService } from '#pages/settings/services';
+import { AccountSettingsForm } from '#pages/dashboard/pages/settings/models';
+import { AccountSettingsFormService } from '#pages/dashboard/pages/settings/services';
 
 @Component({
   selector: 'ctrl-account-settings-form',

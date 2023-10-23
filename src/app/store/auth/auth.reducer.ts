@@ -31,12 +31,12 @@ export const Reducer = createReducer(
   on(AuthActions.userNotAuthenticated, (): State => {
     return {
       user: {
-        displayName: '',
-        email: '',
+        displayName: null,
+        email: null,
         emailVerified: false,
         phoneNumber: null,
-        photoURL: '',
-        refreshToken: '',
+        photoURL: null,
+        refreshToken: null,
         uid: '',
       },
     };

@@ -3,41 +3,25 @@ import { NgModule } from '@angular/core';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthModule } from '#pages/auth';
+import { AppPaths } from '#common/enums';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: AppPaths.DASHBOARD,
     pathMatch: 'full',
   },
   {
-    path: 'dashboard',
+    path: AppPaths.DASHBOARD,
     loadChildren: (): Promise<any> => import('#pages/dashboard/dashboard.module'),
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: () => redirectUnauthorizedTo(['authentication']) },
+    data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
+    // Add data resolver
   },
   {
-    path: 'incomes',
-    loadChildren: (): Promise<any> => import('#pages/incomes/incomes.module'),
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: () => redirectUnauthorizedTo(['authentication']) },
-  },
-  {
-    path: 'expenses',
-    loadChildren: (): Promise<any> => import('#pages/expenses/expenses.module'),
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: () => redirectUnauthorizedTo(['authentication']) },
-  },
-  {
-    path: 'settings',
-    loadChildren: (): Promise<any> => import('#pages/settings/settings.module'),
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: () => redirectUnauthorizedTo(['authentication']) },
-  },
-  {
-    path: 'authentication',
-    loadChildren: (): Promise<any> => import('#pages/auth/auth.module').then((m): AuthModule => m.AuthModule),
+    path: AppPaths.AUTHENTICATION,
+    // canMatch: [isLoggedInGuard], Fix
+    loadChildren: (): Promise<any> => import('#pages/auth/auth.module'),
   },
 ];
 

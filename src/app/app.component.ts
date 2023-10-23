@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import firebase from 'firebase/compat';
 import { PrimeNGConfig } from 'primeng/api';
@@ -11,17 +12,14 @@ import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
 import { CategoriesActions } from '#store/categories';
 
+@UntilDestroy()
 @Component({
   selector: 'ctrl-root',
-  template: `
-    <ctrl-layout>
-      <router-outlet></router-outlet>
-    </ctrl-layout>
-  `,
+  template: ` <router-outlet /> `,
 })
 export class AppComponent implements OnInit {
   private store: Store = inject(Store);
-  private authState: AuthService = inject(AuthService);
+  private authService: AuthService = inject(AuthService);
   private themeService: ThemeService = inject(ThemeService);
   private primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
 
@@ -31,8 +29,11 @@ export class AppComponent implements OnInit {
     this.primengConfig.ripple = true;
     this.themeService.setTheme(this.isLightMode);
 
-    this.authState.authState$
-      .pipe(tap((user: firebase.User | null) => user && this.dispatchStoreActions(user.uid)))
+    this.authService.authState$
+      .pipe(
+        tap((user: firebase.User | null) => user && this.dispatchStoreActions(user.uid)),
+        untilDestroyed(this)
+      )
       .subscribe();
   }
 

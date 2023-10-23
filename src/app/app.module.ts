@@ -18,7 +18,6 @@ import { environment } from 'src/environments/environment';
 
 import { AppInitService } from '#common/services/app-init.service';
 import { injectThemeLink$ } from '#common/utils/inject-theme-link';
-import { UiModule } from '#shared/ui';
 import { AuthEffects } from '#store/auth/auth.effects';
 import { CashFlowEffects } from '#store/cash-flow/cash-flow.effects';
 import { CategoriesEffects } from '#store/categories/categories.effects';
@@ -32,7 +31,6 @@ const imports = [
   BrowserModule,
   BrowserAnimationsModule,
   AppRoutingModule,
-  UiModule,
 
   // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),
