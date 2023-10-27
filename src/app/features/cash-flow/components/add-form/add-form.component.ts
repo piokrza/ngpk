@@ -13,6 +13,7 @@ import { AuthService } from '#pages/auth/services';
 @Component({
   selector: 'ctrl-add-form',
   templateUrl: './add-form.component.html',
+  styleUrls: ['./add-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddFormComponent extends BaseCashFlowForm implements OnInit {
@@ -22,6 +23,7 @@ export class AddFormComponent extends BaseCashFlowForm implements OnInit {
 
   public categories$!: Observable<Category[]>;
 
+  public readonly trPath: string = 'cashFlow.form.';
   private userId!: string;
 
   public constructor() {
@@ -61,6 +63,6 @@ export class AddFormComponent extends BaseCashFlowForm implements OnInit {
   }
 
   public get modeLabel(): string {
-    return this.isIncomeMode ? 'Income' : 'Expense';
+    return `${this.trPath}${this.isIncomeMode ? 'income' : 'expense'}Name`;
   }
 }

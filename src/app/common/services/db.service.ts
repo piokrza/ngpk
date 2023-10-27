@@ -5,7 +5,7 @@ import {
   AngularFirestoreDocument,
   DocumentReference,
 } from '@angular/fire/compat/firestore';
-import { Observable, combineLatestWith, map, take } from 'rxjs';
+import { Observable, combineLatest, map, take } from 'rxjs';
 
 import { Collection } from '#common/enums';
 import { User } from '#common/models';
@@ -23,7 +23,7 @@ export class DbService {
       .get()
       .pipe(
         take(1),
-        map((data): false | Promise<void> => !data.exists && usersCollectionRef.doc(data.id).set(user))
+        map((data) => !data.exists && usersCollectionRef.doc(data.id).set(user))
       );
   }
 
@@ -38,10 +38,12 @@ export class DbService {
       (ref) => ref.where('uid', '==', uid)
     );
 
-    return expenses$.valueChanges({ idField: 'id' }).pipe(
-      combineLatestWith(incomes$.valueChanges({ idField: 'id' })),
+    return combineLatest({
+      expenses: expenses$.valueChanges({ idField: 'id' }),
+      incomes: incomes$.valueChanges({ idField: 'id' }),
+    }).pipe(
       take(1),
-      map(([expenses, incomes]: [CashFlow[], CashFlow[]]): CashFlowUserData => ({ expenses, incomes }))
+      map(({ expenses, incomes }): CashFlowUserData => ({ expenses, incomes }))
     );
   }
 

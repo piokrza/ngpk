@@ -1,0 +1,89 @@
+{
+  "cashFlow": {
+    "headingIncomes": "Total incomes",
+    "headingExpenses": "Total expenses",
+    "totalIncome": "Total income",
+    "totalExpences": "Total expences",
+    "emptyListIncomes": "No incomes yet.",
+    "emptyListExpenses": "No expenses yet.",
+    "form": {
+      "incomeName": "Income name",
+      "expenseName": "Expense name",
+      "amount": "Amount",
+      "pickDate": "Pick date",
+      "addDescription": "Add description",
+      "selectCategory": "Select category",
+      "incomeNameAdd": "Dodaj przychód",
+      "expenseNameAdd": "Dodaj wydatek",
+      "updateIncomeName": "Update income name",
+      "updateExpenseName": "Update expense name",
+      "updateAmount": "Update amount",
+      "update": "Aktualizuj"
+    },
+    "categories": {
+      "concerts": "Concerts",
+      "gifts": "Gifts",
+      "salary": "Salary",
+      "rentalFees": "Rental fees",
+      "travel": "Travel",
+      "food": "Food",
+      "entertainment": "Entertainment"
+    }
+  },
+
+  "overview": {
+    "totalBalance": "Total balance:",
+    "noProvidedData1": "No provided data, add",
+    "expence": " expence",
+    "income": " income",
+    "or": " or",
+    "noProvidedData2": " to calculate your balance.",
+    "expences": "Expences",
+    "incomes": "Incomes"
+  },
+
+  "incomes": {
+    "removeMessage": "Are you sure that you want to remove this income?",
+    "removeHeader": "Remove income",
+    "updateIncome": "Update income"
+  },
+
+  "expences": {
+    "removeMessage": "Are you sure that you want to remove this expence?",
+    "removeHeader": "Remove expence",
+    "updateExpence": "Update expence"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "selectLanguage": "Select language",
+    "selectTheme": "Select theme",
+    "accountSettings": "Account settings",
+    "accountForm": {
+      "displayName": "Display name",
+      "email": "Email",
+      "phoneNumber": "Phone number",
+      "avatar": "Avatar",
+      "update": "Update",
+      "title": "Update account"
+    }
+  },
+
+  "auth": {
+    "signoutMessage": "Are you sure that you want to signout?",
+    "signout": "Signout"
+  },
+
+  "menu": {
+    "home": "Home",
+    "incomes": "Incomes",
+    "expenses": "Expenses",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+
+  "primeng": {
+    "accept": "Yes",
+    "reject": "No"
+  }
+}

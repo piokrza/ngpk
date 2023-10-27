@@ -6,31 +6,31 @@
   <p-card>
     <ng-container *ngIf="totalBalance$ | async as totalBalance; else noTotalBalance">
       <h3 class="heading">
-        Total balance:
+        {{ 'overview.totalBalance' | translate }}
         <span [class]="totalBalance > 0 ? 'text--success' : 'text--danger'"> {{ totalBalance | number }} PLN </span>
       </h3>
     </ng-container>
 
     <ng-template #noTotalBalance>
       <div class="heading">
-        No provided data, add
-        <a [routerLink]="['/expenses']" class="underline">expense</a>
-        or
-        <a [routerLink]="['/incomes']" class="underline">income</a>
-        to calculate your balance
+        {{ 'overview.noProvidedData1' | translate }}
+        <a [routerLink]="['/expenses']" class="underline">{{ 'overview.expence' | translate }}</a>
+        {{ 'overview.or' | translate }}
+        <a [routerLink]="['/incomes']" class="underline">{{ 'overview.income' | translate }}</a>
+        {{ 'overview.noProvidedData2' | translate }}
       </div>
     </ng-template>
   </p-card>
 
-  <section *ngIf="totalBalance$ | async" class="flex flex-wrap mt-6">
+  <section *ngIf="totalBalance$ | async" class="overview">
     <ctrl-container>
-      <div class="heading">Expenses</div>
-      <p-chart [data]="expensesChartData" [options]="chartsOptions" type="pie" class="block mt-6" />
+      <div class="heading">{{ 'overview.expences' | translate }}</div>
+      <p-chart [data]="expensesChartData" [options]="chartsOptions" type="pie" class="block mt-6 chart" />
     </ctrl-container>
 
     <ctrl-container>
-      <div class="heading">Incomes</div>
-      <p-chart [data]="incomesChartData" [options]="chartsOptions" type="pie" class="block mt-6" />
+      <div class="heading">{{ 'overview.incomes' | translate }}</div>
+      <p-chart [data]="incomesChartData" [options]="chartsOptions" type="pie" class="block mt-6 chart" />
     </ctrl-container>
   </section>
 </ng-template>

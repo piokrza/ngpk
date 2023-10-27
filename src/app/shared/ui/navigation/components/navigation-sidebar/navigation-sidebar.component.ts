@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, Input, TrackByFunction } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 
 import { trackByKey } from '#common/utils';
@@ -13,6 +14,7 @@ import { AuthActions } from '#store/auth';
 })
 export class NavigationSidebarComponent {
   private readonly store: Store = inject(Store);
+  private readonly translateService: TranslateService = inject(TranslateService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
   @Input() public menuLinks!: MenuItem[];
@@ -21,8 +23,8 @@ export class NavigationSidebarComponent {
 
   public signOut(): void {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to signout?',
-      header: 'Signout',
+      message: this.translateService.instant('auth.signoutMessage'),
+      header: this.translateService.instant('auth.signout'),
       accept: (): void => this.store.dispatch(AuthActions.signOut()),
     });
   }

@@ -3,17 +3,21 @@
 </ng-container>
 
 <ng-template #loaded>
-  <ng-container *ngIf="cashFlowList.length; else noCashFlowToDisplay">
-    <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > 6" [rows]="6">
-      <ng-template let-detailsItem pTemplate="listItem">
-        <ctrl-details
-          (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
-          (cashFlowToUpdate)="emitCashFlowToUpdate($event)"
-          [isIncomeMode]="isIncomeMode"
-          [details]="detailsItem" />
-      </ng-template>
-    </p-dataView>
-  </ng-container>
+  <div class="wrapper">
+    <ng-container *ngIf="cashFlowList.length; else noCashFlowToDisplay">
+      <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > 6" [rows]="6">
+        <ng-template let-detailsItem pTemplate="listItem">
+          <ctrl-details
+            (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
+            (cashFlowToUpdate)="emitCashFlowToUpdate($event)"
+            [isIncomeMode]="isIncomeMode"
+            [details]="detailsItem" />
+        </ng-template>
+      </p-dataView>
+    </ng-container>
 
-  <ng-template #noCashFlowToDisplay>No {{ isIncomeMode ? 'incomes' : 'expenses' }} to display </ng-template>
+    <ng-template #noCashFlowToDisplay>
+      {{ 'cashFlow.emptyList' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
+    </ng-template>
+  </div>
 </ng-template>

@@ -1,3 +1,5 @@
+@use 'src/assets/styles/variables/breakpoints' as b;
+
 :host {
   display: block;
   height: 100%;
@@ -6,5 +8,19 @@
     margin: 0;
     text-align: center;
     font-size: 1.5rem;
+  }
+
+  .overview {
+    margin-top: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: b.$md) {
+  :host {
+    .overview {
+      display: flex;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
   }
 }

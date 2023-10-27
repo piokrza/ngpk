@@ -12,6 +12,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailsBoxComponent {
-  @Input() public detail!: string;
-  @Input() public iconName!: string;
+  @Input({ required: true }) public detail!: string;
+  @Input({ required: true }) public iconName!: string;
 }

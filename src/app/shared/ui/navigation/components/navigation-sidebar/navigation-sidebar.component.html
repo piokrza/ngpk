@@ -12,13 +12,18 @@
             class="rounded sidebar__link">
             <a [routerLink]="link.routerLink" class="block p-2">
               <i [class]="link.icon + ' mr-2'"></i>
-              {{ link.label }}
+              {{ link.label ?? '' | translate }}
             </a>
           </li>
         </ul>
       </div>
 
-      <button (click)="signOut()" pButton icon="pi pi-sign-out" label="Signout" class="block mt-4 w-full"></button>
+      <button
+        (click)="signOut()"
+        icon="pi pi-sign-out"
+        [label]="'auth.signout' | translate"
+        class="block mt-4 w-full"
+        pButton></button>
     </div>
   </ctrl-container>
 </nav>

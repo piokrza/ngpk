@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject }
 import { RouterLink } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -14,7 +15,15 @@ import { ChartService } from '#pages/dashboard/services';
 import { ContainerComponent } from '#shared/components';
 import { CashFlowSelectors } from '#store/cash-flow';
 
-const imports = [CommonModule, RouterLink, CardModule, ChartModule, ContainerComponent, ProgressSpinnerModule];
+const imports = [
+  CommonModule,
+  TranslateModule,
+  RouterLink,
+  CardModule,
+  ChartModule,
+  ContainerComponent,
+  ProgressSpinnerModule,
+];
 
 @UntilDestroy()
 @Component({

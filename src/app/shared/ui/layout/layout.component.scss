@@ -2,9 +2,6 @@
 @use 'src/assets/styles/variables/breakpoints' as b;
 
 .wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-
   main {
     height: calc(100vh - s.$menubarHeight);
     max-width: 100vw;
@@ -13,11 +10,12 @@
 
 @media only screen and (min-width: b.$xl) {
   .wrapper {
+    display: flex;
     height: 100vh;
-    grid-template-columns: s.$sidebarWidth 1fr;
 
     main {
       height: 100%;
+      flex-grow: 1;
     }
   }
 }

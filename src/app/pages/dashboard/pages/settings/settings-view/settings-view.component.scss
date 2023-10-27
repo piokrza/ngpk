@@ -1,3 +1,5 @@
+@use 'src/assets/styles/variables/sizes' as s;
+
 .title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -6,5 +8,7 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  max-width: 20rem;
+  gap: 1rem;
+  max-width: s.$containerMaxWidth;
+  margin: 0 auto;
 }

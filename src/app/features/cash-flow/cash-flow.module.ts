@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';
@@ -20,7 +21,7 @@ import {
   PanelComponent,
   UpdateFormComponent,
 } from '#features/cash-flow/components';
-import { CashFlowFormService } from '#features/cash-flow/services';
+import { CategoryLabelPipe } from '#features/cash-flow/pipes';
 import { IconPipe, TimestampToDatePipe } from '#shared/pipes';
 
 const declarations = [
@@ -32,13 +33,13 @@ const declarations = [
   PanelComponent,
   UpdateFormComponent,
 ];
-
 const imports = [
   CommonModule,
   CardModule,
   InputTextareaModule,
   InputTextModule,
   InputNumberModule,
+  TranslateModule,
   DropdownModule,
   CalendarModule,
   ReactiveFormsModule,
@@ -48,9 +49,7 @@ const imports = [
   TimestampToDatePipe,
   IconPipe,
 ];
-
-const providers: Array<Provider> = [CashFlowFormService];
-
+const providers: Array<Provider> = [CategoryLabelPipe];
 const exports: Array<typeof PanelComponent> = [PanelComponent];
 
 @NgModule({ declarations, imports, providers, exports })

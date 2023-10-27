@@ -10,6 +10,7 @@
           <span
             [ngClass]="{ 'card__dot--success': isIncomeMode, 'card__dot--danger': !isIncomeMode }"
             class="mr-3 card__dot"></span>
+          <!-- TODO: use array with classes -->
           {{ details.name | titlecase }}
         </div>
 
@@ -27,14 +28,14 @@
     <div class="card__inner gap-3">
       <button
         (click)="cashFlowToUpdate.emit(details)"
-        pButton
         class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
-        icon="pi pi-align-center"></button>
+        icon="pi pi-align-center"
+        pButton></button>
       <button
         (click)="cashFlowToRemoveId.emit(details.id)"
-        pButton
         class="p-button-text p-button-danger p-button-outlined p-button-icon-only p-button-rounded"
-        icon="pi pi-trash"></button>
+        icon="pi pi-trash"
+        pButton></button>
     </div>
   </div>
 </p-card>

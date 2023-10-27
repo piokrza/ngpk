@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -24,6 +25,7 @@ const imports = [
   ProgressSpinnerModule,
   ToastModule,
   ConfirmDialogModule,
+  TranslateModule,
 ];
 
 const exports = [LayoutComponent];

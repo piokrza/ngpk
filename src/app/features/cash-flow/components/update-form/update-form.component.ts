@@ -21,9 +21,7 @@ export class UpdateFormComponent extends BaseCashFlowForm implements OnInit {
 
   public categories$: Observable<Category[]> = this.getCategories$(this.cashFlowUpdateFormData.isIncomeMode);
 
-  public get formControls(): CashFlowForm {
-    return this.form.controls;
-  }
+  public readonly trPath: string = 'cashFlow.form.';
 
   public ngOnInit(): void {
     this.pathCashFlowUpdateFormValue();
@@ -46,5 +44,9 @@ export class UpdateFormComponent extends BaseCashFlowForm implements OnInit {
       date: date!.toDate(),
       description,
     });
+  }
+
+  public get formControls(): CashFlowForm {
+    return this.form.controls;
   }
 }

@@ -1,37 +1,44 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <span class="p-float-label my-7">
-    <input [formControl]="formControls.name" id="name" type="text" pInputText class="w-full" />
-    <label for="name">{{ modeLabel }} name</label>
-  </span>
+<div class="wrapper">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <span class="p-float-label my-7">
+      <input [formControl]="formControls.name" id="name" type="text" pInputText class="w-full" />
+      <label for="name">{{ modeLabel | translate }}</label>
+    </span>
 
-  <span class="p-float-label my-7">
-    <p-inputNumber
-      [formControl]="formControls.amount"
-      [minFractionDigits]="1"
-      [placeholder]="modeLabel + ' amount'"
-      id="amount"
-      mode="currency"
-      inputId="currency-poland"
-      currency="PLN" />
-  </span>
+    <span class="p-float-label my-7">
+      <p-inputNumber
+        [formControl]="formControls.amount"
+        [minFractionDigits]="1"
+        [placeholder]="trPath + 'amount' | translate"
+        id="amount"
+        mode="currency"
+        inputId="currency-poland"
+        currency="PLN" />
+    </span>
 
-  <p-dropdown
-    [formControl]="formControls.categoryCode"
-    [options]="(categories$ | async)!"
-    optionLabel="name"
-    optionValue="code"
-    styleClass="w-full"
-    placeholder="Select category" />
+    <p-dropdown
+      [formControl]="formControls.categoryCode"
+      [options]="(categories$ | async)!"
+      [placeholder]="trPath + 'selectCategory' | translate"
+      optionLabel="name"
+      optionValue="code"
+      styleClass="w-full" />
 
-  <span class="p-float-label my-7">
-    <p-calendar [formControl]="formControls.date" id="date" class="w-full" />
-    <label for="date">Pick date</label>
-  </span>
+    <span class="p-float-label my-7">
+      <p-calendar [formControl]="formControls.date" id="date" class="w-full" />
+      <label for="date">{{ trPath + 'pickDate' | translate }}</label>
+    </span>
 
-  <span class="p-float-label my-7">
-    <textarea [formControl]="formControls.description" id="description" class="w-full" pInputTextarea></textarea>
-    <label for="description">Add description</label>
-  </span>
+    <span class="p-float-label my-7">
+      <textarea [formControl]="formControls.description" id="description" class="w-full" pInputTextarea></textarea>
+      <label for="description">{{ trPath + 'addDescription' | translate }}</label>
+    </span>
 
-  <button [disabled]="form.invalid" [label]="'Add ' + modeLabel" type="submit" class="w-full" pButton></button>
-</form>
+    <button
+      [disabled]="form.invalid"
+      [label]="modeLabel + 'Add' | translate"
+      type="submit"
+      class="w-full"
+      pButton></button>
+  </form>
+</div>

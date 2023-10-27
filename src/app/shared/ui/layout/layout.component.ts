@@ -6,11 +6,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     <div class="wrapper">
       <ctrl-navigation />
 
-      <ctrl-container>
-        <main>
+      <main>
+        <ctrl-container>
           <ng-content />
-        </main>
-      </ctrl-container>
+        </ctrl-container>
+      </main>
     </div>
 
     <p-toast position="top-right" />

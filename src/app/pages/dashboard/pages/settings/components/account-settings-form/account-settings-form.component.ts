@@ -18,6 +18,8 @@ export class AccountSettingsFormComponent implements OnInit {
   private readonly userData: User = inject(DynamicDialogConfig).data;
   public form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).createUserSettingsForm();
 
+  public readonly trPath: string = 'settings.accountForm.';
+
   public ngOnInit(): void {
     this.userData && this.patchAccountFormValues();
   }

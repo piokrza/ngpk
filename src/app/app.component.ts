@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase/compat';
 import { PrimeNGConfig } from 'primeng/api';
 import { tap } from 'rxjs';
@@ -15,19 +16,18 @@ import { CategoriesActions } from '#store/categories';
 @UntilDestroy()
 @Component({
   selector: 'ctrl-root',
-  template: ` <router-outlet /> `,
+  template: `<router-outlet />`,
 })
 export class AppComponent implements OnInit {
-  private store: Store = inject(Store);
-  private authService: AuthService = inject(AuthService);
-  private themeService: ThemeService = inject(ThemeService);
-  private primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
-
-  private isLightMode: boolean | null = inject(PersistanceService).get<boolean>(isLightMode);
+  private readonly store: Store = inject(Store);
+  private readonly authService: AuthService = inject(AuthService);
+  private readonly primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
+  private readonly translateService: TranslateService = inject(TranslateService);
 
   public ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.themeService.setTheme(this.isLightMode);
+
+    this.translateService.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
 
     this.authService.authState$
       .pipe(

@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, tap } from 'rxjs';
@@ -34,6 +35,7 @@ const imports = [AsyncPipe, CashFlowModule, UiModule];
 export default class IncomesComponent {
   private readonly store: Store = inject(Store);
   private readonly dialogService: DialogService = inject(DialogService);
+  private readonly translateService: TranslateService = inject(TranslateService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
   public incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
@@ -48,8 +50,8 @@ export default class IncomesComponent {
 
   public removeIncome(incomeId: string): void {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to remove this income?',
-      header: 'Remove income',
+      message: this.translateService.instant('incomes.removeMessage'),
+      header: this.translateService.instant('incomes.removeHeader'),
       icon: 'pi pi-trash',
       accept: (): void => this.store.dispatch(CashFlowActions.removeIncome({ incomeId })),
     });
@@ -57,7 +59,7 @@ export default class IncomesComponent {
 
   public updateIncome(updatedIncome: CashFlow): void {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
-      header: 'Update income',
+      header: this.translateService.instant('incomes.updateIncome'),
       style: { width: '90%', maxWidth: '600px' },
       data: { updatedCashFlow: updatedIncome, isIncomeMode: this.isIncomeMode },
     });

@@ -1,0 +1,89 @@
+{
+  "cashFlow": {
+    "headingIncomes": "Balans przychodów:",
+    "headingExpenses": "Balans wydatków:",
+    "totalIncome": "Przychód całkowity",
+    "totalExpences": "Suma wydatków",
+    "emptyListIncomes": "Lista przychodów jest pusta.",
+    "emptyListExpenses": "Lista wydatków jest pusta.",
+    "form": {
+      "incomeName": "Nazwa przychodu",
+      "expenseName": "Nazwa wydatku",
+      "amount": "Kwota",
+      "pickDate": "Wybierz datę",
+      "addDescription": "Dodaj opis",
+      "selectCategory": "Wybierz kategorię",
+      "incomeNameAdd": "Dodaj przychód",
+      "expenseNameAdd": "Dodaj wydatek",
+      "updateIncomeName": "Edytuj nazwę przychodu",
+      "updateExpenseName": "Edytuj nazwę wydatku",
+      "updateAmount": "Edytuj kwotę",
+      "update": "Aktualizuj"
+    },
+    "categories": {
+      "concerts": "Koncerty",
+      "gifts": "Prezenty",
+      "salary": "Wynagrodzenie",
+      "rentalFees": "Opłaty wynajmu",
+      "travel": "Podróże",
+      "food": "Food",
+      "entertainment": "Entertainment"
+    }
+  },
+
+  "overview": {
+    "totalBalance": "Balans:",
+    "noProvidedData1": "Brak danych, dodaj",
+    "expence": " wydatek",
+    "income": " przychód",
+    "or": " lub",
+    "noProvidedData2": " by przeliczyć Twoj balans.",
+    "expences": "Wydatki",
+    "incomes": "Przychody"
+  },
+
+  "incomes": {
+    "removeMessage": "Na pewno chcesz usunąć przychód?",
+    "removeHeader": "Usuń przychód",
+    "updateIncome": "Edytuj przychód"
+  },
+
+  "expences": {
+    "removeMessage": "Na pewno chcesz usunąć wydatek?",
+    "removeHeader": "Usuń wydatek",
+    "updateExpence": "Edytuj wydatek"
+  },
+
+  "settings": {
+    "title": "Ustawienia",
+    "selectLanguage": "Wybierz język",
+    "selectTheme": "Wybierz motyw",
+    "accountSettings": "Ustawienia konta",
+    "accountForm": {
+      "displayName": "Pseudonim",
+      "email": "Email",
+      "phoneNumber": "Numer telefonu",
+      "avatar": "Avatar",
+      "update": "Aktualizuj",
+      "title": "Edytuj profil"
+    }
+  },
+
+  "auth": {
+    "signoutMessage": "Na pewno chcesz się wylogować?",
+    "signout": "Wyloguj się"
+  },
+
+  "menu": {
+    "home": "Strona główna",
+    "incomes": "Przychody",
+    "expenses": "Wydatki",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj się"
+  },
+
+  "primeng": {
+    "accept": "Tak",
+    "reject": "Nie"
+  }
+}

@@ -9,9 +9,9 @@ import { CashFlow } from '#features/cash-flow/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PanelComponent {
-  @Input() public cashFlowData!: CashFlow[];
+  @Input({ required: true }) public cashFlowData!: CashFlow[];
   @Input({ required: true }) public isIncomeMode!: boolean;
-  @Input() public isLoading!: boolean;
+  @Input({ required: true }) public isLoading!: boolean;
   @Input() public totalCashFlowAmount = 0;
 
   @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();

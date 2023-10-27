@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CashFlowForm } from '#features/cash-flow/models';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CashFlowFormService {
   public createCashFlowForm(): FormGroup<CashFlowForm> {
     return new FormGroup({

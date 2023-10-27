@@ -20,7 +20,6 @@ export class CashFlowEffects {
       exhaustMap(({ uid }) => {
         return this.dbService.loadUserCashFlowData$(uid).pipe(
           map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
-
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
             return of(CashFlowActions.getCashFlowUserDataFailure());
@@ -39,7 +38,6 @@ export class CashFlowEffects {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully added');
             return CashFlowActions.addIncomeSuccess();
           }),
-
           catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
@@ -62,7 +60,6 @@ export class CashFlowEffects {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully added');
             return CashFlowActions.addExpenseSuccess();
           }),
-
           catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
@@ -85,7 +82,6 @@ export class CashFlowEffects {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully removed');
             return CashFlowActions.removeIncomeSuccess();
           }),
-
           catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
@@ -108,7 +104,6 @@ export class CashFlowEffects {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully removed');
             return CashFlowActions.removeExpenseSuccess();
           }),
-
           catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
@@ -131,7 +126,6 @@ export class CashFlowEffects {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully updated');
             return CashFlowActions.removeIncomeSuccess();
           }),
-
           catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,
@@ -154,7 +148,6 @@ export class CashFlowEffects {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully updated');
             return CashFlowActions.removeExpenseSuccess();
           }),
-
           catchError(() => {
             this.toastService.showMessage(
               ToastStatus.ERROR,

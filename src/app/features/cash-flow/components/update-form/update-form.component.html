@@ -1,7 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <span class="p-float-label my-7">
     <input [formControl]="formControls.name" id="name" type="text" pInputText class="w-full" />
-    <label for="name">{{ cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense' }} name</label>
+    <label for="name">
+      {{ trPath + 'update' + (cashFlowUpdateFormData.isIncomeMode ? 'IncomeName' : 'ExpenseName') | translate }}
+    </label>
   </span>
 
   <span class="p-float-label my-7">
@@ -11,7 +13,9 @@
       mode="currency"
       inputId="currency-poland"
       currency="PLN" />
-    <label for="amount">{{ cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense' }} amount</label>
+    <label for="amount">
+      {{ trPath + 'update' + (cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense') | translate }}
+    </label>
   </span>
 
   <p-dropdown
@@ -25,18 +29,18 @@
 
   <span class="p-float-label my-7">
     <p-calendar [formControl]="formControls.date" id="date" class="w-full" />
-    <label for="date">Pick date</label>
+    <label for="date">{{ trPath + 'pickDate' | translate }}</label>
   </span>
 
   <span class="p-float-label my-7">
     <textarea [formControl]="formControls.description" id="description" class="w-full" pInputTextarea></textarea>
-    <label for="description">Add description</label>
+    <label for="description">{{ trPath + 'addDescription' | translate }}</label>
   </span>
 
   <button
     [disabled]="form.invalid"
-    pButton
-    [label]="cashFlowUpdateFormData.isIncomeMode ? 'Update Income' : 'Update Expense'"
+    [label]="trPath + 'update' | translate"
     type="submit"
-    class="w-full"></button>
+    class="w-full"
+    pButton></button>
 </form>

@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   template: `
     <p-card>
       <h3 class="heading">
-        Total {{ isIncomeMode ? 'income:' : 'expences:' }}
+        {{ 'cashFlow.heading' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
         <span [ngClass]="{ 'text--success': isIncomeMode, 'text--danger': !isIncomeMode }">
           {{ amount ? (amount | number) : 0 }} PLN
         </span>
@@ -16,6 +16,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeadingComponent {
-  @Input() public isIncomeMode!: boolean;
-  @Input() public amount!: number;
+  @Input({ required: true }) public isIncomeMode!: boolean;
+  @Input({ required: true }) public amount!: number;
 }
