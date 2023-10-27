@@ -1,18 +1,16 @@
-import { inject, Injectable } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Injectable } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { AccountSettingsForm } from '#pages/dashboard/pages/settings/models';
 
 @Injectable({ providedIn: 'root' })
 export class AccountSettingsFormService {
-  private readonly fb: FormBuilder = inject(FormBuilder);
-
   public createUserSettingsForm(): FormGroup<AccountSettingsForm> {
-    return this.fb.group<AccountSettingsForm>({
-      displayName: this.fb.control(''),
-      email: this.fb.control(''),
-      phoneNumber: this.fb.control(''),
-      photoURL: this.fb.control(''),
+    return new FormGroup<AccountSettingsForm>({
+      displayName: new FormControl<string | null>(null),
+      email: new FormControl<string | null>(null),
+      phoneNumber: new FormControl<string | null>(null),
+      photoURL: new FormControl<string | null>(null),
     });
   }
 }

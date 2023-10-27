@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
-import { isLightMode } from '#common/constants/is-light-mode';
+import { isLightMode } from '#common/constants';
 import { PersistanceService, ThemeService } from '#common/services';
 
 @Component({
   selector: 'ctrl-theme-toggler',
   template: `
     <div class="container">
-      Dark/Light mode
+      {{ 'settings.selectTheme' | translate }}
       <p-toggleButton
         [(ngModel)]="isLightMode"
         (onChange)="toggleTheme()"
@@ -15,11 +15,7 @@ import { PersistanceService, ThemeService } from '#common/services';
         [offIcon]="'pi pi-moon'" />
     </div>
   `,
-  styles: [
-    `
-      @import '../common-settings-styles';
-    `,
-  ],
+  styleUrls: ['./theme-toggler.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeTogglerComponent implements OnInit {

@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "title": "Settings",
+    "selectLanguage": "Select language",
+    "selectTheme": "Select theme",
+    "accountSettings": "Account settings",
+    "accountForm": {
+      "displayName": "Display name",
+      "email": "Email",
+      "phoneNumber": "Phone number",
+      "avatar": "Avatar",
+      "update": "Update",
+      "title": "Update account"
+    }
+  }
+}

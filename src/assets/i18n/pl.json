@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "title": "Ustawienia",
+    "selectLanguage": "Wybierz język",
+    "selectTheme": "Wybierz motyw",
+    "accountSettings": "Ustawienia konta",
+    "accountForm": {
+      "displayName": "Pseudonim",
+      "email": "Email",
+      "phoneNumber": "Numer telefonu",
+      "avatar": "Avatar",
+      "update": "Aktualizuj",
+      "title": "Edytuj profil"
+    }
+  }
+}

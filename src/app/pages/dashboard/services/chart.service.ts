@@ -13,28 +13,18 @@ export class ChartService {
     const surfaceBorder: string = documentStyle.getPropertyValue('--surface-border');
 
     return {
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor,
-          },
-        },
-      },
+      plugins: { legend: { labels: { color: textColor } } },
       scales: {
         y: {
           beginAtZero: true,
-          ticks: {
-            color: textColorSecondary,
-          },
+          ticks: { color: textColorSecondary },
           grid: {
             color: surfaceBorder,
             drawBorder: false,
           },
         },
         x: {
-          ticks: {
-            color: textColorSecondary,
-          },
+          ticks: { color: textColorSecondary },
           grid: {
             color: surfaceBorder,
             drawBorder: false,
