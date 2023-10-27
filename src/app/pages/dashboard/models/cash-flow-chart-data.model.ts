@@ -3,14 +3,14 @@ interface Data {
   amount: number;
 }
 
-export interface CashFlowExpenseChartData {
+export interface ExpenseChartData {
   rentalFees: Data;
   travel: Data;
   food: Data;
   entertainment: Data;
 }
 
-export interface CashFlowIncomesChartData {
+export interface IncomesChartData {
   concerts: Data;
   salary: Data;
   gifts: Data;

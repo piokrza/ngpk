@@ -1,3 +1,5 @@
+@use 'src/assets/styles/variables/breakpoints' as b;
+
 .section {
   display: flex;
   justify-content: center;
@@ -5,5 +7,12 @@
 
   &__inner {
     max-width: 25rem;
+    padding: 4rem 2rem;
+  }
+}
+
+@media only screen and (min-width: b.$md) {
+  .section__inner {
+    padding: 4rem 0;
   }
 }

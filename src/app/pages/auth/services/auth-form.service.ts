@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { LoginForm, RegisterForm } from '#pages/auth/models';
 import { passwordMatchValidator } from '#pages/auth/validators';
@@ -22,9 +22,9 @@ export class AuthFormService {
   }
 
   public createLoginForm(): FormGroup<LoginForm> {
-    return this.fb.group<LoginForm>({
-      email: this.fb.nonNullable.control('', { validators: [Validators.required, Validators.email] }),
-      password: this.fb.nonNullable.control('', { validators: [Validators.required] }),
+    return new FormGroup<LoginForm>({
+      email: new FormControl<string>('', { validators: [Validators.required, Validators.email], nonNullable: true }),
+      password: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
     });
   }
 }

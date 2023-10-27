@@ -15,7 +15,7 @@
   &__link {
     cursor: pointer;
     transition: ease-in-out 150ms;
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--mask-bg);
 
     &:last-of-type {
       display: none;

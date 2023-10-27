@@ -7,12 +7,12 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { SettingsViewComponent, SettingsRoutingModule } from '#pages/settings';
+import { SettingsViewComponent, SettingsRoutingModule } from '#pages/dashboard/pages/settings';
 import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
   ThemeTogglerComponent,
-} from '#pages/settings/components';
+} from '#pages/dashboard/pages/settings/components';
 import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 

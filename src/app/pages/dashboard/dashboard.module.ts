@@ -9,7 +9,6 @@ import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 
 const declarations = [DashboardViewComponent];
-
 const imports = [
   CommonModule,
   DashboardRoutingModule,
@@ -18,6 +17,7 @@ const imports = [
   CardModule,
   ProgressSpinnerModule,
   ContainerComponent,
+  UiModule,
 ];
 
 @NgModule({ declarations, imports })

@@ -8,7 +8,7 @@ import { PersistanceService } from '#common/services';
 export class ThemeService {
   private themeLink: HTMLLinkElement;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private persistanceService: PersistanceService) {
+  public constructor(@Inject(DOCUMENT) private document: Document, private persistanceService: PersistanceService) {
     this.themeLink = this.document.getElementById('theme-link') as HTMLLinkElement;
   }
 
