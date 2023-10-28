@@ -1,5 +1,4 @@
 export enum DashobardPath {
-  INCOMES = 'incomes',
-  EXPENSES = 'expenses',
+  CASH_FLOW = 'cash-flow',
   SETTINGS = 'settings',
 }

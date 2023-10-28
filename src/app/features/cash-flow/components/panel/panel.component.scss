@@ -1,4 +1,10 @@
 @use 'src/assets/styles/variables/breakpoints' as b;
+@use 'src/assets/styles/variables/sizes' as s;
+
+.divider {
+  max-width: s.$containerMaxWidth;
+  margin: 2rem auto;
+}
 
 @media only screen and (min-width: b.$xl) {
   .flex {

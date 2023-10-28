@@ -14,12 +14,8 @@ const routes: Routes = [
         loadComponent: (): Promise<any> => import('#pages/dashboard/pages/overview/overview.component'),
       },
       {
-        path: DashobardPath.INCOMES,
-        loadComponent: (): Promise<any> => import('#pages/dashboard/pages/incomes/incomes.component'),
-      },
-      {
-        path: DashobardPath.EXPENSES,
-        loadComponent: (): Promise<any> => import('#pages/dashboard/pages/expenses/expenses.component'),
+        path: DashobardPath.CASH_FLOW,
+        loadComponent: (): Promise<any> => import('#pages/dashboard/pages/cash-flow/cash-flow.component'),
       },
       {
         path: DashobardPath.SETTINGS,

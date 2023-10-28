@@ -1,0 +1,19 @@
+p-tabview .p-tabview {
+  .p-tabview {
+    &-panels {
+      background: transparent;
+      padding: 1rem 0;
+    }
+
+    &-nav {
+      li {
+        flex-grow: 1;
+      }
+
+      a {
+        display: block;
+        text-align: center;
+      }
+    }
+  }
+}

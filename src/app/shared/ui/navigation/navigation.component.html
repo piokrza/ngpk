@@ -3,7 +3,7 @@
     <div class="p-3 rounded panel">
       <ng-container *ngIf="user$ | async as user">
         <div *ngIf="user.email">
-          <p-tieredMenu #menu [model]="menuLinks" [popup]="true" />
+          <p-tieredMenu #menu [model]="menuLinks" [popup]="true" [lang]="'pl'" />
           <button (click)="menu.toggle($event)" icon="pi pi-fw pi-list" type="button" pButton></button>
         </div>
 

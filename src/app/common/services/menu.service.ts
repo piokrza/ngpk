@@ -15,29 +15,24 @@ export class MenuService {
   public getMenuLinks(): MenuItem[] {
     return [
       {
-        label: this.translateService.instant('menu.home'),
+        label: 'menu.home',
         routerLink: '../',
         icon: PrimeIcons.HOME,
         styleClass: 'lg:mr-2',
         routerLinkActiveOptions: { exact: true, routerLinkActive: 'active' },
       },
       {
-        label: this.translateService.instant('menu.incomes'),
-        routerLink: DashobardPath.INCOMES,
+        label: 'menu.cashFlow',
+        routerLink: DashobardPath.CASH_FLOW,
         icon: PrimeIcons.SIGN_IN,
       },
       {
-        label: this.translateService.instant('menu.expenses'),
-        routerLink: DashobardPath.EXPENSES,
-        icon: PrimeIcons.SIGN_OUT,
-      },
-      {
-        label: this.translateService.instant('menu.settings'),
+        label: 'menu.settings',
         routerLink: DashobardPath.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,
       },
       {
-        label: this.translateService.instant('menu.logout'),
+        label: 'menu.logout',
         icon: 'pi pi-fw pi-power-off',
         command: (): void => this.signOut(),
       },

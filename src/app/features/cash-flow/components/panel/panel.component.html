@@ -1,12 +1,11 @@
 <ctrl-heading [amount]="totalCashFlowAmount" [isIncomeMode]="isIncomeMode" />
 
 <div class="mt-10 xl:gap-12">
-  <ctrl-add-form
-    (cashFlowSubmitData)="cashFlowSubmitData.emit($event)"
-    [isIncomeMode]="isIncomeMode"
-    class="w-full mb-5 form" />
+  <ctrl-add-form (cashFlowSubmitData)="cashFlowSubmitData.emit($event)" [isIncomeMode]="isIncomeMode" class="w-full mb-5 form" />
 
-  <p-divider />
+  <div class="divider">
+    <p-divider />
+  </div>
 
   <ctrl-details-list
     (cashFlowToRemoveId)="cashFlowToRemoveId.emit($event)"

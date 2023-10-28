@@ -15,15 +15,7 @@ import { ChartService } from '#pages/dashboard/services';
 import { ContainerComponent } from '#shared/components';
 import { CashFlowSelectors } from '#store/cash-flow';
 
-const imports = [
-  CommonModule,
-  TranslateModule,
-  RouterLink,
-  CardModule,
-  ChartModule,
-  ContainerComponent,
-  ProgressSpinnerModule,
-];
+const imports = [CommonModule, TranslateModule, RouterLink, CardModule, ChartModule, ContainerComponent, ProgressSpinnerModule];
 
 @UntilDestroy()
 @Component({
@@ -41,6 +33,7 @@ export default class OverviewComponent implements OnInit {
 
   public readonly totalBalance$: Observable<number> = this.getTotalBalance$();
   public readonly isCashFlowLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
+
   private readonly incomes$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.incomes);
   private readonly expenses$: Observable<CashFlow[]> = this.store.select(CashFlowSelectors.expenses);
 
@@ -69,6 +62,6 @@ export default class OverviewComponent implements OnInit {
     return combineLatest({
       totalIncomes: this.store.select(CashFlowSelectors.totalIncomes),
       totalExpenses: this.store.select(CashFlowSelectors.totalExpenses),
-    }).pipe(map(({ totalIncomes, totalExpenses }): number => totalIncomes - totalExpenses));
+    }).pipe(map(({ totalIncomes, totalExpenses }) => totalIncomes - totalExpenses));
   }
 }
