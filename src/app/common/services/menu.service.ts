@@ -15,29 +15,29 @@ export class MenuService {
   public getMenuLinks(): MenuItem[] {
     return [
       {
-        label: 'menu.home',
+        label: this.translateService.instant('menu.home'),
         routerLink: '../',
         icon: PrimeIcons.HOME,
         styleClass: 'lg:mr-2',
         routerLinkActiveOptions: { exact: true, routerLinkActive: 'active' },
       },
       {
-        label: 'menu.incomes',
+        label: this.translateService.instant('menu.incomes'),
         routerLink: DashobardPath.INCOMES,
         icon: PrimeIcons.SIGN_IN,
       },
       {
-        label: 'menu.expenses',
+        label: this.translateService.instant('menu.expenses'),
         routerLink: DashobardPath.EXPENSES,
         icon: PrimeIcons.SIGN_OUT,
       },
       {
-        label: 'menu.settings',
+        label: this.translateService.instant('menu.settings'),
         routerLink: DashobardPath.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,
       },
       {
-        label: 'menu.logout',
+        label: this.translateService.instant('menu.logout'),
         icon: 'pi pi-fw pi-power-off',
         command: (): void => this.signOut(),
       },
@@ -46,8 +46,8 @@ export class MenuService {
 
   private signOut(): void {
     this.confirmationService.confirm({
-      message: 'auth.signoutMessage',
-      header: 'auth.signout',
+      message: this.translateService.instant('auth.signoutMessage'),
+      header: this.translateService.instant('auth.signout'),
       accept: (): void => this.store.dispatch(AuthActions.signOut()),
     });
   }

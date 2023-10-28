@@ -21,9 +21,10 @@
         "import/first": 1,
         "prefer-const": 1,
         "import/namespace": "warn",
+        "@typescript-eslint/no-explicit-any": "off",
         "import/no-unresolved": "off",
         "import/no-named-as-default": "off",
-        "import/export": "warn",
+        "import/export": "off",
         "import/order": [
           "error",
           {
