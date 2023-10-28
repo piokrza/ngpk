@@ -83,6 +83,14 @@
     "logout": "Logout"
   },
 
+  "errorMessage": {
+    "success:": "Success!",
+    "error": "Error!",
+    "fetchUser": "Something went wrong during fetch user data",
+    "addIncomeSuccess": "Income successfully added",
+    "addIncomeError": "Something went wrong during storing data in database"
+  },
+
   "primeng": {
     "accept": "Yes",
     "reject": "No"

@@ -14,7 +14,7 @@ import { AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
-  public readonly user$: Observable<User> = inject(Store).select(AuthSelectors.user);
+  public readonly user$: Observable<User | null> = inject(Store).select(AuthSelectors.user);
 
   public menuLinks: MenuItem[] = inject(MenuService).getMenuLinks();
 }

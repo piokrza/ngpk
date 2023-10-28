@@ -6,19 +6,11 @@ import { AuthActions } from '#store/auth';
 export const FeatureKey = 'auth';
 
 export interface State {
-  user: User;
+  user: User | null;
 }
 
 const initialState: State = {
-  user: {
-    displayName: '',
-    email: '',
-    emailVerified: false,
-    phoneNumber: null,
-    photoURL: '',
-    refreshToken: '',
-    uid: '',
-  },
+  user: null,
 };
 
 export const Reducer = createReducer(

@@ -3,7 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 import { User } from '#common/models';
 import { AccountSettingsFormComponent } from '#pages/dashboard/pages/settings/components';
@@ -26,13 +26,13 @@ export class AccountSettingsComponent implements OnInit {
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly transalteService: TranslateService = inject(TranslateService);
 
-  public readonly user$: Observable<User> = this.store.select(AuthSelectors.user);
-  private user!: User;
+  private user: User | null = null;
 
   public ngOnInit(): void {
-    this.user$
+    this.store
+      .select(AuthSelectors.user)
       .pipe(
-        tap((user: User) => (this.user = user)),
+        tap((user: User | null) => (this.user = user)),
         untilDestroyed(this)
       )
       .subscribe();

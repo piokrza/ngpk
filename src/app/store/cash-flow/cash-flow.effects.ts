@@ -1,11 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of } from 'rxjs';
 
-import { Collection } from '#common/enums/collection.enum';
-import { ToastStatus } from '#common/enums/toast-status.enum';
-import { DbService } from '#common/services/db.service';
-import { ToastService } from '#common/services/toast.service';
+import { Collection, ToastStatus } from '#common/enums/';
+import { DbService, ToastService } from '#common/services';
 import { CashFlowActions } from '#store/cash-flow';
 
 @Injectable()
@@ -14,6 +13,8 @@ export class CashFlowEffects {
   private readonly toastService: ToastService = inject(ToastService);
   private readonly dbService: DbService = inject(DbService);
 
+  private readonly tr = (pathFragment: string): string => inject(TranslateService).instant('' + pathFragment);
+
   public getCashFlowUserData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.getCashFlowUserData),
@@ -21,7 +22,7 @@ export class CashFlowEffects {
         return this.dbService.loadUserCashFlowData$(uid).pipe(
           map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during fetch user data');
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUser'));
             return of(CashFlowActions.getCashFlowUserDataFailure());
           })
         );
@@ -35,15 +36,11 @@ export class CashFlowEffects {
       exhaustMap(({ income }) => {
         return from(this.dbService.addCashFlow$(Collection.INCOMES, income)).pipe(
           map(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully added');
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addIncomeSuccess'));
             return CashFlowActions.addIncomeSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during storing data in database'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addIncomeError'));
             return of(CashFlowActions.addIncomeFailure());
           })
         );
@@ -61,11 +58,7 @@ export class CashFlowEffects {
             return CashFlowActions.addExpenseSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during storing data in database'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
             return of(CashFlowActions.addExpenseFailure());
           })
         );
@@ -83,11 +76,7 @@ export class CashFlowEffects {
             return CashFlowActions.removeIncomeSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during storing data in database'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
             return of(CashFlowActions.removeIncomeFailure());
           })
         );
@@ -105,11 +94,7 @@ export class CashFlowEffects {
             return CashFlowActions.removeExpenseSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during storing data in database'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
             return of(CashFlowActions.removeExpenseFailure());
           })
         );
@@ -127,11 +112,7 @@ export class CashFlowEffects {
             return CashFlowActions.removeIncomeSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during storing data in database'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
             return of(CashFlowActions.removeIncomeFailure());
           })
         );
@@ -149,11 +130,7 @@ export class CashFlowEffects {
             return CashFlowActions.removeExpenseSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during storing data in database'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
             return of(CashFlowActions.removeExpenseFailure());
           })
         );

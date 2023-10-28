@@ -83,6 +83,14 @@
     "logout": "Wyloguj się"
   },
 
+  "errorMessage": {
+    "success:": "Sukces!",
+    "error": "Błąd!",
+    "fetchUser": "Something went wrong during fetch user data",
+    "addIncomeSuccess": "Przychód zapisany",
+    "addIncomeError": "Coś poszło nie tak przy próbie zapisu przychodu w bazie danych"
+  },
+
   "primeng": {
     "accept": "Tak",
     "reject": "Nie"
