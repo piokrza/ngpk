@@ -50,7 +50,7 @@
     "updateIncome": "Edytuj przychód"
   },
 
-  "expences": {
+  "expenses": {
     "removeMessage": "Na pewno chcesz usunąć wydatek?",
     "removeHeader": "Usuń wydatek",
     "updateExpence": "Edytuj wydatek"
@@ -83,8 +83,16 @@
     "logout": "Wyloguj się"
   },
 
-  "errorMessage": {
-    "success:": "Sukces!",
+  "weather": {
+    "searchCity": "Wyszukaj miasto",
+    "humidity": "Wilgotność",
+    "wind": "Wiatr",
+    "sunrice": "Wschód słońca",
+    "fetchData": "Pobierz dane aktualnej pogody"
+  },
+
+  "toastMessage": {
+    "success": "Sukces!",
     "error": "Błąd!",
     "fetchUser": "Something went wrong during fetch user data",
     "addIncomeSuccess": "Przychód zapisany",

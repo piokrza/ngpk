@@ -9,5 +9,6 @@ export interface Environment {
     measurementId: string;
   };
   maxItemPerPage: number;
+  weatherApiKey: string;
   production: boolean;
 }

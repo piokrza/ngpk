@@ -1,0 +1,28 @@
+.widget {
+  transition: 150ms;
+  background-color: var(--surface-hover);
+
+  &__details {
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height 1s;
+
+    &--active {
+      max-height: 400px;
+    }
+  }
+
+  &__toggle {
+    cursor: pointer;
+
+    &:hover {
+      .widget__toggle-icon {
+        opacity: 1;
+      }
+    }
+
+    &-icon {
+      opacity: 0;
+    }
+  }
+}

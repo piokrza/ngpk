@@ -16,7 +16,8 @@
         "@schematics/angular:interceptor": { "skipTests": true, "functional": true },
         "@schematics/angular:resolver": { "skipTests": true, "functional": true },
         "@schematics/angular:pipe": { "skipTests": true, "standalone": true },
-        "@schematics/angular:directive": { "skipTests": true, "standalone": true }
+        "@schematics/angular:directive": { "skipTests": true, "standalone": true },
+        "@schematics/angular:service": { "skipTests": true }
       },
       "root": "",
       "sourceRoot": "src",

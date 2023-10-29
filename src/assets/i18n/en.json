@@ -50,7 +50,7 @@
     "updateIncome": "Update income"
   },
 
-  "expences": {
+  "expenses": {
     "removeMessage": "Are you sure that you want to remove this expence?",
     "removeHeader": "Remove expence",
     "updateExpence": "Update expence"
@@ -83,8 +83,16 @@
     "logout": "Logout"
   },
 
-  "errorMessage": {
-    "success:": "Success!",
+  "weather": {
+    "searchCity": "Search city",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "sunrice": "Sunrice",
+    "fetchData": "Fetch current weather data"
+  },
+
+  "toastMessage": {
+    "success": "Success!",
     "error": "Error!",
     "fetchUser": "Something went wrong during fetch user data",
     "addIncomeSuccess": "Income successfully added",

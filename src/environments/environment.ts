@@ -11,5 +11,6 @@ export const environment: Environment = {
     measurementId: 'G-0TLBMDV7W7',
   },
   maxItemPerPage: 4,
+  weatherApiKey: '253353dc15d16c96be28e7780f4d500f',
   production: true,
 };

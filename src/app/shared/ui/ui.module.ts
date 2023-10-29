@@ -9,6 +9,7 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
+import { WeatherWidgetComponent } from '#features/weather';
 import { ContainerComponent } from '#shared/components';
 import { LayoutComponent } from '#shared/ui/layout';
 import { NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#shared/ui/navigation/components';
@@ -26,6 +27,7 @@ const imports = [
   ToastModule,
   ConfirmDialogModule,
   TranslateModule,
+  WeatherWidgetComponent,
 ];
 
 const exports = [LayoutComponent];

@@ -16,6 +16,10 @@
     main {
       height: 100%;
       flex-grow: 1;
+
+      ::ng-deep ctrl-container .container {
+        padding-left: 0 !important;
+      }
     }
   }
 }

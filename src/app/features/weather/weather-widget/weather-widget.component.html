@@ -1,0 +1,53 @@
+<ng-container *ngIf="dataset$ | async as dataset">
+  <div class="my-4 rounded widget">
+    <div [class.pb-0]="dataset.data" class="flex justify-content-between align-items-center p-3">
+      <div *ngIf="dataset.data === null" class="flex justify-content-center w-full">
+        <p-button
+          (onClick)="loadWeatherDataByCityName('Kraków')"
+          [icon]="dataset.isLoading ? PrimeIcons.SPINNER : ''"
+          [label]="'weather.fetchData' | translate" />
+      </div>
+
+      <p *ngIf="dataset.data?.name">
+        {{ dataset.data?.name }} <span> ({{ dataset.data?.sys?.country }})</span>
+      </p>
+
+      <div class="flex align-items-center">
+        <span *ngIf="dataset.data?.main?.temp" class="mr-2">{{ dataset.data?.main?.temp | number : '1.0-0' }} ℃</span>
+
+        <div *ngIf="dataset.data?.weather?.[0]?.icon as icon" class="w-3rem">
+          <img [src]="icon | weatherIcon" alt="wather-icon" />
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="dataset.data !== null">
+      <div [class.widget__details--active]="isOpen" class="px-3 widget__details">
+        <div class="flex gap-3 justify-content-between my-3">
+          <ctrl-details
+            [amount]="(dataset.data.main.humidity | number : '1.0-0') + '%'"
+            [name]="'weather.humidity' | translate"
+            [icon]="'assets/img/weather-icons/humidity.png'"></ctrl-details>
+          <ctrl-details
+            [amount]="(dataset.data.wind.speed | number : '1.0-0') + ' km/h'"
+            [name]="'weather.wind' | translate"
+            [icon]="'assets/img/weather-icons/wind.png'"></ctrl-details>
+        </div>
+
+        <div class="flex align-items-center justify-content-between">
+          <input
+            [formControl]="searchCityNameControl"
+            [placeholder]="'weather.searchCity' | translate"
+            type="text"
+            class="w-full"
+            pInputText />
+          <p-button (onClick)="loadWeatherDataByCityName(searchCityNameControl.value)" [icon]="PrimeIcons.SEARCH" />
+        </div>
+      </div>
+
+      <small (click)="toggleDetails()" class="block text-center rounded widget__toggle">
+        <i [class]="isOpen ? PrimeIcons.ANGLE_UP : PrimeIcons.ANGLE_DOWN" class="widget__toggle-icon text-xs"></i>
+      </small>
+    </ng-container>
+  </div>
+</ng-container>

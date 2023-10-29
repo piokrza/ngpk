@@ -10,10 +10,9 @@ import { CashFlowActions } from '#store/cash-flow';
 @Injectable()
 export class CashFlowEffects {
   private readonly actions$: Actions = inject(Actions);
-  private readonly toastService: ToastService = inject(ToastService);
   private readonly dbService: DbService = inject(DbService);
-
-  private readonly tr = (pathFragment: string): string => inject(TranslateService).instant('' + pathFragment);
+  private readonly toastService: ToastService = inject(ToastService);
+  private readonly translateService: TranslateService = inject(TranslateService);
 
   public getCashFlowUserData$ = createEffect(() => {
     return this.actions$.pipe(
@@ -137,4 +136,8 @@ export class CashFlowEffects {
       })
     );
   });
+
+  private tr(path: string): string {
+    return this.translateService.instant('toastMessage.' + path);
+  }
 }
