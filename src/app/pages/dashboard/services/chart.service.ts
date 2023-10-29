@@ -76,25 +76,25 @@ export class ChartService {
 
     return {
       rentalFees: {
-        label: CATEGORY_DIC[0].icon,
+        label: CATEGORY_DIC[0].name,
         amount: rentalFeesCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       travel: {
-        label: CATEGORY_DIC[1].icon,
+        label: CATEGORY_DIC[1].name,
         amount: travelCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       food: {
-        label: CATEGORY_DIC[2].icon,
+        label: CATEGORY_DIC[2].name,
         amount: foodCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       entertainment: {
-        label: CATEGORY_DIC[3].icon,
+        label: CATEGORY_DIC[3].name,
         amount: entertainmentCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
@@ -109,19 +109,19 @@ export class ChartService {
 
     return {
       concerts: {
-        label: CATEGORY_DIC[4].icon,
+        label: CATEGORY_DIC[4].name,
         amount: concertsCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       salary: {
-        label: CATEGORY_DIC[5].icon,
+        label: CATEGORY_DIC[5].name,
         amount: salaryCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
       },
       gifts: {
-        label: CATEGORY_DIC[6].icon,
+        label: CATEGORY_DIC[6].name,
         amount: giftsCashFlow.reduce((acc: number, cashFlow: CashFlow) => {
           return acc + Number(cashFlow.amount);
         }, 0),
