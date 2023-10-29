@@ -8,5 +8,6 @@ export interface Environment {
     messagingSenderId: string;
     measurementId: string;
   };
+  maxItemPerPage: number;
   production: boolean;
 }

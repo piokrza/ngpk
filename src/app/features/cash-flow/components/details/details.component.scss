@@ -25,6 +25,7 @@
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
+    margin-right: 0.5rem;
 
     &--success {
       background-color: var(--green-500);
@@ -38,6 +39,7 @@
   .card__flex-wrap {
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
   }
 }
 

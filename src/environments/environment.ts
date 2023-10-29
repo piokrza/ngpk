@@ -10,5 +10,6 @@ export const environment: Environment = {
     messagingSenderId: '811307138027',
     measurementId: 'G-0TLBMDV7W7',
   },
+  maxItemPerPage: 4,
   production: true,
 };

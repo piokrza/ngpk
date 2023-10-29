@@ -43,12 +43,7 @@ export class ChartService {
         {
           label: 'Expenses',
           data: [rentalFees.amount, food.amount, travel.amount, entertainment.amount],
-          backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-          ],
+          backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
           borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
           borderWidth: 1,
         },
@@ -77,9 +72,7 @@ export class ChartService {
     const rentalFeesCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 0);
     const travelCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 1);
     const foodCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 2);
-    const entertainmentCashFlow: CashFlow[] = expenses.filter(
-      (cashFlow: CashFlow): boolean => cashFlow.categoryCode == 3
-    );
+    const entertainmentCashFlow: CashFlow[] = expenses.filter((cashFlow: CashFlow): boolean => cashFlow.categoryCode == 3);
 
     return {
       rentalFees: {

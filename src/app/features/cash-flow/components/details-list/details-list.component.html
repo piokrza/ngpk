@@ -5,7 +5,7 @@
 <ng-template #loaded>
   <div class="wrapper">
     <ng-container *ngIf="cashFlowList.length; else noCashFlowToDisplay">
-      <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > 4" [rows]="4">
+      <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > maxItemsPerPage" [rows]="maxItemsPerPage">
         <ng-template let-detailsItem pTemplate="listItem">
           <ctrl-details
             (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
