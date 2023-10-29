@@ -1,6 +1,6 @@
 import { UserInfoComponent } from './user-info.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('UserInfoComponent', () => {
   let component: UserInfoComponent;
@@ -8,9 +8,9 @@ describe('UserInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ UserInfoComponent ]
-    })
-    .compileComponents();
+      declarations: [UserInfoComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UserInfoComponent);
     component = fixture.componentInstance;
