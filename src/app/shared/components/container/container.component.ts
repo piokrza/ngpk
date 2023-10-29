@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'ctrl-container',
   styleUrls: ['./container.component.scss'],
   template: `
-    <section class="container h-full p-3 xl:p-5">
+    <section class="container h-full p-3">
       <div class="rounded p-4 container__inner">
         <ng-content />
       </div>

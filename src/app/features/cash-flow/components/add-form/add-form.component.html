@@ -1,11 +1,11 @@
 <div class="wrapper">
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <span class="p-float-label my-7">
+    <span class="p-float-label my-4">
       <input [formControl]="formControls.name" id="name" type="text" pInputText class="w-full" />
       <label for="name">{{ modeLabel | translate }}</label>
     </span>
 
-    <span class="p-float-label my-7">
+    <span class="p-float-label my-4">
       <p-inputNumber
         [formControl]="formControls.amount"
         [minFractionDigits]="1"
@@ -24,21 +24,16 @@
       optionValue="code"
       styleClass="w-full" />
 
-    <span class="p-float-label my-7">
+    <span class="p-float-label my-4">
       <p-calendar [formControl]="formControls.date" id="date" class="w-full" />
       <label for="date">{{ trPath + 'pickDate' | translate }}</label>
     </span>
 
-    <span class="p-float-label my-7">
+    <span class="p-float-label my-4">
       <textarea [formControl]="formControls.description" id="description" class="w-full" pInputTextarea></textarea>
       <label for="description">{{ trPath + 'addDescription' | translate }}</label>
     </span>
 
-    <button
-      [disabled]="form.invalid"
-      [label]="modeLabel + 'Add' | translate"
-      type="submit"
-      class="w-full"
-      pButton></button>
+    <button [disabled]="form.invalid" [label]="modeLabel + 'Add' | translate" type="submit" class="w-full" pButton></button>
   </form>
 </div>

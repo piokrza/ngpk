@@ -3,14 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardViewComponent } from '#pages/dashboard';
 import { DashobardPath } from '#pages/dashboard/enums';
+import { DashboardRedirectGuard } from '#pages/dashboard/guards';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardViewComponent,
+    canActivate: [DashboardRedirectGuard],
     children: [
       {
-        path: '',
+        path: DashobardPath.OVERVIEW,
         loadComponent: (): Promise<any> => import('#pages/dashboard/pages/overview/overview.component'),
       },
       {

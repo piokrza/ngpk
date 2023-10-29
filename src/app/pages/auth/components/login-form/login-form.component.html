@@ -1,21 +1,16 @@
 <h1 class="heading text-center">Login</h1>
 
-<button
-  (click)="signinWithGoogle()"
-  icon="pi pi-google"
-  label="Login with your google account"
-  class="w-full my-6"
-  pButton></button>
+<button (click)="signinWithGoogle()" icon="pi pi-google" label="Login with your google account" class="w-full my-6" pButton></button>
 
 <p class="text-sm text-center">Or login with your email & password</p>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <span class="p-float-label my-7">
+  <span class="p-float-label my-4">
     <input [formControl]="form.controls.email" pInputText id="email" class="w-full" />
     <label htmlFor="email">Email</label>
   </span>
 
-  <span class="p-float-label my-7">
+  <span class="p-float-label my-4">
     <p-password [formControl]="form.controls.password" [feedback]="false" [toggleMask]="true" />
     <label htmlFor="password">Password</label>
   </span>

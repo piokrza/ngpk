@@ -12,7 +12,7 @@ export const isLoggedInGuard: CanMatchFn = (): Observable<boolean> => {
   return inject(Store)
     .select(AuthSelectors.user)
     .pipe(
-      map(({ email }): boolean => Boolean(email?.length)),
-      tap((isEmail: boolean) => isEmail && router.navigateByUrl(AppPaths.DASHBOARD))
+      map((user): boolean => Boolean(user)),
+      tap((isUser: boolean) => isUser && router.navigateByUrl(AppPaths.DASHBOARD))
     );
 };

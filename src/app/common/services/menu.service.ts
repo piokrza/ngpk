@@ -16,7 +16,7 @@ export class MenuService {
     return [
       {
         label: 'menu.home',
-        routerLink: '../',
+        routerLink: DashobardPath.OVERVIEW,
         icon: PrimeIcons.HOME,
         styleClass: 'lg:mr-2',
         routerLinkActiveOptions: { exact: true, routerLinkActive: 'active' },
@@ -33,7 +33,7 @@ export class MenuService {
       },
       {
         label: 'menu.logout',
-        icon: 'pi pi-fw pi-power-off',
+        icon: PrimeIcons.POWER_OFF,
         command: (): void => this.signOut(),
       },
     ];

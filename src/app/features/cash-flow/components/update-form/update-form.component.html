@@ -1,18 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <span class="p-float-label my-7">
+  <span class="p-float-label my-4">
     <input [formControl]="formControls.name" id="name" type="text" pInputText class="w-full" />
     <label for="name">
       {{ trPath + 'update' + (cashFlowUpdateFormData.isIncomeMode ? 'IncomeName' : 'ExpenseName') | translate }}
     </label>
   </span>
 
-  <span class="p-float-label my-7">
-    <p-inputNumber
-      [formControl]="formControls.amount"
-      id="amount"
-      mode="currency"
-      inputId="currency-poland"
-      currency="PLN" />
+  <span class="p-float-label my-4">
+    <p-inputNumber [formControl]="formControls.amount" id="amount" mode="currency" inputId="currency-poland" currency="PLN" />
     <label for="amount">
       {{ trPath + 'update' + (cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense') | translate }}
     </label>
@@ -27,20 +22,15 @@
     styleClass="w-full"
     placeholder="Select category" />
 
-  <span class="p-float-label my-7">
+  <span class="p-float-label my-4">
     <p-calendar [formControl]="formControls.date" id="date" class="w-full" />
     <label for="date">{{ trPath + 'pickDate' | translate }}</label>
   </span>
 
-  <span class="p-float-label my-7">
+  <span class="p-float-label my-4">
     <textarea [formControl]="formControls.description" id="description" class="w-full" pInputTextarea></textarea>
     <label for="description">{{ trPath + 'addDescription' | translate }}</label>
   </span>
 
-  <button
-    [disabled]="form.invalid"
-    [label]="trPath + 'update' | translate"
-    type="submit"
-    class="w-full"
-    pButton></button>
+  <button [disabled]="form.invalid" [label]="trPath + 'update' | translate" type="submit" class="w-full" pButton></button>
 </form>

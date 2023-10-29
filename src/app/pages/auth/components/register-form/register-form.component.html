@@ -1,17 +1,17 @@
 <h1 class="heading text-center">Register</h1>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <span class="p-float-label my-7">
+  <span class="p-float-label my-4">
     <input [formControl]="form.controls.email" pInputText id="email" class="w-full" />
     <label htmlFor="email">Email</label>
   </span>
 
-  <span class="p-float-label my-7">
+  <span class="p-float-label my-4">
     <p-password [formControl]="form.controls.password" [feedback]="false" [toggleMask]="true" />
     <label htmlFor="password">Password</label>
   </span>
 
-  <span class="p-float-label my-7">
+  <span class="p-float-label my-4">
     <p-password [formControl]="form.controls.passwordConfirmation" [feedback]="false" [toggleMask]="true" />
     <label htmlFor="passwordConfirmation">Password confirmation</label>
   </span>
