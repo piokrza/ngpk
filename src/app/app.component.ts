@@ -23,9 +23,7 @@ export class AppComponent implements OnInit {
   private readonly translateService: TranslateService = inject(TranslateService);
 
   public ngOnInit(): void {
-    this.primengConfig.ripple = true;
-
-    this.translateService.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
+    this.setPrimengConfig();
 
     this.authService.authState$
       .pipe(
@@ -39,5 +37,10 @@ export class AppComponent implements OnInit {
     this.store.dispatch(CategoriesActions.getCategories());
     this.store.dispatch(AuthActions.loadUserData());
     this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid }));
+  }
+
+  private setPrimengConfig(): void {
+    this.primengConfig.ripple = true;
+    this.translateService.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
   }
 }
