@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase/compat';
@@ -11,7 +10,6 @@ import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
 import { CategoriesActions } from '#store/categories';
 
-@UntilDestroy()
 @Component({
   selector: 'ctrl-root',
   template: `<router-outlet />`,
@@ -24,19 +22,17 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setPrimengConfig();
-
     this.authService.authState$
       .pipe(
-        tap((user: firebase.User | null) => user && this.dispatchStoreActions(user.uid)),
-        untilDestroyed(this)
+        tap((user: firebase.User | null) => {
+          if (user) {
+            this.store.dispatch(CategoriesActions.getCategories());
+            this.store.dispatch(AuthActions.loadUserData());
+            this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid: user.uid }));
+          }
+        })
       )
       .subscribe();
-  }
-
-  private dispatchStoreActions(uid: string): void {
-    this.store.dispatch(CategoriesActions.getCategories());
-    this.store.dispatch(AuthActions.loadUserData());
-    this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid }));
   }
 
   private setPrimengConfig(): void {
