@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardViewComponent } from '#pages/dashboard';
-import { DashobardPath } from '#pages/dashboard/enums';
+import { DashobardPaths } from '#pages/dashboard/enums';
 import { DashboardRedirectGuard } from '#pages/dashboard/guards';
 
 const routes: Routes = [
@@ -12,15 +12,15 @@ const routes: Routes = [
     canActivate: [DashboardRedirectGuard],
     children: [
       {
-        path: DashobardPath.OVERVIEW,
+        path: DashobardPaths.OVERVIEW,
         loadComponent: (): Promise<any> => import('#pages/dashboard/pages/overview/overview.component'),
       },
       {
-        path: DashobardPath.CASH_FLOW,
+        path: DashobardPaths.CASH_FLOW,
         loadComponent: (): Promise<any> => import('#pages/dashboard/pages/cash-flow/cash-flow.component'),
       },
       {
-        path: DashobardPath.SETTINGS,
+        path: DashobardPaths.SETTINGS,
         loadChildren: (): Promise<any> => import('#pages/dashboard/pages/settings/settings.module'),
       },
     ],

@@ -1,1 +1,1 @@
-export * from './paths.enum';
+export * from './dashboard-paths.enum';
