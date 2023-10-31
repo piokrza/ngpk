@@ -1,19 +1,15 @@
-<ng-container *ngIf="menuLinks">
-  <div class="mobile">
-    <div class="p-3 rounded panel">
-      <ng-container *ngIf="user$ | async as user">
-        <div *ngIf="user">
-          <p-tieredMenu #menu [model]="menuLinks" [popup]="true" [lang]="'pl'" />
-          <button (click)="menu.toggle($event)" icon="pi pi-fw pi-list" type="button" pButton></button>
-        </div>
+<div class="mobile">
+  <div *ngIf="user$ | async as user" class="p-3 rounded panel">
+    <div>
+      <p-tieredMenu #menu [model]="menuLinks" [popup]="true" [lang]="'pl'" />
+      <button (click)="menu.toggle($event)" icon="pi pi-fw pi-list" type="button" pButton></button>
+    </div>
 
-        <div class="mr-4">
-          <p class="my-0">{{ user.displayName }}</p>
-          <small>{{ user.email }}</small>
-        </div>
-      </ng-container>
+    <div class="mr-4">
+      <p class="my-0">{{ user.displayName }}</p>
+      <small>{{ user.email }}</small>
     </div>
   </div>
+</div>
 
-  <ctrl-navigation-sidebar [menuLinks]="menuLinks" />
-</ng-container>
+<ctrl-navigation-sidebar [menuLinks]="menuLinks" />

@@ -4,7 +4,7 @@ import { CATEGORY_DIC } from '#common/dictionaries';
 
 @Pipe({ name: 'icon', standalone: true })
 export class IconPipe implements PipeTransform {
-  transform(categoryCode: number): string {
+  public transform(categoryCode: number): string {
     return CATEGORY_DIC[categoryCode].icon;
   }
 }
