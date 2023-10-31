@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
+import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 
 import { Category } from '#common/models';
-import { BaseCashFlowForm } from '#features/cash-flow/abstract';
 import { CashFlowForm, CashFlowUpdateFormData } from '#features/cash-flow/models';
+import { CashFlowFormService } from '#features/cash-flow/services';
 
 @Component({
   selector: 'ctrl-update-form',
@@ -14,17 +15,21 @@ import { CashFlowForm, CashFlowUpdateFormData } from '#features/cash-flow/models
   styleUrls: ['./update-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UpdateFormComponent extends BaseCashFlowForm implements OnInit {
+export class UpdateFormComponent implements OnInit {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-
-  public readonly cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;
-
-  public categories$: Observable<Category[]> = this.getCategories$(this.cashFlowUpdateFormData.isIncomeMode);
+  private readonly cashFlowFormService: CashFlowFormService = inject(CashFlowFormService);
 
   public readonly trPath: string = 'cashFlow.form.';
+  public readonly form: FormGroup<CashFlowForm> = this.cashFlowFormService.form;
+  public readonly cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;
+
+  public readonly categories$: Observable<Category[]> = this.cashFlowFormService.getCategories$(this.cashFlowUpdateFormData.isIncomeMode);
 
   public ngOnInit(): void {
-    this.pathCashFlowUpdateFormValue();
+    this.form.patchValue({
+      ...this.cashFlowUpdateFormData.updatedCashFlow,
+      date: this.cashFlowUpdateFormData.updatedCashFlow.date.toDate(),
+    });
   }
 
   public onSubmit(): void {
@@ -32,18 +37,6 @@ export class UpdateFormComponent extends BaseCashFlowForm implements OnInit {
     const date: Timestamp = Timestamp.fromDate(this.form.getRawValue().date!);
 
     this.dialogRef.close({ ...this.form.getRawValue(), date, id });
-  }
-
-  private pathCashFlowUpdateFormValue(): void {
-    const { name, amount, categoryCode, date, description } = this.cashFlowUpdateFormData.updatedCashFlow;
-
-    this.form.patchValue({
-      name,
-      amount,
-      categoryCode,
-      date: date!.toDate(),
-      description,
-    });
   }
 
   public get formControls(): CashFlowForm {

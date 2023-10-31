@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
+import { FormGroup } from '@angular/forms';
 import { filter, Observable, take, tap } from 'rxjs';
 import uniqid from 'uniqid';
 
 import { User } from '#common/models';
 import { Category } from '#common/models/category.model';
-import { BaseCashFlowForm } from '#features/cash-flow/abstract';
 import { CashFlow, CashFlowForm } from '#features/cash-flow/models';
+import { CashFlowFormService } from '#features/cash-flow/services';
 import { AuthService } from '#pages/auth/services';
 
 @Component({
@@ -16,7 +17,9 @@ import { AuthService } from '#pages/auth/services';
   styleUrls: ['./add-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddFormComponent extends BaseCashFlowForm implements OnInit {
+export class AddFormComponent implements OnInit {
+  private readonly cashFlowFormService: CashFlowFormService = inject(CashFlowFormService);
+
   @Input({ required: true }) public isIncomeMode!: boolean;
 
   @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
@@ -24,11 +27,10 @@ export class AddFormComponent extends BaseCashFlowForm implements OnInit {
   public categories$!: Observable<Category[]>;
 
   public readonly trPath: string = 'cashFlow.form.';
+  public form: FormGroup<CashFlowForm> = this.cashFlowFormService.form;
   private userId!: string;
 
   public constructor() {
-    super();
-
     inject(AuthService)
       .authState$.pipe(
         take(1),
@@ -39,7 +41,7 @@ export class AddFormComponent extends BaseCashFlowForm implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.categories$ = this.getCategories$(this.isIncomeMode);
+    this.categories$ = this.cashFlowFormService.getCategories$(this.isIncomeMode);
   }
 
   public onSubmit(): void {
