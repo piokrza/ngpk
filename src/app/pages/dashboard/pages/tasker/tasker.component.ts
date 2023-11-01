@@ -11,7 +11,6 @@ const imports = [TaskerModule];
       <ctrl-tasker-panel />
     </div>
   `,
-  styleUrls: ['./tasker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,

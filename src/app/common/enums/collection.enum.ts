@@ -3,4 +3,5 @@ export enum Collection {
   INCOMES = 'incomes',
   CATEGORIES = 'categories',
   USERS = 'users',
+  TASKS = 'tasks',
 }

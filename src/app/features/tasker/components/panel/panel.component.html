@@ -1,11 +1,8 @@
 <p-tabView>
   <p-tabPanel [header]="'tasker.title' | translate">
     <p-dataView [value]="todos">
-      <ng-template let-todo pTemplate="listItem">
-        <div>
-          <p>{{ todo.name }}</p>
-          <p>{{ todo.isActive ? 'skonczone' : 'nieskonczone' }}</p>
-        </div>
+      <ng-template let-task pTemplate="listItem">
+        <ctrl-task [task]="task" />
       </ng-template>
     </p-dataView>
   </p-tabPanel>

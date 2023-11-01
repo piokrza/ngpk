@@ -1,5 +1,11 @@
-p-card .p-card {
-  border-radius: 0.75rem;
-  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.15);
-  transition: ease-in-out 150ms;
+p-card {
+  .task .p-card-content {
+    padding: 0 1rem;
+  }
+
+  .p-card {
+    border-radius: 0.75rem;
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.15);
+    transition: ease-in-out 150ms;
+  }
 }

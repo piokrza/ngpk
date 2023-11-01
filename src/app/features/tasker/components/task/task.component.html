@@ -1,0 +1,10 @@
+<p-card styleClass="task">
+  <div class="task">
+    <p [class.task__name--complete]="task.isComplete" class="task__name">{{ task.name }}</p>
+
+    <div class="task__buttons">
+      <p-button (onClick)="editTask.emit(task)" [icon]="PrimeIcons.ALIGN_JUSTIFY"></p-button>
+      <p-button (onClick)="removeTask.emit(task.id)" [icon]="PrimeIcons.TIMES" severity="danger" />
+    </div>
+  </div>
+</p-card>
