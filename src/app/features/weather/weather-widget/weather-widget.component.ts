@@ -51,7 +51,7 @@ export class WeatherWidgetComponent {
   }
 
   public loadWeatherDataByCityName(cityName: string): void {
-    this.weatherFacade.loadWeatherDataByCity$(cityName).pipe(untilDestroyed(this)).subscribe();
+    cityName.length && this.weatherFacade.loadWeatherDataByCity$(cityName).pipe(untilDestroyed(this)).subscribe();
   }
 
   public toggleDetails(): void {

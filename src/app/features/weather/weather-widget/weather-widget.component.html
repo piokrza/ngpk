@@ -36,12 +36,16 @@
 
         <div class="flex align-items-center justify-content-between">
           <input
+            (keyup.enter)="loadWeatherDataByCityName(searchCityNameControl.value)"
             [formControl]="searchCityNameControl"
             [placeholder]="'weather.searchCity' | translate"
             type="text"
             class="w-full"
             pInputText />
-          <p-button (onClick)="loadWeatherDataByCityName(searchCityNameControl.value)" [icon]="PrimeIcons.SEARCH" />
+          <p-button
+            (onClick)="loadWeatherDataByCityName(searchCityNameControl.value)"
+            [disabled]="!searchCityNameControl.value || dataset.isLoading"
+            [icon]="PrimeIcons.SEARCH" />
         </div>
       </div>
 
