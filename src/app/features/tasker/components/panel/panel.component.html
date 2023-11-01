@@ -1,1 +1,10 @@
-<p>panel works!</p>
+<p-tabView>
+  <p-tabPanel [header]="'tasker.title' | translate">
+    <p-dataView [value]="todos">
+      <ng-template let-task pTemplate="listItem">
+        <ctrl-task [task]="task" />
+      </ng-template>
+    </p-dataView>
+  </p-tabPanel>
+  <p-tabPanel [header]="'tasker.notes' | translate"></p-tabPanel>
+</p-tabView>
