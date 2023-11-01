@@ -4,9 +4,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import firebase from 'firebase/compat';
 import { catchError, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
 
+import { CashFlowApi } from '#common/api';
 import { ToastStatus } from '#common/enums';
 import { User } from '#common/models';
-import { DbService, ToastService } from '#common/services';
+import { ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
 import { AuthFormPayload } from '#pages/auth/models';
 import { AuthService } from '#pages/auth/services';
@@ -18,7 +19,7 @@ import { CashFlowActions } from '#store/cash-flow';
 export class AuthEffects {
   private readonly router: Router = inject(Router);
   private readonly actions$: Actions = inject(Actions);
-  private readonly dbService: DbService = inject(DbService);
+  private readonly cashFlowApi: CashFlowApi = inject(CashFlowApi);
   private readonly authService: AuthService = inject(AuthService);
   private readonly toastService: ToastService = inject(ToastService);
 
@@ -29,7 +30,7 @@ export class AuthEffects {
         return from(this.authService.signinWithGoogle()).pipe(
           map(({ user }: firebase.auth.UserCredential) => {
             if (user !== null) {
-              this.dbService.addUserToDatabase$(setUser(user)).subscribe();
+              this.cashFlowApi.addUserToDatabase$(setUser(user)).subscribe();
               return AuthActions.userAuthenticated({ user: setUser(user) });
             }
 
@@ -90,7 +91,7 @@ export class AuthEffects {
         exhaustMap(({ payload }) => {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
             map(({ user }) => {
-              user && this.dbService.addUserToDatabase$(setUser(user)).pipe(take(1)).subscribe();
+              user && this.cashFlowApi.addUserToDatabase$(setUser(user)).pipe(take(1)).subscribe();
               return AuthActions.signUpWithEmailAndPasswordSuccess();
             }),
             tap(() => this.router.navigateByUrl('/dashboard')),
@@ -136,7 +137,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.updateAccount),
       exhaustMap(({ updatedUserData }) => {
-        return from(this.dbService.updateUser$(updatedUserData)).pipe(
+        return from(this.cashFlowApi.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
           tap(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Account data successfully updated');

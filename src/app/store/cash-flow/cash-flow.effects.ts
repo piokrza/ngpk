@@ -3,14 +3,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of } from 'rxjs';
 
+import { CashFlowApi } from '#common/api';
 import { Collection, ToastStatus } from '#common/enums/';
-import { DbService, ToastService } from '#common/services';
+import { ToastService } from '#common/services';
 import { CashFlowActions } from '#store/cash-flow';
 
 @Injectable()
 export class CashFlowEffects {
   private readonly actions$: Actions = inject(Actions);
-  private readonly dbService: DbService = inject(DbService);
+  private readonly cashFlowApi: CashFlowApi = inject(CashFlowApi);
   private readonly toastService: ToastService = inject(ToastService);
   private readonly translateService: TranslateService = inject(TranslateService);
 
@@ -18,7 +19,7 @@ export class CashFlowEffects {
     return this.actions$.pipe(
       ofType(CashFlowActions.getCashFlowUserData),
       exhaustMap(({ uid }) => {
-        return this.dbService.loadUserCashFlowData$(uid).pipe(
+        return this.cashFlowApi.loadUserCashFlowData$(uid).pipe(
           map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUser'));
@@ -33,7 +34,7 @@ export class CashFlowEffects {
     return this.actions$.pipe(
       ofType(CashFlowActions.addIncome),
       exhaustMap(({ income }) => {
-        return from(this.dbService.addCashFlow$(Collection.INCOMES, income)).pipe(
+        return from(this.cashFlowApi.addCashFlow$(Collection.INCOMES, income)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addIncomeSuccess'));
             return CashFlowActions.addIncomeSuccess();
@@ -51,7 +52,7 @@ export class CashFlowEffects {
     return this.actions$.pipe(
       ofType(CashFlowActions.addExpense),
       exhaustMap(({ expense }) => {
-        return from(this.dbService.addCashFlow$(Collection.EXPENSES, expense)).pipe(
+        return from(this.cashFlowApi.addCashFlow$(Collection.EXPENSES, expense)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully added');
             return CashFlowActions.addExpenseSuccess();
@@ -69,7 +70,7 @@ export class CashFlowEffects {
     return this.actions$.pipe(
       ofType(CashFlowActions.removeIncome),
       exhaustMap(({ incomeId }) => {
-        return of(this.dbService.removeCashFlow$(Collection.INCOMES, incomeId)).pipe(
+        return of(this.cashFlowApi.removeCashFlow$(Collection.INCOMES, incomeId)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully removed');
             return CashFlowActions.removeIncomeSuccess();
@@ -87,7 +88,7 @@ export class CashFlowEffects {
     return this.actions$.pipe(
       ofType(CashFlowActions.removeExpense),
       exhaustMap(({ expenseId }) => {
-        return of(this.dbService.removeCashFlow$(Collection.EXPENSES, expenseId)).pipe(
+        return of(this.cashFlowApi.removeCashFlow$(Collection.EXPENSES, expenseId)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully removed');
             return CashFlowActions.removeExpenseSuccess();
@@ -105,7 +106,7 @@ export class CashFlowEffects {
     return this.actions$.pipe(
       ofType(CashFlowActions.updateIncome),
       exhaustMap(({ updatedIncome }) => {
-        return of(this.dbService.updateCashFlow$(Collection.INCOMES, updatedIncome)).pipe(
+        return of(this.cashFlowApi.updateCashFlow$(Collection.INCOMES, updatedIncome)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully updated');
             return CashFlowActions.removeIncomeSuccess();
@@ -123,7 +124,7 @@ export class CashFlowEffects {
     return this.actions$.pipe(
       ofType(CashFlowActions.updateExpense),
       exhaustMap(({ updatedExpense }) => {
-        return of(this.dbService.updateCashFlow$(Collection.EXPENSES, updatedExpense)).pipe(
+        return of(this.cashFlowApi.updateCashFlow$(Collection.EXPENSES, updatedExpense)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully updated');
             return CashFlowActions.removeExpenseSuccess();

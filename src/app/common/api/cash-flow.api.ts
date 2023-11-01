@@ -7,7 +7,7 @@ import { User } from '#common/models';
 import { CashFlowUserData, CashFlow } from '#features/cash-flow/models';
 
 @Injectable({ providedIn: 'root' })
-export class DbService {
+export class CashFlowApi {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public addUserToDatabase$(user: User) {
