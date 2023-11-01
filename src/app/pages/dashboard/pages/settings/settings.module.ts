@@ -18,13 +18,7 @@ import {
 import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 
-const declarations = [
-  SettingsViewComponent,
-  ThemeTogglerComponent,
-  AccountSettingsComponent,
-  AccountSettingsFormComponent,
-];
-
+const declarations = [SettingsViewComponent, ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent];
 const imports = [
   CommonModule,
   SettingsRoutingModule,

@@ -6,7 +6,7 @@ const imports = [NgIf];
 @Component({
   selector: 'ctrl-details',
   template: `
-    <div class="flex ">
+    <div class="flex">
       <div class="w-3rem mr-2">
         <img [src]="icon" alt="icon" />
       </div>
@@ -17,7 +17,6 @@ const imports = [NgIf];
       </div>
     </div>
   `,
-  styleUrls: ['./details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,

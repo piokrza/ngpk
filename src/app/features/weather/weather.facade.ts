@@ -1,14 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { EMPTY, Observable, catchError, combineLatest, finalize, tap } from 'rxjs';
 
-import { WeatherApi, WeatherService, WeatherState } from '#features/weather/data-access';
+import { WeatherApi, WeatherState } from '#features/weather/data-access';
 import { WeatherDataset, WeatherResponse } from '#features/weather/models';
 
 @Injectable()
 export class WeatherFacade {
   private readonly weatherApi: WeatherApi = inject(WeatherApi);
   private readonly weatherState: WeatherState = inject(WeatherState);
-  private readonly weatherService: WeatherService = inject(WeatherService);
 
   public get weatherDataset$(): Observable<WeatherDataset> {
     return combineLatest({

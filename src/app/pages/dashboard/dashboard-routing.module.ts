@@ -23,6 +23,10 @@ const routes: Routes = [
         path: DashobardPaths.SETTINGS,
         loadChildren: (): Promise<any> => import('#pages/dashboard/pages/settings/settings.module'),
       },
+      {
+        path: DashobardPaths.TASKER,
+        loadComponent: (): Promise<any> => import('#pages/dashboard/pages/tasker/tasker.component'),
+      },
     ],
   },
 ];

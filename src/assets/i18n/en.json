@@ -80,7 +80,8 @@
     "home": "Home",
     "cashFlow": "Cash flow",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "tasker": "Tasker"
   },
 
   "weather": {

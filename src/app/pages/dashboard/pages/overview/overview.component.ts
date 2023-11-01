@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
@@ -29,7 +29,6 @@ const imports = [CommonModule, TranslateModule, RouterLink, CardModule, ChartMod
 export default class OverviewComponent implements OnInit {
   private readonly store: Store = inject(Store);
   private readonly chartService: ChartService = inject(ChartService);
-  private readonly cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   public readonly totalBalance$: Observable<number> = this.getTotalBalance$();
   public readonly isCashFlowLoading$: Observable<boolean> = this.store.select(CashFlowSelectors.isLoading);
@@ -50,8 +49,6 @@ export default class OverviewComponent implements OnInit {
         tap(({ expenses, incomes }): void => {
           this.incomesChartData = this.chartService.setChartIncomesData(incomes);
           this.expensesChartData = this.chartService.setChartExpensesData(expenses);
-
-          this.cdr.markForCheck();
         }),
         untilDestroyed(this)
       )

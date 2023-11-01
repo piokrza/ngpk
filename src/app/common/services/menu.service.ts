@@ -27,6 +27,11 @@ export class MenuService {
         icon: PrimeIcons.SIGN_IN,
       },
       {
+        label: 'menu.tasker',
+        routerLink: DashobardPaths.TASKER,
+        icon: PrimeIcons.BOOK,
+      },
+      {
         label: 'menu.settings',
         routerLink: DashobardPaths.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,

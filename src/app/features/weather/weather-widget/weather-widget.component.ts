@@ -7,11 +7,11 @@ import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
-import { Observable, take } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { WeatherFacade } from '#features/weather';
 import { DetailsComponent } from '#features/weather/components';
-import { WeatherApi, WeatherService, WeatherState } from '#features/weather/data-access';
+import { WeatherApi, WeatherState } from '#features/weather/data-access';
 import { WeatherDataset } from '#features/weather/models';
 import { WeatherIconPipe } from '#features/weather/pipes';
 
@@ -25,7 +25,7 @@ const imports = [
   SkeletonModule,
   WeatherIconPipe,
 ];
-const providers: Provider[] = [WeatherFacade, WeatherApi, WeatherService, WeatherState];
+const providers: Provider[] = [WeatherFacade, WeatherApi, WeatherState];
 
 @UntilDestroy()
 @Component({

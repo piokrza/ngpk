@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
 
@@ -15,7 +16,7 @@ import { AuthActions, AuthSelectors } from '#store/auth';
   template: `
     <div class="container">
       <p>{{ 'settings.accountSettings' | translate }}</p>
-      <button (click)="openAccountSettingsDialog()" icon="pi pi-user" pButton></button>
+      <button (click)="openAccountSettingsDialog()" [icon]="PrimeIcons.USER" pButton></button>
     </div>
   `,
   styleUrls: ['./account-settings.component.scss'],
@@ -26,6 +27,7 @@ export class AccountSettingsComponent implements OnInit {
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly transalteService: TranslateService = inject(TranslateService);
 
+  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   private user: User | null = null;
 
   public ngOnInit(): void {
