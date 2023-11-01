@@ -6,4 +6,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./panel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PanelComponent {}
+export class PanelComponent {
+  todos = [
+    {
+      name: 'Todo name',
+      isDone: true,
+    },
+  ];
+}

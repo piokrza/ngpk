@@ -76,6 +76,11 @@
     "signout": "Signout"
   },
 
+  "tasker": {
+    "title": "Tasker",
+    "notes": "Notes"
+  },
+
   "menu": {
     "home": "Home",
     "cashFlow": "Cash flow",

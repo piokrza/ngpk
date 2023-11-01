@@ -76,12 +76,17 @@
     "signout": "Wyloguj się"
   },
 
+  "tasker": {
+    "title": "Zadania",
+    "notes": "Notatki"
+  },
+
   "menu": {
     "home": "Strona główna",
     "cashFlow": "Przepływ środków",
     "settings": "Ustawienia",
     "logout": "Wyloguj się",
-    "tasker": "Lista zadań"
+    "tasker": "Zadania"
   },
 
   "weather": {
