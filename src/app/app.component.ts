@@ -9,6 +9,7 @@ import { AuthService } from '#pages/auth/services';
 import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
 import { CategoriesActions } from '#store/categories';
+import { TaskerActions } from '#store/tasker';
 
 @Component({
   selector: 'ctrl-root',
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
             this.store.dispatch(CategoriesActions.getCategories());
             this.store.dispatch(AuthActions.loadUserData());
             this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid: user.uid }));
+            this.store.dispatch(TaskerActions.getTasksUserData({ uid: user.uid }));
           }
         })
       )

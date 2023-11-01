@@ -102,7 +102,8 @@
     "error": "Error!",
     "fetchUser": "Something went wrong during fetch user data",
     "addIncomeSuccess": "Income successfully added",
-    "addIncomeError": "Something went wrong during storing data in database"
+    "addIncomeError": "Something went wrong during storing data in database",
+    "fetchTasksError": "Something went wrong during fetching tasks data"
   },
 
   "primeng": {

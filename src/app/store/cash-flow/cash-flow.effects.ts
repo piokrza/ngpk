@@ -22,7 +22,7 @@ export class CashFlowEffects {
         return this.cashFlowApi.loadUserCashFlowData$(uid).pipe(
           map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUser'));
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUserError'));
             return of(CashFlowActions.getCashFlowUserDataFailure());
           })
         );

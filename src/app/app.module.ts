@@ -24,8 +24,9 @@ import { AuthEffects } from '#store/auth';
 import { CashFlowEffects } from '#store/cash-flow';
 import { CategoriesEffects } from '#store/categories';
 import { ROOT_REDUCERS } from '#store/root-reducer';
+import { TaskerEffects } from '#store/tasker';
 
-const StoreEffects = [CategoriesEffects, CashFlowEffects, AuthEffects];
+const StoreEffects = [CategoriesEffects, CashFlowEffects, AuthEffects, TaskerEffects];
 
 const declarations = [AppComponent];
 const imports = [
