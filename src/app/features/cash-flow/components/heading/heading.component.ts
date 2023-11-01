@@ -7,9 +7,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     <p-card>
       <h3 class="heading">
         {{ 'cashFlow.heading' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
-        <span [ngClass]="{ 'text--success': isIncomeMode, 'text--danger': !isIncomeMode }">
-          {{ amount ? (amount | number) : 0 }} PLN
-        </span>
+        <span [ngClass]="{ 'text--success': isIncomeMode, 'text--danger': !isIncomeMode }"> {{ amount ? (amount | number) : 0 }} PLN </span>
       </h3>
     </p-card>
   `,

@@ -4,7 +4,6 @@ import { createReducer, on } from '@ngrx/store';
 import { Categories } from '#common/models/category.model';
 import { CategoriesActions } from '#store/categories';
 
-
 export const FeatureKey = 'categories';
 
 export interface State {

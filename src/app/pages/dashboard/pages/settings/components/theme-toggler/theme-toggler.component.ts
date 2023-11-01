@@ -8,11 +8,7 @@ import { PersistanceService, ThemeService } from '#common/services';
   template: `
     <div class="container">
       {{ 'settings.selectTheme' | translate }}
-      <p-toggleButton
-        [(ngModel)]="isLightMode"
-        (onChange)="toggleTheme()"
-        [onIcon]="'pi pi-sun'"
-        [offIcon]="'pi pi-moon'" />
+      <p-toggleButton [(ngModel)]="isLightMode" (onChange)="toggleTheme()" [onIcon]="'pi pi-sun'" [offIcon]="'pi pi-moon'" />
     </div>
   `,
   styleUrls: ['./theme-toggler.component.scss'],

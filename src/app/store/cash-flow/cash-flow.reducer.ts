@@ -77,9 +77,7 @@ export const Reducer = createReducer(
 
   // remove expense
   on(CashFlowActions.removeExpense, (state, { expenseId }): State => {
-    const filteredExpenses: CashFlow[] = state.expenses.filter(
-      (expense: CashFlow): boolean => expense.id !== expenseId
-    );
+    const filteredExpenses: CashFlow[] = state.expenses.filter((expense: CashFlow): boolean => expense.id !== expenseId);
     return { ...state, expenses: filteredExpenses };
   }),
 

@@ -40,11 +40,7 @@ export class AuthEffects {
           }),
 
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during google authorisation'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during google authorisation');
 
             return of(AuthActions.userNotAuthenticated());
           })
@@ -78,11 +74,7 @@ export class AuthEffects {
           }),
 
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during google authorization'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during google authorization');
 
             return of(AuthActions.signInWithEmailAndPasswordFailure());
           })
@@ -150,11 +142,7 @@ export class AuthEffects {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Account data successfully updated');
           }),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.ERROR,
-              'Error!',
-              'Something went wrong during updated account data'
-            );
+            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during updated account data');
 
             return of(AuthActions.updateAccountFailure());
           })

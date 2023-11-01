@@ -1,16 +1,14 @@
 import { ThemeTogglerComponent } from './theme-toggler.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-
 describe('ThemeTogglerComponent', () => {
   let component: ThemeTogglerComponent;
   let fixture: ComponentFixture<ThemeTogglerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ThemeTogglerComponent ]
-    })
-    .compileComponents();
+      declarations: [ThemeTogglerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ThemeTogglerComponent);
     component = fixture.componentInstance;

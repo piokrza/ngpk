@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: AppPaths.AUTHENTICATION,
-    // canMatch: [isLoggedInGuard], Fix
+    // canMatch: [isLoggedInGuard], TODO: Fix
     loadChildren: (): Promise<any> => import('#pages/auth/auth.module'),
   },
 ];

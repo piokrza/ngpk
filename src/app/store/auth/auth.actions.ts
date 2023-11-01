@@ -15,18 +15,12 @@ export const signInWithGoogle = createAction(ActionTypes.SIGN_IN_WITH_GOOGLE);
 export const signOut = createAction(ActionTypes.SIGN_OUT);
 
 // sign in with email and password
-export const signInWithEmailAndPassword = createAction(
-  ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD,
-  props<{ payload: AuthFormPayload }>()
-);
+export const signInWithEmailAndPassword = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD, props<{ payload: AuthFormPayload }>());
 export const signInWithEmailAndPasswordSuccess = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_SUCCESS);
 export const signInWithEmailAndPasswordFailure = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_FAILURE);
 
 // sign up with email and password
-export const signUpWithEmailAndPassword = createAction(
-  ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD,
-  props<{ payload: AuthFormPayload }>()
-);
+export const signUpWithEmailAndPassword = createAction(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD, props<{ payload: AuthFormPayload }>());
 export const signUpWithEmailAndPasswordSuccess = createAction(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD_SUCCESS);
 export const signUpWithEmailAndPasswordFailure = createAction(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD_FAILURE);
 

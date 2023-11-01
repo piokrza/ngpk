@@ -24,11 +24,7 @@ export class CategoriesEffects {
           }),
 
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.WARN,
-              'Error!',
-              'Something went wrong during fetching categories from database'
-            );
+            this.toastService.showMessage(ToastStatus.WARN, 'Error!', 'Something went wrong during fetching categories from database');
 
             return of(CategoriesActions.getCategoriesFailure());
           })
