@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { User } from '#common/models/user.model';
+import { User } from '#common/models';
 import { AuthFormPayload } from '#pages/auth/models';
 import { ActionTypes } from '#store/auth/action-types';
 

@@ -19,6 +19,7 @@ const initialState: State = {
 export const Reducer: ActionReducer<State, Action> = createReducer(
   initialState,
 
+  // get tasks data
   on(TaskerActions.getTasksUserData, (state): State => {
     return { ...state, isLoading: true };
   }),

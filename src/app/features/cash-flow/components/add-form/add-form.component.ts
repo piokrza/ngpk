@@ -5,8 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { filter, Observable, take, tap } from 'rxjs';
 import uniqid from 'uniqid';
 
-import { User } from '#common/models';
-import { Category } from '#common/models/category.model';
+import { User, Category } from '#common/models';
 import { CashFlow, CashFlowForm } from '#features/cash-flow/models';
 import { CashFlowFormService } from '#features/cash-flow/services';
 import { AuthService } from '#pages/auth/services';
