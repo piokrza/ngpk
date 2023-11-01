@@ -1,2 +1,2 @@
 export * from './is-light-mode';
-export * from './languages';
+export * from './lang';

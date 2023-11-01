@@ -108,6 +108,8 @@
 
   "primeng": {
     "accept": "Yes",
-    "reject": "No"
+    "reject": "No",
+    "pl": "Polish",
+    "en": "English"
   }
 }

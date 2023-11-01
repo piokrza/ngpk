@@ -16,11 +16,10 @@ const routes: Routes = [
     loadChildren: (): Promise<any> => import('#pages/dashboard/dashboard.module'),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
-    // Add data resolver
   },
   {
     path: AppPaths.AUTHENTICATION,
-    // canMatch: [isLoggedInGuard], TODO: Fix
+    // canMatch: [isLoggedInGuard], TODO: fix
     loadChildren: (): Promise<any> => import('#pages/auth/auth.module'),
   },
 ];

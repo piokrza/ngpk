@@ -3,8 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { SelectButtonChangeEvent, SelectButtonModule } from 'primeng/selectbutton';
+import { take } from 'rxjs';
 
-import { AppLanguages, LANG } from '#common/constants';
+import { LANG } from '#common/constants';
 import { Language } from '#common/models';
 
 const imports = [SelectButtonModule, FormsModule, TranslateModule];
@@ -17,7 +18,10 @@ const imports = [SelectButtonModule, FormsModule, TranslateModule];
       <p-selectButton
         (onChange)="onLangChange($event)"
         [(ngModel)]="languageValue"
-        [options]="languages"
+        [options]="[
+          { label: 'primeng.pl' | translate, value: 'pl' },
+          { label: 'primeng.en' | translate, value: 'en' }
+        ]"
         optionLabel="label"
         optionValue="value" />
     </div>
@@ -30,13 +34,15 @@ const imports = [SelectButtonModule, FormsModule, TranslateModule];
 export class LanguageTogglerComponent {
   private readonly translateService: TranslateService = inject(TranslateService);
 
-  private readonly config: PrimeNGConfig = inject(PrimeNGConfig);
-  public readonly languages: Language[] = AppLanguages;
   public languageValue: Language['value'] = (localStorage.getItem(LANG) as Language['value']) ?? 'pl';
+  private readonly config: PrimeNGConfig = inject(PrimeNGConfig);
 
   public onLangChange({ value }: SelectButtonChangeEvent): void {
     localStorage.setItem(LANG, value);
     this.translateService.use(value);
-    this.translateService.get('primeng').subscribe((res) => this.config.setTranslation(res));
+    this.translateService
+      .get('primeng')
+      .pipe(take(1))
+      .subscribe((res) => this.config.setTranslation(res));
   }
 }
