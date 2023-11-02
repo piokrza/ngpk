@@ -80,7 +80,9 @@
     "title": "Tasker",
     "notes": "Notes",
     "updateTask": "Update task",
-    "addTask": "Add task"
+    "addTask": "Add task",
+    "removeMessage": "Are you sure that you want to remove this task?",
+    "removeHeader": "Remove task"
   },
 
   "menu": {
@@ -105,7 +107,8 @@
     "fetchUser": "Something went wrong during fetch user data",
     "addIncomeSuccess": "Income successfully added",
     "addIncomeError": "Something went wrong during storing data in database",
-    "fetchTasksError": "Something went wrong during fetching tasks data"
+    "fetchTasksError": "Something went wrong during fetching tasks data",
+    "addTaskError": "Something went wrong during removing task from database"
   },
 
   "common": {

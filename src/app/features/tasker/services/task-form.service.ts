@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { Task, TaskForm } from '#features/tasker/models';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TaskFormService {
   public get form(): FormGroup<TaskForm> {
     return this.createAddTaskForm();

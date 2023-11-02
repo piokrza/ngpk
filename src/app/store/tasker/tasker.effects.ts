@@ -36,13 +36,25 @@ export class TaskerEffects {
       ofType(TaskerActions.addTask),
       exhaustMap(({ task }) => {
         return of(this.taskerApi.addTask(task)).pipe(
-          map(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addTaskSuccess'));
-            return TaskerActions.addTaskSuccess();
-          }),
+          map(() => TaskerActions.addTaskSuccess()),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addTaskError'));
             return of(TaskerActions.addTaskFailure());
+          })
+        );
+      })
+    );
+  });
+
+  public removeTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.removeTask),
+      exhaustMap(({ taskId }) => {
+        return of(this.taskerApi.removeTask(taskId)).pipe(
+          map(() => TaskerActions.removeTaskSuccess()),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('removeTaskError'));
+            return of(TaskerActions.removeTaskFailure());
           })
         );
       })

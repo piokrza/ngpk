@@ -19,6 +19,7 @@ const providers: Provider[] = [TaskerFacade];
         (addTaskClick)="onAddTask($event)"
         (editTask)="onEditTask($event)"
         (removeTask)="onRemoveTask($event)"
+        [isLoading]="dataset.isLoading"
         [tasks]="dataset.tasks" />
     </ng-container>
   `,
@@ -41,6 +42,6 @@ export default class TaskerComponent {
   }
 
   public onRemoveTask(taskId: string): void {
-    this.taskerFacade.removeTask$(taskId);
+    this.taskerFacade.removeTask(taskId);
   }
 }

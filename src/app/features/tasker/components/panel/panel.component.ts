@@ -10,6 +10,7 @@ import { Task } from '#features/tasker/models';
 })
 export class PanelComponent {
   @Input({ required: true }) tasks!: Task[];
+  @Input({ required: true }) isLoading!: boolean;
 
   @Output() addTaskClick = new EventEmitter<string>();
   @Output() editTask = new EventEmitter<Task>();

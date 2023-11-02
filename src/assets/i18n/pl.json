@@ -80,7 +80,9 @@
     "title": "Zadania",
     "notes": "Notatki",
     "updateTask": "Edytuj zadanie",
-    "addTask": "Dodaj zadanie"
+    "addTask": "Dodaj zadanie",
+    "removeMessage": "Na pewno chcesz usunąć zadanie?",
+    "removeHeader": "Usuń zadanie"
   },
 
   "menu": {
@@ -105,7 +107,8 @@
     "fetchUserError": "Coś poszło nie tak przy próbie pobrania Twoich danych",
     "addIncomeSuccess": "Przychód zapisany",
     "addIncomeError": "Coś poszło nie tak przy próbie zapisu przychodu w bazie danych",
-    "fetchTasksError": "Coś poszło nie tak przy próbie pobrania danych"
+    "fetchTasksError": "Coś poszło nie tak przy próbie pobrania danych",
+    "addTaskError": "Cos poszło nie tak przy próbie usunięcia zadania z bazy danych"
   },
 
   "common": {

@@ -1,13 +1,14 @@
 import { Injectable, inject } from '@angular/core';
+import { Timestamp } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, combineLatest, filter, tap } from 'rxjs';
+import { Observable, combineLatest, filter, map, tap } from 'rxjs';
 import uniqid from 'uniqid';
 
 import { User } from '#common/models';
-import { AddTaskFormComponent } from '#features/tasker/components';
+import { TaskFormComponent } from '#features/tasker/components';
 import { Task, TaskerDataset } from '#features/tasker/models';
 import { AuthSelectors } from '#store/auth';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
@@ -26,26 +27,24 @@ export class TaskerFacade {
     });
   }
 
-  public addTask$(taskName: string): Observable<User> {
+  public addTask$(taskName: string): Observable<Task> {
     return this.store.select(AuthSelectors.user).pipe(
       filter(Boolean),
-      tap((user) => {
-        this.store.dispatch(
-          TaskerActions.addTask({
-            task: {
-              name: taskName,
-              uid: user.uid,
-              isComplete: false,
-              id: uniqid(),
-            } satisfies Task,
-          })
-        );
-      })
+      map((user: User) => {
+        return {
+          name: taskName,
+          uid: user.uid,
+          isComplete: false,
+          createDate: Timestamp.fromDate(new Date()),
+          id: uniqid(),
+        } satisfies Task;
+      }),
+      tap((task) => this.store.dispatch(TaskerActions.addTask({ task })))
     );
   }
 
   public editTask$(task: Task) {
-    const dialogRef: DynamicDialogRef = this.dialogService.open(AddTaskFormComponent, {
+    const dialogRef: DynamicDialogRef = this.dialogService.open(TaskFormComponent, {
       header: this.translateService.instant('tasker.updateTask'),
       style: { width: '90%', maxWidth: '600px' },
       data: task,
@@ -54,7 +53,12 @@ export class TaskerFacade {
     dialogRef;
   }
 
-  public removeTask$(taskId: string) {
-    taskId;
+  public removeTask(taskId: string): void {
+    this.confirmationService.confirm({
+      message: this.translateService.instant('tasker.removeMessage'),
+      header: this.translateService.instant('tasker.removeHeader'),
+      icon: PrimeIcons.TRASH,
+      accept: (): void => this.store.dispatch(TaskerActions.removeTask({ taskId })),
+    });
   }
 }
