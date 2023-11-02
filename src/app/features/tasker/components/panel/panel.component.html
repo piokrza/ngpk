@@ -1,11 +1,17 @@
 <p-tabView>
   <p-tabPanel [header]="'tasker.title' | translate">
     <div class="container">
-      <ctrl-task-section
-        (editTask)="editTask.emit($event)"
-        (removeTask)="removeTask.emit($event)"
-        (addTaskClick)="addTaskClick.emit($event)"
-        [tasks]="tasks" />
+      <p-button (click)="addTask.emit()" [label]="'tasker.addTask' | translate" size="large" styleClass="my-3" />
+
+      <div class="flex justify-content-center">
+        <p-progressSpinner *ngIf="isLoading" />
+      </div>
+
+      <p-dataView [value]="tasks" class="w-full">
+        <ng-template let-task pTemplate="listItem">
+          <ctrl-task (toggleIsTaskComplete)="toggleIsTaskComplete.emit($event)" (removeTask)="removeTask.emit($event)" [task]="task" />
+        </ng-template>
+      </p-dataView>
     </div>
   </p-tabPanel>
 

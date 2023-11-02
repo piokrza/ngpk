@@ -16,7 +16,7 @@ export class AccountSettingsFormComponent implements OnInit {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   private readonly userData: User = inject(DynamicDialogConfig).data;
-  public form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).createUserSettingsForm();
+  public readonly form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).createUserSettingsForm();
 
   public readonly trPath: string = 'settings.accountForm.';
 

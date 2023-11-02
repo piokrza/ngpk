@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Task, TaskForm } from '#features/tasker/models';
+import { TaskForm, TaskStepForm } from '#features/tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class TaskFormService {
@@ -9,11 +9,20 @@ export class TaskFormService {
     return this.createAddTaskForm();
   }
 
+  public addStep(taskForm: FormGroup<TaskForm>): void {
+    taskForm.controls.steps.push(
+      new FormGroup<TaskStepForm>({
+        name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
+        isComplete: new FormControl<boolean>(false, { nonNullable: true }),
+      })
+    );
+  }
+
   private createAddTaskForm(): FormGroup<TaskForm> {
     return new FormGroup<TaskForm>({
-      name: new FormControl<string>('', { nonNullable: true }),
+      name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
       isComplete: new FormControl<boolean>(false, { nonNullable: true }),
-      steps: new FormControl<Task[]>([], { nonNullable: true }),
+      steps: new FormArray<FormGroup<TaskStepForm>>([]),
     });
   }
 }

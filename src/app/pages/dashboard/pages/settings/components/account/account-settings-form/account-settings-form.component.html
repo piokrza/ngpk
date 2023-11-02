@@ -1,21 +1,21 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <span class="p-float-label my-4">
-    <input pInputText id="displayName" class="w-full" formControlName="displayName" />
+    <input [formControl]="form.controls.displayName" pInputText id="displayName" class="w-full" />
     <label htmlFor="displayName">{{ trPath + 'displayName' | translate }}</label>
   </span>
 
   <span class="p-float-label my-4">
-    <input pInputText id="email" class="w-full" formControlName="email" />
+    <input [formControl]="form.controls.email" pInputText id="email" class="w-full" />
     <label htmlFor="email">{{ trPath + 'email' | translate }}</label>
   </span>
 
   <span class="p-float-label my-4">
-    <p-inputNumber [useGrouping]="false" id="phoneNumer" class="w-full" formControlName="phoneNumber" />
+    <p-inputNumber [formControl]="form.controls.phoneNumber" [useGrouping]="false" id="phoneNumer" class="w-full" />
     <label htmlFor="phoneNumer">{{ trPath + 'phoneNumber' | translate }}</label>
   </span>
 
   <span class="p-float-label my-4">
-    <input pInputText id="photoURL" class="w-full" formControlName="photoURL" />
+    <input [formControl]="form.controls.photoURL" pInputText id="photoURL" class="w-full" />
     <label htmlFor="photoURL">{{ trPath + 'avatar' | translate }}</label>
   </span>
 

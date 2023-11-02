@@ -82,7 +82,9 @@
     "updateTask": "Update task",
     "addTask": "Add task",
     "removeMessage": "Are you sure that you want to remove this task?",
-    "removeHeader": "Remove task"
+    "removeHeader": "Remove task",
+    "addSteps": "Add step",
+    "step": "Step"
   },
 
   "menu": {

@@ -4,7 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 
 import { TaskerModule } from '#features/tasker';
-import { Task, TaskerDataset } from '#features/tasker/models';
+import { TaskerDataset } from '#features/tasker/models';
 import { TaskerFacade } from '#pages/dashboard/pages/tasker';
 
 const imports = [TaskerModule, NgIf, AsyncPipe];
@@ -16,9 +16,9 @@ const providers: Provider[] = [TaskerFacade];
   template: `
     <ng-container *ngIf="dataset$ | async as dataset">
       <ctrl-tasker-panel
-        (addTaskClick)="onAddTask($event)"
-        (editTask)="onEditTask($event)"
+        (addTask)="onAddTask()"
         (removeTask)="onRemoveTask($event)"
+        (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
         [isLoading]="dataset.isLoading"
         [tasks]="dataset.tasks" />
     </ng-container>
@@ -33,15 +33,15 @@ export default class TaskerComponent {
 
   public readonly dataset$: Observable<TaskerDataset> = this.taskerFacade.taskerDataset$;
 
-  public onAddTask(taskName: string): void {
-    this.taskerFacade.addTask$(taskName).pipe(untilDestroyed(this)).subscribe();
-  }
-
-  public onEditTask(task: Task): void {
-    this.taskerFacade.editTask$(task);
+  public onAddTask(): void {
+    this.taskerFacade.addTask$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public onRemoveTask(taskId: string): void {
     this.taskerFacade.removeTask(taskId);
+  }
+
+  public onToggleIsTaskComplete(taskId: string): void {
+    this.taskerFacade.toggleIsTaskComplete(taskId);
   }
 }

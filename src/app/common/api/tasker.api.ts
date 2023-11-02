@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { Collection } from '#common/enums';
 import { Task } from '#features/tasker/models';
@@ -19,13 +19,27 @@ export class TaskerApi {
 
   public addTask(task: Task): Promise<DocumentReference<Task>> {
     const tasksCollection: AngularFirestoreCollection<Task> = this.angularFirestore.collection<Task>(Collection.TASKS);
-
     return tasksCollection.add(task);
   }
 
-  public removeTask(taskId: string): Promise<void> {
-    const taskDocument: AngularFirestoreDocument<Task> = this.angularFirestore.collection(Collection.TASKS).doc(taskId);
+  public toggleIsTaskComplete(taskId: string) {
+    const taskRef: AngularFirestoreDocument<Task> = this.getTask(taskId);
 
-    return taskDocument.delete();
+    return taskRef.get().pipe(
+      tap((task) => {
+        if (task.exists) {
+          const isTaskComplete = task.data()?.isComplete;
+          taskRef.update({ isComplete: !isTaskComplete });
+        }
+      })
+    );
+  }
+
+  public removeTask(taskId: string): Promise<void> {
+    return this.getTask(taskId).delete();
+  }
+
+  private getTask(taskId: string): AngularFirestoreDocument<Task> {
+    return this.angularFirestore.collection(Collection.TASKS).doc(taskId);
   }
 }

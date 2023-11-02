@@ -6,7 +6,7 @@ import { ExpenseChartData, IncomesChartData, CustomChartData } from '#pages/dash
 
 @Injectable({ providedIn: 'root' })
 export class ChartService {
-  public getChartOptions() {
+  public get chartOptions() {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
     const textColor: string = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary: string = documentStyle.getPropertyValue('--text-color-secondary');

@@ -82,7 +82,9 @@
     "updateTask": "Edytuj zadanie",
     "addTask": "Dodaj zadanie",
     "removeMessage": "Na pewno chcesz usunąć zadanie?",
-    "removeHeader": "Usuń zadanie"
+    "removeHeader": "Usuń zadanie",
+    "addSteps": "Dodaj krok",
+    "step": "Krok"
   },
 
   "menu": {

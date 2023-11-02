@@ -7,6 +7,10 @@ export enum ActionTypes {
   ADD_TASK_SUCCESS = '[Tasks] Add task success',
   ADD_TASK_FAILURE = '[Tasks] Add task failure',
 
+  TOGGLE_IS_TASK_COMPLETE = '[Tasks] Toggle is task complete task',
+  TOGGLE_IS_TASK_COMPLETE_SUCCESS = '[Tasks] Toggle is task complete task success',
+  TOGGLE_IS_TASK_COMPLETE_FAILURE = '[Tasks] Toggle is task complete task failure',
+
   REMOVE_TASK = '[Tasks] Remove task',
   REMOVE_TASK_SUCCESS = '[Tasks] Remove task success',
   REMOVE_TASK_FAILURE = '[Tasks] Remove task failure',

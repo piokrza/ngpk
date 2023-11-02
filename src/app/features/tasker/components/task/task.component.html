@@ -1,9 +1,19 @@
 <p-card styleClass="task">
   <div class="task">
-    <p [class.task__name--complete]="task.isComplete" class="task__name">{{ task.name }}</p>
+    <p-button
+      (onClick)="toggleIsTaskComplete.emit(task.id)"
+      [rounded]="true"
+      [outlined]="true"
+      [icon]="task.isComplete ? PrimeIcons.CHECK : PrimeIcons.MINUS"
+      [severity]="task.isComplete ? 'success' : 'danger'"
+      styleClass="mr-3" />
+
+    <p [class.task__name--complete]="task.isComplete" class="task__name">
+      {{ task.name }}
+      <small *ngIf="task.steps.length">({{ completedSteps }} {{ 'of' | translate }} {{ task.steps.length }})</small>
+    </p>
 
     <div class="task__buttons">
-      <p-button (onClick)="editTask.emit(task)" [icon]="PrimeIcons.ALIGN_JUSTIFY"></p-button>
       <p-button (onClick)="removeTask.emit(task.id)" [icon]="PrimeIcons.TIMES" severity="danger" />
     </div>
   </div>

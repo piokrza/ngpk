@@ -27,11 +27,14 @@
           <ctrl-details
             [amount]="(dataset.data.main.humidity | number : '1.0-0') + '%'"
             [name]="'weather.humidity' | translate"
-            icon="assets/img/weather-icons/humidity.png"></ctrl-details>
+            icon="assets/img/weather-icons/humidity.png">
+          </ctrl-details>
+
           <ctrl-details
             [amount]="(dataset.data.wind.speed | number : '1.0-0') + ' km/h'"
             [name]="'weather.wind' | translate"
-            icon="assets/img/weather-icons/wind.png"></ctrl-details>
+            icon="assets/img/weather-icons/wind.png">
+          </ctrl-details>
         </div>
 
         <div class="flex align-items-center justify-content-between">

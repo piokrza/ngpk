@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
-import { Task } from '#features/tasker/models';
+import { Task, TaskStep } from '#features/tasker/models';
 
 @Component({
   selector: 'ctrl-task',
@@ -9,11 +9,16 @@ import { Task } from '#features/tasker/models';
   styleUrls: ['./task.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskComponent {
+export class TaskComponent implements OnChanges {
   @Input({ required: true }) task!: Task;
 
-  @Output() editTask = new EventEmitter<Task>();
   @Output() removeTask = new EventEmitter<string>();
+  @Output() toggleIsTaskComplete = new EventEmitter<string>();
 
+  public completedSteps = 0;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['task']) this.completedSteps = this.task.steps.filter(({ isComplete }: TaskStep) => isComplete === true).length;
+  }
 }

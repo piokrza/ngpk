@@ -46,6 +46,20 @@ export class TaskerEffects {
     );
   });
 
+  public toggleIsTaskComplete$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.toggleIsTaskComplete),
+      exhaustMap(({ taskId }) => {
+        return this.taskerApi.toggleIsTaskComplete(taskId).pipe(
+          map(() => TaskerActions.toggleIsTaskCompleteSuccess()),
+          catchError(() => {
+            return of(TaskerActions.toggleIsTaskCompleteFailure());
+          })
+        );
+      })
+    );
+  });
+
   public removeTask$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.removeTask),

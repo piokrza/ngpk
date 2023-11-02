@@ -1,4 +1,21 @@
 <form [formGroup]="form">
-  <input [formControl]="nameControl" pInputText />
-  <p-checkbox [formControl]="isCompleteControl" />
+  <input [formControl]="nameControl" [placeholder]="'common.enterName' | translate" class="w-full" pInputText />
+
+  <ng-container formArrayName="steps">
+    <ul class="pl-3">
+      <li *ngFor="let stepFormGroup of stepsArray.controls; let i = index; trackBy: trackByIdx" class="mb-3 flex align-items-center">
+        <span class="mr-4">{{ 'tasker.step' | translate }} {{ i + 1 }}</span>
+
+        <div [formGroup]="$any(stepFormGroup)" class="flex">
+          <input [formControl]="$any(stepFormGroup).controls.name" [placeholder]="'common.enterName' | translate" pInputText />
+          <p-button (onClick)="removeStep(i)" [icon]="PrimeIcons.MINUS" severity="danger" />
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+
+  <div class="mt-4 flex justify-content-between">
+    <p-button (onClick)="addStep()" [label]="'tasker.addSteps' | translate" [icon]="PrimeIcons.PLUS" />
+    <p-button (onClick)="onSubmit()" [disabled]="form.invalid" [label]="'tasker.addTask' | translate" />
+  </div>
 </form>

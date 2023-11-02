@@ -38,7 +38,7 @@ export default class OverviewComponent implements OnInit {
 
   public incomesChartData!: CustomChartData;
   public expensesChartData!: CustomChartData;
-  public readonly chartsOptions = this.chartService.getChartOptions();
+  public readonly chartsOptions = this.chartService.chartOptions;
 
   public ngOnInit(): void {
     combineLatest({

@@ -1,16 +1,12 @@
 import { Injectable, inject } from '@angular/core';
-import { Timestamp } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, combineLatest, filter, map, tap } from 'rxjs';
-import uniqid from 'uniqid';
+import { Observable, combineLatest, tap } from 'rxjs';
 
-import { User } from '#common/models';
 import { TaskFormComponent } from '#features/tasker/components';
 import { Task, TaskerDataset } from '#features/tasker/models';
-import { AuthSelectors } from '#store/auth';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 
 @Injectable()
@@ -27,30 +23,17 @@ export class TaskerFacade {
     });
   }
 
-  public addTask$(taskName: string): Observable<Task> {
-    return this.store.select(AuthSelectors.user).pipe(
-      filter(Boolean),
-      map((user: User) => {
-        return {
-          name: taskName,
-          uid: user.uid,
-          isComplete: false,
-          createDate: Timestamp.fromDate(new Date()),
-          id: uniqid(),
-        } satisfies Task;
-      }),
-      tap((task) => this.store.dispatch(TaskerActions.addTask({ task })))
-    );
-  }
-
-  public editTask$(task: Task) {
+  public addTask$(): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(TaskFormComponent, {
-      header: this.translateService.instant('tasker.updateTask'),
+      header: this.translateService.instant('tasker.addTask'),
       style: { width: '90%', maxWidth: '600px' },
-      data: task,
     });
 
-    dialogRef;
+    return dialogRef.onClose.pipe(
+      tap((task?: Task) => {
+        task && this.store.dispatch(TaskerActions.addTask({ task }));
+      })
+    );
   }
 
   public removeTask(taskId: string): void {
@@ -60,5 +43,9 @@ export class TaskerFacade {
       icon: PrimeIcons.TRASH,
       accept: (): void => this.store.dispatch(TaskerActions.removeTask({ taskId })),
     });
+  }
+
+  public toggleIsTaskComplete(taskId: string): void {
+    this.store.dispatch(TaskerActions.toggleIsTaskComplete({ taskId }));
   }
 }

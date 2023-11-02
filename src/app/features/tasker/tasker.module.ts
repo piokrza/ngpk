@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { CheckboxModule } from 'primeng/checkbox';
 import { DataViewModule } from 'primeng/dataview';
 import { InputTextModule } from 'primeng/inputtext';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
-import { TaskFormComponent, NoteComponent, PanelComponent, TaskComponent, TaskSectionComponent } from '#features/tasker/components';
+import { TaskFormComponent, NoteComponent, PanelComponent, TaskComponent } from '#features/tasker/components';
 
 const imports = [
   CommonModule,
@@ -20,9 +20,10 @@ const imports = [
   ButtonModule,
   ReactiveFormsModule,
   InputTextModule,
-  CheckboxModule,
+  ProgressSpinnerModule,
+  FormsModule,
 ];
-const declarations = [PanelComponent, TaskComponent, NoteComponent, TaskSectionComponent, TaskFormComponent];
+const declarations = [PanelComponent, TaskComponent, NoteComponent, TaskFormComponent];
 
 @NgModule({ declarations, imports, exports: [PanelComponent] })
 export class TaskerModule {}

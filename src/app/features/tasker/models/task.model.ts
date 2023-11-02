@@ -4,7 +4,9 @@ export interface Task {
   name: string;
   isComplete: boolean;
   createDate?: Timestamp;
-  steps?: Task[];
+  steps: TaskStep[];
   id: string;
   uid: string;
 }
+
+export type TaskStep = Pick<Task, 'name' | 'isComplete'>;

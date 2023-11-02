@@ -13,6 +13,11 @@ export const addTask = createAction(ActionTypes.ADD_TASK, props<{ task: Task }>(
 export const addTaskSuccess = createAction(ActionTypes.ADD_TASK_SUCCESS);
 export const addTaskFailure = createAction(ActionTypes.ADD_TASK_FAILURE);
 
+// toggle is task complete
+export const toggleIsTaskComplete = createAction(ActionTypes.TOGGLE_IS_TASK_COMPLETE, props<{ taskId: string }>());
+export const toggleIsTaskCompleteSuccess = createAction(ActionTypes.TOGGLE_IS_TASK_COMPLETE_SUCCESS);
+export const toggleIsTaskCompleteFailure = createAction(ActionTypes.TOGGLE_IS_TASK_COMPLETE_FAILURE);
+
 // remove task
 export const removeTask = createAction(ActionTypes.REMOVE_TASK, props<{ taskId: string }>());
 export const removeTaskSuccess = createAction(ActionTypes.REMOVE_TASK_SUCCESS);
