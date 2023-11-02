@@ -1,0 +1,18 @@
+<section>
+  <div class="min-width-20rem my-4">
+    <p class="mt-0 text-3xl">{{ 'tasker.addTask' | translate }}</p>
+
+    <form [formGroup]="form">
+      <div class="flex">
+        <input [formControl]="nameControl" [placeholder]="'common.enterName' | translate" class="w-full" pInputText />
+        <button (click)="addTask()" [disabled]="!nameControl.value" [icon]="PrimeIcons.PLUS" pButton></button>
+      </div>
+    </form>
+  </div>
+
+  <p-dataView [value]="tasks" class="w-full">
+    <ng-template let-task pTemplate="listItem">
+      <ctrl-task (editTask)="editTask.emit($event)" (removeTask)="removeTask.emit($event)" [task]="task" />
+    </ng-template>
+  </p-dataView>
+</section>

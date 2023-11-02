@@ -79,7 +79,8 @@
   "tasker": {
     "title": "Tasker",
     "notes": "Notes",
-    "updateTask": "Update task"
+    "updateTask": "Update task",
+    "addTask": "Add task"
   },
 
   "menu": {
@@ -105,6 +106,10 @@
     "addIncomeSuccess": "Income successfully added",
     "addIncomeError": "Something went wrong during storing data in database",
     "fetchTasksError": "Something went wrong during fetching tasks data"
+  },
+
+  "common": {
+    "enterName": "Enter name"
   },
 
   "primeng": {

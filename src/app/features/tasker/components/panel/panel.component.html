@@ -1,10 +1,12 @@
 <p-tabView>
   <p-tabPanel [header]="'tasker.title' | translate">
-    <p-dataView [value]="tasks">
-      <ng-template let-task pTemplate="listItem">
-        <ctrl-task (editTask)="editTask.emit($event)" (removeTask)="removeTask.emit($event)" [task]="task" />
-      </ng-template>
-    </p-dataView>
+    <div class="container">
+      <ctrl-task-section
+        (editTask)="editTask.emit($event)"
+        (removeTask)="removeTask.emit($event)"
+        (addTaskClick)="addTaskClick.emit($event)"
+        [tasks]="tasks" />
+    </div>
   </p-tabPanel>
 
   <p-tabPanel [header]="'tasker.notes' | translate">

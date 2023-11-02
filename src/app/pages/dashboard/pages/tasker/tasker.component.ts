@@ -1,18 +1,25 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Provider, inject } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Observable } from 'rxjs';
 
 import { TaskerModule } from '#features/tasker';
-import { Task } from '#features/tasker/models';
+import { Task, TaskerDataset } from '#features/tasker/models';
 import { TaskerFacade } from '#pages/dashboard/pages/tasker';
 
 const imports = [TaskerModule, NgIf, AsyncPipe];
 const providers: Provider[] = [TaskerFacade];
 
+@UntilDestroy()
 @Component({
   selector: 'ctrl-tasker',
   template: `
     <ng-container *ngIf="dataset$ | async as dataset">
-      <ctrl-tasker-panel (editTask)="onEditTask($event)" (removeTask)="onRemoveTask($event)" [tasks]="dataset.tasks" />
+      <ctrl-tasker-panel
+        (addTaskClick)="onAddTask($event)"
+        (editTask)="onEditTask($event)"
+        (removeTask)="onRemoveTask($event)"
+        [tasks]="dataset.tasks" />
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +30,11 @@ const providers: Provider[] = [TaskerFacade];
 export default class TaskerComponent {
   private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
 
-  public readonly dataset$ = this.taskerFacade.taskerDataset$;
+  public readonly dataset$: Observable<TaskerDataset> = this.taskerFacade.taskerDataset$;
+
+  public onAddTask(taskName: string): void {
+    this.taskerFacade.addTask$(taskName).pipe(untilDestroyed(this)).subscribe();
+  }
 
   public onEditTask(task: Task): void {
     this.taskerFacade.editTask$(task);

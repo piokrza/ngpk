@@ -12,7 +12,7 @@ export class PanelComponent {
   @Input({ required: true }) public cashFlowData!: CashFlow[];
   @Input({ required: true }) public isIncomeMode!: boolean;
   @Input({ required: true }) public isLoading!: boolean;
-  @Input() public totalCashFlowAmount = 0;
+  @Input({ required: true }) public totalCashFlowAmount!: number;
 
   @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
   @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();

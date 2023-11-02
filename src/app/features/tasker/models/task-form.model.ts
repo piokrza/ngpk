@@ -2,9 +2,8 @@ import { FormControl } from '@angular/forms';
 
 import { Task } from '#features/tasker/models';
 
-export interface AddTaskForm {
+export interface TaskForm {
   name: FormControl<string>;
   isComplete: FormControl<boolean>;
-  createDate: FormControl<Date>;
-  steps?: FormControl<Task[]>;
+  steps: FormControl<Task[]>;
 }
