@@ -16,7 +16,7 @@ export class WeatherFacade {
     });
   }
 
-  public loadWeatherDataByCity$(cityName: string) {
+  public loadWeatherDataByCity$(cityName: string): Observable<WeatherResponse> {
     this.weatherState.setIsLoading(true);
 
     return this.weatherApi.searchByCityName$(cityName).pipe(

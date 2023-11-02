@@ -6,10 +6,10 @@ import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';
 import { TabViewModule } from 'primeng/tabview';
 
-import { PanelComponent, TaskComponent } from '#features/tasker/components';
+import { AddTaskFormComponent, PanelComponent, TaskComponent } from '#features/tasker/components';
 
 const imports = [CommonModule, TranslateModule, CardModule, DataViewModule, TabViewModule, ButtonModule];
-const declarations = [PanelComponent, TaskComponent];
+const declarations = [PanelComponent, TaskComponent, AddTaskFormComponent];
 
 @NgModule({ declarations, imports, exports: [PanelComponent] })
 export class TaskerModule {}

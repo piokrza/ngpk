@@ -78,7 +78,8 @@
 
   "tasker": {
     "title": "Zadania",
-    "notes": "Notatki"
+    "notes": "Notatki",
+    "updateTask": "Edytuj zadanie"
   },
 
   "menu": {

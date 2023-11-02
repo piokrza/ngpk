@@ -17,20 +17,10 @@ export const Reducer = createReducer(
   initialState,
 
   // user authenticated
-  on(AuthActions.userAuthenticated, (state, { user }): State => {
-    return { ...state, user };
+  on(AuthActions.userAuthenticated, (_, { user }): State => {
+    return { user };
   }),
   on(AuthActions.userNotAuthenticated, (): State => {
-    return {
-      user: {
-        displayName: null,
-        email: null,
-        emailVerified: false,
-        phoneNumber: null,
-        photoURL: null,
-        refreshToken: null,
-        uid: '',
-      },
-    };
+    return { user: null };
   })
 );

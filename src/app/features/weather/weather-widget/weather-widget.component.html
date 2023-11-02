@@ -9,14 +9,14 @@
       </div>
 
       <p *ngIf="dataset.data?.name">
-        {{ dataset.data?.name }} <span> ({{ dataset.data?.sys?.country }})</span>
+        {{ dataset.data?.name }} <small>({{ dataset.data?.sys?.country }})</small>
       </p>
 
       <div class="flex align-items-center">
         <span *ngIf="dataset.data?.main?.temp" class="mr-2">{{ dataset.data?.main?.temp | number : '1.0-0' }} ℃</span>
 
         <div *ngIf="dataset.data?.weather?.[0]?.icon as icon" class="w-3rem">
-          <img [src]="icon | weatherIcon" alt="wather-icon" />
+          <img [src]="icon | weatherIcon" alt="weather-icon" />
         </div>
       </div>
     </div>
@@ -27,11 +27,11 @@
           <ctrl-details
             [amount]="(dataset.data.main.humidity | number : '1.0-0') + '%'"
             [name]="'weather.humidity' | translate"
-            [icon]="'assets/img/weather-icons/humidity.png'"></ctrl-details>
+            icon="assets/img/weather-icons/humidity.png"></ctrl-details>
           <ctrl-details
             [amount]="(dataset.data.wind.speed | number : '1.0-0') + ' km/h'"
             [name]="'weather.wind' | translate"
-            [icon]="'assets/img/weather-icons/wind.png'"></ctrl-details>
+            icon="assets/img/weather-icons/wind.png"></ctrl-details>
         </div>
 
         <div class="flex align-items-center justify-content-between">
@@ -50,7 +50,7 @@
       </div>
 
       <small (click)="toggleDetails()" class="block text-center rounded widget__toggle">
-        <i [class]="isOpen ? PrimeIcons.ANGLE_UP : PrimeIcons.ANGLE_DOWN" class="widget__toggle-icon text-xs"></i>
+        <i [class]="isOpen ? PrimeIcons.ANGLE_UP : PrimeIcons.ANGLE_DOWN" class="text-xs widget__toggle-icon"></i>
       </small>
     </ng-container>
   </div>

@@ -78,7 +78,8 @@
 
   "tasker": {
     "title": "Tasker",
-    "notes": "Notes"
+    "notes": "Notes",
+    "updateTask": "Update task"
   },
 
   "menu": {

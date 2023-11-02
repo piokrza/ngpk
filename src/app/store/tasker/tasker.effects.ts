@@ -20,11 +20,29 @@ export class TaskerEffects {
     return this.actions$.pipe(
       ofType(TaskerActions.getTasksUserData),
       exhaustMap(({ uid }) => {
-        return this.taskerApi.loadUserCashFlowData$(uid).pipe(
+        return this.taskerApi.loadTaskerUserData$(uid).pipe(
           map((tasks: Task[]) => TaskerActions.getTasksUserDataSuccess({ tasks })),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchTasks'));
             return of(TaskerActions.getTasksUserDataError());
+          })
+        );
+      })
+    );
+  });
+
+  public addTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.addTask),
+      exhaustMap(({ task }) => {
+        return of(this.taskerApi.addTask(task)).pipe(
+          map(() => {
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addTaskSuccess'));
+            return TaskerActions.addTaskSuccess();
+          }),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addTaskError'));
+            return of(TaskerActions.addTaskFailure());
           })
         );
       })

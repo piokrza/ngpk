@@ -30,6 +30,17 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
     return { ...state, isLoading: false };
   }),
 
+  // add task
+  on(TaskerActions.addTask, (state, { task }): State => {
+    return { ...state, tasks: [...state.tasks, task] };
+  }),
+  on(TaskerActions.addTaskSuccess, (state): State => {
+    return { ...state };
+  }),
+  on(TaskerActions.addTaskFailure, (state): State => {
+    return { ...state };
+  }),
+
   // on signout
   on(AuthActions.signOut, (): State => {
     return { isLoading: false, tasks: [] };
