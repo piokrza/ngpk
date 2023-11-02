@@ -19,7 +19,6 @@ const routes: Routes = [
   },
   {
     path: AppPaths.AUTHENTICATION,
-    // canMatch: [isLoggedInGuard], TODO: fix
     loadChildren: (): Promise<any> => import('#pages/auth/auth.module'),
   },
 ];
