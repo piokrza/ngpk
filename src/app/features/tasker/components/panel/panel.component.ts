@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Task } from '#features/tasker/models';
+import { Task, ToggleIsStepCompletePayload } from '#features/tasker/models';
 
 @Component({
   selector: 'ctrl-tasker-panel',
@@ -15,4 +15,5 @@ export class PanelComponent {
   @Output() addTask = new EventEmitter<void>();
   @Output() removeTask = new EventEmitter<string>();
   @Output() toggleIsTaskComplete = new EventEmitter<string>();
+  @Output() toggleIsStepComplete = new EventEmitter<ToggleIsStepCompletePayload>();
 }

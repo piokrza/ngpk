@@ -42,7 +42,7 @@ export class TaskFormComponent implements OnInit {
       ...this.form.getRawValue(),
       id: uniqid(),
       uid: this.user()?.uid ?? '',
-      steps: [...this.form.controls.steps.getRawValue()],
+      steps: [...this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: uniqid() }))],
     };
 
     this.dialogRef.close(newTask);

@@ -9,4 +9,4 @@ export interface Task {
   uid: string;
 }
 
-export type TaskStep = Pick<Task, 'name' | 'isComplete'>;
+export type TaskStep = Pick<Task, 'name' | 'isComplete' | 'id'>;

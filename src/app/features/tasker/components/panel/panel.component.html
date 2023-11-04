@@ -9,7 +9,11 @@
 
       <p-dataView [value]="tasks" class="w-full">
         <ng-template let-task pTemplate="listItem">
-          <ctrl-task (toggleIsTaskComplete)="toggleIsTaskComplete.emit($event)" (removeTask)="removeTask.emit($event)" [task]="task" />
+          <ctrl-task
+            (toggleIsTaskComplete)="toggleIsTaskComplete.emit($event)"
+            (toggleIsStepComplete)="toggleIsStepComplete.emit($event)"
+            (removeTask)="removeTask.emit($event)"
+            [task]="task" />
         </ng-template>
       </p-dataView>
     </div>

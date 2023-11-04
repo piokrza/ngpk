@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Task } from '#features/tasker/models';
+import { Task, ToggleIsStepCompletePayload } from '#features/tasker/models';
 import { ActionTypes } from '#store/tasker/action-types';
 
 // get tasks user data
@@ -17,6 +17,11 @@ export const addTaskFailure = createAction(ActionTypes.ADD_TASK_FAILURE);
 export const toggleIsTaskComplete = createAction(ActionTypes.TOGGLE_IS_TASK_COMPLETE, props<{ taskId: string }>());
 export const toggleIsTaskCompleteSuccess = createAction(ActionTypes.TOGGLE_IS_TASK_COMPLETE_SUCCESS);
 export const toggleIsTaskCompleteFailure = createAction(ActionTypes.TOGGLE_IS_TASK_COMPLETE_FAILURE);
+
+// toggle is step complete
+export const toggleIsStepComplete = createAction(ActionTypes.TOGGLE_IS_STEP_COMPLETE, props<{ payload: ToggleIsStepCompletePayload }>());
+export const toggleIsStepCompleteSuccess = createAction(ActionTypes.TOGGLE_IS_STEP_COMPLETE_SUCCESS);
+export const toggleIsStepCompleteFailure = createAction(ActionTypes.TOGGLE_IS_STEP_COMPLETE_FAILURE);
 
 // remove task
 export const removeTask = createAction(ActionTypes.REMOVE_TASK, props<{ taskId: string }>());

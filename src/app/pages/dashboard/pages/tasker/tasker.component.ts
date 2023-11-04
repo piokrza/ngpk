@@ -4,7 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 
 import { TaskerModule } from '#features/tasker';
-import { TaskerDataset } from '#features/tasker/models';
+import { TaskerDataset, ToggleIsStepCompletePayload } from '#features/tasker/models';
 import { TaskerFacade } from '#pages/dashboard/pages/tasker';
 
 const imports = [TaskerModule, NgIf, AsyncPipe];
@@ -19,6 +19,7 @@ const providers: Provider[] = [TaskerFacade];
         (addTask)="onAddTask()"
         (removeTask)="onRemoveTask($event)"
         (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
+        (toggleIsStepComplete)="onToggleIsStepComplete($event)"
         [isLoading]="dataset.isLoading"
         [tasks]="dataset.tasks" />
     </ng-container>
@@ -43,5 +44,9 @@ export default class TaskerComponent {
 
   public onToggleIsTaskComplete(taskId: string): void {
     this.taskerFacade.toggleIsTaskComplete(taskId);
+  }
+
+  public onToggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
+    this.taskerFacade.toggleIsStepComplete(payload);
   }
 }

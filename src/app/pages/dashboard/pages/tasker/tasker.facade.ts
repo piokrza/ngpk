@@ -6,7 +6,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, tap } from 'rxjs';
 
 import { TaskFormComponent } from '#features/tasker/components';
-import { Task, TaskerDataset } from '#features/tasker/models';
+import { Task, TaskerDataset, ToggleIsStepCompletePayload } from '#features/tasker/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 
 @Injectable()
@@ -47,5 +47,9 @@ export class TaskerFacade {
 
   public toggleIsTaskComplete(taskId: string): void {
     this.store.dispatch(TaskerActions.toggleIsTaskComplete({ taskId }));
+  }
+
+  public toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
+    this.store.dispatch(TaskerActions.toggleIsStepComplete({ payload }));
   }
 }

@@ -60,6 +60,20 @@ export class TaskerEffects {
     );
   });
 
+  public toggleIsStepComplete$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.toggleIsStepComplete),
+      exhaustMap(({ payload }) => {
+        return this.taskerApi.toggleIsStepComplete(payload).pipe(
+          map(() => TaskerActions.toggleIsStepCompleteSuccess()),
+          catchError(() => {
+            return of(TaskerActions.toggleIsTaskCompleteFailure());
+          })
+        );
+      })
+    );
+  });
+
   public removeTask$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.removeTask),

@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { Observable, tap } from 'rxjs';
 
 import { Collection } from '#common/enums';
-import { Task } from '#features/tasker/models';
+import { Task, TaskStep, ToggleIsStepCompletePayload } from '#features/tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class TaskerApi {
@@ -30,6 +30,24 @@ export class TaskerApi {
         if (task.exists) {
           const isTaskComplete = task.data()?.isComplete;
           taskRef.update({ isComplete: !isTaskComplete });
+        }
+      })
+    );
+  }
+
+  public toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
+    const taskRef: AngularFirestoreDocument<Task> = this.getTask(payload.taskId);
+
+    return taskRef.get().pipe(
+      tap((task) => {
+        if (task.exists) {
+          const taskSteps: TaskStep[] = task.data()?.steps ?? [];
+          const stepToUpdate: TaskStep | undefined = taskSteps.find(({ id }) => id === payload.stepId);
+
+          if (stepToUpdate) {
+            stepToUpdate.isComplete = !stepToUpdate.isComplete;
+            taskRef.update({ steps: taskSteps });
+          }
         }
       })
     );
