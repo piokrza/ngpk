@@ -7,11 +7,13 @@ import { Observable, combineLatest, tap } from 'rxjs';
 
 import { TaskFormComponent } from '#features/tasker/components';
 import { Task, TaskerDataset, ToggleIsStepCompletePayload } from '#features/tasker/models';
+import { TaskService } from '#features/tasker/services';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 
 @Injectable()
 export class TaskerFacade {
   private readonly store: Store = inject(Store);
+  private readonly taskService: TaskService = inject(TaskService);
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly translateService: TranslateService = inject(TranslateService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
@@ -51,5 +53,9 @@ export class TaskerFacade {
 
   public toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
     this.store.dispatch(TaskerActions.toggleIsStepComplete({ payload }));
+  }
+
+  public removeStepsVisibilityData(): void {
+    this.taskService.removeVisibilityData();
   }
 }

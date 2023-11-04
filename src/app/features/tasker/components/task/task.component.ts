@@ -1,8 +1,19 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, TrackByFunction } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  TrackByFunction,
+  inject,
+} from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
 import { trackByKey } from '#common/utils';
 import { Task, TaskStep, ToggleIsStepCompletePayload } from '#features/tasker/models';
+import { TaskService } from '#features/tasker/services/task.service';
 
 @Component({
   selector: 'ctrl-task',
@@ -11,6 +22,8 @@ import { Task, TaskStep, ToggleIsStepCompletePayload } from '#features/tasker/mo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskComponent implements OnChanges {
+  private readonly taskService: TaskService = inject(TaskService);
+
   @Input({ required: true }) task!: Task;
 
   @Output() removeTask = new EventEmitter<string>();
@@ -18,15 +31,19 @@ export class TaskComponent implements OnChanges {
   @Output() toggleIsStepComplete = new EventEmitter<ToggleIsStepCompletePayload>();
 
   public completedSteps = 0;
-  public isStepsVisible = false;
+  public isStepsVisible!: boolean;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public readonly trackById: TrackByFunction<TaskStep> = trackByKey<TaskStep>('id');
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['task']) this.completedSteps = this.task.steps.filter(({ isComplete }: TaskStep) => isComplete === true).length;
+    if (changes['task']) {
+      this.completedSteps = this.task.steps.filter(({ isComplete }: TaskStep) => isComplete === true).length;
+      this.isStepsVisible = this.taskService.getIsVisible(this.task.id);
+    }
   }
 
   public toggleStepsVisibility(): void {
     this.isStepsVisible = !this.isStepsVisible;
+    this.taskService.setIsVisibleData(this.task.id, this.isStepsVisible);
   }
 }

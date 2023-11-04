@@ -17,7 +17,16 @@
   }
 
   &__toggle {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    transition: 150ms;
+    opacity: 0;
     cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &__step-list {

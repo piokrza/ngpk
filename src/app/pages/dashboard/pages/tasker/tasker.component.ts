@@ -1,5 +1,5 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Provider, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, Provider, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 
@@ -29,10 +29,14 @@ const providers: Provider[] = [TaskerFacade];
   providers,
   imports,
 })
-export default class TaskerComponent {
+export default class TaskerComponent implements OnDestroy {
   private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
 
   public readonly dataset$: Observable<TaskerDataset> = this.taskerFacade.taskerDataset$;
+
+  public ngOnDestroy(): void {
+    this.taskerFacade.removeStepsVisibilityData();
+  }
 
   public onAddTask(): void {
     this.taskerFacade.addTask$().pipe(untilDestroyed(this)).subscribe();

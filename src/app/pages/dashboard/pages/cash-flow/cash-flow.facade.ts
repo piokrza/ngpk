@@ -77,7 +77,7 @@ export class CashFlowFacade {
 
   public updateExpense$(updatedExpense: CashFlow): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
-      header: 'Update expense',
+      header: this.translateService.instant('expenses.updateMessage'),
       style: { width: '90%', maxWidth: '600px' },
       data: { updatedCashFlow: updatedExpense, isIncomeMode: false },
     });
