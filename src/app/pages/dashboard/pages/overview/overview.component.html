@@ -3,24 +3,18 @@
 </ng-container>
 
 <ng-template #cashFlowLoaded>
-  <p-card>
-    <ng-container *ngIf="totalBalance$ | async as totalBalance; else noTotalBalance">
-      <h3 class="heading">
-        {{ 'overview.totalBalance' | translate }}
-        <span [class]="totalBalance > 0 ? 'text--success' : 'text--danger'"> {{ totalBalance | number }} PLN </span>
-      </h3>
-    </ng-container>
-
-    <ng-template #noTotalBalance>
-      <div class="heading">
-        {{ 'overview.noProvidedData1' | translate }}
-        <a [routerLink]="['/expenses']" class="underline">{{ 'overview.expence' | translate }}</a>
-        {{ 'overview.or' | translate }}
-        <a [routerLink]="['/incomes']" class="underline">{{ 'overview.income' | translate }}</a>
-        {{ 'overview.noProvidedData2' | translate }}
-      </div>
-    </ng-template>
-  </p-card>
+  <div class="overview">
+    <p-card>
+      <ng-container *ngIf="totalBalance$ | async as totalBalance">
+        <h3 class="heading">
+          {{ 'overview.totalBalance' | translate }}
+          <span [class]="totalBalance > 0 ? 'text--success' : 'text--danger'">
+            {{ totalBalance ? (totalBalance | number) : '-' }} PLN
+          </span>
+        </h3>
+      </ng-container>
+    </p-card>
+  </div>
 
   <section *ngIf="totalBalance$ | async" class="overview">
     <ctrl-container>
