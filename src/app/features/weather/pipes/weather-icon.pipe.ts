@@ -5,7 +5,7 @@ import { WeatherIconCode } from '#features/weather/models';
 @Pipe({ name: 'weatherIcon', standalone: true })
 export class WeatherIconPipe implements PipeTransform {
   public transform(iconCode?: WeatherIconCode): string {
-    let iconName: string;
+    let iconName: 'clear' | 'cloud' | 'drizzle' | 'rain' | 'snow';
 
     if (iconCode === '01d' || iconCode === '01n') {
       iconName = 'clear';

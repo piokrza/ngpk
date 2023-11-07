@@ -37,7 +37,7 @@ export class TaskComponent implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['task']) {
-      this.completedSteps = this.task.steps.filter(({ isComplete }: TaskStep) => isComplete === true).length;
+      this.completedSteps = this.task.steps.filter(({ isComplete }: TaskStep) => isComplete).length;
       this.isStepsVisible = this.taskService.getIsVisible(this.task.id);
     }
   }
