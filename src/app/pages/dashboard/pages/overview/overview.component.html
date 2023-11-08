@@ -1,30 +1,28 @@
-<ng-container *ngIf="isCashFlowLoading$ | async; else cashFlowLoaded">
-  <p-progressSpinner class="spinner" />
-</ng-container>
+@if (isCashFlowLoading$ | async) {
+<p-progressSpinner class="spinner" />
 
-<ng-template #cashFlowLoaded>
-  <div class="overview">
-    <p-card>
-      <ng-container *ngIf="totalBalance$ | async as totalBalance">
-        <h3 class="heading">
-          {{ 'overview.totalBalance' | translate }}
-          <span [class]="totalBalance > 0 ? 'text--success' : 'text--danger'">
-            {{ totalBalance ? (totalBalance | number) : '-' }} PLN
-          </span>
-        </h3>
-      </ng-container>
-    </p-card>
-  </div>
+}@else {
+<div class="overview">
+  <p-card>
+    @if(totalBalance$ | async; as totalBalance){
+    <h3 class="heading">
+      {{ 'overview.totalBalance' | translate }}
+      <span [class]="totalBalance > 0 ? 'text--success' : 'text--danger'"> {{ totalBalance ? (totalBalance | number) : '-' }} PLN </span>
+    </h3>
+    }
+  </p-card>
+</div>
 
-  <section *ngIf="totalBalance$ | async" class="overview">
-    <ctrl-container>
-      <div class="heading">{{ 'overview.expences' | translate }}</div>
-      <p-chart [data]="expensesChartData" [options]="chartsOptions" type="pie" class="block mt-6 chart" />
-    </ctrl-container>
+@if(totalBalance$ | async){
+<section class="overview">
+  <ctrl-container>
+    <div class="heading">{{ 'overview.expences' | translate }}</div>
+    <p-chart [data]="expensesChartData" [options]="chartsOptions" type="pie" class="block mt-6 chart" />
+  </ctrl-container>
 
-    <ctrl-container>
-      <div class="heading">{{ 'overview.incomes' | translate }}</div>
-      <p-chart [data]="incomesChartData" [options]="chartsOptions" type="pie" class="block mt-6 chart" />
-    </ctrl-container>
-  </section>
-</ng-template>
+  <ctrl-container>
+    <div class="heading">{{ 'overview.incomes' | translate }}</div>
+    <p-chart [data]="incomesChartData" [options]="chartsOptions" type="pie" class="block mt-6 chart" />
+  </ctrl-container>
+</section>
+} }
