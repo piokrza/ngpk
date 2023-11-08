@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -15,7 +15,7 @@ import { ChartService } from '#pages/dashboard/services';
 import { ContainerComponent } from '#shared/components';
 import { CashFlowSelectors } from '#store/cash-flow';
 
-const imports = [CommonModule, TranslateModule, RouterLink, CardModule, ChartModule, ContainerComponent, ProgressSpinnerModule];
+const imports = [TranslateModule, RouterLink, CardModule, ChartModule, ContainerComponent, ProgressSpinnerModule, DecimalPipe, AsyncPipe];
 
 @UntilDestroy()
 @Component({
