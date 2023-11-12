@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { Task } from '#features/tasker/models';
+import { Task } from '#pages/dashboard/pages/tasker/models';
 import { FeatureKey, State as TaskerState } from '#store/tasker';
 
 const TaskerStateSelector = createFeatureSelector<TaskerState>(FeatureKey);

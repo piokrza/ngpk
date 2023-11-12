@@ -6,7 +6,7 @@ import { catchError, exhaustMap, map, of } from 'rxjs';
 import { TaskerApi } from '#common/api';
 import { ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
-import { Task } from '#features/tasker/models';
+import { Task } from '#pages/dashboard/pages/tasker/models';
 import { TaskerActions } from '#store/tasker';
 
 @Injectable()

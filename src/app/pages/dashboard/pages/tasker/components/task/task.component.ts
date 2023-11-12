@@ -12,8 +12,8 @@ import {
 import { PrimeIcons } from 'primeng/api';
 
 import { trackByKey } from '#common/utils';
-import { Task, TaskStep, ToggleIsStepCompletePayload } from '#features/tasker/models';
-import { TaskService } from '#features/tasker/services/task.service';
+import { Task, TaskStep, ToggleIsStepCompletePayload } from '#pages/dashboard/pages/tasker/models';
+import { TaskService } from '#pages/dashboard/pages/tasker/services/task.service';
 
 @Component({
   selector: 'ctrl-task',

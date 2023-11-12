@@ -1,14 +1,9 @@
-import { AsyncPipe, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, Provider, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 
-import { TaskerModule } from '#features/tasker';
-import { TaskerDataset, ToggleIsStepCompletePayload } from '#features/tasker/models';
 import { TaskerFacade } from '#pages/dashboard/pages/tasker';
-
-const imports = [TaskerModule, NgIf, AsyncPipe];
-const providers: Provider[] = [TaskerFacade];
+import { TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/pages/tasker/models';
 
 @UntilDestroy()
 @Component({
@@ -25,11 +20,8 @@ const providers: Provider[] = [TaskerFacade];
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  providers,
-  imports,
 })
-export default class TaskerComponent implements OnDestroy {
+export class TaskerComponent implements OnDestroy {
   private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
 
   public readonly dataset$: Observable<TaskerDataset> = this.taskerFacade.taskerDataset$;

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Task, ToggleIsStepCompletePayload } from '#features/tasker/models';
+import { Task, ToggleIsStepCompletePayload } from '#pages/dashboard/pages/tasker/models';
 
 @Component({
   selector: 'ctrl-tasker-panel',

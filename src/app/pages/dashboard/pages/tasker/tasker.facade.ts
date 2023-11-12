@@ -5,9 +5,9 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, tap } from 'rxjs';
 
-import { TaskFormComponent } from '#features/tasker/components';
-import { Task, TaskerDataset, ToggleIsStepCompletePayload } from '#features/tasker/models';
-import { TaskService } from '#features/tasker/services';
+import { TaskFormComponent } from '#pages/dashboard/pages/tasker/components';
+import { Task, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/pages/tasker/models';
+import { TaskService } from '#pages/dashboard/pages/tasker/services';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 
 @Injectable()

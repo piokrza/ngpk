@@ -25,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: DashobardPaths.TASKER,
-        loadComponent: () => import('#pages/dashboard/pages/tasker/tasker.component'),
+        loadChildren: () => import('#pages/dashboard/pages/tasker/tasker.module'),
       },
     ],
   },
