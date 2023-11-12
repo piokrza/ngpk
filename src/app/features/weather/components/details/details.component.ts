@@ -1,7 +1,4 @@
-import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-
-const imports = [NgIf];
 
 @Component({
   selector: 'ctrl-details',
@@ -19,7 +16,6 @@ const imports = [NgIf];
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports,
 })
 export class DetailsComponent {
   @Input() icon?: string;
