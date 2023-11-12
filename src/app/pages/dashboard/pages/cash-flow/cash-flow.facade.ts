@@ -5,9 +5,9 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, tap } from 'rxjs';
 
-import { UpdateFormComponent } from '#features/cash-flow/components';
-import { CashFlow } from '#features/cash-flow/models';
 import { CashFlowData } from '#pages/dashboard/models';
+import { UpdateFormComponent } from '#pages/dashboard/pages/cash-flow/components';
+import { CashFlow } from '#pages/dashboard/pages/cash-flow/models';
 import { CashFlowSelectors, CashFlowActions } from '#store/cash-flow';
 
 @Injectable({ providedIn: 'root' })

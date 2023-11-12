@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { CashFlow } from '#features/cash-flow/models';
+import { CashFlow } from '#pages/dashboard/pages/cash-flow/models';
 
 @Component({
   selector: 'ctrl-cash-flow-panel',

@@ -5,7 +5,7 @@ import { Observable, filter, map } from 'rxjs';
 
 import { CATEGORIES } from '#common/enums';
 import { Category, Categories } from '#common/models';
-import { CashFlowForm } from '#features/cash-flow/models';
+import { CashFlowForm } from '#pages/dashboard/pages/cash-flow/models';
 import { CategoriesSelectors } from '#store/categories';
 
 @Injectable({ providedIn: 'root' })

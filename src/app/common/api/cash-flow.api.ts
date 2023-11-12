@@ -4,7 +4,7 @@ import { Observable, combineLatest, map, take } from 'rxjs';
 
 import { Collection } from '#common/enums';
 import { User } from '#common/models';
-import { CashFlowUserData, CashFlow } from '#features/cash-flow/models';
+import { CashFlowUserData, CashFlow } from '#pages/dashboard/pages/cash-flow/models';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowApi {

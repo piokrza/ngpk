@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
@@ -11,7 +12,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TabViewModule } from 'primeng/tabview';
 
+import { CashFlowFacade, CashFlowComponent } from '#pages/dashboard/pages/cash-flow';
 import {
   AddFormComponent,
   DetailsComponent,
@@ -20,9 +23,11 @@ import {
   HeadingComponent,
   PanelComponent,
   UpdateFormComponent,
-} from '#features/cash-flow/components';
-import { CategoryLabelPipe } from '#features/cash-flow/pipes';
+} from '#pages/dashboard/pages/cash-flow/components';
+import { CategoryLabelPipe } from '#pages/dashboard/pages/cash-flow/pipes';
 import { IconPipe, TimestampToDatePipe } from '#shared/pipes';
+
+const routes: Routes = [{ path: '', component: CashFlowComponent }];
 
 const declarations = [
   DetailsComponent,
@@ -32,8 +37,10 @@ const declarations = [
   HeadingComponent,
   PanelComponent,
   UpdateFormComponent,
+  CashFlowComponent,
 ];
 const imports = [
+  RouterModule.forChild(routes),
   CommonModule,
   CardModule,
   InputTextareaModule,
@@ -48,9 +55,10 @@ const imports = [
   DividerModule,
   TimestampToDatePipe,
   IconPipe,
+  CategoryLabelPipe,
+  TabViewModule,
 ];
-const providers: Array<Provider> = [CategoryLabelPipe];
-const exports: Array<typeof PanelComponent> = [PanelComponent];
+const providers: Provider[] = [CashFlowFacade];
 
-@NgModule({ declarations, imports, providers, exports })
-export class CashFlowModule {}
+@NgModule({ declarations, imports, providers })
+export default class CashFlowModule {}

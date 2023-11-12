@@ -13,19 +13,19 @@ const routes: Routes = [
     children: [
       {
         path: DashobardPaths.OVERVIEW,
-        loadComponent: (): Promise<any> => import('#pages/dashboard/pages/overview/overview.component'),
+        loadComponent: () => import('#pages/dashboard/pages/overview/overview.component'),
       },
       {
         path: DashobardPaths.CASH_FLOW,
-        loadComponent: (): Promise<any> => import('#pages/dashboard/pages/cash-flow/cash-flow.component'),
+        loadChildren: () => import('#pages/dashboard/pages/cash-flow/cash-flow.module'),
       },
       {
         path: DashobardPaths.SETTINGS,
-        loadChildren: (): Promise<any> => import('#pages/dashboard/pages/settings/settings.module'),
+        loadChildren: () => import('#pages/dashboard/pages/settings/settings.module'),
       },
       {
         path: DashobardPaths.TASKER,
-        loadComponent: (): Promise<any> => import('#pages/dashboard/pages/tasker/tasker.component'),
+        loadComponent: () => import('#pages/dashboard/pages/tasker/tasker.component'),
       },
     ],
   },
