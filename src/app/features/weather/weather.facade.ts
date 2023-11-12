@@ -9,6 +9,8 @@ export class WeatherFacade {
   private readonly weatherApi: WeatherApi = inject(WeatherApi);
   private readonly weatherState: WeatherState = inject(WeatherState);
 
+  private readonly weatherDataKey = 'weatherData';
+
   public get weatherDataset$(): Observable<WeatherDataset> {
     return combineLatest({
       data: this.weatherState.weatherData$,
@@ -16,11 +18,19 @@ export class WeatherFacade {
     });
   }
 
+  public checkWeather(): void {
+    const weatherData = sessionStorage.getItem(this.weatherDataKey);
+    weatherData && this.weatherState.setWeatherData(JSON.parse(weatherData));
+  }
+
   public loadWeatherDataByCity$(cityName: string): Observable<WeatherResponse> {
     this.weatherState.setIsLoading(true);
 
     return this.weatherApi.searchByCityName$(cityName).pipe(
-      tap((data: WeatherResponse) => this.weatherState.setWeatherData(data)),
+      tap((data: WeatherResponse) => {
+        this.weatherState.setWeatherData(data);
+        sessionStorage.setItem(this.weatherDataKey, JSON.stringify(data));
+      }),
       catchError((): Observable<never> => EMPTY),
       finalize((): void => this.weatherState.setIsLoading(false))
     );

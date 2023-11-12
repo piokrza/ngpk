@@ -5,7 +5,7 @@
     "headingIncomes": "Total incomes",
     "headingExpenses": "Total expenses",
     "totalIncome": "Total income",
-    "totalExpences": "Total expences",
+    "totalExpenses": "Total expenses",
     "emptyListIncomes": "No incomes yet.",
     "emptyListExpenses": "No expenses yet.",
     "form": {
@@ -35,12 +35,15 @@
 
   "overview": {
     "totalBalance": "Total balance:",
+    "totalIncome": "Total income:",
+    "totalExpense": "Total expense:",
+    "transactionAmount": "Transaction amount:",
     "noProvidedData1": "No provided data, add",
     "expence": " expence",
     "income": " income",
     "or": " or",
     "noProvidedData2": " to calculate your balance.",
-    "expences": "Expences",
+    "expenses": "Expenses",
     "incomes": "Incomes"
   },
 

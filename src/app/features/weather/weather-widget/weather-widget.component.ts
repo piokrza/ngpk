@@ -47,7 +47,7 @@ export class WeatherWidgetComponent {
   public readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
   public constructor() {
-    // this.weatherFacade.loadWeatherDataByCity$('Kraków').pipe(take(1)).subscribe();
+    this.weatherFacade.checkWeather();
   }
 
   public loadWeatherDataByCityName(cityName: string): void {

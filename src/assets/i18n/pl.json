@@ -5,7 +5,7 @@
     "headingIncomes": "Balans przychodów:",
     "headingExpenses": "Balans wydatków:",
     "totalIncome": "Przychód całkowity",
-    "totalExpences": "Suma wydatków",
+    "totalExpenses": "Suma wydatków",
     "emptyListIncomes": "Lista przychodów jest pusta.",
     "emptyListExpenses": "Lista wydatków jest pusta.",
     "form": {
@@ -35,12 +35,15 @@
 
   "overview": {
     "totalBalance": "Balans:",
+    "totalIncome": "Przychód:",
+    "totalExpense": "Wydatki:",
+    "transactionAmount": "Ilość transakcji:",
     "noProvidedData1": "Brak danych, dodaj",
     "expence": " wydatek",
     "income": " przychód",
     "or": " lub",
     "noProvidedData2": " by przeliczyć Twoj balans.",
-    "expences": "Wydatki",
+    "expenses": "Wydatki",
     "incomes": "Przychody"
   },
 

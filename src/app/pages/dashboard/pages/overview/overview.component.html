@@ -1,28 +1,32 @@
-@if (isCashFlowLoading$ | async) {
+@if (isLoading$ | async) {
 <p-progressSpinner class="spinner" />
 
 }@else {
-<div class="overview">
+<section class="cards">
+  @for (item of cashFlowDataset$ | async; track $index; let last = $last ) {
   <p-card>
-    @if(totalBalance$ | async; as totalBalance){
     <h3 class="heading">
-      {{ 'overview.totalBalance' | translate }}
-      <span [class]="totalBalance > 0 ? 'text--success' : 'text--danger'"> {{ totalBalance ? (totalBalance | number) : '-' }} PLN </span>
+      <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
+      @if(!last){
+      <!-- TODO: handle text color -->
+      <span [class]="item.data > 0 ? 'text--success' : 'text--danger'"> {{ item.data ? (item.data | number) : '-' }} PLN </span>
+      } @else{
+      <span>{{ item.data ? (item.data | number) : '-' }}</span>
+      }
     </h3>
-    }
   </p-card>
-</div>
-
-@if(totalBalance$ | async){
-<section class="overview">
-  <ctrl-container>
-    <div class="heading">{{ 'overview.expences' | translate }}</div>
-    <p-chart [data]="expensesChartData" [options]="chartsOptions" type="pie" class="block mt-6 chart" />
-  </ctrl-container>
-
-  <ctrl-container>
-    <div class="heading">{{ 'overview.incomes' | translate }}</div>
-    <p-chart [data]="incomesChartData" [options]="chartsOptions" type="pie" class="block mt-6 chart" />
-  </ctrl-container>
+  }
 </section>
-} }
+
+<div class="flex gap-3">
+  <ctrl-container>
+    <div class="card flex justify-content-center">
+      <p-chart type="pie" [data]="(cashFlowChartData$ | async)?.data"></p-chart>
+    </div>
+  </ctrl-container>
+
+  <ctrl-container>
+    <p>Todos: 9</p>
+  </ctrl-container>
+</div>
+}
