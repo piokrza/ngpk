@@ -13,8 +13,8 @@
 
         <div class="card__flex-wrap">
           <ctrl-details-box [detail]="details.amount.toString()" iconName="dollar" />
-          <ctrl-details-box *ngIf="details.date" [detail]="(details.date | timestampToDate | date) ?? ''" iconName="calendar" />
-          <ctrl-details-box *ngIf="details.description" [detail]="details.description" iconName="comment" />
+          @if(details.date){ <ctrl-details-box [detail]="(details.date | timestampToDate | date) ?? ''" iconName="calendar" /> }
+          @if(details.description){ <ctrl-details-box [detail]="details.description" iconName="comment" /> }
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { AsyncPipe, DecimalPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe, DecimalPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Provider, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
@@ -21,7 +21,7 @@ const imports = [
   ProgressSpinnerModule,
   DecimalPipe,
   AsyncPipe,
-  JsonPipe,
+  NgClass,
 ];
 const providers: Provider[] = [OverviewFacade];
 
@@ -38,7 +38,7 @@ const providers: Provider[] = [OverviewFacade];
 export default class OverviewComponent {
   private readonly overviewFacade: OverviewFacade = inject(OverviewFacade);
 
+  public readonly cashFlowChartData$ = this.overviewFacade.cashFlowChartData$;
   public readonly isLoading$: Observable<boolean> = this.overviewFacade.isLoading$;
   public readonly cashFlowDataset$: Observable<LabelWithData<number>[]> = this.overviewFacade.cashFlowData$;
-  public readonly cashFlowChartData$ = this.overviewFacade.cashFlowChartData$;
 }

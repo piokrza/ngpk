@@ -48,8 +48,8 @@ export class OverviewFacade {
             datasets: [
               {
                 data: [expenses.reduce((acc, value) => acc + value.amount, 0), incomes.reduce((acc, value) => acc + value.amount, 0)],
-                backgroundColor: [documentStyle.getPropertyValue('--red-700'), documentStyle.getPropertyValue('--green-700')],
-                hoverBackgroundColor: [documentStyle.getPropertyValue('--red-400'), documentStyle.getPropertyValue('--green-400')],
+                backgroundColor: [documentStyle.getPropertyValue('--pink-500'), documentStyle.getPropertyValue('--green-500')],
+                hoverBackgroundColor: [documentStyle.getPropertyValue('--pink-400'), documentStyle.getPropertyValue('--green-400')],
               },
             ],
           },

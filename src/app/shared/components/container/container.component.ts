@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ctrl-container',
   styleUrls: ['./container.component.scss'],
   template: `
-    <section class="container h-full p-3">
+    <section [class]="['container', 'h-full', 'p-3', styleClass]">
       <div class="rounded p-3 container__inner">
         <ng-content />
       </div>
@@ -12,4 +12,6 @@ import { Component } from '@angular/core';
   `,
   standalone: true,
 })
-export class ContainerComponent {}
+export class ContainerComponent {
+  @Input() styleClass?: string;
+}

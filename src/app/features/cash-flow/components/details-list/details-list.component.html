@@ -1,23 +1,21 @@
-<ng-container *ngIf="isLoading; else loaded">
-  <p-progressSpinner class="spinner" />
-</ng-container>
+@if(isLoading) {
+<p-progressSpinner class="spinner" />
+} @else {
+<div class="wrapper">
+  <ng-container *ngIf="cashFlowList.length; else noCashFlowToDisplay">
+    <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > maxItemsPerPage" [rows]="maxItemsPerPage">
+      <ng-template let-detailsItem pTemplate="listItem">
+        <ctrl-details
+          (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
+          (cashFlowToUpdate)="emitCashFlowToUpdate($event)"
+          [isIncomeMode]="isIncomeMode"
+          [details]="detailsItem" />
+      </ng-template>
+    </p-dataView>
+  </ng-container>
 
-<ng-template #loaded>
-  <div class="wrapper">
-    <ng-container *ngIf="cashFlowList.length; else noCashFlowToDisplay">
-      <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > maxItemsPerPage" [rows]="maxItemsPerPage">
-        <ng-template let-detailsItem pTemplate="listItem">
-          <ctrl-details
-            (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
-            (cashFlowToUpdate)="emitCashFlowToUpdate($event)"
-            [isIncomeMode]="isIncomeMode"
-            [details]="detailsItem" />
-        </ng-template>
-      </p-dataView>
-    </ng-container>
-
-    <ng-template #noCashFlowToDisplay>
-      {{ 'cashFlow.emptyList' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
-    </ng-template>
-  </div>
-</ng-template>
+  <ng-template #noCashFlowToDisplay>
+    {{ 'cashFlow.emptyList' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
+  </ng-template>
+</div>
+}

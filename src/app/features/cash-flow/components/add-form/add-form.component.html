@@ -16,13 +16,15 @@
         currency="PLN" />
     </span>
 
+    @if(categories$ | async; as categories){
     <p-dropdown
       [formControl]="formControls.categoryCode"
-      [options]="(categories$ | async)!"
+      [options]="categories"
       [placeholder]="trPath + 'selectCategory' | translate"
       optionLabel="name"
       optionValue="code"
       styleClass="w-full" />
+    }
 
     <span class="p-float-label my-4">
       <p-calendar [formControl]="formControls.date" id="date" class="w-full" />

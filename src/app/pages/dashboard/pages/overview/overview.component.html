@@ -1,31 +1,29 @@
 @if (isLoading$ | async) {
 <p-progressSpinner class="spinner" />
-
-}@else {
+} @else {
 <section class="cards">
   @for (item of cashFlowDataset$ | async; track $index; let last = $last ) {
-  <p-card>
-    <h3 class="heading">
-      <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
-      @if(!last){
-      <!-- TODO: handle text color -->
-      <span [class]="item.data > 0 ? 'text--success' : 'text--danger'"> {{ item.data ? (item.data | number) : '-' }} PLN </span>
-      } @else{
-      <span>{{ item.data ? (item.data | number) : '-' }}</span>
-      }
-    </h3>
-  </p-card>
+  <a [routerLink]="['../', 'cash-flow']">
+    <p-card>
+      <h3 class="heading">
+        <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
+        <span [ngClass]="{ 'text--success': item.label === 'totalIncome', 'text--danger': item.label === 'totalExpense' }">
+          {{ item.data ? (item.data | number) : '-' }} PLN
+        </span>
+      </h3>
+    </p-card>
+  </a>
   }
 </section>
 
-<div class="flex gap-3">
-  <ctrl-container>
+<div class="charts">
+  <ctrl-container styleClass="px-0">
     <div class="card flex justify-content-center">
-      <p-chart type="pie" [data]="(cashFlowChartData$ | async)?.data"></p-chart>
+      <p-chart [data]="(cashFlowChartData$ | async)?.data" type="pie"></p-chart>
     </div>
   </ctrl-container>
 
-  <ctrl-container>
+  <ctrl-container styleClass="px-0">
     <p>Todos: 9</p>
   </ctrl-container>
 </div>

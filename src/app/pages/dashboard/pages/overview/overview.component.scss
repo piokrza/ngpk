@@ -1,3 +1,5 @@
+@use 'src/assets/styles/variables/breakpoints' as b;
+
 :host {
   display: block;
   height: 100%;
@@ -8,14 +10,38 @@
   flex-wrap: wrap;
   gap: 1rem;
 
-  p-card {
+  a {
     flex-grow: 1;
     flex-basis: 300px;
+  }
+
+  p-card ::ng-deep .p-card-body {
+    padding: 0;
   }
 
   .heading {
     margin: 0;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+}
+
+.charts {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  p-chart {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: b.$md) {
+  .charts {
+    grid-template-columns: repeat(2, 1fr);
+
+    p-chart {
+      width: 50%;
+    }
   }
 }

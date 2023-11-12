@@ -1,7 +1,7 @@
 <p-tabView>
   <p-tabPanel [header]="'tasker.title' | translate">
     <div class="container">
-      <p-button (click)="addTask.emit()" [label]="'tasker.addTask' | translate" size="large" styleClass="my-3" />
+      <p-button (click)="addTask.emit()" [label]="'tasker.addTask' | translate" styleClass="my-3" />
 
       <div class="flex justify-content-center">
         <p-progressSpinner *ngIf="isLoading" />
