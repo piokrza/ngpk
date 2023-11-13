@@ -6,7 +6,7 @@ import { CashFlow } from '#pages/dashboard/pages/cash-flow/models';
 @Component({
   selector: 'ctrl-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss'],
+  styleUrl: './details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailsComponent {

@@ -19,7 +19,7 @@ import { AuthActions, AuthSelectors } from '#store/auth';
       <button (click)="openAccountSettingsDialog()" [icon]="PrimeIcons.USER" pButton></button>
     </div>
   `,
-  styleUrls: ['./account-settings.component.scss'],
+  styleUrl: './account-settings.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsComponent implements OnInit {

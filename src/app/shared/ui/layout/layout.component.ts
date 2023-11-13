@@ -16,7 +16,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     <p-toast position="top-right" />
     <p-confirmDialog />
   `,
-  styleUrls: ['./layout.component.scss'],
+  styleUrl: './layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayoutComponent {}

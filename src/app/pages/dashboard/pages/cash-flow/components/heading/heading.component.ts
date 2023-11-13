@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ctrl-heading',
-  styleUrls: ['./heading.component.scss'],
+  styleUrl: './heading.component.scss',
   template: `
     <p-card>
       <h3 class="heading">

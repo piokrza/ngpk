@@ -9,7 +9,7 @@ import { AuthActions } from '#store/auth';
 @Component({
   selector: 'ctrl-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
+  styleUrl: './login-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {

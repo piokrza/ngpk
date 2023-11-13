@@ -9,7 +9,7 @@ import { AuthActions } from '#store/auth';
 @Component({
   selector: 'ctrl-navigation-sidebar',
   templateUrl: './navigation-sidebar.component.html',
-  styleUrls: ['./navigation-sidebar.component.scss'],
+  styleUrl: './navigation-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationSidebarComponent {
@@ -17,7 +17,7 @@ export class NavigationSidebarComponent {
   private readonly translateService: TranslateService = inject(TranslateService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
-  @Input() public menuLinks!: MenuItem[];
+  @Input({ required: true }) public menuLinks!: MenuItem[];
 
   public readonly trackByLabel: TrackByFunction<MenuItem> = trackByKey<MenuItem>('label');
 

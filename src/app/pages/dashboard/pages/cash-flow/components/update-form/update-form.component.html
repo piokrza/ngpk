@@ -13,14 +13,15 @@
     </label>
   </span>
 
+  @if(categories$ | async; as categories) {
   <p-dropdown
-    *ngIf="categories$ | async as categories"
     [formControl]="formControls.categoryCode"
     [options]="categories"
     optionLabel="name"
     optionValue="code"
     styleClass="w-full"
     placeholder="Select category" />
+  }
 
   <span class="p-float-label my-4">
     <p-calendar [formControl]="formControls.date" id="date" class="w-full" />

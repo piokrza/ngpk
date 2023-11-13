@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ctrl-details-box',
-  styleUrls: ['./details-box.component.scss'],
+  styleUrl: './details-box.component.scss',
   template: `
     <div class="gap-2 box">
       <i [class]="'mr-1 pi pi-' + iconName"></i>

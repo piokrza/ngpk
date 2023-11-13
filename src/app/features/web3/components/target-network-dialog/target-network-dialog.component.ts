@@ -17,7 +17,7 @@ const imports = [ToolbarModule, ButtonModule, AsyncPipe];
 @Component({
   selector: 'ctrl-target-network-dialog',
   templateUrl: './target-network-dialog.component.html',
-  styleUrls: ['./target-network-dialog.component.scss'],
+  styleUrl: './target-network-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,

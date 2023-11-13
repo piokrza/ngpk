@@ -20,7 +20,7 @@ const imports = [AsyncPipe, TranslateModule, ProgressBarModule, ButtonModule, Ad
 @Component({
   selector: 'ctrl-wallet',
   templateUrl: './wallet.component.html',
-  styleUrls: ['./wallet.component.scss'],
+  styleUrl: './wallet.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,

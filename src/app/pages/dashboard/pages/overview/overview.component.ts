@@ -29,7 +29,7 @@ const providers: Provider[] = [OverviewFacade];
 @Component({
   selector: 'ctrl-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss'],
+  styleUrl: './overview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   providers,

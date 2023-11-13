@@ -9,7 +9,7 @@ import { AuthActions } from '#store/auth';
 @Component({
   selector: 'ctrl-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.scss'],
+  styleUrl: './register-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {

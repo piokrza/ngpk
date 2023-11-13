@@ -18,7 +18,7 @@ import { Task, TaskStep, ToggleIsStepCompletePayload } from '#pages/dashboard/pa
 @Component({
   selector: 'ctrl-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss'],
+  styleUrl: './task.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskComponent implements OnChanges {

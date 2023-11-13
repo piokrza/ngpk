@@ -11,7 +11,6 @@ import { CashFlowForm, CashFlowUpdateFormData, Category } from '#pages/dashboard
 @Component({
   selector: 'ctrl-update-form',
   templateUrl: './update-form.component.html',
-  styleUrls: ['./update-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpdateFormComponent implements OnInit {

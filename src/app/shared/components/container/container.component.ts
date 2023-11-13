@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ctrl-container',
-  styleUrls: ['./container.component.scss'],
+  styleUrl: './container.component.scss',
   template: `
     <section [class]="['container', 'h-full', 'p-3', styleClass]">
       <div class="rounded p-3 container__inner">

@@ -13,7 +13,7 @@ import { CashFlow, CashFlowForm, Category } from '#pages/dashboard/pages/cash-fl
 @Component({
   selector: 'ctrl-add-form',
   templateUrl: './add-form.component.html',
-  styleUrls: ['./add-form.component.scss'],
+  styleUrl: './add-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddFormComponent implements OnInit {

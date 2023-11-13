@@ -9,7 +9,7 @@ import { AccountSettingsFormService } from '#pages/dashboard/pages/settings/serv
 @Component({
   selector: 'ctrl-account-settings-form',
   templateUrl: './account-settings-form.component.html',
-  styleUrls: ['./account-settings-form.component.scss'],
+  styleUrl: './account-settings-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsFormComponent implements OnInit {

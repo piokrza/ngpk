@@ -1,7 +1,7 @@
 <p-tabView>
   <p-tabPanel [header]="'cashFlow.incomes' | translate">
+    @if(incomesDataset$ | async; as incomes) {
     <ctrl-cash-flow-panel
-      *ngIf="incomesDataset$ | async as incomes"
       (cashFlowSubmitData)="onIncomeSubmit($event)"
       (cashFlowToRemoveId)="removeIncome($event)"
       (cashFlowToUpdate)="updateIncome($event)"
@@ -9,11 +9,12 @@
       [totalCashFlowAmount]="incomes.amount"
       [isLoading]="(isLoading$ | async)!"
       [isIncomeMode]="true" />
+    }
   </p-tabPanel>
 
   <p-tabPanel [header]="'cashFlow.expenses' | translate">
+    @if(expensesDataset$ | async; as expenses) {
     <ctrl-cash-flow-panel
-      *ngIf="expensesDataset$ | async as expenses"
       (cashFlowSubmitData)="onExpenseSubmit($event)"
       (cashFlowToRemoveId)="removeExpense($event)"
       (cashFlowToUpdate)="updateExpense($event)"
@@ -21,5 +22,6 @@
       [totalCashFlowAmount]="expenses.amount"
       [isLoading]="(isLoading$ | async)!"
       [isIncomeMode]="false" />
+    }
   </p-tabPanel>
 </p-tabView>

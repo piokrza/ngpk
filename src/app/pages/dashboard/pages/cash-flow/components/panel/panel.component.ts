@@ -5,7 +5,7 @@ import { CashFlow } from '#pages/dashboard/pages/cash-flow/models';
 @Component({
   selector: 'ctrl-cash-flow-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.scss'],
+  styleUrl: './panel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PanelComponent {

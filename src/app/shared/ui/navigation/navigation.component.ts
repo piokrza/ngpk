@@ -10,7 +10,7 @@ import { AuthSelectors } from '#store/auth';
 @Component({
   selector: 'ctrl-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+  styleUrl: './navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {

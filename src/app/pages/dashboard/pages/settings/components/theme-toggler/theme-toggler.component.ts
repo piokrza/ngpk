@@ -11,7 +11,7 @@ import { PersistanceService, ThemeService } from '#common/services';
       <p-toggleButton [(ngModel)]="isLightMode" (onChange)="toggleTheme()" [onIcon]="'pi pi-sun'" [offIcon]="'pi pi-moon'" />
     </div>
   `,
-  styleUrls: ['./theme-toggler.component.scss'],
+  styleUrl: './theme-toggler.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeTogglerComponent {

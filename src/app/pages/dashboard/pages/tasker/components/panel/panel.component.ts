@@ -5,7 +5,7 @@ import { Task, ToggleIsStepCompletePayload } from '#pages/dashboard/pages/tasker
 @Component({
   selector: 'ctrl-tasker-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.scss'],
+  styleUrl: './panel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PanelComponent {

@@ -26,7 +26,7 @@ const imports = [SelectButtonModule, FormsModule, TranslateModule];
         optionValue="value" />
     </div>
   `,
-  styleUrls: ['./language-toggler.component.scss'],
+  styleUrl: './language-toggler.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,

@@ -9,15 +9,15 @@ import { TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/pag
 @Component({
   selector: 'ctrl-tasker',
   template: `
-    <ng-container *ngIf="dataset$ | async as dataset">
-      <ctrl-tasker-panel
-        (addTask)="onAddTask()"
-        (removeTask)="onRemoveTask($event)"
-        (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
-        (toggleIsStepComplete)="onToggleIsStepComplete($event)"
-        [isLoading]="dataset.isLoading"
-        [tasks]="dataset.tasks" />
-    </ng-container>
+    @if(dataset$ | async; as dataset){
+    <ctrl-tasker-panel
+      (addTask)="onAddTask()"
+      (removeTask)="onRemoveTask($event)"
+      (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
+      (toggleIsStepComplete)="onToggleIsStepComplete($event)"
+      [isLoading]="dataset.isLoading"
+      [tasks]="dataset.tasks" />
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
