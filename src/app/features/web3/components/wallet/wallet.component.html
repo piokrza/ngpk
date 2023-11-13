@@ -2,7 +2,6 @@
   @if (isMetamaskInstalled()) { @if(account(); as account) {
   <div class="flex justify-content-between align-items-center">
     <p>Account: {{ account | address }}</p>
-    <p-button (onClick)="logout($event)" [icon]="PrimeIcons.POWER_OFF" severity="danger" />
   </div>
   } @else {
   <div class="flex justify-content-center">

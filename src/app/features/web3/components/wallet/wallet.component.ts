@@ -2,8 +2,8 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
+import { TranslateModule } from '@ngx-translate/core';
+import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ProgressBarModule } from 'primeng/progressbar';
@@ -27,10 +27,7 @@ const imports = [AsyncPipe, TranslateModule, ProgressBarModule, ButtonModule, Ad
 })
 export class WalletComponent {
   private readonly web3State: Web3State = inject(Web3State);
-  private readonly translate: TranslateService = inject(TranslateService);
-  private readonly messageService: MessageService = inject(MessageService);
   private readonly metamaskService: MetamaskService = inject(MetamaskService);
-  private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
   public readonly chainId = toSignal(this.web3State.chainId$);
   public readonly account = toSignal(this.web3State.walletAddress$);
@@ -54,14 +51,5 @@ export class WalletComponent {
         )
         .subscribe();
     }
-  }
-
-  public logout(event: Event): void {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: this.translate.instant(''),
-      icon: this.PrimeIcons.EXCLAMATION_TRIANGLE,
-      accept: () => {}, // TODO: handle wallet disconnect
-    });
   }
 }

@@ -6,7 +6,9 @@
       <p-button
         (onClick)="loadWeatherDataByCityName('Kraków')"
         [icon]="dataset.isLoading ? PrimeIcons.SPINNER : ''"
-        [label]="'weather.fetchData' | translate" />
+        [label]="'weather.fetchData' | translate"
+        [outlined]="true"
+        severity="secondary" />
     </div>
     } @if (dataset.data?.name) {
     <p>
