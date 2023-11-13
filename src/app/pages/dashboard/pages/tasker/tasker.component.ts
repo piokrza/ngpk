@@ -22,6 +22,8 @@ import { TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/pag
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskerComponent implements OnDestroy {
+  // TODO: add tasks filter
+
   private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
 
   public readonly dataset$: Observable<TaskerDataset> = this.taskerFacade.taskerDataset$;

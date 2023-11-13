@@ -9,11 +9,13 @@ export const FeatureKey = 'tasker';
 export interface State {
   tasks: Task[];
   isLoading: boolean;
+  filter: 'all' | 'completed' | 'notCompleted';
 }
 
 const initialState: State = {
   tasks: [],
   isLoading: false,
+  filter: 'all',
 };
 
 export const Reducer: ActionReducer<State, Action> = createReducer(
@@ -23,8 +25,8 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
   on(TaskerActions.getTasksUserData, (state): State => {
     return { ...state, isLoading: true };
   }),
-  on(TaskerActions.getTasksUserDataSuccess, (_: State, { tasks }): State => {
-    return { tasks, isLoading: false };
+  on(TaskerActions.getTasksUserDataSuccess, (state: State, { tasks }): State => {
+    return { ...state, tasks, isLoading: false };
   }),
   on(TaskerActions.getTasksUserDataError, (state): State => {
     return { ...state, isLoading: false };
@@ -43,6 +45,6 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
 
   // on signout
   on(AuthActions.signOut, (): State => {
-    return { isLoading: false, tasks: [] };
+    return { filter: 'all', isLoading: false, tasks: [] };
   })
 );
