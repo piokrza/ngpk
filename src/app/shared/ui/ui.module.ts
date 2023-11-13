@@ -10,6 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { WeatherWidgetComponent } from '#features/weather';
+import { WalletComponent } from '#features/web3/components';
 import { ContainerComponent } from '#shared/components';
 import { LayoutComponent } from '#shared/ui/layout';
 import { NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#shared/ui/navigation/components';
@@ -28,6 +29,7 @@ const imports = [
   ConfirmDialogModule,
   TranslateModule,
   WeatherWidgetComponent,
+  WalletComponent,
 ];
 
 const exports = [LayoutComponent];

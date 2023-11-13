@@ -1,0 +1,22 @@
+<p class="mb-6">
+  Cashflow is only supported in
+  <span [style.color]="'var(--green-500)'">
+    {{ config.targetNetworkName }}
+  </span>
+  network
+</p>
+
+<p-toolbar>
+  <div class="flex gap-4 align-items-center">
+    <i [class]="PrimeIcons.EXCLAMATION_TRIANGLE"></i>
+    <p>Please switch your network to continue</p>
+  </div>
+</p-toolbar>
+
+<button
+  (click)="switchNetworkClick()"
+  [disabled]="isProcessing"
+  [icon]="isProcessing ? PrimeIcons.SPINNER + ' pi-spin' : ''"
+  class="w-full mt-2"
+  label="Switch network in wallet"
+  pButton></button>

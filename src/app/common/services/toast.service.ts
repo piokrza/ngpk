@@ -8,6 +8,7 @@ export class ToastService {
 
   private readonly duration = 5000;
 
+  // TODO: add strict severity string
   public showMessage(severity: string, summary: string, detail: string): void {
     this.ngZone.run((): void => {
       this.messageService.clear();

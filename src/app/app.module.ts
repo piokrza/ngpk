@@ -1,3 +1,4 @@
+import { AppFacade } from './app.facade';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, isDevMode, NgModule, Provider } from '@angular/core';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -20,6 +21,7 @@ import { environment } from 'src/environments/environment';
 
 import { AppInitService } from '#common/services';
 import { HttpLoaderFactory, initializeTranslations, injectThemeLink$ } from '#common/utils';
+import { WEB3_CONFIG, web3Config } from '#features/web3/config';
 import { AuthEffects } from '#store/auth';
 import { CashFlowEffects } from '#store/cash-flow';
 import { CategoriesEffects } from '#store/categories';
@@ -56,11 +58,13 @@ const providers: Array<Provider> = [
   { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [AppInitService], multi: true },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+  { provide: WEB3_CONFIG, useValue: web3Config },
   MessageService,
   ConfirmationService,
   ScreenTrackingService,
   UserTrackingService,
   DialogService,
+  AppFacade,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })
