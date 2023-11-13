@@ -15,7 +15,7 @@ export class AuthService {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public async signinWithGoogle(): Promise<firebase.auth.UserCredential> {
-    return this.afAuth.signInWithPopup(new GoogleAuthProvider());
+    return await this.afAuth.signInWithPopup(new GoogleAuthProvider());
   }
 
   public async signOut(): Promise<void> {

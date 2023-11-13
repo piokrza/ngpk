@@ -6,7 +6,7 @@ import { passwordMatchValidator } from '#pages/auth/validators';
 
 @Injectable()
 export class AuthFormService {
-  public createRegisterForm(): FormGroup<RegisterForm> {
+  public get registerForm(): FormGroup<RegisterForm> {
     return new FormGroup<RegisterForm>(
       {
         email: new FormControl<string>('', {
@@ -28,7 +28,7 @@ export class AuthFormService {
     );
   }
 
-  public createLoginForm(): FormGroup<LoginForm> {
+  public get loginForm(): FormGroup<LoginForm> {
     return new FormGroup<LoginForm>({
       email: new FormControl<string>('', {
         validators: [Validators.required, Validators.email],

@@ -15,7 +15,7 @@ import { AuthActions } from '#store/auth';
 export class LoginFormComponent {
   private readonly store: Store = inject(Store);
 
-  public readonly form: FormGroup<LoginForm> = inject(AuthFormService).createLoginForm();
+  public readonly form: FormGroup<LoginForm> = inject(AuthFormService).loginForm;
 
   public signinWithGoogle(): void {
     this.store.dispatch(AuthActions.signInWithGoogle());

@@ -6,7 +6,7 @@
   </div>
   } @else {
   <div class="flex justify-content-center">
-    <p-button (onClick)="connectWallet()" [label]="'wallet.connectWallet' | translate" />
+    <p-button (onClick)="connectWallet()" [label]="'wallet.connectWallet' | translate" [outlined]="true" severity="secondary" />
   </div>
   }} @else {
   <p>

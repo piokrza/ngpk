@@ -13,8 +13,9 @@ import { AuthActions } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {
-  private store: Store = inject(Store);
-  public form: FormGroup<RegisterForm> = inject(AuthFormService).createRegisterForm();
+  private readonly store: Store = inject(Store);
+
+  public readonly form: FormGroup<RegisterForm> = inject(AuthFormService).registerForm;
 
   public onSubmit(): void {
     if (this.form.invalid) {
