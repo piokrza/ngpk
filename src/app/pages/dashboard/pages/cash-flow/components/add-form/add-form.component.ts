@@ -5,10 +5,10 @@ import { FormGroup } from '@angular/forms';
 import { filter, Observable, take, tap } from 'rxjs';
 import uniqid from 'uniqid';
 
-import { User, Category } from '#common/models';
+import { User } from '#common/models';
 import { AuthService } from '#pages/auth/services';
-import { CashFlow, CashFlowForm } from '#pages/dashboard/pages/cash-flow/models';
-import { CashFlowFormService } from '#pages/dashboard/pages/cash-flow/services';
+import { CashFlowFormService } from '#pages/dashboard/pages/cash-flow/data-access';
+import { CashFlow, CashFlowForm, Category } from '#pages/dashboard/pages/cash-flow/models';
 
 @Component({
   selector: 'ctrl-add-form',

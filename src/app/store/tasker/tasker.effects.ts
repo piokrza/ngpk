@@ -3,9 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 
-import { TaskerApi } from '#common/api';
 import { ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
+import { TaskerApi } from '#pages/dashboard/pages/tasker/data-access';
 import { Task } from '#pages/dashboard/pages/tasker/models';
 import { TaskerActions } from '#store/tasker';
 

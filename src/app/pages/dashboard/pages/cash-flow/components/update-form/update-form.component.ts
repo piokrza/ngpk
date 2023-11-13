@@ -5,9 +5,8 @@ import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 
-import { Category } from '#common/models';
-import { CashFlowForm, CashFlowUpdateFormData } from '#pages/dashboard/pages/cash-flow/models';
-import { CashFlowFormService } from '#pages/dashboard/pages/cash-flow/services';
+import { CashFlowFormService } from '#pages/dashboard/pages/cash-flow/data-access';
+import { CashFlowForm, CashFlowUpdateFormData, Category } from '#pages/dashboard/pages/cash-flow/models';
 
 @Component({
   selector: 'ctrl-update-form',

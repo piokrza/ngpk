@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Categories } from '#common/models';
+import { Categories } from '#pages/dashboard/pages/cash-flow/models';
 import { ActionTypes } from '#store/categories/action-types';
 
 export const getCategories = createAction(ActionTypes.GET_CATEGORIES);

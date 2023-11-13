@@ -8,8 +8,8 @@ import uniqid from 'uniqid';
 
 import { User } from '#common/models';
 import { TrackByIdx } from '#common/utils';
+import { TaskFormService } from '#pages/dashboard/pages/tasker/data-access';
 import { Task, TaskForm, TaskStepForm } from '#pages/dashboard/pages/tasker/models';
-import { TaskFormService } from '#pages/dashboard/pages/tasker/services';
 import { AuthSelectors } from '#store/auth';
 
 @Component({

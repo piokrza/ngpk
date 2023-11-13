@@ -6,8 +6,8 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, tap } from 'rxjs';
 
 import { TaskFormComponent } from '#pages/dashboard/pages/tasker/components';
+import { TaskService } from '#pages/dashboard/pages/tasker/data-access';
 import { Task, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/pages/tasker/models';
-import { TaskService } from '#pages/dashboard/pages/tasker/services';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 
 @Injectable()

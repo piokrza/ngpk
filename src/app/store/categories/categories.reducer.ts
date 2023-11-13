@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { Categories } from '#common/models';
+import { Categories } from '#pages/dashboard/pages/cash-flow/models';
 import { AuthActions } from '#store/auth';
 import { CategoriesActions } from '#store/categories';
 
