@@ -5,7 +5,7 @@ import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { MetamaskService, Web3State } from '#features/web3/data-access';
-import { DashboardRoutingModule, DashboardViewComponent } from '#pages/dashboard';
+import { DashboardFacade, DashboardRoutingModule, DashboardViewComponent } from '#pages/dashboard';
 import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 
@@ -20,7 +20,7 @@ const imports = [
   ContainerComponent,
   UiModule,
 ];
-const providers: Provider[] = [Web3State, MetamaskService];
+const providers: Provider[] = [Web3State, MetamaskService, DashboardFacade];
 
 @NgModule({ declarations, imports, providers })
 export default class DashboardModule {}
