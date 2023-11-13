@@ -1,4 +1,3 @@
-import { AppFacade } from './app.facade';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, isDevMode, NgModule, Provider } from '@angular/core';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -64,7 +63,6 @@ const providers: Array<Provider> = [
   ScreenTrackingService,
   UserTrackingService,
   DialogService,
-  AppFacade,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

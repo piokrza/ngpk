@@ -1,0 +1,11 @@
+.wallet {
+  background-color: var(--surface-hover);
+
+  &__link {
+    color: var(--green-500);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

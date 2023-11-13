@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class Web3State {
   private readonly walletAddress$$ = new BehaviorSubject<string | null>(null);
   private readonly isProcessing$$ = new BehaviorSubject<boolean>(false);

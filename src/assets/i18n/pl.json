@@ -116,6 +116,11 @@
     "addTaskError": "Cos poszło nie tak przy próbie usunięcia zadania z bazy danych"
   },
 
+  "wallet": {
+    "noWallet": "Brak portfela, zainstaluj ",
+    "connectWallet": "Połącz portfel"
+  },
+
   "common": {
     "enterName": "Wprowadź nazwę"
   },

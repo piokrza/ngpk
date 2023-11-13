@@ -18,8 +18,6 @@ export class MetamaskService {
   private readonly web3Config: Web3Config = inject(WEB3_CONFIG);
 
   public requestWallets$(): Observable<string[]> {
-    this.web3State.setIsProcessing(true);
-
     return this.request$<string[]>(EthereumEvent.ETH_REQUEST_ACCOUNTS);
   }
 

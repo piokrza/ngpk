@@ -120,6 +120,11 @@
     "enterName": "Enter name"
   },
 
+  "wallet": {
+    "noWallet": "No wallet provided, please install ",
+    "connectWallet": "Connect wallet"
+  },
+
   "primeng": {
     "accept": "Yes",
     "reject": "No",
