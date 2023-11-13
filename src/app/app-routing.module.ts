@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NgModule } from '@angular/core';
-import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
+import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppPaths } from '#common/enums';
@@ -20,6 +20,8 @@ const routes: Routes = [
   {
     path: AppPaths.AUTHENTICATION,
     loadChildren: (): Promise<any> => import('#pages/auth/auth.module'),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
   },
 ];
 
