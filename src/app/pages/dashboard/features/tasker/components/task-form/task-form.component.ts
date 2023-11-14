@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, Signal, TrackByFunction, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -7,7 +7,6 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import uniqid from 'uniqid';
 
 import { User } from '#common/models';
-import { TrackByIdx } from '#common/utils';
 import { TaskFormService } from '#pages/dashboard/features/tasker/data-access';
 import { Task, TaskForm, TaskStepForm } from '#pages/dashboard/features/tasker/models';
 import { AuthSelectors } from '#store/auth';
@@ -17,20 +16,15 @@ import { AuthSelectors } from '#store/auth';
   templateUrl: './task-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent {
   private readonly taskFormService: TaskFormService = inject(TaskFormService);
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly trackByIdx: TrackByFunction<unknown> = TrackByIdx;
   public readonly form: FormGroup<TaskForm> = this.taskFormService.form;
   public readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
   private readonly user: Signal<User | null | undefined> = toSignal(inject(Store).select(AuthSelectors.user));
-
-  public ngOnInit(): void {
-    this.formData;
-  }
 
   public onSubmit(): void {
     if (this.form.invalid) {

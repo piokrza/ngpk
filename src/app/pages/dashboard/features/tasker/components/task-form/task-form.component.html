@@ -3,14 +3,16 @@
 
   <ng-container formArrayName="steps">
     <ul class="pl-3">
-      <li *ngFor="let stepFormGroup of stepsArray.controls; let i = index; trackBy: trackByIdx" class="mb-3 flex align-items-center">
-        <span class="mr-4">{{ 'tasker.step' | translate }} {{ i + 1 }}</span>
+      @for (stepFormGroup of stepsArray.controls; track $index) {
+      <li class="mb-3 flex align-items-center">
+        <span class="mr-4">{{ 'tasker.step' | translate }} {{ $index + 1 }}</span>
 
-        <div [formGroup]="$any(stepFormGroup)" class="flex">
-          <input [formControl]="$any(stepFormGroup).controls.name" [placeholder]="'common.enterName' | translate" pInputText />
-          <p-button (onClick)="removeStep(i)" [icon]="PrimeIcons.MINUS" severity="danger" />
+        <div [formGroup]="stepFormGroup" class="flex">
+          <input [formControl]="stepFormGroup.controls.name" [placeholder]="'common.enterName' | translate" pInputText />
+          <p-button (onClick)="removeStep($index)" [icon]="PrimeIcons.MINUS" severity="danger" />
         </div>
       </li>
+      }
     </ul>
   </ng-container>
 
