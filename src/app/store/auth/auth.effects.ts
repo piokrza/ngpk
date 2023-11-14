@@ -10,7 +10,7 @@ import { ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
 import { AuthFormPayload } from '#pages/auth/models';
 import { AuthService } from '#pages/auth/services';
-import { CashFlowApi } from '#pages/dashboard/pages/cash-flow/data-access';
+import { CashFlowApi } from '#pages/dashboard/features/cash-flow/data-access';
 import { AuthActions } from '#store/auth';
 import { ActionTypes } from '#store/auth/action-types';
 import { CashFlowActions } from '#store/cash-flow';

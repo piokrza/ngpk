@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Task, ToggleIsStepCompletePayload } from '#pages/dashboard/pages/tasker/models';
+import { Task, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 import { ActionTypes } from '#store/tasker/action-types';
 
 // get tasks user data

@@ -5,7 +5,7 @@ import { catchError, exhaustMap, from, map, of } from 'rxjs';
 
 import { Collection, ToastStatus } from '#common/enums/';
 import { ToastService } from '#common/services';
-import { CashFlowApi } from '#pages/dashboard/pages/cash-flow/data-access';
+import { CashFlowApi } from '#pages/dashboard/features/cash-flow/data-access';
 import { CashFlowActions } from '#store/cash-flow';
 
 @Injectable()

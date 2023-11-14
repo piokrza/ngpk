@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { CashFlow, CashFlowUserData } from '#pages/dashboard/pages/cash-flow/models';
+import { CashFlow, CashFlowUserData } from '#pages/dashboard/features/cash-flow/models';
 import { ActionTypes } from '#store/cash-flow/action-types';
 
 // get cash flow user data

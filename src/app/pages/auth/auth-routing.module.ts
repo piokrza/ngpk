@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthViewComponent } from '#pages/auth';
+import { AuthComponent } from '#pages/auth';
 import { LoginFormComponent, RegisterFormComponent } from '#pages/auth/components';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthViewComponent,
+    component: AuthComponent,
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginFormComponent },

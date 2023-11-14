@@ -5,11 +5,11 @@ import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { MetamaskService, Web3State } from '#features/web3/data-access';
-import { DashboardFacade, DashboardRoutingModule, DashboardViewComponent } from '#pages/dashboard';
+import { DashboardFacade, DashboardRoutingModule, DashboardComponent } from '#pages/dashboard';
 import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 
-const declarations = [DashboardViewComponent];
+const declarations = [DashboardComponent];
 const imports = [
   CommonModule,
   DashboardRoutingModule,

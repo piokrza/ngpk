@@ -1,31 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardViewComponent } from '#pages/dashboard';
+import { DashboardComponent } from '#pages/dashboard';
 import { DashobardPaths } from '#pages/dashboard/enums';
 import { DashboardRedirectGuard } from '#pages/dashboard/guards';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardViewComponent,
+    component: DashboardComponent,
     canActivate: [DashboardRedirectGuard],
     children: [
       {
         path: DashobardPaths.OVERVIEW,
-        loadComponent: () => import('#pages/dashboard/pages/overview/overview.component'),
+        loadComponent: () => import('#pages/dashboard/features/overview/overview.component'),
       },
       {
         path: DashobardPaths.CASH_FLOW,
-        loadChildren: () => import('#pages/dashboard/pages/cash-flow/cash-flow.module'),
+        loadChildren: () => import('#pages/dashboard/features/cash-flow/cash-flow.module'),
       },
       {
         path: DashobardPaths.SETTINGS,
-        loadChildren: () => import('#pages/dashboard/pages/settings/settings.module'),
+        loadChildren: () => import('#pages/dashboard/features/settings/settings.module'),
       },
       {
         path: DashobardPaths.TASKER,
-        loadChildren: () => import('#pages/dashboard/pages/tasker/tasker.module'),
+        loadChildren: () => import('#pages/dashboard/features/tasker/tasker.module'),
       },
     ],
   },

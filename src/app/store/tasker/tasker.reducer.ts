@@ -1,6 +1,6 @@
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
 
-import { Task } from '#pages/dashboard/pages/tasker/models';
+import { Task } from '#pages/dashboard/features/tasker/models';
 import { AuthActions } from '#store/auth';
 import { TaskerActions } from '#store/tasker';
 
