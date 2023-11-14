@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { PrimeIcons } from 'primeng/api';
 
 import { isLightMode } from '#common/constants';
 import { PersistanceService, ThemeService } from '#common/services';
@@ -8,7 +9,7 @@ import { PersistanceService, ThemeService } from '#common/services';
   template: `
     <div class="container">
       {{ 'settings.selectTheme' | translate }}
-      <p-toggleButton [(ngModel)]="isLightMode" (onChange)="toggleTheme()" [onIcon]="'pi pi-sun'" [offIcon]="'pi pi-moon'" />
+      <p-toggleButton [(ngModel)]="isLightMode" (onChange)="toggleTheme()" [onIcon]="PrimeIcons.SUN" [offIcon]="PrimeIcons.MOON" />
     </div>
   `,
   styleUrl: './theme-toggler.component.scss',
@@ -17,6 +18,7 @@ import { PersistanceService, ThemeService } from '#common/services';
 export class ThemeTogglerComponent {
   private readonly themeService: ThemeService = inject(ThemeService);
 
+  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public isLightMode: boolean | null = inject(PersistanceService).get(isLightMode);
 
   public toggleTheme(): void {

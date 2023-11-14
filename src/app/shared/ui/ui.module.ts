@@ -16,7 +16,6 @@ import { LayoutComponent } from '#shared/ui/layout';
 import { NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#shared/ui/navigation/components';
 
 const declarations = [NavigationComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent];
-
 const imports = [
   CommonModule,
   ButtonModule,
@@ -31,7 +30,6 @@ const imports = [
   WeatherWidgetComponent,
   WalletComponent,
 ];
-
 const exports = [LayoutComponent];
 
 @NgModule({ declarations, imports, exports })
