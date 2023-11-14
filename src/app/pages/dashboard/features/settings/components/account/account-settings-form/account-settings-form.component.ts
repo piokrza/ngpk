@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { User } from '#common/models';
+import { User } from '#pages/auth/models';
 import { AccountSettingsForm } from '#pages/dashboard/features/settings/models';
 import { AccountSettingsFormService } from '#pages/dashboard/features/settings/services';
 

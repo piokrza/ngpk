@@ -6,8 +6,7 @@ import firebase from 'firebase/compat';
 import { Observable, of } from 'rxjs';
 
 import { Collection } from '#common/enums';
-import { User } from '#common/models';
-import { AuthFormPayload } from '#pages/auth/models';
+import { AuthFormPayload, User } from '#pages/auth/models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

@@ -6,7 +6,7 @@ import { PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import uniqid from 'uniqid';
 
-import { User } from '#common/models';
+import { User } from '#pages/auth/models';
 import { TaskFormService } from '#pages/dashboard/features/tasker/data-access';
 import { Task, TaskForm, TaskStepForm } from '#pages/dashboard/features/tasker/models';
 import { AuthSelectors } from '#store/auth';

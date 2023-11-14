@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { Observable, combineLatest, map, take } from 'rxjs';
 
 import { Collection } from '#common/enums';
-import { User } from '#common/models';
+import { User } from '#pages/auth/models';
 import { CashFlowUserData, CashFlow } from '#pages/dashboard/features/cash-flow/models';
 
 @Injectable({ providedIn: 'root' })
