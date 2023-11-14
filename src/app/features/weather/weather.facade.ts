@@ -10,7 +10,7 @@ export class WeatherFacade {
   private readonly weatherState: WeatherState = inject(WeatherState);
 
   private readonly weatherDataKey = 'weatherData';
-  private readonly defaultCityQuery = 'Krakow';
+  private readonly defaultCityNameQuery = 'Krakow';
 
   public get weatherData$(): Observable<WeatherResponse | null> {
     return this.weatherState.weatherData$;
@@ -24,19 +24,13 @@ export class WeatherFacade {
     return this.weatherState.errorMessage$;
   }
 
-  public checkWeather(): void {
-    const weatherData = sessionStorage.getItem(this.weatherDataKey);
-    weatherData && this.weatherState.setWeatherData(JSON.parse(weatherData));
-    2;
-  }
-
   public loadWeatherDataByGeolocation$(): Observable<WeatherResponse> {
     return this.weatherState.geolocation$.pipe(
       switchMap((geolocation: IGeolocation | null) => {
         return iif(
           () => geolocation !== null,
           this.weatherApi.seatchByGeoCords$(geolocation!),
-          this.weatherApi.searchByCityName$(this.defaultCityQuery)
+          this.weatherApi.searchByCityName$(this.defaultCityNameQuery)
         );
       }),
       tap((data: WeatherResponse) => {
@@ -45,14 +39,6 @@ export class WeatherFacade {
       }),
       catchError((): Observable<never> => EMPTY)
     );
-  }
-
-  public checkGeolocation(): void {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }: GeolocationPosition) => {
-        this.weatherState.setGeolocation({ latitude, longitude });
-      });
-    }
   }
 
   public loadWeatherDataByCityName$(cityName: string): Observable<WeatherResponse> {
@@ -64,11 +50,24 @@ export class WeatherFacade {
         this.weatherState.setWeatherData(data);
         sessionStorage.setItem(this.weatherDataKey, JSON.stringify(data));
       }),
-      catchError((err): Observable<never> => {
-        this.weatherState.setErrorMessage(err.error.message);
+      catchError(({ error }): Observable<never> => {
+        this.weatherState.setErrorMessage(error.message);
         return EMPTY;
       }),
       finalize((): void => this.weatherState.setIsLoading(false))
     );
+  }
+
+  public checkGeolocation(): void {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }: GeolocationPosition) => {
+        this.weatherState.setGeolocation({ latitude, longitude });
+      });
+    }
+  }
+
+  public checkWeatherData(): void {
+    const weatherData = sessionStorage.getItem(this.weatherDataKey);
+    weatherData && this.weatherState.setWeatherData(JSON.parse(weatherData));
   }
 }

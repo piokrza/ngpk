@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, Provider, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Provider, Signal, WritableSignal, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Observable } from 'rxjs';
 
+import { Nullable } from '#common/models';
 import { WeatherFacade } from '#features/weather';
 import { DetailsComponent } from '#features/weather/components';
 import { WeatherApi, WeatherState } from '#features/weather/data-access';
@@ -40,16 +42,16 @@ const providers: Provider[] = [WeatherFacade, WeatherApi, WeatherState];
 export class WeatherWidgetComponent implements OnInit {
   private readonly weatherFacade: WeatherFacade = inject(WeatherFacade);
 
-  public readonly data$: Observable<WeatherResponse | null> = this.weatherFacade.weatherData$;
+  public readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.weatherFacade.weatherData$);
   public readonly isLoading$: Observable<boolean> = this.weatherFacade.isLoading$;
   public readonly errorMessage$: Observable<string | null> = this.weatherFacade.errorMessage$;
 
-  public isOpen = false;
+  public isOpen: WritableSignal<boolean> = signal(false);
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
   public ngOnInit(): void {
-    this.weatherFacade.checkWeather();
+    this.weatherFacade.checkWeatherData();
     this.weatherFacade.checkGeolocation();
   }
 
@@ -62,6 +64,6 @@ export class WeatherWidgetComponent implements OnInit {
   }
 
   public toggleDetails(): void {
-    this.isOpen = !this.isOpen;
+    this.isOpen.set(!this.isOpen());
   }
 }

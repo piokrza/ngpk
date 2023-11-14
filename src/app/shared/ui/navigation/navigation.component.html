@@ -1,11 +1,11 @@
 <div class="mobile">
-  <div *ngIf="user$ | async as user" class="p-3 rounded panel">
+  <div class="p-3 rounded panel">
     <div>
       <p-tieredMenu #menu [model]="menuLinks" [popup]="true" [lang]="'pl'" />
       <button (click)="menu.toggle($event)" icon="pi pi-fw pi-list" type="button" pButton></button>
     </div>
 
-    <div class="mr-4">
+    <div *ngIf="user$ | async as user" class="mr-4">
       <p class="my-0">{{ user.displayName }}</p>
       <small>{{ user.email }}</small>
     </div>

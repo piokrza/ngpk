@@ -1,7 +1,6 @@
-@if (data$ | async; as data) {
 <div class="my-4 rounded widget">
-  <div [class.pb-0]="data" class="flex justify-content-between align-items-center p-3">
-    @if (data === null) {
+  <div [class.pb-0]="data()" class="flex justify-content-between align-items-center p-3">
+    @if (data() === null) {
     <div class="flex justify-content-center w-full">
       <p-button
         (onClick)="loadWeatherByUserLocation()"
@@ -10,15 +9,19 @@
         [outlined]="true"
         severity="secondary" />
     </div>
-    } @if (data.name) {
+    }
+    <!--  -->
+    @if (data()?.name) {
     <p>
-      {{ data.name }} <small>({{ data.sys.country }})</small>
+      {{ data()?.name }} <small>({{ data()?.sys?.country }})</small>
     </p>
     }
     <div class="flex align-items-center">
-      @if (data.main.temp) {
-      <span class="mr-2">{{ data.main.temp | number : '1.0-0' }} ℃</span>
-      } @if (data?.weather?.[0]?.icon; as icon) {
+      @if (data()?.main?.temp) {
+      <span class="mr-2">{{ data()?.main?.temp | number : '1.0-0' }} ℃</span>
+      }
+      <!--  -->
+      @if (data()?.weather?.[0]?.icon; as icon) {
       <div class="w-3rem">
         <img [src]="icon | weatherIcon" alt="weather-icon" />
       </div>
@@ -26,19 +29,19 @@
     </div>
   </div>
 
-  @if (data !== null) {
-  <div [class.widget__details--active]="isOpen" class="px-3 widget__details">
-    <p>{{ data.weather[0].description | titlecase }}</p>
+  @if (data() !== null) {
+  <div [class.widget__details--active]="isOpen()" class="px-3 widget__details">
+    <p>{{ data()!.weather[0].description | titlecase }}</p>
 
     <div class="flex gap-3 justify-content-between my-3">
       <ctrl-details
-        [amount]="(data.main.humidity | number : '1.0-0') + '%'"
+        [amount]="(data()?.main?.humidity | number : '1.0-0') + '%'"
         [name]="'weather.humidity' | translate"
         icon="assets/img/weather-icons/humidity.png">
       </ctrl-details>
 
       <ctrl-details
-        [amount]="(data.wind.speed | number : '1.0-0') + ' km/h'"
+        [amount]="(data()?.wind?.speed | number : '1.0-0') + ' km/h'"
         [name]="'weather.wind' | translate"
         icon="assets/img/weather-icons/wind.png">
       </ctrl-details>
@@ -64,8 +67,7 @@
   </div>
 
   <small (click)="toggleDetails()" class="block text-center rounded widget__toggle">
-    <i [class]="isOpen ? PrimeIcons.ANGLE_UP : PrimeIcons.ANGLE_DOWN" class="text-xs widget__toggle-icon"></i>
+    <i [class]="isOpen() ? PrimeIcons.ANGLE_UP : PrimeIcons.ANGLE_DOWN" class="text-xs widget__toggle-icon"></i>
   </small>
   }
 </div>
-}
