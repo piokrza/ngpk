@@ -10,7 +10,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { map, tap, finalize } from 'rxjs';
 
 import { WEB3_CONFIG } from '#features/web3/config';
-import { MetamaskService, Web3State } from '#features/web3/data-access';
+import { EthereumService, Web3State } from '#features/web3/data-access';
 import { Web3Config } from '#features/web3/models';
 import { AddressPipe } from '#features/web3/pipes';
 
@@ -27,7 +27,7 @@ const imports = [AsyncPipe, TranslateModule, ProgressBarModule, ButtonModule, Ad
 })
 export class WalletComponent {
   private readonly web3State: Web3State = inject(Web3State);
-  private readonly metamaskService: MetamaskService = inject(MetamaskService);
+  private readonly ethereumService: EthereumService = inject(EthereumService);
 
   public readonly chainId = toSignal(this.web3State.chainId$);
   public readonly account = toSignal(this.web3State.walletAddress$);
@@ -41,7 +41,7 @@ export class WalletComponent {
     if (this.account() === null) {
       this.web3State.setIsProcessing(true);
 
-      this.metamaskService
+      this.ethereumService
         .requestWallets$()
         .pipe(
           map((walletAddresses: string[]) => walletAddresses[0]),

@@ -5,7 +5,7 @@ import { Observable, forkJoin, tap, debounceTime, combineLatest, filter } from '
 import { ToastService } from '#common/services';
 import { TargetNetworkDialogComponent } from '#features/web3/components';
 import { WEB3_CONFIG } from '#features/web3/config';
-import { Web3State, MetamaskService } from '#features/web3/data-access';
+import { Web3State, EthereumService } from '#features/web3/data-access';
 import { Web3Config } from '#features/web3/models';
 
 @Injectable()
@@ -15,12 +15,12 @@ export class DashboardFacade {
   private readonly web3Config: Web3Config = inject(WEB3_CONFIG);
   private readonly toastService: ToastService = inject(ToastService);
   private readonly dialogService: DialogService = inject(DialogService);
-  private readonly metamaskService: MetamaskService = inject(MetamaskService);
+  private readonly ethereumService: EthereumService = inject(EthereumService);
 
   public requestChainIdAndAccounts$(): Observable<{ chainId: string; accounts: string[] }> {
     return forkJoin({
-      chainId: this.metamaskService.requestChainId$(),
-      accounts: this.metamaskService.requestAccounts$(),
+      chainId: this.ethereumService.requestChainId$(),
+      accounts: this.ethereumService.requestAccounts$(),
     }).pipe(
       tap(({ chainId, accounts }) => {
         this.web3State.setChainId(chainId);
@@ -37,7 +37,7 @@ export class DashboardFacade {
   }
 
   public onAccountChanged$(): Observable<string[]> {
-    return this.metamaskService
+    return this.ethereumService
       .accountChanged$()
       .pipe(tap((accountAddresses: string[]) => this.ngZone.run((): void => this.web3State.setWalletAddress(accountAddresses[0] ?? null))));
   }
@@ -45,7 +45,7 @@ export class DashboardFacade {
   public onChainChange$(): Observable<{ currentChainId: string | null; updatedChainId: string }> {
     return combineLatest({
       currentChainId: this.web3State.chainId$,
-      updatedChainId: this.metamaskService.chainChanged$(),
+      updatedChainId: this.ethereumService.chainChanged$(),
     }).pipe(
       filter(({ currentChainId, updatedChainId }) => currentChainId !== updatedChainId),
       tap(({ updatedChainId }) => this.ngZone.run(() => this.web3State.setChainId(updatedChainId)))

@@ -1,2 +1,2 @@
-export * from './metamask.service';
+export * from './ethereum.service';
 export * from './web3.state';
