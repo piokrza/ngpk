@@ -1,24 +1,24 @@
-@if (dataset$ | async; as dataset) {
+@if (data$ | async; as data) {
 <div class="my-4 rounded widget">
-  <div [class.pb-0]="dataset.data" class="flex justify-content-between align-items-center p-3">
-    @if (dataset.data === null) {
+  <div [class.pb-0]="data" class="flex justify-content-between align-items-center p-3">
+    @if (data === null) {
     <div class="flex justify-content-center w-full">
       <p-button
-        (onClick)="loadWeatherDataByCityName('Kraków')"
-        [icon]="dataset.isLoading ? PrimeIcons.SPINNER : ''"
+        (onClick)="loadWeatherByUserLocation()"
+        [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
         [label]="'weather.fetchData' | translate"
         [outlined]="true"
         severity="secondary" />
     </div>
-    } @if (dataset.data?.name) {
+    } @if (data.name) {
     <p>
-      {{ dataset.data?.name }} <small>({{ dataset.data?.sys?.country }})</small>
+      {{ data.name }} <small>({{ data.sys.country }})</small>
     </p>
     }
     <div class="flex align-items-center">
-      @if (dataset.data?.main?.temp) {
-      <span class="mr-2">{{ dataset.data?.main?.temp | number : '1.0-0' }} ℃</span>
-      } @if (dataset.data?.weather?.[0]?.icon; as icon) {
+      @if (data.main.temp) {
+      <span class="mr-2">{{ data.main.temp | number : '1.0-0' }} ℃</span>
+      } @if (data?.weather?.[0]?.icon; as icon) {
       <div class="w-3rem">
         <img [src]="icon | weatherIcon" alt="weather-icon" />
       </div>
@@ -26,17 +26,19 @@
     </div>
   </div>
 
-  @if (dataset.data !== null) {
+  @if (data !== null) {
   <div [class.widget__details--active]="isOpen" class="px-3 widget__details">
+    <p>{{ data.weather[0].description | titlecase }}</p>
+
     <div class="flex gap-3 justify-content-between my-3">
       <ctrl-details
-        [amount]="(dataset.data.main.humidity | number : '1.0-0') + '%'"
+        [amount]="(data.main.humidity | number : '1.0-0') + '%'"
         [name]="'weather.humidity' | translate"
         icon="assets/img/weather-icons/humidity.png">
       </ctrl-details>
 
       <ctrl-details
-        [amount]="(dataset.data.wind.speed | number : '1.0-0') + ' km/h'"
+        [amount]="(data.wind.speed | number : '1.0-0') + ' km/h'"
         [name]="'weather.wind' | translate"
         icon="assets/img/weather-icons/wind.png">
       </ctrl-details>
@@ -52,9 +54,13 @@
         pInputText />
       <p-button
         (onClick)="loadWeatherDataByCityName(searchCityNameControl.value)"
-        [disabled]="!searchCityNameControl.value || dataset.isLoading"
+        [disabled]="!searchCityNameControl.value || !!(isLoading$ | async)"
         [icon]="PrimeIcons.SEARCH" />
     </div>
+
+    @if (errorMessage$ | async; as errorMessage) {
+    <small class="error">{{ errorMessage }}</small>
+    }
   </div>
 
   <small (click)="toggleDetails()" class="block text-center rounded widget__toggle">

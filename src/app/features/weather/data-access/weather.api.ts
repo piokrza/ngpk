@@ -4,20 +4,25 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
-import { WeatherResponse } from '#features/weather/models';
+import { IGeolocation, WeatherResponse } from '#features/weather/models';
 
 @Injectable()
 export class WeatherApi {
   private readonly http: HttpClient = inject(HttpClient);
   private readonly translateService: TranslateService = inject(TranslateService);
 
+  private readonly baseUrl = env.weatherBaseUrl;
   private readonly weatherApiKey: string = env.weatherApiKey;
 
   public searchByCityName$(cityName: string): Observable<WeatherResponse> {
-    return this.http.get<WeatherResponse>(this.getUrl(cityName));
+    return this.http.get<WeatherResponse>(
+      `${this.baseUrl}?q=${cityName}&units=Metric&appid=${this.weatherApiKey}&lang=${this.translateService.currentLang}`
+    );
   }
 
-  private getUrl(cityName: string): string {
-    return `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=Metric&appid=${this.weatherApiKey}&lang=${this.translateService.currentLang}`;
+  public seatchByGeoCords$(geolocation: IGeolocation): Observable<WeatherResponse> {
+    return this.http.get<WeatherResponse>(
+      `${this.baseUrl}?lat=${geolocation.latitude}&lon=${geolocation.longitude}&units=Metric&appid=${this.weatherApiKey}&lang=${this.translateService.currentLang}`
+    );
   }
 }

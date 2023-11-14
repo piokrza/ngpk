@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Provider, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Provider, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { WeatherFacade } from '#features/weather';
 import { DetailsComponent } from '#features/weather/components';
 import { WeatherApi, WeatherState } from '#features/weather/data-access';
-import { WeatherDataset } from '#features/weather/models';
+import { WeatherResponse } from '#features/weather/models';
 import { WeatherIconPipe } from '#features/weather/pipes';
 
 const imports = [
@@ -37,21 +37,28 @@ const providers: Provider[] = [WeatherFacade, WeatherApi, WeatherState];
   providers,
   imports,
 })
-export class WeatherWidgetComponent {
+export class WeatherWidgetComponent implements OnInit {
   private readonly weatherFacade: WeatherFacade = inject(WeatherFacade);
 
-  public readonly dataset$: Observable<WeatherDataset> = this.weatherFacade.weatherDataset$;
+  public readonly data$: Observable<WeatherResponse | null> = this.weatherFacade.weatherData$;
+  public readonly isLoading$: Observable<boolean> = this.weatherFacade.isLoading$;
+  public readonly errorMessage$: Observable<string | null> = this.weatherFacade.errorMessage$;
 
   public isOpen = false;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
-  public constructor() {
+  public ngOnInit(): void {
     this.weatherFacade.checkWeather();
+    this.weatherFacade.checkGeolocation();
   }
 
   public loadWeatherDataByCityName(cityName: string): void {
-    cityName.length && this.weatherFacade.loadWeatherDataByCity$(cityName).pipe(untilDestroyed(this)).subscribe();
+    cityName.length && this.weatherFacade.loadWeatherDataByCityName$(cityName).pipe(untilDestroyed(this)).subscribe();
+  }
+
+  public loadWeatherByUserLocation(): void {
+    this.weatherFacade.loadWeatherDataByGeolocation$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public toggleDetails(): void {
