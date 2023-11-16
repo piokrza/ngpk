@@ -16,9 +16,9 @@
     <label htmlFor="passwordConfirmation">Password confirmation</label>
   </span>
 
-  <div *ngIf="form.errors?.['passwordMismatch'] && form.get('passwordConfirmation')?.touched" class="my-6">
-    <small class="text-red-400">Password and password confirmation does not match</small>
-  </div>
+  @if (form.errors?.['passwordMismatch'] && form.get('passwordConfirmation')?.touched) {
+    <small class="text-red-400 block my-6">Password and password confirmation does not match</small>
+  }
 
   <button [disabled]="form.invalid" class="w-full" type="submit" pButton label="Register"></button>
 </form>

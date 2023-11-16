@@ -12,9 +12,9 @@ import { map, tap, finalize } from 'rxjs';
 import { WEB3_CONFIG } from '#features/web3/config';
 import { EthereumService, Web3State } from '#features/web3/data-access';
 import { Web3Config } from '#features/web3/models';
-import { AddressPipe } from '#features/web3/pipes';
+import { AddressPipe, NetworkNamePipe } from '#features/web3/pipes';
 
-const imports = [AsyncPipe, TranslateModule, ProgressBarModule, ButtonModule, AddressPipe, ConfirmPopupModule];
+const imports = [AsyncPipe, TranslateModule, ProgressBarModule, ButtonModule, AddressPipe, ConfirmPopupModule, NetworkNamePipe];
 
 @UntilDestroy()
 @Component({

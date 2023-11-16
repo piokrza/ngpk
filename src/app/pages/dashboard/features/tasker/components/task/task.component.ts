@@ -1,17 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-  TrackByFunction,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, inject } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
-import { trackByKey } from '#common/utils';
 import { TaskService } from '#pages/dashboard/features/tasker/data-access';
 import { Task, TaskStep, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 
@@ -33,7 +22,6 @@ export class TaskComponent implements OnChanges {
   public completedSteps = 0;
   public isStepsVisible!: boolean;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly trackById: TrackByFunction<TaskStep> = trackByKey<TaskStep>('id');
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['task']) {

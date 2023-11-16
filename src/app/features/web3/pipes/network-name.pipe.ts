@@ -11,6 +11,7 @@ export class NetworkNamePipe implements PipeTransform {
     56: 'Binance Smart Chain',
     97: 'Binance Smart Chain Testnet',
     1337: 'Ganache',
+    59140: 'Linea Main Network',
     31337: 'Hardhat',
   };
 

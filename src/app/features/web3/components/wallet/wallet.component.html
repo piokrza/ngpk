@@ -1,18 +1,23 @@
 <div class="p-3 rounded wallet">
-  @if (isMetamaskInstalled()) { @if(account(); as account) {
-  <div class="flex justify-content-between align-items-center">
-    <p>Account: {{ account | address }}</p>
-  </div>
+  @if (isMetamaskInstalled()) {
+    @if (account(); as account) {
+      <div class="flex justify-content-between align-items-center">
+        <p>Account: {{ account | address }}</p>
+        <p>{{ chainId() ?? '' | networkName }}</p>
+      </div>
+    } @else {
+      <div class="flex justify-content-center">
+        <p-button (onClick)="connectWallet()" [label]="'wallet.connectWallet' | translate" [outlined]="true" severity="secondary" />
+      </div>
+    }
   } @else {
-  <div class="flex justify-content-center">
-    <p-button (onClick)="connectWallet()" [label]="'wallet.connectWallet' | translate" [outlined]="true" severity="secondary" />
-  </div>
-  }} @else {
-  <p>
-    {{ 'wallet.noWallet' | translate }}
-    <a [href]="web3Config.metamaskInstallHref" class="wallet__link" target="_blank">Metamask</a>
-  </p>
+    <p>
+      {{ 'wallet.noWallet' | translate }}
+      <a [href]="web3Config.metamaskInstallHref" class="wallet__link" target="_blank">Metamask</a>
+    </p>
   }
 </div>
 
-@if (isProcessing()) {<p-progressBar mode="indeterminate" [style]="{ height: '3px' }" class="rounded" />}
+@if (isProcessing()) {
+  <p-progressBar mode="indeterminate" [style]="{ height: '3px' }" class="rounded" />
+}

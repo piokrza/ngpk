@@ -14,9 +14,11 @@
         }
       </div>
 
-      <div class="flex justify-content-center">
-        <p-progressSpinner *ngIf="isLoading" />
-      </div>
+      @if (isLoading) {
+        <div class="flex justify-content-center">
+          <p-progressSpinner />
+        </div>
+      }
 
       <p-dataView [value]="tasks" class="w-full">
         <ng-template let-task pTemplate="listItem">

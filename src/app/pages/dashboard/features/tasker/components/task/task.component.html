@@ -6,32 +6,37 @@
       [outlined]="true"
       [icon]="task.isComplete ? PrimeIcons.CHECK : PrimeIcons.MINUS"
       [severity]="task.isComplete ? 'success' : 'danger'"
-      styleClass="mr-3" />
+      styleClass="mr-3"
+      size="small" />
 
     <p [class.task__name--complete]="task.isComplete" class="task__name">
       {{ task.name }}
-      <small *ngIf="task.steps.length">({{ completedSteps }} {{ 'of' | translate }} {{ task.steps.length }})</small>
+      @if (task.steps.length) {
+        <small>({{ completedSteps }} {{ 'of' | translate }} {{ task.steps.length }})</small>
+      }
     </p>
 
     <p-button (onClick)="removeTask.emit(task.id)" [icon]="PrimeIcons.TIMES" severity="danger" />
   </div>
 
-  <ng-container *ngIf="task.steps.length">
+  @if (task.steps.length) {
     <ul [class.task__step-list--visible]="isStepsVisible" class="task__step-list">
-      <li *ngFor="let step of task.steps; trackBy: trackById" class="my-2 flex gap-1 align-items-center">
-        <p-button
-          (onClick)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
-          [rounded]="true"
-          [outlined]="true"
-          [icon]="step.isComplete ? PrimeIcons.CHECK : PrimeIcons.MINUS"
-          [severity]="step.isComplete ? 'success' : 'danger'"
-          styleClass="mr-3" />
-        <p>{{ step.name }}</p>
-      </li>
+      @for (step of task.steps; track step.id) {
+        <li class="my-2 flex gap-1 align-items-center">
+          <p-button
+            (onClick)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
+            [rounded]="true"
+            [outlined]="true"
+            [icon]="step.isComplete ? PrimeIcons.CHECK : PrimeIcons.MINUS"
+            [severity]="step.isComplete ? 'success' : 'danger'"
+            styleClass="mr-3" />
+          <p>{{ step.name }}</p>
+        </li>
+      }
     </ul>
 
     <small (click)="toggleStepsVisibility()" class="block text-center rounded task__toggle">
       <i [class]="isStepsVisible ? PrimeIcons.ANGLE_UP : PrimeIcons.ANGLE_DOWN" class="text-xs widget__toggle-icon"></i>
     </small>
-  </ng-container>
+  }
 </p-card>
