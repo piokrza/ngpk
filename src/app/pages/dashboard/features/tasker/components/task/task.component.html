@@ -1,18 +1,11 @@
 <p-card styleClass="task">
   <div class="task">
-    <p-button
-      (onClick)="toggleIsTaskComplete.emit(task.id)"
-      [rounded]="true"
-      [outlined]="true"
-      [icon]="task.isComplete ? PrimeIcons.CHECK : PrimeIcons.MINUS"
-      [severity]="task.isComplete ? 'success' : 'danger'"
-      styleClass="mr-3"
-      size="small" />
+    <p-checkbox [(ngModel)]="isTaskComplete" (onChange)="toggleIsTaskComplete.emit(task.id)" [binary]="true" styleClass="mr-3" />
 
-    <p [class.task__name--complete]="task.isComplete" class="task__name">
+    <p (click)="toggleStepsVisibility()" [class.task__name--complete]="task.isComplete" class="task__name">
       {{ task.name }}
       @if (task.steps.length) {
-        <small>({{ completedSteps }} {{ 'of' | translate }} {{ task.steps.length }})</small>
+        <small>({{ completedSteps }} {{ 'common.of' | translate }} {{ task.steps.length }})</small>
       }
     </p>
 
@@ -22,15 +15,12 @@
   @if (task.steps.length) {
     <ul [class.task__step-list--visible]="isStepsVisible" class="task__step-list">
       @for (step of task.steps; track step.id) {
-        <li class="my-2 flex gap-1 align-items-center">
-          <p-button
-            (onClick)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
-            [rounded]="true"
-            [outlined]="true"
-            [icon]="step.isComplete ? PrimeIcons.CHECK : PrimeIcons.MINUS"
-            [severity]="step.isComplete ? 'success' : 'danger'"
-            styleClass="mr-3" />
-          <p>{{ step.name }}</p>
+        <li
+          (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
+          (keyup.enter)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
+          [class.task__name--complete]="step.isComplete"
+          class="task__name">
+          {{ step.name | titlecase }}
         </li>
       }
     </ul>

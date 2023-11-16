@@ -1,9 +1,13 @@
 <p-tabView>
   <p-tabPanel [header]="'tasker.title' | translate">
-    <div class="container">
-      <div class="flex justify-content-between align-items-center flex-wrap">
-        <p-button (click)="addTask.emit()" [label]="'tasker.addTask' | translate" styleClass="my-3" />
-        @if (tasks.length) {
+    @if (isLoading) {
+      <div class="flex justify-content-center">
+        <p-progressSpinner />
+      </div>
+    } @else {
+      <div class="container">
+        <div class="flex justify-content-between align-items-center flex-wrap">
+          <p-button (click)="addTask.emit()" [label]="'tasker.addTask' | translate" styleClass="my-3" />
           <p-selectButton
             [(ngModel)]="filter"
             (onChange)="onFilterChange($event)"
@@ -11,25 +15,19 @@
             [allowEmpty]="false"
             optionLabel="label"
             optionValue="data" />
-        }
-      </div>
-
-      @if (isLoading) {
-        <div class="flex justify-content-center">
-          <p-progressSpinner />
         </div>
-      }
 
-      <p-dataView [value]="tasks" class="w-full">
-        <ng-template let-task pTemplate="listItem">
-          <ctrl-task
-            (toggleIsTaskComplete)="toggleIsTaskComplete.emit($event)"
-            (toggleIsStepComplete)="toggleIsStepComplete.emit($event)"
-            (removeTask)="removeTask.emit($event)"
-            [task]="task" />
-        </ng-template>
-      </p-dataView>
-    </div>
+        <p-dataView [value]="tasks" class="w-full">
+          <ng-template let-task pTemplate="listItem">
+            <ctrl-task
+              (toggleIsTaskComplete)="toggleIsTaskComplete.emit($event)"
+              (toggleIsStepComplete)="toggleIsStepComplete.emit($event)"
+              (removeTask)="removeTask.emit($event)"
+              [task]="task" />
+          </ng-template>
+        </p-dataView>
+      </div>
+    }
   </p-tabPanel>
 
   <p-tabPanel [header]="'tasker.notes' | translate">

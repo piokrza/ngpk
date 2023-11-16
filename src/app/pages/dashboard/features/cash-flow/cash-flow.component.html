@@ -1,27 +1,29 @@
 <p-tabView>
   <p-tabPanel [header]="'cashFlow.incomes' | translate">
-    @if(incomesDataset$ | async; as incomes) {
-    <ctrl-cash-flow-panel
-      (cashFlowSubmitData)="onIncomeSubmit($event)"
-      (cashFlowToRemoveId)="removeIncome($event)"
-      (cashFlowToUpdate)="updateIncome($event)"
-      [cashFlowData]="incomes.data"
-      [totalCashFlowAmount]="incomes.amount"
-      [isLoading]="(isLoading$ | async)!"
-      [isIncomeMode]="true" />
+    @if (incomesDataset$ | async; as incomes) {
+      <ctrl-cash-flow-panel
+        (cashFlowSubmitData)="onIncomeSubmit($event)"
+        (cashFlowToRemoveId)="removeIncome($event)"
+        (cashFlowToUpdate)="updateIncome($event)"
+        [cashFlowData]="incomes.data"
+        [totalCashFlowAmount]="incomes.amount"
+        [isLoading]="(isLoading$ | async)!"
+        [isIncomeMode]="true" />
     }
   </p-tabPanel>
 
-  <p-tabPanel [header]="'cashFlow.expenses' | translate">
-    @if(expensesDataset$ | async; as expenses) {
-    <ctrl-cash-flow-panel
-      (cashFlowSubmitData)="onExpenseSubmit($event)"
-      (cashFlowToRemoveId)="removeExpense($event)"
-      (cashFlowToUpdate)="updateExpense($event)"
-      [cashFlowData]="expenses.data"
-      [totalCashFlowAmount]="expenses.amount"
-      [isLoading]="(isLoading$ | async)!"
-      [isIncomeMode]="false" />
+  <p-tabPanel #expensesPanel [header]="'cashFlow.expenses' | translate">
+    @defer {
+      @if (expensesDataset$ | async; as expenses) {
+        <ctrl-cash-flow-panel
+          (cashFlowSubmitData)="onExpenseSubmit($event)"
+          (cashFlowToRemoveId)="removeExpense($event)"
+          (cashFlowToUpdate)="updateExpense($event)"
+          [cashFlowData]="expenses.data"
+          [totalCashFlowAmount]="expenses.amount"
+          [isLoading]="(isLoading$ | async)!"
+          [isIncomeMode]="false" />
+      }
     }
   </p-tabPanel>
 </p-tabView>

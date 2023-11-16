@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { CheckboxModule } from 'primeng/checkbox';
 import { DataViewModule } from 'primeng/dataview';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -29,6 +30,7 @@ const imports = [
   ProgressSpinnerModule,
   FormsModule,
   SelectButtonModule,
+  CheckboxModule,
 ];
 const declarations = [PanelComponent, TaskComponent, NoteComponent, TaskFormComponent, TaskerComponent];
 const providers: Provider[] = [TaskerFacade];

@@ -21,20 +21,16 @@
     left: 0;
     width: 100%;
     transition: 150ms;
-    opacity: 0;
     cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-    }
   }
 
   &__step-list {
     max-height: 0;
     overflow-y: hidden;
     transition: 500ms;
-    padding-left: 1.5rem;
+    padding-left: 2.25rem;
     margin: 0;
+    list-style: circle;
 
     &--visible {
       max-height: 400px;

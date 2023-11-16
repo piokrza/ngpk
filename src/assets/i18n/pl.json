@@ -128,7 +128,8 @@
   },
 
   "common": {
-    "enterName": "Wprowadź nazwę"
+    "enterName": "Wprowadź nazwę",
+    "of": "z"
   },
 
   "primeng": {
@@ -136,6 +137,8 @@
     "reject": "Nie",
     "pl": "Polski",
     "en": "Angielski",
+    "emptyMessage": "Lista jest pusta",
+    "emptyFilterMessage": "Brak wyników",
     "dayNames": ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"],
     "dayNamesShort": ["Niedz", "Pn", "Wt", "Śr", "Czw", "Pt", "Sob"],
     "dayNamesMin": ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"],
