@@ -1,4 +1,6 @@
 import { Injectable, NgZone, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import firebase from 'firebase/compat';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, forkJoin, tap, debounceTime, combineLatest, filter } from 'rxjs';
 
@@ -7,15 +9,35 @@ import { TargetNetworkDialogComponent } from '#features/web3/components';
 import { WEB3_CONFIG } from '#features/web3/config';
 import { Web3State, EthereumService } from '#features/web3/data-access';
 import { Web3Config } from '#features/web3/models';
+import { AuthService } from '#pages/auth/services';
+import { AuthActions } from '#store/auth';
+import { CashFlowActions } from '#store/cash-flow';
+import { CategoriesActions } from '#store/categories';
+import { TaskerActions } from '#store/tasker';
 
 @Injectable()
 export class DashboardFacade {
+  private readonly store: Store = inject(Store);
   private readonly ngZone: NgZone = inject(NgZone);
   private readonly web3State: Web3State = inject(Web3State);
   private readonly web3Config: Web3Config = inject(WEB3_CONFIG);
+  private readonly authService: AuthService = inject(AuthService);
   private readonly toastService: ToastService = inject(ToastService);
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly ethereumService: EthereumService = inject(EthereumService);
+
+  public initializeUserData$() {
+    return this.authService.authState$.pipe(
+      tap((user: firebase.User | null) => {
+        if (user) {
+          this.store.dispatch(CategoriesActions.getCategories());
+          this.store.dispatch(AuthActions.loadUserData());
+          this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid: user.uid }));
+          this.store.dispatch(TaskerActions.getTasksUserData({ uid: user.uid }));
+        }
+      })
+    );
+  }
 
   public requestChainIdAndAccounts$(): Observable<{ chainId: string; accounts: string[] }> {
     return forkJoin({

@@ -2,6 +2,7 @@
   "cashFlow": {
     "incomes": "Incomes",
     "expenses": "Expenses",
+    "addCashFlow": "Add cashflow",
     "headingIncomes": "Total incomes",
     "headingExpenses": "Total expenses",
     "totalIncome": "Total income",

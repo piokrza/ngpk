@@ -17,6 +17,10 @@ export class DashboardComponent implements OnInit {
   private readonly dashboardFacade = inject(DashboardFacade);
 
   public ngOnInit(): void {
+    // auth
+    this.dashboardFacade.initializeUserData$().pipe(untilDestroyed(this)).subscribe();
+
+    // wallet extention
     this.dashboardFacade.onChainChange$().pipe(untilDestroyed(this)).subscribe();
     this.dashboardFacade.onAccountChanged$().pipe(untilDestroyed(this)).subscribe();
     this.dashboardFacade.checkWalletExtention$().pipe(untilDestroyed(this)).subscribe();

@@ -1,11 +1,11 @@
 <ctrl-heading [amount]="totalCashFlowAmount" [isIncomeMode]="isIncomeMode" />
 
 <div class="mt-10">
-  <ctrl-add-form (cashFlowSubmitData)="cashFlowSubmitData.emit($event)" [isIncomeMode]="isIncomeMode" class="w-full mb-5 form" />
-
   <div class="divider">
     <p-divider />
   </div>
+
+  <p-button (onClick)="openCashFlowDialog()" [label]="addCashFlowBtnLabel | translate" styleClass="mb-4" />
 
   <ctrl-details-list
     (cashFlowToRemoveId)="cashFlowToRemoveId.emit($event)"

@@ -6,6 +6,7 @@ import { PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
 
+import { BaseDialogStyles } from '#common/constants';
 import { User } from '#pages/auth/models';
 import { AccountSettingsFormComponent } from '#pages/dashboard/features/settings/components';
 import { AuthActions, AuthSelectors } from '#store/auth';
@@ -43,7 +44,7 @@ export class AccountSettingsComponent implements OnInit {
   public openAccountSettingsDialog(): void {
     const dialogRef: DynamicDialogRef = this.dialogService.open(AccountSettingsFormComponent, {
       header: this.transalteService.instant('settings.accountForm.title'),
-      style: { width: '90%', maxWidth: '600px' },
+      style: { ...BaseDialogStyles },
       data: this.user,
     });
 

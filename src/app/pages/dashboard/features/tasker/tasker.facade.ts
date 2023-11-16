@@ -5,6 +5,7 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, map, tap } from 'rxjs';
 
+import { BaseDialogStyles } from '#common/constants';
 import { TaskFormComponent } from '#pages/dashboard/features/tasker/components';
 import { TaskService } from '#pages/dashboard/features/tasker/data-access';
 import { Task, TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
@@ -29,7 +30,7 @@ export class TaskerFacade {
   public addTask$(): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(TaskFormComponent, {
       header: this.translateService.instant('tasker.addTask'),
-      style: { width: '90%', maxWidth: '600px' },
+      style: { ...BaseDialogStyles },
     });
 
     return dialogRef.onClose.pipe(

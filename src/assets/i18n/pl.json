@@ -2,6 +2,7 @@
   "cashFlow": {
     "incomes": "Przychody",
     "expenses": "Wydatki",
+    "addCashFlow": "Dodaj transakcje",
     "headingIncomes": "Balans przychodów:",
     "headingExpenses": "Balans wydatków:",
     "totalIncome": "Przychód całkowity",

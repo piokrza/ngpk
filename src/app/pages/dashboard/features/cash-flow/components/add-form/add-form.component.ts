@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { filter, Observable, take, tap } from 'rxjs';
 import uniqid from 'uniqid';
 
 import { User } from '#pages/auth/models';
 import { AuthService } from '#pages/auth/services';
-import { CashFlowFormService } from '#pages/dashboard/features/cash-flow/data-access';
-import { CashFlow, CashFlowForm, Category } from '#pages/dashboard/features/cash-flow/models';
+import { CashFlowService } from '#pages/dashboard/features/cash-flow/data-access';
+import { CashFlowForm, Category } from '#pages/dashboard/features/cash-flow/models';
 
 @Component({
   selector: 'ctrl-add-form',
@@ -17,16 +18,14 @@ import { CashFlow, CashFlowForm, Category } from '#pages/dashboard/features/cash
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddFormComponent implements OnInit {
-  private readonly cashFlowFormService: CashFlowFormService = inject(CashFlowFormService);
-
-  @Input({ required: true }) public isIncomeMode!: boolean;
-
-  @Output() public cashFlowSubmitData: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
+  private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  private readonly cashFlowService: CashFlowService = inject(CashFlowService);
 
   public categories$!: Observable<Category[]>;
 
   public readonly trPath: string = 'cashFlow.form.';
-  public form: FormGroup<CashFlowForm> = this.cashFlowFormService.form;
+  private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
+  public form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   private userId!: string;
 
   public constructor() {
@@ -40,7 +39,7 @@ export class AddFormComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.categories$ = this.cashFlowFormService.getCategories$(this.isIncomeMode);
+    this.categories$ = this.cashFlowService.getCategories$(this.isIncomeMode);
   }
 
   public onSubmit(): void {
@@ -49,7 +48,7 @@ export class AddFormComponent implements OnInit {
       return;
     }
 
-    this.cashFlowSubmitData.emit(<CashFlow>{
+    this.dialogRef.close({
       ...this.form.getRawValue(),
       date: Timestamp.fromDate(this.form.getRawValue().date!),
       uid: this.userId,

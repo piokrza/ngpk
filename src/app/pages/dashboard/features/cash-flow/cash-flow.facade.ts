@@ -5,6 +5,7 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, tap } from 'rxjs';
 
+import { BaseDialogStyles } from '#common/constants';
 import { UpdateFormComponent } from '#pages/dashboard/features/cash-flow/components';
 import { CashFlow, CashFlowData } from '#pages/dashboard/features/cash-flow/models';
 import { CashFlowSelectors, CashFlowActions } from '#store/cash-flow';
@@ -50,7 +51,7 @@ export class CashFlowFacade {
   public updateIncome$(updatedIncome: CashFlow): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
       header: this.translateService.instant('incomes.updateIncome'),
-      style: { width: '90%', maxWidth: '600px' },
+      style: { ...BaseDialogStyles },
       data: { updatedCashFlow: updatedIncome, isIncomeMode: true },
     });
 
@@ -77,7 +78,7 @@ export class CashFlowFacade {
   public updateExpense$(updatedExpense: CashFlow): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
       header: this.translateService.instant('expenses.updateMessage'),
-      style: { width: '90%', maxWidth: '600px' },
+      style: { ...BaseDialogStyles },
       data: { updatedCashFlow: updatedExpense, isIncomeMode: false },
     });
 

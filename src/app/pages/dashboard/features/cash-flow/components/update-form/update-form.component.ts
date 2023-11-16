@@ -5,7 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 
-import { CashFlowFormService } from '#pages/dashboard/features/cash-flow/data-access';
+import { CashFlowService } from '#pages/dashboard/features/cash-flow/data-access';
 import { CashFlowForm, CashFlowUpdateFormData, Category } from '#pages/dashboard/features/cash-flow/models';
 
 @Component({
@@ -15,13 +15,13 @@ import { CashFlowForm, CashFlowUpdateFormData, Category } from '#pages/dashboard
 })
 export class UpdateFormComponent implements OnInit {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-  private readonly cashFlowFormService: CashFlowFormService = inject(CashFlowFormService);
+  private readonly cashFlowService: CashFlowService = inject(CashFlowService);
 
   public readonly trPath: string = 'cashFlow.form.';
-  public readonly form: FormGroup<CashFlowForm> = this.cashFlowFormService.form;
+  public readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   public readonly cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;
 
-  public readonly categories$: Observable<Category[]> = this.cashFlowFormService.getCategories$(this.cashFlowUpdateFormData.isIncomeMode);
+  public readonly categories$: Observable<Category[]> = this.cashFlowService.getCategories$(this.cashFlowUpdateFormData.isIncomeMode);
 
   public ngOnInit(): void {
     this.form.patchValue({
