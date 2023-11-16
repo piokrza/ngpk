@@ -7,23 +7,23 @@
     } @else {
       <div class="container">
         <div class="flex justify-content-between align-items-center flex-wrap">
-          <p-button (click)="addTask.emit()" [label]="'tasker.addTask' | translate" styleClass="my-3" />
+          <p-button [label]="'tasker.addTask' | translate" (click)="addTask.emit()" styleClass="my-3" />
           <p-selectButton
-            [(ngModel)]="filter"
-            (onChange)="onFilterChange($event)"
             [options]="filters"
             [allowEmpty]="false"
+            [(ngModel)]="filter"
+            (onChange)="onFilterChange($event)"
             optionLabel="label"
             optionValue="data" />
         </div>
 
-        <p-dataView [value]="tasks" class="w-full">
+        <p-dataView [value]="tasks ?? []" class="w-full">
           <ng-template let-task pTemplate="listItem">
             <ctrl-task
+              [task]="task"
               (toggleIsTaskComplete)="toggleIsTaskComplete.emit($event)"
               (toggleIsStepComplete)="toggleIsStepComplete.emit($event)"
-              (removeTask)="removeTask.emit($event)"
-              [task]="task" />
+              (removeTask)="removeTask.emit($event)" />
           </ng-template>
         </p-dataView>
       </div>
@@ -31,10 +31,17 @@
   </p-tabPanel>
 
   <p-tabPanel [header]="'tasker.notes' | translate">
-    <p-dataView>
-      <ng-template>
-        <ctrl-note />
-      </ng-template>
-    </p-dataView>
+    @defer {
+      @if (isLoading) {
+        <div class="flex justify-content-center">
+          <p-progressSpinner />
+        </div>
+      } @else {
+        <div class="container">
+          <p-button (onClick)="addNote.emit()" [label]="'Add note' | translate" styleClass="my-3" />
+          <ctrl-notes [notes]="notes ?? []" (removeNote)="removeNote.emit($event)" />
+        </div>
+      }
+    }
   </p-tabPanel>
 </p-tabView>

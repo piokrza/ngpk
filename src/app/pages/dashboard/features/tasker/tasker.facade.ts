@@ -6,9 +6,9 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { BaseDialogStyles } from '#common/constants';
-import { TaskFormComponent } from '#pages/dashboard/features/tasker/components';
+import { NoteFormComponent, TaskFormComponent } from '#pages/dashboard/features/tasker/components';
 import { TaskService } from '#pages/dashboard/features/tasker/data-access';
-import { Task, TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
+import { Note, Task, TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 
 @Injectable()
@@ -22,6 +22,7 @@ export class TaskerFacade {
   public get taskerDataset$(): Observable<TaskerDataset> {
     return combineLatest({
       tasks: this.tasks$,
+      notes: this.store.select(TaskerSelectors.notes),
       isLoading: this.store.select(TaskerSelectors.isLoading),
       filter: this.store.select(TaskerSelectors.filter),
     });
@@ -65,14 +66,36 @@ export class TaskerFacade {
     this.store.dispatch(TaskerActions.setFilter({ filter }));
   }
 
-  private get tasks$(): Observable<Task[]> {
+  public addNote$(): Observable<Note | undefined> {
+    const dialogRef = this.dialogService.open(NoteFormComponent, {
+      header: this.translateService.instant('tasker.addNote'),
+      style: { ...BaseDialogStyles },
+    });
+
+    return dialogRef.onClose.pipe(
+      tap((note?: Note) => {
+        note && this.store.dispatch(TaskerActions.addNote({ note }));
+      })
+    );
+  }
+
+  public removeNote(noteId: string): void {
+    this.confirmationService.confirm({
+      message: this.translateService.instant('tasker.removeNoteMessage'),
+      header: this.translateService.instant('tasker.removeNoteHeader'),
+      icon: PrimeIcons.TRASH,
+      accept: (): void => this.store.dispatch(TaskerActions.removeNote({ noteId })),
+    });
+  }
+
+  private get tasks$(): Observable<Task[] | null> {
     return combineLatest({
       tasks: this.store.select(TaskerSelectors.tasks),
       filter: this.store.select(TaskerSelectors.filter),
     }).pipe(
       map(({ tasks, filter }) => {
-        if (filter === 'completed') return tasks.filter(({ isComplete }) => isComplete);
-        if (filter === 'notCompleted') return tasks.filter(({ isComplete }) => !isComplete);
+        if (filter === 'completed') return (tasks ?? []).filter(({ isComplete }) => isComplete);
+        if (filter === 'notCompleted') return (tasks ?? []).filter(({ isComplete }) => !isComplete);
         return tasks;
       })
     );

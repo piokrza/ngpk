@@ -3,17 +3,25 @@ import { NgModule, Provider } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DataViewModule } from 'primeng/dataview';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
 
 import { TaskerComponent, TaskerFacade } from '#pages/dashboard/features/tasker';
-import { TaskFormComponent, NoteComponent, PanelComponent, TaskComponent } from '#pages/dashboard/features/tasker/components';
+import {
+  TaskFormComponent,
+  PanelComponent,
+  TaskComponent,
+  NoteFormComponent,
+  NotesComponent,
+} from '#pages/dashboard/features/tasker/components';
 
 const routes: Routes = [{ path: '', component: TaskerComponent }];
 
@@ -31,8 +39,10 @@ const imports = [
   FormsModule,
   SelectButtonModule,
   CheckboxModule,
+  InputTextareaModule,
+  AccordionModule,
 ];
-const declarations = [PanelComponent, TaskComponent, NoteComponent, TaskFormComponent, TaskerComponent];
+const declarations = [PanelComponent, TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NotesComponent];
 const providers: Provider[] = [TaskerFacade];
 
 @NgModule({ declarations, imports, providers })

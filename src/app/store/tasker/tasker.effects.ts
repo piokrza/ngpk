@@ -6,7 +6,6 @@ import { catchError, exhaustMap, map, of } from 'rxjs';
 import { ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
 import { TaskerApi } from '#pages/dashboard/features/tasker/data-access';
-import { Task } from '#pages/dashboard/features/tasker/models';
 import { TaskerActions } from '#store/tasker';
 
 @Injectable()
@@ -18,13 +17,13 @@ export class TaskerEffects {
 
   public getTasksUserData$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(TaskerActions.getTasksUserData),
+      ofType(TaskerActions.getTaskerUserData),
       exhaustMap(({ uid }) => {
         return this.taskerApi.loadTaskerUserData$(uid).pipe(
-          map((tasks: Task[]) => TaskerActions.getTasksUserDataSuccess({ tasks })),
+          map((data) => TaskerActions.getTaskerUserDataSuccess(data)),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchTasks'));
-            return of(TaskerActions.getTasksUserDataError());
+            return of(TaskerActions.getTaskerUserDataError());
           })
         );
       })
@@ -83,6 +82,36 @@ export class TaskerEffects {
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('removeTaskError'));
             return of(TaskerActions.removeTaskFailure());
+          })
+        );
+      })
+    );
+  });
+
+  public addNote$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.addNote),
+      exhaustMap(({ note }) => {
+        return of(this.taskerApi.addNote(note)).pipe(
+          map(() => TaskerActions.addNoteSuccess()),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addNoteError'));
+            return of(TaskerActions.addNoteFailure());
+          })
+        );
+      })
+    );
+  });
+
+  public removeNote$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.removeNote),
+      exhaustMap(({ noteId }) => {
+        return of(this.taskerApi.removeNote(noteId)).pipe(
+          map(() => TaskerActions.removeNoteSuccess()),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('removeNoteError'));
+            return of(TaskerActions.removeNoteFailure());
           })
         );
       })

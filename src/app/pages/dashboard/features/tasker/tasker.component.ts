@@ -11,14 +11,17 @@ import { TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/d
   template: `
     @if (dataset$ | async; as dataset) {
       <ctrl-tasker-panel
+        [tasks]="dataset.tasks"
+        [notes]="dataset.notes"
+        [filter]="dataset.filter"
+        [isLoading]="dataset.isLoading"
         (addTask)="onAddTask()"
         (removeTask)="onRemoveTask($event)"
-        (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
-        (toggleIsStepComplete)="onToggleIsStepComplete($event)"
+        (addNote)="onAddNote()"
+        (removeNote)="onRemoveNote($event)"
         (filterChange)="onFilterChange($event)"
-        [isLoading]="dataset.isLoading"
-        [tasks]="dataset.tasks"
-        [filter]="dataset.filter" />
+        (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
+        (toggleIsStepComplete)="onToggleIsStepComplete($event)" />
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,5 +53,13 @@ export class TaskerComponent implements OnDestroy {
 
   public onFilterChange(filter: TaskFilter) {
     this.taskerFacade.onFilterChange(filter);
+  }
+
+  public onAddNote(): void {
+    this.taskerFacade.addNote$().pipe(untilDestroyed(this)).subscribe();
+  }
+
+  public onRemoveNote(noteId: string): void {
+    this.taskerFacade.removeNote(noteId);
   }
 }

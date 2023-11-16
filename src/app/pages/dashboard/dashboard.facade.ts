@@ -33,7 +33,7 @@ export class DashboardFacade {
           this.store.dispatch(CategoriesActions.getCategories());
           this.store.dispatch(AuthActions.loadUserData());
           this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid: user.uid }));
-          this.store.dispatch(TaskerActions.getTasksUserData({ uid: user.uid }));
+          this.store.dispatch(TaskerActions.getTaskerUserData({ uid: user.uid }));
         }
       })
     );

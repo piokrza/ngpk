@@ -9,7 +9,7 @@
       }
     </p>
 
-    <p-button (onClick)="removeTask.emit(task.id)" [icon]="PrimeIcons.TIMES" severity="danger" />
+    <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TIMES" (onClick)="removeTask.emit(task.id)" severity="danger" />
   </div>
 
   @if (task.steps.length) {

@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 
 import { LabelWithData } from '#common/models';
-import { Task, TaskFilter, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
+import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 
 @Component({
   selector: 'ctrl-tasker-panel',
@@ -14,7 +14,8 @@ import { Task, TaskFilter, ToggleIsStepCompletePayload } from '#pages/dashboard/
 export class PanelComponent {
   private readonly translate: TranslateService = inject(TranslateService);
 
-  @Input({ required: true }) tasks!: Task[];
+  @Input({ required: true }) tasks!: Task[] | null;
+  @Input({ required: true }) notes!: Note[] | null;
   @Input({ required: true }) isLoading!: boolean;
   @Input({ required: true }) filter!: TaskFilter;
 
@@ -23,6 +24,9 @@ export class PanelComponent {
   @Output() filterChange = new EventEmitter<TaskFilter>();
   @Output() toggleIsTaskComplete = new EventEmitter<string>();
   @Output() toggleIsStepComplete = new EventEmitter<ToggleIsStepCompletePayload>();
+
+  @Output() addNote = new EventEmitter<void>();
+  @Output() removeNote = new EventEmitter<string>();
 
   public readonly filters: LabelWithData<TaskFilter>[] = [
     { label: this.translate.instant('tasker.filter.all'), data: 'all' },

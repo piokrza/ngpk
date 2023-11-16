@@ -1,7 +1,7 @@
 export enum ActionTypes {
-  GET_TASKS_USER_DATA = '[Tasks] Get tasks user data',
-  GET_TASKS_USER_DATA_SUCCESS = '[Tasks] Get tasks user data success',
-  GET_TASKS_USER_DATA_ERROR = '[Tasks] Get tasks user data error',
+  GET_TASKER_USER_DATA = '[Tasks] Get tasker user data',
+  GET_TASKER_USER_DATA_SUCCESS = '[Tasks] Get tasker user data success',
+  GET_TASKER_USER_DATA_ERROR = '[Tasks] Get tasker user data error',
 
   ADD_TASK = '[Tasks] Add task',
   ADD_TASK_SUCCESS = '[Tasks] Add task success',
@@ -20,4 +20,12 @@ export enum ActionTypes {
   REMOVE_TASK_FAILURE = '[Tasks] Remove task failure',
 
   SET_FILTER = '[Tasks] Set filter',
+
+  ADD_NOTE = '[Notes] Add note',
+  ADD_NOTE_SUCCESS = '[Notes] Add note success',
+  ADD_NOTE_FAILURE = '[Notes] Add note failure',
+
+  REMOVE_NOTE = '[Notes] Remove note',
+  REMOVE_NOTE_SUCCESS = '[Notes] Remove note success',
+  REMOVE_NOTE_FAILURE = '[Notes] Remove note failure',
 }

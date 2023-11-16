@@ -45,7 +45,9 @@
     "or": " lub",
     "noProvidedData2": " by przeliczyć Twoj balans.",
     "expenses": "Wydatki",
-    "incomes": "Przychody"
+    "incomes": "Przychody",
+    "todos": "Zadania",
+    "completed": "Ukończone"
   },
 
   "incomes": {
@@ -129,7 +131,8 @@
 
   "common": {
     "enterName": "Wprowadź nazwę",
-    "of": "z"
+    "of": "z",
+    "enterText": "Wprowadź tekst"
   },
 
   "primeng": {

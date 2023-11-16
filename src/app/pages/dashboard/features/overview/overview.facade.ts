@@ -62,9 +62,9 @@ export class OverviewFacade {
 
   public get taskerData$() {
     return this.store.select(TaskerSelectors.tasks).pipe(
-      map((tasks: Task[]) => ({
-        totalLength: tasks.length,
-        completedLength: tasks.filter(({ isComplete }) => isComplete).length,
+      map((tasks: Task[] | null) => ({
+        totalLength: tasks?.length,
+        completedLength: tasks?.filter(({ isComplete }) => isComplete).length,
       }))
     );
   }

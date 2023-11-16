@@ -45,7 +45,9 @@
     "or": " or",
     "noProvidedData2": " to calculate your balance.",
     "expenses": "Expenses",
-    "incomes": "Incomes"
+    "incomes": "Incomes",
+    "todos": "Todos",
+    "completed": "Completed"
   },
 
   "incomes": {
@@ -124,7 +126,8 @@
 
   "common": {
     "enterName": "Enter name",
-    "of": "of"
+    "of": "of",
+    "enterText": "Enter text"
   },
 
   "wallet": {
