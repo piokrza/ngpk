@@ -44,5 +44,7 @@ export class LanguageTogglerComponent {
       .get('primeng')
       .pipe(take(1))
       .subscribe((res) => this.config.setTranslation(res));
+
+    window.location.reload();
   }
 }

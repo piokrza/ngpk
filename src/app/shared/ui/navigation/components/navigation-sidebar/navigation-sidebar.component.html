@@ -7,16 +7,14 @@
         <ctrl-wallet />
 
         <ul class="gap-3 mt-6">
-          <li
-            *ngFor="let link of menuLinks; trackBy: trackByLabel"
-            [routerLinkActiveOptions]="{ exact: true }"
-            routerLinkActive="active"
-            class="rounded sidebar__link">
-            <a [routerLink]="link.routerLink" class="block p-4">
-              <i [class]="link.icon + ' mr-2'"></i>
-              {{ link.label ?? '' | translate }}
-            </a>
-          </li>
+          @for (link of menuLinks; track link.label) {
+            <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="rounded sidebar__link">
+              <a [routerLink]="link.routerLink" class="block p-4">
+                <i [class]="link.icon + ' mr-2'"></i>
+                {{ link.label ?? '' | translate }}
+              </a>
+            </li>
+          }
         </ul>
       </div>
 

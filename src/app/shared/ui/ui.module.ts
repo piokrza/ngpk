@@ -1,10 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SkeletonModule } from 'primeng/skeleton';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
@@ -18,7 +19,6 @@ import { NavigationComponent, NavigationSidebarComponent, UserInfoComponent } fr
 
 const declarations = [NavigationComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent];
 const imports = [
-  CommonModule,
   ButtonModule,
   TieredMenuModule,
   ContainerComponent,
@@ -31,6 +31,8 @@ const imports = [
   WeatherWidgetComponent,
   WalletComponent,
   LazyImgDirective,
+  SkeletonModule,
+  AsyncPipe,
 ];
 const exports = [LayoutComponent];
 

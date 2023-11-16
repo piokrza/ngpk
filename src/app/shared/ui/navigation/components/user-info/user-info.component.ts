@@ -17,6 +17,14 @@ import { AuthSelectors } from '#store/auth';
           <small>{{ user.email }}</small>
         </div>
       </div>
+    } @else {
+      <div class="user-info gap-4">
+        <p-skeleton shape="circle" size="2rem" size="4rem" />
+        <div>
+          <p-skeleton width="13rem" height="1.5rem" styleClass="mb-2" />
+          <p-skeleton width="5rem" styleClass="mb-2" />
+        </div>
+      </div>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
