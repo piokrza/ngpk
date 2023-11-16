@@ -6,7 +6,6 @@ import { CashFlow } from '#pages/dashboard/features/cash-flow/models';
 @Component({
   selector: 'ctrl-details-list',
   templateUrl: './details-list.component.html',
-  styleUrl: './details-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailsListComponent {

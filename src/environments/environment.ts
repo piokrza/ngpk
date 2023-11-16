@@ -10,7 +10,7 @@ export const environment: Environment = {
     messagingSenderId: '811307138027',
     measurementId: 'G-0TLBMDV7W7',
   },
-  maxItemPerPage: 4,
+  maxItemPerPage: 6,
   weatherBaseUrl: 'https://api.openweathermap.org/data/2.5/weather',
   weatherApiKey: '253353dc15d16c96be28e7780f4d500f',
   production: true,

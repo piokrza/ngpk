@@ -1,8 +1,7 @@
-@if(isLoading) {
-<p-progressSpinner class="spinner" />
+@if (isLoading) {
+  <p-progressSpinner class="spinner" />
 } @else {
-<div class="wrapper">
-  <ng-container *ngIf="cashFlowList.length; else noCashFlowToDisplay">
+  @if (cashFlowList.length) {
     <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > maxItemsPerPage" [rows]="maxItemsPerPage">
       <ng-template let-detailsItem pTemplate="listItem">
         <ctrl-details
@@ -12,10 +11,7 @@
           [details]="detailsItem" />
       </ng-template>
     </p-dataView>
-  </ng-container>
-
-  <ng-template #noCashFlowToDisplay>
+  } @else {
     {{ 'cashFlow.emptyList' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
-  </ng-template>
-</div>
+  }
 }

@@ -1,9 +1,9 @@
 @use 'src/assets/styles/variables/breakpoints' as b;
 @use 'src/assets/styles/variables/sizes' as s;
 
-.divider {
+.wrapper {
   max-width: s.$containerMaxWidth;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 
 @media only screen and (min-width: b.$xl) {
