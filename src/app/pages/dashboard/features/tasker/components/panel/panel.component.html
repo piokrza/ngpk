@@ -1,7 +1,18 @@
 <p-tabView>
   <p-tabPanel [header]="'tasker.title' | translate">
     <div class="container">
-      <p-button (click)="addTask.emit()" [label]="'tasker.addTask' | translate" styleClass="my-3" />
+      <div class="flex justify-content-between align-items-center flex-wrap">
+        <p-button (click)="addTask.emit()" [label]="'tasker.addTask' | translate" styleClass="my-3" />
+        @if (tasks.length) {
+          <p-selectButton
+            [(ngModel)]="filter"
+            (onChange)="onFilterChange($event)"
+            [options]="filters"
+            [allowEmpty]="false"
+            optionLabel="label"
+            optionValue="data" />
+        }
+      </div>
 
       <div class="flex justify-content-center">
         <p-progressSpinner *ngIf="isLoading" />

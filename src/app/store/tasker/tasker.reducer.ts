@@ -1,6 +1,6 @@
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
 
-import { Task } from '#pages/dashboard/features/tasker/models';
+import { Task, TaskFilter } from '#pages/dashboard/features/tasker/models';
 import { AuthActions } from '#store/auth';
 import { TaskerActions } from '#store/tasker';
 
@@ -9,7 +9,7 @@ export const FeatureKey = 'tasker';
 export interface State {
   tasks: Task[];
   isLoading: boolean;
-  filter: 'all' | 'completed' | 'notCompleted';
+  filter: TaskFilter;
 }
 
 const initialState: State = {
@@ -41,6 +41,11 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
   }),
   on(TaskerActions.addTaskFailure, (state): State => {
     return { ...state };
+  }),
+
+  // set filter
+  on(TaskerActions.setFilter, (state, { filter }) => {
+    return { ...state, filter };
   }),
 
   // on signout

@@ -3,27 +3,27 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 
 import { TaskerFacade } from '#pages/dashboard/features/tasker';
-import { TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
+import { TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 
 @UntilDestroy()
 @Component({
   selector: 'ctrl-tasker',
   template: `
-    @if(dataset$ | async; as dataset){
-    <ctrl-tasker-panel
-      (addTask)="onAddTask()"
-      (removeTask)="onRemoveTask($event)"
-      (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
-      (toggleIsStepComplete)="onToggleIsStepComplete($event)"
-      [isLoading]="dataset.isLoading"
-      [tasks]="dataset.tasks" />
+    @if (dataset$ | async; as dataset) {
+      <ctrl-tasker-panel
+        (addTask)="onAddTask()"
+        (removeTask)="onRemoveTask($event)"
+        (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
+        (toggleIsStepComplete)="onToggleIsStepComplete($event)"
+        (filterChange)="onFilterChange($event)"
+        [isLoading]="dataset.isLoading"
+        [tasks]="dataset.tasks"
+        [filter]="dataset.filter" />
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskerComponent implements OnDestroy {
-  // TODO: add tasks filter
-
   private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
 
   public readonly dataset$: Observable<TaskerDataset> = this.taskerFacade.taskerDataset$;
@@ -46,5 +46,9 @@ export class TaskerComponent implements OnDestroy {
 
   public onToggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
     this.taskerFacade.toggleIsStepComplete(payload);
+  }
+
+  public onFilterChange(filter: TaskFilter) {
+    this.taskerFacade.onFilterChange(filter);
   }
 }

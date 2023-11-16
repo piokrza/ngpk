@@ -3,11 +3,11 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, combineLatest, tap } from 'rxjs';
+import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { TaskFormComponent } from '#pages/dashboard/features/tasker/components';
 import { TaskService } from '#pages/dashboard/features/tasker/data-access';
-import { Task, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
+import { Task, TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 
 @Injectable()
@@ -20,8 +20,9 @@ export class TaskerFacade {
 
   public get taskerDataset$(): Observable<TaskerDataset> {
     return combineLatest({
-      tasks: this.store.select(TaskerSelectors.tasks),
+      tasks: this.tasks$,
       isLoading: this.store.select(TaskerSelectors.isLoading),
+      filter: this.store.select(TaskerSelectors.filter),
     });
   }
 
@@ -57,5 +58,22 @@ export class TaskerFacade {
 
   public removeStepsVisibilityData(): void {
     this.taskService.removeVisibilityData();
+  }
+
+  public onFilterChange(filter: TaskFilter): void {
+    this.store.dispatch(TaskerActions.setFilter({ filter }));
+  }
+
+  private get tasks$(): Observable<Task[]> {
+    return combineLatest({
+      tasks: this.store.select(TaskerSelectors.tasks),
+      filter: this.store.select(TaskerSelectors.filter),
+    }).pipe(
+      map(({ tasks, filter }) => {
+        if (filter === 'completed') return tasks.filter(({ isComplete }) => isComplete);
+        if (filter === 'notCompleted') return tasks.filter(({ isComplete }) => !isComplete);
+        return tasks;
+      })
+    );
   }
 }

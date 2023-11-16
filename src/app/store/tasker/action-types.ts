@@ -18,4 +18,6 @@ export enum ActionTypes {
   REMOVE_TASK = '[Tasks] Remove task',
   REMOVE_TASK_SUCCESS = '[Tasks] Remove task success',
   REMOVE_TASK_FAILURE = '[Tasks] Remove task failure',
+
+  SET_FILTER = '[Tasks] Set filter',
 }

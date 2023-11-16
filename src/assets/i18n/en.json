@@ -87,7 +87,12 @@
     "removeMessage": "Are you sure that you want to remove this task?",
     "removeHeader": "Remove task",
     "addSteps": "Add step",
-    "step": "Step"
+    "step": "Step",
+    "filter": {
+      "all": "All",
+      "completed": "Completed",
+      "notCompleted": "Not completed"
+    }
   },
 
   "menu": {

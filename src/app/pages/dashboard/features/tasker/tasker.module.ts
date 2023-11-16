@@ -8,6 +8,7 @@ import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
 
 import { TaskerComponent, TaskerFacade } from '#pages/dashboard/features/tasker';
@@ -27,6 +28,7 @@ const imports = [
   InputTextModule,
   ProgressSpinnerModule,
   FormsModule,
+  SelectButtonModule,
 ];
 const declarations = [PanelComponent, TaskComponent, NoteComponent, TaskFormComponent, TaskerComponent];
 const providers: Provider[] = [TaskerFacade];

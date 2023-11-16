@@ -87,7 +87,12 @@
     "removeMessage": "Na pewno chcesz usunąć zadanie?",
     "removeHeader": "Usuń zadanie",
     "addSteps": "Dodaj krok",
-    "step": "Krok"
+    "step": "Krok",
+    "filter": {
+      "all": "Wszystkie",
+      "completed": "Ukończone",
+      "notCompleted": "Nieukończone"
+    }
   },
 
   "menu": {
