@@ -9,13 +9,15 @@ import { AuthSelectors } from '#store/auth';
   selector: 'ctrl-user-info',
   styleUrl: './user-info.component.scss',
   template: `
-    <div *ngIf="user$ | async as user" class="user-info gap-4">
-      <img *ngIf="user.photoURL" [src]="user.photoURL" alt="profile" class="user-info__img" />
-      <div>
-        <p class="user-info__name">{{ user.displayName }}</p>
-        <small>{{ user.email }}</small>
+    @if (user$ | async; as user) {
+      <div class="user-info gap-4">
+        <img [src]="user.photoURL" alt="profile" class="user-info__img" lazyImg />
+        <div>
+          <p class="user-info__name">{{ user.displayName }}</p>
+          <small>{{ user.email }}</small>
+        </div>
       </div>
-    </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
