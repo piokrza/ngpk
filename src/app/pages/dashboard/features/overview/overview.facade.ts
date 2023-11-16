@@ -4,7 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, combineLatest, map } from 'rxjs';
 
 import { LabelWithData } from '#common/models';
+import { Task } from '#pages/dashboard/features/tasker/models';
 import { CashFlowSelectors } from '#store/cash-flow';
+import { TaskerSelectors } from '#store/tasker';
 
 @Injectable()
 export class OverviewFacade {
@@ -55,6 +57,15 @@ export class OverviewFacade {
           },
         };
       })
+    );
+  }
+
+  public get taskerData$() {
+    return this.store.select(TaskerSelectors.tasks).pipe(
+      map((tasks: Task[]) => ({
+        totalLength: tasks.length,
+        completedLength: tasks.filter(({ isComplete }) => isComplete).length,
+      }))
     );
   }
 

@@ -41,4 +41,6 @@ export default class OverviewComponent {
   public readonly cashFlowChartData$ = this.overviewFacade.cashFlowChartData$;
   public readonly isLoading$: Observable<boolean> = this.overviewFacade.isLoading$;
   public readonly cashFlowDataset$: Observable<LabelWithData<number>[]> = this.overviewFacade.cashFlowData$;
+
+  public readonly taskerData$ = this.overviewFacade.taskerData$;
 }

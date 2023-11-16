@@ -24,7 +24,10 @@
     </ctrl-container>
 
     <ctrl-container styleClass="px-0">
-      <p>Todos: 9</p>
+      @if (taskerData$ | async; as taskerData) {
+        <p>Todos: {{ taskerData.totalLength }}</p>
+        <p>Completed: {{ taskerData.completedLength }}</p>
+      }
     </ctrl-container>
   </div>
 }
