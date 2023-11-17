@@ -7,7 +7,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import uniqid from 'uniqid';
 
 import { User } from '#pages/auth/models';
-import { TaskFormService } from '#pages/dashboard/features/tasker/data-access';
+import { TaskService } from '#pages/dashboard/features/tasker/data-access';
 import { Task, TaskForm, TaskStepForm } from '#pages/dashboard/features/tasker/models';
 import { AuthSelectors } from '#store/auth';
 
@@ -17,11 +17,11 @@ import { AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormComponent {
-  private readonly taskFormService: TaskFormService = inject(TaskFormService);
+  private readonly taskService: TaskService = inject(TaskService);
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly form: FormGroup<TaskForm> = this.taskFormService.form;
+  public readonly form: FormGroup<TaskForm> = this.taskService.form;
   public readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
   private readonly user: Signal<User | null | undefined> = toSignal(inject(Store).select(AuthSelectors.user));
@@ -43,7 +43,7 @@ export class TaskFormComponent {
   }
 
   public addStep(): void {
-    this.taskFormService.addStep(this.form);
+    this.taskService.addStep(this.form);
   }
 
   public removeStep(stepIdx: number): void {
