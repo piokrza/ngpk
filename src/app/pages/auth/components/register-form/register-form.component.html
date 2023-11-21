@@ -1,6 +1,9 @@
 <h1 class="heading text-center">Register</h1>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  @if (errorMessage$ | async; as errorMessage) {
+    <small class="error block my-3">{{ errorMessage }}</small>
+  }
   <span class="p-float-label my-4">
     <input [formControl]="form.controls.email" pInputText id="email" class="w-full" />
     <label htmlFor="email">Email</label>
@@ -17,7 +20,7 @@
   </span>
 
   @if (form.errors?.['passwordMismatch'] && form.get('passwordConfirmation')?.touched) {
-    <small class="text-red-400 block my-6">Password and password confirmation does not match</small>
+    <small class="text-red-400 block mb-3">{{ 'auth.passwordMissmatch' | translate }}</small>
   }
 
   <button [disabled]="form.invalid" class="w-full" type="submit" pButton label="Register"></button>

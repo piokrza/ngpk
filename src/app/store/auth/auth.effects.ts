@@ -1,13 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import firebase from 'firebase/compat';
-import { catchError, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
+import { catchError, exhaustMap, from, iif, map, of, switchMap, take, tap } from 'rxjs';
 
-import { ToastStatus } from '#common/enums';
+import { AppPaths, ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
-import { AuthFormPayload, User } from '#pages/auth/models';
+import { User } from '#pages/auth/models';
 import { AuthService } from '#pages/auth/services';
 import { CashFlowApi } from '#pages/dashboard/features/cash-flow/data-access';
 import { AuthActions } from '#store/auth';
@@ -27,22 +28,18 @@ export class AuthEffects {
       ofType(AuthActions.signInWithGoogle),
       exhaustMap(() => {
         return from(this.authService.signinWithGoogle()).pipe(
-          map(({ user }: firebase.auth.UserCredential) => {
-            if (user !== null) {
-              this.cashFlowApi.addUserToDatabase$(setUser(user)).subscribe();
-              return AuthActions.userAuthenticated({ user: setUser(user) });
-            }
-
-            return AuthActions.userNotAuthenticated();
+          switchMap(({ user }: firebase.auth.UserCredential) => {
+            return iif(
+              () => user !== null,
+              this.cashFlowApi.addUserToDatabase$(setUser(user!)).pipe(
+                map(() => AuthActions.userAuthenticated({ user: setUser(user!) })),
+                catchError(() => of(AuthActions.userNotAuthenticated()))
+              ),
+              of(AuthActions.userNotAuthenticated())
+            );
           }),
           tap((): void => {
             this.router.navigateByUrl('/dashboard');
-          }),
-
-          catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during google authorisation');
-
-            return of(AuthActions.userNotAuthenticated());
           })
         );
       })
@@ -65,18 +62,16 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.signInWithEmailAndPassword),
       exhaustMap(({ payload }) => {
-        return from(this.authService.signInWithEmailAndPassword(payload as AuthFormPayload)).pipe(
+        return from(this.authService.signInWithEmailAndPassword(payload)).pipe(
           map(() => {
             return AuthActions.signInWithEmailAndPasswordSuccess();
           }),
           tap((): void => {
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`);
           }),
 
-          catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during google authorization');
-
-            return of(AuthActions.signInWithEmailAndPasswordFailure());
+          catchError(({ message }: HttpErrorResponse) => {
+            return of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message }));
           })
         );
       })
@@ -89,14 +84,21 @@ export class AuthEffects {
         ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
         exhaustMap(({ payload }) => {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
-            map(({ user }) => {
-              user && this.cashFlowApi.addUserToDatabase$(setUser(user)).pipe(take(1)).subscribe();
-              return AuthActions.signUpWithEmailAndPasswordSuccess();
+            switchMap(({ user }) => {
+              if (user) {
+                return this.cashFlowApi.addUserToDatabase$(setUser(user)).pipe(
+                  take(1),
+                  map(() => AuthActions.signUpWithEmailAndPasswordSuccess())
+                );
+              } else {
+                return of(AuthActions.signUpWithEmailAndPasswordSuccess());
+              }
             }),
-            tap(() => this.router.navigateByUrl('/dashboard')),
-            catchError(() => {
-              this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during authorization');
-              return of(AuthActions.signUpWithEmailAndPasswordFailure());
+            tap(() => {
+              this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`);
+            }),
+            catchError(({ message }: HttpErrorResponse) => {
+              return of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message }));
             })
           );
         })

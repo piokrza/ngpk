@@ -80,7 +80,8 @@
 
   "auth": {
     "signoutMessage": "Na pewno chcesz się wylogować?",
-    "signout": "Wyloguj się"
+    "signout": "Wyloguj się",
+    "passwordMissmatch": "Hasła nie są takie same"
   },
 
   "tasker": {
@@ -97,7 +98,9 @@
       "completed": "Ukończone",
       "notCompleted": "Nieukończone"
     },
-    "addNote": "Dodaj notatkę"
+    "addNote": "Dodaj notatkę",
+    "removeNoteHeader": "Usuń notatkę",
+    "removeNoteMessage": "Na pewno chcesz usunąć notatkę?"
   },
 
   "menu": {

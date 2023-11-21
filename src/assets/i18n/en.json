@@ -80,7 +80,8 @@
 
   "auth": {
     "signoutMessage": "Are you sure that you want to signout?",
-    "signout": "Signout"
+    "signout": "Signout",
+    "passwordMissmatch": "Password and password confirmation does not match"
   },
 
   "tasker": {
@@ -97,7 +98,9 @@
       "completed": "Completed",
       "notCompleted": "Not completed"
     },
-    "addNote": "Add note"
+    "addNote": "Add note",
+    "removeNoteHeader": "Remove note",
+    "removeNoteMessage": "Are you sure that you want to remove this note?"
   },
 
   "menu": {

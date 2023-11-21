@@ -28,13 +28,9 @@ export class TaskService {
   }
 
   public getIsVisible(taskId: string): boolean {
-    const visibleData = JSON.parse(sessionStorage.getItem(this.visibilityKey) || '{}') as { taskId?: string; isVisible?: boolean };
+    const visibleData = JSON.parse(sessionStorage.getItem(this.visibilityKey) || '{}');
 
-    if (visibleData.taskId === taskId) {
-      return Boolean(visibleData.isVisible);
-    }
-
-    return false;
+    return visibleData.taskId === taskId ? visibleData.isVisible : false;
   }
 
   public setIsVisibleData(taskId: string, isVisible: boolean): void {

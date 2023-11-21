@@ -19,8 +19,8 @@
   <div class="charts">
     <ctrl-container styleClass="px-0">
       <div class="card flex justify-content-center">
-        @if (cashFlowChartData$ | async; as data) {
-          <p-chart [data]="data" type="pie" />
+        @if (cashFlowChartData$ | async; as chartDataset) {
+          <p-chart [data]="chartDataset.data" type="pie" />
         } @else {
           <p>No chart data</p>
         }

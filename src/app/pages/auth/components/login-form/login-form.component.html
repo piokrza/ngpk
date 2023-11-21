@@ -5,6 +5,10 @@
 <p class="text-sm text-center">Or login with your email & password</p>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  @if (errorMessage$ | async; as errorMessage) {
+    <small class="error block my-3">{{ errorMessage }}</small>
+  }
+
   <span class="p-float-label my-4">
     <input [formControl]="form.controls.email" pInputText id="email" class="w-full" />
     <label htmlFor="email">Email</label>

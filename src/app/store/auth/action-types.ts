@@ -19,4 +19,6 @@ export enum ActionTypes {
   UPDATE_ACCOUNT = '[Auth] Update account',
   UPDATE_ACCOUNT_SUCCESS = '[Auth] Update account success',
   UPDATE_ACCOUNT_FAILURE = '[Auth] Update account failure',
+
+  RESET_ERROR_MESSAGE = '[Auth] Reset error message',
 }
