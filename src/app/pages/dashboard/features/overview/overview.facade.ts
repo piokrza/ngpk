@@ -1,16 +1,27 @@
 import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, combineLatest, map } from 'rxjs';
+import { DialogService } from 'primeng/dynamicdialog';
+import { Observable, combineLatest, map, tap } from 'rxjs';
 
+import { BaseDialogStyles } from '#common/constants';
+import { AppPaths } from '#common/enums';
 import { LabelWithData } from '#common/models';
+import { DashobardPaths } from '#pages/dashboard/enums';
 import { CashflowChartData, TaskerData } from '#pages/dashboard/features/overview/models';
+import { NoteFormComponent } from '#pages/dashboard/features/tasker/components';
+import { TaskService } from '#pages/dashboard/features/tasker/data-access';
+import { Note } from '#pages/dashboard/features/tasker/models';
 import { CashFlowSelectors } from '#store/cash-flow';
-import { TaskerSelectors } from '#store/tasker';
+import { TaskerActions, TaskerSelectors } from '#store/tasker';
 
 @Injectable()
 export class OverviewFacade {
   private readonly store: Store = inject(Store);
+  private readonly router: Router = inject(Router);
+  private readonly taskService: TaskService = inject(TaskService);
+  private readonly dialogService: DialogService = inject(DialogService);
   private readonly translate: TranslateService = inject(TranslateService);
 
   public get isLoading$(): Observable<boolean> {
@@ -72,6 +83,23 @@ export class OverviewFacade {
         completedTasksLength: tasks?.filter(({ isComplete }) => isComplete).length,
         notesLength: notes?.length,
       }))
+    );
+  }
+
+  public addQuickNote$(): Observable<Note | undefined> {
+    const dialogRef = this.dialogService.open(NoteFormComponent, {
+      header: this.translate.instant('tasker.addNote'),
+      style: BaseDialogStyles,
+    });
+
+    return dialogRef.onClose.pipe(
+      tap((note?: Note) => {
+        if (note) {
+          this.store.dispatch(TaskerActions.addNote({ note }));
+          this.taskService.setActiveTabIndex(1);
+          this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.TASKER]);
+        }
+      })
     );
   }
 

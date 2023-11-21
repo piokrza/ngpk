@@ -1,4 +1,4 @@
-<p-tabView>
+<p-tabView [activeIndex]="(activeTabIndex$ | async)!">
   <p-tabPanel [header]="'cashFlow.incomes' | translate">
     @if (incomesDataset$ | async; as incomes) {
       <ctrl-cash-flow-panel

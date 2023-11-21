@@ -1,14 +1,19 @@
 import { AsyncPipe, DecimalPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Provider, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { Router, RouterLink } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateModule } from '@ngx-translate/core';
+import { PrimeIcons } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Observable } from 'rxjs';
 
+import { AppPaths } from '#common/enums';
 import { LabelWithData } from '#common/models';
+import { DashobardPaths } from '#pages/dashboard/enums';
+import { CashFlowService } from '#pages/dashboard/features/cash-flow/data-access';
 import { OverviewFacade } from '#pages/dashboard/features/overview';
 import { ContainerComponent } from '#shared/components';
 
@@ -22,6 +27,7 @@ const imports = [
   DecimalPipe,
   AsyncPipe,
   NgClass,
+  ButtonModule,
 ];
 const providers: Provider[] = [OverviewFacade];
 
@@ -36,6 +42,8 @@ const providers: Provider[] = [OverviewFacade];
   imports,
 })
 export default class OverviewComponent {
+  private readonly router: Router = inject(Router);
+  private readonly cashFlowService: CashFlowService = inject(CashFlowService);
   private readonly overviewFacade: OverviewFacade = inject(OverviewFacade);
 
   public readonly cashFlowChartData$ = this.overviewFacade.cashFlowChartData$;
@@ -43,4 +51,15 @@ export default class OverviewComponent {
   public readonly cashFlowDataset$: Observable<LabelWithData<number>[]> = this.overviewFacade.cashFlowData$;
 
   public readonly taskerData$ = this.overviewFacade.taskerData$;
+
+  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+
+  public addQuickNote(): void {
+    this.overviewFacade.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
+  }
+
+  public navigateTo(itemLabel: string): void {
+    this.cashFlowService.setActiveTabIndex(itemLabel === 'totalExpense' ? 1 : 0);
+    this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
+  }
 }

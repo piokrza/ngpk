@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { TaskForm, TaskStepForm } from '#pages/dashboard/features/tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
+  private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
+
   private readonly visibilityKey = 'isVisible';
 
   public get form(): FormGroup<TaskForm> {
@@ -40,5 +43,13 @@ export class TaskService {
 
   public removeVisibilityData(): void {
     sessionStorage.removeItem(this.visibilityKey);
+  }
+
+  public get activeTabIndex$(): Observable<number> {
+    return this.activeTabIndex$$.asObservable();
+  }
+
+  public setActiveTabIndex(idx: number): void {
+    this.activeTabIndex$$.next(idx);
   }
 }

@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <span class="p-float-label my-4">
     <input [formControl]="form.controls.name" id="name" type="text" pInputText class="w-full" />
-    <label htmlFor="content">{{ 'Nazwa' | translate }}</label>
+    <label htmlFor="content">{{ 'common.name' | translate }}</label>
   </span>
 
   <span class="p-float-label my-4">

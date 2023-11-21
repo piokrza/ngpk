@@ -1,4 +1,4 @@
-<p-tabView>
+<p-tabView [activeIndex]="(activeTabIndex$ | async)!">
   <p-tabPanel [header]="'tasker.title' | translate">
     @if (isLoading) {
       <div class="flex justify-content-center">

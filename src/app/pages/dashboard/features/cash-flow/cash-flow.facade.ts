@@ -7,6 +7,7 @@ import { Observable, combineLatest, tap } from 'rxjs';
 
 import { BaseDialogStyles } from '#common/constants';
 import { UpdateFormComponent } from '#pages/dashboard/features/cash-flow/components';
+import { CashFlowService } from '#pages/dashboard/features/cash-flow/data-access';
 import { CashFlow, CashFlowData } from '#pages/dashboard/features/cash-flow/models';
 import { CashFlowSelectors, CashFlowActions } from '#store/cash-flow';
 
@@ -14,6 +15,7 @@ import { CashFlowSelectors, CashFlowActions } from '#store/cash-flow';
 export class CashFlowFacade {
   private readonly store: Store = inject(Store);
   private readonly dialogService: DialogService = inject(DialogService);
+  private readonly cashFlowService: CashFlowService = inject(CashFlowService);
   private readonly translateService: TranslateService = inject(TranslateService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
@@ -29,6 +31,10 @@ export class CashFlowFacade {
       data: this.store.select(CashFlowSelectors.expenses),
       amount: this.store.select(CashFlowSelectors.totalExpenses),
     });
+  }
+
+  public get activeTabIndex$(): Observable<number> {
+    return this.cashFlowService.activeTabIndex$;
   }
 
   public get isLoading$(): Observable<boolean> {

@@ -3,7 +3,7 @@
 } @else {
   <section class="cards">
     @for (item of cashFlowDataset$ | async; track $index; let last = $last) {
-      <a [routerLink]="['../', 'cash-flow']">
+      <a (click)="navigateTo(item.label)">
         <p-card>
           <h3 class="heading">
             <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
@@ -31,7 +31,11 @@
       @if (taskerData$ | async; as taskerData) {
         <p>{{ 'overview.todos' | translate }}: {{ taskerData.totalTasksLength }}</p>
         <p>{{ 'overview.completed' | translate }}: {{ taskerData.completedTasksLength }}</p>
-        <p>{{ 'overview.notes' | translate }}: {{ taskerData.notesLength }}</p>
+
+        <div class="flex align-items-center justify-content-between">
+          <p>{{ 'overview.notes' | translate }}: {{ taskerData.notesLength }}</p>
+          <p-button [icon]="PrimeIcons.PLUS" (onClick)="addQuickNote()" size="small" />
+        </div>
       }
     </ctrl-container>
   </div>

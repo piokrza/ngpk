@@ -96,7 +96,8 @@
       "all": "All",
       "completed": "Completed",
       "notCompleted": "Not completed"
-    }
+    },
+    "addNote": "Add note"
   },
 
   "menu": {
@@ -129,7 +130,8 @@
     "enterName": "Enter name",
     "of": "of",
     "enterText": "Enter text",
-    "emptyMessage": "List is empty"
+    "emptyMessage": "List is empty",
+    "name": "Name"
   },
 
   "wallet": {

@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
+import { Observable } from 'rxjs';
 
 import { LabelWithData } from '#common/models';
+import { TaskService } from '#pages/dashboard/features/tasker/data-access';
 import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 
 @Component({
@@ -27,6 +29,8 @@ export class PanelComponent {
 
   @Output() addNote = new EventEmitter<void>();
   @Output() removeNote = new EventEmitter<string>();
+
+  public readonly activeTabIndex$: Observable<number> = inject(TaskService).activeTabIndex$;
 
   public readonly filters: LabelWithData<TaskFilter>[] = [
     { label: this.translate.instant('tasker.filter.all'), data: 'all' },

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Observable, filter, map } from 'rxjs';
+import { BehaviorSubject, Observable, filter, map } from 'rxjs';
 
 import { BaseDialogStyles } from '#common/constants';
 import { CATEGORIES } from '#common/enums';
@@ -16,6 +16,8 @@ export class CashFlowService {
   protected readonly store: Store = inject(Store);
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly translate: TranslateService = inject(TranslateService);
+
+  private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
   public get form(): FormGroup<CashFlowForm> {
     return new FormGroup({
@@ -45,5 +47,13 @@ export class CashFlowService {
     });
 
     return dialogRef.onClose;
+  }
+
+  public get activeTabIndex$(): Observable<number> {
+    return this.activeTabIndex$$.asObservable();
+  }
+
+  public setActiveTabIndex(idx: number): void {
+    this.activeTabIndex$$.next(idx);
   }
 }

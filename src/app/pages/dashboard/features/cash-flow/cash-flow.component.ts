@@ -18,6 +18,8 @@ export class CashFlowComponent {
   public readonly incomesDataset$: Observable<CashFlowData> = this.cashFlowFacade.incomesDataset$;
   public readonly expensesDataset$: Observable<CashFlowData> = this.cashFlowFacade.expensesDataset$;
 
+  public readonly activeTabIndex$: Observable<number> = this.cashFlowFacade.activeTabIndex$;
+
   public updateIncome(updatedIncome: CashFlow): void {
     this.cashFlowFacade.updateIncome$(updatedIncome).pipe(untilDestroyed(this)).subscribe();
   }
