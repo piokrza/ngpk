@@ -41,6 +41,6 @@ export class AccountSettingsFormComponent implements OnInit {
       refreshToken: this.userData.refreshToken,
       emailVerified: this.userData.emailVerified,
       uid: this.userData.uid,
-    } as User);
+    });
   }
 }

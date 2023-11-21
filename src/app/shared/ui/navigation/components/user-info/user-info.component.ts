@@ -8,25 +8,7 @@ import { AuthSelectors } from '#store/auth';
 @Component({
   selector: 'ctrl-user-info',
   styleUrl: './user-info.component.scss',
-  template: `
-    @if (user$ | async; as user) {
-      <div class="user-info gap-4">
-        <img [src]="user.photoURL" alt="profile" class="user-info__img" lazyImg />
-        <div>
-          <p class="user-info__name">{{ user.displayName }}</p>
-          <small>{{ user.email }}</small>
-        </div>
-      </div>
-    } @else {
-      <div class="user-info gap-4">
-        <p-skeleton shape="circle" size="2rem" size="4rem" />
-        <div>
-          <p-skeleton width="13rem" height="1.5rem" styleClass="mb-2" />
-          <p-skeleton width="5rem" styleClass="mb-2" />
-        </div>
-      </div>
-    }
-  `,
+  templateUrl: './user-info.components.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInfoComponent {

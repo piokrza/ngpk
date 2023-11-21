@@ -13,14 +13,14 @@
     </label>
   </span>
 
-  @if(categories$ | async; as categories) {
-  <p-dropdown
-    [formControl]="formControls.categoryCode"
-    [options]="categories"
-    optionLabel="name"
-    optionValue="code"
-    styleClass="w-full"
-    placeholder="Select category" />
+  @if (categories$ | async; as categories) {
+    <p-dropdown
+      [formControl]="formControls.categoryCode"
+      [options]="categories"
+      optionLabel="name"
+      optionValue="code"
+      styleClass="w-full"
+      placeholder="Select category" />
   }
 
   <span class="p-float-label my-4">

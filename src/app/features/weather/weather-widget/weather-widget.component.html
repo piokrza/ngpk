@@ -2,12 +2,12 @@
   <div [class.pb-0]="data()" class="flex justify-content-between align-items-center p-3">
     @if (data() === null) {
       <p-button
-        (onClick)="loadWeatherByUserLocation()"
         [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
         [label]="'weather.fetchData' | translate"
         [outlined]="true"
+        (onClick)="loadWeatherByUserLocation()"
         severity="secondary"
-        styleClass="flex-grow-1" />
+        class="w-full fetch-btn" />
     }
     @if (data()?.name) {
       <p>

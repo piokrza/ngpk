@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -14,7 +13,7 @@ import { EthereumService, Web3State } from '#features/web3/data-access';
 import { Web3Config } from '#features/web3/models';
 import { AddressPipe, NetworkNamePipe } from '#features/web3/pipes';
 
-const imports = [AsyncPipe, TranslateModule, ProgressBarModule, ButtonModule, AddressPipe, ConfirmPopupModule, NetworkNamePipe];
+const imports = [TranslateModule, ProgressBarModule, ButtonModule, AddressPipe, ConfirmPopupModule, NetworkNamePipe];
 
 @UntilDestroy()
 @Component({
