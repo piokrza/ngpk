@@ -19,14 +19,19 @@
   <div class="charts">
     <ctrl-container styleClass="px-0">
       <div class="card flex justify-content-center">
-        <p-chart [data]="(cashFlowChartData$ | async)?.data" type="pie"></p-chart>
+        @if (cashFlowChartData$ | async; as data) {
+          <p-chart [data]="data" type="pie" />
+        } @else {
+          <p>No chart data</p>
+        }
       </div>
     </ctrl-container>
 
     <ctrl-container styleClass="px-0">
       @if (taskerData$ | async; as taskerData) {
-        <p>{{ 'overview.todos' | translate }}: {{ taskerData.totalLength }}</p>
-        <p>{{ 'overview.completed' | translate }}: {{ taskerData.completedLength }}</p>
+        <p>{{ 'overview.todos' | translate }}: {{ taskerData.totalTasksLength }}</p>
+        <p>{{ 'overview.completed' | translate }}: {{ taskerData.completedTasksLength }}</p>
+        <p>{{ 'overview.notes' | translate }}: {{ taskerData.notesLength }}</p>
       }
     </ctrl-container>
   </div>

@@ -6,9 +6,12 @@
         <p>{{ chainId() ?? '' | networkName }}</p>
       </div>
     } @else {
-      <div class="flex justify-content-center">
-        <p-button (onClick)="connectWallet()" [label]="'wallet.connectWallet' | translate" [outlined]="true" severity="secondary" />
-      </div>
+      <p-button
+        (onClick)="connectWallet()"
+        [label]="'wallet.connectWallet' | translate"
+        [outlined]="true"
+        styleClass="w-full"
+        severity="secondary" />
     }
   } @else {
     <p>

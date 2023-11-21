@@ -47,7 +47,8 @@
     "expenses": "Expenses",
     "incomes": "Incomes",
     "todos": "Todos",
-    "completed": "Completed"
+    "completed": "Completed",
+    "notes": "Notes"
   },
 
   "incomes": {

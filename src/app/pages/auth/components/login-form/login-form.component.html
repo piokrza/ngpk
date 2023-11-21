@@ -1,5 +1,4 @@
 <h1 class="heading text-center">Login</h1>
-<!-- TODO: add translations -->
 
 <button (click)="signinWithGoogle()" icon="pi pi-google" label="Login with your google account" class="w-full my-6" pButton></button>
 
@@ -18,3 +17,9 @@
 
   <button [disabled]="form.invalid" class="w-full" pButton label="Login" type="submit"></button>
 </form>
+
+<small class="block text-center mt-4">
+  Haven't account?
+  <a [routerLink]="['../register']" class="underline cursor-pointer">click</a>
+  to register
+</small>

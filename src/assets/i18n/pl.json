@@ -47,7 +47,8 @@
     "expenses": "Wydatki",
     "incomes": "Przychody",
     "todos": "Zadania",
-    "completed": "Ukończone"
+    "completed": "Ukończone",
+    "notes": "Notatki"
   },
 
   "incomes": {

@@ -54,14 +54,18 @@ export class DashboardFacade {
   public checkWalletExtention$(): Observable<boolean> {
     return this.web3State.isWalletExtention$.pipe(
       debounceTime(0),
-      tap((isWalletExtention: boolean) => !isWalletExtention && this.toastService.showMessage('error', 'Wallet not detected', ''))
+      tap((isWalletExtention: boolean) => {
+        !isWalletExtention && this.toastService.showMessage('error', 'Wallet not detected', '');
+      })
     );
   }
 
   public onAccountChanged$(): Observable<string[]> {
-    return this.ethereumService
-      .accountChanged$()
-      .pipe(tap((accountAddresses: string[]) => this.ngZone.run((): void => this.web3State.setWalletAddress(accountAddresses[0] ?? null))));
+    return this.ethereumService.accountChanged$().pipe(
+      tap((accountAddresses: string[]) => {
+        this.web3State.setWalletAddress(accountAddresses[0] ?? null);
+      })
+    );
   }
 
   public onChainChange$(): Observable<{ currentChainId: string | null; updatedChainId: string }> {

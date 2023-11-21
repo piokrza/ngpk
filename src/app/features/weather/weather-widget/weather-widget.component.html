@@ -1,14 +1,13 @@
 <div class="my-4 rounded widget">
   <div [class.pb-0]="data()" class="flex justify-content-between align-items-center p-3">
     @if (data() === null) {
-      <div class="flex justify-content-center w-full">
-        <p-button
-          (onClick)="loadWeatherByUserLocation()"
-          [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
-          [label]="'weather.fetchData' | translate"
-          [outlined]="true"
-          severity="secondary" />
-      </div>
+      <p-button
+        (onClick)="loadWeatherByUserLocation()"
+        [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
+        [label]="'weather.fetchData' | translate"
+        [outlined]="true"
+        severity="secondary"
+        styleClass="flex-grow-1" />
     }
     @if (data()?.name) {
       <p>

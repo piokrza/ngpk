@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, combineLatest, map } from 'rxjs';
 
 import { LabelWithData } from '#common/models';
-import { Task } from '#pages/dashboard/features/tasker/models';
+import { CashflowChartData, TaskerData } from '#pages/dashboard/features/overview/models';
 import { CashFlowSelectors } from '#store/cash-flow';
 import { TaskerSelectors } from '#store/tasker';
 
@@ -13,11 +13,11 @@ export class OverviewFacade {
   private readonly store: Store = inject(Store);
   private readonly translate: TranslateService = inject(TranslateService);
 
-  get isLoading$(): Observable<boolean> {
+  public get isLoading$(): Observable<boolean> {
     return this.store.select(CashFlowSelectors.isLoading);
   }
 
-  get cashFlowData$(): Observable<LabelWithData<number>[]> {
+  public get cashFlowData$(): Observable<LabelWithData<number>[]> {
     return combineLatest({
       totalBalance: this.totalBalance$,
       totalIncome: this.store.select(CashFlowSelectors.totalIncomes),
@@ -36,7 +36,7 @@ export class OverviewFacade {
     );
   }
 
-  public get cashFlowChartData$() {
+  public get cashFlowChartData$(): Observable<CashflowChartData | undefined> {
     return combineLatest({
       incomes: this.store.select(CashFlowSelectors.incomes),
       expenses: this.store.select(CashFlowSelectors.expenses),
@@ -44,12 +44,14 @@ export class OverviewFacade {
       map(({ incomes, expenses }) => {
         const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
 
+        if (!incomes.length || !expenses.length) return undefined;
+
         return {
           data: {
             labels: [this.translate.instant('overview.expenses'), this.translate.instant('overview.incomes')],
             datasets: [
               {
-                data: [expenses.reduce((acc, value) => acc + value.amount, 0), incomes.reduce((acc, value) => acc + value.amount, 0)],
+                data: [expenses.reduce((acc, { amount }) => acc + amount, 0), incomes.reduce((acc, { amount }) => acc + amount, 0)],
                 backgroundColor: [documentStyle.getPropertyValue('--pink-500'), documentStyle.getPropertyValue('--green-500')],
                 hoverBackgroundColor: [documentStyle.getPropertyValue('--pink-400'), documentStyle.getPropertyValue('--green-400')],
               },
@@ -60,11 +62,15 @@ export class OverviewFacade {
     );
   }
 
-  public get taskerData$() {
-    return this.store.select(TaskerSelectors.tasks).pipe(
-      map((tasks: Task[] | null) => ({
-        totalLength: tasks?.length,
-        completedLength: tasks?.filter(({ isComplete }) => isComplete).length,
+  public get taskerData$(): Observable<TaskerData> {
+    return combineLatest({
+      tasks: this.store.select(TaskerSelectors.tasks),
+      notes: this.store.select(TaskerSelectors.notes),
+    }).pipe(
+      map(({ tasks, notes }) => ({
+        totalTasksLength: tasks?.length,
+        completedTasksLength: tasks?.filter(({ isComplete }) => isComplete).length,
+        notesLength: notes?.length,
       }))
     );
   }
