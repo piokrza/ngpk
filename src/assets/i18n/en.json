@@ -128,7 +128,8 @@
   "common": {
     "enterName": "Enter name",
     "of": "of",
-    "enterText": "Enter text"
+    "enterText": "Enter text",
+    "emptyMessage": "List is empty"
   },
 
   "wallet": {
@@ -140,6 +141,7 @@
     "accept": "Yes",
     "reject": "No",
     "pl": "Polish",
-    "en": "English"
+    "en": "English",
+    "emptyMessage": "No results found"
   }
 }

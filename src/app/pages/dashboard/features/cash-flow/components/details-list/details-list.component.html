@@ -12,6 +12,9 @@
       </ng-template>
     </p-dataView>
   } @else {
-    {{ 'cashFlow.emptyList' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
+    <p-divider />
+    <p class="px-3">
+      {{ 'cashFlow.emptyList' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
+    </p>
   }
 }

@@ -6,7 +6,6 @@ import { Note } from '#pages/dashboard/features/tasker/models';
 @Component({
   selector: 'ctrl-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotesComponent {

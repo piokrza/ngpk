@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DataViewModule } from 'primeng/dataview';
+import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -41,6 +42,7 @@ const imports = [
   CheckboxModule,
   InputTextareaModule,
   AccordionModule,
+  DividerModule,
 ];
 const declarations = [PanelComponent, TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NotesComponent];
 const providers: Provider[] = [TaskerFacade];

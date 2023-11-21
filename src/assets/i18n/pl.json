@@ -133,7 +133,8 @@
   "common": {
     "enterName": "Wprowadź nazwę",
     "of": "z",
-    "enterText": "Wprowadź tekst"
+    "enterText": "Wprowadź tekst",
+    "emptyMessage": "Lista jest pusta"
   },
 
   "primeng": {

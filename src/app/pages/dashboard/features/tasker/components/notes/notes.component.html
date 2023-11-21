@@ -3,7 +3,7 @@
     <p-accordionTab>
       <ng-template pTemplate="header">
         <div class="flex justify-content-between align-items-center w-full">
-          <p>{{ note.name }}</p>
+          <p>{{ note.name | titlecase }}</p>
           <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TIMES" (onClick)="removeNote.emit(note.id)" severity="danger" />
         </div>
       </ng-template>
@@ -11,6 +11,7 @@
       <p class="my-0">{{ note.content }}</p>
     </p-accordionTab>
   } @empty {
-    <p>nie ma czego pladrowac</p>
+    <p class="px-3">{{ 'primeng.emptyMessage' | translate }}</p>
+    <p-divider />
   }
 </p-accordion>

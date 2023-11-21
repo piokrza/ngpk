@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { NgModule } from '@angular/core';
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { AppPaths } from '#common/enums';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: AppPaths.DASHBOARD,
@@ -24,6 +22,3 @@ const routes: Routes = [
     data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
   },
 ];
-
-@NgModule({ imports: [RouterModule.forRoot(routes)], exports: [RouterModule] })
-export class AppRoutingModule {}

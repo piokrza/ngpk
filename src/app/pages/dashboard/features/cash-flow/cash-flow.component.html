@@ -13,8 +13,8 @@
   </p-tabPanel>
 
   <p-tabPanel #expensesPanel [header]="'cashFlow.expenses' | translate">
-    @defer {
-      @if (expensesDataset$ | async; as expenses) {
+    @if (expensesDataset$ | async; as expenses) {
+      @defer {
         <ctrl-cash-flow-panel
           (cashFlowSubmitData)="onExpenseSubmit($event)"
           (cashFlowToRemoveId)="removeExpense($event)"
