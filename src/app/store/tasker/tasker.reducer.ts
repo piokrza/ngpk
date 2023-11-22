@@ -1,8 +1,8 @@
 import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
 
-import { Note, Task, TaskFilter } from '#pages/dashboard/features/tasker/models';
 import { AuthActions } from '#store/auth';
 import { TaskerActions } from '#store/tasker';
+import { Note, Task, TaskFilter } from '#tasker/models';
 
 export const FeatureKey = 'tasker';
 

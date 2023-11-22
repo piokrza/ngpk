@@ -5,12 +5,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import firebase from 'firebase/compat';
 import { catchError, exhaustMap, from, iif, map, of, switchMap, take, tap } from 'rxjs';
 
+import { User } from '#auth/models';
+import { AuthService } from '#auth/services';
+import { CashFlowApi } from '#cash-flow/data-access';
 import { AppPaths, ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
-import { User } from '#pages/auth/models';
-import { AuthService } from '#pages/auth/services';
-import { CashFlowApi } from '#pages/dashboard/features/cash-flow/data-access';
 import { AuthActions } from '#store/auth';
 import { ActionTypes } from '#store/auth/action-types';
 import { CashFlowActions } from '#store/cash-flow';

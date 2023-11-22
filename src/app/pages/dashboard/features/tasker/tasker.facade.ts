@@ -6,10 +6,10 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { BaseDialogStyles } from '#common/constants';
-import { NoteFormComponent, TaskFormComponent } from '#pages/dashboard/features/tasker/components';
-import { TaskService } from '#pages/dashboard/features/tasker/data-access';
-import { Note, Task, TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
+import { NoteFormComponent, TaskFormComponent } from '#tasker/components';
+import { TaskService } from '#tasker/data-access';
+import { Note, Task, TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Injectable()
 export class TaskerFacade {

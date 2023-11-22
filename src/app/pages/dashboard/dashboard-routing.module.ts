@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from '#pages/dashboard';
-import { DashobardPaths } from '#pages/dashboard/enums';
-import { DashboardRedirectGuard } from '#pages/dashboard/guards';
+import { DashboardComponent } from '#dashboard/.';
+import { DashobardPaths } from '#dashboard/enums';
+import { DashboardRedirectGuard } from '#dashboard/guards';
 
 const routes: Routes = [
   {
@@ -13,19 +13,23 @@ const routes: Routes = [
     children: [
       {
         path: DashobardPaths.OVERVIEW,
-        loadComponent: () => import('#pages/dashboard/features/overview/overview.component'),
+        loadComponent: () => import('#overview/overview.component'),
       },
       {
         path: DashobardPaths.CASH_FLOW,
-        loadChildren: () => import('#pages/dashboard/features/cash-flow/cash-flow.module'),
+        loadChildren: () => import('#cash-flow/cash-flow.module'),
       },
       {
         path: DashobardPaths.SETTINGS,
-        loadChildren: () => import('#pages/dashboard/features/settings/settings.module'),
+        loadChildren: () => import('#settings/settings.module'),
       },
       {
         path: DashobardPaths.TASKER,
-        loadChildren: () => import('#pages/dashboard/features/tasker/tasker.module'),
+        loadChildren: () => import('#tasker/tasker.module'),
+      },
+      {
+        path: DashobardPaths.WEB3,
+        loadChildren: () => import('#web3/web3.module'),
       },
     ],
   },

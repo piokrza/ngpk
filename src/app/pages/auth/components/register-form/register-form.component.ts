@@ -3,8 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
 
-import { RegisterForm } from '#pages/auth/models';
-import { AuthFormService } from '#pages/auth/services';
+import { RegisterForm } from '#auth/models';
+import { AuthFormService } from '#auth/services';
 import { AuthActions, AuthSelectors } from '#store/auth';
 
 @Component({

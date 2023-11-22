@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { Categories } from '#pages/dashboard/features/cash-flow/models';
+import { Categories } from '#cash-flow/models';
 import { FeatureKey, State as CategoriesState } from '#store/categories';
 
 const CategoriesStateSelector = createFeatureSelector<CategoriesState>(FeatureKey);

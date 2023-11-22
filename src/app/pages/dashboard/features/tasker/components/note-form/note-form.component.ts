@@ -5,10 +5,10 @@ import { Store } from '@ngrx/store';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import uniqid from 'uniqid';
 
-import { User } from '#pages/auth/models';
-import { NoteService } from '#pages/dashboard/features/tasker/data-access';
-import { Note, NoteForm } from '#pages/dashboard/features/tasker/models';
+import { User } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
+import { NoteService } from '#tasker/data-access';
+import { Note, NoteForm } from '#tasker/models';
 
 @Component({
   selector: 'ctrl-note-form',

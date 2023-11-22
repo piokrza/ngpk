@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map, Observable, take } from 'rxjs';
 
+import { Categories } from '#cash-flow/models';
 import { Collection } from '#common/enums';
-import { Categories } from '#pages/dashboard/features/cash-flow/models';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesApi {

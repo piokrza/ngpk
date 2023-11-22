@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { WeatherIconCode } from '#features/weather/models';
+import { WeatherIconCode } from '#shared/ui/weather-widget/models';
 
 @Pipe({ name: 'weatherIcon', standalone: true })
 export class WeatherIconPipe implements PipeTransform {

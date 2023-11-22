@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { AccountSettingsForm } from '#pages/dashboard/features/settings/models';
+import { AccountSettingsForm } from '#settings/models';
 
 @Injectable({ providedIn: 'root' })
 export class AccountSettingsFormService {

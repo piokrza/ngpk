@@ -4,8 +4,8 @@ import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { Observable } from 'rxjs';
 
 import { LabelWithData } from '#common/models';
-import { TaskService } from '#pages/dashboard/features/tasker/data-access';
-import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
+import { TaskService } from '#tasker/data-access';
+import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Component({
   selector: 'ctrl-tasker-panel',

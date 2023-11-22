@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
 import { ActionTypes } from '#store/tasker/action-types';
+import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
 
 // get tasks user data
 export const getTaskerUserData = createAction(ActionTypes.GET_TASKER_USER_DATA, props<{ uid: string }>());

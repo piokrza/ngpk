@@ -11,13 +11,13 @@ export const routes: Routes = [
   },
   {
     path: AppPaths.DASHBOARD,
-    loadChildren: (): Promise<any> => import('#pages/dashboard/dashboard.module'),
+    loadChildren: (): Promise<any> => import('#dashboard/dashboard.module'),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
   },
   {
     path: AppPaths.AUTHENTICATION,
-    loadChildren: (): Promise<any> => import('#pages/auth/auth.module'),
+    loadChildren: (): Promise<any> => import('#auth/auth.module'),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
   },

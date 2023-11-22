@@ -6,10 +6,10 @@ import { PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import uniqid from 'uniqid';
 
-import { User } from '#pages/auth/models';
-import { TaskService } from '#pages/dashboard/features/tasker/data-access';
-import { Task, TaskForm, TaskStepForm } from '#pages/dashboard/features/tasker/models';
+import { User } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
+import { TaskService } from '#tasker/data-access';
+import { Task, TaskForm, TaskStepForm } from '#tasker/models';
 
 @Component({
   selector: 'ctrl-task-form',

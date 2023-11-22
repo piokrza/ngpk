@@ -5,10 +5,10 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, tap } from 'rxjs';
 
+import { UpdateFormComponent } from '#cash-flow/components';
+import { CashFlowService } from '#cash-flow/data-access';
+import { CashFlow, CashFlowData } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
-import { UpdateFormComponent } from '#pages/dashboard/features/cash-flow/components';
-import { CashFlowService } from '#pages/dashboard/features/cash-flow/data-access';
-import { CashFlow, CashFlowData } from '#pages/dashboard/features/cash-flow/models';
 import { CashFlowSelectors, CashFlowActions } from '#store/cash-flow';
 
 @Injectable({ providedIn: 'root' })

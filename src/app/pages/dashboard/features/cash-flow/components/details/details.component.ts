@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
-import { CashFlow } from '#pages/dashboard/features/cash-flow/models';
+import { CashFlow } from '#cash-flow/models';
 
 @Component({
   selector: 'ctrl-details',

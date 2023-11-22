@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-import { Web3Config } from '#features/web3/models';
+import { Web3Config } from '#web3/models';
 
 export const WEB3_CONFIG = new InjectionToken<Web3Config>('WEB3_CONFIG');
 

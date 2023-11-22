@@ -6,9 +6,9 @@ import { PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
 
+import { User } from '#auth/models';
 import { BaseDialogStyles } from '#common/constants';
-import { User } from '#pages/auth/models';
-import { AccountSettingsFormComponent } from '#pages/dashboard/features/settings/components';
+import { AccountSettingsFormComponent } from '#settings/components';
 import { AuthActions, AuthSelectors } from '#store/auth';
 
 @UntilDestroy()

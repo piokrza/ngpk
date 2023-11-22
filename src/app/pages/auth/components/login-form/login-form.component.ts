@@ -4,8 +4,8 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
 
-import { LoginForm } from '#pages/auth/models';
-import { AuthFormService } from '#pages/auth/services';
+import { LoginForm } from '#auth/models';
+import { AuthFormService } from '#auth/services';
 import { AuthActions, AuthSelectors } from '#store/auth';
 
 @UntilDestroy()

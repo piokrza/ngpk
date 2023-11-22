@@ -2,10 +2,10 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 
+import { CategoriesApi } from '#cash-flow/data-access';
+import { Categories } from '#cash-flow/models';
 import { ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
-import { CategoriesApi } from '#pages/dashboard/features/cash-flow/data-access';
-import { Categories } from '#pages/dashboard/features/cash-flow/models';
 import { CategoriesActions } from '#store/categories';
 
 @Injectable()

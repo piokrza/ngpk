@@ -5,10 +5,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BehaviorSubject, Observable, filter, map } from 'rxjs';
 
+import { AddFormComponent } from '#cash-flow/components';
+import { CashFlowForm, Categories, Category } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
 import { CATEGORIES } from '#common/enums';
-import { AddFormComponent } from '#pages/dashboard/features/cash-flow/components';
-import { CashFlowForm, Categories, Category } from '#pages/dashboard/features/cash-flow/models';
 import { CategoriesSelectors } from '#store/categories';
 
 @Injectable({ providedIn: 'root' })

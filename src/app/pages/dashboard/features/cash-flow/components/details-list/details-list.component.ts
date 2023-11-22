@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 
-import { CashFlow } from '#pages/dashboard/features/cash-flow/models';
+import { CashFlow } from '#cash-flow/models';
 
 @Component({
   selector: 'ctrl-details-list',

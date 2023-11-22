@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, inject } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
-import { TaskService } from '#pages/dashboard/features/tasker/data-access';
-import { Task, TaskStep, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
+import { TaskService } from '#tasker/data-access';
+import { Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Component({
   selector: 'ctrl-task',

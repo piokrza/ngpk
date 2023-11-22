@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, filter, switchMap, fromEvent, from } from 'rxjs';
 
-import { WEB3_CONFIG } from '#features/web3/config';
-import { Web3State } from '#features/web3/data-access';
-import { EthereumEvent } from '#features/web3/enums';
-import { Ethereum, Web3Config } from '#features/web3/models';
+import { Web3State } from '#dashboard/features/web3/data-access';
+import { WEB3_CONFIG } from '#web3/config';
+import { EthereumEvent } from '#web3/enums';
+import { Ethereum, Web3Config } from '#web3/models';
 
 declare global {
   interface Window {

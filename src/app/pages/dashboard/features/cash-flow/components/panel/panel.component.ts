@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { tap } from 'rxjs';
 
-import { CashFlowService } from '#pages/dashboard/features/cash-flow/data-access';
-import { CashFlow } from '#pages/dashboard/features/cash-flow/models';
+import { CashFlowService } from '#cash-flow/data-access';
+import { CashFlow } from '#cash-flow/models';
 
 @UntilDestroy()
 @Component({

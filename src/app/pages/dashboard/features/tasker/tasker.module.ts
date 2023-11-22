@@ -15,14 +15,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
 
-import { TaskerComponent, TaskerFacade } from '#pages/dashboard/features/tasker';
-import {
-  TaskFormComponent,
-  PanelComponent,
-  TaskComponent,
-  NoteFormComponent,
-  NotesComponent,
-} from '#pages/dashboard/features/tasker/components';
+import { TaskerComponent, TaskerFacade } from '#tasker/.';
+import { TaskFormComponent, PanelComponent, TaskComponent, NoteFormComponent, NotesComponent } from '#tasker/components';
 
 const routes: Routes = [{ path: '', component: TaskerComponent }];
 

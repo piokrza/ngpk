@@ -6,11 +6,11 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 
-import { AuthRoutingModule, AuthComponent } from '#pages/auth';
-import { LoginFormComponent, RegisterFormComponent } from '#pages/auth/components';
-import { AuthFormService, AuthService } from '#pages/auth/services';
+import { AuthRoutingModule, AuthViewComponent } from '#auth/.';
+import { LoginFormComponent, RegisterFormComponent } from '#auth/components';
+import { AuthFormService, AuthService } from '#auth/services';
 
-const declarations = [AuthComponent, LoginFormComponent, RegisterFormComponent];
+const declarations = [AuthViewComponent, LoginFormComponent, RegisterFormComponent];
 const imports = [CommonModule, AuthRoutingModule, ReactiveFormsModule, InputTextModule, ButtonModule, PasswordModule, TranslateModule];
 const providers: Provider[] = [AuthFormService, AuthService];
 

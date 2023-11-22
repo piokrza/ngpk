@@ -7,9 +7,9 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { switchMap, map, tap } from 'rxjs';
 
-import { WEB3_CONFIG } from '#features/web3/config';
-import { EthereumService, Web3State } from '#features/web3/data-access';
-import { Web3Config } from '#features/web3/models';
+import { EthereumService, Web3State } from '#dashboard/features/web3/data-access';
+import { WEB3_CONFIG } from '#web3/config';
+import { Web3Config } from '#web3/models';
 
 const imports = [ToolbarModule, ButtonModule, AsyncPipe];
 

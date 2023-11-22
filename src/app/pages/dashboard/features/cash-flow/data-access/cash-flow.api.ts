@@ -2,9 +2,9 @@ import { inject, Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 import { Observable, combineLatest, map, take } from 'rxjs';
 
+import { User } from '#auth/models';
+import { CashFlowUserData, CashFlow } from '#cash-flow/models';
 import { Collection } from '#common/enums';
-import { User } from '#pages/auth/models';
-import { CashFlowUserData, CashFlow } from '#pages/dashboard/features/cash-flow/models';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowApi {

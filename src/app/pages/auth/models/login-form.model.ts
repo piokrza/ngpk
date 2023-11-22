@@ -1,3 +1,3 @@
-import { RegisterForm } from '#pages/auth/models';
+import { RegisterForm } from '#auth/models';
 
 export type LoginForm = Omit<RegisterForm, 'passwordConfirmation'>;

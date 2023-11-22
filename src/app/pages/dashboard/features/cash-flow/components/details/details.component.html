@@ -13,8 +13,12 @@
 
         <div class="card__flex-wrap">
           <ctrl-details-box [detail]="details.amount.toString()" iconName="dollar" />
-          @if(details.date){ <ctrl-details-box [detail]="(details.date | timestampToDate | date) ?? ''" iconName="calendar" /> }
-          @if(details.description){ <ctrl-details-box [detail]="details.description" iconName="comment" /> }
+          @if (details.date) {
+            <ctrl-details-box [detail]="(details.date | timestampToDate | date) ?? ''" iconName="calendar" />
+          }
+          @if (details.description) {
+            <ctrl-details-box [detail]="details.description" iconName="comment" />
+          }
         </div>
       </div>
     </div>

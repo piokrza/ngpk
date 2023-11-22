@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat';
 
-import { User } from '#pages/auth/models';
+import { User } from '#auth/models';
 
 export const setUser = (user: firebase.User): User => ({
   displayName: user.displayName,

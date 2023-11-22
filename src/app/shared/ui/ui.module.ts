@@ -10,12 +10,11 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { WeatherWidgetComponent } from '#features/weather';
-import { WalletComponent } from '#features/web3/components';
 import { ContainerComponent } from '#shared/components';
 import { LazyImgDirective } from '#shared/directives';
 import { LayoutComponent } from '#shared/ui/layout';
 import { NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#shared/ui/navigation/components';
+import { WeatherWidgetComponent } from '#shared/ui/weather-widget';
 
 const declarations = [NavigationComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent];
 const imports = [
@@ -29,7 +28,6 @@ const imports = [
   ConfirmDialogModule,
   TranslateModule,
   WeatherWidgetComponent,
-  WalletComponent,
   LazyImgDirective,
   SkeletonModule,
   AsyncPipe,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { NoteForm } from '#pages/dashboard/features/tasker/models';
+import { NoteForm } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class NoteService {

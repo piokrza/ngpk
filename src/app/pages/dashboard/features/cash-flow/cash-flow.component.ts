@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 
-import { CashFlowFacade } from '#pages/dashboard/features/cash-flow';
-import { CashFlow, CashFlowData } from '#pages/dashboard/features/cash-flow/models';
+import { CashFlowFacade } from '#cash-flow/.';
+import { CashFlow, CashFlowData } from '#cash-flow/models';
 
 @UntilDestroy()
 @Component({

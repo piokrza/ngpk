@@ -23,10 +23,17 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "#common/*": ["src/app/common/*"],
-      "#features/*": ["src/app/features/*"],
       "#shared/*": ["src/app/shared/*"],
       "#store/*": ["src/app/store/*"],
-      "#pages/*": ["src/app/pages/*"]
+      "#auth/*": ["src/app/pages/auth/*"],
+
+      "#dashboard/*": ["src/app/pages/dashboard/*"],
+
+      "#cash-flow/*": ["src/app/pages/dashboard/features/cash-flow/*"],
+      "#overview/*": ["src/app/pages/dashboard/features/overview/*"],
+      "#settings/*": ["src/app/pages/dashboard/features/settings/*"],
+      "#tasker/*": ["src/app/pages/dashboard/features/tasker/*"],
+      "#web3/*": ["src/app/pages/dashboard/features/web3/*"]
     }
   },
   "angularCompilerOptions": {

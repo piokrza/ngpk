@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { EMPTY, Observable, catchError, finalize, iif, switchMap, tap } from 'rxjs';
 
-import { WeatherApi, WeatherState } from '#features/weather/data-access';
-import { IGeolocation, WeatherResponse } from '#features/weather/models';
+import { WeatherApi, WeatherState } from '#shared/ui/weather-widget/data-access';
+import { IGeolocation, WeatherResponse } from '#shared/ui/weather-widget/models';
 
 @Injectable()
 export class WeatherFacade {

@@ -4,8 +4,7 @@ import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-import { EthereumService, Web3State } from '#features/web3/data-access';
-import { DashboardFacade, DashboardRoutingModule, DashboardComponent } from '#pages/dashboard';
+import { DashboardFacade, DashboardRoutingModule, DashboardComponent } from '#dashboard/.';
 import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 
@@ -20,7 +19,7 @@ const imports = [
   ContainerComponent,
   UiModule,
 ];
-const providers: Provider[] = [Web3State, EthereumService, DashboardFacade];
+const providers: Provider[] = [DashboardFacade];
 
 @NgModule({ declarations, imports, providers })
 export default class DashboardModule {}

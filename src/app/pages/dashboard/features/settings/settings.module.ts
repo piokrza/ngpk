@@ -8,13 +8,13 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { SettingsViewComponent, SettingsRoutingModule } from '#pages/dashboard/features/settings';
+import { SettingsViewComponent, SettingsRoutingModule } from '#settings/.';
 import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
   ThemeTogglerComponent,
   LanguageTogglerComponent,
-} from '#pages/dashboard/features/settings/components';
+} from '#settings/components';
 import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 

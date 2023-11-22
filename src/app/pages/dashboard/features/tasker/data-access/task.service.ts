@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { TaskForm, TaskStepForm } from '#pages/dashboard/features/tasker/models';
+import { TaskForm, TaskStepForm } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {

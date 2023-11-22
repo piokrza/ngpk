@@ -6,10 +6,10 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { filter, Observable, take, tap } from 'rxjs';
 import uniqid from 'uniqid';
 
-import { User } from '#pages/auth/models';
-import { AuthService } from '#pages/auth/services';
-import { CashFlowService } from '#pages/dashboard/features/cash-flow/data-access';
-import { CashFlowForm, Category } from '#pages/dashboard/features/cash-flow/models';
+import { User } from '#auth/models';
+import { AuthService } from '#auth/services';
+import { CashFlowService } from '#cash-flow/data-access';
+import { CashFlowForm, Category } from '#cash-flow/models';
 
 @Component({
   selector: 'ctrl-add-form',

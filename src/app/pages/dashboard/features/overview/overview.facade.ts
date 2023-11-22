@@ -2,19 +2,19 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { BaseDialogStyles } from '#common/constants';
 import { AppPaths } from '#common/enums';
 import { LabelWithData } from '#common/models';
-import { DashobardPaths } from '#pages/dashboard/enums';
-import { CashflowChartData, TaskerData } from '#pages/dashboard/features/overview/models';
-import { NoteFormComponent } from '#pages/dashboard/features/tasker/components';
-import { TaskService } from '#pages/dashboard/features/tasker/data-access';
-import { Note } from '#pages/dashboard/features/tasker/models';
+import { DashobardPaths } from '#dashboard/enums';
+import { CashflowChartData, TaskerData } from '#overview/models';
 import { CashFlowSelectors } from '#store/cash-flow';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
+import { NoteFormComponent } from '#tasker/components';
+import { TaskService } from '#tasker/data-access';
+import { Note } from '#tasker/models';
 
 @Injectable()
 export class OverviewFacade {
@@ -87,7 +87,7 @@ export class OverviewFacade {
   }
 
   public addQuickNote$(): Observable<Note | undefined> {
-    const dialogRef = this.dialogService.open(NoteFormComponent, {
+    const dialogRef: DynamicDialogRef = this.dialogService.open(NoteFormComponent, {
       header: this.translate.instant('tasker.addNote'),
       style: BaseDialogStyles,
     });

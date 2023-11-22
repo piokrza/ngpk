@@ -14,7 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
-import { CashFlowFacade, CashFlowComponent } from '#pages/dashboard/features/cash-flow';
+import { CashFlowFacade, CashFlowComponent } from '#cash-flow/.';
 import {
   AddFormComponent,
   DetailsComponent,
@@ -23,8 +23,8 @@ import {
   HeadingComponent,
   PanelComponent,
   UpdateFormComponent,
-} from '#pages/dashboard/features/cash-flow/components';
-import { CategoryLabelPipe } from '#pages/dashboard/features/cash-flow/pipes';
+} from '#cash-flow/components';
+import { CategoryLabelPipe } from '#cash-flow/pipes';
 import { IconPipe, TimestampToDatePipe } from '#shared/pipes';
 
 const routes: Routes = [{ path: '', component: CashFlowComponent }];

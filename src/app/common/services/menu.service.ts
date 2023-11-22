@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 
-import { DashobardPaths } from '#pages/dashboard/enums';
+import { DashobardPaths } from '#dashboard/enums';
 import { AuthActions } from '#store/auth';
 
 @Injectable({ providedIn: 'root' })
@@ -30,6 +30,11 @@ export class MenuService {
         label: this.translateService.instant('menu.tasker'),
         routerLink: DashobardPaths.TASKER,
         icon: PrimeIcons.BOOK,
+      },
+      {
+        label: this.translateService.instant('menu.web3'),
+        routerLink: DashobardPaths.WEB3,
+        icon: PrimeIcons.BITCOIN,
       },
       {
         label: this.translateService.instant('menu.settings'),

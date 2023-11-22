@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { Observable, combineLatest, tap } from 'rxjs';
 
 import { Collection } from '#common/enums';
-import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#pages/dashboard/features/tasker/models';
+import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class TaskerApi {

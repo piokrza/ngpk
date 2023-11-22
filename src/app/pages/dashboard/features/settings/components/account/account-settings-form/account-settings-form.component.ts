@@ -2,14 +2,13 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { User } from '#pages/auth/models';
-import { AccountSettingsForm } from '#pages/dashboard/features/settings/models';
-import { AccountSettingsFormService } from '#pages/dashboard/features/settings/services';
+import { User } from '#auth/models';
+import { AccountSettingsForm } from '#settings/models';
+import { AccountSettingsFormService } from '#settings/services';
 
 @Component({
   selector: 'ctrl-account-settings-form',
   templateUrl: './account-settings-form.component.html',
-  styleUrl: './account-settings-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsFormComponent implements OnInit {

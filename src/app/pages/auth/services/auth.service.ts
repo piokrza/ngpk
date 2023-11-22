@@ -5,8 +5,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
 import { Observable, of } from 'rxjs';
 
+import { AuthFormPayload, User } from '#auth/models';
 import { Collection } from '#common/enums';
-import { AuthFormPayload, User } from '#pages/auth/models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

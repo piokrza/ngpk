@@ -3,9 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of } from 'rxjs';
 
+import { CashFlowApi } from '#cash-flow/data-access';
 import { Collection, ToastStatus } from '#common/enums/';
 import { ToastService } from '#common/services';
-import { CashFlowApi } from '#pages/dashboard/features/cash-flow/data-access';
 import { CashFlowActions } from '#store/cash-flow';
 
 @Injectable()

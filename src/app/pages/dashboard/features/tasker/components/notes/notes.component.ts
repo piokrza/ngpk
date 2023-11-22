@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
-import { Note } from '#pages/dashboard/features/tasker/models';
+import { Note } from '#tasker/models';
 
 @Component({
   selector: 'ctrl-notes',

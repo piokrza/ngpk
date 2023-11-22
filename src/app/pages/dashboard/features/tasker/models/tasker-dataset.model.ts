@@ -1,4 +1,4 @@
-import { Note, Task, TaskFilter } from '#pages/dashboard/features/tasker/models';
+import { Note, Task, TaskFilter } from '#tasker/models';
 
 export interface TaskerDataset {
   tasks: Task[] | null;
