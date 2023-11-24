@@ -38,13 +38,11 @@ export class LanguageTogglerComponent {
   private readonly config: PrimeNGConfig = inject(PrimeNGConfig);
 
   public onLangChange({ value }: SelectButtonChangeEvent): void {
-    localStorage.setItem(LANG, value);
-    this.translateService.use(value);
+    localStorage.setItem(LANG, value ?? 'pl');
+    this.translateService.use(value ?? 'pl');
     this.translateService
       .get('primeng')
       .pipe(take(1))
       .subscribe((res) => this.config.setTranslation(res));
-
-    window.location.reload();
   }
 }
