@@ -18,7 +18,6 @@ const initialState: State = {
 export const Reducer = createReducer(
   initialState,
 
-  // firebase authentication errors
   on(AuthActions.signInWithEmailAndPasswordFailure, (state, { errorMessage }) => {
     return { ...state, errorMessage };
   }),
@@ -27,7 +26,6 @@ export const Reducer = createReducer(
     return { ...state, errorMessage };
   }),
 
-  // user authenticated
   on(AuthActions.userAuthenticated, (state, { user }): State => {
     return { ...state, user };
   }),
@@ -35,6 +33,5 @@ export const Reducer = createReducer(
     return { ...state, user: null };
   }),
 
-  // reset errorMessage
   on(AuthActions.resetErrorMessage, (state): State => ({ ...state, errorMessage: null }))
 );

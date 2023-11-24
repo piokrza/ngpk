@@ -23,7 +23,6 @@ const initialState: State = {
 export const Reducer: ActionReducer<State, Action> = createReducer(
   initialState,
 
-  // get tasks data
   on(TaskerActions.getTaskerUserData, (state): State => {
     return { ...state, isLoading: true };
   }),
@@ -34,7 +33,6 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
     return { ...state, isLoading: false };
   }),
 
-  // add task
   on(TaskerActions.addTask, (state, { task }): State => {
     return { ...state, tasks: [...(state.tasks as Task[]), task] };
   }),
@@ -45,7 +43,6 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
     return { ...state };
   }),
 
-  // add note
   on(TaskerActions.addNote, (state, { note }): State => {
     return { ...state, notes: [...(state.notes as Note[]), note] };
   }),
@@ -56,12 +53,10 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
     return { ...state };
   }),
 
-  // set filter
   on(TaskerActions.setFilter, (state, { filter }) => {
     return { ...state, filter };
   }),
 
-  // on signout
   on(AuthActions.signOut, (): State => {
     return { filter: 'all', isLoading: false, tasks: null, notes: null };
   })

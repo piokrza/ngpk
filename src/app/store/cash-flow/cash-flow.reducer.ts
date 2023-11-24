@@ -21,7 +21,6 @@ const initialState: State = {
 export const Reducer = createReducer(
   initialState,
 
-  // get user cash flow data
   on(CashFlowActions.getCashFlowUserData, (state): State => {
     return { ...state, isLoading: true };
   }),
@@ -32,7 +31,6 @@ export const Reducer = createReducer(
     return { ...state, isLoading: false };
   }),
 
-  // add income
   on(CashFlowActions.addIncome, (state, { income }): State => {
     return { ...state, incomes: [...state.incomes, income] };
   }),
@@ -43,7 +41,6 @@ export const Reducer = createReducer(
     return { ...state };
   }),
 
-  // update income
   on(CashFlowActions.updateIncome, (state, { updatedIncome }): State => {
     const incomes: CashFlow[] = state.incomes.map((income: CashFlow) => {
       return income.id === updatedIncome.id ? updatedIncome : income;
@@ -58,13 +55,11 @@ export const Reducer = createReducer(
     return { ...state };
   }),
 
-  // remove income
   on(CashFlowActions.removeIncome, (state, { incomeId }): State => {
     const filteredIncomes: CashFlow[] = state.incomes.filter((income: CashFlow): boolean => income.id !== incomeId);
     return { ...state, incomes: filteredIncomes };
   }),
 
-  // add expense
   on(CashFlowActions.addExpense, (state, { expense }): State => {
     return { ...state, expenses: [...state.expenses, expense] };
   }),
@@ -75,13 +70,11 @@ export const Reducer = createReducer(
     return { ...state };
   }),
 
-  // remove expense
   on(CashFlowActions.removeExpense, (state, { expenseId }): State => {
     const filteredExpenses: CashFlow[] = state.expenses.filter((expense: CashFlow): boolean => expense.id !== expenseId);
     return { ...state, expenses: filteredExpenses };
   }),
 
-  // update expense
   on(CashFlowActions.updateExpense, (state, { updatedExpense }): State => {
     const expenses: CashFlow[] = state.expenses.map((expense: CashFlow) => {
       return expense.id === updatedExpense.id ? updatedExpense : expense;
@@ -96,7 +89,6 @@ export const Reducer = createReducer(
     return { ...state };
   }),
 
-  // on signout
   on(AuthActions.signOut, (): State => {
     return { incomes: [], expenses: [], isLoading: false };
   })

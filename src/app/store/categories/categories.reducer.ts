@@ -17,7 +17,6 @@ const initialState: State = {
 export const Reducer = createReducer(
   initialState,
 
-  // get categories
   on(CategoriesActions.getCategories, (state) => {
     return { ...state };
   }),
@@ -28,6 +27,5 @@ export const Reducer = createReducer(
     return { ...state };
   }),
 
-  // on signout
   on(AuthActions.signOut, () => ({ categories: null }))
 );
