@@ -48,7 +48,14 @@
     "incomes": "Incomes",
     "todos": "Todos",
     "completed": "Completed",
-    "notes": "Notes"
+    "notes": "Notes",
+    "rentalFees": "Rental fees",
+    "travel": "Travel",
+    "food": "Food",
+    "entertainment": "Entertainment",
+    "concerts": "Concerts",
+    "salary": "Salary",
+    "gifts": "Gifts"
   },
 
   "incomes": {

@@ -1,2 +1,2 @@
 export * from './tasker-data.model';
-export * from './cashflow-chart.model';
+export * from './chart-config.model';

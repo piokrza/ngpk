@@ -3,7 +3,7 @@
 } @else {
   <section class="cards">
     @for (item of cashFlowDataset$ | async; track $index; let last = $last) {
-      <a (click)="navigateTo(item.label)">
+      <a (click)="navigateTo(item.label)" class="cursor-pointer">
         <p-card>
           <h3 class="heading">
             <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
@@ -18,9 +18,11 @@
 
   <div class="charts">
     <ctrl-container styleClass="px-0">
+      <h1 class="mt-0">{{ 'menu.cashFlow' | translate }}</h1>
+
       <div class="card flex justify-content-center">
         @if (cashFlowChartData$ | async; as chartDataset) {
-          <p-chart [data]="chartDataset.data" type="pie" />
+          <p-chart [data]="chartDataset.data" [options]="chartDataset.options" [responsive]="true" type="pie" />
         } @else {
           <p>No chart data</p>
         }
@@ -28,6 +30,8 @@
     </ctrl-container>
 
     <ctrl-container styleClass="px-0">
+      <h1 class="mt-0">{{ 'menu.tasker' | translate }}</h1>
+
       @if (taskerData$ | async; as taskerData) {
         <p>{{ 'overview.todos' | translate }}: {{ taskerData.totalTasksLength }}</p>
         <p>{{ 'overview.completed' | translate }}: {{ taskerData.completedTasksLength }}</p>

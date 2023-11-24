@@ -9,7 +9,7 @@ import { BaseDialogStyles } from '#common/constants';
 import { AppPaths } from '#common/enums';
 import { LabelWithData } from '#common/models';
 import { DashobardPaths } from '#dashboard/enums';
-import { CashflowChartData, TaskerData } from '#overview/models';
+import { ChartConfig, TaskerData } from '#overview/models';
 import { CashFlowSelectors } from '#store/cash-flow';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent } from '#tasker/components';
@@ -47,7 +47,7 @@ export class OverviewFacade {
     );
   }
 
-  public get cashFlowChartData$(): Observable<CashflowChartData | undefined> {
+  public get cashFlowChartData$(): Observable<ChartConfig | undefined> {
     return combineLatest({
       incomes: this.store.select(CashFlowSelectors.incomes),
       expenses: this.store.select(CashFlowSelectors.expenses),
@@ -59,15 +59,48 @@ export class OverviewFacade {
 
         return {
           data: {
-            labels: [this.translate.instant('overview.expenses'), this.translate.instant('overview.incomes')],
+            labels: [
+              this.translate.instant('overview.rentalFees'),
+              this.translate.instant('overview.travel'),
+              this.translate.instant('overview.food'),
+              this.translate.instant('overview.entertainment'),
+              this.translate.instant('overview.concerts'),
+              this.translate.instant('overview.salary'),
+              this.translate.instant('overview.gifts'),
+            ],
             datasets: [
               {
-                data: [expenses.reduce((acc, { amount }) => acc + amount, 0), incomes.reduce((acc, { amount }) => acc + amount, 0)],
-                backgroundColor: [documentStyle.getPropertyValue('--pink-500'), documentStyle.getPropertyValue('--green-500')],
-                hoverBackgroundColor: [documentStyle.getPropertyValue('--pink-400'), documentStyle.getPropertyValue('--green-400')],
+                data: [
+                  expenses.filter((c) => c.categoryCode === 0).reduce((acc, { amount }) => acc + amount, 0),
+                  expenses.filter((c) => c.categoryCode === 1).reduce((acc, { amount }) => acc + amount, 0),
+                  expenses.filter((c) => c.categoryCode === 2).reduce((acc, { amount }) => acc + amount, 0),
+                  expenses.filter((c) => c.categoryCode === 3).reduce((acc, { amount }) => acc + amount, 0),
+                  incomes.filter((c) => c.categoryCode === 4).reduce((acc, { amount }) => acc + amount, 0),
+                  incomes.filter((c) => c.categoryCode === 5).reduce((acc, { amount }) => acc + amount, 0),
+                  incomes.filter((c) => c.categoryCode === 6).reduce((acc, { amount }) => acc + amount, 0),
+                ],
+                backgroundColor: [
+                  documentStyle.getPropertyValue('--pink-400'),
+                  documentStyle.getPropertyValue('--pink-500'),
+                  documentStyle.getPropertyValue('--pink-600'),
+                  documentStyle.getPropertyValue('--pink-700'),
+                  documentStyle.getPropertyValue('--green-500'),
+                  documentStyle.getPropertyValue('--green-600'),
+                  documentStyle.getPropertyValue('--green-700'),
+                ],
+                hoverBackgroundColor: [
+                  documentStyle.getPropertyValue('--pink-700'),
+                  documentStyle.getPropertyValue('--pink-600'),
+                  documentStyle.getPropertyValue('--pink-500'),
+                  documentStyle.getPropertyValue('--pink-400'),
+                  documentStyle.getPropertyValue('--green-700'),
+                  documentStyle.getPropertyValue('--green-600'),
+                  documentStyle.getPropertyValue('--green-500'),
+                ],
               },
             ],
           },
+          options: { plugins: { legend: { display: false } } },
         };
       })
     );

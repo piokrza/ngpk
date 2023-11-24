@@ -48,7 +48,14 @@
     "incomes": "Przychody",
     "todos": "Zadania",
     "completed": "Ukończone",
-    "notes": "Notatki"
+    "notes": "Notatki",
+    "rentalFees": "Wynajem",
+    "travel": "Podróże",
+    "food": "Jedzenie",
+    "entertainment": "Rozrywka",
+    "concerts": "Koncerty",
+    "salary": "Wynagrodzenie",
+    "gifts": "Prezenty"
   },
 
   "incomes": {
