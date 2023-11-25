@@ -38,7 +38,7 @@ const imports = [
   // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),
   EffectsModule.forRoot(StoreEffects),
-  StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+  StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),
 
   // Firebase
   provideFirebaseApp(() => initializeApp(environment.firebase)),
