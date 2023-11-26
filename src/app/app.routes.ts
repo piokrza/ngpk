@@ -2,6 +2,7 @@ import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from
 import { Routes } from '@angular/router';
 
 import { AppPaths } from '#common/enums';
+import { getTitle } from '#common/utils';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,6 @@ export const routes: Routes = [
     loadChildren: (): Promise<any> => import('#auth/auth.module'),
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
+    title: getTitle('auth'),
   },
 ];

@@ -33,5 +33,5 @@
     <label for="description">{{ trPath + 'addDescription' | translate }}</label>
   </span>
 
-  <button [disabled]="form.invalid" [label]="trPath + 'update' | translate" type="submit" class="w-full" pButton></button>
+  <button [disabled]="form.invalid || !form.dirty" [label]="trPath + 'update' | translate" type="submit" class="w-full" pButton></button>
 </form>

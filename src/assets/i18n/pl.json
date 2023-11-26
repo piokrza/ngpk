@@ -116,7 +116,8 @@
     "settings": "Ustawienia",
     "logout": "Wyloguj się",
     "tasker": "Zadania",
-    "web3": "Web3"
+    "web3": "Web3",
+    "auth": "Logowanie"
   },
 
   "weather": {
