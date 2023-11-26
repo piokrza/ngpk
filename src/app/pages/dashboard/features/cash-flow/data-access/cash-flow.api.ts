@@ -2,25 +2,12 @@ import { inject, Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 import { Observable, combineLatest, map, take } from 'rxjs';
 
-import { User } from '#auth/models';
 import { CashFlowUserData, CashFlow } from '#cash-flow/models';
 import { Collection } from '#common/enums';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowApi {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
-
-  public addUserToDatabase$(user: User) {
-    const usersCollectionRef: AngularFirestoreCollection<User> = this.angularFirestore.collection(Collection.USERS);
-
-    return usersCollectionRef
-      .doc(user.uid)
-      .get()
-      .pipe(
-        take(1),
-        map((data) => !data.exists && usersCollectionRef.doc(data.id).set(user))
-      );
-  }
 
   public loadUserCashFlowData$(uid: string): Observable<CashFlowUserData> {
     const expenses$: AngularFirestoreCollection<CashFlow> = this.angularFirestore.collection<CashFlow>(Collection.EXPENSES, (ref) =>
@@ -48,12 +35,6 @@ export class CashFlowApi {
     const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore.collection(collectionName).doc(cashFlowId);
 
     return cashFlow.delete();
-  }
-
-  public updateUser$(updatedUserData: User): Promise<void> {
-    const user: AngularFirestoreDocument<User> = this.angularFirestore.collection<User>(Collection.USERS).doc(updatedUserData.uid);
-
-    return user.update(updatedUserData);
   }
 
   public updateCashFlow$(collectionName: Collection, updatedCashFlowData: CashFlow): Promise<void> {

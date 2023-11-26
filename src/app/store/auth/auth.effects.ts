@@ -31,7 +31,7 @@ export class AuthEffects {
           switchMap(({ user }: firebase.auth.UserCredential) => {
             return iif(
               () => user !== null,
-              this.cashFlowApi.addUserToDatabase$(setUser(user!)).pipe(
+              this.authService.addUserToDatabase$(setUser(user!)).pipe(
                 map(() => AuthActions.userAuthenticated({ user: setUser(user!) })),
                 catchError(() => of(AuthActions.userNotAuthenticated()))
               ),
@@ -86,13 +86,11 @@ export class AuthEffects {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
             switchMap(({ user }) => {
               if (user) {
-                return this.cashFlowApi.addUserToDatabase$(setUser(user)).pipe(
+                return this.authService.addUserToDatabase$(setUser(user)).pipe(
                   take(1),
                   map(() => AuthActions.signUpWithEmailAndPasswordSuccess())
                 );
-              } else {
-                return of(AuthActions.signUpWithEmailAndPasswordSuccess());
-              }
+              } else return of(AuthActions.signUpWithEmailAndPasswordSuccess());
             }),
             tap(() => {
               this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`);
@@ -115,7 +113,6 @@ export class AuthEffects {
         return this.authService.loadUserData$(user).pipe(
           map((user: User | undefined) => {
             if (user) return AuthActions.userAuthenticated({ user });
-
             return AuthActions.userNotAuthenticated();
           })
         );
@@ -128,7 +125,6 @@ export class AuthEffects {
       ofType(AuthActions.userAuthenticated),
       switchMap(({ user }) => {
         if (!user) return of(AuthActions.userNotAuthenticated());
-
         return of(CashFlowActions.getCashFlowUserData({ uid: user.uid })).pipe(take(1));
       })
     );
@@ -138,14 +134,12 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.updateAccount),
       exhaustMap(({ updatedUserData }) => {
-        return from(this.cashFlowApi.updateUser$(updatedUserData)).pipe(
+        return from(this.authService.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
           tap(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Account data successfully updated');
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during updated account data');
-
             return of(AuthActions.updateAccountFailure());
           })
         );

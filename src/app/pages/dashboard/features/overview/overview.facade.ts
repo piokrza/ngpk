@@ -33,10 +33,7 @@ export class OverviewFacade {
       totalBalance: this.totalBalance$,
       totalIncome: this.store.select(CashFlowSelectors.totalIncomes),
       totalExpense: this.store.select(CashFlowSelectors.totalExpenses),
-      transactionAmount: combineLatest({
-        incomesLength: this.store.select(CashFlowSelectors.incomes).pipe(map((incomes) => incomes.length)),
-        expensesLength: this.store.select(CashFlowSelectors.expenses).pipe(map((expenses) => expenses.length)),
-      }).pipe(map(({ incomesLength, expensesLength }): number => incomesLength + expensesLength)),
+      transactionAmount: this.transactionAmount$,
     }).pipe(
       map((data) => [
         { label: 'totalBalance', data: data.totalBalance },
@@ -141,5 +138,12 @@ export class OverviewFacade {
       totalIncomes: this.store.select(CashFlowSelectors.totalIncomes),
       totalExpenses: this.store.select(CashFlowSelectors.totalExpenses),
     }).pipe(map(({ totalIncomes, totalExpenses }) => totalIncomes - totalExpenses));
+  }
+
+  private get transactionAmount$(): Observable<number> {
+    return combineLatest({
+      incomesLength: this.store.select(CashFlowSelectors.incomes).pipe(map((incomes) => incomes.length)),
+      expensesLength: this.store.select(CashFlowSelectors.expenses).pipe(map((expenses) => expenses.length)),
+    }).pipe(map(({ incomesLength, expensesLength }): number => incomesLength + expensesLength));
   }
 }

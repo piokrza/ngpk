@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of, take } from 'rxjs';
 
 import { AuthFormPayload, User } from '#auth/models';
 import { Collection } from '#common/enums';
@@ -37,5 +37,23 @@ export class AuthService {
 
   public get authState$(): Observable<firebase.User | null> {
     return this.afAuth.authState;
+  }
+
+  public addUserToDatabase$(user: User) {
+    const usersCollectionRef: AngularFirestoreCollection<User> = this.angularFirestore.collection(Collection.USERS);
+
+    return usersCollectionRef
+      .doc(user.uid)
+      .get()
+      .pipe(
+        take(1),
+        map((data) => !data.exists && usersCollectionRef.doc(data.id).set(user))
+      );
+  }
+
+  public updateUser$(updatedUserData: User): Promise<void> {
+    const user: AngularFirestoreDocument<User> = this.angularFirestore.collection<User>(Collection.USERS).doc(updatedUserData.uid);
+
+    return user.update(updatedUserData);
   }
 }
