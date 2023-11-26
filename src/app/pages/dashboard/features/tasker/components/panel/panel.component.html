@@ -37,9 +37,9 @@
           <p-progressSpinner />
         </div>
       } @else {
-        <p-button (onClick)="addNote.emit()" [label]="'tasker.addNote' | translate" styleClass="my-3" />
-
         <div class="container">
+          <p-button (onClick)="addNote.emit()" [label]="'tasker.addNote' | translate" styleClass="my-3" />
+
           @for (note of notes; track note.id) {
             <ctrl-note [note]="note" (removeNote)="removeNote.emit($event)" class="flex-grow-1" />
           }

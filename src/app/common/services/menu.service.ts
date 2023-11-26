@@ -19,7 +19,6 @@ export class MenuService {
         routerLink: DashobardPaths.OVERVIEW,
         icon: PrimeIcons.HOME,
         styleClass: 'lg:mr-2',
-        routerLinkActiveOptions: { exact: true, routerLinkActive: 'active' },
       },
       {
         label: this.translateService.instant('menu.cashFlow'),

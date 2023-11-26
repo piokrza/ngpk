@@ -1,3 +1,7 @@
+:host::ng-deep p-tieredMenu .p-menuitem-link-active {
+  background-color: var(--highlight-bg);
+}
+
 .header {
   display: flex;
   justify-content: space-between;
