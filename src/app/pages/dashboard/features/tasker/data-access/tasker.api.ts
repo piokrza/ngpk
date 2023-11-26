@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
-import { Observable, combineLatest, tap } from 'rxjs';
+import { Observable, combineLatest, first, tap } from 'rxjs';
 
 import { Collection } from '#common/enums';
 import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
@@ -21,7 +21,7 @@ export class TaskerApi {
     return combineLatest({
       tasks: tasks$.valueChanges({ idField: 'id' }),
       notes: notes$.valueChanges({ idField: 'id' }),
-    });
+    }).pipe(first());
   }
 
   public addTask(task: Task): Promise<DocumentReference<Task>> {

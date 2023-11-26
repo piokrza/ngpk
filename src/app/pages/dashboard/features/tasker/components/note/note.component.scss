@@ -3,10 +3,11 @@
     margin: 0;
     max-height: 0;
     overflow-y: hidden;
-    transition: 500ms;
+    transition: 350ms;
 
     &--visible {
       max-height: 100vh;
+      margin-bottom: 1rem;
     }
   }
 }

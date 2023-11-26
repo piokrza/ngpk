@@ -19,26 +19,6 @@ export class CashFlowService {
 
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
-  public get form(): FormGroup<CashFlowForm> {
-    return new FormGroup({
-      name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
-      amount: new FormControl<number>(0, { validators: [Validators.required], nonNullable: true }),
-      date: new FormControl<Date | null>(null, { validators: [Validators.required] }),
-      categoryCode: new FormControl<number>(0, { validators: [Validators.required], nonNullable: true }),
-      description: new FormControl<string>('', { validators: [Validators.maxLength(40)], nonNullable: true }),
-    });
-  }
-
-  public getCategories$(isIncomeMode: boolean): Observable<Category[]> {
-    return this.store.select(CategoriesSelectors.categories).pipe(
-      filter(Boolean),
-      map((categories: Categories): Category[] => {
-        const categoriesType: CATEGORIES = isIncomeMode ? CATEGORIES.INCOMES : CATEGORIES.EXPENSES;
-        return categories[categoriesType];
-      })
-    );
-  }
-
   public openCashFlowDialog$(isIncomeMode: boolean) {
     const dialogRef = this.dialogService.open(AddFormComponent, {
       data: isIncomeMode,
@@ -55,5 +35,25 @@ export class CashFlowService {
 
   public setActiveTabIndex(idx: number): void {
     this.activeTabIndex$$.next(idx);
+  }
+
+  public getCategories$(isIncomeMode: boolean): Observable<Category[]> {
+    return this.store.select(CategoriesSelectors.categories).pipe(
+      filter(Boolean),
+      map((categories: Categories): Category[] => {
+        const categoriesType: CATEGORIES = isIncomeMode ? CATEGORIES.INCOMES : CATEGORIES.EXPENSES;
+        return categories[categoriesType];
+      })
+    );
+  }
+
+  public get form(): FormGroup<CashFlowForm> {
+    return new FormGroup({
+      name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
+      amount: new FormControl<number>(0, { validators: [Validators.required], nonNullable: true }),
+      date: new FormControl<Date | null>(null, { validators: [Validators.required] }),
+      categoryCode: new FormControl<number>(0, { validators: [Validators.required], nonNullable: true }),
+      description: new FormControl<string>('', { validators: [Validators.maxLength(40)], nonNullable: true }),
+    });
   }
 }
