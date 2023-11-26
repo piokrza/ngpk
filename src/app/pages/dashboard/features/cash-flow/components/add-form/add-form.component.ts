@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { filter, Observable, take, tap } from 'rxjs';
-import uniqid from 'uniqid';
 
 import { User } from '#auth/models';
 import { AuthService } from '#auth/services';
@@ -19,6 +19,7 @@ import { CashFlowForm, Category } from '#cash-flow/models';
 })
 export class AddFormComponent implements OnInit {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  private readonly firestore: AngularFirestore = inject(AngularFirestore);
   private readonly cashFlowService: CashFlowService = inject(CashFlowService);
 
   public categories$!: Observable<Category[]>;
@@ -52,7 +53,7 @@ export class AddFormComponent implements OnInit {
       ...this.form.getRawValue(),
       date: Timestamp.fromDate(this.form.getRawValue().date!),
       uid: this.userId,
-      id: uniqid(),
+      id: this.firestore.createId(),
     });
 
     this.form.reset();

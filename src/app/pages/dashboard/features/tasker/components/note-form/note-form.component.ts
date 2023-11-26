@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Signal, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import uniqid from 'uniqid';
 
 import { User } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
@@ -18,6 +18,7 @@ import { Note, NoteForm } from '#tasker/models';
 })
 export class NoteFormComponent {
   private readonly noteService: TaskerService = inject(TaskerService);
+  private readonly firestore: AngularFirestore = inject(AngularFirestore);
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly form: FormGroup<NoteForm> = this.noteService.noteForm;
@@ -31,7 +32,7 @@ export class NoteFormComponent {
 
     const newNote: Note = {
       ...this.form.getRawValue(),
-      id: uniqid(),
+      id: this.firestore.createId(),
       uid: this.user()!.uid,
     };
 

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Signal, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import uniqid from 'uniqid';
 
 import { User } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
@@ -18,6 +18,8 @@ import { Task, TaskForm, TaskStepForm } from '#tasker/models';
 })
 export class TaskFormComponent {
   private readonly taskerService: TaskerService = inject(TaskerService);
+  private readonly firestore: AngularFirestore = inject(AngularFirestore);
+
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
@@ -34,9 +36,9 @@ export class TaskFormComponent {
 
     const newTask: Task = {
       ...this.form.getRawValue(),
-      id: uniqid(),
+      id: this.firestore.createId(),
       uid: this.user()?.uid ?? '',
-      steps: [...this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: uniqid() }))],
+      steps: [...this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.firestore.createId() }))],
     };
 
     this.dialogRef.close(newTask);
