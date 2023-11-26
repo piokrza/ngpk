@@ -1,8 +1,8 @@
 <p-card styleClass="task">
   <div class="task">
-    <p-checkbox [(ngModel)]="isTaskComplete" (onChange)="toggleIsTaskComplete.emit(task.id)" [binary]="true" styleClass="mr-3" />
+    <p-checkbox [binary]="true" [(ngModel)]="isTaskComplete" (onChange)="toggleIsTaskComplete.emit(task.id)" styleClass="mr-3" />
 
-    <p (click)="toggleStepsVisibility()" [class.task__name--complete]="task.isComplete" class="task__name">
+    <p [class.task__name--complete]="task.isComplete" (click)="toggleStepsVisibility()" class="task__name">
       {{ task.name }}
       @if (task.steps.length) {
         <small>({{ completedSteps }} {{ 'common.of' | translate }} {{ task.steps.length }})</small>
@@ -16,9 +16,9 @@
     <ul [class.task__step-list--visible]="isStepsVisible" class="task__step-list">
       @for (step of task.steps; track step.id) {
         <li
+          [class.task__name--complete]="step.isComplete"
           (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
           (keyup.enter)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
-          [class.task__name--complete]="step.isComplete"
           class="task__name">
           {{ step.name | titlecase }}
         </li>

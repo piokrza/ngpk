@@ -13,14 +13,14 @@ import { ChartConfig, TaskerData } from '#overview/models';
 import { CashFlowSelectors } from '#store/cash-flow';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent } from '#tasker/components';
-import { TaskService } from '#tasker/data-access';
+import { TaskerService } from '#tasker/data-access';
 import { Note } from '#tasker/models';
 
 @Injectable()
 export class OverviewFacade {
   private readonly store: Store = inject(Store);
   private readonly router: Router = inject(Router);
-  private readonly taskService: TaskService = inject(TaskService);
+  private readonly taskerService: TaskerService = inject(TaskerService);
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly translate: TranslateService = inject(TranslateService);
 
@@ -129,7 +129,7 @@ export class OverviewFacade {
       tap((note?: Note) => {
         if (note) {
           this.store.dispatch(TaskerActions.addNote({ note }));
-          this.taskService.setActiveTabIndex(1);
+          this.taskerService.setActiveTabIndex(1);
           this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.TASKER]);
         }
       })

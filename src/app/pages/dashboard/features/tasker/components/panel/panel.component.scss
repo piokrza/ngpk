@@ -1,6 +1,9 @@
 @use 'src/assets/styles/variables/sizes' as s;
 
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   max-width: s.$containerMaxWidth;
   margin: 0 auto;
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, inject } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
-import { TaskService } from '#tasker/data-access';
+import { TaskerService } from '#tasker/data-access';
 import { Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Component({
@@ -11,7 +11,7 @@ import { Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskComponent implements OnChanges {
-  private readonly taskService: TaskService = inject(TaskService);
+  private readonly taskerService: TaskerService = inject(TaskerService);
 
   @Input({ required: true }) task!: Task;
 
@@ -28,12 +28,12 @@ export class TaskComponent implements OnChanges {
     if (changes['task']) {
       this.isTaskComplete = this.task.isComplete;
       this.completedSteps = this.task.steps.filter(({ isComplete }: TaskStep) => isComplete).length;
-      this.isStepsVisible = this.taskService.getIsVisible(this.task.id);
+      this.isStepsVisible = this.taskerService.getIsVisible(this.task.id);
     }
   }
 
   public toggleStepsVisibility(): void {
     this.isStepsVisible = !this.isStepsVisible;
-    this.taskService.setIsVisibleData(this.task.id, this.isStepsVisible);
+    this.taskerService.setIsVisibleData(this.task.id, this.isStepsVisible);
   }
 }

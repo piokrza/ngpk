@@ -1,0 +1,12 @@
+.note {
+  &__content {
+    margin: 0;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: 500ms;
+
+    &--visible {
+      max-height: 100vh;
+    }
+  }
+}

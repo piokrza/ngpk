@@ -4,7 +4,7 @@ import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { Observable } from 'rxjs';
 
 import { LabelWithData } from '#common/models';
-import { TaskService } from '#tasker/data-access';
+import { TaskerService } from '#tasker/data-access';
 import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Component({
@@ -30,7 +30,7 @@ export class PanelComponent {
   @Output() addNote = new EventEmitter<void>();
   @Output() removeNote = new EventEmitter<string>();
 
-  public readonly activeTabIndex$: Observable<number> = inject(TaskService).activeTabIndex$;
+  public readonly activeTabIndex$: Observable<number> = inject(TaskerService).activeTabIndex$;
 
   public readonly filters: LabelWithData<TaskFilter>[] = [
     { label: this.translate.instant('tasker.filter.all'), data: 'all' },

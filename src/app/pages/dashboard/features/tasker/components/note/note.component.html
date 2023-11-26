@@ -1,0 +1,10 @@
+<p-card (click)="toggleNoteVisibility()" styleClass="cursor-pointer note">
+  <div class="flex justify-content-between align-items-center">
+    <p>{{ note.name }}</p>
+    <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TIMES" (onClick)="removeNote.emit(note.id)" severity="danger" />
+  </div>
+
+  <p [class.note__content--visible]="isTaskContentVisible" class="note__content">
+    {{ note.content }}
+  </p>
+</p-card>

@@ -7,7 +7,7 @@ import uniqid from 'uniqid';
 
 import { User } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
-import { NoteService } from '#tasker/data-access';
+import { TaskerService } from '#tasker/data-access';
 import { Note, NoteForm } from '#tasker/models';
 
 @Component({
@@ -17,7 +17,7 @@ import { Note, NoteForm } from '#tasker/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteFormComponent {
-  private readonly noteService: NoteService = inject(NoteService);
+  private readonly noteService: TaskerService = inject(TaskerService);
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly form: FormGroup<NoteForm> = this.noteService.noteForm;

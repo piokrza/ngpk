@@ -8,7 +8,7 @@ import uniqid from 'uniqid';
 
 import { User } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
-import { TaskService } from '#tasker/data-access';
+import { TaskerService } from '#tasker/data-access';
 import { Task, TaskForm, TaskStepForm } from '#tasker/models';
 
 @Component({
@@ -17,11 +17,11 @@ import { Task, TaskForm, TaskStepForm } from '#tasker/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormComponent {
-  private readonly taskService: TaskService = inject(TaskService);
+  private readonly taskerService: TaskerService = inject(TaskerService);
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly form: FormGroup<TaskForm> = this.taskService.form;
+  public readonly form: FormGroup<TaskForm> = this.taskerService.form;
   public readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
   private readonly user: Signal<User | null | undefined> = toSignal(inject(Store).select(AuthSelectors.user));
@@ -43,7 +43,7 @@ export class TaskFormComponent {
   }
 
   public addStep(): void {
-    this.taskService.addStep(this.form);
+    this.taskerService.addStep(this.form);
   }
 
   public removeStep(stepIdx: number): void {

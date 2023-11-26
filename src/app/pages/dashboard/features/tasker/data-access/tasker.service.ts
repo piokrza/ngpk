@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { TaskForm, TaskStepForm } from '#tasker/models';
+import { NoteForm, TaskForm, TaskStepForm } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
-export class TaskService {
+export class TaskerService {
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
   private readonly visibilityKey = 'isVisible';
@@ -33,8 +33,8 @@ export class TaskService {
     return visibleData.taskId === taskId ? visibleData.isVisible : false;
   }
 
-  public setIsVisibleData(taskId: string, isVisible: boolean): void {
-    sessionStorage.setItem(this.visibilityKey, JSON.stringify({ taskId, isVisible }));
+  public setIsVisibleData(dataId: string, isVisible: boolean): void {
+    sessionStorage.setItem(this.visibilityKey, JSON.stringify({ dataId, isVisible }));
   }
 
   public removeVisibilityData(): void {
@@ -47,5 +47,12 @@ export class TaskService {
 
   public setActiveTabIndex(idx: number): void {
     this.activeTabIndex$$.next(idx);
+  }
+
+  public get noteForm(): FormGroup<NoteForm> {
+    return new FormGroup({
+      name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
+      content: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
+    });
   }
 }
