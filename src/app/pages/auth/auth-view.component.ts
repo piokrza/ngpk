@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </div>
     </section>
   `,
-  styleUrl: './auth.component.scss',
+  styleUrl: './auth-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthViewComponent {}
