@@ -7,7 +7,6 @@ import { catchError, exhaustMap, from, iif, map, of, switchMap, take, tap } from
 
 import { User } from '#auth/models';
 import { AuthService } from '#auth/services';
-import { CashFlowApi } from '#cash-flow/data-access';
 import { AppPaths, ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
@@ -19,7 +18,6 @@ import { CashFlowActions } from '#store/cash-flow';
 export class AuthEffects {
   private readonly router: Router = inject(Router);
   private readonly actions$: Actions = inject(Actions);
-  private readonly cashFlowApi: CashFlowApi = inject(CashFlowApi);
   private readonly authService: AuthService = inject(AuthService);
   private readonly toastService: ToastService = inject(ToastService);
 
