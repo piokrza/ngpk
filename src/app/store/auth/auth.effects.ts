@@ -2,8 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase/compat';
-import { catchError, exhaustMap, from, iif, map, of, switchMap, take, tap } from 'rxjs';
+import { catchError, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
 
 import { User } from '#auth/models';
 import { AuthService } from '#auth/services';
@@ -18,6 +19,7 @@ import { CashFlowActions } from '#store/cash-flow';
 export class AuthEffects {
   private readonly router: Router = inject(Router);
   private readonly actions$: Actions = inject(Actions);
+  private readonly translateService = inject(TranslateService);
   private readonly authService: AuthService = inject(AuthService);
   private readonly toastService: ToastService = inject(ToastService);
 
@@ -26,33 +28,30 @@ export class AuthEffects {
       ofType(AuthActions.signInWithGoogle),
       exhaustMap(() => {
         return from(this.authService.signinWithGoogle()).pipe(
-          switchMap(({ user }: firebase.auth.UserCredential) => {
-            return iif(
-              () => user !== null,
-              this.authService.addUserToDatabase$(setUser(user!)).pipe(
-                map(() => AuthActions.userAuthenticated({ user: setUser(user!) })),
-                catchError(() => of(AuthActions.userNotAuthenticated()))
-              ),
-              of(AuthActions.userNotAuthenticated())
-            );
-          }),
-          tap((): void => {
-            this.router.navigateByUrl('/dashboard');
-          })
+          map(({ user }: firebase.auth.UserCredential) => AuthActions.userAuthenticated({ user: setUser(user!) })),
+          tap(() => this.router.navigateByUrl(AppPaths.DASHBOARD)),
+          catchError(() => of(AuthActions.userNotAuthenticated()))
         );
       })
     );
   });
+
+  public signInWithGoogleSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.userAuthenticated),
+        exhaustMap(({ user }) => this.authService.addUserToDatabase$(user))
+      );
+    },
+    { dispatch: false }
+  );
 
   public signOut$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signOut),
       exhaustMap((): Promise<void> => this.authService.signOut()),
       map(() => AuthActions.userNotAuthenticated()),
-      tap((): void => {
-        this.router.navigateByUrl('/authentication');
-        this.toastService.showMessage(ToastStatus.INFO, 'Success!', 'You were successfully logged out');
-      })
+      tap(() => this.router.navigateByUrl('/authentication'))
     );
   });
 
@@ -61,16 +60,9 @@ export class AuthEffects {
       ofType(AuthActions.signInWithEmailAndPassword),
       exhaustMap(({ payload }) => {
         return from(this.authService.signInWithEmailAndPassword(payload)).pipe(
-          map(() => {
-            return AuthActions.signInWithEmailAndPasswordSuccess();
-          }),
-          tap((): void => {
-            this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`);
-          }),
-
-          catchError(({ message }: HttpErrorResponse) => {
-            return of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message }));
-          })
+          map(() => AuthActions.signInWithEmailAndPasswordSuccess()),
+          tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
+          catchError(({ message }: HttpErrorResponse) => of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message })))
         );
       })
     );
@@ -82,20 +74,11 @@ export class AuthEffects {
         ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
         exhaustMap(({ payload }) => {
           return from(this.authService.signUpWithEmailAndPassword(payload)).pipe(
-            switchMap(({ user }) => {
-              if (user) {
-                return this.authService.addUserToDatabase$(setUser(user)).pipe(
-                  take(1),
-                  map(() => AuthActions.signUpWithEmailAndPasswordSuccess())
-                );
-              } else return of(AuthActions.signUpWithEmailAndPasswordSuccess());
+            map(({ user }) => {
+              return this.authService.addUserToDatabase$(setUser(user!)).pipe(map(() => AuthActions.signUpWithEmailAndPasswordSuccess()));
             }),
-            tap(() => {
-              this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`);
-            }),
-            catchError(({ message }: HttpErrorResponse) => {
-              return of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message }));
-            })
+            tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
+            catchError(({ message }: HttpErrorResponse) => of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message })))
           );
         })
       );
@@ -134,14 +117,14 @@ export class AuthEffects {
       exhaustMap(({ updatedUserData }) => {
         return from(this.authService.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
-          tap(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Account data successfully updated');
-          }),
-          catchError(() => {
-            return of(AuthActions.updateAccountFailure());
-          })
+          tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Account data successfully updated')),
+          catchError(() => of(AuthActions.updateAccountFailure()))
         );
       })
     );
   });
+
+  private tr(path: string): string {
+    return this.translateService.instant('toastMessage.' + path);
+  }
 }

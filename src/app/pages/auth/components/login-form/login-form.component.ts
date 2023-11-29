@@ -22,7 +22,7 @@ export class LoginFormComponent {
 
   public readonly errorMessage$: Observable<string | null> = this.store.select(AuthSelectors.errorMessage).pipe(
     tap((errorMessage) => {
-      typeof errorMessage === 'string' && setTimeout(() => this.store.dispatch(AuthActions.resetErrorMessage()), 4000);
+      typeof errorMessage === 'string' && setTimeout(() => this.store.dispatch(AuthActions.resetErrorMessage()), 5000);
     })
   );
 

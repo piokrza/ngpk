@@ -3,7 +3,7 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
-import { map, Observable, of, take } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
 import { AuthFormPayload, User } from '#auth/models';
 import { Collection } from '#common/enums';
@@ -39,21 +39,17 @@ export class AuthService {
     return this.afAuth.authState;
   }
 
-  public addUserToDatabase$(user: User) {
+  public addUserToDatabase$(user: User): Observable<firebase.firestore.DocumentSnapshot<User>> {
     const usersCollectionRef: AngularFirestoreCollection<User> = this.angularFirestore.collection(Collection.USERS);
 
     return usersCollectionRef
       .doc(user.uid)
       .get()
-      .pipe(
-        take(1),
-        map((data) => !data.exists && usersCollectionRef.doc(data.id).set(user))
-      );
+      .pipe(tap((data) => !data.exists && usersCollectionRef.doc(data.id).set(user)));
   }
 
   public updateUser$(updatedUserData: User): Promise<void> {
     const user: AngularFirestoreDocument<User> = this.angularFirestore.collection<User>(Collection.USERS).doc(updatedUserData.uid);
-
     return user.update(updatedUserData);
   }
 }
