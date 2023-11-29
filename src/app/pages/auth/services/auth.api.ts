@@ -9,7 +9,7 @@ import { AuthFormPayload, User } from '#auth/models';
 import { Collection } from '#common/enums';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class AuthApi {
   private readonly afAuth: AngularFireAuth = inject(AngularFireAuth);
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 

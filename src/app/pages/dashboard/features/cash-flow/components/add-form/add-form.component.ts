@@ -7,7 +7,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { filter, Observable, take, tap } from 'rxjs';
 
 import { User } from '#auth/models';
-import { AuthService } from '#auth/services';
+import { AuthApi } from '#auth/services';
 import { CashFlowService } from '#cash-flow/data-access';
 import { CashFlowForm, Category } from '#cash-flow/models';
 
@@ -30,7 +30,7 @@ export class AddFormComponent implements OnInit {
   private userId!: string;
 
   public constructor() {
-    inject(AuthService)
+    inject(AuthApi)
       .authState$.pipe(
         take(1),
         filter(Boolean),
