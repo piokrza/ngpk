@@ -5,10 +5,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, map, tap } from 'rxjs';
 
+import { CashFlow } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
 import { AppPaths } from '#common/enums';
 import { LabelWithData } from '#common/models';
 import { DashobardPaths } from '#dashboard/enums';
+import { bgColors, bgColorsHover, categoryNames, expensesCatLength, incomesCatLength } from '#overview/constants';
 import { ChartConfig, TaskerData } from '#overview/models';
 import { CashFlowSelectors } from '#store/cash-flow';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
@@ -56,44 +58,17 @@ export class OverviewFacade {
 
         return {
           data: {
-            labels: [
-              this.translate.instant('overview.rentalFees'),
-              this.translate.instant('overview.travel'),
-              this.translate.instant('overview.food'),
-              this.translate.instant('overview.entertainment'),
-              this.translate.instant('overview.concerts'),
-              this.translate.instant('overview.salary'),
-              this.translate.instant('overview.gifts'),
-            ],
+            labels: [...categoryNames.map((name) => this.translate.instant(`overview.${name}`))],
             datasets: [
               {
                 data: [
-                  expenses.filter((c) => c.categoryCode === 0).reduce((acc, { amount }) => acc + amount, 0),
-                  expenses.filter((c) => c.categoryCode === 1).reduce((acc, { amount }) => acc + amount, 0),
-                  expenses.filter((c) => c.categoryCode === 2).reduce((acc, { amount }) => acc + amount, 0),
-                  expenses.filter((c) => c.categoryCode === 3).reduce((acc, { amount }) => acc + amount, 0),
-                  incomes.filter((c) => c.categoryCode === 4).reduce((acc, { amount }) => acc + amount, 0),
-                  incomes.filter((c) => c.categoryCode === 5).reduce((acc, { amount }) => acc + amount, 0),
-                  incomes.filter((c) => c.categoryCode === 6).reduce((acc, { amount }) => acc + amount, 0),
+                  ...Array.from({ length: expensesCatLength }, (_, i) => this.getTotalCashFlowAmountByCategoryCode(expenses, i)),
+                  ...Array.from({ length: incomesCatLength }, (_, i) =>
+                    this.getTotalCashFlowAmountByCategoryCode(incomes, i + expensesCatLength)
+                  ),
                 ],
-                backgroundColor: [
-                  documentStyle.getPropertyValue('--pink-400'),
-                  documentStyle.getPropertyValue('--pink-500'),
-                  documentStyle.getPropertyValue('--pink-600'),
-                  documentStyle.getPropertyValue('--pink-700'),
-                  documentStyle.getPropertyValue('--green-500'),
-                  documentStyle.getPropertyValue('--green-600'),
-                  documentStyle.getPropertyValue('--green-700'),
-                ],
-                hoverBackgroundColor: [
-                  documentStyle.getPropertyValue('--pink-700'),
-                  documentStyle.getPropertyValue('--pink-600'),
-                  documentStyle.getPropertyValue('--pink-500'),
-                  documentStyle.getPropertyValue('--pink-400'),
-                  documentStyle.getPropertyValue('--green-700'),
-                  documentStyle.getPropertyValue('--green-600'),
-                  documentStyle.getPropertyValue('--green-500'),
-                ],
+                backgroundColor: [...bgColors.map((bgClr) => documentStyle.getPropertyValue(bgClr))],
+                hoverBackgroundColor: [...bgColorsHover.map((bgClr) => documentStyle.getPropertyValue(bgClr))],
               },
             ],
           },
@@ -145,5 +120,9 @@ export class OverviewFacade {
       incomesLength: this.store.select(CashFlowSelectors.incomes).pipe(map((incomes) => incomes.length)),
       expensesLength: this.store.select(CashFlowSelectors.expenses).pipe(map((expenses) => expenses.length)),
     }).pipe(map(({ incomesLength, expensesLength }): number => incomesLength + expensesLength));
+  }
+
+  private getTotalCashFlowAmountByCategoryCode(cf: CashFlow[], code: number): number {
+    return cf.filter((c) => c.categoryCode === code).reduce((acc, { amount }) => acc + amount, 0);
   }
 }
