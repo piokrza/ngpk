@@ -4,12 +4,13 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { User } from '#auth/models';
 import { AccountSettingsForm } from '#settings/models';
-import { AccountSettingsFormService } from '#settings/services';
+import { AccountSettingsFormService } from '#settings/services/account-settings-form.service';
 
 @Component({
   selector: 'ctrl-account-settings-form',
   templateUrl: './account-settings-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [AccountSettingsFormService],
 })
 export class AccountSettingsFormComponent implements OnInit {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);

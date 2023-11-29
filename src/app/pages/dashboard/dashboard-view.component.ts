@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { DashboardFacade } from '#dashboard/.';
+import { DashboardFacade } from '#dashboard/data-access';
 
 @UntilDestroy()
 @Component({

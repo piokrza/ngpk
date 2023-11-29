@@ -14,7 +14,7 @@ import { CashFlowService } from '#cash-flow/data-access';
 import { AppPaths } from '#common/enums';
 import { LabelWithData } from '#common/models';
 import { DashobardPaths } from '#dashboard/enums';
-import { OverviewFacade } from '#overview/.';
+import { OverviewFacade } from '#overview/data-access';
 import { ContainerComponent } from '#shared/components';
 
 const imports = [

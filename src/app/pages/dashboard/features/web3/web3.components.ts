@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { Web3Facade } from '#web3/.';
+import { Web3Facade } from '#web3/data-access';
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-web3-view',
+  selector: 'ctrl-web3',
   template: `
     <ctrl-wallet />
     <router-outlet />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Web3ViewComponent implements OnInit {
+export class Web3Component implements OnInit {
   private readonly web3Facade: Web3Facade = inject(Web3Facade);
 
   public ngOnInit(): void {

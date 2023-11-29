@@ -11,7 +11,7 @@ export class WeatherApi {
   private readonly http: HttpClient = inject(HttpClient);
   private readonly translateService: TranslateService = inject(TranslateService);
 
-  private readonly baseUrl = env.weatherBaseUrl;
+  private readonly baseUrl: string = env.weatherBaseUrl;
   private readonly weatherApiKey: string = env.weatherApiKey;
 
   public searchByCityName$(cityName: string): Observable<WeatherResponse> {

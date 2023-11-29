@@ -4,7 +4,8 @@ import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-import { DashboardFacade, DashboardRoutingModule, DashboardComponent } from '#dashboard/.';
+import { DashboardRoutingModule, DashboardComponent } from '#dashboard/.';
+import { DashboardFacade } from '#dashboard/data-access';
 import { ContainerComponent } from '#shared/components';
 import { UiModule } from '#shared/ui';
 

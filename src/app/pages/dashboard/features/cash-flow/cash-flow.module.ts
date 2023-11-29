@@ -14,7 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
-import { CashFlowFacade, CashFlowComponent } from '#cash-flow/.';
+import { CashFlowComponent } from '#cash-flow/.';
 import {
   AddFormComponent,
   DetailsComponent,
@@ -24,6 +24,7 @@ import {
   PanelComponent,
   UpdateFormComponent,
 } from '#cash-flow/components';
+import { CashFlowFacade } from '#cash-flow/data-access';
 import { CategoryLabelPipe } from '#cash-flow/pipes';
 import { IconPipe, TimestampToDatePipe } from '#shared/pipes';
 

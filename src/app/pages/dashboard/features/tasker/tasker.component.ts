@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 
-import { TaskerFacade } from '#tasker/.';
+import { TaskerFacade } from '#tasker/data-access';
 import { TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @UntilDestroy()

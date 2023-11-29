@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AccountSettingsForm } from '#settings/models';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AccountSettingsFormService {
   public get userSettingsForm(): FormGroup<AccountSettingsForm> {
     return new FormGroup<AccountSettingsForm>({
