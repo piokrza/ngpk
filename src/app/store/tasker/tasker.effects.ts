@@ -51,9 +51,7 @@ export class TaskerEffects {
       exhaustMap(({ taskId }) => {
         return this.taskerApi.toggleIsTaskComplete(taskId).pipe(
           map(() => TaskerActions.toggleIsTaskCompleteSuccess()),
-          catchError(() => {
-            return of(TaskerActions.toggleIsTaskCompleteFailure());
-          })
+          catchError(() => of(TaskerActions.toggleIsTaskCompleteFailure()))
         );
       })
     );
@@ -65,9 +63,7 @@ export class TaskerEffects {
       exhaustMap(({ payload }) => {
         return this.taskerApi.toggleIsStepComplete(payload).pipe(
           map(() => TaskerActions.toggleIsStepCompleteSuccess()),
-          catchError(() => {
-            return of(TaskerActions.toggleIsTaskCompleteFailure());
-          })
+          catchError(() => of(TaskerActions.toggleIsTaskCompleteFailure()))
         );
       })
     );

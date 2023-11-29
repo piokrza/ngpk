@@ -54,11 +54,11 @@ export class CashFlowEffects {
       exhaustMap(({ expense }) => {
         return from(this.cashFlowApi.addCashFlow$(Collection.EXPENSES, expense)).pipe(
           map(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully added');
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Expense successfully added');
             return CashFlowActions.addExpenseSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), 'Something went wrong during storing data in database');
             return of(CashFlowActions.addExpenseFailure());
           })
         );
@@ -72,11 +72,11 @@ export class CashFlowEffects {
       exhaustMap(({ incomeId }) => {
         return of(this.cashFlowApi.removeCashFlow$(Collection.INCOMES, incomeId)).pipe(
           map(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully removed');
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Income successfully removed');
             return CashFlowActions.removeIncomeSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), 'Something went wrong during storing data in database');
             return of(CashFlowActions.removeIncomeFailure());
           })
         );
@@ -90,11 +90,11 @@ export class CashFlowEffects {
       exhaustMap(({ expenseId }) => {
         return of(this.cashFlowApi.removeCashFlow$(Collection.EXPENSES, expenseId)).pipe(
           map(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully removed');
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Expense successfully removed');
             return CashFlowActions.removeExpenseSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), 'Something went wrong during storing data in database');
             return of(CashFlowActions.removeExpenseFailure());
           })
         );
@@ -108,11 +108,11 @@ export class CashFlowEffects {
       exhaustMap(({ updatedIncome }) => {
         return of(this.cashFlowApi.updateCashFlow$(Collection.INCOMES, updatedIncome)).pipe(
           map(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Income successfully updated');
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Income successfully updated');
             return CashFlowActions.removeIncomeSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), 'Something went wrong during storing data in database');
             return of(CashFlowActions.removeIncomeFailure());
           })
         );
@@ -126,11 +126,11 @@ export class CashFlowEffects {
       exhaustMap(({ updatedExpense }) => {
         return of(this.cashFlowApi.updateCashFlow$(Collection.EXPENSES, updatedExpense)).pipe(
           map(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, 'Success!', 'Expense successfully updated');
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Expense successfully updated');
             return CashFlowActions.removeExpenseSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, 'Error!', 'Something went wrong during storing data in database');
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), 'Something went wrong during storing data in database');
             return of(CashFlowActions.removeExpenseFailure());
           })
         );

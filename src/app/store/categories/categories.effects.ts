@@ -19,9 +19,7 @@ export class CategoriesEffects {
       ofType(CategoriesActions.getCategories),
       exhaustMap(() => {
         return this.categoriesApi.getCategories$().pipe(
-          map((categories: Categories) => {
-            return CategoriesActions.getCategoriesSuccess({ categories });
-          }),
+          map((categories: Categories) => CategoriesActions.getCategoriesSuccess({ categories })),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.WARN, 'Error!', 'Something went wrong during fetching categories from database');
             return of(CategoriesActions.getCategoriesFailure());
