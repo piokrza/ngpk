@@ -88,7 +88,19 @@
   "auth": {
     "signoutMessage": "Na pewno chcesz się wylogować?",
     "signout": "Wyloguj się",
-    "passwordMissmatch": "Hasła nie są takie same"
+    "passwordMissmatch": "Hasła nie są takie same",
+    "password": "Hasło",
+    "passwordConfirmation": "Powtórz hasło",
+    "haventAccount": "Nie posiadasz konta?",
+    "haveAccount": "Posiadasz konto?",
+    "clickToLogin": "Kliknij aby się zalogować",
+    "clickToRegister": "Kliknij aby się zarejestrować",
+    "login": "Logowanie",
+    "register": "Rejestracja",
+    "emailPassword": "Lub zaloguj się używając maila",
+    "loginLabel": "Zaloguj",
+    "registerLabel": "Zarejestruj",
+    "loginGoogleAcc": "Zaloguj się używając konta google"
   },
 
   "tasker": {

@@ -1,6 +1,6 @@
-<h1 class="heading text-center">Register</h1>
+<h1 class="heading text-center">{{ 'auth.register' | translate }}</h1>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="my-7">
   @if (errorMessage$ | async; as errorMessage) {
     <small class="error block my-3">{{ errorMessage }}</small>
   }
@@ -11,12 +11,12 @@
 
   <span class="p-float-label my-4">
     <p-password [formControl]="form.controls.password" [feedback]="false" [toggleMask]="true" />
-    <label htmlFor="password">Password</label>
+    <label htmlFor="password">{{ 'auth.password' | translate }}</label>
   </span>
 
   <span class="p-float-label my-4">
     <p-password [formControl]="form.controls.passwordConfirmation" [feedback]="false" [toggleMask]="true" />
-    <label htmlFor="passwordConfirmation">Password confirmation</label>
+    <label htmlFor="passwordConfirmation">{{ 'auth.passwordConfirmation' | translate }}</label>
   </span>
 
   @if (form.errors?.['passwordMismatch'] && form.get('passwordConfirmation')?.touched) {
@@ -27,7 +27,8 @@
 </form>
 
 <small class="block text-center mt-4">
-  Have an account?
-  <a [routerLink]="['../' + AuthPaths.LOGIN]" class="underline cursor-pointer">click</a>
-  to login
+  {{ 'auth.haveAccount' | translate }}
+  <a [routerLink]="['../' + AuthPaths.LOGIN]" class="underline cursor-pointer">
+    {{ 'auth.clickToLogin' | translate }}
+  </a>
 </small>

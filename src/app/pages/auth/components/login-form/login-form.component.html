@@ -1,8 +1,8 @@
-<h1 class="heading text-center">Login</h1>
+<h1 class="heading text-center">{{ 'auth.login' | translate }}</h1>
 
-<button (click)="signinWithGoogle()" icon="pi pi-google" label="Login with your google account" class="w-full my-6" pButton></button>
+<button (click)="signinWithGoogle()" icon="pi pi-google" [label]="'auth.loginGoogleAcc' | translate" class="w-full my-6" pButton></button>
 
-<p class="text-sm text-center">Or login with your email & password</p>
+<p class="text-sm text-center">{{ 'auth.emailPassword' | translate }}</p>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   @if (errorMessage$ | async; as errorMessage) {
@@ -16,14 +16,15 @@
 
   <span class="p-float-label my-4">
     <p-password [formControl]="form.controls.password" [feedback]="false" [toggleMask]="true" />
-    <label htmlFor="password">Password</label>
+    <label htmlFor="password">{{ 'auth.password' | translate }}</label>
   </span>
 
-  <button [disabled]="form.invalid" class="w-full" pButton label="Login" type="submit"></button>
+  <button [disabled]="form.invalid" class="w-full" pButton [label]="'auth.loginLabel' | translate" type="submit"></button>
 </form>
 
 <small class="block text-center mt-4">
-  Haven't account?
-  <a [routerLink]="['../' + AuthPaths.REGISTER]" class="underline cursor-pointer">click</a>
-  to register
+  {{ 'auth.haventAccount' | translate }}
+  <a [routerLink]="['../' + AuthPaths.REGISTER]" class="underline cursor-pointer">
+    {{ 'auth.clickToRegister' | translate }}
+  </a>
 </small>
