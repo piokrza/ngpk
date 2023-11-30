@@ -5,7 +5,7 @@ import { DashboardFacade } from '#dashboard/data-access';
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-dashboard-view',
+  selector: 'ctrl-dashboard',
   template: `
     <ctrl-layout>
       <router-outlet />
