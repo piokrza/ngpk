@@ -6,20 +6,11 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { DashboardRoutingModule, DashboardComponent } from '#dashboard/.';
 import { DashboardFacade } from '#dashboard/data-access';
+import { LayoutModule } from '#layout/.';
 import { ContainerComponent } from '#shared/components';
-import { UiModule } from '#shared/ui';
 
 const declarations = [DashboardComponent];
-const imports = [
-  CommonModule,
-  DashboardRoutingModule,
-  ChartModule,
-  UiModule,
-  CardModule,
-  ProgressSpinnerModule,
-  ContainerComponent,
-  UiModule,
-];
+const imports = [CommonModule, DashboardRoutingModule, ChartModule, LayoutModule, CardModule, ProgressSpinnerModule, ContainerComponent];
 const providers: Provider[] = [DashboardFacade];
 
 @NgModule({ declarations, imports, providers })

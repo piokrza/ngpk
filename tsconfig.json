@@ -28,6 +28,7 @@
       "#auth/*": ["src/app/pages/auth/*"],
 
       "#dashboard/*": ["src/app/pages/dashboard/*"],
+      "#layout/*": ["src/app/pages/dashboard/layout/*"],
       "#cash-flow/*": ["src/app/pages/dashboard/features/cash-flow/*"],
       "#overview/*": ["src/app/pages/dashboard/features/overview/*"],
       "#settings/*": ["src/app/pages/dashboard/features/settings/*"],

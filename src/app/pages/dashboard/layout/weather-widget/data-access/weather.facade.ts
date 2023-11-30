@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { EMPTY, Observable, catchError, finalize, iif, switchMap, tap } from 'rxjs';
 
-import { WeatherApi, WeatherState } from '#shared/ui/weather-widget/data-access';
-import { IGeolocation, WeatherResponse } from '#shared/ui/weather-widget/models';
+import { WeatherApi, WeatherState } from '#layout/weather-widget/data-access';
+import { IGeolocation, WeatherResponse } from '#layout/weather-widget/models';
 
 @Injectable()
 export class WeatherFacade {
@@ -29,7 +29,7 @@ export class WeatherFacade {
       switchMap((geolocation: IGeolocation | null) => {
         return iif(
           () => geolocation !== null,
-          this.weatherApi.seatchByGeoCords$(geolocation!),
+          this.weatherApi.seatchByGeoCords$(geolocation as IGeolocation),
           this.weatherApi.searchByCityName$(this.defaultCityNameQuery)
         );
       }),

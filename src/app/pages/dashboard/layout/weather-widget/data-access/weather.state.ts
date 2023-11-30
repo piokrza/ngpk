@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IGeolocation, WeatherResponse } from '#shared/ui/weather-widget/models';
+import { IGeolocation, WeatherResponse } from '#layout/weather-widget/models';
 
 @Injectable()
 export class WeatherState {

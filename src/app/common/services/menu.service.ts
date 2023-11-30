@@ -15,33 +15,33 @@ export class MenuService {
   public getMenuLinks(): MenuItem[] {
     return [
       {
-        label: this.translateService.instant('menu.home'),
+        label: 'menu.home',
         routerLink: DashobardPaths.OVERVIEW,
         icon: PrimeIcons.HOME,
         styleClass: 'lg:mr-2',
       },
       {
-        label: this.translateService.instant('menu.cashFlow'),
+        label: 'menu.cashFlow',
         routerLink: DashobardPaths.CASH_FLOW,
         icon: PrimeIcons.SIGN_IN,
       },
       {
-        label: this.translateService.instant('menu.tasker'),
+        label: 'menu.tasker',
         routerLink: DashobardPaths.TASKER,
         icon: PrimeIcons.BOOK,
       },
       {
-        label: this.translateService.instant('menu.web3'),
+        label: 'menu.web3',
         routerLink: DashobardPaths.WEB3,
         icon: PrimeIcons.BITCOIN,
       },
       {
-        label: this.translateService.instant('menu.settings'),
+        label: 'menu.settings',
         routerLink: DashobardPaths.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,
       },
       {
-        label: this.translateService.instant('menu.logout'),
+        label: 'menu.logout',
         icon: PrimeIcons.POWER_OFF,
         command: (): void => this.signOut(),
       },

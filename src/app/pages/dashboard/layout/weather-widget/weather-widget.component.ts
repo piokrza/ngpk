@@ -11,10 +11,10 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { Observable } from 'rxjs';
 
 import { Nullable } from '#common/models';
-import { DetailsComponent } from '#shared/ui/weather-widget/components';
-import { WeatherApi, WeatherState, WeatherFacade } from '#shared/ui/weather-widget/data-access';
-import { WeatherResponse } from '#shared/ui/weather-widget/models';
-import { WeatherIconPipe } from '#shared/ui/weather-widget/pipes';
+import { DetailsComponent } from '#layout/weather-widget/components';
+import { WeatherApi, WeatherState, WeatherFacade } from '#layout/weather-widget/data-access';
+import { WeatherResponse } from '#layout/weather-widget/models';
+import { WeatherIconPipe } from '#layout/weather-widget/pipes';
 
 const imports = [
   CommonModule,
