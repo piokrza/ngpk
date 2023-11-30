@@ -6,6 +6,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { BaseDialogStyles } from '#common/constants';
+import { LabelWithData } from '#common/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent, TaskFormComponent } from '#tasker/components';
 import { TaskerService } from '#tasker/data-access';
@@ -26,6 +27,10 @@ export class TaskerFacade {
       isLoading: this.store.select(TaskerSelectors.isLoading),
       filter: this.store.select(TaskerSelectors.filter),
     });
+  }
+
+  public get filters(): LabelWithData<TaskFilter>[] {
+    return this.taskerService.filters;
   }
 
   public addTask$(): Observable<Task | undefined> {

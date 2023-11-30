@@ -9,7 +9,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { User } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
 import { TaskerService } from '#tasker/data-access';
-import { Task, TaskForm, TaskStepForm } from '#tasker/models';
+import { Task, TaskForm, StepForm } from '#tasker/models';
 
 @Component({
   selector: 'ctrl-task-form',
@@ -23,7 +23,7 @@ export class TaskFormComponent {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly form: FormGroup<TaskForm> = this.taskerService.form;
+  public readonly form: FormGroup<TaskForm> = this.taskerService.taskForm;
   public readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
   private readonly user: Signal<User | null | undefined> = toSignal(inject(Store).select(AuthSelectors.user));
@@ -60,7 +60,7 @@ export class TaskFormComponent {
     return this.form.controls.isComplete;
   }
 
-  public get stepsArray(): FormArray<FormGroup<TaskStepForm>> {
+  public get stepsArray(): FormArray<FormGroup<StepForm>> {
     return this.form.controls.steps;
   }
 }

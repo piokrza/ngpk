@@ -22,6 +22,6 @@ export class NoteComponent {
 
   public toggleNoteVisibility(): void {
     this.isTaskContentVisible = !this.isTaskContentVisible;
-    this.taskerService.setIsVisibleData(this.note.id, this.isTaskContentVisible);
+    this.taskerService.setIsVisible(this.note.id, this.isTaskContentVisible);
   }
 }

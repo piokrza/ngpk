@@ -1,65 +1,56 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { Observable } from 'rxjs';
 
-import { TaskerFacade } from '#tasker/data-access';
+import { LabelWithData } from '#common/models';
+import { TaskerFacade, TaskerService } from '#tasker/data-access';
 import { TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @UntilDestroy()
 @Component({
   selector: 'ctrl-tasker',
-  template: `
-    @if (dataset$ | async; as dataset) {
-      <ctrl-tasker-panel
-        [tasks]="dataset.tasks"
-        [notes]="dataset.notes"
-        [filter]="dataset.filter"
-        [isLoading]="dataset.isLoading"
-        (addTask)="onAddTask()"
-        (addNote)="onAddNote()"
-        (removeTask)="onRemoveTask($event)"
-        (removeNote)="onRemoveNote($event)"
-        (filterChange)="onFilterChange($event)"
-        (toggleIsTaskComplete)="onToggleIsTaskComplete($event)"
-        (toggleIsStepComplete)="onToggleIsStepComplete($event)" />
-    }
-  `,
+  templateUrl: './tasker.component.html',
+  styleUrl: './tasker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskerComponent implements OnDestroy {
   private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
 
   public readonly dataset$: Observable<TaskerDataset> = this.taskerFacade.taskerDataset$;
+  public readonly activeTabIndex$: Observable<number> = inject(TaskerService).activeTabIndex$;
+
+  public readonly filters: Array<LabelWithData<TaskFilter>> = this.taskerFacade.filters;
 
   public ngOnDestroy(): void {
     this.taskerFacade.removeStepsVisibilityData();
   }
 
-  public onAddTask(): void {
+  public addTask(): void {
     this.taskerFacade.addTask$().pipe(untilDestroyed(this)).subscribe();
   }
 
-  public onRemoveTask(taskId: string): void {
+  public removeTask(taskId: string): void {
     this.taskerFacade.removeTask(taskId);
   }
 
-  public onToggleIsTaskComplete(taskId: string): void {
+  public toggleIsTaskComplete(taskId: string): void {
     this.taskerFacade.toggleIsTaskComplete(taskId);
   }
 
-  public onToggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
+  public toggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
     this.taskerFacade.toggleIsStepComplete(payload);
   }
 
-  public onFilterChange(filter: TaskFilter) {
-    this.taskerFacade.onFilterChange(filter);
+  public filterChange({ value }: SelectButtonChangeEvent) {
+    this.taskerFacade.onFilterChange(value);
   }
 
-  public onAddNote(): void {
+  public addNote(): void {
     this.taskerFacade.addNote$().pipe(untilDestroyed(this)).subscribe();
   }
 
-  public onRemoveNote(noteId: string): void {
+  public removeNote(noteId: string): void {
     this.taskerFacade.removeNote(noteId);
   }
 }

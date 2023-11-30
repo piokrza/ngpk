@@ -34,6 +34,6 @@ export class TaskComponent implements OnChanges {
 
   public toggleStepsVisibility(): void {
     this.isStepsVisible = !this.isStepsVisible;
-    this.taskerService.setIsVisibleData(this.task.id, this.isStepsVisible);
+    this.taskerService.setIsVisible(this.task.id, this.isStepsVisible);
   }
 }

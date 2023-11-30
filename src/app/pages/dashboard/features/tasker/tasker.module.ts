@@ -15,7 +15,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
 
 import { TaskerComponent } from '#tasker/.';
-import { TaskFormComponent, PanelComponent, TaskComponent, NoteFormComponent, NoteComponent } from '#tasker/components';
+import { TaskFormComponent, TaskComponent, NoteFormComponent, NoteComponent } from '#tasker/components';
 import { TaskerFacade } from '#tasker/data-access';
 
 const routes: Routes = [{ path: '', component: TaskerComponent }];
@@ -37,7 +37,7 @@ const imports = [
   InputTextareaModule,
   DividerModule,
 ];
-const declarations = [PanelComponent, TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NoteComponent];
+const declarations = [TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NoteComponent];
 const providers: Provider[] = [TaskerFacade];
 
 @NgModule({ declarations, imports, providers })

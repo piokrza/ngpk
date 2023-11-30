@@ -22,7 +22,7 @@ export class NoteFormComponent {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly form: FormGroup<NoteForm> = this.noteService.noteForm;
-  private readonly user: Signal<User | null | undefined> = toSignal(inject(Store).select(AuthSelectors.user));
+  private readonly user: Signal<User | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
 
   public onSubmit(): void {
     if (this.form.invalid) {
