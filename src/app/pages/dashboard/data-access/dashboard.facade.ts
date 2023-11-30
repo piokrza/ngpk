@@ -18,10 +18,10 @@ export class DashboardFacade {
     return this.authApi.authState$.pipe(
       tap((user: firebase.User | null) => {
         if (user) {
-          this.store.dispatch(CategoriesActions.getCategories());
           this.store.dispatch(AuthActions.loadUserData());
-          this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid: user.uid }));
+          this.store.dispatch(CategoriesActions.getCategories());
           this.store.dispatch(TaskerActions.getTaskerUserData({ uid: user.uid }));
+          this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid: user.uid }));
         }
       })
     );
