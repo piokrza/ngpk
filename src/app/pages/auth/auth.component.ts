@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-auth-view',
+  selector: 'ctrl-auth',
   template: `
     <section class="section">
       <div class="w-full section__inner">
@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </div>
     </section>
   `,
-  styleUrl: './auth-view.component.scss',
+  styleUrl: './auth.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthViewComponent {}
+export class AuthComponent {}
