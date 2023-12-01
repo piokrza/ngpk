@@ -1,0 +1,4 @@
+<div class="flex justify-content-between align-items-center">
+  {{ 'settings.selectTheme' | translate }}
+  <p-toggleButton [(ngModel)]="isLightMode" (onChange)="toggleTheme()" [onIcon]="PrimeIcons.SUN" [offIcon]="PrimeIcons.MOON" />
+</div>

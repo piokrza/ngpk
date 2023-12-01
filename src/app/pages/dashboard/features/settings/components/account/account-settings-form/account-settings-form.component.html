@@ -19,5 +19,5 @@
     <label htmlFor="photoURL">{{ trPath + 'avatar' | translate }}</label>
   </span>
 
-  <button [disabled]="!form.dirty || form.invalid" [label]="trPath + 'update' | translate" class="w-full" type="submit" pButton></button>
+  <p-button [disabled]="!form.dirty || form.invalid" [label]="trPath + 'update' | translate" styleClass="w-full" type="submit" />
 </form>

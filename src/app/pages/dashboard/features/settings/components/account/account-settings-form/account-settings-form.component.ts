@@ -16,7 +16,7 @@ export class AccountSettingsFormComponent implements OnInit {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   private readonly userData: User = inject(DynamicDialogConfig).data;
-  public readonly form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).userSettingsForm;
+  public readonly form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).form;
 
   public readonly trPath: string = 'settings.accountForm.';
 
@@ -31,13 +31,13 @@ export class AccountSettingsFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    const { displayName, email, phoneNumber, photoURL } = this.form.getRawValue();
+    const controls: AccountSettingsForm = this.form.controls;
 
     this.dialogRef.close({
-      displayName,
-      email,
-      phoneNumber,
-      photoURL,
+      displayName: controls.displayName.value,
+      email: controls.email.value,
+      phoneNumber: controls.phoneNumber.value,
+      photoURL: controls.photoURL.value,
       refreshToken: this.userData.refreshToken,
       emailVerified: this.userData.emailVerified,
       uid: this.userData.uid,

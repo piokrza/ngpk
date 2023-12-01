@@ -6,12 +6,7 @@ import { Web3Component } from '#web3/.';
 import { WEB3_CONFIG, web3Config } from '#web3/config';
 import { EthereumService, Web3Facade, Web3State } from '#web3/data-access';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: Web3Component,
-  },
-];
+const routes: Routes = [{ path: '', component: Web3Component }];
 
 const declarations = [Web3Component];
 const imports = [RouterModule.forChild(routes), WalletComponent];

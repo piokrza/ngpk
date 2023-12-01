@@ -14,13 +14,7 @@ import { AuthActions, AuthSelectors } from '#store/auth';
 @UntilDestroy()
 @Component({
   selector: 'ctrl-account-settings',
-  template: `
-    <div class="container">
-      <p>{{ 'settings.accountSettings' | translate }}</p>
-      <button (click)="openAccountSettingsDialog()" [icon]="PrimeIcons.USER" pButton></button>
-    </div>
-  `,
-  styleUrl: './account-settings.component.scss',
+  templateUrl: './account-settings.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsComponent implements OnInit {

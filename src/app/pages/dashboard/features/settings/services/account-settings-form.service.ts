@@ -5,7 +5,7 @@ import { AccountSettingsForm } from '#settings/models';
 
 @Injectable()
 export class AccountSettingsFormService {
-  public get userSettingsForm(): FormGroup<AccountSettingsForm> {
+  public get form(): FormGroup<AccountSettingsForm> {
     return new FormGroup<AccountSettingsForm>({
       displayName: new FormControl<string | null>(null),
       email: new FormControl<string | null>({ value: null, disabled: true }, { validators: [Validators.required] }),

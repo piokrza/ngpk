@@ -6,13 +6,7 @@ import { PersistanceService, ThemeService } from '#common/services';
 
 @Component({
   selector: 'ctrl-theme-toggler',
-  template: `
-    <div class="container">
-      {{ 'settings.selectTheme' | translate }}
-      <p-toggleButton [(ngModel)]="isLightMode" (onChange)="toggleTheme()" [onIcon]="PrimeIcons.SUN" [offIcon]="PrimeIcons.MOON" />
-    </div>
-  `,
-  styleUrl: './theme-toggler.component.scss',
+  templateUrl: './theme-toggler.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeTogglerComponent {
