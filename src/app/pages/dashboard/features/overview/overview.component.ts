@@ -43,14 +43,13 @@ const providers: Provider[] = [OverviewFacade];
 })
 export default class OverviewComponent {
   private readonly router: Router = inject(Router);
-  private readonly cashFlowService: CashFlowService = inject(CashFlowService);
   private readonly overviewFacade: OverviewFacade = inject(OverviewFacade);
+  private readonly cashFlowService: CashFlowService = inject(CashFlowService);
 
+  public readonly taskerData$ = this.overviewFacade.taskerData$;
   public readonly cashFlowChartData$ = this.overviewFacade.cashFlowChartData$;
   public readonly isLoading$: Observable<boolean> = this.overviewFacade.isLoading$;
   public readonly cashFlowDataset$: Observable<LabelWithData<number>[]> = this.overviewFacade.cashFlowData$;
-
-  public readonly taskerData$ = this.overviewFacade.taskerData$;
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 

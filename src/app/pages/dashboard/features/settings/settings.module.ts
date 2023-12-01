@@ -9,16 +9,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { LayoutModule } from '#layout/.';
-import { SettingsViewComponent, SettingsRoutingModule } from '#settings/.';
+import { SettingsComponent, SettingsRoutingModule } from '#settings/.';
 import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
-  ThemeTogglerComponent,
   LanguageTogglerComponent,
+  ThemeTogglerComponent,
 } from '#settings/components';
 import { ContainerComponent } from '#shared/components';
 
-const declarations = [SettingsViewComponent, ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent];
+const declarations = [SettingsComponent, ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent];
 const imports = [
   CommonModule,
   SettingsRoutingModule,

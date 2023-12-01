@@ -5,8 +5,8 @@
     <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > maxItemsPerPage" [rows]="maxItemsPerPage">
       <ng-template let-detailsItem pTemplate="listItem">
         <ctrl-details
-          (cashFlowToRemoveId)="emitCashFlowIdToRemove($event)"
-          (cashFlowToUpdate)="emitCashFlowToUpdate($event)"
+          (cashFlowToRemoveId)="removeCashFlow($event)"
+          (cashFlowToUpdate)="updateCashFlow($event)"
           [isIncomeMode]="isIncomeMode"
           [details]="detailsItem" />
       </ng-template>

@@ -18,11 +18,11 @@ export class DetailsListComponent {
 
   public readonly maxItemsPerPage: number = env.maxItemPerPage;
 
-  public emitCashFlowIdToRemove(cashFlowId: string): void {
+  public removeCashFlow(cashFlowId: string): void {
     this.cashFlowToRemoveId.emit(cashFlowId);
   }
 
-  public emitCashFlowToUpdate(cashFlow: CashFlow): void {
+  public updateCashFlow(cashFlow: CashFlow): void {
     this.cashFlowToUpdate.emit(cashFlow);
   }
 }

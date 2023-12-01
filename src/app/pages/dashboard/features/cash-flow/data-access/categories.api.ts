@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map, Observable, take } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { Categories } from '#cash-flow/models';
 import { Collection } from '#common/enums';
@@ -13,9 +13,6 @@ export class CategoriesApi {
     return this.angularFirestore
       .collection<Categories>(Collection.CATEGORIES)
       .valueChanges()
-      .pipe(
-        take(1),
-        map((cats: Categories[]): Categories => cats[0])
-      );
+      .pipe(map((cats: Categories[]): Categories => cats[0]));
   }
 }

@@ -28,7 +28,7 @@ export class PanelComponent {
     this.cashFlowService
       .openCashFlowDialog$(this.isIncomeMode)
       .pipe(
-        tap((cashFlow?: CashFlow) => cashFlow && this.cashFlowSubmitData.emit(cashFlow)),
+        tap((cashFlow) => cashFlow && this.cashFlowSubmitData.emit(cashFlow)),
         untilDestroyed(this)
       )
       .subscribe();

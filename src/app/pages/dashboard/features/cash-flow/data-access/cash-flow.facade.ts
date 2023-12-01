@@ -9,7 +9,7 @@ import { UpdateFormComponent } from '#cash-flow/components';
 import { CashFlowService } from '#cash-flow/data-access';
 import { CashFlow, CashFlowData } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
-import { CashFlowSelectors, CashFlowActions } from '#store/cash-flow';
+import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacade {
@@ -41,7 +41,7 @@ export class CashFlowFacade {
     return this.store.select(CashFlowSelectors.isLoading);
   }
 
-  public onIncomeSubmit(incomeData: CashFlow): void {
+  public addIncome(incomeData: CashFlow): void {
     this.store.dispatch(CashFlowActions.addIncome({ income: incomeData }));
   }
 
@@ -68,7 +68,7 @@ export class CashFlowFacade {
     );
   }
 
-  public onExpenseSubmit(expense: CashFlow): void {
+  public addExpense(expense: CashFlow): void {
     this.store.dispatch(CashFlowActions.addExpense({ expense }));
   }
 

@@ -13,8 +13,8 @@ export class DetailsComponent {
   @Input({ required: true }) details!: CashFlow;
   @Input({ required: true }) isIncomeMode!: boolean;
 
-  @Output() cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
-  @Output() cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
+  @Output() cashFlowToRemoveId = new EventEmitter<string>();
+  @Output() cashFlowToUpdate = new EventEmitter<CashFlow>();
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 }

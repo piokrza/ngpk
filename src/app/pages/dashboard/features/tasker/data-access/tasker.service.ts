@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { LabelWithData } from '#common/models';
-import { NoteForm, TaskFilter, TaskForm, StepForm } from '#tasker/models';
+import { NoteForm, StepForm, TaskFilter, TaskForm } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class TaskerService {
@@ -13,15 +13,6 @@ export class TaskerService {
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
   private readonly visibilityKey = 'isVisible';
-
-  public addStep(taskForm: FormGroup<TaskForm>): void {
-    taskForm.controls.steps.push(
-      new FormGroup<StepForm>({
-        name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
-        isComplete: new FormControl<boolean>(false, { nonNullable: true }),
-      })
-    );
-  }
 
   public getIsVisible(id: string): boolean {
     const visibleData = JSON.parse(sessionStorage.getItem(this.visibilityKey) || '{}');
@@ -60,11 +51,12 @@ export class TaskerService {
     });
   }
 
-  public get filters(): Array<LabelWithData<TaskFilter>> {
-    return [
-      { label: this.translate.instant('tasker.filter.all'), data: 'all' },
-      { label: this.translate.instant('tasker.filter.completed'), data: 'completed' },
-      { label: this.translate.instant('tasker.filter.notCompleted'), data: 'notCompleted' },
-    ];
+  public get filters(): LabelWithData<TaskFilter>[] {
+    const filters: TaskFilter[] = ['all', 'completed', 'notCompleted'];
+
+    return filters.map((name) => ({
+      label: this.translate.instant(`tasker.filter.${name}`),
+      data: name,
+    }));
   }
 }

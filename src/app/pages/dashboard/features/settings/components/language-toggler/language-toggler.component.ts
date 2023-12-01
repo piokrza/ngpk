@@ -6,7 +6,6 @@ import { SelectButtonChangeEvent, SelectButtonModule } from 'primeng/selectbutto
 import { take } from 'rxjs';
 
 import { LANG } from '#common/constants';
-import { Language } from '#common/models';
 
 const imports = [SelectButtonModule, FormsModule, TranslateModule];
 
@@ -34,7 +33,7 @@ const imports = [SelectButtonModule, FormsModule, TranslateModule];
 export class LanguageTogglerComponent {
   private readonly translateService: TranslateService = inject(TranslateService);
 
-  public languageValue = (localStorage.getItem(LANG) as Language['value']) ?? 'pl';
+  public languageValue = localStorage.getItem(LANG) ?? 'pl';
   private readonly config: PrimeNGConfig = inject(PrimeNGConfig);
 
   public onLangChange({ value }: SelectButtonChangeEvent): void {

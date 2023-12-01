@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
@@ -25,9 +24,9 @@ export class AddFormComponent implements OnInit {
   public categories$!: Observable<Category[]>;
 
   public readonly trPath: string = 'cashFlow.form.';
-  private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
   public form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   private userId!: string;
+  private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
 
   public constructor() {
     inject(AuthApi)

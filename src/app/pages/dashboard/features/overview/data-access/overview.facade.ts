@@ -63,9 +63,9 @@ export class OverviewFacade {
               {
                 data: [
                   ...Array.from({ length: expensesCatLength }, (_, i) => this.getTotalCashFlowAmountByCategoryCode(expenses, i)),
-                  ...Array.from({ length: incomesCatLength }, (_, i) =>
-                    this.getTotalCashFlowAmountByCategoryCode(incomes, i + expensesCatLength)
-                  ),
+                  ...Array.from({ length: incomesCatLength }, (_, i) => {
+                    return this.getTotalCashFlowAmountByCategoryCode(incomes, i + expensesCatLength);
+                  }),
                 ],
                 backgroundColor: [...bgColors.map((bgClr) => documentStyle.getPropertyValue(bgClr))],
                 hoverBackgroundColor: [...bgColorsHover.map((bgClr) => documentStyle.getPropertyValue(bgClr))],

@@ -20,7 +20,7 @@
           (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
           (keyup.enter)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
           class="task__name">
-          {{ step.name | titlecase }}
+          {{ $index + 1 }}. {{ step.name | titlecase }}
         </li>
       }
     </ul>

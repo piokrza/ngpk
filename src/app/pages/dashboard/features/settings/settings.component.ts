@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './settings.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SettingsViewComponent {}
+export class SettingsComponent {}

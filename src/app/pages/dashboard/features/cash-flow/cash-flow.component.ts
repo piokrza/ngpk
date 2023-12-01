@@ -29,7 +29,7 @@ export class CashFlowComponent {
   }
 
   public onIncomeSubmit(incomeData: CashFlow): void {
-    this.cashFlowFacade.onIncomeSubmit(incomeData);
+    this.cashFlowFacade.addIncome(incomeData);
   }
 
   public updateExpense(updatedExpense: CashFlow): void {
@@ -41,6 +41,6 @@ export class CashFlowComponent {
   }
 
   public onExpenseSubmit(expenseData: CashFlow): void {
-    this.cashFlowFacade.onExpenseSubmit(expenseData);
+    this.cashFlowFacade.addExpense(expenseData);
   }
 }

@@ -19,7 +19,7 @@ export class ThemeTogglerComponent {
   private readonly themeService: ThemeService = inject(ThemeService);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public isLightMode: boolean | null = inject(PersistanceService).get(isLightMode);
+  public isLightMode: boolean = !!inject(PersistanceService).get(isLightMode);
 
   public toggleTheme(): void {
     this.themeService.setTheme(this.isLightMode);
