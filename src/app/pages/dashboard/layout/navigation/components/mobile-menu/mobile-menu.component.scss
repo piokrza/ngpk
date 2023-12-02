@@ -1,0 +1,18 @@
+:host::ng-deep ctrl-container .container {
+  padding: 0 !important;
+}
+
+.list {
+  width: 240px;
+  position: absolute;
+  z-index: 999;
+
+  li {
+    padding: 0.5rem 0;
+
+    &.active {
+      color: var(--primary-color);
+      border-bottom: solid 1px var(--primary-color);
+    }
+  }
+}

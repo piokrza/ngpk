@@ -1,1 +1,13 @@
-<div></div>
+<p-button (click)="toggle()" icon="pi pi-fw pi-list" type="button" />
+
+@if (isOpen()) {
+  <ctrl-container [@fadeIn] class="list">
+    <ul>
+      @for (item of menuItems; track $index) {
+        <li [routerLink]="item.routerLink" (click)="itemClick(item.command)" routerLinkActive="active">
+          {{ item.label ?? '' | translate }}
+        </li>
+      }
+    </ul>
+  </ctrl-container>
+}

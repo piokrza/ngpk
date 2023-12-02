@@ -1,12 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SkeletonModule } from 'primeng/skeleton';
-import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
@@ -19,7 +19,6 @@ import { LazyImgDirective } from '#shared/directives';
 const declarations = [NavigationComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent, MobileMenuComponent];
 const imports = [
   ButtonModule,
-  TieredMenuModule,
   ContainerComponent,
   ToggleButtonModule,
   FormsModule,
@@ -31,6 +30,8 @@ const imports = [
   LazyImgDirective,
   SkeletonModule,
   AsyncPipe,
+  RouterLink,
+  RouterLinkActive,
 ];
 const exports = [LayoutComponent];
 

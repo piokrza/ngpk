@@ -7,7 +7,7 @@
 
         <ul class="gap-3 mt-6">
           @for (link of menuLinks; track link.label) {
-            <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="rounded sidebar__link">
+            <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="sidebar__link">
               <a [routerLink]="link.routerLink" class="block p-4">
                 <i [class]="link.icon + ' mr-2'"></i>
                 {{ link.label ?? '' | translate }}
