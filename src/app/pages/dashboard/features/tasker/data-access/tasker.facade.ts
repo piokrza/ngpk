@@ -10,7 +10,7 @@ import { LabelWithData } from '#common/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent, TaskFormComponent } from '#tasker/components';
 import { TaskerService } from '#tasker/data-access';
-import { Note, Task, TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#tasker/models';
+import { Note, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Injectable()
 export class TaskerFacade {
@@ -20,17 +20,37 @@ export class TaskerFacade {
   private readonly translateService: TranslateService = inject(TranslateService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
-  public get taskerDataset$(): Observable<TaskerDataset> {
+  public get tasksData$(): Observable<TasksData> {
     return combineLatest({
-      tasks: this.tasks$,
-      notes: this.store.select(TaskerSelectors.notes),
-      isLoading: this.store.select(TaskerSelectors.isLoading),
-      filter: this.store.select(TaskerSelectors.filter),
-    });
+      tasks: this.store.select(TaskerSelectors.tasks),
+      filter: this.store.select(TaskerSelectors.taskFilter),
+    }).pipe(
+      map(({ tasks, filter }) => {
+        if (filter === 'completed') return { tasks: (tasks ?? []).filter(({ isComplete }) => isComplete), filter };
+        if (filter === 'notCompleted') return { tasks: (tasks ?? []).filter(({ isComplete }) => !isComplete), filter };
+        return { tasks, filter };
+      })
+    );
   }
 
-  public get filters(): LabelWithData<TaskFilter>[] {
-    return this.taskerService.filters;
+  public get isTasksLoading$(): Observable<boolean> {
+    return this.store.select(TaskerSelectors.isTasksLoading);
+  }
+
+  public get taskFilters(): LabelWithData<TaskFilter>[] {
+    return this.taskerService.taskFilters;
+  }
+
+  public get activeTabIndex$(): Observable<number> {
+    return this.taskerService.activeTabIndex$;
+  }
+
+  public get notes$(): Observable<Note[] | null> {
+    return this.store.select(TaskerSelectors.notes);
+  }
+
+  public get isNotesLoading$(): Observable<boolean> {
+    return this.store.select(TaskerSelectors.isNotesLoading);
   }
 
   public addTask$(): Observable<Task | undefined> {
@@ -67,8 +87,8 @@ export class TaskerFacade {
     this.taskerService.removeVisibilityData();
   }
 
-  public onFilterChange(filter: TaskFilter): void {
-    this.store.dispatch(TaskerActions.setFilter({ filter }));
+  public onTaskFilterChange(taskFilter: TaskFilter): void {
+    this.store.dispatch(TaskerActions.setTaskFilter({ taskFilter }));
   }
 
   public addNote$(): Observable<Note | undefined> {
@@ -91,18 +111,5 @@ export class TaskerFacade {
       icon: PrimeIcons.TRASH,
       accept: (): void => this.store.dispatch(TaskerActions.removeNote({ noteId })),
     });
-  }
-
-  private get tasks$(): Observable<Task[] | null> {
-    return combineLatest({
-      tasks: this.store.select(TaskerSelectors.tasks),
-      filter: this.store.select(TaskerSelectors.filter),
-    }).pipe(
-      map(({ tasks, filter }) => {
-        if (filter === 'completed') return (tasks ?? []).filter(({ isComplete }) => isComplete);
-        if (filter === 'notCompleted') return (tasks ?? []).filter(({ isComplete }) => !isComplete);
-        return tasks;
-      })
-    );
   }
 }

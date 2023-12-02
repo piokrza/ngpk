@@ -3,9 +3,13 @@ import { createAction, props } from '@ngrx/store';
 import { ActionTypes } from '#store/tasker/action-types';
 import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
 
-export const getTaskerUserData = createAction(ActionTypes.GET_TASKER_USER_DATA, props<{ uid: string }>());
-export const getTaskerUserDataSuccess = createAction(ActionTypes.GET_TASKER_USER_DATA_SUCCESS, props<{ tasks: Task[]; notes: Note[] }>());
-export const getTaskerUserDataError = createAction(ActionTypes.GET_TASKER_USER_DATA_ERROR);
+export const getTasks = createAction(ActionTypes.GET_TASKS, props<{ uid: string }>());
+export const getTasksSuccess = createAction(ActionTypes.GET_TASKS_SUCCESS, props<{ tasks: Task[] }>());
+export const getTasksError = createAction(ActionTypes.GET_TASKS_ERROR);
+
+export const getNotes = createAction(ActionTypes.GET_NOTES, props<{ uid: string }>());
+export const getNotesSuccess = createAction(ActionTypes.GET_NOTES_SUCCESS, props<{ notes: Note[] }>());
+export const getNotesError = createAction(ActionTypes.GET_NOTES_ERROR);
 
 export const addTask = createAction(ActionTypes.ADD_TASK, props<{ task: Task }>());
 export const addTaskSuccess = createAction(ActionTypes.ADD_TASK_SUCCESS);
@@ -23,7 +27,7 @@ export const removeTask = createAction(ActionTypes.REMOVE_TASK, props<{ taskId: 
 export const removeTaskSuccess = createAction(ActionTypes.REMOVE_TASK_SUCCESS);
 export const removeTaskFailure = createAction(ActionTypes.REMOVE_TASK_FAILURE);
 
-export const setFilter = createAction(ActionTypes.SET_FILTER, props<{ filter: TaskFilter }>());
+export const setTaskFilter = createAction(ActionTypes.SET_TASK_FILTER, props<{ taskFilter: TaskFilter }>());
 
 export const addNote = createAction(ActionTypes.ADD_NOTE, props<{ note: Note }>());
 export const addNoteSuccess = createAction(ActionTypes.ADD_NOTE_SUCCESS);

@@ -4,8 +4,8 @@ import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { Observable } from 'rxjs';
 
 import { LabelWithData } from '#common/models';
-import { TaskerFacade, TaskerService } from '#tasker/data-access';
-import { TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#tasker/models';
+import { TaskerFacade } from '#tasker/data-access';
+import { Note, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @UntilDestroy()
 @Component({
@@ -17,10 +17,15 @@ import { TaskFilter, TaskerDataset, ToggleIsStepCompletePayload } from '#tasker/
 export class TaskerComponent implements OnDestroy {
   private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
 
-  public readonly dataset$: Observable<TaskerDataset> = this.taskerFacade.taskerDataset$;
-  public readonly activeTabIndex$: Observable<number> = inject(TaskerService).activeTabIndex$;
+  public readonly tasksData$: Observable<TasksData> = this.taskerFacade.tasksData$;
+  public readonly isTasksLoading$: Observable<boolean> = this.taskerFacade.isTasksLoading$;
 
-  public readonly filters: Array<LabelWithData<TaskFilter>> = this.taskerFacade.filters;
+  public readonly notes$: Observable<Note[] | null> = this.taskerFacade.notes$;
+  public readonly isNotesLoading$: Observable<boolean> = this.taskerFacade.isNotesLoading$;
+
+  public readonly activeTabIndex$: Observable<number> = this.taskerFacade.activeTabIndex$;
+
+  public readonly filters: Array<LabelWithData<TaskFilter>> = this.taskerFacade.taskFilters;
 
   public ngOnDestroy(): void {
     this.taskerFacade.removeStepsVisibilityData();
@@ -43,7 +48,7 @@ export class TaskerComponent implements OnDestroy {
   }
 
   public filterChange({ value }: SelectButtonChangeEvent) {
-    this.taskerFacade.onFilterChange(value);
+    this.taskerFacade.onTaskFilterChange(value);
   }
 
   public addNote(): void {

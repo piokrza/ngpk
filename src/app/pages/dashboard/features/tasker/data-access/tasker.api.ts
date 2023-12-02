@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
-import { Observable, combineLatest, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 import { Collection } from '#common/enums';
 import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
@@ -9,19 +9,20 @@ import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/model
 export class TaskerApi {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
-  public loadTaskerUserData$(uid: string): Observable<{ tasks: Task[]; notes: Note[] }> {
+  public loadTasks$(uid: string) {
     const tasks$: AngularFirestoreCollection<Task> = this.angularFirestore.collection<Task>(Collection.TASKS, (ref) => {
       return ref.where('uid', '==', uid);
     });
 
+    return tasks$.valueChanges({ idField: 'id' });
+  }
+
+  public loadNotes$(uid: string) {
     const notes$: AngularFirestoreCollection<Note> = this.angularFirestore.collection<Note>(Collection.NOTES, (ref) => {
       return ref.where('uid', '==', uid);
     });
 
-    return combineLatest({
-      tasks: tasks$.valueChanges({ idField: 'id' }),
-      notes: notes$.valueChanges({ idField: 'id' }),
-    });
+    return notes$.valueChanges({ idField: 'id' });
   }
 
   public addTask(task: Task): Promise<DocumentReference<Task>> {
@@ -30,7 +31,7 @@ export class TaskerApi {
   }
 
   public toggleIsTaskComplete(taskId: string) {
-    const taskRef: AngularFirestoreDocument<Task> = this.getTask(taskId);
+    const taskRef: AngularFirestoreDocument<Task> = this.getTaskRef(taskId);
 
     return taskRef.get().pipe(
       tap((task) => {
@@ -43,7 +44,7 @@ export class TaskerApi {
   }
 
   public toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
-    const taskRef: AngularFirestoreDocument<Task> = this.getTask(payload.taskId);
+    const taskRef: AngularFirestoreDocument<Task> = this.getTaskRef(payload.taskId);
 
     return taskRef.get().pipe(
       tap((task) => {
@@ -66,18 +67,18 @@ export class TaskerApi {
   }
 
   public removeTask(taskId: string): Promise<void> {
-    return this.getTask(taskId).delete();
+    return this.getTaskRef(taskId).delete();
   }
 
   public removeNote(noteId: string): Promise<void> {
-    return this.getNote(noteId).delete();
+    return this.getNoteRef(noteId).delete();
   }
 
-  private getTask(taskId: string): AngularFirestoreDocument<Task> {
+  private getTaskRef(taskId: string): AngularFirestoreDocument<Task> {
     return this.angularFirestore.collection(Collection.TASKS).doc(taskId);
   }
 
-  private getNote(noteId: string): AngularFirestoreDocument<Note> {
+  private getNoteRef(noteId: string): AngularFirestoreDocument<Note> {
     return this.angularFirestore.collection(Collection.NOTES).doc(noteId);
   }
 }

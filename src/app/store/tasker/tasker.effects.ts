@@ -15,15 +15,15 @@ export class TaskerEffects {
   private readonly toastService: ToastService = inject(ToastService);
   private readonly translateService: TranslateService = inject(TranslateService);
 
-  public getTasksUserData$ = createEffect(() => {
+  public getTasks$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(TaskerActions.getTaskerUserData),
+      ofType(TaskerActions.getTasks),
       exhaustMap(({ uid }) => {
-        return this.taskerApi.loadTaskerUserData$(uid).pipe(
-          map((data) => TaskerActions.getTaskerUserDataSuccess(data)),
+        return this.taskerApi.loadTasks$(uid).pipe(
+          map((tasks) => TaskerActions.getTasksSuccess({ tasks })),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchTasks'));
-            return of(TaskerActions.getTaskerUserDataError());
+            return of(TaskerActions.getTasksError());
           })
         );
       })
@@ -78,6 +78,21 @@ export class TaskerEffects {
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('removeTaskError'));
             return of(TaskerActions.removeTaskFailure());
+          })
+        );
+      })
+    );
+  });
+
+  public getNotes$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.getNotes),
+      exhaustMap(({ uid }) => {
+        return this.taskerApi.loadNotes$(uid).pipe(
+          map((notes) => TaskerActions.getNotesSuccess({ notes })),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchNotes'));
+            return of(TaskerActions.getNotesError());
           })
         );
       })

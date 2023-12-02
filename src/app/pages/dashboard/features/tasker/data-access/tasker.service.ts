@@ -51,7 +51,7 @@ export class TaskerService {
     });
   }
 
-  public get filters(): LabelWithData<TaskFilter>[] {
+  public get taskFilters(): LabelWithData<TaskFilter>[] {
     const filters: TaskFilter[] = ['all', 'completed', 'notCompleted'];
 
     return filters.map((name) => ({

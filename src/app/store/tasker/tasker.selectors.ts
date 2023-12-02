@@ -7,5 +7,6 @@ const TaskerStateSelector = createFeatureSelector<TaskerState>(FeatureKey);
 
 export const tasks = createSelector(TaskerStateSelector, ({ tasks }: TaskerState): Task[] | null => tasks);
 export const notes = createSelector(TaskerStateSelector, ({ notes }: TaskerState): Note[] | null => notes);
-export const isLoading = createSelector(TaskerStateSelector, ({ isLoading }: TaskerState): boolean => isLoading);
-export const filter = createSelector(TaskerStateSelector, ({ filter }: TaskerState): TaskFilter => filter);
+export const isTasksLoading = createSelector(TaskerStateSelector, ({ isTasksLoading }: TaskerState): boolean => isTasksLoading);
+export const isNotesLoading = createSelector(TaskerStateSelector, ({ isNotesLoading }: TaskerState): boolean => isNotesLoading);
+export const taskFilter = createSelector(TaskerStateSelector, ({ taskFilter }: TaskerState): TaskFilter => taskFilter);
