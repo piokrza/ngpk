@@ -10,9 +10,13 @@
   li {
     padding: 0.5rem 0;
 
-    a.active {
-      color: var(--primary-color);
-      border-bottom: solid 1px var(--primary-color);
+    a {
+      display: block;
+
+      &.active span {
+        color: var(--primary-color);
+        border-bottom: solid 1px var(--primary-color);
+      }
     }
   }
 }

@@ -18,6 +18,11 @@ const routes: Routes = [
         title: getTitle('home'),
       },
       {
+        path: DashobardPaths.DRIVE,
+        loadChildren: () => import('#drive/drive.module'),
+        title: getTitle('drive'),
+      },
+      {
         path: DashobardPaths.CASH_FLOW,
         loadChildren: () => import('#cash-flow/cash-flow.module'),
         title: getTitle('cashFlow'),

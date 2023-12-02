@@ -21,6 +21,11 @@ export class MenuService {
         styleClass: 'lg:mr-2',
       },
       {
+        label: 'menu.drive',
+        routerLink: DashobardPaths.DRIVE,
+        icon: PrimeIcons.FOLDER,
+      },
+      {
         label: 'menu.cashFlow',
         routerLink: DashobardPaths.CASH_FLOW,
         icon: PrimeIcons.SIGN_IN,

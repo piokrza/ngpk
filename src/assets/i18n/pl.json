@@ -129,7 +129,8 @@
     "logout": "Wyloguj się",
     "tasker": "Zadania",
     "web3": "Web3",
-    "auth": "Logowanie"
+    "auth": "Logowanie",
+    "drive": "Dysk"
   },
 
   "weather": {

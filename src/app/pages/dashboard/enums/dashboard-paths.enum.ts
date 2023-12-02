@@ -4,4 +4,5 @@ export enum DashobardPaths {
   SETTINGS = 'settings',
   TASKER = 'tasker',
   WEB3 = 'web-3',
+  DRIVE = 'drive',
 }

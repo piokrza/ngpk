@@ -129,7 +129,8 @@
     "logout": "Logout",
     "tasker": "Tasker",
     "web3": "Web3",
-    "auth": "Authentication"
+    "auth": "Authentication",
+    "drive": "Drive"
   },
 
   "weather": {

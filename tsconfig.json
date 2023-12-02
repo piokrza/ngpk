@@ -33,7 +33,8 @@
       "#overview/*": ["src/app/pages/dashboard/features/overview/*"],
       "#settings/*": ["src/app/pages/dashboard/features/settings/*"],
       "#tasker/*": ["src/app/pages/dashboard/features/tasker/*"],
-      "#web3/*": ["src/app/pages/dashboard/features/web3/*"]
+      "#web3/*": ["src/app/pages/dashboard/features/web3/*"],
+      "#drive/*": ["src/app/pages/dashboard/features/drive/*"]
     }
   },
   "angularCompilerOptions": {

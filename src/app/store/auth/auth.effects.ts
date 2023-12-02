@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase/compat';
-import { catchError, exhaustMap, from, map, of, switchMap, take, tap } from 'rxjs';
+import { catchError, exhaustMap, from, map, of, switchMap, tap } from 'rxjs';
 
 import { User } from '#auth/models';
 import { AuthApi } from '#auth/services';
@@ -13,7 +13,6 @@ import { ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
 import { AuthActions } from '#store/auth';
 import { ActionTypes } from '#store/auth/action-types';
-import { CashFlowActions } from '#store/cash-flow';
 
 @Injectable()
 export class AuthEffects {
@@ -97,16 +96,6 @@ export class AuthEffects {
             return AuthActions.userNotAuthenticated();
           })
         );
-      })
-    );
-  });
-
-  public loadUserData$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.userAuthenticated),
-      switchMap(({ user }) => {
-        if (!user) return of(AuthActions.userNotAuthenticated());
-        return of(CashFlowActions.getCashFlowUserData({ uid: user.uid })).pipe(take(1));
       })
     );
   });

@@ -6,7 +6,7 @@
       @for (item of menuItems; track $index) {
         <li (click)="itemClick(item.command)">
           <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="item.routerLink" routerLinkActive="active">
-            {{ item.label ?? '' | translate }}
+            <span>{{ item.label ?? '' | translate }}</span>
           </a>
         </li>
       }
