@@ -13,5 +13,5 @@ import { Component, Input } from '@angular/core';
   standalone: true,
 })
 export class ContainerComponent {
-  @Input() styleClass?: string;
+  @Input() styleClass?: string = '';
 }

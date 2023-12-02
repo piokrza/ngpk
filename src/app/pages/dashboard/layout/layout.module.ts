@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -14,7 +14,6 @@ import { LayoutComponent } from '#layout/.';
 import { MobileMenuComponent, NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#layout/navigation/components';
 import { WeatherWidgetComponent } from '#layout/weather-widget';
 import { ContainerComponent } from '#shared/components';
-import { LazyImgDirective } from '#shared/directives';
 
 const declarations = [NavigationComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent, MobileMenuComponent];
 const imports = [
@@ -27,7 +26,7 @@ const imports = [
   ConfirmDialogModule,
   TranslateModule,
   WeatherWidgetComponent,
-  LazyImgDirective,
+  NgOptimizedImage,
   SkeletonModule,
   AsyncPipe,
   RouterLink,
