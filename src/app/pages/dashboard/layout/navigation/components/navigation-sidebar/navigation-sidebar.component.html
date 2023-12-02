@@ -6,7 +6,7 @@
         <ctrl-weather-widget />
 
         <ul class="gap-3 mt-6">
-          @for (link of menuLinks; track link.label) {
+          @for (link of menuLinks; track $index) {
             <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" class="sidebar__link">
               <a [routerLink]="link.routerLink" class="block p-4">
                 <i [class]="link.icon + ' mr-2'"></i>
@@ -17,7 +17,7 @@
         </ul>
       </div>
 
-      <button [label]="'auth.signout' | translate" (click)="signOut()" icon="pi pi-sign-out" class="block mt-4 w-full" pButton></button>
+      <p-button [label]="'auth.signout' | translate" (click)="signOut()" icon="pi pi-sign-out" styleClass="w-full" />
     </div>
   </ctrl-container>
 </nav>

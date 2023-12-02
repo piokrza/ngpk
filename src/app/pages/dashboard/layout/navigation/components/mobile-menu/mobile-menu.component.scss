@@ -10,7 +10,7 @@
   li {
     padding: 0.5rem 0;
 
-    &.active {
+    a.active {
       color: var(--primary-color);
       border-bottom: solid 1px var(--primary-color);
     }
