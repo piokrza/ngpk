@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { LabelWithData } from '#common/models';
+import { LabeledData } from '#common/models';
 import { NoteForm, StepForm, TaskFilter, TaskForm } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
@@ -51,7 +51,7 @@ export class TaskerService {
     });
   }
 
-  public get taskFilters(): LabelWithData<TaskFilter>[] {
+  public get taskFilters(): LabeledData<TaskFilter>[] {
     const filters: TaskFilter[] = ['all', 'completed', 'notCompleted'];
 
     return filters.map((name) => ({

@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 
 import { CashFlowService } from '#cash-flow/data-access';
 import { AppPaths } from '#common/enums';
-import { LabelWithData } from '#common/models';
+import { LabeledData } from '#common/models';
 import { DashobardPaths } from '#dashboard/enums';
 import { OverviewFacade } from '#overview/data-access';
 import { ContainerComponent } from '#shared/components';
@@ -49,7 +49,7 @@ export default class OverviewComponent {
   public readonly taskerData$ = this.overviewFacade.taskerData$;
   public readonly cashFlowChartData$ = this.overviewFacade.cashFlowChartData$;
   public readonly isLoading$: Observable<boolean> = this.overviewFacade.isLoading$;
-  public readonly cashFlowDataset$: Observable<LabelWithData<number>[]> = this.overviewFacade.cashFlowData$;
+  public readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.overviewFacade.cashFlowData$;
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 

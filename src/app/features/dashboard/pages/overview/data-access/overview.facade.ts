@@ -8,7 +8,7 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 import { CashFlow } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
 import { AppPaths } from '#common/enums';
-import { LabelWithData } from '#common/models';
+import { LabeledData } from '#common/models';
 import { DashobardPaths } from '#dashboard/enums';
 import { bgColors, bgColorsHover, categoryNames, expensesCatLength, incomesCatLength } from '#overview/constants';
 import { ChartConfig, TaskerData } from '#overview/models';
@@ -30,7 +30,7 @@ export class OverviewFacade {
     return this.store.select(CashFlowSelectors.isLoading);
   }
 
-  public get cashFlowData$(): Observable<LabelWithData<number>[]> {
+  public get cashFlowData$(): Observable<LabeledData<number>[]> {
     return combineLatest({
       totalBalance: this.totalBalance$,
       totalIncome: this.store.select(CashFlowSelectors.totalIncomes),

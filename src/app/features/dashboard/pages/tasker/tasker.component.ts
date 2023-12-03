@@ -3,7 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { Observable } from 'rxjs';
 
-import { LabelWithData } from '#common/models';
+import { LabeledData } from '#common/models';
 import { TaskerFacade } from '#tasker/data-access';
 import { Note, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 
@@ -25,7 +25,7 @@ export class TaskerComponent implements OnDestroy {
 
   public readonly activeTabIndex$: Observable<number> = this.taskerFacade.activeTabIndex$;
 
-  public readonly filters: Array<LabelWithData<TaskFilter>> = this.taskerFacade.taskFilters;
+  public readonly filters: Array<LabeledData<TaskFilter>> = this.taskerFacade.taskFilters;
 
   public ngOnDestroy(): void {
     this.taskerFacade.removeStepsVisibilityData();

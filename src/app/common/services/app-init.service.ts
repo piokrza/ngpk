@@ -9,7 +9,7 @@ import { PersistanceService } from '#common/services';
 export class AppInitService {
   private readonly document: Document = inject(DOCUMENT);
 
-  private isLightMode: boolean | null = inject(PersistanceService).get<boolean>(isLightMode);
+  private isLightMode: boolean = !!inject(PersistanceService).get<boolean>(isLightMode);
 
   public injectThemeLink$(): Observable<HTMLLinkElement> {
     return this.themeLink$.pipe(
