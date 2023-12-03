@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Inject, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { isLightMode } from '#common/constants';
-import { ThemeService, PersistanceService } from '#common/services';
+import { PersistanceService } from '#common/services';
 
 const imports = [ToggleButtonModule, FormsModule];
 
@@ -16,12 +17,19 @@ const imports = [ToggleButtonModule, FormsModule];
   imports,
 })
 export class ThemeButtonComponent {
-  private readonly themeService: ThemeService = inject(ThemeService);
+  public constructor(
+    @Inject(DOCUMENT) private readonly document: Document,
+    private readonly persistanceService: PersistanceService
+  ) {
+    this.themeLink = this.document.getElementById('theme-link') as HTMLLinkElement;
+  }
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public isLightMode: boolean = !!inject(PersistanceService).get(isLightMode);
+  private themeLink: HTMLLinkElement;
 
   public toggleTheme(): void {
-    this.themeService.setTheme(this.isLightMode);
+    this.themeLink.href = this.isLightMode ? 'light-theme.css' : 'dark-theme.css';
+    this.persistanceService.set(isLightMode, this.isLightMode);
   }
 }
