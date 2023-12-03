@@ -1,0 +1,14 @@
+<section class="cards">
+  @for (item of cashFlowDataset; track $index; let last = $last) {
+    <a (click)="navigate.emit(item.label)" class="cursor-pointer">
+      <p-card>
+        <h3 class="heading">
+          <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
+          <span [ngClass]="{ 'text--success': item.label === 'totalIncome', 'text--danger': item.label === 'totalExpense' }">
+            {{ item.data ? (item.data | number) : '-' }} {{ last ? '' : 'PLN' }}
+          </span>
+        </h3>
+      </p-card>
+    </a>
+  }
+</section>

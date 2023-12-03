@@ -6,6 +6,8 @@
     height: 100%;
 
     &__inner {
+      padding: 1rem;
+      border-radius: 0.25rem;
       height: 100%;
       border: solid 1px var(--surface-hover);
       background-color: var(--surface-section);

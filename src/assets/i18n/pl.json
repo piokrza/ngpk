@@ -56,7 +56,8 @@
     "concerts": "Koncerty",
     "salary": "Wynagrodzenie",
     "gifts": "Prezenty",
-    "quickNote": "Szybka notatka"
+    "quickNote": "Szybka notatka",
+    "noData": "Brak danych"
   },
 
   "incomes": {

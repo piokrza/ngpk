@@ -1,51 +1,10 @@
 @if (isLoading$ | async) {
   <p-progressSpinner class="spinner" />
 } @else {
-  <section class="cards">
-    @for (item of cashFlowDataset$ | async; track $index; let last = $last) {
-      <a (click)="navigateTo(item.label)" class="cursor-pointer">
-        <p-card>
-          <h3 class="heading">
-            <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
-            <span [ngClass]="{ 'text--success': item.label === 'totalIncome', 'text--danger': item.label === 'totalExpense' }">
-              {{ item.data ? (item.data | number) : '-' }} {{ last ? '' : 'PLN' }}
-            </span>
-          </h3>
-        </p-card>
-      </a>
-    }
-  </section>
+  <ctrl-cash-flow-cards [cashFlowDataset]="cashFlowDataset$ | async" (navigate)="navigateTo($event)" />
 
   <div class="charts">
-    <ctrl-container styleClass="px-0">
-      <h1 class="mt-0">{{ 'menu.cashFlow' | translate }} (PLN)</h1>
-
-      <div class="card flex justify-content-center">
-        @if (cashFlowChartData$ | async; as chartDataset) {
-          <p-chart [data]="chartDataset.data" [options]="chartDataset.options" [responsive]="true" type="pie" />
-        } @else {
-          <p>No chart data</p>
-        }
-      </div>
-    </ctrl-container>
-
-    <ctrl-container styleClass="px-0">
-      <h1 class="mt-0">{{ 'menu.tasker' | translate }}</h1>
-
-      @if (taskerData$ | async; as taskerData) {
-        <p>{{ 'overview.todos' | translate }}: {{ taskerData.totalTasksLength }}</p>
-        <p>{{ 'overview.completed' | translate }}: {{ taskerData.completedTasksLength }}</p>
-
-        <div class="flex align-items-center justify-content-between">
-          <p>{{ 'overview.notes' | translate }}: {{ taskerData.notesLength }}</p>
-        </div>
-      }
-
-      <p-button
-        [icon]="PrimeIcons.PLUS"
-        [label]="'overview.quickNote' | translate"
-        (onClick)="addQuickNote()"
-        styleClass="w-full mt-auto" />
-    </ctrl-container>
+    <ctrl-cash-flow-chart [chartDataset]="cashFlowChartData$ | async" />
+    <ctrl-tasker-panel [taskerData]="taskerData$ | async" (quickNote)="quickNote()" />
   </div>
 }

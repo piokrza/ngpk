@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './container.component.scss',
   template: `
     <section [class]="['container', 'h-full', 'p-3', styleClass]">
-      <div class="rounded p-3 container__inner">
+      <div class="container__inner">
         <ng-content />
       </div>
     </section>

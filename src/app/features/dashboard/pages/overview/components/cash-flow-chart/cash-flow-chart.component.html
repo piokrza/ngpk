@@ -1,0 +1,11 @@
+<ctrl-container styleClass="px-0">
+  <h1 class="mt-0">{{ 'menu.cashFlow' | translate }} (PLN)</h1>
+
+  <div class="card flex justify-content-center">
+    @if (chartDataset) {
+      <p-chart [data]="chartDataset.data" [options]="chartDataset.options" [responsive]="true" type="pie" />
+    } @else {
+      <p>{{ 'overview.noData' | translate }}</p>
+    }
+  </div>
+</ctrl-container>
