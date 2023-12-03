@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, Signal, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FileUploadEvent } from 'primeng/fileupload';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
 import { IUser } from '#auth/models';
 import { DriveFacade } from '#drive/data-access';
+import { IFile } from '#drive/models';
 
-@UntilDestroy()
 @Component({
   selector: 'ctrl-drive',
   templateUrl: './drive.component.html',
@@ -17,17 +17,13 @@ import { DriveFacade } from '#drive/data-access';
 export class DriveComponent {
   private readonly driveFacade: DriveFacade = inject(DriveFacade);
 
+  public readonly files$: Observable<IFile[] | null> = this.driveFacade.files$;
   public readonly isLoading$: Observable<boolean> = this.driveFacade.isLoading$;
-  private readonly user$: Observable<IUser> = this.driveFacade.user$;
+  private readonly user: Signal<IUser | null> = toSignal(this.driveFacade.user$, { initialValue: null });
 
   protected uploadUrl: string = env.uploadUrl;
 
   public uploadFile({ files }: FileUploadEvent): void {
-    this.user$
-      .pipe(
-        switchMap(({ uid }) => this.driveFacade.uploadFile$(files[0], uid)),
-        untilDestroyed(this)
-      )
-      .subscribe();
+    files.length && this.driveFacade.uploadFile(files[0], this.user()!.uid);
   }
 }

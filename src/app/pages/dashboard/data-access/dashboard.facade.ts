@@ -7,6 +7,7 @@ import { AuthApi } from '#auth/services';
 import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
 import { CategoriesActions } from '#store/categories';
+import { DriveActions } from '#store/drive';
 import { TaskerActions } from '#store/tasker';
 
 @Injectable()
@@ -23,6 +24,7 @@ export class DashboardFacade {
           this.store.dispatch(TaskerActions.getTasks({ uid: user.uid }));
           this.store.dispatch(TaskerActions.getNotes({ uid: user.uid }));
           this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid: user.uid }));
+          this.store.dispatch(DriveActions.getFiles({ uid: user.uid }));
         }
       })
     );

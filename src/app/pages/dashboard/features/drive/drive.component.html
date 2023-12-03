@@ -5,3 +5,9 @@
     <p-progressSpinner />
   }
 </div>
+
+<div class="mt-5">
+  @for (file of files$ | async; track $index) {
+    <img [ngSrc]="file.url" width="140" height="140" />
+  }
+</div>
