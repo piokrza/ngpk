@@ -6,7 +6,6 @@ import { ButtonModule } from 'primeng/button';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
-import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { LayoutModule } from '#layout/.';
 import { SettingsComponent, SettingsRoutingModule } from '#settings/.';
@@ -16,13 +15,12 @@ import {
   LanguageTogglerComponent,
   ThemeTogglerComponent,
 } from '#settings/components';
-import { ContainerComponent } from '#shared/components';
+import { ContainerComponent, ThemeButtonComponent } from '#shared/components';
 
 const declarations = [SettingsComponent, ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent];
 const imports = [
   CommonModule,
   SettingsRoutingModule,
-  ToggleButtonModule,
   FormsModule,
   ContainerComponent,
   LayoutModule,
@@ -33,6 +31,7 @@ const imports = [
   InputNumberModule,
   LanguageTogglerComponent,
   TranslateModule,
+  ThemeButtonComponent,
 ];
 
 @NgModule({ declarations, imports })

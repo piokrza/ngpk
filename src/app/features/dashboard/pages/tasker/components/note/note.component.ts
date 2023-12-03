@@ -15,7 +15,7 @@ export class NoteComponent {
 
   @Input({ required: true }) note!: Note;
 
-  @Output() removeNote = new EventEmitter<string>();
+  @Output() public removeNote = new EventEmitter<string>();
 
   public isTaskContentVisible = false;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
