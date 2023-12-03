@@ -4,14 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { getTitle } from '#common/utils';
 import { DashboardComponent } from '#dashboard/.';
 import { DashobardPaths } from '#dashboard/enums';
-import { DashboardRedirectGuard } from '#dashboard/guards';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    canActivate: [DashboardRedirectGuard],
     children: [
+      {
+        path: '',
+        redirectTo: DashobardPaths.OVERVIEW,
+        pathMatch: 'full',
+      },
       {
         path: DashobardPaths.OVERVIEW,
         loadComponent: () => import('#overview/overview.component'),
