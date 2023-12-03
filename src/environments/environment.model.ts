@@ -11,5 +11,6 @@ export interface Environment {
   maxItemPerPage: number;
   weatherBaseUrl: string;
   weatherApiKey: string;
+  uploadUrl: string;
   production: boolean;
 }

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
 
 @Component({
@@ -12,5 +12,5 @@ import { AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInfoComponent {
-  public readonly user$: Observable<User | null> = inject(Store).select(AuthSelectors.user);
+  public readonly user$: Observable<IUser | null> = inject(Store).select(AuthSelectors.user);
 }

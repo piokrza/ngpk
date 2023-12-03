@@ -6,7 +6,7 @@ import { PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 import { BaseDialogStyles } from '#common/constants';
 import { AccountSettingsFormComponent } from '#settings/components';
 import { AuthActions, AuthSelectors } from '#store/auth';
@@ -23,13 +23,13 @@ export class AccountSettingsComponent implements OnInit {
   private readonly transalteService: TranslateService = inject(TranslateService);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  private user: User | null = null;
+  private user: IUser | null = null;
 
   public ngOnInit(): void {
     this.store
       .select(AuthSelectors.user)
       .pipe(
-        tap((user: User | null) => (this.user = user)),
+        tap((user: IUser | null) => (this.user = user)),
         untilDestroyed(this)
       )
       .subscribe();
@@ -44,7 +44,7 @@ export class AccountSettingsComponent implements OnInit {
 
     dialogRef.onClose
       .pipe(
-        tap((updatedUserData?: User): void => {
+        tap((updatedUserData?: IUser): void => {
           updatedUserData && this.store.dispatch(AuthActions.updateAccount({ updatedUserData }));
         }),
         untilDestroyed(this)

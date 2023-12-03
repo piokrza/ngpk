@@ -2,14 +2,16 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { filter, Observable, take, tap } from 'rxjs';
+import { filter, Observable, tap } from 'rxjs';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 import { AuthApi } from '#auth/services';
 import { CashFlowService } from '#cash-flow/data-access';
 import { CashFlowForm, Category } from '#cash-flow/models';
 
+@UntilDestroy()
 @Component({
   selector: 'ctrl-add-form',
   templateUrl: './add-form.component.html',
@@ -31,9 +33,9 @@ export class AddFormComponent implements OnInit {
   public constructor() {
     inject(AuthApi)
       .authState$.pipe(
-        take(1),
         filter(Boolean),
-        tap(({ uid }: User): string => (this.userId = uid))
+        tap(({ uid }: IUser): string => (this.userId = uid)),
+        untilDestroyed(this)
       )
       .subscribe();
   }

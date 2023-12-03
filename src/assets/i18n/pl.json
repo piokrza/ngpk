@@ -149,12 +149,18 @@
     "addIncomeError": "Coś poszło nie tak przy próbie zapisu przychodu w bazie danych",
     "fetchTasksError": "Coś poszło nie tak przy próbie pobrania danych",
     "fetchNotesError": "Coś poszło nie tak przy próbie pobrania danych",
-    "addTaskError": "Cos poszło nie tak przy próbie usunięcia zadania z bazy danych"
+    "addTaskError": "Cos poszło nie tak przy próbie usunięcia zadania z bazy danych",
+    "addFileSuccess": "Plik poprawnie zapisany w bazie danych",
+    "addFileError": "Coś poszło nie tak przy próbie zapisu pliku"
   },
 
   "wallet": {
     "noWallet": "Brak portfela, zainstaluj ",
     "connectWallet": "Połącz portfel"
+  },
+
+  "drive": {
+    "addFile": "Dodaj plik"
   },
 
   "common": {

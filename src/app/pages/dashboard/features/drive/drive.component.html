@@ -1,1 +1,7 @@
-<h1>dwadaw</h1>
+<div class="flex gap-4">
+  <p-fileUpload [chooseLabel]="'drive.addFile' | translate" [url]="uploadUrl" (onUpload)="uploadFile($event)" mode="basic" />
+
+  @if (isLoading$ | async) {
+    <p-progressSpinner />
+  }
+</div>

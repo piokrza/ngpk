@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 
-import { AuthFormPayload, User } from '#auth/models';
+import { AuthFormPayload, IUser } from '#auth/models';
 import { ActionTypes } from '#store/auth/action-types';
 
-export const userAuthenticated = createAction(ActionTypes.USER_AUTHENTICATED, props<{ user: User }>());
+export const userAuthenticated = createAction(ActionTypes.USER_AUTHENTICATED, props<{ user: IUser }>());
 export const userNotAuthenticated = createAction(ActionTypes.USER_NOT_AUTHENTICATED);
 
 export const signInWithGoogle = createAction(ActionTypes.SIGN_IN_WITH_GOOGLE);
@@ -26,7 +26,7 @@ export const signUpWithEmailAndPasswordFailure = createAction(
 
 export const loadUserData = createAction(ActionTypes.LOAD_USER_DATA);
 
-export const updateAccount = createAction(ActionTypes.UPDATE_ACCOUNT, props<{ updatedUserData: User }>());
+export const updateAccount = createAction(ActionTypes.UPDATE_ACCOUNT, props<{ updatedUserData: IUser }>());
 export const updateAccountSuccess = createAction(ActionTypes.UPDATE_ACCOUNT_SUCCESS);
 export const updateAccountFailure = createAction(ActionTypes.UPDATE_ACCOUNT_FAILURE);
 

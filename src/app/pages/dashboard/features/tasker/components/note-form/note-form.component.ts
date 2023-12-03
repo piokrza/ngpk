@@ -5,7 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
 import { TaskerService } from '#tasker/data-access';
 import { Note, NoteForm } from '#tasker/models';
@@ -22,7 +22,7 @@ export class NoteFormComponent {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
   public readonly form: FormGroup<NoteForm> = this.noteService.noteForm;
-  private readonly user: Signal<User | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
+  private readonly user: Signal<IUser | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
 
   public onSubmit(): void {
     if (this.form.invalid) {

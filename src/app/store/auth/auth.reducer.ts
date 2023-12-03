@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 import { AuthActions } from '#store/auth';
 
 export const FeatureKey = 'auth';
 
 export interface State {
-  user: User | null;
+  user: IUser | null;
   errorMessage: string | null;
 }
 

@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase/compat';
 import { catchError, exhaustMap, from, map, of, switchMap, tap } from 'rxjs';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 import { AuthApi } from '#auth/services';
 import { AppPaths, ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
@@ -91,7 +91,7 @@ export class AuthEffects {
       exhaustMap(() => this.authApi.authState$),
       switchMap((user: firebase.User | null) => {
         return this.authApi.loadUserData$(user).pipe(
-          map((user: User | undefined) => {
+          map((user: IUser | undefined) => {
             if (user) return AuthActions.userAuthenticated({ user });
             return AuthActions.userNotAuthenticated();
           })

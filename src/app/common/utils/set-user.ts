@@ -1,8 +1,8 @@
 import firebase from 'firebase/compat';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 
-export const setUser = (user: firebase.User): User => ({
+export const setUser = (user: firebase.User): IUser => ({
   displayName: user.displayName,
   email: user.email,
   emailVerified: user.emailVerified,

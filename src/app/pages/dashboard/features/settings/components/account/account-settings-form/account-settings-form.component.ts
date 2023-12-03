@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { FormGroup } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 import { AccountSettingsForm } from '#settings/models';
 import { AccountSettingsFormService } from '#settings/services/account-settings-form.service';
 
@@ -15,7 +15,7 @@ import { AccountSettingsFormService } from '#settings/services/account-settings-
 export class AccountSettingsFormComponent implements OnInit {
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
-  private readonly userData: User = inject(DynamicDialogConfig).data;
+  private readonly userData: IUser = inject(DynamicDialogConfig).data;
   public readonly form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).form;
 
   public readonly trPath: string = 'settings.accountForm.';

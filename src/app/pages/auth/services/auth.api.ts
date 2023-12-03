@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import firebase from 'firebase/compat';
 import { Observable, of, tap } from 'rxjs';
 
-import { AuthFormPayload, User } from '#auth/models';
+import { AuthFormPayload, IUser } from '#auth/models';
 import { Collection } from '#common/enums';
 
 @Injectable({ providedIn: 'root' })
@@ -29,18 +29,18 @@ export class AuthApi {
     return await this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  public loadUserData$(user: firebase.User | null): Observable<User | undefined> {
+  public loadUserData$(user: firebase.User | null): Observable<IUser | undefined> {
     if (!user) return of(undefined);
 
-    return this.angularFirestore.doc<User>(`${Collection.USERS}/${user.uid}`).valueChanges();
+    return this.angularFirestore.doc<IUser>(`${Collection.USERS}/${user.uid}`).valueChanges();
   }
 
   public get authState$(): Observable<firebase.User | null> {
     return this.afAuth.authState;
   }
 
-  public addUserToDatabase$(user: User): Observable<firebase.firestore.DocumentSnapshot<User>> {
-    const usersCollectionRef: AngularFirestoreCollection<User> = this.angularFirestore.collection(Collection.USERS);
+  public addUserToDatabase$(user: IUser): Observable<firebase.firestore.DocumentSnapshot<IUser>> {
+    const usersCollectionRef: AngularFirestoreCollection<IUser> = this.angularFirestore.collection(Collection.USERS);
 
     return usersCollectionRef
       .doc(user.uid)
@@ -48,8 +48,8 @@ export class AuthApi {
       .pipe(tap((data) => !data.exists && usersCollectionRef.doc(data.id).set(user)));
   }
 
-  public updateUser$(updatedUserData: User): Promise<void> {
-    const user: AngularFirestoreDocument<User> = this.angularFirestore.collection<User>(Collection.USERS).doc(updatedUserData.uid);
+  public updateUser$(updatedUserData: IUser): Promise<void> {
+    const user: AngularFirestoreDocument<IUser> = this.angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
     return user.update(updatedUserData);
   }
 }

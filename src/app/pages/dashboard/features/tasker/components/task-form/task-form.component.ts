@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { User } from '#auth/models';
+import { IUser } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
 import { TaskerService } from '#tasker/data-access';
 import { StepForm, Task, TaskForm } from '#tasker/models';
@@ -26,7 +26,7 @@ export class TaskFormComponent {
   public readonly form: FormGroup<TaskForm> = this.taskerService.taskForm;
   public readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
-  private readonly user: Signal<User | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
+  private readonly user: Signal<IUser | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
 
   public onSubmit(): void {
     if (this.form.invalid) {

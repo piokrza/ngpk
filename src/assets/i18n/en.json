@@ -149,7 +149,9 @@
     "addIncomeError": "Something went wrong during storing data in database",
     "fetchTasksError": "Something went wrong during fetching tasks data",
     "fetchNotesError": "Something went wrong during fetching notes data",
-    "addTaskError": "Something went wrong during removing task from database"
+    "addTaskError": "Something went wrong during removing task from database",
+    "addFileSuccess": "File successfully added",
+    "addFileError": "Something went wrong during saving file in database"
   },
 
   "common": {
@@ -163,6 +165,10 @@
   "wallet": {
     "noWallet": "No wallet provided, please install ",
     "connectWallet": "Connect wallet"
+  },
+
+  "drive": {
+    "addFile": "Add file"
   },
 
   "primeng": {
