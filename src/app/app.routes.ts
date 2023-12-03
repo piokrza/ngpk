@@ -23,4 +23,9 @@ export const routes: Routes = [
     data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
     title: getTitle('auth'),
   },
+  {
+    path: '**',
+    loadComponent: () => import('#shared/components/page-not-found/page-not-found.component'),
+    title: getTitle('pageNotFound'),
+  },
 ];

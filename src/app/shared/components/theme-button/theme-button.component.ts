@@ -11,7 +11,9 @@ const imports = [ToggleButtonModule, FormsModule];
 
 @Component({
   selector: 'ctrl-theme-button',
-  templateUrl: './theme-button.component.html',
+  template: `
+    <p-toggleButton [(ngModel)]="isLightMode" (onChange)="toggleTheme()" [onIcon]="PrimeIcons.SUN" [offIcon]="PrimeIcons.MOON" />
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,

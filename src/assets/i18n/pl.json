@@ -132,7 +132,8 @@
     "tasker": "Zadania",
     "web3": "Web3",
     "auth": "Logowanie",
-    "drive": "Dysk"
+    "drive": "Dysk",
+    "pageNotFound": "Strona nieznana"
   },
 
   "weather": {
@@ -163,6 +164,12 @@
 
   "drive": {
     "addFile": "Dodaj plik"
+  },
+
+  "pageNotFound": {
+    "title": "Strona nieznaleziona",
+    "redirectText": "Zostaniesz przeniesiony na strone glówną za ",
+    "sec": "sekund"
   },
 
   "common": {

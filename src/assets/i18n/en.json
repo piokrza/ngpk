@@ -132,7 +132,8 @@
     "tasker": "Tasker",
     "web3": "Web3",
     "auth": "Authentication",
-    "drive": "Drive"
+    "drive": "Drive",
+    "pageNotFound": "Page not found"
   },
 
   "weather": {
@@ -171,6 +172,12 @@
 
   "drive": {
     "addFile": "Add file"
+  },
+
+  "pageNotFound": {
+    "title": "Page not found",
+    "redirectText": "You will be redirected in ",
+    "sec": "seconds"
   },
 
   "primeng": {
