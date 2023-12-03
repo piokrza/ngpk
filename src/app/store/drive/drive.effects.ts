@@ -5,8 +5,8 @@ import { catchError, exhaustMap, from, map, of, tap } from 'rxjs';
 
 import { ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
-import { DriveApi } from '#dashboard/features/drive/data-access';
-import { IFile } from '#dashboard/features/drive/models';
+import { DriveApi } from '#drive/data-access';
+import { IFile } from '#drive/models';
 import { DriveActions } from '#store/drive';
 
 @Injectable()

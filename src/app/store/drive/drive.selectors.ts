@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { IFile } from '#dashboard/features/drive/models';
+import { IFile } from '#drive/models';
 import { FeatureKey, State as DriveState } from '#store/drive';
 
 const DriveStateSelector = createFeatureSelector<DriveState>(FeatureKey);

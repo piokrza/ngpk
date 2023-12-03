@@ -3,9 +3,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, forkJoin, tap, debounceTime, combineLatest, filter } from 'rxjs';
 
 import { ToastService } from '#common/services';
-import { Web3State, EthereumService } from '#dashboard/features/web3/data-access';
 import { TargetNetworkDialogComponent } from '#web3/components';
 import { WEB3_CONFIG } from '#web3/config';
+import { Web3State, EthereumService } from '#web3/data-access';
 import { Web3Config } from '#web3/models';
 
 @Injectable()

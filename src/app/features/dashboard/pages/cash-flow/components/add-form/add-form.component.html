@@ -17,13 +17,13 @@
     </span>
 
     @if (categories$ | async; as categories) {
-    <p-dropdown
-      [formControl]="formControls.categoryCode"
-      [options]="categories"
-      [placeholder]="trPath + 'selectCategory' | translate"
-      optionLabel="name"
-      optionValue="code"
-      styleClass="w-full" />
+      <p-dropdown
+        [formControl]="formControls.categoryCode"
+        [options]="categories"
+        [placeholder]="trPath + 'selectCategory' | translate"
+        optionLabel="name"
+        optionValue="code"
+        styleClass="w-full" />
     }
 
     <span class="p-float-label my-4">

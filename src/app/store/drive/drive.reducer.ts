@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { IFile } from '#dashboard/features/drive/models';
+import { IFile } from '#drive/models';
 import { DriveActions } from '#store/drive';
 
 export const FeatureKey = 'drive';

@@ -38,9 +38,14 @@
 
         <div class="flex align-items-center justify-content-between">
           <p>{{ 'overview.notes' | translate }}: {{ taskerData.notesLength }}</p>
-          <p-button [icon]="PrimeIcons.PLUS" (onClick)="addQuickNote()" size="small" />
         </div>
       }
+
+      <p-button
+        [icon]="PrimeIcons.PLUS"
+        [label]="'overview.quickNote' | translate"
+        (onClick)="addQuickNote()"
+        styleClass="w-full mt-auto" />
     </ctrl-container>
   </div>
 }

@@ -19,6 +19,7 @@ export class DriveComponent {
 
   public readonly files$: Observable<IFile[] | null> = this.driveFacade.files$;
   public readonly isLoading$: Observable<boolean> = this.driveFacade.isLoading$;
+
   private readonly user: Signal<IUser | null> = toSignal(this.driveFacade.user$, { initialValue: null });
 
   protected uploadUrl: string = env.uploadUrl;

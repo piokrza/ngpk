@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, filter, switchMap, fromEvent, from } from 'rxjs';
 
-import { Web3State } from '#dashboard/features/web3/data-access';
 import { WEB3_CONFIG } from '#web3/config';
+import { Web3State } from '#web3/data-access';
 import { EthereumEvent } from '#web3/enums';
 import { Ethereum, Web3Config } from '#web3/models';
 
