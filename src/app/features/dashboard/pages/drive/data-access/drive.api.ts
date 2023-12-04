@@ -20,7 +20,7 @@ export class DriveApi {
     return files$.valueChanges({ idField: 'id' });
   }
 
-  async uploadFile(file: File, type: IFile['type'], uid: string): Promise<DocumentReference<IFile>> {
+  async uploadFile(file: File, uid: string): Promise<DocumentReference<IFile>> {
     const path: string = `files/${file.name}`;
     const task: UploadTaskSnapshot = await this.fireStorage.upload(path, file);
     const url: string = await task.ref.getDownloadURL();
@@ -28,7 +28,7 @@ export class DriveApi {
     return await this.angularFirestore.collection<IFile>(Collection.FILES).add({
       url,
       uid,
-      type,
+      type: 'file',
       name: file.name,
       id: this.angularFirestore.createId(),
     });

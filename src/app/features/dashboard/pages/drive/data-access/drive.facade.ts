@@ -27,8 +27,8 @@ export class DriveFacade {
     return this.store.select(AuthSelectors.user);
   }
 
-  public uploadFile(file: File, fileType: IFile['type'], uid: string): void {
-    this.store.dispatch(DriveActions.uploadFile({ file, fileType, uid }));
+  public uploadFile(file: File, uid: string): void {
+    this.store.dispatch(DriveActions.uploadFile({ file, uid }));
   }
 
   public uploadFolder(): void {}

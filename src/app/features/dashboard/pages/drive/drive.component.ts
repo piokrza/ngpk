@@ -27,7 +27,7 @@ export class DriveComponent {
   protected uploadUrl: string = env.uploadUrl;
 
   public uploadFile({ files }: FileUploadEvent): void {
-    files.length && this.driveFacade.uploadFile(files[0], 'file', this.user()!.uid);
+    files.length && this.driveFacade.uploadFile(files[0], this.user()!.uid);
   }
 
   public addFolder(): void {
