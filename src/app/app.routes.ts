@@ -24,6 +24,11 @@ export const routes: Routes = [
     title: getTitle('auth'),
   },
   {
+    path: AppPaths.WEB3,
+    loadChildren: () => import('#web3/web3.module'),
+    title: getTitle('web3'),
+  },
+  {
     path: '**',
     loadComponent: () => import('#shared/components/page-not-found/page-not-found.component'),
     title: getTitle('pageNotFound'),

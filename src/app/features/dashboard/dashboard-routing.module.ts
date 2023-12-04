@@ -40,11 +40,6 @@ const routes: Routes = [
         loadChildren: () => import('#tasker/tasker.module'),
         title: getTitle('tasker'),
       },
-      {
-        path: DashobardPaths.WEB3,
-        loadChildren: () => import('#web3/web3.module'),
-        title: getTitle('web3'),
-      },
     ],
   },
 ];

@@ -36,11 +36,6 @@ export class MenuService {
         icon: PrimeIcons.BOOK,
       },
       {
-        label: 'menu.web3',
-        routerLink: DashobardPaths.WEB3,
-        icon: PrimeIcons.BITCOIN,
-      },
-      {
         label: 'menu.settings',
         routerLink: DashobardPaths.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,
