@@ -46,6 +46,8 @@
 
             @for (note of notes; track note.id) {
               <ctrl-note [note]="note" (removeNote)="removeNote($event)" class="flex-grow-1" />
+            } @empty {
+              <p>{{ 'overview.noData' | translate }}</p>
             }
           }
         </div>

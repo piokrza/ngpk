@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Signal, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -34,6 +35,7 @@ export class NoteFormComponent {
       ...this.form.getRawValue(),
       id: this.firestore.createId(),
       uid: this.user()!.uid,
+      createDate: Timestamp.fromDate(new Date()),
     };
 
     this.dialogRef.close(newNote);

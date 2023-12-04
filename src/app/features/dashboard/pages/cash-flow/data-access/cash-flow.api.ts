@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
-import { Observable, combineLatest, map, take } from 'rxjs';
+import { Observable, combineLatest, map } from 'rxjs';
 
 import { CashFlowUserData, CashFlow } from '#cash-flow/models';
 import { Collection } from '#common/enums';
@@ -19,12 +19,10 @@ export class CashFlowApi {
     );
 
     return combineLatest({
+      // TODO: separate to own http calls
       expenses: expenses$.valueChanges({ idField: 'id' }),
       incomes: incomes$.valueChanges({ idField: 'id' }),
-    }).pipe(
-      take(1),
-      map(({ expenses, incomes }): CashFlowUserData => ({ expenses, incomes }))
-    );
+    }).pipe(map(({ expenses, incomes }): CashFlowUserData => ({ expenses, incomes })));
   }
 
   public addCashFlow$(collectionName: Collection, cashFlow: CashFlow): Promise<DocumentReference<CashFlow>> {

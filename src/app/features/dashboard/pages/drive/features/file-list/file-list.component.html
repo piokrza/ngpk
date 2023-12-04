@@ -8,7 +8,7 @@
         <span class="file-list__item-name"> {{ file.name }}</span>
       </li>
     } @empty {
-      <p>No files yet</p>
+      <p>{{ 'overview.noData' | translate }}</p>
     }
   </ul>
 }

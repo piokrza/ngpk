@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
+import { DateFormats } from '#dashboard/enums';
 import { TaskerService } from '#tasker/data-access';
 import { Note } from '#tasker/models';
 
@@ -19,6 +20,7 @@ export class NoteComponent {
 
   public isTaskContentVisible = false;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  public readonly DateFormats: typeof DateFormats = DateFormats;
 
   public toggleNoteVisibility(): void {
     this.isTaskContentVisible = !this.isTaskContentVisible;
