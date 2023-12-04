@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,6 +14,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
 
+import { TimestampPipe } from '#shared/pipes';
 import { TaskerComponent } from '#tasker/.';
 import { TaskFormComponent, TaskComponent, NoteFormComponent, NoteComponent } from '#tasker/components';
 import { TaskerFacade } from '#tasker/data-access';
@@ -36,9 +37,10 @@ const imports = [
   CheckboxModule,
   InputTextareaModule,
   DividerModule,
+  TimestampPipe,
 ];
 const declarations = [TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NoteComponent];
-const providers: Provider[] = [TaskerFacade];
+const providers: Provider[] = [TaskerFacade, DatePipe];
 
 @NgModule({ declarations, imports, providers })
 export default class TaskerModule {}

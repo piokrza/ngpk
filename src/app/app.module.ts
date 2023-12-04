@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, EnvironmentProviders, isDevMode, NgModule, Provider } from '@angular/core';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -54,15 +55,16 @@ const imports = [
   }),
 ];
 const providers: Array<Provider | EnvironmentProviders> = [
+  provideRouter(routes, withViewTransitions()),
   { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [AppInitService], multi: true },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+  DatePipe,
   MessageService,
   ConfirmationService,
   ScreenTrackingService,
   UserTrackingService,
   DialogService,
-  provideRouter(routes, withViewTransitions()),
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

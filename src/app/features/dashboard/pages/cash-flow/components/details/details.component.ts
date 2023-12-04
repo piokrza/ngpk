@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { PrimeIcons } from 'primeng/api';
 
 import { CashFlow } from '#cash-flow/models';
+import { DateFormats } from '#dashboard/enums';
 
 @Component({
   selector: 'ctrl-details',
@@ -17,4 +18,5 @@ export class DetailsComponent {
   @Output() cashFlowToUpdate = new EventEmitter<CashFlow>();
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  public readonly DateFormats: typeof DateFormats = DateFormats;
 }

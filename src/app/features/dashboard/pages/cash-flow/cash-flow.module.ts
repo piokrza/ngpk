@@ -26,7 +26,7 @@ import {
 } from '#cash-flow/components';
 import { CashFlowFacade } from '#cash-flow/data-access';
 import { CategoryLabelPipe } from '#cash-flow/pipes';
-import { IconPipe, TimestampToDatePipe } from '#shared/pipes';
+import { IconPipe, TimestampPipe } from '#shared/pipes';
 
 const routes: Routes = [{ path: '', component: CashFlowComponent }];
 
@@ -54,10 +54,10 @@ const imports = [
   DataViewModule,
   ProgressSpinnerModule,
   DividerModule,
-  TimestampToDatePipe,
   IconPipe,
   CategoryLabelPipe,
   TabViewModule,
+  TimestampPipe,
 ];
 const providers: Provider[] = [CashFlowFacade];
 
