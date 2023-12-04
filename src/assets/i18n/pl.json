@@ -154,7 +154,8 @@
     "fetchNotesError": "Coś poszło nie tak przy próbie pobrania danych",
     "addTaskError": "Cos poszło nie tak przy próbie usunięcia zadania z bazy danych",
     "addFileSuccess": "Plik poprawnie zapisany w bazie danych",
-    "addFileError": "Coś poszło nie tak przy próbie zapisu pliku"
+    "addFileError": "Coś poszło nie tak przy próbie zapisu pliku",
+    "accUpdateSuccess": "Konto poprawnie zaktualizowane"
   },
 
   "wallet": {

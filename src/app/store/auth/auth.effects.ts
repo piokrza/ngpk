@@ -50,7 +50,7 @@ export class AuthEffects {
       ofType(AuthActions.signOut),
       exhaustMap((): Promise<void> => this.authApi.signOut()),
       map(() => AuthActions.userNotAuthenticated()),
-      tap(() => this.router.navigateByUrl('/authentication'))
+      tap(() => this.router.navigateByUrl(`/${AppPaths.AUTHENTICATION}`))
     );
   });
 
@@ -106,7 +106,7 @@ export class AuthEffects {
       exhaustMap(({ updatedUserData }) => {
         return from(this.authApi.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
-          tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Account data successfully updated')),
+          tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('accUpdateSuccess'))),
           catchError(() => of(AuthActions.updateAccountFailure()))
         );
       })

@@ -1,13 +1,11 @@
-<div class="flex gap-4">
-  <p-fileUpload [chooseLabel]="'drive.addFile' | translate" [url]="uploadUrl" (onUpload)="uploadFile($event)" mode="basic" />
+<p-fileUpload [chooseLabel]="'drive.addFile' | translate" [url]="uploadUrl" (onUpload)="uploadFile($event)" mode="basic" />
 
-  @if (isLoading$ | async) {
-    <p-progressSpinner />
-  }
-</div>
-
-<div class="mt-5">
-  @for (file of files$ | async; track $index) {
-    <img [ngSrc]="file.url" width="140" height="140" />
-  }
-</div>
+@if (isLoading$ | async) {
+  <p-progressSpinner />
+} @else {
+  <div class="mt-5">
+    @for (file of files$ | async; track $index) {
+      <img [ngSrc]="file.url" width="140" height="140" />
+    }
+  </div>
+}
