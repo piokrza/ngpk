@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, filter, switchMap, fromEvent, from } from 'rxjs';
 
 import { WEB3_CONFIG } from '#web3/config';
-import { Web3State } from '#web3/data-access';
+import { MetamaskState } from '#web3/data-access';
 import { EthereumEvent } from '#web3/enums';
 import { Ethereum, Web3Config } from '#web3/models';
 
@@ -14,7 +14,7 @@ declare global {
 
 @Injectable({ providedIn: 'root' })
 export class MetamaskService {
-  private readonly web3State: Web3State = inject(Web3State);
+  private readonly metamaskState: MetamaskState = inject(MetamaskState);
   private readonly web3Config: Web3Config = inject(WEB3_CONFIG);
 
   public requestWallets$(): Observable<string[]> {
@@ -30,7 +30,7 @@ export class MetamaskService {
   }
 
   public accountChanged$(): Observable<string[]> {
-    return this.web3State.isWalletExtention$.pipe(
+    return this.metamaskState.isWalletExtention$.pipe(
       filter(Boolean),
       switchMap(() => fromEvent(<any>window.ethereum, EthereumEvent.ACCOUNTS_CHANGED) as Observable<string[]>)
     );

@@ -8,7 +8,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { switchMap, map, tap } from 'rxjs';
 
 import { WEB3_CONFIG } from '#web3/config';
-import { MetamaskService, Web3State } from '#web3/data-access';
+import { MetamaskService, MetamaskState } from '#web3/data-access';
 import { Web3Config } from '#web3/models';
 
 const imports = [ToolbarModule, ButtonModule, AsyncPipe];
@@ -23,7 +23,7 @@ const imports = [ToolbarModule, ButtonModule, AsyncPipe];
   imports,
 })
 export class TargetNetworkDialogComponent {
-  private readonly web3State: Web3State = inject(Web3State);
+  private readonly metamaskState: MetamaskState = inject(MetamaskState);
   private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
   private readonly metamaskService: MetamaskService = inject(MetamaskService);
 
@@ -37,7 +37,7 @@ export class TargetNetworkDialogComponent {
     this.metamaskService
       .switchToTargetNetwork$()
       .pipe(
-        switchMap(() => this.web3State.chainId$.pipe(map((chainId) => Number(chainId) === this.config.targetNetworkId))),
+        switchMap(() => this.metamaskState.chainId$.pipe(map((chainId) => Number(chainId) === this.config.targetNetworkId))),
         tap((matched: boolean) => matched && this.dialogRef.close()),
         untilDestroyed(this)
       )
