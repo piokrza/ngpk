@@ -13,7 +13,7 @@ declare global {
 }
 
 @Injectable({ providedIn: 'root' })
-export class EthereumService {
+export class MetamaskService {
   private readonly web3State: Web3State = inject(Web3State);
   private readonly web3Config: Web3Config = inject(WEB3_CONFIG);
 
