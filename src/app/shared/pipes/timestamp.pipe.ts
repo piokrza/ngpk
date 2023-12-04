@@ -6,7 +6,7 @@ import { DateFormats } from '#dashboard/enums';
 
 @Pipe({ name: 'timestamp', standalone: true })
 export class TimestampPipe implements PipeTransform {
-  private readonly datePipe = inject(DatePipe);
+  private readonly datePipe: DatePipe = inject(DatePipe);
 
   public transform(timestamp: Timestamp, format: DateFormats): string {
     return this.datePipe.transform(timestamp.toDate(), format) ?? '';

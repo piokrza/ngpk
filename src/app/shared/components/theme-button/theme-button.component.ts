@@ -12,7 +12,7 @@ const imports = [ToggleButtonModule, FormsModule];
 @Component({
   selector: 'ctrl-theme-button',
   template: `
-    <p-toggleButton [(ngModel)]="isLightMode" (onChange)="toggleTheme()" [onIcon]="PrimeIcons.SUN" [offIcon]="PrimeIcons.MOON" />
+    <p-toggleButton [onIcon]="PrimeIcons.SUN" [offIcon]="PrimeIcons.MOON" [(ngModel)]="isLightMode" (onChange)="toggleTheme()" />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

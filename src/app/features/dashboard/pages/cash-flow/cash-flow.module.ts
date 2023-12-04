@@ -25,8 +25,8 @@ import {
   UpdateFormComponent,
 } from '#cash-flow/components';
 import { CashFlowFacade } from '#cash-flow/data-access';
-import { CategoryLabelPipe } from '#cash-flow/pipes';
-import { IconPipe, TimestampPipe } from '#shared/pipes';
+import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
+import { TimestampPipe } from '#shared/pipes';
 
 const routes: Routes = [{ path: '', component: CashFlowComponent }];
 
