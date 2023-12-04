@@ -19,11 +19,17 @@ export class DriveFacade {
     return this.store.select(DriveSelectors.isLoading);
   }
 
+  public get isProcessing$(): Observable<boolean> {
+    return this.store.select(DriveSelectors.isProcessing);
+  }
+
   public get user$(): Observable<IUser | null> {
     return this.store.select(AuthSelectors.user);
   }
 
-  public uploadFile(file: File, uid: string): void {
-    this.store.dispatch(DriveActions.uploadFile({ file, uid }));
+  public uploadFile(file: File, fileType: IFile['type'], uid: string): void {
+    this.store.dispatch(DriveActions.uploadFile({ file, fileType, uid }));
   }
+
+  public uploadFolder(): void {}
 }

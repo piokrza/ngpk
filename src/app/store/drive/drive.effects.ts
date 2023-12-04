@@ -33,8 +33,8 @@ export class DriveEffects {
   public uploadFile$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DriveActions.uploadFile),
-      exhaustMap(({ file, uid }) => {
-        return from(this.driveApi.uploadFile(file, uid)).pipe(
+      exhaustMap(({ file, fileType, uid }) => {
+        return from(this.driveApi.uploadFile(file, fileType, uid)).pipe(
           tap(() => {
             this.toastService.showMessage(
               ToastStatus.SUCCESS,

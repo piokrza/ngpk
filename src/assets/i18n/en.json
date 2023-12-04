@@ -172,7 +172,9 @@
   },
 
   "drive": {
-    "addFile": "Add file"
+    "addFile": "Add file",
+    "addFolder": "Add folder",
+    "enterFolderName": "Enter folder name"
   },
 
   "pageNotFound": {

@@ -1,4 +1,23 @@
-<div class="container">
-  <p-fileUpload [chooseLabel]="'drive.addFile' | translate" [url]="uploadUrl" (onUpload)="uploadFile($event)" mode="basic" />
+<div class="drive">
+  <div class="drive__buttons">
+    <p-fileUpload
+      [auto]="true"
+      [chooseLabel]="'drive.addFile' | translate"
+      [url]="uploadUrl"
+      [chooseIcon]="(buttonIcon$ | async)!"
+      (onUpload)="uploadFile($event)"
+      mode="basic" />
+
+    @if (folderMode() === 'initial') {
+      <p-button [icon]="PrimeIcons.PLUS" [label]="'drive.addFolder' | translate" (onClick)="folderMode.set('edit')" />
+    }
+    @if (folderMode() === 'edit') {
+      <div class="flex">
+        <input [formControl]="folderNameControl" [placeholder]="'drive.enterFolderName' | translate" type="text" pInputText />
+        <p-button [icon]="PrimeIcons.PLUS" (onClick)="addFolder()" />
+      </div>
+    }
+  </div>
+
   <router-outlet />
 </div>

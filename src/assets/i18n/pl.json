@@ -164,7 +164,9 @@
   },
 
   "drive": {
-    "addFile": "Dodaj plik"
+    "addFile": "Dodaj plik",
+    "addFolder": "Dodaj folder",
+    "enterFolderName": "Wprowadź nazwę folderu"
   },
 
   "pageNotFound": {
