@@ -155,6 +155,8 @@
     "addTaskError": "Cos poszło nie tak przy próbie usunięcia zadania z bazy danych",
     "addFileSuccess": "Plik poprawnie zapisany w bazie danych",
     "addFileError": "Coś poszło nie tak przy próbie zapisu pliku",
+    "addFolderSuccess": "Folder poprawnie zapisany w bazie danych",
+    "addFolderError": "Coś poszło nie tak przy próbie zapisu folderu",
     "accUpdateSuccess": "Konto poprawnie zaktualizowane"
   },
 

@@ -33,26 +33,36 @@ export class DriveEffects {
   public uploadFile$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DriveActions.uploadFile),
-      exhaustMap(({ file, uid }) => {
-        return from(this.driveApi.uploadFile(file, uid)).pipe(
-          tap(() => {
-            this.toastService.showMessage(
-              ToastStatus.SUCCESS,
-              this.translate.instant('toastMessage.success'),
-              this.translate.instant('toastMessage.addFileSuccess')
-            );
-          }),
+      exhaustMap(({ payload }) => {
+        return from(this.driveApi.uploadFile(payload)).pipe(
+          tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addFileSuccess'))),
           map(() => DriveActions.uploadFileSuccess()),
           catchError(() => {
-            this.toastService.showMessage(
-              ToastStatus.SUCCESS,
-              this.translate.instant('toastMessage.error'),
-              this.translate.instant('toastMessage.addFileError')
-            );
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('error'), this.tr('addFileError'));
             return of(DriveActions.uploadFileFailure());
           })
         );
       })
     );
   });
+
+  public uploadFolder$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DriveActions.uploadFolder),
+      exhaustMap(({ payload }) => {
+        return from(this.driveApi.uploadFolder(payload)).pipe(
+          tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addFolderSuccess'))),
+          map(() => DriveActions.uploadFolderSuccess()),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('error'), this.tr('addFolderError'));
+            return of(DriveActions.uploadFolderFailure());
+          })
+        );
+      })
+    );
+  });
+
+  private tr(path: string): string {
+    return this.translate.instant('toastMessage.' + path);
+  }
 }

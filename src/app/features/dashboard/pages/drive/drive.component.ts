@@ -21,16 +21,26 @@ export class DriveComponent {
   private readonly user: Signal<IUser | null> = toSignal(this.driveFacade.user$, { initialValue: null });
 
   public folderMode: WritableSignal<'initial' | 'edit'> = signal('initial');
-  public readonly folderNameControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
+  public readonly folderNameControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   protected uploadUrl: string = env.uploadUrl;
 
   public uploadFile({ files }: FileUploadEvent): void {
-    files.length && this.driveFacade.uploadFile(files[0], this.user()!.uid);
+    files.length &&
+      this.driveFacade.uploadFile({
+        file: files[0],
+        uid: this.user()!.uid,
+      });
   }
 
   public addFolder(): void {
+    this.driveFacade.uploadFolder({
+      name: this.folderNameControl.value,
+      fileList: [],
+      uid: this.user()!.uid,
+    });
+
     this.folderMode.set('initial');
   }
 

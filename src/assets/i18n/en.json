@@ -155,7 +155,10 @@
     "fetchNotesError": "Something went wrong during fetching notes data",
     "addTaskError": "Something went wrong during removing task from database",
     "addFileSuccess": "File successfully added",
-    "addFileError": "Something went wrong during saving file in database"
+    "addFileError": "Something went wrong during saving file in database",
+    "addFolderSuccess": "Folder successfully added",
+    "addFolderError": "Something went wrong during saving folder in database",
+    "accUpdateSuccess": "Account updated"
   },
 
   "common": {

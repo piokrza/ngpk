@@ -11,10 +11,11 @@
     @if (folderMode() === 'initial') {
       <p-button [icon]="PrimeIcons.PLUS" [label]="'drive.addFolder' | translate" (onClick)="folderMode.set('edit')" />
     }
+
     @if (folderMode() === 'edit') {
       <div class="flex">
         <input [formControl]="folderNameControl" [placeholder]="'drive.enterFolderName' | translate" type="text" pInputText />
-        <p-button [icon]="PrimeIcons.PLUS" (onClick)="addFolder()" />
+        <p-button [disabled]="folderNameControl.value.length < 3" [icon]="PrimeIcons.PLUS" (onClick)="addFolder()" />
       </div>
     }
   </div>

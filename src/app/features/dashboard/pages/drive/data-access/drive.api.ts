@@ -5,7 +5,7 @@ import { UploadTaskSnapshot } from '@angular/fire/compat/storage/interfaces';
 import { Observable } from 'rxjs';
 
 import { Collection } from '#common/enums';
-import { IFile } from '#drive/models';
+import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
 
 @Injectable({ providedIn: 'root' })
 export class DriveApi {
@@ -20,7 +20,7 @@ export class DriveApi {
     return files$.valueChanges({ idField: 'id' });
   }
 
-  async uploadFile(file: File, uid: string): Promise<DocumentReference<IFile>> {
+  async uploadFile({ file, uid }: FileUploadPayload): Promise<DocumentReference<IFile>> {
     const path: string = `files/${file.name}`;
     const task: UploadTaskSnapshot = await this.fireStorage.upload(path, file);
     const url: string = await task.ref.getDownloadURL();
@@ -30,6 +30,16 @@ export class DriveApi {
       uid,
       type: 'file',
       name: file.name,
+      id: this.angularFirestore.createId(),
+    });
+  }
+
+  async uploadFolder({ uid, name, fileList = [] }: FolderUploadPayload): Promise<DocumentReference<IFile>> {
+    return await this.angularFirestore.collection<IFile>(Collection.FILES).add({
+      uid,
+      name,
+      fileList,
+      type: 'folder',
       id: this.angularFirestore.createId(),
     });
   }

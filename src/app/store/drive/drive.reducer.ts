@@ -26,5 +26,9 @@ export const Reducer = createReducer(
 
   on(DriveActions.uploadFile, (state): State => ({ ...state, isProcessing: true })),
   on(DriveActions.uploadFileSuccess, (state): State => ({ ...state, isProcessing: false })),
-  on(DriveActions.uploadFileFailure, (state): State => ({ ...state, isProcessing: false }))
+  on(DriveActions.uploadFileFailure, (state): State => ({ ...state, isProcessing: false })),
+
+  on(DriveActions.uploadFolder, (state): State => ({ ...state, isProcessing: true })),
+  on(DriveActions.uploadFolderSuccess, (state): State => ({ ...state, isProcessing: false })),
+  on(DriveActions.uploadFolderFailure, (state): State => ({ ...state, isProcessing: false }))
 );

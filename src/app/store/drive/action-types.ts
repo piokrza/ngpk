@@ -6,4 +6,8 @@ export enum ActionTypes {
   UPLOAD_FILE = '[Files] Upload file',
   UPLOAD_FILE_SUCCESS = '[Files] Upload file success',
   UPLOAD_FILE_FAILURE = '[Files] Upload file failure',
+
+  UPLOAD_FOLDER = '[Files] Upload folder',
+  UPLOAD_FOLDER_SUCCESS = '[Files] Upload folder success',
+  UPLOAD_FOLDER_FAILURE = '[Files] Upload folder failure',
 }

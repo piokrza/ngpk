@@ -1,9 +1,9 @@
-import { IFile } from '../models';
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { IUser } from '#auth/models';
+import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
 import { AuthSelectors } from '#store/auth';
 import { DriveActions, DriveSelectors } from '#store/drive';
 
@@ -27,9 +27,11 @@ export class DriveFacade {
     return this.store.select(AuthSelectors.user);
   }
 
-  public uploadFile(file: File, uid: string): void {
-    this.store.dispatch(DriveActions.uploadFile({ file, uid }));
+  public uploadFile(payload: FileUploadPayload): void {
+    this.store.dispatch(DriveActions.uploadFile({ payload }));
   }
 
-  public uploadFolder(): void {}
+  public uploadFolder(payload: FolderUploadPayload): void {
+    this.store.dispatch(DriveActions.uploadFolder({ payload }));
+  }
 }
