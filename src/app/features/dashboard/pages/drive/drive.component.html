@@ -14,7 +14,12 @@
 
     @if (folderMode() === 'edit') {
       <div class="flex">
-        <input [formControl]="folderNameControl" [placeholder]="'drive.enterFolderName' | translate" type="text" pInputText />
+        <input
+          [formControl]="folderNameControl"
+          [placeholder]="'drive.enterFolderName' | translate"
+          (keyup.enter)="addFolder()"
+          type="text"
+          pInputText />
         <p-button [disabled]="folderNameControl.value.length < 3" [icon]="PrimeIcons.PLUS" (onClick)="addFolder()" />
       </div>
     }

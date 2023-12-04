@@ -21,7 +21,7 @@ export class DriveComponent {
   private readonly user: Signal<IUser | null> = toSignal(this.driveFacade.user$, { initialValue: null });
 
   public folderMode: WritableSignal<'initial' | 'edit'> = signal('initial');
-  public readonly folderNameControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
+  public readonly folderNameControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   protected uploadUrl: string = env.uploadUrl;

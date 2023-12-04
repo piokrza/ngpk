@@ -18,4 +18,8 @@ export class FileListComponent {
   public readonly isLoading$: Observable<boolean> = this.driveFacade.isLoading$;
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+
+  public itemClick(fileUrl?: string): void {
+    fileUrl && window.open(fileUrl);
+  }
 }
