@@ -1,5 +1,9 @@
 @use 'src/assets/styles/variables/breakpoints' as b;
 
+:root {
+  --radius: 0.25rem;
+}
+
 .spinner {
   width: 100%;
   display: flex;
@@ -27,7 +31,7 @@ small.error {
 }
 
 .rounded {
-  border-radius: 0.25rem;
+  border-radius: var(--radius);
 }
 
 .underline {

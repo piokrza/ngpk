@@ -7,9 +7,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { DriveComponent, DriveRoutingModule } from '#drive/.';
 import { DriveFacade } from '#drive/data-access';
-import { AddFileComponent } from '#drive/features';
+import { FileListComponent } from '#drive/features';
 
-const declarations = [DriveComponent, AddFileComponent];
+const declarations = [DriveComponent, FileListComponent];
 const imports = [DriveRoutingModule, ButtonModule, FileUploadModule, TranslateModule, AsyncPipe, ProgressSpinnerModule, NgOptimizedImage];
 const providers: Array<Provider> = [DriveFacade];
 

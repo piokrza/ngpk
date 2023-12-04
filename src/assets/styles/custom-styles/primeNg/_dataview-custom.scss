@@ -1,6 +1,6 @@
 p-dataview .p-dataview {
   &-content {
-    border-radius: 0.25rem;
+    border-radius: var(--radius);
     background-color: transparent !important;
 
     .grid {

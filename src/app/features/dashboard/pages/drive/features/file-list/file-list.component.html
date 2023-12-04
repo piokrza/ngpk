@@ -1,0 +1,14 @@
+@if (isLoading$ | async) {
+  <p-progressSpinner />
+} @else {
+  <ul class="file-list">
+    @for (file of files$ | async; track file.id) {
+      <li class="file-list__item">
+        <i [class]="PrimeIcons.FOLDER"></i>
+        <span class="file-list__item-name"> {{ file.name }}</span>
+      </li>
+    } @empty {
+      <p>No files yet</p>
+    }
+  </ul>
+}

@@ -25,6 +25,8 @@ export class DriveApi {
     const task: UploadTaskSnapshot = await this.fireStorage.upload(path, file);
     const url: string = await task.ref.getDownloadURL();
 
-    return await this.angularFirestore.collection<IFile>(Collection.FILES).add({ url, uid, id: this.angularFirestore.createId() });
+    return await this.angularFirestore
+      .collection<IFile>(Collection.FILES)
+      .add({ url, uid, name: file.name, id: this.angularFirestore.createId() });
   }
 }

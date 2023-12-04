@@ -1,0 +1,6 @@
+@use 'src/assets/styles/variables/sizes' as s;
+
+.container {
+  width: min(100% - 2rem, s.$containerMaxWidth);
+  margin-inline: auto;
+}

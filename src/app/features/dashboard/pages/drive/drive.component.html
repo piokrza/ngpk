@@ -1,0 +1,4 @@
+<div class="container">
+  <p-fileUpload [chooseLabel]="'drive.addFile' | translate" [url]="uploadUrl" (onUpload)="uploadFile($event)" mode="basic" />
+  <router-outlet />
+</div>

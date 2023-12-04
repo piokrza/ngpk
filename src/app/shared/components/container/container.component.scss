@@ -7,7 +7,7 @@
 
     &__inner {
       padding: 1rem;
-      border-radius: 0.25rem;
+      border-radius: var(--radius);
       height: 100%;
       border: solid 1px var(--surface-hover);
       background-color: var(--surface-section);

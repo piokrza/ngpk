@@ -1,1 +1,1 @@
-export * from './add-file/add-file.component';
+export * from './file-list/file-list.component';

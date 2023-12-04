@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DriveComponent } from '#drive/.';
-import { DrivePaths } from '#drive/enums';
-import { AddFileComponent } from '#drive/features';
+import { FileListComponent } from '#drive/features';
 
 const routes: Routes = [
   {
@@ -12,12 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: DrivePaths.ADD_FILE,
-        pathMatch: 'full',
-      },
-      {
-        path: DrivePaths.ADD_FILE,
-        component: AddFileComponent,
+        component: FileListComponent,
       },
     ],
   },
