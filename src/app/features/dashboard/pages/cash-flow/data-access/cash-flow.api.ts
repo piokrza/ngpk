@@ -25,21 +25,24 @@ export class CashFlowApi {
     }).pipe(map(({ expenses, incomes }): CashFlowUserData => ({ expenses, incomes })));
   }
 
-  public addCashFlow$(collectionName: Collection, cashFlow: CashFlow): Promise<DocumentReference<CashFlow>> {
-    return this.angularFirestore.collection<CashFlow>(collectionName).add(cashFlow);
+  public async addCashFlow$(
+    collectionName: Collection.EXPENSES | Collection.INCOMES,
+    cashFlow: CashFlow
+  ): Promise<DocumentReference<CashFlow>> {
+    return await this.angularFirestore.collection<CashFlow>(collectionName).add(cashFlow);
   }
 
-  public removeCashFlow$(collectionName: Collection, cashFlowId: string): Promise<void> {
+  public async removeCashFlow$(collectionName: Collection.EXPENSES | Collection.INCOMES, cashFlowId: string): Promise<void> {
     const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore.collection(collectionName).doc(cashFlowId);
 
-    return cashFlow.delete();
+    return await cashFlow.delete();
   }
 
-  public updateCashFlow$(collectionName: Collection, updatedCashFlowData: CashFlow): Promise<void> {
+  public async updateCashFlow$(collectionName: Collection.EXPENSES | Collection.INCOMES, updatedCashFlowData: CashFlow): Promise<void> {
     const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore
       .collection<CashFlow>(collectionName)
       .doc(updatedCashFlowData.id);
 
-    return cashFlow.update(updatedCashFlowData);
+    return await cashFlow.update(updatedCashFlowData);
   }
 }

@@ -48,8 +48,8 @@ export class AuthApi {
       .pipe(tap((data) => !data.exists && usersCollectionRef.doc(data.id).set(user)));
   }
 
-  public updateUser$(updatedUserData: IUser): Promise<void> {
+  public async updateUser$(updatedUserData: IUser): Promise<void> {
     const user: AngularFirestoreDocument<IUser> = this.angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
-    return user.update(updatedUserData);
+    return await user.update(updatedUserData);
   }
 }
