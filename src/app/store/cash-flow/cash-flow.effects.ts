@@ -15,15 +15,30 @@ export class CashFlowEffects {
   private readonly toastService: ToastService = inject(ToastService);
   private readonly translateService: TranslateService = inject(TranslateService);
 
-  public getCashFlowUserData$ = createEffect(() => {
+  public getExpenses$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashFlowActions.getCashFlowUserData),
+      ofType(CashFlowActions.getExpenses),
       exhaustMap(({ uid }) => {
-        return this.cashFlowApi.loadUserCashFlowData$(uid).pipe(
-          map((cashFlowData) => CashFlowActions.getCashFlowUserDataSuccess({ cashFlowData })),
+        return this.cashFlowApi.loadExpenses$(uid).pipe(
+          map((expenses) => CashFlowActions.getExpensesSuccess({ expenses })),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUserError'));
-            return of(CashFlowActions.getCashFlowUserDataFailure());
+            return of(CashFlowActions.getExpensesFailure());
+          })
+        );
+      })
+    );
+  });
+
+  public getIncomes$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashFlowActions.getIncomes),
+      exhaustMap(({ uid }) => {
+        return this.cashFlowApi.loadIncomes$(uid).pipe(
+          map((incomes) => CashFlowActions.getIncomesSuccess({ incomes })),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUserError'));
+            return of(CashFlowActions.getIncomesFailure());
           })
         );
       })

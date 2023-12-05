@@ -1,14 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 
-import { CashFlow, CashFlowUserData } from '#cash-flow/models';
+import { CashFlow } from '#cash-flow/models';
 import { ActionTypes } from '#store/cash-flow/action-types';
 
-export const getCashFlowUserData = createAction(ActionTypes.GET_CASH_FLOW_USER_DATA, props<{ uid: string }>());
-export const getCashFlowUserDataSuccess = createAction(
-  ActionTypes.GET_CASH_FLOW_USER_DATA_SUCCESS,
-  props<{ cashFlowData: CashFlowUserData }>()
-);
-export const getCashFlowUserDataFailure = createAction(ActionTypes.GET_CASH_FLOW_USER_DATA_FAILURE);
+export const getExpenses = createAction(ActionTypes.GET_EXPENSES, props<{ uid: string }>());
+export const getExpensesSuccess = createAction(ActionTypes.GET_EXPENSES_SUCCESS, props<{ expenses: CashFlow[] }>());
+export const getExpensesFailure = createAction(ActionTypes.GET_EXPENSES_FAILURE);
+
+export const getIncomes = createAction(ActionTypes.GET_INCOMES, props<{ uid: string }>());
+export const getIncomesSuccess = createAction(ActionTypes.GET_INCOMES_SUCCESS, props<{ incomes: CashFlow[] }>());
+export const getIncomesFailure = createAction(ActionTypes.GET_INCOMES_FAILURE);
 
 export const addIncome = createAction(ActionTypes.ADD_INCOME, props<{ income: CashFlow }>());
 export const addIncomeSuccess = createAction(ActionTypes.ADD_INCOME_SUCCESS);

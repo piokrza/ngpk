@@ -1,28 +1,24 @@
 import { inject, Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
-import { Observable, combineLatest, map } from 'rxjs';
+import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
-import { CashFlowUserData, CashFlow } from '#cash-flow/models';
+import { CashFlow } from '#cash-flow/models';
 import { Collection } from '#common/enums';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowApi {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
-  public loadUserCashFlowData$(uid: string): Observable<CashFlowUserData> {
-    const expenses$: AngularFirestoreCollection<CashFlow> = this.angularFirestore.collection<CashFlow>(Collection.EXPENSES, (ref) =>
-      ref.where('uid', '==', uid)
-    );
+  public loadExpenses$(uid: string): Observable<CashFlow[]> {
+    return this.angularFirestore
+      .collection<CashFlow>(Collection.EXPENSES, (ref) => ref.where('uid', '==', uid))
+      .valueChanges({ idField: 'id' });
+  }
 
-    const incomes$: AngularFirestoreCollection<CashFlow> = this.angularFirestore.collection<CashFlow>(Collection.INCOMES, (ref) =>
-      ref.where('uid', '==', uid)
-    );
-
-    return combineLatest({
-      // TODO: separate to own http calls
-      expenses: expenses$.valueChanges({ idField: 'id' }),
-      incomes: incomes$.valueChanges({ idField: 'id' }),
-    }).pipe(map(({ expenses, incomes }): CashFlowUserData => ({ expenses, incomes })));
+  public loadIncomes$(uid: string): Observable<CashFlow[]> {
+    return this.angularFirestore
+      .collection<CashFlow>(Collection.INCOMES, (ref) => ref.where('uid', '==', uid))
+      .valueChanges({ idField: 'id' });
   }
 
   public async addCashFlow$(

@@ -23,7 +23,8 @@ export class DashboardFacade {
           this.store.dispatch(CategoriesActions.getCategories());
           this.store.dispatch(TaskerActions.getTasks({ uid: user.uid }));
           this.store.dispatch(TaskerActions.getNotes({ uid: user.uid }));
-          this.store.dispatch(CashFlowActions.getCashFlowUserData({ uid: user.uid }));
+          this.store.dispatch(CashFlowActions.getExpenses({ uid: user.uid }));
+          this.store.dispatch(CashFlowActions.getIncomes({ uid: user.uid }));
           this.store.dispatch(DriveActions.getFiles({ uid: user.uid }));
         }
       })

@@ -21,13 +21,23 @@ const initialState: State = {
 export const Reducer = createReducer(
   initialState,
 
-  on(CashFlowActions.getCashFlowUserData, (state): State => {
+  on(CashFlowActions.getExpenses, (state): State => {
     return { ...state, isLoading: true };
   }),
-  on(CashFlowActions.getCashFlowUserDataSuccess, (_, { cashFlowData: { expenses, incomes } }): State => {
-    return { expenses, incomes, isLoading: false };
+  on(CashFlowActions.getExpensesSuccess, (state, { expenses }): State => {
+    return { ...state, expenses, isLoading: false };
   }),
-  on(CashFlowActions.getCashFlowUserDataFailure, (state): State => {
+  on(CashFlowActions.getExpensesFailure, (state): State => {
+    return { ...state, isLoading: false };
+  }),
+
+  on(CashFlowActions.getIncomes, (state): State => {
+    return { ...state, isLoading: true };
+  }),
+  on(CashFlowActions.getIncomesSuccess, (state, { incomes }): State => {
+    return { ...state, incomes, isLoading: false };
+  }),
+  on(CashFlowActions.getIncomesFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
 
