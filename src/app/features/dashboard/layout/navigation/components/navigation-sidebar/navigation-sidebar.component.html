@@ -17,7 +17,10 @@
         </ul>
       </div>
 
-      <p-button [label]="'auth.signout' | translate" (click)="signOut()" icon="pi pi-sign-out" styleClass="w-full" />
+      <div>
+        <p-button [label]="'menu.web3' | translate" severity="secondary" (click)="goToWeb3()" styleClass="w-full mb-3" />
+        <p-button [label]="'auth.signout' | translate" (click)="signOut()" icon="pi pi-sign-out" styleClass="w-full" />
+      </div>
     </div>
   </ctrl-container>
 </nav>

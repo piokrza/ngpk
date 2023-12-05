@@ -1,7 +1,9 @@
 import { Injectable, NgZone, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, forkJoin, tap, debounceTime, combineLatest, filter } from 'rxjs';
 
+import { AppPaths } from '#common/enums';
 import { ToastService } from '#common/services';
 import { TargetNetworkDialogComponent } from '#web3/components';
 import { WEB3_CONFIG } from '#web3/config';
@@ -10,10 +12,11 @@ import { Web3Config } from '#web3/models';
 
 @Injectable()
 export class Web3Facade {
+  private readonly router: Router = inject(Router);
   private readonly ngZone: NgZone = inject(NgZone);
-  private readonly metamaskState: MetamaskState = inject(MetamaskState);
   private readonly web3Config: Web3Config = inject(WEB3_CONFIG);
   private readonly toastService: ToastService = inject(ToastService);
+  private readonly metamaskState: MetamaskState = inject(MetamaskState);
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly metamaskService: MetamaskService = inject(MetamaskService);
 
@@ -70,5 +73,9 @@ export class Web3Facade {
           });
       })
     );
+  }
+
+  public navigateToDashboard(): void {
+    this.router.navigate([AppPaths.DASHBOARD]);
   }
 }

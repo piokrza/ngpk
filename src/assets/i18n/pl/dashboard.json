@@ -87,24 +87,6 @@
     }
   },
 
-  "auth": {
-    "signoutMessage": "Na pewno chcesz się wylogować?",
-    "signout": "Wyloguj się",
-    "passwordMissmatch": "Hasła nie są takie same",
-    "password": "Hasło",
-    "passwordConfirmation": "Powtórz hasło",
-    "haventAccount": "Nie posiadasz konta?",
-    "haveAccount": "Posiadasz konto?",
-    "clickToLogin": "Kliknij aby się zalogować",
-    "clickToRegister": "Kliknij aby się zarejestrować",
-    "login": "Logowanie",
-    "register": "Rejestracja",
-    "emailPassword": "Lub zaloguj się używając maila",
-    "loginLabel": "Zaloguj",
-    "registerLabel": "Zarejestruj",
-    "loginGoogleAcc": "Zaloguj się używając konta google"
-  },
-
   "tasker": {
     "title": "Zadania",
     "notes": "Notatki",
@@ -124,91 +106,11 @@
     "removeNoteMessage": "Na pewno chcesz usunąć notatkę?"
   },
 
-  "menu": {
-    "home": "Strona główna",
-    "cashFlow": "Przepływ środków",
-    "settings": "Ustawienia",
-    "logout": "Wyloguj się",
-    "tasker": "Zadania",
-    "web3": "Web3",
-    "auth": "Logowanie",
-    "drive": "Dysk",
-    "pageNotFound": "Strona nieznana"
-  },
-
   "weather": {
     "searchCity": "Wyszukaj miasto",
     "humidity": "Wilgotność",
     "wind": "Wiatr",
     "sunrice": "Wschód słońca",
     "fetchData": "Pobierz dane aktualnej pogody"
-  },
-
-  "toastMessage": {
-    "success": "Sukces!",
-    "error": "Błąd!",
-    "fetchUserError": "Coś poszło nie tak przy próbie pobrania Twoich danych",
-    "addIncomeSuccess": "Przychód zapisany",
-    "addIncomeError": "Coś poszło nie tak przy próbie zapisu przychodu w bazie danych",
-    "fetchTasksError": "Coś poszło nie tak przy próbie pobrania danych",
-    "fetchNotesError": "Coś poszło nie tak przy próbie pobrania danych",
-    "addTaskError": "Cos poszło nie tak przy próbie usunięcia zadania z bazy danych",
-    "addFileSuccess": "Plik poprawnie zapisany w bazie danych",
-    "addFileError": "Coś poszło nie tak przy próbie zapisu pliku",
-    "addFolderSuccess": "Folder poprawnie zapisany w bazie danych",
-    "addFolderError": "Coś poszło nie tak przy próbie zapisu folderu",
-    "accUpdateSuccess": "Konto poprawnie zaktualizowane"
-  },
-
-  "wallet": {
-    "noWallet": "Brak portfela, zainstaluj ",
-    "connectWallet": "Połącz portfel"
-  },
-
-  "drive": {
-    "addFile": "Dodaj plik",
-    "addFolder": "Dodaj folder",
-    "enterFolderName": "Wprowadź nazwę"
-  },
-
-  "pageNotFound": {
-    "title": "Strona nieznaleziona",
-    "redirectText": "Zostaniesz przeniesiony na strone glówną za ",
-    "sec": "sekund"
-  },
-
-  "common": {
-    "enterName": "Wprowadź nazwę",
-    "of": "z",
-    "enterText": "Wprowadź tekst",
-    "emptyMessage": "Lista jest pusta",
-    "name": "Nazwa"
-  },
-
-  "primeng": {
-    "accept": "Tak",
-    "reject": "Nie",
-    "pl": "Polski",
-    "en": "Angielski",
-    "emptyMessage": "Lista jest pusta",
-    "emptyFilterMessage": "Brak wyników",
-    "dayNames": ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"],
-    "dayNamesShort": ["Niedz", "Pn", "Wt", "Śr", "Czw", "Pt", "Sob"],
-    "dayNamesMin": ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"],
-    "monthNames": [
-      "Styczeń",
-      "Luty",
-      "Marzec",
-      "Kwiecień",
-      "Maj",
-      "Czerwiec",
-      "Lipiec",
-      "Sierpień",
-      "Wrzesień",
-      "Październik",
-      "Listopad",
-      "Grudzień"
-    ],
-    "monthNamesShort": ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"]
   }
 }

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, EnvironmentProviders, isDevMode, NgModule, Provider } from '@angular/core';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -20,7 +20,7 @@ import { AppComponent, routes } from 'src/app';
 import { environment } from 'src/environments/environment';
 
 import { AppInitService } from '#common/services';
-import { HttpLoaderFactory, initializeTranslations, injectThemeLink$ } from '#common/utils';
+import { CustomTranslateHttpLoader, initializeTranslations, injectThemeLink$ } from '#common/utils';
 import { AuthEffects } from '#store/auth';
 import { CashFlowEffects } from '#store/cash-flow';
 import { CategoriesEffects } from '#store/categories';
@@ -51,7 +51,7 @@ const imports = [
 
   // Translate
   TranslateModule.forRoot({
-    loader: { provide: TranslateLoader, useFactory: HttpLoaderFactory, deps: [HttpClient] },
+    loader: { provide: TranslateLoader, useClass: CustomTranslateHttpLoader },
   }),
 ];
 const providers: Array<Provider | EnvironmentProviders> = [

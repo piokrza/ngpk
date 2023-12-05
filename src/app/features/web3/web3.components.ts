@@ -8,6 +8,7 @@ import { Web3Facade } from '#web3/data-access';
   selector: 'ctrl-web3',
   template: `
     <ctrl-wallet />
+    <p-button [label]="'Go to dashboard' | translate" (onClick)="navigateToDashboard()" />
     <router-outlet />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,5 +21,9 @@ export class Web3Component implements OnInit {
     this.web3Facade.onAccountChanged$().pipe(untilDestroyed(this)).subscribe();
     this.web3Facade.checkWalletExtention$().pipe(untilDestroyed(this)).subscribe();
     this.web3Facade.requestChainIdAndAccounts$().pipe(untilDestroyed(this)).subscribe();
+  }
+
+  public navigateToDashboard(): void {
+    this.web3Facade.navigateToDashboard();
   }
 }

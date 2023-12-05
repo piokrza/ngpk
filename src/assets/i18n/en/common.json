@@ -1,0 +1,57 @@
+{
+  "menu": {
+    "home": "Home",
+    "cashFlow": "Cash flow",
+    "settings": "Settings",
+    "logout": "Logout",
+    "tasker": "Tasker",
+    "web3": "Web3",
+    "auth": "Authentication",
+    "drive": "Drive",
+    "pageNotFound": "Page not found"
+  },
+
+  "toastMessage": {
+    "success": "Success!",
+    "error": "Error!",
+    "fetchUser": "Something went wrong during fetch user data",
+    "addIncomeSuccess": "Income successfully added",
+    "addIncomeError": "Something went wrong during storing data in database",
+    "fetchTasksError": "Something went wrong during fetching tasks data",
+    "fetchNotesError": "Something went wrong during fetching notes data",
+    "addTaskError": "Something went wrong during removing task from database",
+    "addFileSuccess": "File successfully added",
+    "addFileError": "Something went wrong during saving file in database",
+    "addFolderSuccess": "Folder successfully added",
+    "addFolderError": "Something went wrong during saving folder in database",
+    "accUpdateSuccess": "Account updated"
+  },
+
+  "common": {
+    "enterName": "Enter name",
+    "of": "of",
+    "enterText": "Enter text",
+    "emptyMessage": "List is empty",
+    "name": "Name"
+  },
+
+  "drive": {
+    "addFile": "Add file",
+    "addFolder": "Add folder",
+    "enterFolderName": "Enter folder name"
+  },
+
+  "pageNotFound": {
+    "title": "Page not found",
+    "redirectText": "You will be redirected in ",
+    "sec": "seconds"
+  },
+
+  "primeng": {
+    "accept": "Yes",
+    "reject": "No",
+    "pl": "Polish",
+    "en": "English",
+    "emptyMessage": "No results found"
+  }
+}

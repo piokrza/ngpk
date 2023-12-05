@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 
+import { AppPaths } from '#common/enums';
 import { AuthActions } from '#store/auth';
 
 @Component({
@@ -13,6 +15,7 @@ import { AuthActions } from '#store/auth';
 })
 export class NavigationSidebarComponent {
   private readonly store: Store = inject(Store);
+  private readonly router: Router = inject(Router);
   private readonly translateService: TranslateService = inject(TranslateService);
   private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
 
@@ -24,5 +27,9 @@ export class NavigationSidebarComponent {
       header: this.translateService.instant('auth.signout'),
       accept: (): void => this.store.dispatch(AuthActions.signOut()),
     });
+  }
+
+  public goToWeb3(): void {
+    this.router.navigate([AppPaths.WEB3]);
   }
 }
