@@ -11,6 +11,10 @@ export class AppComponent implements OnInit {
   private readonly translateService: TranslateService = inject(TranslateService);
 
   public ngOnInit(): void {
+    this.setPrimeNgConfig();
+  }
+
+  private setPrimeNgConfig(): void {
     this.primengConfig.ripple = true;
     this.translateService.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
   }
