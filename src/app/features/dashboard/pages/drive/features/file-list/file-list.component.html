@@ -5,8 +5,7 @@
     @for (file of files$ | async; track file.id) {
       <li (click)="itemClick(file.url)" class="file-list__item">
         <i [class]="file.type === 'folder' ? PrimeIcons.FOLDER : PrimeIcons.FILE" style="font-size: 2rem"></i>
-        <span> {{ file.name }}</span>
-        add truncate pipe
+        <span> {{ file.name | truncate: 10 }}</span>
       </li>
     } @empty {
       <p>{{ 'overview.noData' | translate }}</p>

@@ -10,6 +10,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DriveComponent, DriveRoutingModule } from '#drive/.';
 import { DriveFacade } from '#drive/data-access';
 import { FileListComponent } from '#drive/features';
+import { TruncatePipe } from '#shared/pipes';
 
 const declarations = [DriveComponent, FileListComponent];
 const imports = [
@@ -22,6 +23,7 @@ const imports = [
   NgOptimizedImage,
   InputTextModule,
   ReactiveFormsModule,
+  TruncatePipe,
 ];
 const providers: Array<Provider> = [DriveFacade];
 
