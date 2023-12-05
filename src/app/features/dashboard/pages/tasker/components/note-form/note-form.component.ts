@@ -14,7 +14,6 @@ import { Note, NoteForm } from '#tasker/models';
 @Component({
   selector: 'ctrl-note-form',
   templateUrl: './note-form.component.html',
-  styleUrls: ['./note-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteFormComponent {

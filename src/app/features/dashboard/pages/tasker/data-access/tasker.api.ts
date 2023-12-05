@@ -36,8 +36,10 @@ export class TaskerApi {
     return taskRef.get().pipe(
       tap((task) => {
         if (task.exists) {
-          const isTaskComplete = task.data()?.isComplete;
-          taskRef.update({ isComplete: !isTaskComplete });
+          taskRef.update({
+            isComplete: !task.data()?.isComplete,
+            steps: task.data()?.steps.map((step: TaskStep) => ({ ...step, isComplete: !task.data()?.isComplete })) ?? undefined,
+          });
         }
       })
     );
@@ -54,7 +56,11 @@ export class TaskerApi {
 
           if (stepToUpdate) {
             stepToUpdate.isComplete = !stepToUpdate.isComplete;
-            taskRef.update({ steps: taskSteps });
+
+            taskRef.update({
+              steps: taskSteps,
+              isComplete: taskSteps.every(({ isComplete }) => isComplete),
+            });
           }
         }
       })

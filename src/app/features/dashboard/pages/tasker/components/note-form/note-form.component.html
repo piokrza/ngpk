@@ -9,5 +9,5 @@
     <label htmlFor="content">{{ 'common.enterText' | translate }}</label>
   </span>
 
-  <p-button (onClick)="onSubmit()" [disabled]="form.invalid" [label]="'Dodaj notatke' | translate" />
+  <p-button [disabled]="form.invalid" [label]="'Dodaj notatke' | translate" (onClick)="onSubmit()" />
 </form>
