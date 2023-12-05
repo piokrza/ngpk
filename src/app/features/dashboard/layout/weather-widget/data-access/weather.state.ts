@@ -8,7 +8,8 @@ export class WeatherState {
   private readonly weatherData$$ = new BehaviorSubject<WeatherResponse | null>(null);
   private readonly errorMessage$$ = new BehaviorSubject<string | null>(null);
   private readonly isLoading$$ = new BehaviorSubject<boolean>(false);
-  private readonly geolocation$$ = new BehaviorSubject<IGeolocation | null>(null);
+
+  public geolocation: IGeolocation | null = null;
 
   public setWeatherData(data: WeatherResponse | null): void {
     this.weatherData$$.next(data);
@@ -35,10 +36,6 @@ export class WeatherState {
   }
 
   public setGeolocation(geolocation: IGeolocation | null): void {
-    this.geolocation$$.next(geolocation);
-  }
-
-  public get geolocation$(): Observable<IGeolocation | null> {
-    return this.geolocation$$.asObservable();
+    this.geolocation = geolocation;
   }
 }

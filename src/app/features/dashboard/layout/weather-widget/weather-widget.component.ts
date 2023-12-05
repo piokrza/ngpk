@@ -58,8 +58,8 @@ export class WeatherWidgetComponent implements OnInit {
     cityName.length && this.weatherFacade.loadWeatherDataByCityName$(cityName).pipe(untilDestroyed(this)).subscribe();
   }
 
-  public loadWeatherByUserLocation(): void {
-    this.weatherFacade.loadWeatherDataByGeolocation$().pipe(untilDestroyed(this)).subscribe();
+  public loadWeatherData(): void {
+    this.weatherFacade.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public toggleDetails(): void {

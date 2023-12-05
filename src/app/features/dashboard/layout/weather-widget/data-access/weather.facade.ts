@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { EMPTY, Observable, catchError, finalize, iif, switchMap, tap } from 'rxjs';
+import { EMPTY, Observable, catchError, finalize, tap } from 'rxjs';
 
 import { WeatherApi, WeatherState } from '#layout/weather-widget/data-access';
-import { IGeolocation, WeatherResponse } from '#layout/weather-widget/models';
+import { WeatherResponse } from '#layout/weather-widget/models';
 
 @Injectable()
 export class WeatherFacade {
@@ -24,21 +24,22 @@ export class WeatherFacade {
     return this.weatherState.errorMessage$;
   }
 
-  public loadWeatherDataByGeolocation$(): Observable<WeatherResponse> {
-    return this.weatherState.geolocation$.pipe(
-      switchMap((geolocation: IGeolocation | null) => {
-        return iif(
-          () => geolocation !== null,
-          this.weatherApi.seatchByGeoCords$(geolocation as IGeolocation),
-          this.weatherApi.searchByCityName$(this.defaultCityNameQuery)
+  public loadWeatherData$(): Observable<WeatherResponse> {
+    return this.weatherState.geolocation
+      ? this.weatherApi.seatchByGeoCords$(this.weatherState.geolocation).pipe(
+          tap((data: WeatherResponse) => {
+            this.weatherState.setWeatherData(data);
+            sessionStorage.setItem(this.weatherDataKey, JSON.stringify(data));
+          }),
+          catchError((): Observable<never> => EMPTY)
+        )
+      : this.weatherApi.searchByCityName$(this.defaultCityNameQuery).pipe(
+          tap((data: WeatherResponse) => {
+            this.weatherState.setWeatherData(data);
+            sessionStorage.setItem(this.weatherDataKey, JSON.stringify(data));
+          }),
+          catchError((): Observable<never> => EMPTY)
         );
-      }),
-      tap((data: WeatherResponse) => {
-        this.weatherState.setWeatherData(data);
-        sessionStorage.setItem(this.weatherDataKey, JSON.stringify(data));
-      }),
-      catchError((): Observable<never> => EMPTY)
-    );
   }
 
   public loadWeatherDataByCityName$(cityName: string): Observable<WeatherResponse> {

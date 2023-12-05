@@ -5,7 +5,7 @@
         [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
         [label]="'weather.fetchData' | translate"
         [outlined]="true"
-        (onClick)="loadWeatherByUserLocation()"
+        (onClick)="loadWeatherData()"
         severity="secondary"
         class="w-full fetch-btn" />
     }
