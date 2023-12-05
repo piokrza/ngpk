@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { interval, takeWhile, tap } from 'rxjs';
+import { finalize, interval, takeWhile, tap } from 'rxjs';
 
 import { AppPaths } from '#common/enums';
 
@@ -23,11 +23,9 @@ export default class PageNotFoundComponent implements OnInit {
   public ngOnInit(): void {
     interval(1000)
       .pipe(
-        tap(() => {
-          this.count.set(this.count() - 1);
-          this.count() === 0 && this.router.navigate([AppPaths.DASHBOARD]);
-        }),
-        takeWhile(() => this.count() > 0)
+        tap(() => this.count.set(this.count() - 1)),
+        takeWhile(() => this.count() > 0),
+        finalize(() => this.router.navigate([AppPaths.DASHBOARD]))
       )
       .subscribe();
   }

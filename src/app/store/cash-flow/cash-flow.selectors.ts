@@ -10,17 +10,11 @@ export const incomes = createSelector(CashFlowStateSelector, ({ incomes }: CashF
 export const expenses = createSelector(CashFlowStateSelector, ({ expenses }: CashFlowState): CashFlow[] => expenses);
 
 export const totalIncomes = createSelector(CashFlowStateSelector, ({ incomes }: CashFlowState): number => {
-  return incomes.reduce((acc: number, income: CashFlow): number => {
-    return acc + Number(income.amount);
-  }, 0);
+  return incomes.reduce((acc: number, income: CashFlow): number => acc + income.amount, 0);
 });
 
 export const totalExpenses = createSelector(CashFlowStateSelector, ({ expenses }: CashFlowState): number => {
-  return expenses.reduce((acc: number, expense: CashFlow): number => {
-    return acc + Number(expense.amount);
-  }, 0);
+  return expenses.reduce((acc: number, expense: CashFlow): number => acc + expense.amount, 0);
 });
 
-export const totalBalance = createSelector(totalIncomes, totalExpenses, (): number => {
-  return Number(totalIncomes) - Number(totalExpenses);
-});
+export const totalBalance = createSelector(totalIncomes, totalExpenses, (): number => Number(totalIncomes) - Number(totalExpenses));

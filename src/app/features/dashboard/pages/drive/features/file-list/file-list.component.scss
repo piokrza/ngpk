@@ -19,10 +19,4 @@
       border-color: var(--primary-color);
     }
   }
-
-  &__item-name {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
 }

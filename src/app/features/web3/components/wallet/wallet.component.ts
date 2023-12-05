@@ -9,7 +9,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { Observable, finalize, map, tap } from 'rxjs';
 
 import { WEB3_CONFIG } from '#web3/config';
-import { EthereumService, Web3State } from '#web3/data-access';
+import { MetamaskService, MetamaskState } from '#web3/data-access';
 import { Web3Config } from '#web3/models';
 import { AddressPipe, NetworkNamePipe } from '#web3/pipes';
 
@@ -25,27 +25,27 @@ const imports = [TranslateModule, ProgressBarModule, ButtonModule, AddressPipe, 
   imports,
 })
 export class WalletComponent {
-  private readonly web3State: Web3State = inject(Web3State);
-  private readonly ethereumService: EthereumService = inject(EthereumService);
+  private readonly metamaskState: MetamaskState = inject(MetamaskState);
+  private readonly metamaskService: MetamaskService = inject(MetamaskService);
 
   protected web3Config: Web3Config = inject(WEB3_CONFIG);
 
-  public readonly chainId$: Observable<string | null> = this.web3State.chainId$;
-  public readonly isProcessing$: Observable<boolean> = this.web3State.isProcessing$;
-  public readonly account$: Observable<string | null> = this.web3State.walletAddress$;
-  public readonly isMetamaskInstalled$: Observable<boolean> = this.web3State.isWalletExtention$;
+  public readonly chainId$: Observable<string | null> = this.metamaskState.chainId$;
+  public readonly isProcessing$: Observable<boolean> = this.metamaskState.isProcessing$;
+  public readonly account$: Observable<string | null> = this.metamaskState.walletAddress$;
+  public readonly isMetamaskInstalled$: Observable<boolean> = this.metamaskState.isWalletExtention$;
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public connectWallet(): void {
-    this.web3State.setIsProcessing(true);
+    this.metamaskState.setIsProcessing(true);
 
-    this.ethereumService
+    this.metamaskService
       .requestWallets$()
       .pipe(
         map((walletAddresses: string[]) => walletAddresses[0]),
-        tap((walletAddress) => this.web3State.setWalletAddress(walletAddress)),
-        finalize((): void => this.web3State.setIsProcessing(false)),
+        tap((walletAddress) => this.metamaskState.setWalletAddress(walletAddress)),
+        finalize((): void => this.metamaskState.setIsProcessing(false)),
         untilDestroyed(this)
       )
       .subscribe();

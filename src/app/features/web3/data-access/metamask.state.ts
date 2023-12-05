@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
-export class Web3State {
+export class MetamaskState {
   private readonly walletAddress$$ = new BehaviorSubject<string | null>(null);
   private readonly isProcessing$$ = new BehaviorSubject<boolean>(false);
   private readonly chainId$$ = new BehaviorSubject<string | null>(null);
