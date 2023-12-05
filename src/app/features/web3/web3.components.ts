@@ -9,6 +9,7 @@ import { Web3Facade } from '#web3/data-access';
   template: `
     <ctrl-wallet />
     <p-button [label]="'Go to dashboard' | translate" (onClick)="navigateToDashboard()" />
+    <ctrl-theme-button />
     <router-outlet />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

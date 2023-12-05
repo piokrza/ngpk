@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { first } from 'rxjs';
 
 import { DashboardFacade } from '#dashboard/data-access';
 
-@UntilDestroy()
 @Component({
   selector: 'ctrl-dashboard',
   template: `
@@ -17,6 +16,6 @@ export class DashboardComponent implements OnInit {
   private readonly dashboardFacade = inject(DashboardFacade);
 
   public ngOnInit(): void {
-    this.dashboardFacade.initializeUserData$().pipe(untilDestroyed(this)).subscribe();
+    this.dashboardFacade.initializeUserData$().pipe(first()).subscribe();
   }
 }

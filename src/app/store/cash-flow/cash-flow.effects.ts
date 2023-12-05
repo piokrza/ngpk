@@ -124,11 +124,11 @@ export class CashFlowEffects {
         return of(this.cashFlowApi.updateCashFlow$(Collection.INCOMES, updatedIncome)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Income successfully updated');
-            return CashFlowActions.removeIncomeSuccess();
+            return CashFlowActions.updateIncomeSuccess();
           }),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), 'Something went wrong during storing data in database');
-            return of(CashFlowActions.removeIncomeFailure());
+            return of(CashFlowActions.updateIncomeFailure());
           })
         );
       })
@@ -142,11 +142,11 @@ export class CashFlowEffects {
         return of(this.cashFlowApi.updateCashFlow$(Collection.EXPENSES, updatedExpense)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Expense successfully updated');
-            return CashFlowActions.removeExpenseSuccess();
+            return CashFlowActions.updateExpenseSuccess();
           }),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), 'Something went wrong during storing data in database');
-            return of(CashFlowActions.removeExpenseFailure());
+            return of(CashFlowActions.updateExpenseFailure());
           })
         );
       })

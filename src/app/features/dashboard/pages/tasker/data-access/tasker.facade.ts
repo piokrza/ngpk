@@ -55,7 +55,7 @@ export class TaskerFacade {
 
   public addTask$(): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(TaskFormComponent, {
-      header: this.translateService.instant('tasker.addTask'),
+      header: this.tr('addTask'),
       style: { ...BaseDialogStyles },
     });
 
@@ -68,8 +68,8 @@ export class TaskerFacade {
 
   public removeTask(taskId: string): void {
     this.confirmationService.confirm({
-      message: this.translateService.instant('tasker.removeMessage'),
-      header: this.translateService.instant('tasker.removeHeader'),
+      message: this.tr('removeMessage'),
+      header: this.tr('removeHeader'),
       icon: PrimeIcons.TRASH,
       accept: (): void => this.store.dispatch(TaskerActions.removeTask({ taskId })),
     });
@@ -93,7 +93,7 @@ export class TaskerFacade {
 
   public addNote$(): Observable<Note | undefined> {
     const dialogRef = this.dialogService.open(NoteFormComponent, {
-      header: this.translateService.instant('tasker.addNote'),
+      header: this.tr('addNote'),
       style: { ...BaseDialogStyles },
     });
 
@@ -106,10 +106,14 @@ export class TaskerFacade {
 
   public removeNote(noteId: string): void {
     this.confirmationService.confirm({
-      message: this.translateService.instant('tasker.removeNoteMessage'),
-      header: this.translateService.instant('tasker.removeNoteHeader'),
+      message: this.tr('removeNoteMessage'),
+      header: this.tr('removeNoteHeader'),
       icon: PrimeIcons.TRASH,
       accept: (): void => this.store.dispatch(TaskerActions.removeNote({ noteId })),
     });
+  }
+
+  private tr(path: string): string {
+    return this.translateService.instant(`tasker.${path}`);
   }
 }
