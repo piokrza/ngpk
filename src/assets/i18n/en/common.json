@@ -24,7 +24,8 @@
     "addFileError": "Something went wrong during saving file in database",
     "addFolderSuccess": "Folder successfully added",
     "addFolderError": "Something went wrong during saving folder in database",
-    "accUpdateSuccess": "Account updated"
+    "accUpdateSuccess": "Account updated",
+    "urlCopied": "Url copied to clipboard"
   },
 
   "common": {

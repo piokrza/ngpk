@@ -24,7 +24,8 @@
     "addFileError": "Coś poszło nie tak przy próbie zapisu pliku",
     "addFolderSuccess": "Folder poprawnie zapisany w bazie danych",
     "addFolderError": "Coś poszło nie tak przy próbie zapisu folderu",
-    "accUpdateSuccess": "Konto poprawnie zaktualizowane"
+    "accUpdateSuccess": "Konto poprawnie zaktualizowane",
+    "urlCopied": "Url zapisany do schowka"
   },
 
   "drive": {
