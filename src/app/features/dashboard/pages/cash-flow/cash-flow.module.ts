@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
@@ -14,7 +13,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
-import { CashFlowComponent } from '#cash-flow/.';
+import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/.';
 import {
   AddFormComponent,
   DetailsComponent,
@@ -28,8 +27,6 @@ import { CashFlowFacade } from '#cash-flow/data-access';
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
 import { TimestampPipe } from '#shared/pipes';
 
-const routes: Routes = [{ path: '', component: CashFlowComponent }];
-
 const declarations = [
   DetailsComponent,
   DetailsBoxComponent,
@@ -41,7 +38,7 @@ const declarations = [
   CashFlowComponent,
 ];
 const imports = [
-  RouterModule.forChild(routes),
+  CashFlowRoutingModule,
   CommonModule,
   CardModule,
   InputTextareaModule,
