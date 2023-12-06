@@ -15,4 +15,12 @@ export const environment: Environment = {
   weatherApiKey: '253353dc15d16c96be28e7780f4d500f',
   uploadUrl: 'https://www.primefaces.org/cdn/api/upload.php',
   production: true,
+  featureFlags: {
+    drive: true,
+    cashFlow: true,
+    settings: true,
+    tasker: true,
+    web3: true,
+    overview: true,
+  },
 };

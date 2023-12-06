@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 
 import { DashobardPaths } from '#dashboard/enums';
 import { AuthActions } from '#store/auth';
@@ -19,26 +20,31 @@ export class MenuService {
         routerLink: DashobardPaths.OVERVIEW,
         icon: PrimeIcons.HOME,
         styleClass: 'lg:mr-2',
+        visible: environment.featureFlags['overview'],
       },
       {
         label: 'menu.drive',
         routerLink: DashobardPaths.DRIVE,
         icon: PrimeIcons.FOLDER,
+        visible: environment.featureFlags['drive'],
       },
       {
         label: 'menu.cashFlow',
         routerLink: DashobardPaths.CASH_FLOW,
         icon: PrimeIcons.SIGN_IN,
+        visible: environment.featureFlags['cashFlow'],
       },
       {
         label: 'menu.tasker',
         routerLink: DashobardPaths.TASKER,
         icon: PrimeIcons.BOOK,
+        visible: environment.featureFlags['tasker'],
       },
       {
         label: 'menu.settings',
         routerLink: DashobardPaths.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,
+        visible: environment.featureFlags['settings'],
       },
       {
         label: 'menu.logout',

@@ -2,6 +2,7 @@ import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from
 import { Routes } from '@angular/router';
 
 import { AppPaths } from '#common/enums';
+import { featureFlagGuard } from '#common/guards';
 import { getTitle } from '#common/utils';
 
 export const routes: Routes = [
@@ -25,6 +26,7 @@ export const routes: Routes = [
   },
   {
     path: AppPaths.WEB3,
+    canMatch: [featureFlagGuard('web3')],
     loadChildren: () => import('#web3/web3.module'),
     title: getTitle('web3'),
   },

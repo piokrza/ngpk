@@ -13,4 +13,12 @@ export interface Environment {
   weatherApiKey: string;
   uploadUrl: string;
   production: boolean;
+  featureFlags: {
+    drive: boolean;
+    cashFlow: boolean;
+    settings: boolean;
+    tasker: boolean;
+    web3: boolean;
+    overview: boolean;
+  };
 }

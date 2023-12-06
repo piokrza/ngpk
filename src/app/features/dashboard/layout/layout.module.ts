@@ -14,6 +14,7 @@ import { LayoutComponent } from '#layout/.';
 import { MobileMenuComponent, NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#layout/navigation/components';
 import { WeatherWidgetComponent } from '#layout/weather-widget';
 import { ContainerComponent } from '#shared/components';
+import { FeatureFlagDirective } from '#shared/directives';
 
 const declarations = [NavigationComponent, NavigationSidebarComponent, UserInfoComponent, LayoutComponent, MobileMenuComponent];
 const imports = [
@@ -31,6 +32,7 @@ const imports = [
   AsyncPipe,
   RouterLink,
   RouterLinkActive,
+  FeatureFlagDirective,
 ];
 const exports = [LayoutComponent];
 
