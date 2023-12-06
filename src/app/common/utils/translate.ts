@@ -3,12 +3,10 @@ import { inject } from '@angular/core';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { Observable, forkJoin, map } from 'rxjs';
 
-import { Language } from '#common/models';
-
 export const LANG = 'lang';
 
 export function initializeTranslations(translateService: TranslateService) {
-  const languages: Array<Language['value']> = ['pl', 'en'];
+  const languages: Array<'pl' | 'en'> = ['pl', 'en'];
 
   return () => {
     translateService.addLangs(languages);
