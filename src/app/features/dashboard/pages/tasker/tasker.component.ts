@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { PrimeIcons } from 'primeng/api';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
+import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 import { Observable } from 'rxjs';
 
 import { LabeledData } from '#common/models';
 import { TaskerFacade } from '#tasker/data-access';
-import { Note, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
+import { NotesData, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @UntilDestroy()
 @Component({
@@ -20,11 +22,12 @@ export class TaskerComponent implements OnDestroy {
   public readonly tasksData$: Observable<TasksData> = this.taskerFacade.tasksData$;
   public readonly isTasksLoading$: Observable<boolean> = this.taskerFacade.isTasksLoading$;
 
-  public readonly notes$: Observable<Note[] | null> = this.taskerFacade.notes$;
+  public readonly notesData$: Observable<NotesData> = this.taskerFacade.notesData$;
   public readonly isNotesLoading$: Observable<boolean> = this.taskerFacade.isNotesLoading$;
 
   public readonly activeTabIndex$: Observable<number> = this.taskerFacade.activeTabIndex$;
 
+  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public readonly filters: Array<LabeledData<TaskFilter>> = this.taskerFacade.taskFilters;
 
   public ngOnDestroy(): void {
@@ -47,8 +50,12 @@ export class TaskerComponent implements OnDestroy {
     this.taskerFacade.toggleIsStepComplete(payload);
   }
 
-  public filterChange({ value }: SelectButtonChangeEvent) {
+  public taskFilterChange({ value }: SelectButtonChangeEvent) {
     this.taskerFacade.onTaskFilterChange(value);
+  }
+
+  public noteFilterChange({ checked }: ToggleButtonChangeEvent): void {
+    this.taskerFacade.onNoteFilterChange(checked ? 'newest' : 'oldest');
   }
 
   public addNote(): void {

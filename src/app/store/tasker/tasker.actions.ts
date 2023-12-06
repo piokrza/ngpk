@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { ActionTypes } from '#store/tasker/action-types';
-import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
+import { Note, NoteFilter, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
 
 export const getTasks = createAction(ActionTypes.GET_TASKS, props<{ uid: string }>());
 export const getTasksSuccess = createAction(ActionTypes.GET_TASKS_SUCCESS, props<{ tasks: Task[] }>());
@@ -36,3 +36,5 @@ export const addNoteFailure = createAction(ActionTypes.ADD_NOTE_FAILURE);
 export const removeNote = createAction(ActionTypes.REMOVE_NOTE, props<{ noteId: string }>());
 export const removeNoteSuccess = createAction(ActionTypes.REMOVE_NOTE_SUCCESS);
 export const removeNoteFailure = createAction(ActionTypes.REMOVE_NOTE_FAILURE);
+
+export const setNoteFilter = createAction(ActionTypes.SET_NOTE_FILTER, props<{ noteFilter: NoteFilter }>());

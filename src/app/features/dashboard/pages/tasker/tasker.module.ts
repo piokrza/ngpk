@@ -13,6 +13,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { TimestampPipe } from '#shared/pipes';
 import { TaskerComponent } from '#tasker/.';
@@ -38,6 +39,7 @@ const imports = [
   InputTextareaModule,
   DividerModule,
   TimestampPipe,
+  ToggleButtonModule,
 ];
 const declarations = [TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NoteComponent];
 const providers: Provider[] = [TaskerFacade, DatePipe];

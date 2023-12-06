@@ -10,7 +10,7 @@ import { LabeledData } from '#common/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent, TaskFormComponent } from '#tasker/components';
 import { TaskerService } from '#tasker/data-access';
-import { Note, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
+import { Note, NoteFilter, NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Injectable()
 export class TaskerFacade {
@@ -24,13 +24,7 @@ export class TaskerFacade {
     return combineLatest({
       tasks: this.store.select(TaskerSelectors.tasks),
       filter: this.store.select(TaskerSelectors.taskFilter),
-    }).pipe(
-      map(({ tasks, filter }) => {
-        if (filter === 'completed') return { tasks: (tasks ?? []).filter(({ isComplete }) => isComplete), filter };
-        if (filter === 'notCompleted') return { tasks: (tasks ?? []).filter(({ isComplete }) => !isComplete), filter };
-        return { tasks, filter };
-      })
-    );
+    }).pipe(map((tasksData) => this.filterTasks(tasksData)));
   }
 
   public get isTasksLoading$(): Observable<boolean> {
@@ -45,8 +39,16 @@ export class TaskerFacade {
     return this.taskerService.activeTabIndex$;
   }
 
-  public get notes$(): Observable<Note[] | null> {
-    return this.store.select(TaskerSelectors.notes);
+  public get notesData$(): Observable<NotesData> {
+    return combineLatest({
+      notes: this.store.select(TaskerSelectors.notes),
+      filter: this.store.select(TaskerSelectors.noteFilter),
+    }).pipe(
+      map(({ notes, filter }) => ({
+        notes: this.sortNotes(notes, filter),
+        filter: filter === 'newest' ? true : false,
+      }))
+    );
   }
 
   public get isNotesLoading$(): Observable<boolean> {
@@ -113,7 +115,35 @@ export class TaskerFacade {
     });
   }
 
+  public onNoteFilterChange(noteFilter: NoteFilter): void {
+    this.store.dispatch(TaskerActions.setNoteFilter({ noteFilter }));
+  }
+
   private tr(path: string): string {
     return this.translateService.instant(`tasker.${path}`);
+  }
+
+  private filterTasks({ tasks, filter }: TasksData) {
+    if (filter === 'completed') return { tasks: (tasks ?? []).filter(({ isComplete }) => isComplete), filter };
+    if (filter === 'notCompleted') return { tasks: (tasks ?? []).filter(({ isComplete }) => !isComplete), filter };
+    return { tasks, filter };
+  }
+
+  private sortNotes(notes: Note[] | null, filter: NoteFilter): Note[] {
+    const clonedNotes: Note[] = [...(notes ?? [])];
+
+    if (filter === 'newest') {
+      return clonedNotes.sort((a, b) => {
+        const dateA = a.createDate.toDate().getTime();
+        const dateB = b.createDate.toDate().getTime();
+        return dateB - dateA;
+      });
+    } else {
+      return clonedNotes.sort((a, b) => {
+        const dateA = a.createDate.toDate().getTime();
+        const dateB = b.createDate.toDate().getTime();
+        return dateA - dateB;
+      });
+    }
   }
 }

@@ -23,7 +23,7 @@ export enum ActionTypes {
   REMOVE_TASK_SUCCESS = '[Tasks] Remove task success',
   REMOVE_TASK_FAILURE = '[Tasks] Remove task failure',
 
-  SET_TASK_FILTER = '[Tasks] Set filter',
+  SET_TASK_FILTER = '[Tasks] Set task filter',
 
   ADD_NOTE = '[Notes] Add note',
   ADD_NOTE_SUCCESS = '[Notes] Add note success',
@@ -32,4 +32,6 @@ export enum ActionTypes {
   REMOVE_NOTE = '[Notes] Remove note',
   REMOVE_NOTE_SUCCESS = '[Notes] Remove note success',
   REMOVE_NOTE_FAILURE = '[Notes] Remove note failure',
+
+  SET_NOTE_FILTER = '[Tasks] Set note filter',
 }

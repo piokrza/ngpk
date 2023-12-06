@@ -1,7 +1,7 @@
 @if (user$ | async; as user) {
 <div class="user-info gap-4">
   @if (user.photoURL) {
-  <img [ngSrc]="user.photoURL" width="60" height="60" alt="profile" class="user-info__img" />
+  <img [ngSrc]="user.photoURL" width="60" height="60" alt="profile" class="user-info__img" priority />
   }
   <div>
     <p class="user-info__name">{{ user.displayName }}</p>

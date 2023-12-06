@@ -2,7 +2,7 @@ import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
 
 import { AuthActions } from '#store/auth';
 import { TaskerActions } from '#store/tasker';
-import { Note, Task, TaskFilter } from '#tasker/models';
+import { Note, NoteFilter, Task, TaskFilter } from '#tasker/models';
 
 export const FeatureKey = 'tasker';
 
@@ -12,6 +12,7 @@ export interface State {
   isTasksLoading: boolean;
   isNotesLoading: boolean;
   taskFilter: TaskFilter;
+  noteFilter: NoteFilter;
 }
 
 const initialState: State = {
@@ -20,6 +21,7 @@ const initialState: State = {
   isTasksLoading: false,
   isNotesLoading: false,
   taskFilter: 'all',
+  noteFilter: 'newest',
 };
 
 export const Reducer: ActionReducer<State, Action> = createReducer(
@@ -84,6 +86,8 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
   on(TaskerActions.addNoteFailure, (state): State => ({ ...state })),
 
   on(TaskerActions.setTaskFilter, (state, { taskFilter }): State => ({ ...state, taskFilter })),
+
+  on(TaskerActions.setNoteFilter, (state, { noteFilter }): State => ({ ...state, noteFilter })),
 
   on(AuthActions.signOut, (state): State => {
     return {
