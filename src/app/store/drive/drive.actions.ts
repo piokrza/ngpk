@@ -14,3 +14,5 @@ export const uploadFileFailure = createAction(ActionTypes.UPLOAD_FILE_FAILURE);
 export const uploadFolder = createAction(ActionTypes.UPLOAD_FOLDER, props<{ payload: FolderUploadPayload }>());
 export const uploadFolderSuccess = createAction(ActionTypes.UPLOAD_FOLDER_SUCCESS);
 export const uploadFolderFailure = createAction(ActionTypes.UPLOAD_FOLDER_FAILURE);
+
+export const setFiles = createAction(ActionTypes.SET_FILES, props<{ files: IFile[] }>());

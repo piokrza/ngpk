@@ -27,6 +27,8 @@ export class DriveComponent {
   protected uploadUrl: string = env.uploadUrl;
 
   public uploadFile({ files }: FileUploadEvent): void {
+    this.folderMode() === 'edit' && this.folderMode.set('initial');
+
     files.length &&
       this.driveFacade.uploadFile({
         file: files[0],
