@@ -1,2 +1,3 @@
-export enum DrivePaths {}
-// FILES=''
+export enum DrivePaths {
+  DETAILS = 'details',
+}

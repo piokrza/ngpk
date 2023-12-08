@@ -1,4 +1,4 @@
-import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, JsonPipe, NgOptimizedImage } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -8,11 +8,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { DriveComponent, DriveRoutingModule } from '#drive/.';
+import { FileListComponent } from '#drive/components/file-list';
+import { FolderDetailsComponent } from '#drive/components/folder-details';
 import { DriveFacade } from '#drive/data-access';
-import { FileListComponent } from '#drive/features';
 import { TruncatePipe } from '#shared/pipes';
 
-const declarations = [DriveComponent, FileListComponent];
+const declarations = [DriveComponent, FileListComponent, FolderDetailsComponent];
 const imports = [
   DriveRoutingModule,
   ButtonModule,
@@ -24,6 +25,8 @@ const imports = [
   InputTextModule,
   ReactiveFormsModule,
   TruncatePipe,
+
+  JsonPipe, // remove if its not nessessary
 ];
 const providers: Array<Provider> = [DriveFacade];
 

@@ -27,6 +27,10 @@ export class DriveFacade {
     return this.store.select(AuthSelectors.user);
   }
 
+  public getFolderDetails$(fileId: string): Observable<IFile | undefined> {
+    return this.store.select(DriveSelectors.fileById(fileId));
+  }
+
   public uploadFile(payload: FileUploadPayload): void {
     this.store.dispatch(DriveActions.uploadFile({ payload }));
   }
