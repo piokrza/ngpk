@@ -4,5 +4,5 @@ export interface IFile {
   uid: string;
   id: string;
   type: 'file' | 'folder';
-  fileList?: Array<IFile>;
+  parentId?: string;
 }

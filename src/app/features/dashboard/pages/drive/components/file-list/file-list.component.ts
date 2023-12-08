@@ -1,11 +1,8 @@
-import { DrivePaths } from '../../enums';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, inject } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { PrimeIcons } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 
-import { AppPaths } from '#common/enums';
-import { DashobardPaths } from '#dashboard/enums';
 import { DriveFacade } from '#drive/data-access';
 import { IFile } from '#drive/models';
 
@@ -16,19 +13,31 @@ import { IFile } from '#drive/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileListComponent {
-  private readonly router: Router = inject(Router);
   private readonly driveFacade: DriveFacade = inject(DriveFacade);
+  private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
-  public readonly files$: Observable<IFile[] | null> = this.driveFacade.files$;
+  //TODO: move logic to service, add breadcrumbs
+
+  @Output() fileClick = new EventEmitter<IFile>();
+
+  public readonly files$: Observable<IFile[]> = this.filteredFiltes$;
   public readonly isLoading$: Observable<boolean> = this.driveFacade.isLoading$;
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
-  public itemClick(file: IFile): void {
-    if (file.type === 'file') {
-      window.open(file.url);
+  private filterFiles(files: IFile[] | null, id: string): IFile[] {
+    if (files === null) return [];
+
+    if (!id ?? ''.length) {
+      return files.filter(({ parentId }) => (parentId ?? '') === '');
     } else {
-      this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.DRIVE, DrivePaths.DETAILS, file.id]);
+      return files.filter(({ parentId }) => parentId === id);
     }
+  }
+
+  private get filteredFiltes$(): Observable<IFile[]> {
+    return this.activatedRoute.params.pipe(
+      switchMap((params: Params) => this.driveFacade.files$.pipe(map((files) => this.filterFiles(files, params['id']))))
+    );
   }
 }

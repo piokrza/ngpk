@@ -25,5 +25,9 @@
     }
   </div>
 
-  <router-outlet />
+  @if (parentId().length) {
+    <p-button [icon]="PrimeIcons.ARROW_LEFT" [routerLink]="['../']" styleClass="my-3" severity="secondary" />
+  }
+
+  <ctrl-file-list (fileClick)="onFileClick($event)" />
 </div>
