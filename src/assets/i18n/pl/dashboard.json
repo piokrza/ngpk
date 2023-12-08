@@ -57,7 +57,8 @@
     "salary": "Wynagrodzenie",
     "gifts": "Prezenty",
     "quickNote": "Szybka notatka",
-    "noData": "Brak danych"
+    "noData": "Brak danych",
+    "emptyFolder": "Folder jest pusty"
   },
 
   "incomes": {

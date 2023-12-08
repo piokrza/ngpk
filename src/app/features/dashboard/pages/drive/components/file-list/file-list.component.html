@@ -8,8 +8,7 @@
         <span> {{ file.name | truncate: 10 }}</span>
       </li>
     } @empty {
-      <p>{{ 'overview.noData' | translate }}</p>
-      <!-- dysk / folder pusty -->
+      <p>{{ 'overview.' + ((parentId$ | async) ? 'emptyFolder' : 'noData') | translate }}</p>
     }
   </ul>
 }
