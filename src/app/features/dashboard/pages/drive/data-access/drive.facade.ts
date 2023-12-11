@@ -41,12 +41,16 @@ export class DriveFacade {
     return this.driveService.parentId$;
   }
 
-  public setParentId(id: string): void {
-    this.driveService.setParentId(id);
+  public get parentFile$(): Observable<IFile | undefined> {
+    return this.parentId$.pipe(switchMap((id) => this.store.select(DriveSelectors.fileById(id))));
   }
 
   public getFolderDetails$(fileId: string): Observable<IFile | undefined> {
     return this.store.select(DriveSelectors.fileById(fileId));
+  }
+
+  public setParentId(id: string): void {
+    this.driveService.setParentId(id);
   }
 
   public uploadFile(payload: FileUploadPayload): void {
@@ -60,6 +64,8 @@ export class DriveFacade {
   public fileClick(file: IFile): void {
     if (file.type === 'file') {
       window.open(file.url);
-    } else this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.DRIVE, file.id]);
+    } else {
+      this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.DRIVE, file.id]);
+    }
   }
 }

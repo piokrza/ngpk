@@ -1,4 +1,4 @@
-import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage, UpperCasePipe } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -24,6 +24,7 @@ const imports = [
   InputTextModule,
   ReactiveFormsModule,
   TruncatePipe,
+  UpperCasePipe,
 ];
 const providers: Array<Provider> = [DriveFacade, DriveService];
 

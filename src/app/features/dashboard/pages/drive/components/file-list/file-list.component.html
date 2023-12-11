@@ -1,3 +1,10 @@
+@if (parentFile$ | async; as parentFile) {
+  <div class="flex justify-content-between align-items-center">
+    <p-button [icon]="PrimeIcons.ARROW_LEFT" (onClick)="navigateBack()" styleClass="my-3" severity="secondary" />
+    <p>{{ parentFile.name | uppercase }}</p>
+  </div>
+}
+
 @if (isLoading$ | async) {
   <p-progressSpinner />
 } @else {
@@ -8,7 +15,7 @@
         <span> {{ file.name | truncate: 10 }}</span>
       </li>
     } @empty {
-      <p>{{ 'overview.' + ((parentId$ | async) ? 'emptyFolder' : 'noData') | translate }}</p>
+      <p>{{ 'overview.' + ((parentFile$ | async)?.id ? 'emptyFolder' : 'noData') | translate }}</p>
     }
   </ul>
 }
