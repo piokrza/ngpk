@@ -10,7 +10,6 @@ import { environment as env } from 'src/environments/environment';
 
 import { IUser } from '#auth/models';
 import { DriveFacade } from '#drive/data-access';
-import { IFile } from '#drive/models';
 
 @UntilDestroy()
 @Component({
@@ -60,10 +59,6 @@ export class DriveComponent implements OnInit {
     });
 
     this.folderMode.set('initial');
-  }
-
-  public onFileClick(file: IFile): void {
-    this.driveFacade.fileClick(file);
   }
 
   public get buttonIcon$(): Observable<string> {

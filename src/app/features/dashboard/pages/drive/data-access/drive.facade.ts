@@ -60,8 +60,6 @@ export class DriveFacade {
   public fileClick(file: IFile): void {
     if (file.type === 'file') {
       window.open(file.url);
-    } else {
-      this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.DRIVE, file.id]);
-    }
+    } else this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.DRIVE, file.id]);
   }
 }
