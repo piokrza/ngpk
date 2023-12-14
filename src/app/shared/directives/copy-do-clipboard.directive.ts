@@ -9,11 +9,11 @@ import { ToastService } from '#common/services';
 @Directive({ selector: '[copyToClipboard]', standalone: true })
 export class CopyToClipboardDirective implements OnInit {
   private readonly zone: NgZone = inject(NgZone);
-  private readonly translateService = inject(TranslateService);
   private readonly toastService: ToastService = inject(ToastService);
+  private readonly translateService: TranslateService = inject(TranslateService);
   private readonly host: ElementRef<HTMLElement> = inject(ElementRef<HTMLElement>);
 
-  @Input({ required: true }) copyToClipboard?: string;
+  @Input({ required: true }) copyToClipboard!: string;
 
   public ngOnInit(): void {
     this.zone.runOutsideAngular(() => {
