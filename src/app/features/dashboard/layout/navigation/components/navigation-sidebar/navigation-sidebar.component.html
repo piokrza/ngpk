@@ -17,15 +17,7 @@
         </ul>
       </div>
 
-      <div>
-        <p-button
-          *featureEnabled="'web3'"
-          [label]="'menu.web3' | translate"
-          severity="secondary"
-          (click)="goToWeb3()"
-          styleClass="w-full mb-3" />
-        <p-button [label]="'auth.signout' | translate" (click)="signOut()" styleClass="w-full" />
-      </div>
+      <p-button [label]="'auth.signout' | translate" (click)="signOut()" styleClass="w-full" />
     </div>
   </ctrl-container>
 </nav>

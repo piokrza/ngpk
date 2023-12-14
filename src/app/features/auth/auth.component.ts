@@ -1,12 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { AppPaths } from '#common/enums';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'ctrl-auth',
   template: `
-    <p-button [label]="'menu.web3' | translate" (onClick)="navigateToWeb3()" />
     <section class="section">
       <div class="w-full section__inner">
         <router-outlet />
@@ -16,10 +12,4 @@ import { AppPaths } from '#common/enums';
   styleUrl: './auth.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthComponent {
-  private readonly router: Router = inject(Router);
-
-  public navigateToWeb3(): void {
-    this.router.navigate([AppPaths.WEB3]);
-  }
-}
+export class AuthComponent {}
