@@ -85,10 +85,6 @@ export class TaskerFacade {
     this.store.dispatch(TaskerActions.toggleIsStepComplete({ payload }));
   }
 
-  public removeStepsVisibilityData(): void {
-    this.taskerService.removeVisibilityData();
-  }
-
   public onTaskFilterChange(taskFilter: TaskFilter): void {
     this.store.dispatch(TaskerActions.setTaskFilter({ taskFilter }));
   }

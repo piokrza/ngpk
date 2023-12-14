@@ -20,12 +20,9 @@ export class CustomTranslateHttpLoader implements TranslateLoader {
   private readonly http: HttpClient = inject(HttpClient);
 
   public getTranslation(lang: string): Observable<object> {
-    const requests = [
-      `/assets/i18n/${lang}/auth.json`,
-      `/assets/i18n/${lang}/common.json`,
-      `/assets/i18n/${lang}/dashboard.json`,
-      `/assets/i18n/${lang}/web3.json`,
-    ].map((url: string) => this.http.get<object>(url));
+    const requests = [`/assets/i18n/${lang}/auth.json`, `/assets/i18n/${lang}/common.json`, `/assets/i18n/${lang}/dashboard.json`].map(
+      (url: string) => this.http.get<object>(url)
+    );
 
     return forkJoin(requests).pipe(map((responses: object[]) => Object.assign({}, ...responses)));
   }

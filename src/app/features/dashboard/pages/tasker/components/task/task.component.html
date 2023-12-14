@@ -1,32 +1,33 @@
 <p-card styleClass="task">
-  <div class="task">
-    <p-checkbox [binary]="true" [(ngModel)]="isTaskComplete" (onChange)="toggleIsTaskComplete.emit(task.id)" styleClass="mr-3" />
+  <div class="flex flex-column justify-content-between h-full">
+    <div>
+      <div class="flex justify-content-between">
+        <p [class.task__name--complete]="task.isComplete" class="task__name">
+          {{ task.name }}
+          @if (task.steps.length) {
+            <small>({{ completedSteps }} {{ 'common.of' | translate }} {{ task.steps.length }})</small>
+          }
+        </p>
+      </div>
 
-    <p [class.task__name--complete]="task.isComplete" (click)="toggleStepsVisibility()" class="task__name">
-      {{ task.name }}
       @if (task.steps.length) {
-        <small>({{ completedSteps }} {{ 'common.of' | translate }} {{ task.steps.length }})</small>
+        <ul class="pl-3">
+          @for (step of task.steps; track step.id) {
+            <li (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })" class="my-2 cursor-pointer">
+              - <span [class.task__name--complete]="step.isComplete">{{ step.name }}</span>
+            </li>
+          }
+        </ul>
       }
-    </p>
+    </div>
 
-    <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TIMES" (onClick)="removeTask.emit(task.id)" severity="danger" />
+    <div class="flex justify-content-between mt-4">
+      <p-button
+        [label]="(task.isComplete ? 'tasker.completed' : 'tasker.uncompleted') | translate"
+        [severity]="task.isComplete ? 'success' : 'danger'"
+        (onClick)="toggleIsTaskComplete.emit(task.id)" />
+
+      <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TRASH" (onClick)="removeTask.emit(task.id)" severity="danger" />
+    </div>
   </div>
-
-  @if (task.steps.length) {
-    <ul [class.task__step-list--visible]="isStepsVisible" class="task__step-list">
-      @for (step of task.steps; track step.id) {
-        <li
-          [class.task__name--complete]="step.isComplete"
-          (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
-          (keyup.enter)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })"
-          class="task__name">
-          {{ $index + 1 }}. {{ step.name | titlecase }}
-        </li>
-      }
-    </ul>
-
-    <small (click)="toggleStepsVisibility()" class="block text-center rounded task__toggle">
-      <i [class]="isStepsVisible ? PrimeIcons.ANGLE_UP : PrimeIcons.ANGLE_DOWN" class="text-xs widget__toggle-icon"></i>
-    </small>
-  }
 </p-card>

@@ -12,22 +12,6 @@ export class TaskerService {
 
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
-  private readonly visibilityKey = 'isVisible';
-
-  public getIsVisible(id: string): boolean {
-    const visibleData = JSON.parse(sessionStorage.getItem(this.visibilityKey) || '{}');
-
-    return visibleData.dataId === id ? visibleData.isVisible : false;
-  }
-
-  public setIsVisible(dataId: string, isVisible: boolean): void {
-    sessionStorage.setItem(this.visibilityKey, JSON.stringify({ dataId, isVisible }));
-  }
-
-  public removeVisibilityData(): void {
-    sessionStorage.removeItem(this.visibilityKey);
-  }
-
   public setActiveTabIndex(idx: number): void {
     this.activeTabIndex$$.next(idx);
   }
@@ -40,7 +24,7 @@ export class TaskerService {
     return new FormGroup<TaskForm>({
       name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
       isComplete: new FormControl<boolean>(false, { nonNullable: true }),
-      steps: new FormArray<FormGroup<StepForm>>([]),
+      steps: new FormArray<FormGroup<StepForm>>([], { validators: Validators.maxLength(5) }),
     });
   }
 

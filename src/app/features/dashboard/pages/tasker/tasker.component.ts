@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { PrimeIcons } from 'primeng/api';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
@@ -16,7 +16,7 @@ import { NotesData, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#
   styleUrl: './tasker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskerComponent implements OnDestroy {
+export class TaskerComponent {
   private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
 
   public readonly tasksData$: Observable<TasksData> = this.taskerFacade.tasksData$;
@@ -29,10 +29,6 @@ export class TaskerComponent implements OnDestroy {
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public readonly filters: Array<LabeledData<TaskFilter>> = this.taskerFacade.taskFilters;
-
-  public ngOnDestroy(): void {
-    this.taskerFacade.removeStepsVisibilityData();
-  }
 
   public addTask(): void {
     this.taskerFacade.addTask$().pipe(untilDestroyed(this)).subscribe();

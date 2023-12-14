@@ -104,7 +104,10 @@
     },
     "addNote": "Add note",
     "removeNoteHeader": "Remove note",
-    "removeNoteMessage": "Are you sure that you want to remove this note?"
+    "removeNoteMessage": "Are you sure that you want to remove this note?",
+    "completed": "Completed",
+    "uncompleted": "Uncompleted",
+    "maxlength": "Max steps length: 5"
   },
 
   "weather": {

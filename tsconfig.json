@@ -33,7 +33,6 @@
       "#overview/*": ["src/app/features/dashboard/pages/overview/*"],
       "#settings/*": ["src/app/features/dashboard/pages/settings/*"],
       "#tasker/*": ["src/app/features/dashboard/pages/tasker/*"],
-      "#web3/*": ["src/app/features/web3/*"],
       "#drive/*": ["src/app/features/dashboard/pages/drive/*"]
     }
   },

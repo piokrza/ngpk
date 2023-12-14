@@ -20,20 +20,11 @@ export class TaskComponent implements OnChanges {
   @Output() toggleIsStepComplete = new EventEmitter<ToggleIsStepCompletePayload>();
 
   public completedSteps!: number;
-  public isStepsVisible!: boolean;
-  public isTaskComplete!: boolean;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['task']) {
-      this.isTaskComplete = this.task.isComplete;
       this.completedSteps = this.task.steps.filter(({ isComplete }: TaskStep) => isComplete).length;
-      this.isStepsVisible = this.taskerService.getIsVisible(this.task.id);
     }
-  }
-
-  public toggleStepsVisibility(): void {
-    this.isStepsVisible = !this.isStepsVisible;
-    this.taskerService.setIsVisible(this.task.id, this.isStepsVisible);
   }
 }

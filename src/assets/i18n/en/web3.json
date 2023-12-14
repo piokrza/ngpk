@@ -1,6 +1,0 @@
-{
-  "wallet": {
-    "noWallet": "No wallet provided, please install ",
-    "connectWallet": "Connect wallet"
-  }
-}

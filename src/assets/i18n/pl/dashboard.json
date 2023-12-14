@@ -104,7 +104,10 @@
     },
     "addNote": "Dodaj notatkę",
     "removeNoteHeader": "Usuń notatkę",
-    "removeNoteMessage": "Na pewno chcesz usunąć notatkę?"
+    "removeNoteMessage": "Na pewno chcesz usunąć notatkę?",
+    "completed": "Ukończone",
+    "uncompleted": "Nieukończone",
+    "maxlength": "Maksymalna ilość kroków: 5"
   },
 
   "weather": {

@@ -7,8 +7,8 @@
     } @else {
       @if (tasksData$ | async; as data) {
         <div class="container">
-          <div class="flex justify-content-between align-items-center flex-wrap">
-            <p-button [label]="'tasker.addTask' | translate" (click)="addTask()" styleClass="my-3" />
+          <div class="flex gap-6 align-items-center flex-wrap">
+            <p-button [label]="'tasker.addTask' | translate" [icon]="PrimeIcons.PLUS" (click)="addTask()" styleClass="my-3" />
 
             <p-selectButton
               [options]="filters"
@@ -19,15 +19,21 @@
               optionValue="data" />
           </div>
 
-          <p-dataView [value]="data.tasks ?? []" class="w-full">
-            <ng-template let-task pTemplate="listItem">
-              <ctrl-task
-                [task]="task"
-                (toggleIsTaskComplete)="toggleIsTaskComplete($event)"
-                (toggleIsStepComplete)="toggleIsStepComplete($event)"
-                (removeTask)="removeTask($event)" />
-            </ng-template>
-          </p-dataView>
+          <ul class="grid-container">
+            @for (task of data.tasks; track task.id) {
+              <li>
+                <ctrl-task
+                  [task]="task"
+                  (toggleIsTaskComplete)="toggleIsTaskComplete($event)"
+                  (toggleIsStepComplete)="toggleIsStepComplete($event)"
+                  (removeTask)="removeTask($event)" />
+              </li>
+            }
+
+            <p-card styleClass="empty">
+              <p-button [text]="true" severity="secondary" [icon]="PrimeIcons.PLUS" (click)="addTask()" styleClass="w-full p-5" />
+            </p-card>
+          </ul>
         </div>
       }
     }
@@ -43,7 +49,7 @@
         @if (notesData$ | async; as data) {
           <div class="container">
             <div class="flex justify-content-between my-3">
-              <p-button (onClick)="addNote()" [label]="'tasker.addNote' | translate" />
+              <p-button [icon]="PrimeIcons.PLUS" [label]="'tasker.addNote' | translate" (onClick)="addNote()" />
               <p-toggleButton
                 [onIcon]="PrimeIcons.ARROW_UP"
                 [offIcon]="PrimeIcons.ARROW_DOWN"
@@ -51,11 +57,15 @@
                 (onChange)="noteFilterChange($event)" />
             </div>
 
-            @for (note of data.notes; track note.id) {
-              <ctrl-note [note]="note" (removeNote)="removeNote($event)" class="flex-grow-1" />
-            } @empty {
-              <p>{{ 'overview.noData' | translate }}</p>
-            }
+            <ul>
+              @for (note of data.notes; track note.id) {
+                <li class="my-3">
+                  <ctrl-note [note]="note" (removeNote)="removeNote($event)" class="flex-grow-1" />
+                </li>
+              } @empty {
+                <p>{{ 'overview.noData' | translate }}</p>
+              }
+            </ul>
           </div>
         }
       }
