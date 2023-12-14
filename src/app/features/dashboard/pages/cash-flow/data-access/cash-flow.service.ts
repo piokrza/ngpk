@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, filter, map } from 'rxjs';
 import { AddFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowForm, Categories, Category } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
-import { CATEGORIES } from '#common/enums';
+import { Collection } from '#common/enums';
 import { CategoriesSelectors } from '#store/categories';
 
 @Injectable({ providedIn: 'root' })
@@ -40,8 +40,8 @@ export class CashFlowService {
   public getCategories$(isIncomeMode: boolean): Observable<Category[]> {
     return this.store.select(CategoriesSelectors.categories).pipe(
       filter(Boolean),
-      map((categories: Categories): Category[] => {
-        const categoriesType: CATEGORIES = isIncomeMode ? CATEGORIES.INCOMES : CATEGORIES.EXPENSES;
+      map((categories: Categories) => {
+        const categoriesType = isIncomeMode ? Collection.INCOMES : Collection.EXPENSES;
         return categories[categoriesType];
       })
     );
