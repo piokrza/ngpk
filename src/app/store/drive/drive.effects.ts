@@ -5,14 +5,14 @@ import { catchError, exhaustMap, from, map, of, tap } from 'rxjs';
 
 import { ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
-import { DriveApi } from '#drive/data-access';
+import { DriveApiService } from '#drive/data-access';
 import { IFile } from '#drive/models';
 import { DriveActions } from '#store/drive';
 
 @Injectable()
 export class DriveEffects {
   private readonly actions$: Actions = inject(Actions);
-  private readonly driveApi: DriveApi = inject(DriveApi);
+  private readonly driveApiService: DriveApiService = inject(DriveApiService);
   private readonly toastService: ToastService = inject(ToastService);
   private readonly translate: TranslateService = inject(TranslateService);
 
@@ -20,7 +20,7 @@ export class DriveEffects {
     return this.actions$.pipe(
       ofType(DriveActions.getFiles),
       exhaustMap(({ uid }) => {
-        return this.driveApi.loadFiles$(uid).pipe(
+        return this.driveApiService.loadFiles$(uid).pipe(
           map((files: IFile[]) => DriveActions.getFilesSuccess({ files })),
           catchError(() => {
             return of(DriveActions.getFilesFailure());
@@ -34,7 +34,7 @@ export class DriveEffects {
     return this.actions$.pipe(
       ofType(DriveActions.uploadFile),
       exhaustMap(({ payload }) => {
-        return from(this.driveApi.uploadFile(payload)).pipe(
+        return from(this.driveApiService.uploadFile(payload)).pipe(
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addFileSuccess'))),
           map(() => DriveActions.uploadFileSuccess()),
           catchError(() => {
@@ -50,7 +50,7 @@ export class DriveEffects {
     return this.actions$.pipe(
       ofType(DriveActions.uploadFolder),
       exhaustMap(({ payload }) => {
-        return from(this.driveApi.uploadFolder(payload)).pipe(
+        return from(this.driveApiService.uploadFolder(payload)).pipe(
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addFolderSuccess'))),
           map(() => DriveActions.uploadFolderSuccess()),
           catchError(() => {

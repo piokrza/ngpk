@@ -23,7 +23,7 @@ import {
   PanelComponent,
   UpdateFormComponent,
 } from '#cash-flow/components';
-import { CashFlowFacade } from '#cash-flow/data-access';
+import { CashFlowFacadeService } from '#cash-flow/data-access';
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
 import { TimestampPipe } from '#shared/pipes';
 
@@ -56,7 +56,7 @@ const imports = [
   TabViewModule,
   TimestampPipe,
 ];
-const providers: Provider[] = [CashFlowFacade];
+const providers: Provider[] = [CashFlowFacadeService];
 
 @NgModule({ declarations, imports, providers })
 export default class CashFlowModule {}

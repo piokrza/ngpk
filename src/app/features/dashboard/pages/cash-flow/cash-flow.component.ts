@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 
-import { CashFlowFacade } from '#cash-flow/data-access';
+import { CashFlowFacadeService } from '#cash-flow/data-access';
 import { CashFlow, CashFlowData } from '#cash-flow/models';
 
 @UntilDestroy()
@@ -12,35 +12,35 @@ import { CashFlow, CashFlowData } from '#cash-flow/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowComponent {
-  private readonly cashFlowFacade: CashFlowFacade = inject(CashFlowFacade);
+  private readonly cashFlowFacadeService: CashFlowFacadeService = inject(CashFlowFacadeService);
 
-  public readonly isLoading$: Observable<boolean> = this.cashFlowFacade.isLoading$;
-  public readonly incomesDataset$: Observable<CashFlowData> = this.cashFlowFacade.incomesDataset$;
-  public readonly expensesDataset$: Observable<CashFlowData> = this.cashFlowFacade.expensesDataset$;
+  public readonly isLoading$: Observable<boolean> = this.cashFlowFacadeService.isLoading$;
+  public readonly incomesDataset$: Observable<CashFlowData> = this.cashFlowFacadeService.incomesDataset$;
+  public readonly expensesDataset$: Observable<CashFlowData> = this.cashFlowFacadeService.expensesDataset$;
 
-  public readonly activeTabIndex$: Observable<number> = this.cashFlowFacade.activeTabIndex$;
+  public readonly activeTabIndex$: Observable<number> = this.cashFlowFacadeService.activeTabIndex$;
 
   public updateIncome(updatedIncome: CashFlow): void {
-    this.cashFlowFacade.updateIncome$(updatedIncome).pipe(untilDestroyed(this)).subscribe();
+    this.cashFlowFacadeService.updateIncome$(updatedIncome).pipe(untilDestroyed(this)).subscribe();
   }
 
   public removeIncome(incomeId: string): void {
-    this.cashFlowFacade.removeIncome(incomeId);
+    this.cashFlowFacadeService.removeIncome(incomeId);
   }
 
   public onIncomeSubmit(incomeData: CashFlow): void {
-    this.cashFlowFacade.addIncome(incomeData);
+    this.cashFlowFacadeService.addIncome(incomeData);
   }
 
   public updateExpense(updatedExpense: CashFlow): void {
-    this.cashFlowFacade.updateExpense$(updatedExpense).pipe(untilDestroyed(this)).subscribe();
+    this.cashFlowFacadeService.updateExpense$(updatedExpense).pipe(untilDestroyed(this)).subscribe();
   }
 
   public removeExpense(expenseId: string): void {
-    this.cashFlowFacade.removeExpense(expenseId);
+    this.cashFlowFacadeService.removeExpense(expenseId);
   }
 
   public onExpenseSubmit(expenseData: CashFlow): void {
-    this.cashFlowFacade.addExpense(expenseData);
+    this.cashFlowFacadeService.addExpense(expenseData);
   }
 }

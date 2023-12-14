@@ -6,7 +6,7 @@ import { CashFlow } from '#cash-flow/models';
 import { Collection } from '#common/enums';
 
 @Injectable({ providedIn: 'root' })
-export class CashFlowApi {
+export class CashFlowApiService {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public loadExpenses$(uid: string): Observable<CashFlow[]> {

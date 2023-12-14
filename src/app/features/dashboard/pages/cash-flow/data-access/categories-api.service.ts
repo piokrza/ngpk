@@ -6,7 +6,7 @@ import { Categories } from '#cash-flow/models';
 import { Collection } from '#common/enums';
 
 @Injectable({ providedIn: 'root' })
-export class CategoriesApi {
+export class CategoriesApiService {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public getCategories$(): Observable<Categories> {

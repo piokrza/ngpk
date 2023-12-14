@@ -12,7 +12,7 @@ import { BaseDialogStyles } from '#common/constants';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
 @Injectable({ providedIn: 'root' })
-export class CashFlowFacade {
+export class CashFlowFacadeService {
   private readonly store: Store = inject(Store);
   private readonly dialogService: DialogService = inject(DialogService);
   private readonly cashFlowService: CashFlowService = inject(CashFlowService);

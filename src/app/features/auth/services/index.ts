@@ -1,2 +1,2 @@
 export * from './auth-form.service';
-export * from './auth.api';
+export * from './auth-api.service';

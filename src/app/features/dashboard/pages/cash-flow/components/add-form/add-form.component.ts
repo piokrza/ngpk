@@ -7,7 +7,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { filter, Observable, tap } from 'rxjs';
 
 import { IUser } from '#auth/models';
-import { AuthApi } from '#auth/services';
+import { AuthApiService } from '#auth/services';
 import { CashFlowService } from '#cash-flow/data-access';
 import { CashFlowForm, Category } from '#cash-flow/models';
 
@@ -31,7 +31,7 @@ export class AddFormComponent implements OnInit {
   private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
 
   public constructor() {
-    inject(AuthApi)
+    inject(AuthApiService)
       .authState$.pipe(
         filter(Boolean),
         tap(({ uid }: IUser): string => (this.userId = uid)),

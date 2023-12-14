@@ -1,6 +1,6 @@
 @if (parentFile$ | async; as parentFile) {
   <div class="flex justify-content-between align-items-center">
-    <p-button [icon]="PrimeIcons.ARROW_LEFT" (onClick)="navigateBack()" styleClass="my-3" severity="secondary" />
+    <p-button [icon]="PrimeIcons.ARROW_LEFT" (onClick)="location.back()" styleClass="my-3" severity="secondary" />
     <p>{{ parentFile.name | uppercase }}</p>
   </div>
 }

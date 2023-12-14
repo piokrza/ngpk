@@ -9,7 +9,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { DriveComponent, DriveRoutingModule } from '#drive/.';
 import { FileListComponent } from '#drive/components/file-list';
-import { DriveFacade, DriveService } from '#drive/data-access';
+import { DriveFacadeService, DriveService } from '#drive/data-access';
 import { TruncatePipe } from '#shared/pipes';
 
 const declarations = [DriveComponent, FileListComponent];
@@ -26,7 +26,7 @@ const imports = [
   TruncatePipe,
   UpperCasePipe,
 ];
-const providers: Array<Provider> = [DriveFacade, DriveService];
+const providers: Array<Provider> = [DriveFacadeService, DriveService];
 
 @NgModule({ declarations, imports, providers, exports: [DriveComponent] })
 export default class DriveModule {}

@@ -6,7 +6,7 @@ import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 import { Observable } from 'rxjs';
 
 import { LabeledData } from '#common/models';
-import { TaskerFacade } from '#tasker/data-access';
+import { TaskerFacadeService } from '#tasker/data-access';
 import { NotesData, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @UntilDestroy()
@@ -17,7 +17,7 @@ import { NotesData, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskerComponent {
-  private readonly taskerFacade: TaskerFacade = inject(TaskerFacade);
+  private readonly taskerFacade: TaskerFacadeService = inject(TaskerFacadeService);
 
   public readonly tasksData$: Observable<TasksData> = this.taskerFacade.tasksData$;
   public readonly isTasksLoading$: Observable<boolean> = this.taskerFacade.isTasksLoading$;

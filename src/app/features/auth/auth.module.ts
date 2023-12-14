@@ -8,11 +8,11 @@ import { PasswordModule } from 'primeng/password';
 
 import { AuthRoutingModule, AuthComponent } from '#auth/.';
 import { LoginFormComponent, RegisterFormComponent } from '#auth/components';
-import { AuthFormService, AuthApi } from '#auth/services';
+import { AuthFormService, AuthApiService } from '#auth/services';
 
 const declarations = [AuthComponent, LoginFormComponent, RegisterFormComponent];
 const imports = [CommonModule, AuthRoutingModule, ReactiveFormsModule, InputTextModule, ButtonModule, PasswordModule, TranslateModule];
-const providers: Provider[] = [AuthFormService, AuthApi];
+const providers: Provider[] = [AuthFormService, AuthApiService];
 
 @NgModule({ declarations, imports, providers })
 export default class AuthModule {}

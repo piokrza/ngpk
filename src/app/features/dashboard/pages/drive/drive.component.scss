@@ -1,9 +1,6 @@
 @use 'src/assets/styles/variables/sizes' as s;
 
 .drive {
-  width: min(100% - 2rem, s.$containerMaxWidth);
-  margin-inline: auto;
-
   &__buttons {
     display: flex;
     flex-wrap: wrap;

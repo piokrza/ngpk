@@ -18,7 +18,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TimestampPipe } from '#shared/pipes';
 import { TaskerComponent } from '#tasker/.';
 import { TaskFormComponent, TaskComponent, NoteFormComponent, NoteComponent } from '#tasker/components';
-import { TaskerFacade } from '#tasker/data-access';
+import { TaskerFacadeService } from '#tasker/data-access';
 
 const routes: Routes = [{ path: '', component: TaskerComponent }];
 
@@ -42,7 +42,7 @@ const imports = [
   ToggleButtonModule,
 ];
 const declarations = [TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NoteComponent];
-const providers: Provider[] = [TaskerFacade, DatePipe];
+const providers: Provider[] = [TaskerFacadeService, DatePipe];
 
 @NgModule({ declarations, imports, providers })
 export default class TaskerModule {}

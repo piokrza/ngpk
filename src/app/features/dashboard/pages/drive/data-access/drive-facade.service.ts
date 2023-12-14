@@ -11,7 +11,7 @@ import { AuthSelectors } from '#store/auth';
 import { DriveActions, DriveSelectors } from '#store/drive';
 
 @Injectable()
-export class DriveFacade {
+export class DriveFacadeService {
   private readonly store: Store = inject(Store);
   private readonly router: Router = inject(Router);
   private readonly driveService: DriveService = inject(DriveService);

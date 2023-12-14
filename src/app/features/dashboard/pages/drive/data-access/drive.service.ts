@@ -15,13 +15,13 @@ export class DriveService {
     return this.parentId$$.asObservable();
   }
 
-  public filterFiles(files: IFile[] | null, id: string): IFile[] {
+  public filterFiles(files: IFile[] | null, parentId: string): IFile[] {
     if (files === null) return [];
 
-    if (!id ?? ''.length) {
+    if (!parentId ?? ''.length) {
       return files.filter(({ parentId }) => (parentId ?? '') === '');
     } else {
-      return files.filter(({ parentId }) => parentId === id);
+      return files.filter(({ parentId }) => parentId === parentId);
     }
   }
 }

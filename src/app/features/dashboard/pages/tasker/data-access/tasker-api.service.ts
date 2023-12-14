@@ -6,7 +6,7 @@ import { Collection } from '#common/enums';
 import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
-export class TaskerApi {
+export class TaskerApiService {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public loadTasks$(uid: string) {

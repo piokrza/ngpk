@@ -8,7 +8,7 @@ import { Collection } from '#common/enums';
 import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
 
 @Injectable({ providedIn: 'root' })
-export class DriveApi {
+export class DriveApiService {
   private readonly fireStorage: AngularFireStorage = inject(AngularFireStorage);
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 

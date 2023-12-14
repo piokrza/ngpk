@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/cor
 import { Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
 
-import { AuthApi } from '#auth/services';
+import { AuthApiService } from '#auth/services';
 import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
 import { CategoriesActions } from '#store/categories';
@@ -20,10 +20,10 @@ import { TaskerActions } from '#store/tasker';
 })
 export class DashboardComponent implements OnInit {
   private readonly store: Store = inject(Store);
-  private readonly authApi: AuthApi = inject(AuthApi);
+  private readonly authApiService: AuthApiService = inject(AuthApiService);
 
   public ngOnInit(): void {
-    this.authApi.authState$
+    this.authApiService.authState$
       .pipe(
         filter(Boolean),
         tap(({ uid }) => {

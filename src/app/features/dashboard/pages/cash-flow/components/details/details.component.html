@@ -24,8 +24,8 @@
     </div>
 
     <div class="card__inner gap-3">
-      <p-button (click)="cashFlowToUpdate.emit(details)" [icon]="PrimeIcons.ALIGN_JUSTIFY" />
-      <p-button (click)="cashFlowToRemoveId.emit(details.id)" [icon]="PrimeIcons.TIMES" severity="danger" />
+      <p-button (click)="cashFlowToUpdate.emit(details)" [text]="true" [icon]="PrimeIcons.ALIGN_JUSTIFY" />
+      <p-button (click)="cashFlowToRemoveId.emit(details.id)" [text]="true" [icon]="PrimeIcons.TIMES" severity="danger" />
     </div>
   </div>
 </p-card>

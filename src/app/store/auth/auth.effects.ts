@@ -7,7 +7,7 @@ import firebase from 'firebase/compat';
 import { catchError, exhaustMap, from, map, of, switchMap, tap } from 'rxjs';
 
 import { IUser } from '#auth/models';
-import { AuthApi } from '#auth/services';
+import { AuthApiService } from '#auth/services';
 import { AppPaths, ToastStatus } from '#common/enums';
 import { ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
@@ -19,14 +19,14 @@ export class AuthEffects {
   private readonly router: Router = inject(Router);
   private readonly actions$: Actions = inject(Actions);
   private readonly translateService = inject(TranslateService);
-  private readonly authApi: AuthApi = inject(AuthApi);
+  private readonly authApiService: AuthApiService = inject(AuthApiService);
   private readonly toastService: ToastService = inject(ToastService);
 
   public signInWithGoogle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signInWithGoogle),
       exhaustMap(() => {
-        return from(this.authApi.signinWithGoogle()).pipe(
+        return from(this.authApiService.signinWithGoogle()).pipe(
           map(({ user }: firebase.auth.UserCredential) => AuthActions.userAuthenticated({ user: setUser(user!) })),
           tap(() => this.router.navigateByUrl(AppPaths.DASHBOARD)),
           catchError(() => of(AuthActions.userNotAuthenticated()))
@@ -39,7 +39,7 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.userAuthenticated),
-        exhaustMap(({ user }) => this.authApi.addUserToDatabase$(user))
+        exhaustMap(({ user }) => this.authApiService.addUserToDatabase$(user))
       );
     },
     { dispatch: false }
@@ -48,7 +48,7 @@ export class AuthEffects {
   public signOut$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signOut),
-      exhaustMap((): Promise<void> => this.authApi.signOut()),
+      exhaustMap((): Promise<void> => this.authApiService.signOut()),
       map(() => AuthActions.userNotAuthenticated()),
       tap(() => this.router.navigateByUrl(`/${AppPaths.AUTHENTICATION}`))
     );
@@ -58,7 +58,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.signInWithEmailAndPassword),
       exhaustMap(({ payload }) => {
-        return from(this.authApi.signInWithEmailAndPassword(payload)).pipe(
+        return from(this.authApiService.signInWithEmailAndPassword(payload)).pipe(
           map(() => AuthActions.signInWithEmailAndPasswordSuccess()),
           tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
           catchError(({ message }: HttpErrorResponse) => of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message })))
@@ -72,9 +72,11 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
         exhaustMap(({ payload }) => {
-          return from(this.authApi.signUpWithEmailAndPassword(payload)).pipe(
+          return from(this.authApiService.signUpWithEmailAndPassword(payload)).pipe(
             map(({ user }) => {
-              return this.authApi.addUserToDatabase$(setUser(user!)).pipe(map(() => AuthActions.signUpWithEmailAndPasswordSuccess()));
+              return this.authApiService
+                .addUserToDatabase$(setUser(user!))
+                .pipe(map(() => AuthActions.signUpWithEmailAndPasswordSuccess()));
             }),
             tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
             catchError(({ message }: HttpErrorResponse) => of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message })))
@@ -88,9 +90,9 @@ export class AuthEffects {
   public loadUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loadUserData),
-      exhaustMap(() => this.authApi.authState$),
+      exhaustMap(() => this.authApiService.authState$),
       switchMap((user: firebase.User | null) => {
-        return this.authApi.loadUserData$(user).pipe(
+        return this.authApiService.loadUserData$(user).pipe(
           map((user: IUser | undefined) => {
             if (user) return AuthActions.userAuthenticated({ user });
             return AuthActions.userNotAuthenticated();
@@ -104,7 +106,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.updateAccount),
       exhaustMap(({ updatedUserData }) => {
-        return from(this.authApi.updateUser$(updatedUserData)).pipe(
+        return from(this.authApiService.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('accUpdateSuccess'))),
           catchError(() => of(AuthActions.updateAccountFailure()))

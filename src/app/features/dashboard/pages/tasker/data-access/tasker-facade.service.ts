@@ -13,7 +13,7 @@ import { TaskerService } from '#tasker/data-access';
 import { Note, NoteFilter, NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Injectable()
-export class TaskerFacade {
+export class TaskerFacadeService {
   private readonly store: Store = inject(Store);
   private readonly taskerService: TaskerService = inject(TaskerService);
   private readonly dialogService: DialogService = inject(DialogService);

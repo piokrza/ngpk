@@ -9,7 +9,7 @@ import { Observable, map, tap } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
 import { IUser } from '#auth/models';
-import { DriveFacade } from '#drive/data-access';
+import { DriveFacadeService } from '#drive/data-access';
 
 @UntilDestroy()
 @Component({
@@ -19,14 +19,14 @@ import { DriveFacade } from '#drive/data-access';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriveComponent implements OnInit {
-  private readonly driveFacade: DriveFacade = inject(DriveFacade);
+  private readonly driveFacadeService: DriveFacadeService = inject(DriveFacadeService);
   private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
-  private readonly user: Signal<IUser | null> = toSignal(this.driveFacade.user$, { initialValue: null });
+  private readonly user: Signal<IUser | null> = toSignal(this.driveFacadeService.user$, { initialValue: null });
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public readonly folderMode: WritableSignal<'initial' | 'edit'> = signal('initial');
-  public readonly parentId: Signal<string> = toSignal(this.driveFacade.parentId$, { initialValue: '' });
+  public readonly parentId: Signal<string> = toSignal(this.driveFacadeService.parentId$, { initialValue: '' });
   public readonly folderNameControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
 
   protected uploadUrl: string = env.uploadUrl;
@@ -34,7 +34,7 @@ export class DriveComponent implements OnInit {
   public ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
-        tap(({ id }) => this.driveFacade.setParentId(id ?? '')),
+        tap(({ id }) => this.driveFacadeService.setParentId(id ?? '')),
         untilDestroyed(this)
       )
       .subscribe();
@@ -44,7 +44,7 @@ export class DriveComponent implements OnInit {
     this.folderMode() === 'edit' && this.folderMode.set('initial');
 
     files.length &&
-      this.driveFacade.uploadFile({
+      this.driveFacadeService.uploadFile({
         file: files[0],
         uid: this.user()!.uid,
         parentId: this.parentId(),
@@ -52,7 +52,7 @@ export class DriveComponent implements OnInit {
   }
 
   public addFolder(): void {
-    this.driveFacade.uploadFolder({
+    this.driveFacadeService.uploadFolder({
       name: this.folderNameControl.value,
       uid: this.user()!.uid,
       parentId: this.parentId(),
@@ -62,7 +62,7 @@ export class DriveComponent implements OnInit {
   }
 
   public get buttonIcon$(): Observable<string> {
-    return this.driveFacade.isProcessing$.pipe(
+    return this.driveFacadeService.isProcessing$.pipe(
       map((isProcessing) => (isProcessing ? this.PrimeIcons.SPINNER + ' pi-spin' : this.PrimeIcons.PLUS))
     );
   }
