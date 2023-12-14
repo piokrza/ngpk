@@ -6,9 +6,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Observable } from 'rxjs';
 
 import { CashFlowService } from '#cash-flow/data-access';
-import { AppPaths } from '#common/enums';
+import { AppPaths, DashobardPaths } from '#common/enums';
 import { LabeledData } from '#common/models';
-import { DashobardPaths } from '#dashboard/enums';
 import { CashFlowCardsComponent, CashFlowChartComponent, TaskerPanelComponent } from '#overview/components';
 import { OverviewFacade } from '#overview/data-access';
 import { ChartConfig, TaskerData } from '#overview/models';

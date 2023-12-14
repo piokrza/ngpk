@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 
-import { DashobardPaths } from '#dashboard/enums';
+import { DashobardPaths } from '#common/enums';
 import { AuthActions } from '#store/auth';
 
 @Injectable({ providedIn: 'root' })

@@ -7,9 +7,8 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { CashFlow } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
-import { AppPaths } from '#common/enums';
+import { AppPaths, DashobardPaths } from '#common/enums';
 import { LabeledData } from '#common/models';
-import { DashobardPaths } from '#dashboard/enums';
 import { bgColors, bgColorsHover, categoryNames, expensesCatLength, incomesCatLength } from '#overview/constants';
 import { ChartConfig, TaskerData } from '#overview/models';
 import { CashFlowSelectors } from '#store/cash-flow';

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { DashobardPaths } from '#common/enums';
 import { featureFlagGuard } from '#common/guards';
 import { getTitle } from '#common/utils';
 import { DashboardComponent } from '#dashboard/.';
-import { DashobardPaths } from '#dashboard/enums';
 
 const routes: Routes = [
   {

@@ -4,8 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map, switchMap } from 'rxjs';
 
 import { IUser } from '#auth/models';
-import { AppPaths } from '#common/enums';
-import { DashobardPaths } from '#dashboard/enums';
+import { AppPaths, DashobardPaths } from '#common/enums';
 import { DriveService } from '#drive/data-access';
 import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
 import { AuthSelectors } from '#store/auth';

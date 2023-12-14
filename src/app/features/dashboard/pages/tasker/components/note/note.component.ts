@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
-import { DateFormats } from '#dashboard/enums';
+import { DateFormats } from '#common/enums';
 import { Note } from '#tasker/models';
 
 @Component({

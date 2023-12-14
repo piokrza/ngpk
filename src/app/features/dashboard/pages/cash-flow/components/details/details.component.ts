@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { PrimeIcons } from 'primeng/api';
 
 import { CashFlow } from '#cash-flow/models';
-import { DateFormats } from '#dashboard/enums';
+import { DateFormats } from '#common/enums';
 
 @Component({
   selector: 'ctrl-details',
