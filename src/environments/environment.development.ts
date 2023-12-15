@@ -20,7 +20,6 @@ export const environment: Environment = {
     cashFlow: true,
     settings: true,
     tasker: true,
-    web3: true,
     overview: true,
   },
 };

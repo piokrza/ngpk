@@ -18,7 +18,6 @@ export interface Environment {
     cashFlow: boolean;
     settings: boolean;
     tasker: boolean;
-    web3: boolean;
     overview: boolean;
   };
 }
