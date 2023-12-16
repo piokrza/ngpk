@@ -19,9 +19,9 @@ export class DriveService {
     if (files === null) return [];
 
     if (!parentId ?? ''.length) {
-      return files.filter(({ parentId }) => (parentId ?? '') === '');
+      return files.filter((file) => (file.parentId ?? '') === '');
     } else {
-      return files.filter(({ parentId }) => parentId === parentId);
+      return files.filter((file) => file.parentId === parentId);
     }
   }
 }
