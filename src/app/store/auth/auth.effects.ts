@@ -67,21 +67,24 @@ export class AuthEffects {
     );
   });
 
-  public signUpWithEmailAndPassword$ = createEffect(
+  public signUpWithEmailAndPassword$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
+      exhaustMap(({ payload }) => {
+        return from(this.authApiService.signUpWithEmailAndPassword(payload)).pipe(
+          map(({ user }) => AuthActions.userAuthenticated({ user: setUser(user!) })),
+          tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
+          catchError(({ message }: HttpErrorResponse) => of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message })))
+        );
+      })
+    );
+  });
+
+  public signUpWithEmailAndPasswordSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
-        exhaustMap(({ payload }) => {
-          return from(this.authApiService.signUpWithEmailAndPassword(payload)).pipe(
-            map(({ user }) => {
-              return this.authApiService
-                .addUserToDatabase$(setUser(user!))
-                .pipe(map(() => AuthActions.signUpWithEmailAndPasswordSuccess()));
-            }),
-            tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
-            catchError(({ message }: HttpErrorResponse) => of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message })))
-          );
-        })
+        ofType(AuthActions.userAuthenticated),
+        exhaustMap(({ user }) => this.authApiService.addUserToDatabase$(user))
       );
     },
     { dispatch: false }

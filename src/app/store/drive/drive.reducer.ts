@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
 import { IFile } from '#drive/models';
+import { AuthActions } from '#store/auth';
 import { DriveActions } from '#store/drive';
 
 export const FeatureKey = 'drive';
@@ -30,5 +31,7 @@ export const Reducer = createReducer(
 
   on(DriveActions.uploadFolder, (state): State => ({ ...state, isProcessing: true })),
   on(DriveActions.uploadFolderSuccess, (state): State => ({ ...state, isProcessing: false })),
-  on(DriveActions.uploadFolderFailure, (state): State => ({ ...state, isProcessing: false }))
+  on(DriveActions.uploadFolderFailure, (state): State => ({ ...state, isProcessing: false })),
+
+  on(AuthActions.signOut, (): State => ({ isLoading: false, isProcessing: false, files: null }))
 );

@@ -19,8 +19,8 @@ import { AuthActions, AuthSelectors } from '#store/auth';
 export class LoginFormComponent {
   private readonly store: Store = inject(Store);
 
-  public readonly form: FormGroup<LoginForm> = inject(AuthFormService).loginForm;
   public readonly AuthPaths: typeof AuthPaths = AuthPaths;
+  public readonly form: FormGroup<LoginForm> = inject(AuthFormService).loginForm;
   public readonly errorMessage$: Observable<string | null> = this.store.select(AuthSelectors.errorMessage).pipe(
     tap((errorMessage) => {
       typeof errorMessage === 'string' && setTimeout(() => this.store.dispatch(AuthActions.resetErrorMessage()), 5000);
