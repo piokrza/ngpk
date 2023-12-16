@@ -11,13 +11,12 @@
             (cashFlowToRemoveId)="removeCashFlow($event)"
             (cashFlowToUpdate)="updateCashFlow($event)" />
         </li>
-
-        <li>
-          <p-card styleClass="empty">
-            <p-button [text]="true" severity="secondary" [icon]="PrimeIcons.PLUS" (click)="addCashFlow.emit()" styleClass="w-full p-5" />
-          </p-card>
-        </li>
       }
+      <li>
+        <p-card styleClass="empty">
+          <p-button [text]="true" severity="secondary" [icon]="PrimeIcons.PLUS" (click)="addCashFlow.emit()" styleClass="w-full p-5" />
+        </p-card>
+      </li>
     </ul>
   } @else {
     <p-divider />
