@@ -19,8 +19,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AppComponent, routes } from 'src/app';
 import { environment } from 'src/environments/environment';
 
-import { AppInitService } from '#common/services';
-import { CustomTranslateHttpLoader, initializeTranslations, injectThemeLink$ } from '#common/utils';
+import { injectThemeLink$, ThemeInitService } from '#common/services';
+import { CustomTranslateHttpLoader, initializeTranslations } from '#common/utils';
 import { AuthEffects } from '#store/auth';
 import { CashFlowEffects } from '#store/cash-flow';
 import { CategoriesEffects } from '#store/categories';
@@ -56,7 +56,7 @@ const imports = [
 ];
 const providers: Array<Provider | EnvironmentProviders> = [
   provideRouter(routes, withViewTransitions()),
-  { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [AppInitService], multi: true },
+  { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [ThemeInitService], multi: true },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   DatePipe,

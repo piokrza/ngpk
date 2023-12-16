@@ -5,8 +5,12 @@ import { first, Observable, of, tap } from 'rxjs';
 import { isLightMode } from '#common/constants';
 import { PersistanceService } from '#common/services';
 
+export function injectThemeLink$(themeInitService: ThemeInitService) {
+  return () => themeInitService.injectThemeLink$();
+}
+
 @Injectable({ providedIn: 'root' })
-export class AppInitService {
+export class ThemeInitService {
   private readonly document: Document = inject(DOCUMENT);
 
   private isLightMode: boolean = !!inject(PersistanceService).get<boolean>(isLightMode);
