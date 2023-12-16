@@ -1,9 +1,7 @@
 @use 'src/assets/styles/variables/sizes' as s;
 
-.drive {
-  &__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
+.drive__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }

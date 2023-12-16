@@ -1,3 +1,5 @@
+@use 'src/assets/styles/variables/breakpoints' as b;
+
 .file-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -18,5 +20,11 @@
     &:hover {
       border-color: var(--primary-color);
     }
+  }
+}
+
+@media only screen and (min-width: b.$md) {
+  .file-list {
+    grid-template-columns: repeat(auto-fit, minmax(140px, min-content));
   }
 }
