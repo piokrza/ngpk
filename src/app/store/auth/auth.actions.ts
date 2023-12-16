@@ -24,7 +24,8 @@ export const signUpWithEmailAndPasswordFailure = createAction(
   props<{ errorMessage: string }>()
 );
 
-export const loadUserData = createAction(ActionTypes.LOAD_USER_DATA);
+export const loadUserData = createAction(ActionTypes.LOAD_USER_DATA, props<{ uid: string }>());
+export const loadUserDataSuccess = createAction(ActionTypes.LOAD_USER_DATA_SUCCESS, props<{ user: IUser }>());
 
 export const updateAccount = createAction(ActionTypes.UPDATE_ACCOUNT, props<{ updatedUserData: IUser }>());
 export const updateAccountSuccess = createAction(ActionTypes.UPDATE_ACCOUNT_SUCCESS);

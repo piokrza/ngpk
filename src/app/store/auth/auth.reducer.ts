@@ -26,6 +26,10 @@ export const Reducer = createReducer(
     return { ...state, errorMessage };
   }),
 
+  on(AuthActions.loadUserDataSuccess, (state, { user }) => {
+    return { ...state, user };
+  }),
+
   on(AuthActions.userAuthenticated, (state, { user }): State => {
     return { ...state, user };
   }),

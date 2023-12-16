@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase/compat';
-import { catchError, exhaustMap, from, map, of, switchMap, tap } from 'rxjs';
+import { catchError, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
-import { IUser } from '#auth/models';
 import { AuthApiService } from '#auth/services';
 import { AppPaths, ToastStatus } from '#common/enums';
-import { ToastService } from '#common/services';
+import { DbSubscriptionService, ToastService } from '#common/services';
 import { setUser } from '#common/utils/set-user';
 import { AuthActions } from '#store/auth';
 import { ActionTypes } from '#store/auth/action-types';
@@ -18,9 +17,10 @@ import { ActionTypes } from '#store/auth/action-types';
 export class AuthEffects {
   private readonly router: Router = inject(Router);
   private readonly actions$: Actions = inject(Actions);
-  private readonly translateService = inject(TranslateService);
-  private readonly authApiService: AuthApiService = inject(AuthApiService);
   private readonly toastService: ToastService = inject(ToastService);
+  private readonly authApiService: AuthApiService = inject(AuthApiService);
+  private readonly translateService: TranslateService = inject(TranslateService);
+  private readonly dbSubscriptionService: DbSubscriptionService = inject(DbSubscriptionService);
 
   public signInWithGoogle$ = createEffect(() => {
     return this.actions$.pipe(
@@ -90,18 +90,15 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  public loadUser$ = createEffect(() => {
+  public loadUserData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loadUserData),
-      exhaustMap(() => this.authApiService.authState$),
-      switchMap((user: firebase.User | null) => {
-        return this.authApiService.loadUserData$(user).pipe(
-          map((user: IUser | undefined) => {
-            if (user) return AuthActions.userAuthenticated({ user });
-            return AuthActions.userNotAuthenticated();
-          })
-        );
-      })
+      exhaustMap(({ uid }) =>
+        this.authApiService.loadUserData$(uid).pipe(
+          map((user) => AuthActions.loadUserDataSuccess({ user })),
+          takeUntil(this.dbSubscriptionService.unsubscribe$)
+        )
+      )
     );
   });
 

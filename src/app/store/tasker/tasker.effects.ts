@@ -1,19 +1,20 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import { catchError, exhaustMap, map, of, takeUntil } from 'rxjs';
 
 import { ToastStatus } from '#common/enums';
-import { ToastService } from '#common/services';
+import { DbSubscriptionService, ToastService } from '#common/services';
 import { TaskerActions } from '#store/tasker';
 import { TaskerApiService } from '#tasker/data-access';
 
 @Injectable()
 export class TaskerEffects {
   private readonly actions$: Actions = inject(Actions);
-  private readonly taskerApiService: TaskerApiService = inject(TaskerApiService);
   private readonly toastService: ToastService = inject(ToastService);
   private readonly translateService: TranslateService = inject(TranslateService);
+  private readonly taskerApiService: TaskerApiService = inject(TaskerApiService);
+  private readonly dbSubscriptionService: DbSubscriptionService = inject(DbSubscriptionService);
 
   public getTasks$ = createEffect(() => {
     return this.actions$.pipe(
@@ -21,6 +22,7 @@ export class TaskerEffects {
       exhaustMap(({ uid }) => {
         return this.taskerApiService.loadTasks$(uid).pipe(
           map((tasks) => TaskerActions.getTasksSuccess({ tasks })),
+          takeUntil(this.dbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchTasks'));
             return of(TaskerActions.getTasksError());
@@ -90,6 +92,7 @@ export class TaskerEffects {
       exhaustMap(({ uid }) => {
         return this.taskerApiService.loadNotes$(uid).pipe(
           map((notes) => TaskerActions.getNotesSuccess({ notes })),
+          takeUntil(this.dbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchNotes'));
             return of(TaskerActions.getNotesError());

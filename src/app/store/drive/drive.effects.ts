@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { catchError, exhaustMap, from, map, of, tap } from 'rxjs';
+import { catchError, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
 import { ToastStatus } from '#common/enums';
-import { ToastService } from '#common/services';
+import { DbSubscriptionService, ToastService } from '#common/services';
 import { DriveApiService } from '#drive/data-access';
 import { IFile } from '#drive/models';
 import { DriveActions } from '#store/drive';
@@ -12,9 +12,10 @@ import { DriveActions } from '#store/drive';
 @Injectable()
 export class DriveEffects {
   private readonly actions$: Actions = inject(Actions);
-  private readonly driveApiService: DriveApiService = inject(DriveApiService);
   private readonly toastService: ToastService = inject(ToastService);
   private readonly translate: TranslateService = inject(TranslateService);
+  private readonly driveApiService: DriveApiService = inject(DriveApiService);
+  private readonly dbSubscriptionService: DbSubscriptionService = inject(DbSubscriptionService);
 
   public loadFiles$ = createEffect(() => {
     return this.actions$.pipe(
@@ -22,6 +23,7 @@ export class DriveEffects {
       exhaustMap(({ uid }) => {
         return this.driveApiService.loadFiles$(uid).pipe(
           map((files: IFile[]) => DriveActions.getFilesSuccess({ files })),
+          takeUntil(this.dbSubscriptionService.unsubscribe$),
           catchError(() => {
             return of(DriveActions.getFilesFailure());
           })

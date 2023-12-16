@@ -3,7 +3,7 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
-import { Observable, of, tap } from 'rxjs';
+import { filter, Observable, tap } from 'rxjs';
 
 import { AuthFormPayload, IUser } from '#auth/models';
 import { Collection } from '#common/enums';
@@ -29,10 +29,8 @@ export class AuthApiService {
     return await this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  public loadUserData$(user: firebase.User | null): Observable<IUser | undefined> {
-    if (!user) return of(undefined);
-
-    return this.angularFirestore.doc<IUser>(`${Collection.USERS}/${user.uid}`).valueChanges();
+  public loadUserData$(uid: string): Observable<IUser> {
+    return this.angularFirestore.doc<IUser>(`${Collection.USERS}/${uid}`).valueChanges().pipe(filter(Boolean));
   }
 
   public get authState$(): Observable<firebase.User | null> {

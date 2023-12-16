@@ -1,7 +1,7 @@
 export enum ActionTypes {
-  LOAD_FILES = '[Files] Load files',
-  LOAD_FILES_SUCCESS = '[Files] Load files success',
-  LOAD_FILES_FAILURE = '[Files] Load files failure',
+  LOAD_FILES = '[Files] Get files',
+  LOAD_FILES_SUCCESS = '[Files] Get files success',
+  LOAD_FILES_FAILURE = '[Files] Get files failure',
 
   UPLOAD_FILE = '[Files] Upload file',
   UPLOAD_FILE_SUCCESS = '[Files] Upload file success',
