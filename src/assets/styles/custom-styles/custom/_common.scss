@@ -38,6 +38,12 @@ small.error {
   text-decoration: underline;
 }
 
+.grid-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+}
+
 .text {
   &--success {
     color: var(--green-500);

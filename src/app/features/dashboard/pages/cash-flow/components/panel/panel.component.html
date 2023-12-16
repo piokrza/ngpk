@@ -6,10 +6,11 @@
   <p-button (onClick)="openCashFlowDialog()" [label]="addCashFlowBtnLabel | translate" styleClass="my-4" />
 
   <ctrl-details-list
-    (cashFlowToRemoveId)="cashFlowToRemoveId.emit($event)"
-    (cashFlowToUpdate)="cashFlowToUpdate.emit($event)"
     [isIncomeMode]="isIncomeMode"
     [isLoading]="isLoading"
     [cashFlowList]="cashFlowData"
+    (addCashFlow)="openCashFlowDialog()"
+    (cashFlowToRemoveId)="cashFlowToRemoveId.emit($event)"
+    (cashFlowToUpdate)="cashFlowToUpdate.emit($event)"
     class="wrapper" />
 </div>

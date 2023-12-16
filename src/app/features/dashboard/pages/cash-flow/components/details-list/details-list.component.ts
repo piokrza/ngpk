@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { PrimeIcons } from 'primeng/api';
 import { environment as env } from 'src/environments/environment';
 
 import { CashFlow } from '#cash-flow/models';
@@ -13,10 +14,12 @@ export class DetailsListComponent {
   @Input({ required: true }) public isLoading!: boolean;
   @Input({ required: true }) public isIncomeMode!: boolean;
 
+  @Output() public addCashFlow: EventEmitter<void> = new EventEmitter<void>();
   @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
   @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
 
   public readonly maxItemsPerPage: number = env.maxItemPerPage;
+  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public removeCashFlow(cashFlowId: string): void {
     this.cashFlowToRemoveId.emit(cashFlowId);

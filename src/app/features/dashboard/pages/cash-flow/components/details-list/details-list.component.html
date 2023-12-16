@@ -2,15 +2,23 @@
   <p-progressSpinner class="spinner" />
 } @else {
   @if (cashFlowList.length) {
-    <p-dataView [value]="cashFlowList" [paginator]="cashFlowList.length > maxItemsPerPage" [rows]="maxItemsPerPage">
-      <ng-template let-detailsItem pTemplate="listItem">
-        <ctrl-details
-          (cashFlowToRemoveId)="removeCashFlow($event)"
-          (cashFlowToUpdate)="updateCashFlow($event)"
-          [isIncomeMode]="isIncomeMode"
-          [details]="detailsItem" />
-      </ng-template>
-    </p-dataView>
+    <ul class="grid-container">
+      @for (item of cashFlowList; track item.id) {
+        <li>
+          <ctrl-details
+            [isIncomeMode]="isIncomeMode"
+            [details]="item"
+            (cashFlowToRemoveId)="removeCashFlow($event)"
+            (cashFlowToUpdate)="updateCashFlow($event)" />
+        </li>
+
+        <li>
+          <p-card styleClass="empty">
+            <p-button [text]="true" severity="secondary" [icon]="PrimeIcons.PLUS" (click)="addCashFlow.emit()" styleClass="w-full p-5" />
+          </p-card>
+        </li>
+      }
+    </ul>
   } @else {
     <p-divider />
     <p class="px-3">
