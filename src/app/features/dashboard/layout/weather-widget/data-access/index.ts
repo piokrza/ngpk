@@ -1,3 +1,3 @@
-export * from './weather.api';
-export * from './weather.state';
-export * from './weather.facade';
+export * from './weather-api.service';
+export * from './weather-state.service';
+export * from './weather-facade.service';

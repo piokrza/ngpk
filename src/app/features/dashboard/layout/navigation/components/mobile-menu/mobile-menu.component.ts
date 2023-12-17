@@ -24,7 +24,7 @@ export class MobileMenuComponent {
   public isOpen: WritableSignal<boolean> = signal(false);
 
   public toggle(): void {
-    this.isOpen.set(!this.isOpen());
+    this.isOpen.update((isOpen) => !isOpen);
   }
 
   public itemClick(command?: any): void {

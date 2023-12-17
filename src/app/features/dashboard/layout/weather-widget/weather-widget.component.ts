@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 
 import { Nullable } from '#common/models';
 import { DetailsComponent } from '#layout/weather-widget/components';
-import { WeatherApi, WeatherState, WeatherFacade } from '#layout/weather-widget/data-access';
+import { WeatherApiService, WeatherStateService, WeatherFacadeService } from '#layout/weather-widget/data-access';
 import { WeatherResponse } from '#layout/weather-widget/models';
 import { WeatherIconPipe } from '#layout/weather-widget/pipes';
 
@@ -26,7 +26,7 @@ const imports = [
   SkeletonModule,
   WeatherIconPipe,
 ];
-const providers: Provider[] = [WeatherFacade, WeatherApi, WeatherState];
+const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherStateService];
 
 @UntilDestroy()
 @Component({
@@ -39,27 +39,27 @@ const providers: Provider[] = [WeatherFacade, WeatherApi, WeatherState];
   imports,
 })
 export class WeatherWidgetComponent implements OnInit {
-  private readonly weatherFacade: WeatherFacade = inject(WeatherFacade);
+  private readonly weatherFacadeService: WeatherFacadeService = inject(WeatherFacadeService);
 
-  public readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.weatherFacade.weatherData$);
-  public readonly isLoading$: Observable<boolean> = this.weatherFacade.isLoading$;
-  public readonly errorMessage$: Observable<string | null> = this.weatherFacade.errorMessage$;
+  public readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.weatherFacadeService.weatherData$);
+  public readonly isLoading$: Observable<boolean> = this.weatherFacadeService.isLoading$;
+  public readonly errorMessage$: Observable<string | null> = this.weatherFacadeService.errorMessage$;
 
   public isOpen: WritableSignal<boolean> = signal(false);
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
   public ngOnInit(): void {
-    this.weatherFacade.checkWeatherData();
-    this.weatherFacade.checkGeolocation();
+    this.weatherFacadeService.checkWeatherData();
+    this.weatherFacadeService.checkGeolocation();
   }
 
   public loadWeatherDataByCityName(cityName: string): void {
-    cityName.length && this.weatherFacade.loadWeatherDataByCityName$(cityName).pipe(untilDestroyed(this)).subscribe();
+    cityName.length && this.weatherFacadeService.loadWeatherDataByCityName$(cityName).pipe(untilDestroyed(this)).subscribe();
   }
 
   public loadWeatherData(): void {
-    this.weatherFacade.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
+    this.weatherFacadeService.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public toggleDetails(): void {

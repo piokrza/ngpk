@@ -66,8 +66,8 @@ export class OverviewFacadeService {
                     return this.getTotalCashFlowAmountByCategoryCode(incomes, i + expensesCatLength);
                   }),
                 ],
-                backgroundColor: [...bgColors.map((bgClr) => documentStyle.getPropertyValue(bgClr))],
-                hoverBackgroundColor: [...bgColorsHover.map((bgClr) => documentStyle.getPropertyValue(bgClr))],
+                backgroundColor: bgColors.map((bgClr) => documentStyle.getPropertyValue(bgClr)),
+                hoverBackgroundColor: bgColorsHover.map((bgClr) => documentStyle.getPropertyValue(bgClr)),
               },
             ],
           },

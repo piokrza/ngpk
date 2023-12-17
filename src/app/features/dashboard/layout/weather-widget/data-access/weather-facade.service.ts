@@ -1,41 +1,41 @@
 import { Injectable, inject } from '@angular/core';
 import { EMPTY, Observable, catchError, finalize, tap } from 'rxjs';
 
-import { WeatherApi, WeatherState } from '#layout/weather-widget/data-access';
+import { WeatherApiService, WeatherStateService } from '#layout/weather-widget/data-access';
 import { WeatherResponse } from '#layout/weather-widget/models';
 
 @Injectable()
-export class WeatherFacade {
-  private readonly weatherApi: WeatherApi = inject(WeatherApi);
-  private readonly weatherState: WeatherState = inject(WeatherState);
+export class WeatherFacadeService {
+  private readonly weatherApiService: WeatherApiService = inject(WeatherApiService);
+  private readonly weatherStateService: WeatherStateService = inject(WeatherStateService);
 
   private readonly weatherDataKey = 'weatherData';
   private readonly defaultCityNameQuery = 'Krakow';
 
   public get weatherData$(): Observable<WeatherResponse | null> {
-    return this.weatherState.weatherData$;
+    return this.weatherStateService.weatherData$;
   }
 
   public get isLoading$(): Observable<boolean> {
-    return this.weatherState.isLoading$;
+    return this.weatherStateService.isLoading$;
   }
 
   public get errorMessage$(): Observable<string | null> {
-    return this.weatherState.errorMessage$;
+    return this.weatherStateService.errorMessage$;
   }
 
   public loadWeatherData$(): Observable<WeatherResponse> {
-    return this.weatherState.geolocation
-      ? this.weatherApi.seatchByGeoCords$(this.weatherState.geolocation).pipe(
+    return this.weatherStateService.geolocation
+      ? this.weatherApiService.seatchByGeoCords$(this.weatherStateService.geolocation).pipe(
           tap((data: WeatherResponse) => {
-            this.weatherState.setWeatherData(data);
+            this.weatherStateService.setWeatherData(data);
             sessionStorage.setItem(this.weatherDataKey, JSON.stringify(data));
           }),
           catchError((): Observable<never> => EMPTY)
         )
-      : this.weatherApi.searchByCityName$(this.defaultCityNameQuery).pipe(
+      : this.weatherApiService.searchByCityName$(this.defaultCityNameQuery).pipe(
           tap((data: WeatherResponse) => {
-            this.weatherState.setWeatherData(data);
+            this.weatherStateService.setWeatherData(data);
             sessionStorage.setItem(this.weatherDataKey, JSON.stringify(data));
           }),
           catchError((): Observable<never> => EMPTY)
@@ -43,32 +43,32 @@ export class WeatherFacade {
   }
 
   public loadWeatherDataByCityName$(cityName: string): Observable<WeatherResponse> {
-    this.weatherState.setErrorMessage(null);
-    this.weatherState.setIsLoading(true);
+    this.weatherStateService.setErrorMessage(null);
+    this.weatherStateService.setIsLoading(true);
 
-    return this.weatherApi.searchByCityName$(cityName).pipe(
+    return this.weatherApiService.searchByCityName$(cityName).pipe(
       tap((data: WeatherResponse) => {
-        this.weatherState.setWeatherData(data);
+        this.weatherStateService.setWeatherData(data);
         sessionStorage.setItem(this.weatherDataKey, JSON.stringify(data));
       }),
       catchError(({ error }): Observable<never> => {
-        this.weatherState.setErrorMessage(error.message);
+        this.weatherStateService.setErrorMessage(error.message);
         return EMPTY;
       }),
-      finalize((): void => this.weatherState.setIsLoading(false))
+      finalize((): void => this.weatherStateService.setIsLoading(false))
     );
   }
 
   public checkGeolocation(): void {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }: GeolocationPosition) => {
-        this.weatherState.setGeolocation({ latitude, longitude });
+        this.weatherStateService.setGeolocation({ latitude, longitude });
       });
     }
   }
 
   public checkWeatherData(): void {
     const weatherData = sessionStorage.getItem(this.weatherDataKey);
-    weatherData && this.weatherState.setWeatherData(JSON.parse(weatherData));
+    weatherData && this.weatherStateService.setWeatherData(JSON.parse(weatherData));
   }
 }

@@ -37,28 +37,25 @@ const imports = [
   HttpClientModule,
   RouterOutlet,
 
-  // NgRx
   StoreModule.forRoot(ROOT_REDUCERS),
   EffectsModule.forRoot(StoreEffects),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),
 
-  // Firebase
   provideFirebaseApp(() => initializeApp(environment.firebase)),
   provideAnalytics(() => getAnalytics()),
   provideAuth(() => getAuth()),
   provideFirestore(() => getFirestore()),
   AngularFireAuthModule,
 
-  // Translate
   TranslateModule.forRoot({
     loader: { provide: TranslateLoader, useClass: CustomTranslateHttpLoader },
   }),
 ];
 const providers: Array<Provider | EnvironmentProviders> = [
   provideRouter(routes, withViewTransitions()),
+  { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [ThemeInitService], multi: true },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },
-  { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   DatePipe,
   MessageService,
   ConfirmationService,
