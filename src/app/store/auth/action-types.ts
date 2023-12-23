@@ -16,6 +16,7 @@ export enum ActionTypes {
 
   LOAD_USER_DATA = '[Auth] Load User',
   LOAD_USER_DATA_SUCCESS = '[Auth] Load User success',
+  LOAD_USER_DATA_FAILURE = '[Auth] Load User failure',
 
   UPDATE_ACCOUNT = '[Auth] Update account',
   UPDATE_ACCOUNT_SUCCESS = '[Auth] Update account success',

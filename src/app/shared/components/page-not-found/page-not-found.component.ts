@@ -23,7 +23,7 @@ export default class PageNotFoundComponent implements OnInit {
   public ngOnInit(): void {
     interval(1000)
       .pipe(
-        tap(() => this.count.set(this.count() - 1)),
+        tap(() => this.count.update((count) => count - 1)),
         takeWhile(() => this.count() > 0),
         finalize(() => this.router.navigate([AppPaths.DASHBOARD]))
       )

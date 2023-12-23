@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { IGeolocation, WeatherResponse } from '#layout/weather-widget/models';
 
 @Injectable()
-export class WeatherState {
+export class WeatherStateService {
   private readonly weatherData$$ = new BehaviorSubject<WeatherResponse | null>(null);
   private readonly errorMessage$$ = new BehaviorSubject<string | null>(null);
   private readonly isLoading$$ = new BehaviorSubject<boolean>(false);
