@@ -6,8 +6,8 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, tap } from 'rxjs';
 
 import { UpdateFormComponent } from '#cash-flow/components';
-import { CashFlowService } from '#cash-flow/data-access';
 import { CashFlow, CashFlowData } from '#cash-flow/models';
+import { CashFlowService } from '#cash-flow/services';
 import { BaseDialogStyles } from '#common/constants';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 

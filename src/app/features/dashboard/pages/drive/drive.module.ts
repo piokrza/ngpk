@@ -9,7 +9,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { DriveComponent, DriveRoutingModule } from '#drive/.';
 import { FileListComponent } from '#drive/components/file-list';
-import { DriveFacadeService, DriveService } from '#drive/data-access';
+import { DriveFacadeService, DriveService } from '#drive/services';
 import { TruncatePipe } from '#shared/pipes';
 
 const declarations = [DriveComponent, FileListComponent];

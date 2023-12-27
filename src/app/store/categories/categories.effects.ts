@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of, takeUntil } from 'rxjs';
 
-import { CategoriesApiService } from '#cash-flow/data-access';
 import { Categories } from '#cash-flow/models';
+import { CategoriesApiService } from '#cash-flow/services';
 import { ToastStatus } from '#common/enums';
 import { DbSubscriptionService, ToastService } from '#common/services';
 import { CategoriesActions } from '#store/categories';

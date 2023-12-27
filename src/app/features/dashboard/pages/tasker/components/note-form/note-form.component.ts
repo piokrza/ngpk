@@ -8,8 +8,8 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { IUser } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
-import { TaskerService } from '#tasker/data-access';
 import { Note, NoteForm } from '#tasker/models';
+import { TaskerService } from '#tasker/services';
 
 @Component({
   selector: 'ctrl-note-form',

@@ -9,8 +9,8 @@ import { BaseDialogStyles } from '#common/constants';
 import { LabeledData } from '#common/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent, TaskFormComponent } from '#tasker/components';
-import { TaskerService } from '#tasker/data-access';
 import { Note, NoteFilter, NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
+import { TaskerService } from '#tasker/services';
 
 @Injectable()
 export class TaskerFacadeService {

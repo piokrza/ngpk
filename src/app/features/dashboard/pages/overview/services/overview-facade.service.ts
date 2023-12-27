@@ -14,8 +14,8 @@ import { ChartConfig, TaskerData } from '#overview/models';
 import { CashFlowSelectors } from '#store/cash-flow';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent } from '#tasker/components';
-import { TaskerService } from '#tasker/data-access';
 import { Note } from '#tasker/models';
+import { TaskerService } from '#tasker/services';
 
 @Injectable()
 export class OverviewFacadeService {

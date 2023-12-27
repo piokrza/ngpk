@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 import { Observable } from 'rxjs';
 
-import { DriveFacadeService } from '#drive/data-access';
 import { IFile } from '#drive/models';
+import { DriveFacadeService } from '#drive/services';
 
 @Component({
   selector: 'ctrl-file-list',

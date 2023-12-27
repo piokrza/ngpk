@@ -5,12 +5,12 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Observable } from 'rxjs';
 
-import { CashFlowService } from '#cash-flow/data-access';
+import { CashFlowService } from '#cash-flow/services';
 import { AppPaths, DashobardPaths } from '#common/enums';
 import { LabeledData } from '#common/models';
 import { CashFlowCardsComponent, CashFlowChartComponent, TaskerPanelComponent } from '#overview/components';
-import { OverviewFacadeService } from '#overview/data-access';
 import { ChartConfig, TaskerData } from '#overview/models';
+import { OverviewFacadeService } from '#overview/services';
 
 const imports = [ProgressSpinnerModule, AsyncPipe, TaskerPanelComponent, CashFlowChartComponent, CashFlowCardsComponent];
 const providers: Provider[] = [OverviewFacadeService];

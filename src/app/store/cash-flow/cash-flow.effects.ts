@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
-import { CashFlowApiService } from '#cash-flow/data-access';
+import { CashFlowApiService } from '#cash-flow/services';
 import { Collection, ToastStatus } from '#common/enums/';
 import { DbSubscriptionService, ToastService } from '#common/services';
 import { CashFlowActions } from '#store/cash-flow';

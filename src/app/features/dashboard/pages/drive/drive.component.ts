@@ -9,7 +9,7 @@ import { Observable, map, tap } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
 import { IUser } from '#auth/models';
-import { DriveFacadeService } from '#drive/data-access';
+import { DriveFacadeService } from '#drive/services';
 
 @UntilDestroy()
 @Component({

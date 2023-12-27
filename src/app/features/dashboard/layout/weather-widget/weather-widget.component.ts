@@ -11,8 +11,8 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { Observable } from 'rxjs';
 
 import { Nullable } from '#common/models';
+import { WeatherApiService, WeatherStateService, WeatherFacadeService } from '#dashboard/layout/weather-widget/services';
 import { DetailsComponent } from '#layout/weather-widget/components';
-import { WeatherApiService, WeatherStateService, WeatherFacadeService } from '#layout/weather-widget/data-access';
 import { WeatherResponse } from '#layout/weather-widget/models';
 import { WeatherIconPipe } from '#layout/weather-widget/pipes';
 

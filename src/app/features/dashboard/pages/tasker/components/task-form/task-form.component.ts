@@ -8,8 +8,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { IUser } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
-import { TaskerService } from '#tasker/data-access';
 import { StepForm, Task, TaskForm } from '#tasker/models';
+import { TaskerService } from '#tasker/services';
 
 @Component({
   selector: 'ctrl-task-form',

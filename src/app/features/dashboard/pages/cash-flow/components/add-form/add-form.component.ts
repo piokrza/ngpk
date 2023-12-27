@@ -8,8 +8,8 @@ import { filter, Observable, tap } from 'rxjs';
 
 import { IUser } from '#auth/models';
 import { AuthApiService } from '#auth/services';
-import { CashFlowService } from '#cash-flow/data-access';
 import { CashFlowForm, Category } from '#cash-flow/models';
+import { CashFlowService } from '#cash-flow/services';
 
 @UntilDestroy()
 @Component({

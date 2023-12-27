@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { EMPTY, Observable, catchError, finalize, tap } from 'rxjs';
 
-import { WeatherApiService, WeatherStateService } from '#layout/weather-widget/data-access';
+import { WeatherApiService, WeatherStateService } from '#dashboard/layout/weather-widget/services';
 import { WeatherResponse } from '#layout/weather-widget/models';
 
 @Injectable()

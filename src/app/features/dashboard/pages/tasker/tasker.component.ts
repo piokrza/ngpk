@@ -6,8 +6,8 @@ import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 import { Observable } from 'rxjs';
 
 import { LabeledData } from '#common/models';
-import { TaskerFacadeService } from '#tasker/data-access';
 import { NotesData, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
+import { TaskerFacadeService } from '#tasker/services';
 
 @UntilDestroy()
 @Component({

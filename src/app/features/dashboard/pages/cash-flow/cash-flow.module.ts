@@ -23,8 +23,8 @@ import {
   PanelComponent,
   UpdateFormComponent,
 } from '#cash-flow/components';
-import { CashFlowFacadeService } from '#cash-flow/data-access';
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
+import { CashFlowFacadeService } from '#cash-flow/services';
 import { TimestampPipe } from '#shared/pipes';
 
 const declarations = [
