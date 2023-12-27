@@ -10,13 +10,13 @@ import { CashFlow } from '#cash-flow/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailsListComponent {
-  @Input({ required: true }) public cashFlowList!: CashFlow[];
-  @Input({ required: true }) public isLoading!: boolean;
-  @Input({ required: true }) public isIncomeMode!: boolean;
+  @Input({ required: true }) cashFlowList!: CashFlow[];
+  @Input({ required: true }) isLoading!: boolean;
+  @Input({ required: true }) isIncomeMode!: boolean;
 
-  @Output() public addCashFlow: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public cashFlowToRemoveId: EventEmitter<string> = new EventEmitter<string>();
-  @Output() public cashFlowToUpdate: EventEmitter<CashFlow> = new EventEmitter<CashFlow>();
+  @Output() addCashFlow = new EventEmitter<void>();
+  @Output() cashFlowToRemoveId = new EventEmitter<string>();
+  @Output() cashFlowToUpdate = new EventEmitter<CashFlow>();
 
   public readonly maxItemsPerPage: number = env.maxItemPerPage;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
