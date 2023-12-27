@@ -18,7 +18,7 @@ import { Note } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
 
 @Injectable()
-export class OverviewFacadeService {
+export class OverviewService {
   private readonly store: Store = inject(Store);
   private readonly router: Router = inject(Router);
   private readonly taskerService: TaskerService = inject(TaskerService);

@@ -10,10 +10,10 @@ import { AppPaths, DashobardPaths } from '#common/enums';
 import { LabeledData } from '#common/models';
 import { CashFlowCardsComponent, CashFlowChartComponent, TaskerPanelComponent } from '#overview/components';
 import { ChartConfig, TaskerData } from '#overview/models';
-import { OverviewFacadeService } from '#overview/services';
+import { OverviewService } from '#overview/services';
 
 const imports = [ProgressSpinnerModule, AsyncPipe, TaskerPanelComponent, CashFlowChartComponent, CashFlowCardsComponent];
-const providers: Provider[] = [OverviewFacadeService];
+const providers: Provider[] = [OverviewService];
 
 @UntilDestroy()
 @Component({
@@ -27,16 +27,16 @@ const providers: Provider[] = [OverviewFacadeService];
 })
 export default class OverviewComponent {
   private readonly router: Router = inject(Router);
-  private readonly overviewFacadeService: OverviewFacadeService = inject(OverviewFacadeService);
+  private readonly overviewService: OverviewService = inject(OverviewService);
   private readonly cashFlowService: CashFlowService = inject(CashFlowService);
 
-  public readonly taskerData$: Observable<TaskerData> = this.overviewFacadeService.taskerData$;
-  public readonly cashFlowChartData$: Observable<ChartConfig | undefined> = this.overviewFacadeService.cashFlowChartData$;
-  public readonly isLoading$: Observable<boolean> = this.overviewFacadeService.isLoading$;
-  public readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.overviewFacadeService.cashFlowData$;
+  public readonly taskerData$: Observable<TaskerData> = this.overviewService.taskerData$;
+  public readonly cashFlowChartData$: Observable<ChartConfig | undefined> = this.overviewService.cashFlowChartData$;
+  public readonly isLoading$: Observable<boolean> = this.overviewService.isLoading$;
+  public readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.overviewService.cashFlowData$;
 
   public quickNote(): void {
-    this.overviewFacadeService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
+    this.overviewService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public navigateTo(itemLabel: string): void {

@@ -1,1 +1,1 @@
-export * from './overview-facade.service';
+export * from './overview.service';
