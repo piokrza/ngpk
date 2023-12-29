@@ -7,8 +7,8 @@ import { Note, NoteFilter, Task, TaskFilter } from '#tasker/models';
 export const FeatureKey = 'tasker';
 
 export interface State {
-  tasks: Task[] | null;
-  notes: Note[] | null;
+  tasks: Task[];
+  notes: Note[];
   isTasksLoading: boolean;
   isNotesLoading: boolean;
   taskFilter: TaskFilter;
@@ -16,8 +16,8 @@ export interface State {
 }
 
 const initialState: State = {
-  tasks: null,
-  notes: null,
+  tasks: [],
+  notes: [],
   isTasksLoading: false,
   isNotesLoading: false,
   taskFilter: 'all',
@@ -46,7 +46,6 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
       isTasksLoading: false,
     };
   }),
-
   on(TaskerActions.getNotes, (state): State => {
     return {
       ...state,
@@ -66,35 +65,27 @@ export const Reducer: ActionReducer<State, Action> = createReducer(
       isNotesLoading: false,
     };
   }),
-
   on(TaskerActions.addTask, (state, { task }): State => {
     return {
       ...state,
       tasks: [...(state.tasks as Task[]), task],
     };
   }),
-  on(TaskerActions.addTaskSuccess, (state): State => ({ ...state })),
-  on(TaskerActions.addTaskFailure, (state): State => ({ ...state })),
-
   on(TaskerActions.addNote, (state, { note }): State => {
     return {
       ...state,
       notes: [...(state.notes as Note[]), note],
     };
   }),
-  on(TaskerActions.addNoteSuccess, (state): State => ({ ...state })),
-  on(TaskerActions.addNoteFailure, (state): State => ({ ...state })),
-
   on(TaskerActions.setTaskFilter, (state, { taskFilter }): State => ({ ...state, taskFilter })),
-
   on(TaskerActions.setNoteFilter, (state, { noteFilter }): State => ({ ...state, noteFilter })),
 
   on(AuthActions.signOut, (state): State => {
     return {
       ...state,
       taskFilter: 'all',
-      tasks: null,
-      notes: null,
+      tasks: [],
+      notes: [],
     };
   })
 );

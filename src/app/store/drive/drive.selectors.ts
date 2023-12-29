@@ -5,7 +5,7 @@ import { FeatureKey, State as DriveState } from '#store/drive';
 
 const DriveStateSelector = createFeatureSelector<DriveState>(FeatureKey);
 
-export const files = createSelector(DriveStateSelector, ({ files }: DriveState): IFile[] | null => files);
+export const files = createSelector(DriveStateSelector, ({ files }: DriveState): IFile[] => files);
 export const isLoading = createSelector(DriveStateSelector, ({ isLoading }: DriveState): boolean => isLoading);
 export const isProcessing = createSelector(DriveStateSelector, ({ isProcessing }: DriveState): boolean => isProcessing);
 

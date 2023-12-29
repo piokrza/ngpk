@@ -129,7 +129,7 @@ export class TaskerFacadeService {
     return { tasks, filter };
   }
 
-  private sortNotes(notes: Note[] | null, filter: NoteFilter): Note[] {
+  private sortNotes(notes: Note[], filter: NoteFilter): Note[] {
     const clonedNotes: Note[] = [...(notes ?? [])];
 
     if (filter === 'newest') {

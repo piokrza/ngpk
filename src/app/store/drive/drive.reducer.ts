@@ -7,13 +7,13 @@ import { DriveActions } from '#store/drive';
 export const FeatureKey = 'drive';
 
 export interface State {
-  files: IFile[] | null;
+  files: IFile[];
   isLoading: boolean;
   isProcessing: boolean;
 }
 
 const initialState: State = {
-  files: null,
+  files: [],
   isLoading: false,
   isProcessing: false,
 };
@@ -33,5 +33,5 @@ export const Reducer = createReducer(
   on(DriveActions.uploadFolderSuccess, (state): State => ({ ...state, isProcessing: false })),
   on(DriveActions.uploadFolderFailure, (state): State => ({ ...state, isProcessing: false })),
 
-  on(AuthActions.signOut, (): State => ({ isLoading: false, isProcessing: false, files: null }))
+  on(AuthActions.signOut, (): State => ({ isLoading: false, isProcessing: false, files: [] }))
 );
