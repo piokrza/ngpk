@@ -5,8 +5,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CardModule } from 'primeng/card';
 
 import { LabeledData } from '#common/models';
+import { ContainerComponent } from '#shared/components';
 
-const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe];
+const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent];
 
 @Component({
   selector: 'ctrl-cash-flow-cards',

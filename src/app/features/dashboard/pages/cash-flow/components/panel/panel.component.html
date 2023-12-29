@@ -1,16 +1,10 @@
-<ctrl-heading [amount]="totalCashFlowAmount" [isIncomeMode]="isIncomeMode" />
+<p-button (onClick)="openCashFlowDialog()" [label]="addCashFlowBtnLabel | translate" styleClass="my-4" />
 
-<p-divider />
-
-<div class="mt-10">
-  <p-button (onClick)="openCashFlowDialog()" [label]="addCashFlowBtnLabel | translate" styleClass="my-4" />
-
-  <ctrl-details-list
-    [isIncomeMode]="isIncomeMode"
-    [isLoading]="isLoading"
-    [cashFlowList]="cashFlowData"
-    (addCashFlow)="openCashFlowDialog()"
-    (cashFlowToRemoveId)="cashFlowToRemoveId.emit($event)"
-    (cashFlowToUpdate)="cashFlowToUpdate.emit($event)"
-    class="wrapper" />
-</div>
+<ctrl-details-list
+  [isIncomeMode]="isIncomeMode"
+  [isLoading]="isLoading"
+  [cashFlowList]="cashFlowData"
+  (addCashFlow)="openCashFlowDialog()"
+  (cashFlowToRemoveId)="cashFlowToRemoveId.emit($event)"
+  (cashFlowToUpdate)="cashFlowToUpdate.emit($event)"
+  class="wrapper" />

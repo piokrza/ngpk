@@ -19,7 +19,6 @@ import {
   DetailsComponent,
   DetailsBoxComponent,
   DetailsListComponent,
-  HeadingComponent,
   PanelComponent,
   UpdateFormComponent,
 } from '#cash-flow/components';
@@ -32,7 +31,6 @@ const declarations = [
   DetailsBoxComponent,
   DetailsListComponent,
   AddFormComponent,
-  HeadingComponent,
   PanelComponent,
   UpdateFormComponent,
   CashFlowComponent,

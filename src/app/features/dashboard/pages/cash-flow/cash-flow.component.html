@@ -4,7 +4,7 @@
       <ctrl-cash-flow-panel
         [isIncomeMode]="true"
         [cashFlowData]="incomes.data"
-        [isLoading]="(isLoading$ | async)!"
+        [isLoading]="!!(isLoading$ | async)"
         [totalCashFlowAmount]="incomes.amount"
         (cashFlowToUpdate)="updateIncome($event)"
         (cashFlowToRemoveId)="removeIncome($event)"
@@ -18,7 +18,7 @@
         <ctrl-cash-flow-panel
           [isIncomeMode]="false"
           [cashFlowData]="expenses.data"
-          [isLoading]="(isLoading$ | async)!"
+          [isLoading]="!!(isLoading$ | async)"
           [totalCashFlowAmount]="expenses.amount"
           (cashFlowToUpdate)="updateExpense($event)"
           (cashFlowToRemoveId)="removeExpense($event)"
