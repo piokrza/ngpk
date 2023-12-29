@@ -4,10 +4,9 @@
       <p-button
         [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
         [label]="'weather.fetchData' | translate"
-        [outlined]="true"
         (onClick)="loadWeatherData()"
         severity="secondary"
-        class="w-full fetch-btn" />
+        styleClass="p-button-text w-full" />
     }
     @if (data()?.name) {
       <p>

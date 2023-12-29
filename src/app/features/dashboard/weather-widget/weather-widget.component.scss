@@ -4,10 +4,6 @@
   border: solid 1px var(--surface-hover);
   background-color: var(--surface-section);
 
-  ::ng-deep .fetch-btn .p-button {
-    width: 100%;
-  }
-
   &__details {
     max-height: 0;
     overflow-y: hidden;

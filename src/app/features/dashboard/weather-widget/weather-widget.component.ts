@@ -54,7 +54,7 @@ export class WeatherWidgetComponent implements OnInit {
     this.weatherFacadeService.checkWeatherData();
     this.weatherFacadeService.checkGeolocation();
 
-    this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? ''));
+    this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? false.toString()));
   }
 
   public loadWeatherDataByCityName(cityName: string): void {
