@@ -17,7 +17,7 @@ export class MobileMenuComponent {
 
   @HostListener('document:click', ['$event.target']) onClick(target: EventTarget) {
     if (this.isOpen() && !this.elRef.nativeElement.contains(target)) {
-      this.isOpen.set(false);
+      this.isOpen.update(() => false);
     }
   }
 
@@ -29,6 +29,6 @@ export class MobileMenuComponent {
 
   public itemClick(command?: any): void {
     command && command();
-    this.isOpen.set(false);
+    this.isOpen.update(() => false);
   }
 }

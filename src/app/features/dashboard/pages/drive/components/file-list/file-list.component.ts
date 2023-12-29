@@ -20,6 +20,7 @@ export class FileListComponent {
   public readonly isLoading$: Observable<boolean> = this.driveFacadeService.isLoading$;
   public readonly parentFile$: Observable<IFile | undefined> = this.driveFacadeService.parentFile$;
 
+  public readonly nameLimit = 12;
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public fileClick(file: IFile): void {

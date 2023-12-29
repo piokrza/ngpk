@@ -1,7 +1,7 @@
 @if (parentFile$ | async; as parentFile) {
-  <div class="flex justify-content-between align-items-center">
+  <div class="flex align-items-center gap-4">
     <p-button [icon]="PrimeIcons.ARROW_LEFT" (onClick)="location.back()" styleClass="my-3" severity="secondary" />
-    <p>{{ parentFile.name | uppercase }}</p>
+    <p class="font-semibold text-lg">{{ parentFile.name | uppercase }}</p>
   </div>
 }
 
@@ -10,9 +10,13 @@
 } @else {
   <ul class="file-list">
     @for (file of files$ | async; track file.id) {
-      <li (click)="fileClick(file)" class="file-list__item">
+      <li
+        [pTooltip]="file.name.length > nameLimit ? file.name : ''"
+        (click)="fileClick(file)"
+        tooltipPosition="bottom"
+        class="file-list__item">
         <i [class]="file.type === 'folder' ? PrimeIcons.FOLDER : PrimeIcons.FILE" style="font-size: 2rem"></i>
-        <span> {{ file.name | truncate: 10 }}</span>
+        <span> {{ file.name | truncate: nameLimit }}</span>
       </li>
     } @empty {
       <p>{{ 'overview.' + ((parentFile$ | async)?.id ? 'emptyFolder' : 'noData') | translate }}</p>
