@@ -1,6 +1,8 @@
 .widget {
   transition: 150ms;
-  background-color: var(--surface-hover);
+  border-radius: var(--radius);
+  border: solid 1px var(--surface-hover);
+  background-color: var(--surface-section);
 
   ::ng-deep .fetch-btn .p-button {
     width: 100%;

@@ -10,11 +10,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Observable } from 'rxjs';
 
+import { isWidgetOpen } from '#common/constants';
 import { Nullable } from '#common/models';
-import { WeatherApiService, WeatherStateService, WeatherFacadeService } from '#dashboard/layout/weather-widget/services';
-import { DetailsComponent } from '#layout/weather-widget/components';
-import { WeatherResponse } from '#layout/weather-widget/models';
-import { WeatherIconPipe } from '#layout/weather-widget/pipes';
+import { DetailsComponent } from '#weather-widget/components';
+import { WeatherResponse } from '#weather-widget/models';
+import { WeatherIconPipe } from '#weather-widget/pipes';
+import { WeatherApiService, WeatherStateService, WeatherFacadeService } from '#weather-widget/services';
 
 const imports = [
   CommonModule,
@@ -52,6 +53,8 @@ export class WeatherWidgetComponent implements OnInit {
   public ngOnInit(): void {
     this.weatherFacadeService.checkWeatherData();
     this.weatherFacadeService.checkGeolocation();
+
+    this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? ''));
   }
 
   public loadWeatherDataByCityName(cityName: string): void {
@@ -64,5 +67,6 @@ export class WeatherWidgetComponent implements OnInit {
 
   public toggleDetails(): void {
     this.isOpen.set(!this.isOpen());
+    sessionStorage.setItem(isWidgetOpen, JSON.stringify(this.isOpen()));
   }
 }

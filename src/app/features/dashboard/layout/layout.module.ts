@@ -10,9 +10,9 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
+import { WeatherWidgetComponent } from '#dashboard/weather-widget';
 import { LayoutComponent } from '#layout/.';
 import { MobileMenuComponent, NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#layout/navigation/components';
-import { WeatherWidgetComponent } from '#layout/weather-widget';
 import { ContainerComponent } from '#shared/components';
 import { FeatureFlagDirective } from '#shared/directives';
 

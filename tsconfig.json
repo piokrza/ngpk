@@ -33,7 +33,8 @@
       "#overview/*": ["src/app/features/dashboard/pages/overview/*"],
       "#settings/*": ["src/app/features/dashboard/pages/settings/*"],
       "#tasker/*": ["src/app/features/dashboard/pages/tasker/*"],
-      "#drive/*": ["src/app/features/dashboard/pages/drive/*"]
+      "#drive/*": ["src/app/features/dashboard/pages/drive/*"],
+      "#weather-widget/*": ["src/app/features/dashboard/weather-widget/*"]
     }
   },
   "angularCompilerOptions": {
