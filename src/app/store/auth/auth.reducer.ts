@@ -21,21 +21,17 @@ export const Reducer = createReducer(
   on(AuthActions.signInWithEmailAndPasswordFailure, (state, { errorMessage }) => {
     return { ...state, errorMessage };
   }),
-
   on(AuthActions.signUpWithEmailAndPasswordFailure, (state, { errorMessage }) => {
     return { ...state, errorMessage };
   }),
-
   on(AuthActions.loadUserDataSuccess, (state, { user }) => {
     return { ...state, user };
   }),
-
   on(AuthActions.userAuthenticated, (state, { user }): State => {
     return { ...state, user };
   }),
   on(AuthActions.userNotAuthenticated, (state): State => {
     return { ...state, user: null };
   }),
-
   on(AuthActions.resetErrorMessage, (state): State => ({ ...state, errorMessage: null }))
 );

@@ -1,7 +1,7 @@
 import { Note, Task, TaskFilter } from '#tasker/models';
 
 export interface TasksData {
-  tasks: Task[] | null;
+  tasks: Task[];
   filter: TaskFilter;
 }
 

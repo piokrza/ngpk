@@ -15,7 +15,7 @@ export class DriveService {
     return this.parentId$$.asObservable();
   }
 
-  public filterFiles(files: IFile[] | null, parentId: string): IFile[] {
+  public filterFiles(files: IFile[], parentId: string): IFile[] {
     if (files === null) return [];
 
     if (!parentId ?? ''.length) {
