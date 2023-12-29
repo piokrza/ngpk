@@ -14,14 +14,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
 import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/.';
-import {
-  AddFormComponent,
-  DetailsComponent,
-  DetailsBoxComponent,
-  DetailsListComponent,
-  PanelComponent,
-  UpdateFormComponent,
-} from '#cash-flow/components';
+import { AddFormComponent, DetailsComponent, DetailsBoxComponent, DetailsListComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
 import { CashFlowFacadeService } from '#cash-flow/services';
 import { ContainerComponent } from '#shared/components';
@@ -32,7 +25,6 @@ const declarations = [
   DetailsBoxComponent,
   DetailsListComponent,
   AddFormComponent,
-  PanelComponent,
   UpdateFormComponent,
   CashFlowComponent,
 ];

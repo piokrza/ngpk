@@ -14,11 +14,11 @@ export class DetailsListComponent {
   @Input({ required: true }) isLoading!: boolean;
   @Input({ required: true }) isIncomeMode!: boolean;
 
-  @Output() addCashFlow = new EventEmitter<void>();
+  @Output() addCashFlow = new EventEmitter<boolean>();
   @Output() cashFlowToRemoveId = new EventEmitter<string>();
   @Output() cashFlowToUpdate = new EventEmitter<CashFlow>();
 
-  public readonly maxItemsPerPage: number = env.maxItemPerPage;
+  public readonly maxItemsPerPage = env.maxItemPerPage; //TODO: add pagination
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public removeCashFlow(cashFlowId: string): void {

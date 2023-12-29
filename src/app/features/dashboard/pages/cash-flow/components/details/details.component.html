@@ -1,4 +1,4 @@
-<p-card>
+<ctrl-container [noPadding]="true">
   <div class="card">
     <div class="card__inner">
       <div>
@@ -25,4 +25,4 @@
       <p-button (click)="cashFlowToRemoveId.emit(details.id)" [text]="true" [icon]="PrimeIcons.TRASH" severity="danger" />
     </div>
   </div>
-</p-card>
+</ctrl-container>

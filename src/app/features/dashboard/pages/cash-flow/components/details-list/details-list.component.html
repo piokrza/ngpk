@@ -1,8 +1,8 @@
 @if (isLoading) {
   <p-progressSpinner class="spinner" />
 } @else {
-  @if (cashFlowList.length) {
-    <ul class="grid-container">
+  <ul class="grid-container">
+    @if (cashFlowList.length) {
       @for (item of cashFlowList; track item.id) {
         <li>
           <ctrl-details
@@ -12,16 +12,16 @@
             (cashFlowToUpdate)="updateCashFlow($event)" />
         </li>
       }
-      <li>
-        <ctrl-container>
-          <p-button [text]="true" severity="secondary" [icon]="PrimeIcons.PLUS" (click)="addCashFlow.emit()" styleClass="w-full p-5" />
-        </ctrl-container>
-      </li>
-    </ul>
-  } @else {
-    <p-divider />
-    <p class="px-3">
-      {{ 'cashFlow.emptyList' + (isIncomeMode ? 'Incomes' : 'Expenses') | translate }}
-    </p>
-  }
+    }
+    <li>
+      <ctrl-container [noPadding]="true" class="h-full">
+        <p-button
+          [text]="true"
+          [icon]="PrimeIcons.PLUS"
+          (onClick)="addCashFlow.emit(isIncomeMode)"
+          severity="secondary"
+          styleClass="w-full h-full py-5" />
+      </ctrl-container>
+    </li>
+  </ul>
 }

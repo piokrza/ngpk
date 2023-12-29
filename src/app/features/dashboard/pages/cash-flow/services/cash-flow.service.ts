@@ -1,33 +1,17 @@
 import { Injectable, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BehaviorSubject, Observable, filter, map } from 'rxjs';
 
-import { AddFormComponent } from '#cash-flow/components';
-import { CashFlow, CashFlowForm, Categories, Category } from '#cash-flow/models';
-import { BaseDialogStyles } from '#common/constants';
+import { CashFlowForm, Categories, Category } from '#cash-flow/models';
 import { Collection } from '#common/enums';
 import { CategoriesSelectors } from '#store/categories';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowService {
   protected readonly store: Store = inject(Store);
-  private readonly dialogService: DialogService = inject(DialogService);
-  private readonly translate: TranslateService = inject(TranslateService);
 
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
-
-  public openCashFlowDialog$(isIncomeMode: boolean): Observable<CashFlow | undefined> {
-    const dialogRef: DynamicDialogRef = this.dialogService.open(AddFormComponent, {
-      data: isIncomeMode,
-      header: this.translate.instant('cashFlow.addCashFlow'),
-      style: { ...BaseDialogStyles },
-    });
-
-    return dialogRef.onClose;
-  }
 
   public get activeTabIndex$(): Observable<number> {
     return this.activeTabIndex$$.asObservable();

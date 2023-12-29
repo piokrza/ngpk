@@ -5,7 +5,7 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, tap } from 'rxjs';
 
-import { UpdateFormComponent } from '#cash-flow/components';
+import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowData } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
 import { BaseDialogStyles } from '#common/constants';
@@ -41,10 +41,6 @@ export class CashFlowFacadeService {
     return this.store.select(CashFlowSelectors.isLoading);
   }
 
-  public addIncome(incomeData: CashFlow): void {
-    this.store.dispatch(CashFlowActions.addIncome({ income: incomeData }));
-  }
-
   public removeIncome(incomeId: string): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('incomes.removeMessage'),
@@ -68,8 +64,22 @@ export class CashFlowFacadeService {
     );
   }
 
-  public addExpense(expense: CashFlow): void {
-    this.store.dispatch(CashFlowActions.addExpense({ expense }));
+  public openCashFlowDialog$(isIncomeMode: boolean): Observable<CashFlow | undefined> {
+    const dialogRef: DynamicDialogRef = this.dialogService.open(AddFormComponent, {
+      data: isIncomeMode,
+      header: this.translateService.instant('cashFlow.addCashFlow'),
+      style: BaseDialogStyles,
+    });
+
+    return dialogRef.onClose.pipe(
+      tap((cashFlow: CashFlow | undefined) => {
+        if (cashFlow) {
+          isIncomeMode
+            ? this.store.dispatch(CashFlowActions.addIncome({ income: cashFlow }))
+            : this.store.dispatch(CashFlowActions.addExpense({ expense: cashFlow }));
+        }
+      })
+    );
   }
 
   public removeExpense(expenseId: string): void {
