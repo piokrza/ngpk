@@ -21,8 +21,8 @@
     </div>
 
     <div class="card__inner mt-auto gap-3">
-      <p-button (click)="cashFlowToUpdate.emit(details)" [text]="true" [icon]="PrimeIcons.FILE_EDIT" />
-      <p-button (click)="cashFlowToRemoveId.emit(details.id)" [text]="true" [icon]="PrimeIcons.TRASH" severity="danger" />
+      <p-button (click)="updateCashFlow.emit(details)" [text]="true" [icon]="PrimeIcons.FILE_EDIT" />
+      <p-button (click)="removeCashFlow.emit(details.id)" [text]="true" [icon]="PrimeIcons.TRASH" severity="danger" />
     </div>
   </div>
 </ctrl-container>

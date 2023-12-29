@@ -27,4 +27,8 @@
       opacity: 0;
     }
   }
+
+  .w-full.btn ::ng-deep .p-button {
+    width: 100%;
+  }
 }

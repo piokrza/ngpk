@@ -8,8 +8,8 @@
           <ctrl-details
             [isIncomeMode]="isIncomeMode"
             [details]="item"
-            (cashFlowToRemoveId)="removeCashFlow($event)"
-            (cashFlowToUpdate)="updateCashFlow($event)" />
+            (removeCashFlow)="removeCashFlow($event)"
+            (updateCashFlow)="updateCashFlow($event)" />
         </li>
       }
     }

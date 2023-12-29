@@ -14,8 +14,8 @@ export class DetailsComponent {
   @Input({ required: true }) details!: CashFlow;
   @Input({ required: true }) isIncomeMode!: boolean;
 
-  @Output() cashFlowToRemoveId = new EventEmitter<string>();
-  @Output() cashFlowToUpdate = new EventEmitter<CashFlow>();
+  @Output() removeCashFlow = new EventEmitter<string>();
+  @Output() updateCashFlow = new EventEmitter<CashFlow>();
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   public readonly DateFormats: typeof DateFormats = DateFormats;
