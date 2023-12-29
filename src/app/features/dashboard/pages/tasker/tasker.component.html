@@ -1,4 +1,4 @@
-<p-tabView [activeIndex]="(activeTabIndex$ | async) ?? 0">
+<p-tabView [activeIndex]="(activeTabIndex$ | async) ?? 0" (onChange)="onTabviewChange($event)">
   <p-tabPanel [header]="'tasker.title' | translate">
     @if (isTasksLoading$ | async) {
       <div class="flex justify-content-center">
@@ -8,8 +8,6 @@
       @if (tasksData$ | async; as data) {
         <div class="container">
           <div class="flex gap-6 align-items-center flex-wrap">
-            <p-button [label]="'tasker.addTask' | translate" [icon]="PrimeIcons.PLUS" (click)="addTask()" styleClass="my-3" />
-
             <p-selectButton
               [options]="filters"
               [allowEmpty]="false"
@@ -30,9 +28,11 @@
               </li>
             }
 
-            <p-card styleClass="empty">
-              <p-button [text]="true" severity="secondary" [icon]="PrimeIcons.PLUS" (click)="addTask()" styleClass="w-full p-5" />
-            </p-card>
+            <li>
+              <ctrl-container [noPadding]="true" styleClass="" class="h-full">
+                <p-button [text]="true" severity="secondary" [icon]="PrimeIcons.PLUS" (onClick)="addTask()" styleClass="w-full h-full" />
+              </ctrl-container>
+            </li>
           </ul>
         </div>
       }
@@ -48,23 +48,26 @@
       @defer {
         @if (notesData$ | async; as data) {
           <div class="container">
-            <div class="flex justify-content-between my-3">
-              <p-button [icon]="PrimeIcons.PLUS" [label]="'tasker.addNote' | translate" (onClick)="addNote()" />
+            @if (data.notes.length) {
               <p-toggleButton
                 [onIcon]="PrimeIcons.ARROW_UP"
                 [offIcon]="PrimeIcons.ARROW_DOWN"
                 [(ngModel)]="data.filter"
                 (onChange)="noteFilterChange($event)" />
-            </div>
+            }
 
-            <ul>
+            <ul class="m-0">
               @for (note of data.notes; track note.id) {
                 <li class="my-3">
                   <ctrl-note [note]="note" (removeNote)="removeNote($event)" class="flex-grow-1" />
                 </li>
-              } @empty {
-                <p>{{ 'overview.noData' | translate }}</p>
               }
+
+              <li>
+                <ctrl-container [noPadding]="true">
+                  <p-button [text]="true" [icon]="PrimeIcons.PLUS" (onClick)="addNote()" severity="secondary" styleClass="w-full py-3" />
+                </ctrl-container>
+              </li>
             </ul>
           </div>
         }

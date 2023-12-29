@@ -1,4 +1,4 @@
-<p-card styleClass="task">
+<ctrl-container [noPadding]="true">
   <div class="flex flex-column justify-content-between h-full">
     <div>
       <div class="flex justify-content-between">
@@ -13,7 +13,7 @@
       @if (task.steps.length) {
         <ul class="pl-3">
           @for (step of task.steps; track step.id) {
-            <li (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })" class="my-2 cursor-pointer">
+            <li (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })" class="my-2 cursor-pointer task__step">
               - <span [class.task__name--complete]="step.isComplete">{{ step.name }}</span>
             </li>
           }
@@ -30,4 +30,4 @@
       <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TRASH" (onClick)="removeTask.emit(task.id)" severity="danger" />
     </div>
   </div>
-</p-card>
+</ctrl-container>

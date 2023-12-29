@@ -15,6 +15,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
+import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
 import { TaskerComponent } from '#tasker/.';
 import { TaskFormComponent, TaskComponent, NoteFormComponent, NoteComponent } from '#tasker/components';
@@ -40,6 +41,7 @@ const imports = [
   DividerModule,
   TimestampPipe,
   ToggleButtonModule,
+  ContainerComponent,
 ];
 const declarations = [TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NoteComponent];
 const providers: Provider[] = [TaskerFacadeService, DatePipe];

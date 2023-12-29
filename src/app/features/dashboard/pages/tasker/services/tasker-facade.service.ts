@@ -115,6 +115,10 @@ export class TaskerFacadeService {
     this.store.dispatch(TaskerActions.setNoteFilter({ noteFilter }));
   }
 
+  public setActiveTabIdx(idx: number): void {
+    this.taskerService.setActiveTabIndex(idx);
+  }
+
   private tr(path: string): string {
     return this.translateService.instant(`tasker.${path}`);
   }

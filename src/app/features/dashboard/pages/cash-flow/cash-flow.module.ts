@@ -24,6 +24,7 @@ import {
 } from '#cash-flow/components';
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
 import { CashFlowFacadeService } from '#cash-flow/services';
+import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
 
 const declarations = [
@@ -53,6 +54,7 @@ const imports = [
   CategoryLabelPipe,
   TabViewModule,
   TimestampPipe,
+  ContainerComponent,
 ];
 const providers: Provider[] = [CashFlowFacadeService];
 

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { PrimeIcons } from 'primeng/api';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
+import { TabViewChangeEvent } from 'primeng/tabview';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 import { Observable } from 'rxjs';
 
@@ -17,48 +18,51 @@ import { TaskerFacadeService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskerComponent {
-  private readonly taskerFacade: TaskerFacadeService = inject(TaskerFacadeService);
+  private readonly taskerFacadeService: TaskerFacadeService = inject(TaskerFacadeService);
 
-  public readonly tasksData$: Observable<TasksData> = this.taskerFacade.tasksData$;
-  public readonly isTasksLoading$: Observable<boolean> = this.taskerFacade.isTasksLoading$;
+  public readonly tasksData$: Observable<TasksData> = this.taskerFacadeService.tasksData$;
+  public readonly isTasksLoading$: Observable<boolean> = this.taskerFacadeService.isTasksLoading$;
+  public readonly notesData$: Observable<NotesData> = this.taskerFacadeService.notesData$;
+  public readonly isNotesLoading$: Observable<boolean> = this.taskerFacadeService.isNotesLoading$;
 
-  public readonly notesData$: Observable<NotesData> = this.taskerFacade.notesData$;
-  public readonly isNotesLoading$: Observable<boolean> = this.taskerFacade.isNotesLoading$;
-
-  public readonly activeTabIndex$: Observable<number> = this.taskerFacade.activeTabIndex$;
+  public readonly activeTabIndex$: Observable<number> = this.taskerFacadeService.activeTabIndex$;
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly filters: Array<LabeledData<TaskFilter>> = this.taskerFacade.taskFilters;
+  public readonly filters: Array<LabeledData<TaskFilter>> = this.taskerFacadeService.taskFilters;
 
   public addTask(): void {
-    this.taskerFacade.addTask$().pipe(untilDestroyed(this)).subscribe();
+    this.taskerFacadeService.addTask$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public removeTask(taskId: string): void {
-    this.taskerFacade.removeTask(taskId);
+    this.taskerFacadeService.removeTask(taskId);
   }
 
   public toggleIsTaskComplete(taskId: string): void {
-    this.taskerFacade.toggleIsTaskComplete(taskId);
+    this.taskerFacadeService.toggleIsTaskComplete(taskId);
   }
 
   public toggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
-    this.taskerFacade.toggleIsStepComplete(payload);
+    this.taskerFacadeService.toggleIsStepComplete(payload);
   }
 
   public taskFilterChange({ value }: SelectButtonChangeEvent) {
-    this.taskerFacade.onTaskFilterChange(value);
+    this.taskerFacadeService.onTaskFilterChange(value);
   }
 
   public noteFilterChange({ checked }: ToggleButtonChangeEvent): void {
-    this.taskerFacade.onNoteFilterChange(checked ? 'newest' : 'oldest');
+    this.taskerFacadeService.onNoteFilterChange(checked ? 'newest' : 'oldest');
   }
 
   public addNote(): void {
-    this.taskerFacade.addNote$().pipe(untilDestroyed(this)).subscribe();
+    this.taskerFacadeService.addNote$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public removeNote(noteId: string): void {
-    this.taskerFacade.removeNote(noteId);
+    this.taskerFacadeService.removeNote(noteId);
+  }
+
+  public onTabviewChange({ index }: TabViewChangeEvent): void {
+    this.taskerFacadeService.setActiveTabIdx(index);
   }
 }

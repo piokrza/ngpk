@@ -23,12 +23,6 @@ p-card {
       }
     }
   }
-
-  .empty {
-    .p-card-content {
-      padding: 0;
-    }
-  }
 }
 
 @media only screen and (min-width: b.$lg) {

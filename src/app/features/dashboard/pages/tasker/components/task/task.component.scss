@@ -23,4 +23,8 @@
       margin-top: 1rem;
     }
   }
+
+  &__step:hover span {
+    text-decoration: underline;
+  }
 }

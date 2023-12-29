@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'ctrl-container',
   styleUrl: './container.component.scss',
   template: `
-    <section [class]="['container', 'h-full', 'p-3', styleClass]">
+    <section [class]="['container', 'h-full', noPadding ? '' : 'p-3', styleClass]">
       <div class="container__inner">
         <ng-content />
       </div>
@@ -14,4 +14,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ContainerComponent {
   @Input() styleClass?: string = '';
+  @Input() noPadding = false;
 }

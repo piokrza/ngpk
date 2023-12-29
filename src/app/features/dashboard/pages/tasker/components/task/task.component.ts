@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
 import { Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
-import { TaskerService } from '#tasker/services';
 
 @Component({
   selector: 'ctrl-task',
@@ -11,8 +10,6 @@ import { TaskerService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskComponent implements OnChanges {
-  private readonly taskerService: TaskerService = inject(TaskerService);
-
   @Input({ required: true }) task!: Task;
 
   @Output() removeTask = new EventEmitter<string>();
