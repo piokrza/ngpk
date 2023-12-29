@@ -35,16 +35,6 @@ export class AuthEffects {
     );
   });
 
-  public signInWithGoogleSuccess$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.userAuthenticated),
-        exhaustMap(({ user }) => this.authApiService.addUserToDatabase$(user))
-      );
-    },
-    { dispatch: false }
-  );
-
   public signOut$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signOut),
@@ -61,7 +51,9 @@ export class AuthEffects {
         return from(this.authApiService.signInWithEmailAndPassword(payload)).pipe(
           map(() => AuthActions.signInWithEmailAndPasswordSuccess()),
           tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
-          catchError(({ message }: HttpErrorResponse) => of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message })))
+          catchError(({ message }: HttpErrorResponse) => {
+            return of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message }));
+          })
         );
       })
     );
@@ -74,21 +66,13 @@ export class AuthEffects {
         return from(this.authApiService.signUpWithEmailAndPassword(payload)).pipe(
           map(({ user }) => AuthActions.userAuthenticated({ user: setUser(user!) })),
           tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
-          catchError(({ message }: HttpErrorResponse) => of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message })))
+          catchError(({ message }: HttpErrorResponse) => {
+            return of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message }));
+          })
         );
       })
     );
   });
-
-  public signUpWithEmailAndPasswordSuccess$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.userAuthenticated),
-        exhaustMap(({ user }) => this.authApiService.addUserToDatabase$(user))
-      );
-    },
-    { dispatch: false }
-  );
 
   public loadUserData$ = createEffect(() => {
     return this.actions$.pipe(
@@ -114,6 +98,16 @@ export class AuthEffects {
       })
     );
   });
+
+  public userAuthenticated$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.userAuthenticated),
+        exhaustMap(({ user }) => this.authApiService.addUserToDatabase$(user))
+      );
+    },
+    { dispatch: false }
+  );
 
   private tr(path: string): string {
     return this.translateService.instant('toastMessage.' + path);
