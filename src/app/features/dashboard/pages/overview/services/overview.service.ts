@@ -57,7 +57,7 @@ export class OverviewService {
 
         return {
           data: {
-            labels: [...categoryNames.map((name) => this.translate.instant(`overview.${name}`))],
+            labels: categoryNames.map((name) => this.translate.instant(`overview.${name}`)),
             datasets: [
               {
                 data: [
@@ -101,7 +101,7 @@ export class OverviewService {
         if (note) {
           this.store.dispatch(TaskerActions.addNote({ note }));
           this.taskerService.setActiveTabIndex(1);
-          this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.TASKER]);
+          void this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.TASKER]);
         }
       })
     );
