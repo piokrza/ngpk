@@ -26,6 +26,5 @@ export const Reducer = createReducer(
   on(CategoriesActions.getCategoriesFailure, (state) => {
     return { ...state };
   }),
-
   on(AuthActions.signOut, () => ({ categories: null }))
 );

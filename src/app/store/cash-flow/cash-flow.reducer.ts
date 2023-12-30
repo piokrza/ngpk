@@ -30,7 +30,6 @@ export const Reducer = createReducer(
   on(CashFlowActions.getExpensesFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
-
   on(CashFlowActions.getIncomes, (state): State => {
     return { ...state, isLoading: true };
   }),
@@ -40,7 +39,6 @@ export const Reducer = createReducer(
   on(CashFlowActions.getIncomesFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
-
   on(AuthActions.signOut, (): State => {
     return { incomes: [], expenses: [], isLoading: false };
   })
