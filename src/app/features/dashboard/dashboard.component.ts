@@ -11,11 +11,11 @@ import { DriveActions } from '#store/drive';
 import { TaskerActions } from '#store/tasker';
 
 @Component({
-  selector: 'ctrl-dashboard',
+  selector: 'org-dashboard',
   template: `
-    <ctrl-layout>
+    <org-layout>
       <router-outlet />
-    </ctrl-layout>
+    </org-layout>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

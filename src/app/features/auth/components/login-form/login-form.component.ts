@@ -11,7 +11,7 @@ import { AuthActions, AuthSelectors } from '#store/auth';
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-login-form',
+  selector: 'org-login-form',
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -12,7 +12,7 @@ import { StepForm, Task, TaskForm } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
 
 @Component({
-  selector: 'ctrl-task-form',
+  selector: 'org-task-form',
   templateUrl: './task-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

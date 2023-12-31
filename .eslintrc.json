@@ -15,7 +15,7 @@
         "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
-        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "ctrl", "style": "kebab-case" }],
+        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "org", "style": "kebab-case" }],
         "no-console": 1,
         "no-debugger": 1,
         "import/first": 1,

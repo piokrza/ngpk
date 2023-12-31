@@ -10,7 +10,7 @@ import { ContainerComponent } from '#shared/components';
 const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent];
 
 @Component({
-  selector: 'ctrl-cash-flow-cards',
+  selector: 'org-cash-flow-cards',
   templateUrl: './cash-flow-cards.component.html',
   styleUrls: ['./cash-flow-cards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

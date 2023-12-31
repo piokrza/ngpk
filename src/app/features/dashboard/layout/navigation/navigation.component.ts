@@ -8,7 +8,7 @@ import { MenuService } from '#common/services';
 import { AuthSelectors } from '#store/auth';
 
 @Component({
-  selector: 'ctrl-navigation',
+  selector: 'org-navigation',
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-theme-toggler',
+  selector: 'org-theme-toggler',
   templateUrl: './theme-toggler.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

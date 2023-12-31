@@ -5,7 +5,7 @@ import { environment as env } from 'src/environments/environment';
 import { CashFlow } from '#cash-flow/models';
 
 @Component({
-  selector: 'ctrl-details-list',
+  selector: 'org-details-list',
   templateUrl: './details-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

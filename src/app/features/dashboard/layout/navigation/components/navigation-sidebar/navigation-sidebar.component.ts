@@ -6,7 +6,7 @@ import { ConfirmationService, MenuItem } from 'primeng/api';
 import { AuthActions } from '#store/auth';
 
 @Component({
-  selector: 'ctrl-navigation-sidebar',
+  selector: 'org-navigation-sidebar',
   templateUrl: './navigation-sidebar.component.html',
   styleUrl: './navigation-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

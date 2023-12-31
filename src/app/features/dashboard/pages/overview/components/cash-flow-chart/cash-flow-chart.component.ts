@@ -9,7 +9,7 @@ import { ContainerComponent } from '#shared/components';
 const imports = [ChartModule, ContainerComponent, TranslateModule];
 
 @Component({
-  selector: 'ctrl-cash-flow-chart',
+  selector: 'org-cash-flow-chart',
   templateUrl: './cash-flow-chart.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

@@ -10,7 +10,7 @@ import { PersistanceService } from '#common/services';
 const imports = [ToggleButtonModule, FormsModule];
 
 @Component({
-  selector: 'ctrl-theme-button',
+  selector: 'org-theme-button',
   template: `
     <p-toggleButton [onIcon]="PrimeIcons.SUN" [offIcon]="PrimeIcons.MOON" [(ngModel)]="isLightMode" (onChange)="toggleTheme()" />
   `,

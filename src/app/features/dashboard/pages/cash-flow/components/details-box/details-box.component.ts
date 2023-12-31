@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-details-box',
+  selector: 'org-details-box',
   styleUrl: './details-box.component.scss',
   template: `
     <div class="gap-2 box">

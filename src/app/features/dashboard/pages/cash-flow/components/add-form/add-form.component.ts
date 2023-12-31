@@ -13,7 +13,7 @@ import { CashFlowService } from '#cash-flow/services';
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-add-form',
+  selector: 'org-add-form',
   templateUrl: './add-form.component.html',
   styleUrl: './add-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

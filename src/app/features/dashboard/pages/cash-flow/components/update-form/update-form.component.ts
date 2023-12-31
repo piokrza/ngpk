@@ -9,7 +9,7 @@ import { CashFlowForm, CashFlowUpdateFormData, Category } from '#cash-flow/model
 import { CashFlowService } from '#cash-flow/services';
 
 @Component({
-  selector: 'ctrl-update-form',
+  selector: 'org-update-form',
   templateUrl: './update-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

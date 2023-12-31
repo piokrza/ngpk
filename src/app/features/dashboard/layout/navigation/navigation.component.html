@@ -1,6 +1,6 @@
 <div class="mobile">
   <div class="p-3 rounded panel">
-    <ctrl-mobile-menu [menuItems]="menuLinks" #menu />
+    <org-mobile-menu [menuItems]="menuLinks" #menu />
 
     @if (user$ | async; as user) {
       <div class="mr-4">
@@ -11,4 +11,4 @@
   </div>
 </div>
 
-<ctrl-navigation-sidebar [menuLinks]="menuLinks" />
+<org-navigation-sidebar [menuLinks]="menuLinks" />

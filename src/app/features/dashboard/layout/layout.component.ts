@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-layout',
+  selector: 'org-layout',
   template: `
     <div class="wrapper">
-      <ctrl-navigation />
+      <org-navigation />
 
       <main>
-        <ctrl-container>
+        <org-container>
           <ng-content />
-        </ctrl-container>
+        </org-container>
       </main>
     </div>
 

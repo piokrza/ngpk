@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
-  selector: 'ctrl-root',
+  selector: 'org-root',
   template: `<router-outlet />`,
 })
 export class AppComponent implements OnInit {

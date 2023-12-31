@@ -17,7 +17,7 @@ const providers: Provider[] = [OverviewService];
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-overview',
+  selector: 'org-overview',
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

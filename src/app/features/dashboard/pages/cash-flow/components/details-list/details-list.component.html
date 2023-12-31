@@ -5,7 +5,7 @@
     @if (cashFlowList.length) {
       @for (item of cashFlowList; track item.id) {
         <li>
-          <ctrl-details
+          <org-details
             [isIncomeMode]="isIncomeMode"
             [details]="item"
             (removeCashFlow)="removeCashFlow($event)"
@@ -14,14 +14,14 @@
       }
     }
     <li>
-      <ctrl-container [noPadding]="true" class="h-full">
+      <org-container [noPadding]="true" class="h-full">
         <p-button
           [text]="true"
           [icon]="PrimeIcons.PLUS"
           (onClick)="addCashFlow.emit(isIncomeMode)"
           severity="secondary"
           styleClass="w-full h-full py-5" />
-      </ctrl-container>
+      </org-container>
     </li>
   </ul>
 }

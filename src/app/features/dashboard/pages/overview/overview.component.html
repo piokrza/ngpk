@@ -1,10 +1,10 @@
 @if (isLoading$ | async) {
   <p-progressSpinner class="spinner" />
 } @else {
-  <ctrl-cash-flow-cards [cashFlowDataset]="cashFlowDataset$ | async" (navigate)="navigateTo($event)" />
+  <org-cash-flow-cards [cashFlowDataset]="cashFlowDataset$ | async" (navigate)="navigateTo($event)" />
 
   <div class="charts">
-    <ctrl-cash-flow-chart [chartDataset]="cashFlowChartData$ | async" />
-    <ctrl-tasker-panel [taskerData]="taskerData$ | async" (quickNote)="quickNote()" />
+    <org-cash-flow-chart [chartDataset]="cashFlowChartData$ | async" />
+    <org-tasker-panel [taskerData]="taskerData$ | async" (quickNote)="quickNote()" />
   </div>
 }

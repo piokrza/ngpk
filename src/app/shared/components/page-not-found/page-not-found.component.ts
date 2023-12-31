@@ -8,7 +8,7 @@ import { AppPaths } from '#common/enums';
 const imports = [TranslateModule];
 
 @Component({
-  selector: 'ctrl-page-not-found',
+  selector: 'org-page-not-found',
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

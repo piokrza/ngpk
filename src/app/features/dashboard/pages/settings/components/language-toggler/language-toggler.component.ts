@@ -11,7 +11,7 @@ const imports = [SelectButtonModule, FormsModule, TranslateModule];
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-language-toggler',
+  selector: 'org-language-toggler',
   templateUrl: './language-toggler.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

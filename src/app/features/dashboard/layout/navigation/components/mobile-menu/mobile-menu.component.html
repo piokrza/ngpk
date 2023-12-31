@@ -1,7 +1,7 @@
 <p-button (click)="toggle()" icon="pi pi-fw pi-list" type="button" />
 
 @if (isOpen()) {
-  <ctrl-container [@fadeIn] class="list">
+  <org-container [@fadeIn] class="list">
     <ul>
       @for (item of menuItems; track $index) {
         <li (click)="itemClick(item.command)">
@@ -11,5 +11,5 @@
         </li>
       }
     </ul>
-  </ctrl-container>
+  </org-container>
 }

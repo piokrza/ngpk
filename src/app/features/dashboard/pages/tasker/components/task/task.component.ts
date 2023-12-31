@@ -4,7 +4,7 @@ import { PrimeIcons } from 'primeng/api';
 import { Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Component({
-  selector: 'ctrl-task',
+  selector: 'org-task',
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

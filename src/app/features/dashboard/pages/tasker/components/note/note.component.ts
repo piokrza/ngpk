@@ -5,7 +5,7 @@ import { DateFormats } from '#common/enums';
 import { Note } from '#tasker/models';
 
 @Component({
-  selector: 'ctrl-note',
+  selector: 'org-note',
   templateUrl: './note.component.html',
   styleUrl: './note.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

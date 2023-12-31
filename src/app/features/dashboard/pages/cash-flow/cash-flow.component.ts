@@ -8,7 +8,7 @@ import { CashFlowFacadeService } from '#cash-flow/services';
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-cash-flow',
+  selector: 'org-cash-flow',
   templateUrl: './cash-flow.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

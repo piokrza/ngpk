@@ -1,4 +1,4 @@
-<ctrl-container [noPadding]="true" styleClass="cursor-pointer">
+<org-container [noPadding]="true" styleClass="cursor-pointer">
   <div class="flex justify-content-between align-items-center">
     <p (click)="toggleNoteVisibility()" class="flex-grow-1 my-0 py-3">{{ note.name }}</p>
 
@@ -11,4 +11,4 @@
   <p [class.note__content--visible]="isTaskContentVisible" class="note__content">
     {{ note.content }}
   </p>
-</ctrl-container>
+</org-container>

@@ -12,7 +12,7 @@ import { TaskerFacadeService } from '#tasker/services';
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-tasker',
+  selector: 'org-tasker',
   templateUrl: './tasker.component.html',
   styleUrl: './tasker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

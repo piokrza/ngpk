@@ -20,7 +20,7 @@
           <ul class="grid-container">
             @for (task of data.tasks; track task.id) {
               <li>
-                <ctrl-task
+                <org-task
                   [task]="task"
                   (toggleIsTaskComplete)="toggleIsTaskComplete($event)"
                   (toggleIsStepComplete)="toggleIsStepComplete($event)"
@@ -29,14 +29,14 @@
             }
 
             <li>
-              <ctrl-container [noPadding]="true" styleClass="" class="h-full">
+              <org-container [noPadding]="true" styleClass="" class="h-full">
                 <p-button
                   [text]="true"
                   severity="secondary"
                   [icon]="PrimeIcons.PLUS"
                   (onClick)="addTask()"
                   styleClass="w-full h-full py-5" />
-              </ctrl-container>
+              </org-container>
             </li>
           </ul>
         </div>
@@ -64,14 +64,14 @@
             <ul class="m-0">
               @for (note of data.notes; track note.id) {
                 <li class="my-3">
-                  <ctrl-note [note]="note" (removeNote)="removeNote($event)" class="flex-grow-1" />
+                  <org-note [note]="note" (removeNote)="removeNote($event)" class="flex-grow-1" />
                 </li>
               }
 
               <li>
-                <ctrl-container [noPadding]="true">
+                <org-container [noPadding]="true">
                   <p-button [text]="true" [icon]="PrimeIcons.PLUS" (onClick)="addNote()" severity="secondary" styleClass="w-full py-3" />
-                </ctrl-container>
+                </org-container>
               </li>
             </ul>
           </div>

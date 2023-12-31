@@ -7,7 +7,7 @@ import { IFile } from '#drive/models';
 import { DriveFacadeService } from '#drive/services';
 
 @Component({
-  selector: 'ctrl-file-list',
+  selector: 'org-file-list',
   templateUrl: './file-list.component.html',
   styleUrl: './file-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

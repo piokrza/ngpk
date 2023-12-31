@@ -5,7 +5,7 @@ import { CashFlow } from '#cash-flow/models';
 import { DateFormats } from '#common/enums';
 
 @Component({
-  selector: 'ctrl-details',
+  selector: 'org-details',
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -4,7 +4,7 @@ import { MenuItem } from 'primeng/api';
 import { FADE_IN } from '#common/constants';
 
 @Component({
-  selector: 'ctrl-mobile-menu',
+  selector: 'org-mobile-menu',
   templateUrl: './mobile-menu.component.html',
   styleUrls: ['./mobile-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

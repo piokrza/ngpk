@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-container',
+  selector: 'org-container',
   styleUrl: './container.component.scss',
   template: `
     <section [class]="['container', 'h-full', noPadding ? '' : 'p-3', styleClass]">

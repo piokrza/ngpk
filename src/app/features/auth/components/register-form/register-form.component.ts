@@ -9,7 +9,7 @@ import { AuthFormService } from '#auth/services';
 import { AuthActions, AuthSelectors } from '#store/auth';
 
 @Component({
-  selector: 'ctrl-register-form',
+  selector: 'org-register-form',
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

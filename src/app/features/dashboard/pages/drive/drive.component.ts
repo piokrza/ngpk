@@ -13,7 +13,7 @@ import { DriveFacadeService } from '#drive/services';
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-drive',
+  selector: 'org-drive',
   templateUrl: './drive.component.html',
   styleUrl: './drive.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

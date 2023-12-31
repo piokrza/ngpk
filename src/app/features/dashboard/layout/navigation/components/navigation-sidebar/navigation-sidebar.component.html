@@ -1,9 +1,9 @@
 <nav class="sidebar desktop">
-  <ctrl-container styleClass="pr-0">
+  <org-container styleClass="pr-0">
     <div class="sidebar__inner">
       <div>
-        <ctrl-user-info />
-        <ctrl-weather-widget />
+        <org-user-info />
+        <org-weather-widget />
 
         <ul class="gap-3 mt-6">
           @for (link of menuLinks; track $index) {
@@ -19,5 +19,5 @@
 
       <p-button [label]="'auth.signout' | translate" (click)="signOut()" styleClass="w-full" />
     </div>
-  </ctrl-container>
+  </org-container>
 </nav>

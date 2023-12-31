@@ -6,7 +6,7 @@ import { IUser } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
 
 @Component({
-  selector: 'ctrl-user-info',
+  selector: 'org-user-info',
   styleUrl: './user-info.component.scss',
   templateUrl: './user-info.components.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

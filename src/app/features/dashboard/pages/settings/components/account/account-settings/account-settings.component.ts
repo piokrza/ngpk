@@ -13,7 +13,7 @@ import { AuthActions, AuthSelectors } from '#store/auth';
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-account-settings',
+  selector: 'org-account-settings',
   templateUrl: './account-settings.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

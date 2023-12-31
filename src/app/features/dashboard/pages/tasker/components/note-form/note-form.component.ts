@@ -12,7 +12,7 @@ import { Note, NoteForm } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
 
 @Component({
-  selector: 'ctrl-note-form',
+  selector: 'org-note-form',
   templateUrl: './note-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

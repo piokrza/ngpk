@@ -31,7 +31,7 @@ const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherS
 
 @UntilDestroy()
 @Component({
-  selector: 'ctrl-weather-widget',
+  selector: 'org-weather-widget',
   templateUrl: './weather-widget.component.html',
   styleUrl: './weather-widget.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

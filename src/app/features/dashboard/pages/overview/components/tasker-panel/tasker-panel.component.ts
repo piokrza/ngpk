@@ -9,7 +9,7 @@ import { ContainerComponent } from '#shared/components';
 const imports = [ContainerComponent, TranslateModule, ButtonModule];
 
 @Component({
-  selector: 'ctrl-tasker-panel',
+  selector: 'org-tasker-panel',
   templateUrl: './tasker-panel.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

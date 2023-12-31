@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ctrl-details',
+  selector: 'org-details',
   templateUrl: './details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

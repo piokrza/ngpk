@@ -7,7 +7,7 @@ import { AccountSettingsForm } from '#settings/models';
 import { AccountSettingsFormService } from '#settings/services/account-settings-form.service';
 
 @Component({
-  selector: 'ctrl-account-settings-form',
+  selector: 'org-account-settings-form',
   templateUrl: './account-settings-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [AccountSettingsFormService],
