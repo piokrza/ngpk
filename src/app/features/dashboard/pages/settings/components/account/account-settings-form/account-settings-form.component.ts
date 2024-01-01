@@ -38,8 +38,6 @@ export class AccountSettingsFormComponent implements OnInit {
       email: controls.email.value,
       phoneNumber: controls.phoneNumber.value,
       photoURL: controls.photoURL.value,
-      refreshToken: this.userData.refreshToken,
-      emailVerified: this.userData.emailVerified,
       uid: this.userData.uid,
     });
   }

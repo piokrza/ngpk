@@ -18,14 +18,14 @@ export class CashFlowEffects {
 
   public getExpenses$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashFlowActions.getExpenses),
+      ofType(CashFlowActions.loadExpenses),
       exhaustMap(({ uid }) => {
         return this.cashFlowApiService.loadExpenses$(uid).pipe(
-          map((expenses) => CashFlowActions.getExpensesSuccess({ expenses })),
+          map((expenses) => CashFlowActions.loadExpensesSuccess({ expenses })),
           takeUntil(this.dbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUserError'));
-            return of(CashFlowActions.getExpensesFailure());
+            return of(CashFlowActions.loadExpensesFailure());
           })
         );
       })
@@ -34,14 +34,14 @@ export class CashFlowEffects {
 
   public getIncomes$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashFlowActions.getIncomes),
+      ofType(CashFlowActions.loadIncomes),
       exhaustMap(({ uid }) => {
         return this.cashFlowApiService.loadIncomes$(uid).pipe(
-          map((incomes) => CashFlowActions.getIncomesSuccess({ incomes })),
+          map((incomes) => CashFlowActions.loadIncomesSuccess({ incomes })),
           takeUntil(this.dbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUserError'));
-            return of(CashFlowActions.getIncomesFailure());
+            return of(CashFlowActions.loadIncomesFailure());
           })
         );
       })

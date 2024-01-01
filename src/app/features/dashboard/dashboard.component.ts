@@ -6,7 +6,6 @@ import { AuthApiService } from '#auth/services';
 import { DbSubscriptionService } from '#common/services';
 import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
-import { CategoriesActions } from '#store/categories';
 import { DriveActions } from '#store/drive';
 import { TaskerActions } from '#store/tasker';
 
@@ -30,12 +29,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         filter(Boolean),
         tap(({ uid }) => {
           this.store.dispatch(AuthActions.loadUserData({ uid }));
-          this.store.dispatch(CategoriesActions.getCategories());
-          this.store.dispatch(TaskerActions.getTasks({ uid }));
-          this.store.dispatch(TaskerActions.getNotes({ uid }));
-          this.store.dispatch(CashFlowActions.getExpenses({ uid }));
-          this.store.dispatch(CashFlowActions.getIncomes({ uid }));
-          this.store.dispatch(DriveActions.getFiles({ uid }));
+          this.store.dispatch(TaskerActions.loadTasks({ uid }));
+          this.store.dispatch(TaskerActions.loadNotes({ uid }));
+          this.store.dispatch(CashFlowActions.loadExpenses({ uid }));
+          this.store.dispatch(CashFlowActions.loadIncomes({ uid }));
+          this.store.dispatch(DriveActions.loadFiles({ uid }));
         })
       )
       .subscribe();

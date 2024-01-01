@@ -38,14 +38,15 @@ export class AccountSettingsComponent implements OnInit {
   public openAccountSettingsDialog(): void {
     const dialogRef: DynamicDialogRef = this.dialogService.open(AccountSettingsFormComponent, {
       header: this.transalteService.instant('settings.accountForm.title'),
-      style: { ...BaseDialogStyles },
+      style: BaseDialogStyles,
       data: this.user,
     });
 
     dialogRef.onClose
       .pipe(
         tap((updatedUserData?: IUser): void => {
-          updatedUserData && this.store.dispatch(AuthActions.updateAccount({ updatedUserData }));
+          updatedUserData &&
+            this.store.dispatch(AuthActions.updateAccount({ updatedUserData: { ...updatedUserData, config: this.user!.config } }));
         }),
         untilDestroyed(this)
       )

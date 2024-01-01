@@ -9,6 +9,7 @@ import { Observable, tap } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
 import { IUser } from '#auth/models';
+import { FileUploadPayload } from '#drive/models';
 import { DriveFacadeService } from '#drive/services';
 
 @UntilDestroy()
@@ -50,7 +51,7 @@ export class DriveComponent implements OnInit {
         file: files[0],
         uid: this.#user()!.uid,
         parentId: this.parentId(),
-      });
+      } satisfies FileUploadPayload);
   }
 
   public addFolder(): void {

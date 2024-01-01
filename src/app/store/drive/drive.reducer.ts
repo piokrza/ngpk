@@ -21,13 +21,13 @@ const initialState: State = {
 export const Reducer = createReducer(
   initialState,
 
-  on(DriveActions.getFiles, (state): State => {
+  on(DriveActions.loadFiles, (state): State => {
     return { ...state, isLoading: true };
   }),
-  on(DriveActions.getFilesSuccess, (state, { files }): State => {
+  on(DriveActions.loadFilesSuccess, (state, { files }): State => {
     return { ...state, files, isLoading: false };
   }),
-  on(DriveActions.getFilesFailure, (state): State => {
+  on(DriveActions.loadFilesFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
   on(DriveActions.uploadFile, (state): State => {

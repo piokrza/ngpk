@@ -15,10 +15,10 @@
 
   @if (categories$ | async; as categories) {
     <p-dropdown
-      [formControl]="formControls.categoryCode"
+      [formControl]="formControls.categoryId"
       [options]="categories"
       optionLabel="name"
-      optionValue="code"
+      optionValue="id"
       styleClass="w-full"
       placeholder="Select category" />
   }

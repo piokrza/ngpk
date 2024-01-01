@@ -27,39 +27,39 @@ const initialState: State = {
 export const Reducer: ActionReducer<State, Action> = createReducer(
   initialState,
 
-  on(TaskerActions.getTasks, (state): State => {
+  on(TaskerActions.loadTasks, (state): State => {
     return {
       ...state,
       isTasksLoading: true,
     };
   }),
-  on(TaskerActions.getTasksSuccess, (state: State, { tasks }): State => {
+  on(TaskerActions.loadTasksSuccess, (state: State, { tasks }): State => {
     return {
       ...state,
       tasks,
       isTasksLoading: false,
     };
   }),
-  on(TaskerActions.getTasksError, (state): State => {
+  on(TaskerActions.loadTasksError, (state): State => {
     return {
       ...state,
       isTasksLoading: false,
     };
   }),
-  on(TaskerActions.getNotes, (state): State => {
+  on(TaskerActions.loadNotes, (state): State => {
     return {
       ...state,
       isNotesLoading: true,
     };
   }),
-  on(TaskerActions.getNotesSuccess, (state: State, { notes }): State => {
+  on(TaskerActions.loadNotesSuccess, (state: State, { notes }): State => {
     return {
       ...state,
       notes,
       isNotesLoading: false,
     };
   }),
-  on(TaskerActions.getNotesError, (state): State => {
+  on(TaskerActions.loadNotesError, (state): State => {
     return {
       ...state,
       isNotesLoading: false,

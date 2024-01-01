@@ -18,14 +18,14 @@ export class TaskerEffects {
 
   public getTasks$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(TaskerActions.getTasks),
+      ofType(TaskerActions.loadTasks),
       exhaustMap(({ uid }) => {
         return this.taskerApiService.loadTasks$(uid).pipe(
-          map((tasks) => TaskerActions.getTasksSuccess({ tasks })),
+          map((tasks) => TaskerActions.loadTasksSuccess({ tasks })),
           takeUntil(this.dbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchTasks'));
-            return of(TaskerActions.getTasksError());
+            return of(TaskerActions.loadTasksError());
           })
         );
       })
@@ -88,14 +88,14 @@ export class TaskerEffects {
 
   public getNotes$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(TaskerActions.getNotes),
+      ofType(TaskerActions.loadNotes),
       exhaustMap(({ uid }) => {
         return this.taskerApiService.loadNotes$(uid).pipe(
-          map((notes) => TaskerActions.getNotesSuccess({ notes })),
+          map((notes) => TaskerActions.loadNotesSuccess({ notes })),
           takeUntil(this.dbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchNotes'));
-            return of(TaskerActions.getNotesError());
+            return of(TaskerActions.loadNotesError());
           })
         );
       })

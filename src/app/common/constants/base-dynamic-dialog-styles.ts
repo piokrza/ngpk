@@ -1,1 +1,4 @@
-export const BaseDialogStyles: { [klass: string]: any } = { width: '90%', maxWidth: '600px' };
+export const BaseDialogStyles = {
+  width: '90%',
+  maxWidth: '600px',
+} satisfies Record<string, string>;

@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
-import { filter, Observable, tap } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 
 import { AuthFormPayload, IUser } from '#auth/models';
 import { Collection } from '#common/enums';
@@ -35,19 +35,5 @@ export class AuthApiService {
 
   public get authState$(): Observable<firebase.User | null> {
     return this.afAuth.authState;
-  }
-
-  public addUserToDatabase$(user: IUser): Observable<firebase.firestore.DocumentSnapshot<IUser>> {
-    const usersCollectionRef: AngularFirestoreCollection<IUser> = this.angularFirestore.collection(Collection.USERS); // TODO: add userService
-
-    return usersCollectionRef
-      .doc(user.uid)
-      .get() // TODO: add userService
-      .pipe(tap((data) => !data.exists && usersCollectionRef.doc(data.id).set(user)));
-  }
-
-  public async updateUser$(updatedUserData: IUser): Promise<void> {
-    const user: AngularFirestoreDocument<IUser> = this.angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
-    return await user.update(updatedUserData); // TODO: add userService
   }
 }

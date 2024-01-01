@@ -6,7 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     <div class="wrapper">
       <org-navigation />
 
-      <!-- TODO: add max width  -->
       <main>
         <org-container>
           <ng-content />

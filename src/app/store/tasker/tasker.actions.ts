@@ -3,13 +3,13 @@ import { createAction, props } from '@ngrx/store';
 import { ActionTypes } from '#store/tasker/action-types';
 import { Note, NoteFilter, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
 
-export const getTasks = createAction(ActionTypes.GET_TASKS, props<{ uid: string }>());
-export const getTasksSuccess = createAction(ActionTypes.GET_TASKS_SUCCESS, props<{ tasks: Task[] }>());
-export const getTasksError = createAction(ActionTypes.GET_TASKS_ERROR);
+export const loadTasks = createAction(ActionTypes.LOAD_TASKS, props<{ uid: string }>());
+export const loadTasksSuccess = createAction(ActionTypes.LOAD_TASKS_SUCCESS, props<{ tasks: Task[] }>());
+export const loadTasksError = createAction(ActionTypes.LOAD_TASKS_ERROR);
 
-export const getNotes = createAction(ActionTypes.GET_NOTES, props<{ uid: string }>());
-export const getNotesSuccess = createAction(ActionTypes.GET_NOTES_SUCCESS, props<{ notes: Note[] }>());
-export const getNotesError = createAction(ActionTypes.GET_NOTES_ERROR);
+export const loadNotes = createAction(ActionTypes.LOAD_NOTES, props<{ uid: string }>());
+export const loadNotesSuccess = createAction(ActionTypes.LOAD_NOTES_SUCCESS, props<{ notes: Note[] }>());
+export const loadNotesError = createAction(ActionTypes.LOAD_NOTES_ERROR);
 
 export const addTask = createAction(ActionTypes.ADD_TASK, props<{ task: Task }>());
 export const addTaskSuccess = createAction(ActionTypes.ADD_TASK_SUCCESS);

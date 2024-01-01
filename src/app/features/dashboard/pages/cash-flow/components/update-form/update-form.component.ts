@@ -2,11 +2,14 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable } from 'rxjs';
+import { Observable, filter, map } from 'rxjs';
 
+import { IUser } from '#auth/models';
 import { CashFlowForm, CashFlowUpdateFormData, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
+import { AuthSelectors } from '#store/auth';
 
 @Component({
   selector: 'org-update-form',
@@ -14,14 +17,15 @@ import { CashFlowService } from '#cash-flow/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpdateFormComponent implements OnInit {
-  private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-  private readonly cashFlowService: CashFlowService = inject(CashFlowService);
+  readonly #store: Store = inject(Store);
+  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  readonly #cashFlowService: CashFlowService = inject(CashFlowService);
+
+  public readonly categories$ = this.getCategories$();
 
   public readonly trPath: string = 'cashFlow.form.';
-  public readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
+  public readonly form: FormGroup<CashFlowForm> = this.#cashFlowService.form;
   public readonly cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;
-
-  public readonly categories$: Observable<Category[]> = this.cashFlowService.getCategories$(this.cashFlowUpdateFormData.isIncomeMode);
 
   public ngOnInit(): void {
     this.form.patchValue({
@@ -34,10 +38,20 @@ export class UpdateFormComponent implements OnInit {
     const id: string = this.cashFlowUpdateFormData.updatedCashFlow.id;
     const date: Timestamp = Timestamp.fromDate(this.form.getRawValue().date!);
 
-    this.dialogRef.close({ ...this.form.getRawValue(), date, id });
+    this.#dialogRef.close({ ...this.form.getRawValue(), date, id });
   }
 
   public get formControls(): CashFlowForm {
     return this.form.controls;
+  }
+
+  private getCategories$(): Observable<Category[]> {
+    return this.#store.select(AuthSelectors.user).pipe(
+      filter(Boolean),
+      map((user: IUser) => {
+        const { incomes, expenses } = user.config.categories;
+        return this.cashFlowUpdateFormData.isIncomeMode ? incomes : expenses;
+      })
+    );
   }
 }

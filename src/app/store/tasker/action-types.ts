@@ -1,11 +1,11 @@
 export enum ActionTypes {
-  GET_TASKS = '[Tasker] Get tasks',
-  GET_TASKS_SUCCESS = '[Tasker] Get tasks success',
-  GET_TASKS_ERROR = '[Tasker] Get tasks error',
+  LOAD_TASKS = '[Tasker] Load tasks',
+  LOAD_TASKS_SUCCESS = '[Tasker] Load tasks success',
+  LOAD_TASKS_ERROR = '[Tasker] Load tasks error',
 
-  GET_NOTES = '[Tasks] Get notes',
-  GET_NOTES_SUCCESS = '[Tasks] Get notes success',
-  GET_NOTES_ERROR = '[Tasks] Get notes error',
+  LOAD_NOTES = '[Tasks] Load notes',
+  LOAD_NOTES_SUCCESS = '[Tasks] Load notes success',
+  LOAD_NOTES_ERROR = '[Tasks] Load notes error',
 
   ADD_TASK = '[Tasks] Add task',
   ADD_TASK_SUCCESS = '[Tasks] Add task success',

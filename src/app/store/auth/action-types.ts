@@ -3,6 +3,8 @@ export enum ActionTypes {
   USER_NOT_AUTHENTICATED = '[Auth] User not authenticated',
 
   SIGN_IN_WITH_GOOGLE = '[Auth] Sign in with Google',
+  SIGN_IN_WITH_GOOGLE_SUCCESS = '[Auth] Sign in with Google Success',
+  SIGN_IN_WITH_GOOGLE_FAILURE = '[Auth] Sign in with Google Failure',
 
   SIGN_OUT = '[Auth] Sign out',
 

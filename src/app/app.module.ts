@@ -23,12 +23,11 @@ import { injectThemeLink$, ThemeInitService } from '#common/services';
 import { CustomTranslateHttpLoader, initializeTranslations } from '#common/utils';
 import { AuthEffects } from '#store/auth';
 import { CashFlowEffects } from '#store/cash-flow';
-import { CategoriesEffects } from '#store/categories';
 import { DriveEffects } from '#store/drive';
 import { ROOT_REDUCERS } from '#store/root-reducer';
 import { TaskerEffects } from '#store/tasker';
 
-const StoreEffects = [CategoriesEffects, CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
+const StoreEffects = [CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
 
 const declarations = [AppComponent];
 const imports = [

@@ -19,13 +19,13 @@ export class DriveEffects {
 
   public loadFiles$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DriveActions.getFiles),
+      ofType(DriveActions.loadFiles),
       exhaustMap(({ uid }) => {
         return this.driveApiService.loadFiles$(uid).pipe(
-          map((files: IFile[]) => DriveActions.getFilesSuccess({ files })),
+          map((files: IFile[]) => DriveActions.loadFilesSuccess({ files })),
           takeUntil(this.dbSubscriptionService.unsubscribe$),
           catchError(() => {
-            return of(DriveActions.getFilesFailure());
+            return of(DriveActions.loadFilesFailure());
           })
         );
       })

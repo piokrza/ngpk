@@ -3,13 +3,13 @@ import { createAction, props } from '@ngrx/store';
 import { CashFlow } from '#cash-flow/models';
 import { ActionTypes } from '#store/cash-flow/action-types';
 
-export const getExpenses = createAction(ActionTypes.GET_EXPENSES, props<{ uid: string }>());
-export const getExpensesSuccess = createAction(ActionTypes.GET_EXPENSES_SUCCESS, props<{ expenses: CashFlow[] }>());
-export const getExpensesFailure = createAction(ActionTypes.GET_EXPENSES_FAILURE);
+export const loadExpenses = createAction(ActionTypes.LOAD_EXPENSES, props<{ uid: string }>());
+export const loadExpensesSuccess = createAction(ActionTypes.LOAD_EXPENSES_SUCCESS, props<{ expenses: CashFlow[] }>());
+export const loadExpensesFailure = createAction(ActionTypes.LOAD_EXPENSES_FAILURE);
 
-export const getIncomes = createAction(ActionTypes.GET_INCOMES, props<{ uid: string }>());
-export const getIncomesSuccess = createAction(ActionTypes.GET_INCOMES_SUCCESS, props<{ incomes: CashFlow[] }>());
-export const getIncomesFailure = createAction(ActionTypes.GET_INCOMES_FAILURE);
+export const loadIncomes = createAction(ActionTypes.LOAD_INCOMES, props<{ uid: string }>());
+export const loadIncomesSuccess = createAction(ActionTypes.LOAD_INCOMES_SUCCESS, props<{ incomes: CashFlow[] }>());
+export const loadIncomesFailure = createAction(ActionTypes.LOAD_INCOMES_FAILURE);
 
 export const addIncome = createAction(ActionTypes.ADD_INCOME, props<{ income: CashFlow }>());
 export const addIncomeSuccess = createAction(ActionTypes.ADD_INCOME_SUCCESS);

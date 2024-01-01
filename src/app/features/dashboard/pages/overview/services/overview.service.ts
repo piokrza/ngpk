@@ -3,14 +3,15 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, combineLatest, map, tap } from 'rxjs';
+import { Observable, combineLatest, filter, map, tap } from 'rxjs';
 
-import { CashFlow } from '#cash-flow/models';
+import { CashFlow, Category } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
 import { AppPaths, DashobardPaths } from '#common/enums';
 import { LabeledData } from '#common/models';
-import { bgColors, bgColorsHover, categoryNames, expensesCatLength, incomesCatLength } from '#overview/constants';
+import { getRandomNumber } from '#common/utils';
 import { ChartConfig, TaskerData } from '#overview/models';
+import { AuthSelectors } from '#store/auth';
 import { CashFlowSelectors } from '#store/cash-flow';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent } from '#tasker/components';
@@ -49,28 +50,25 @@ export class OverviewService {
     return combineLatest({
       incomes: this.store.select(CashFlowSelectors.incomes),
       expenses: this.store.select(CashFlowSelectors.expenses),
+      userCategories: this.store.select(AuthSelectors.user).pipe(
+        filter(Boolean),
+        map(({ config }) => config.categories)
+      ),
     }).pipe(
-      map(({ incomes, expenses }) => {
-        const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
+      map(({ incomes, expenses, userCategories }): ChartConfig | undefined => {
+        if (![...incomes, ...expenses].length) return undefined;
 
-        if (!incomes.length || !expenses.length) return undefined;
+        const backgroundColor: string[] = [];
+        const hoverBackgroundColor: string[] = [];
+
+        const labels: string[] = [...userCategories.incomes, ...userCategories.expenses].map(({ name }: Category) => name);
+        const data: number[] = [
+          ...this.calculateCashflow(incomes, userCategories.incomes, backgroundColor, hoverBackgroundColor, 'green'),
+          ...this.calculateCashflow(expenses, userCategories.expenses, backgroundColor, hoverBackgroundColor, 'pink'),
+        ];
 
         return {
-          data: {
-            labels: categoryNames.map((name) => this.translate.instant(`overview.${name}`)),
-            datasets: [
-              {
-                data: [
-                  ...Array.from({ length: expensesCatLength }, (_, i) => this.getTotalCashFlowAmountByCategoryCode(expenses, i)),
-                  ...Array.from({ length: incomesCatLength }, (_, i) => {
-                    return this.getTotalCashFlowAmountByCategoryCode(incomes, i + expensesCatLength);
-                  }),
-                ],
-                backgroundColor: bgColors.map((bgClr) => documentStyle.getPropertyValue(bgClr)),
-                hoverBackgroundColor: bgColorsHover.map((bgClr) => documentStyle.getPropertyValue(bgClr)),
-              },
-            ],
-          },
+          data: { labels, datasets: [{ data, backgroundColor, hoverBackgroundColor }] },
           options: { plugins: { legend: { display: false } } },
         };
       })
@@ -121,7 +119,27 @@ export class OverviewService {
     }).pipe(map(({ incomesLength, expensesLength }): number => incomesLength + expensesLength));
   }
 
-  private getTotalCashFlowAmountByCategoryCode(cf: CashFlow[], code: number): number {
-    return cf.filter((c) => c.categoryCode === code).reduce((acc, { amount }) => acc + amount, 0);
+  private calculateCashflow(
+    cashFlowList: CashFlow[],
+    userCategories: Category[],
+    backgroundColors: string[],
+    hoverBackgroundColors: string[],
+    color: 'green' | 'pink'
+  ): number[] {
+    const getClr = (clr: string) => getComputedStyle(document.documentElement).getPropertyValue(clr);
+
+    return userCategories.map((category: Category) => {
+      return cashFlowList.reduce((total: number, cashFlow: CashFlow) => {
+        if (cashFlow.categoryId === category.id) {
+          const colorScale: number = getRandomNumber(4, 9);
+          backgroundColors.push(getClr(`--${color}-${colorScale}00`));
+          hoverBackgroundColors.push(getClr(`--${color}-${colorScale - 2}00`));
+
+          return total + cashFlow.amount;
+        }
+
+        return total;
+      }, 0);
+    });
   }
 }

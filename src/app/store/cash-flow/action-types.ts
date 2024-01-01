@@ -1,11 +1,11 @@
 export enum ActionTypes {
-  GET_EXPENSES = '[Cash flow] Get expenses',
-  GET_EXPENSES_SUCCESS = '[Cash flow] Get expenses success',
-  GET_EXPENSES_FAILURE = '[Cash flow] Get expenses failure',
+  LOAD_EXPENSES = '[Cash flow] Load expenses',
+  LOAD_EXPENSES_SUCCESS = '[Cash flow] Load expenses success',
+  LOAD_EXPENSES_FAILURE = '[Cash flow] Load expenses failure',
 
-  GET_INCOMES = '[Cash flow] Get incomes',
-  GET_INCOMES_SUCCESS = '[Cash flow] Get incomes success',
-  GET_INCOMES_FAILURE = '[Cash flow] Get incomes failure',
+  LOAD_INCOMES = '[Cash flow] Load incomes',
+  LOAD_INCOMES_SUCCESS = '[Cash flow] Load incomes success',
+  LOAD_INCOMES_FAILURE = '[Cash flow] Load incomes failure',
 
   ADD_INCOME = '[Incomes] Add income',
   ADD_INCOME_SUCCESS = '[Incomes] Add income success',
