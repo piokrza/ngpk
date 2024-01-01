@@ -38,16 +38,16 @@ export class AuthApiService {
   }
 
   public addUserToDatabase$(user: IUser): Observable<firebase.firestore.DocumentSnapshot<IUser>> {
-    const usersCollectionRef: AngularFirestoreCollection<IUser> = this.angularFirestore.collection(Collection.USERS);
+    const usersCollectionRef: AngularFirestoreCollection<IUser> = this.angularFirestore.collection(Collection.USERS); // TODO: add userService
 
     return usersCollectionRef
       .doc(user.uid)
-      .get()
+      .get() // TODO: add userService
       .pipe(tap((data) => !data.exists && usersCollectionRef.doc(data.id).set(user)));
   }
 
   public async updateUser$(updatedUserData: IUser): Promise<void> {
     const user: AngularFirestoreDocument<IUser> = this.angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
-    return await user.update(updatedUserData);
+    return await user.update(updatedUserData); // TODO: add userService
   }
 }

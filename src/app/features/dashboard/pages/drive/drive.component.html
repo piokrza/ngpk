@@ -4,7 +4,8 @@
       [auto]="true"
       [chooseLabel]="'drive.addFile' | translate"
       [url]="uploadUrl"
-      [chooseIcon]="(buttonIcon$ | async)!"
+      [chooseIcon]="(isProcessing$ | async) ? PrimeIcons.SPINNER + ' pi-spin' : PrimeIcons.PLUS"
+      [disabled]="!!(isProcessing$ | async)"
       (onUpload)="uploadFile($event)"
       mode="basic" />
 
