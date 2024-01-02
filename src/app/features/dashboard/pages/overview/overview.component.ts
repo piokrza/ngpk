@@ -26,21 +26,21 @@ const providers: Provider[] = [OverviewService];
   imports,
 })
 export default class OverviewComponent {
-  private readonly router: Router = inject(Router);
-  private readonly overviewService: OverviewService = inject(OverviewService);
-  private readonly cashFlowService: CashFlowService = inject(CashFlowService);
+  readonly #router: Router = inject(Router);
+  readonly #overviewService: OverviewService = inject(OverviewService);
+  readonly #cashFlowService: CashFlowService = inject(CashFlowService);
 
-  public readonly taskerData$: Observable<TaskerData> = this.overviewService.taskerData$;
-  public readonly cashFlowChartData$: Observable<ChartConfig | undefined> = this.overviewService.cashFlowChartData$;
-  public readonly isLoading$: Observable<boolean> = this.overviewService.isLoading$;
-  public readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.overviewService.cashFlowData$;
+  readonly taskerData$: Observable<TaskerData> = this.#overviewService.taskerData$;
+  readonly cashFlowChartData$: Observable<ChartConfig | undefined> = this.#overviewService.cashFlowChartData$;
+  readonly isLoading$: Observable<boolean> = this.#overviewService.isLoading$;
+  readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.#overviewService.cashFlowData$;
 
   public quickNote(): void {
-    this.overviewService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
+    this.#overviewService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public navigateTo(itemLabel: string): void {
-    this.cashFlowService.setActiveTabIndex(itemLabel === 'totalExpense' ? 1 : 0);
-    this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
+    this.#cashFlowService.setActiveTabIndex(itemLabel === 'totalExpense' ? 1 : 0);
+    this.#router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
   }
 }

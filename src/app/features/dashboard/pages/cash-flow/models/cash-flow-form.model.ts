@@ -4,6 +4,6 @@ export interface CashFlowForm {
   name: FormControl<string>;
   amount: FormControl<number>;
   date: FormControl<Date | null>;
-  categoryCode: FormControl<number>;
+  categoryId: FormControl<string>;
   description: FormControl<string>;
 }

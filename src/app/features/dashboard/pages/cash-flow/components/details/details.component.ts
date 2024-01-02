@@ -17,6 +17,6 @@ export class DetailsComponent {
   @Output() removeCashFlow = new EventEmitter<string>();
   @Output() updateCashFlow = new EventEmitter<CashFlow>();
 
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly DateFormats: typeof DateFormats = DateFormats;
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly DateFormats: typeof DateFormats = DateFormats;
 }

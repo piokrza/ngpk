@@ -23,16 +23,16 @@ export class ThemeButtonComponent {
     @Inject(DOCUMENT) private readonly document: Document,
     private readonly persistanceService: PersistanceService
   ) {
-    this.themeLink = this.document.getElementById('theme-link') as HTMLLinkElement;
+    this.#themeLink = this.document.getElementById('theme-link') as HTMLLinkElement;
   }
 
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public isLightMode: boolean = !!inject(PersistanceService).get(isLightMode);
+  isLightMode: boolean = !!inject(PersistanceService).get(isLightMode);
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
-  private themeLink: HTMLLinkElement;
+  #themeLink: HTMLLinkElement;
 
   public toggleTheme(): void {
-    this.themeLink.href = this.isLightMode ? 'light-theme.css' : 'dark-theme.css';
+    this.#themeLink.href = this.isLightMode ? 'light-theme.css' : 'dark-theme.css';
     this.persistanceService.set(isLightMode, this.isLightMode);
   }
 }

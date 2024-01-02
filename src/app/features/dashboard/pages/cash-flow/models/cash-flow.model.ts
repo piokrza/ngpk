@@ -4,7 +4,7 @@ export interface CashFlow {
   name: string;
   amount: number;
   date: Timestamp;
-  categoryCode: number;
+  categoryId: string;
   description: string;
   id: string;
   uid: string;

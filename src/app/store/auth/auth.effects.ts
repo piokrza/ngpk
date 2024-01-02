@@ -3,13 +3,11 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import firebase from 'firebase/compat';
-import { catchError, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
+import { catchError, EMPTY, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
-import { AuthApiService } from '#auth/services';
+import { AuthApiService, UserService } from '#auth/services';
 import { AppPaths, ToastStatus } from '#common/enums';
 import { DbSubscriptionService, ToastService } from '#common/services';
-import { setUser } from '#common/utils/set-user';
 import { AuthActions } from '#store/auth';
 import { ActionTypes } from '#store/auth/action-types';
 
@@ -17,6 +15,7 @@ import { ActionTypes } from '#store/auth/action-types';
 export class AuthEffects {
   private readonly router: Router = inject(Router);
   private readonly actions$: Actions = inject(Actions);
+  private readonly userService: UserService = inject(UserService);
   private readonly toastService: ToastService = inject(ToastService);
   private readonly authApiService: AuthApiService = inject(AuthApiService);
   private readonly translateService: TranslateService = inject(TranslateService);
@@ -27,20 +26,30 @@ export class AuthEffects {
       ofType(AuthActions.signInWithGoogle),
       exhaustMap(() => {
         return from(this.authApiService.signinWithGoogle()).pipe(
-          map(({ user }: firebase.auth.UserCredential) => AuthActions.userAuthenticated({ user: setUser(user!) })),
-          tap(() => this.router.navigateByUrl(AppPaths.DASHBOARD)),
+          tap(() => void this.router.navigateByUrl(AppPaths.DASHBOARD)),
+          map(({ user }) => AuthActions.signInWithGoogleSuccess({ user: this.userService.getIUserModel(user!) })),
           catchError(() => of(AuthActions.userNotAuthenticated()))
         );
       })
     );
   });
 
+  public signInWithGoogleSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.signInWithGoogleSuccess),
+        exhaustMap(({ user }) => (user ? this.userService.addUserToDatabase$(user) : EMPTY))
+      );
+    },
+    { dispatch: false }
+  );
+
   public signOut$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signOut),
       exhaustMap((): Promise<void> => this.authApiService.signOut()),
       map(() => AuthActions.userNotAuthenticated()),
-      tap(() => this.router.navigateByUrl(`/${AppPaths.AUTHENTICATION}`))
+      tap(() => void this.router.navigateByUrl(`/${AppPaths.AUTHENTICATION}`))
     );
   });
 
@@ -49,8 +58,8 @@ export class AuthEffects {
       ofType(AuthActions.signInWithEmailAndPassword),
       exhaustMap(({ payload }) => {
         return from(this.authApiService.signInWithEmailAndPassword(payload)).pipe(
-          map(() => AuthActions.signInWithEmailAndPasswordSuccess()),
-          tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
+          tap(() => void this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
+          map(({ user }) => AuthActions.signInWithEmailAndPasswordSuccess({ user: this.userService.getIUserModel(user!) })),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message }));
           })
@@ -59,13 +68,23 @@ export class AuthEffects {
     );
   });
 
+  public signInWithEmailAndPasswordSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.signInWithEmailAndPasswordSuccess),
+        exhaustMap(({ user }) => (user ? this.userService.addUserToDatabase$(user) : EMPTY))
+      );
+    },
+    { dispatch: false }
+  );
+
   public signUpWithEmailAndPassword$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
       exhaustMap(({ payload }) => {
         return from(this.authApiService.signUpWithEmailAndPassword(payload)).pipe(
-          map(({ user }) => AuthActions.userAuthenticated({ user: setUser(user!) })),
-          tap(() => this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
+          map(() => AuthActions.signUpWithEmailAndPasswordSuccess()),
+          tap(() => void this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message }));
           })
@@ -90,7 +109,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.updateAccount),
       exhaustMap(({ updatedUserData }) => {
-        return from(this.authApiService.updateUser$(updatedUserData)).pipe(
+        return from(this.userService.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('accUpdateSuccess'))),
           catchError(() => of(AuthActions.updateAccountFailure()))
@@ -98,16 +117,6 @@ export class AuthEffects {
       })
     );
   });
-
-  public userAuthenticated$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.userAuthenticated),
-        exhaustMap(({ user }) => this.authApiService.addUserToDatabase$(user))
-      );
-    },
-    { dispatch: false }
-  );
 
   private tr(path: string): string {
     return this.translateService.instant('toastMessage.' + path);

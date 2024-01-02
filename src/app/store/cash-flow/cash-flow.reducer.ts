@@ -21,22 +21,22 @@ const initialState: State = {
 export const Reducer = createReducer(
   initialState,
 
-  on(CashFlowActions.getExpenses, (state): State => {
+  on(CashFlowActions.loadExpenses, (state): State => {
     return { ...state, isLoading: true };
   }),
-  on(CashFlowActions.getExpensesSuccess, (state, { expenses }): State => {
+  on(CashFlowActions.loadExpensesSuccess, (state, { expenses }): State => {
     return { ...state, expenses, isLoading: false };
   }),
-  on(CashFlowActions.getExpensesFailure, (state): State => {
+  on(CashFlowActions.loadExpensesFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
-  on(CashFlowActions.getIncomes, (state): State => {
+  on(CashFlowActions.loadIncomes, (state): State => {
     return { ...state, isLoading: true };
   }),
-  on(CashFlowActions.getIncomesSuccess, (state, { incomes }): State => {
+  on(CashFlowActions.loadIncomesSuccess, (state, { incomes }): State => {
     return { ...state, incomes, isLoading: false };
   }),
-  on(CashFlowActions.getIncomesFailure, (state): State => {
+  on(CashFlowActions.loadIncomesFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
   on(AuthActions.signOut, (): State => {

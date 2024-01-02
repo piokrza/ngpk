@@ -17,12 +17,12 @@ import { TaskerService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteFormComponent {
-  private readonly noteService: TaskerService = inject(TaskerService);
-  private readonly firestore: AngularFirestore = inject(AngularFirestore);
-  private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  readonly #noteService: TaskerService = inject(TaskerService);
+  readonly #firestore: AngularFirestore = inject(AngularFirestore);
+  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
-  public readonly form: FormGroup<NoteForm> = this.noteService.noteForm;
-  private readonly user: Signal<IUser | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
+  readonly form: FormGroup<NoteForm> = this.#noteService.noteForm;
+  readonly #user: Signal<IUser | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
 
   public onSubmit(): void {
     if (this.form.invalid) {
@@ -32,11 +32,11 @@ export class NoteFormComponent {
 
     const newNote: Note = {
       ...this.form.getRawValue(),
-      id: this.firestore.createId(),
-      uid: this.user()!.uid,
+      id: this.#firestore.createId(),
+      uid: this.#user()!.uid,
       createDate: Timestamp.fromDate(new Date()),
     };
 
-    this.dialogRef.close(newNote);
+    this.#dialogRef.close(newNote);
   }
 }

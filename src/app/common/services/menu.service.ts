@@ -9,9 +9,9 @@ import { AuthActions } from '#store/auth';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
-  private readonly store: Store = inject(Store);
-  private readonly translateService: TranslateService = inject(TranslateService);
-  private readonly confirmationService: ConfirmationService = inject(ConfirmationService);
+  readonly #store: Store = inject(Store);
+  readonly #translateService: TranslateService = inject(TranslateService);
+  readonly #confirmationService: ConfirmationService = inject(ConfirmationService);
 
   public getMenuLinks(): MenuItem[] {
     return [
@@ -55,10 +55,10 @@ export class MenuService {
   }
 
   private signOut(): void {
-    this.confirmationService.confirm({
-      message: this.translateService.instant('auth.signoutMessage'),
-      header: this.translateService.instant('auth.signout'),
-      accept: (): void => this.store.dispatch(AuthActions.signOut()),
+    this.#confirmationService.confirm({
+      message: this.#translateService.instant('auth.signoutMessage'),
+      header: this.#translateService.instant('auth.signout'),
+      accept: (): void => this.#store.dispatch(AuthActions.signOut()),
     });
   }
 }

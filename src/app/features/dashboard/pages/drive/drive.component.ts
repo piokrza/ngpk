@@ -9,6 +9,7 @@ import { Observable, tap } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
 import { IUser } from '#auth/models';
+import { FileUploadPayload } from '#drive/models';
 import { DriveFacadeService } from '#drive/services';
 
 @UntilDestroy()
@@ -24,13 +25,12 @@ export class DriveComponent implements OnInit {
 
   readonly isProcessing$: Observable<boolean> = this.#driveFacadeService.isProcessing$;
 
-  readonly #user: Signal<IUser | null> = toSignal(this.#driveFacadeService.user$, { initialValue: null });
-
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly folderMode: WritableSignal<'initial' | 'edit'> = signal('initial');
-  readonly parentId: Signal<string> = toSignal(this.#driveFacadeService.parentId$, { initialValue: '' });
   readonly folderNameControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
+  readonly parentId: Signal<string> = toSignal(this.#driveFacadeService.parentId$, { initialValue: '' });
 
+  readonly #user: Signal<IUser | null> = toSignal(this.#driveFacadeService.user$, { initialValue: null });
   protected uploadUrl: string = env.uploadUrl;
 
   public ngOnInit(): void {
@@ -50,7 +50,7 @@ export class DriveComponent implements OnInit {
         file: files[0],
         uid: this.#user()!.uid,
         parentId: this.parentId(),
-      });
+      } satisfies FileUploadPayload);
   }
 
   public addFolder(): void {

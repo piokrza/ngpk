@@ -2,9 +2,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'org-details-box',
-  styleUrl: './details-box.component.scss',
   template: `
-    <div class="gap-2 box">
+    <div class="flex align-items-center gap-2">
       <i [class]="'mr-1 pi pi-' + iconName"></i>
       <span>{{ detail }}</span>
     </div>

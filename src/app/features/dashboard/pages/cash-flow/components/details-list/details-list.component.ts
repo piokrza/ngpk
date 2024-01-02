@@ -18,8 +18,8 @@ export class DetailsListComponent {
   @Output() cashFlowToRemoveId = new EventEmitter<string>();
   @Output() cashFlowToUpdate = new EventEmitter<CashFlow>();
 
-  public readonly maxItemsPerPage = env.maxItemPerPage; //TODO: add pagination
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly maxItemsPerPage = env.maxItemPerPage; //TODO: add pagination
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public removeCashFlow(cashFlowId: string): void {
     this.cashFlowToRemoveId.emit(cashFlowId);

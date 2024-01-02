@@ -7,11 +7,15 @@ export const userAuthenticated = createAction(ActionTypes.USER_AUTHENTICATED, pr
 export const userNotAuthenticated = createAction(ActionTypes.USER_NOT_AUTHENTICATED);
 
 export const signInWithGoogle = createAction(ActionTypes.SIGN_IN_WITH_GOOGLE);
+export const signInWithGoogleSuccess = createAction(ActionTypes.SIGN_IN_WITH_GOOGLE_SUCCESS, props<{ user: Partial<IUser> }>());
 
 export const signOut = createAction(ActionTypes.SIGN_OUT);
 
 export const signInWithEmailAndPassword = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD, props<{ payload: AuthFormPayload }>());
-export const signInWithEmailAndPasswordSuccess = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_SUCCESS);
+export const signInWithEmailAndPasswordSuccess = createAction(
+  ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_SUCCESS,
+  props<{ user: Partial<IUser> }>()
+);
 export const signInWithEmailAndPasswordFailure = createAction(
   ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_FAILURE,
   props<{ errorMessage: string }>()

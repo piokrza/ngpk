@@ -15,9 +15,9 @@ export class NoteComponent {
 
   @Output() public removeNote = new EventEmitter<string>();
 
-  public isTaskContentVisible = false;
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly DateFormats: typeof DateFormats = DateFormats;
+  isTaskContentVisible = false;
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly DateFormats: typeof DateFormats = DateFormats;
 
   public toggleNoteVisibility(): void {
     this.isTaskContentVisible = !this.isTaskContentVisible;

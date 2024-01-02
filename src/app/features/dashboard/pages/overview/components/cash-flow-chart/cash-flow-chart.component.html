@@ -1,5 +1,5 @@
 <org-container styleClass="px-0" class="h-full">
-  <h1 class="mt-0">{{ 'menu.cashFlow' | translate }} (PLN)</h1>
+  <h1 class="mt-0">{{ 'menu.cashFlow' | translate }} ({{ currency$ | async }})</h1>
 
   <div class="card flex justify-content-center">
     @if (chartDataset) {

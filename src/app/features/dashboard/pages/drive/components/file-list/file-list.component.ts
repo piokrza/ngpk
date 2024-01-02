@@ -14,16 +14,16 @@ import { DriveFacadeService } from '#drive/services';
 })
 export class FileListComponent {
   protected location: Location = inject(Location);
-  private readonly driveFacadeService: DriveFacadeService = inject(DriveFacadeService);
+  readonly #driveFacadeService: DriveFacadeService = inject(DriveFacadeService);
 
-  public readonly files$: Observable<IFile[]> = this.driveFacadeService.files$;
-  public readonly isLoading$: Observable<boolean> = this.driveFacadeService.isLoading$;
-  public readonly parentFile$: Observable<IFile | undefined> = this.driveFacadeService.parentFile$;
+  readonly files$: Observable<IFile[]> = this.#driveFacadeService.files$;
+  readonly isLoading$: Observable<boolean> = this.#driveFacadeService.isLoading$;
+  readonly parentFile$: Observable<IFile | undefined> = this.#driveFacadeService.parentFile$;
 
-  public readonly nameLimit = 12;
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly nameLimit = 12;
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public fileClick(file: IFile): void {
-    this.driveFacadeService.fileClick(file);
+    this.#driveFacadeService.fileClick(file);
   }
 }

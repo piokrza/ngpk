@@ -17,14 +17,13 @@ import { TaskerService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormComponent {
-  private readonly taskerService: TaskerService = inject(TaskerService);
-  private readonly firestore: AngularFirestore = inject(AngularFirestore);
+  readonly #taskerService: TaskerService = inject(TaskerService);
+  readonly #firestore: AngularFirestore = inject(AngularFirestore);
+  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
-  private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly form: FormGroup<TaskForm> = this.taskerService.taskForm;
-  public readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly form: FormGroup<TaskForm> = this.#taskerService.taskForm;
+  readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
   private readonly user: Signal<IUser | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
 
@@ -36,12 +35,12 @@ export class TaskFormComponent {
 
     const newTask: Task = {
       ...this.form.getRawValue(),
-      id: this.firestore.createId(),
+      id: this.#firestore.createId(),
       uid: this.user()?.uid ?? '',
-      steps: [...this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.firestore.createId() }))],
+      steps: [...this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.#firestore.createId() }))],
     };
 
-    this.dialogRef.close(newTask);
+    this.#dialogRef.close(newTask);
   }
 
   public addStep(): void {

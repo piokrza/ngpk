@@ -15,13 +15,13 @@ import { AuthActions, AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {
-  private readonly store: Store = inject(Store);
+  readonly #store: Store = inject(Store);
 
-  public readonly form: FormGroup<RegisterForm> = inject(AuthFormService).registerForm;
-  public readonly AuthPaths: typeof AuthPaths = AuthPaths;
-  public readonly errorMessage$: Observable<string | null> = this.store.select(AuthSelectors.errorMessage).pipe(
+  readonly form: FormGroup<RegisterForm> = inject(AuthFormService).registerForm;
+  readonly AuthPaths: typeof AuthPaths = AuthPaths;
+  readonly errorMessage$: Observable<string | null> = this.#store.select(AuthSelectors.errorMessage).pipe(
     tap((errorMessage) => {
-      typeof errorMessage === 'string' && setTimeout(() => this.store.dispatch(AuthActions.resetErrorMessage()), 4000);
+      typeof errorMessage === 'string' && setTimeout(() => this.#store.dispatch(AuthActions.resetErrorMessage()), 4000);
     })
   );
 
@@ -33,7 +33,7 @@ export class RegisterFormComponent {
 
     const { email, password } = this.form.getRawValue();
 
-    this.store.dispatch(AuthActions.signUpWithEmailAndPassword({ payload: { email, password } }));
+    this.#store.dispatch(AuthActions.signUpWithEmailAndPassword({ payload: { email, password } }));
     this.form.reset();
   }
 }
