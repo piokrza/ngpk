@@ -2,15 +2,16 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { ChartData } from 'chart.js';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, combineLatest, filter, map, tap } from 'rxjs';
+import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { CashFlow, Category } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
 import { AppPaths, DashobardPaths } from '#common/enums';
 import { LabeledData } from '#common/models';
 import { getRandomNumber } from '#common/utils';
-import { ChartConfig, TaskerData } from '#overview/models';
+import { ChartColor, TaskerData } from '#overview/models';
 import { AuthSelectors } from '#store/auth';
 import { CashFlowSelectors } from '#store/cash-flow';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
@@ -46,33 +47,18 @@ export class OverviewService {
     );
   }
 
-  public get cashFlowChartData$(): Observable<ChartConfig | undefined> {
+  public get incomesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
       incomes: this.#store.select(CashFlowSelectors.incomes),
+      categories: this.#store.select(AuthSelectors.categories),
+    }).pipe(map(({ incomes, categories }) => this.generateCashFlowChartData(incomes, categories.incomes, 'green')));
+  }
+
+  public get expensesChartData$(): Observable<ChartData | undefined> {
+    return combineLatest({
       expenses: this.#store.select(CashFlowSelectors.expenses),
-      userCategories: this.#store.select(AuthSelectors.user).pipe(
-        filter(Boolean),
-        map(({ config }) => config.categories)
-      ),
-    }).pipe(
-      map(({ incomes, expenses, userCategories }): ChartConfig | undefined => {
-        if (![...incomes, ...expenses].length) return undefined;
-
-        const backgroundColor: string[] = [];
-        const hoverBackgroundColor: string[] = [];
-
-        const labels: string[] = [...userCategories.incomes, ...userCategories.expenses].map(({ name }: Category) => name);
-        const data: number[] = [
-          ...this.calculateCashflow(incomes, userCategories.incomes, backgroundColor, hoverBackgroundColor, 'green'),
-          ...this.calculateCashflow(expenses, userCategories.expenses, backgroundColor, hoverBackgroundColor, 'pink'),
-        ];
-
-        return {
-          data: { labels, datasets: [{ data, backgroundColor, hoverBackgroundColor }] },
-          options: { plugins: { legend: { display: false } } },
-        };
-      })
-    );
+      categories: this.#store.select(AuthSelectors.categories),
+    }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories.expenses, 'pink')));
   }
 
   public get taskerData$(): Observable<TaskerData> {
@@ -119,22 +105,36 @@ export class OverviewService {
     }).pipe(map(({ incomesLength, expensesLength }): number => incomesLength + expensesLength));
   }
 
-  private calculateCashflow(
+  private generateCashFlowChartData(
     cashFlowList: CashFlow[],
-    userCategories: Category[],
-    backgroundColors: string[],
-    hoverBackgroundColors: string[],
-    color: 'green' | 'pink'
-  ): number[] {
-    const getClr = (clr: string) => getComputedStyle(document.documentElement).getPropertyValue(clr);
+    categories: Category[],
+    chartColorPalette: ChartColor
+  ): ChartData | undefined {
+    if (!cashFlowList.length) return undefined;
 
-    return userCategories.map((category: Category) => {
+    const data: number[] = this.calculateCashflow(cashFlowList, categories);
+    const { backgroundColor, hoverBackgroundColor } = this.generateBgColors(data.length, chartColorPalette);
+
+    return {
+      labels: categories.map(({ name }: Category) => name),
+      datasets: [{ data, backgroundColor, hoverBackgroundColor }],
+    };
+  }
+
+  private generateBgColors(amountOfColors: number, color: ChartColor) {
+    const getClr = (clr: string) => getComputedStyle(document.documentElement).getPropertyValue(clr);
+    const colorScale: number = getRandomNumber(4, 9);
+
+    return {
+      backgroundColor: Array.from({ length: amountOfColors }, () => getClr(`--${color}-${colorScale}00`)),
+      hoverBackgroundColor: Array.from({ length: amountOfColors }, () => getClr(`--${color}-${colorScale - 2}00`)),
+    };
+  }
+
+  private calculateCashflow(cashFlowList: CashFlow[], categories: Category[]): number[] {
+    return categories.map((category: Category) => {
       return cashFlowList.reduce((total: number, cashFlow: CashFlow) => {
         if (cashFlow.categoryId === category.id) {
-          const colorScale: number = getRandomNumber(4, 9);
-          backgroundColors.push(getClr(`--${color}-${colorScale}00`));
-          hoverBackgroundColors.push(getClr(`--${color}-${colorScale - 2}00`));
-
           return total + cashFlow.amount;
         }
 

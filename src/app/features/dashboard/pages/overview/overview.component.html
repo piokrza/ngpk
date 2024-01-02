@@ -3,8 +3,9 @@
 } @else {
   <org-cash-flow-cards [cashFlowDataset]="cashFlowDataset$ | async" (navigate)="navigateTo($event)" />
 
-  <div class="charts">
-    <org-cash-flow-chart [chartDataset]="cashFlowChartData$ | async" />
+  <div class="panels">
+    <org-cash-flow-chart [title]="'cashFlow.incomes' | translate" [chartDataset]="incomesChartData$ | async" />
+    <org-cash-flow-chart [title]="'cashFlow.expenses' | translate" [chartDataset]="expensesChartData$ | async" />
     <org-tasker-panel [taskerData]="taskerData$ | async" (quickNote)="quickNote()" />
   </div>
 }

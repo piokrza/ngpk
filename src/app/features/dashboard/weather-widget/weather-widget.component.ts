@@ -8,7 +8,7 @@ import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { isWidgetOpen } from '#common/constants';
 import { Nullable } from '#common/models';
@@ -58,7 +58,14 @@ export class WeatherWidgetComponent implements OnInit {
   }
 
   public loadWeatherDataByCityName(cityName: string): void {
-    cityName.length && this.#weatherFacadeService.loadWeatherDataByCityName$(cityName).pipe(untilDestroyed(this)).subscribe();
+    cityName.length &&
+      this.#weatherFacadeService
+        .loadWeatherDataByCityName$(cityName)
+        .pipe(
+          tap(() => this.searchCityNameControl.reset()),
+          untilDestroyed(this)
+        )
+        .subscribe();
   }
 
   public loadWeatherData(): void {

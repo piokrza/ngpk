@@ -1,9 +1,9 @@
 <org-container styleClass="px-0" class="h-full">
-  <h1 class="mt-0">{{ 'menu.cashFlow' | translate }} ({{ currency$ | async }})</h1>
+  <h1 class="mt-0">{{ title }} ({{ currency$ | async }})</h1>
 
   <div class="card flex justify-content-center">
     @if (chartDataset) {
-      <p-chart [data]="chartDataset.data" [options]="chartDataset.options" [responsive]="true" type="pie" />
+      <p-chart [data]="chartDataset" [options]="chartOptions" [responsive]="true" type="pie" />
     } @else {
       <p>{{ 'overview.noData' | translate }}</p>
     }

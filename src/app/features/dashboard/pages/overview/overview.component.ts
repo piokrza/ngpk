@@ -2,6 +2,8 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Provider, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TranslateModule } from '@ngx-translate/core';
+import { ChartData } from 'chart.js';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Observable } from 'rxjs';
 
@@ -9,10 +11,10 @@ import { CashFlowService } from '#cash-flow/services';
 import { AppPaths, DashobardPaths } from '#common/enums';
 import { LabeledData } from '#common/models';
 import { CashFlowCardsComponent, CashFlowChartComponent, TaskerPanelComponent } from '#overview/components';
-import { ChartConfig, TaskerData } from '#overview/models';
+import { TaskerData } from '#overview/models';
 import { OverviewService } from '#overview/services';
 
-const imports = [ProgressSpinnerModule, AsyncPipe, TaskerPanelComponent, CashFlowChartComponent, CashFlowCardsComponent];
+const imports = [ProgressSpinnerModule, AsyncPipe, TaskerPanelComponent, CashFlowChartComponent, CashFlowCardsComponent, TranslateModule];
 const providers: Provider[] = [OverviewService];
 
 @UntilDestroy()
@@ -31,9 +33,11 @@ export default class OverviewComponent {
   readonly #cashFlowService: CashFlowService = inject(CashFlowService);
 
   readonly taskerData$: Observable<TaskerData> = this.#overviewService.taskerData$;
-  readonly cashFlowChartData$: Observable<ChartConfig | undefined> = this.#overviewService.cashFlowChartData$;
   readonly isLoading$: Observable<boolean> = this.#overviewService.isLoading$;
   readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.#overviewService.cashFlowData$;
+
+  readonly incomesChartData$: Observable<ChartData | undefined> = this.#overviewService.incomesChartData$;
+  readonly expensesChartData$: Observable<ChartData | undefined> = this.#overviewService.expensesChartData$;
 
   public quickNote(): void {
     this.#overviewService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
