@@ -5,14 +5,14 @@ import { Feature } from '#common/models';
 
 @Directive({ selector: '[featureEnabled]', standalone: true })
 export class FeatureFlagDirective {
-  private readonly viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
-  private readonly templateRef: TemplateRef<unknown> = inject(TemplateRef<unknown>);
+  readonly #viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
+  readonly #templateRef: TemplateRef<unknown> = inject(TemplateRef<unknown>);
 
   @Input({ required: true }) set featureEnabled(featureName: Feature) {
     if (environment.featureFlags[featureName]) {
-      this.viewContainerRef.createEmbeddedView(this.templateRef);
+      this.#viewContainerRef.createEmbeddedView(this.#templateRef);
     } else {
-      this.viewContainerRef.clear();
+      this.#viewContainerRef.clear();
     }
   }
 }

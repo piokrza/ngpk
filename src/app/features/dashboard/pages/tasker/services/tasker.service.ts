@@ -8,7 +8,7 @@ import { NoteForm, StepForm, TaskFilter, TaskForm } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class TaskerService {
-  private readonly translate: TranslateService = inject(TranslateService);
+  readonly #translate: TranslateService = inject(TranslateService);
 
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
@@ -39,7 +39,7 @@ export class TaskerService {
     const filters: TaskFilter[] = ['all', 'completed', 'notCompleted'];
 
     return filters.map((name) => ({
-      label: this.translate.instant(`tasker.filter.${name}`),
+      label: this.#translate.instant(`tasker.filter.${name}`),
       data: name,
     }));
   }

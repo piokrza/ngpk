@@ -1,14 +1,11 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { CashFlowForm } from '#cash-flow/models';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowService {
-  protected readonly store: Store = inject(Store);
-
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
   public get activeTabIndex$(): Observable<number> {

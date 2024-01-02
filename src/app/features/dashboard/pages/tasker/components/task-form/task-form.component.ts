@@ -1,16 +1,17 @@
-import { ChangeDetectionStrategy, Component, Signal, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { filter } from 'rxjs';
 
-import { IUser } from '#auth/models';
 import { AuthSelectors } from '#store/auth';
 import { StepForm, Task, TaskForm } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
 
+@UntilDestroy()
 @Component({
   selector: 'org-task-form',
   templateUrl: './task-form.component.html',
@@ -25,7 +26,14 @@ export class TaskFormComponent {
   readonly form: FormGroup<TaskForm> = this.#taskerService.taskForm;
   readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
-  private readonly user: Signal<IUser | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
+  #userId: string = '';
+
+  public constructor() {
+    inject(Store)
+      .select(AuthSelectors.user)
+      .pipe(filter(Boolean), untilDestroyed(this))
+      .subscribe({ next: ({ uid }) => (this.#userId = uid) });
+  }
 
   public onSubmit(): void {
     if (this.form.invalid) {
@@ -33,14 +41,12 @@ export class TaskFormComponent {
       return;
     }
 
-    const newTask: Task = {
+    this.#dialogRef.close({
       ...this.form.getRawValue(),
       id: this.#firestore.createId(),
-      uid: this.user()?.uid ?? '',
+      uid: this.#userId,
       steps: [...this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.#firestore.createId() }))],
-    };
-
-    this.#dialogRef.close(newTask);
+    } satisfies Task);
   }
 
   public addStep(): void {

@@ -40,29 +40,29 @@ const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherS
   imports,
 })
 export class WeatherWidgetComponent implements OnInit {
-  private readonly weatherFacadeService: WeatherFacadeService = inject(WeatherFacadeService);
+  readonly #weatherFacadeService: WeatherFacadeService = inject(WeatherFacadeService);
 
-  public readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.weatherFacadeService.weatherData$);
-  public readonly isLoading$: Observable<boolean> = this.weatherFacadeService.isLoading$;
-  public readonly errorMessage$: Observable<string | null> = this.weatherFacadeService.errorMessage$;
+  readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.#weatherFacadeService.weatherData$);
+  readonly isLoading$: Observable<boolean> = this.#weatherFacadeService.isLoading$;
+  readonly errorMessage$: Observable<string | null> = this.#weatherFacadeService.errorMessage$;
 
-  public isOpen: WritableSignal<boolean> = signal(false);
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
+  isOpen: WritableSignal<boolean> = signal(false);
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
   public ngOnInit(): void {
-    this.weatherFacadeService.checkWeatherData();
-    this.weatherFacadeService.checkGeolocation();
+    this.#weatherFacadeService.checkWeatherData();
+    this.#weatherFacadeService.checkGeolocation();
 
     this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? false.toString()));
   }
 
   public loadWeatherDataByCityName(cityName: string): void {
-    cityName.length && this.weatherFacadeService.loadWeatherDataByCityName$(cityName).pipe(untilDestroyed(this)).subscribe();
+    cityName.length && this.#weatherFacadeService.loadWeatherDataByCityName$(cityName).pipe(untilDestroyed(this)).subscribe();
   }
 
   public loadWeatherData(): void {
-    this.weatherFacadeService.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
+    this.#weatherFacadeService.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public toggleDetails(): void {

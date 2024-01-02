@@ -11,17 +11,17 @@ import { FADE_IN } from '#common/constants';
   animations: [FADE_IN],
 })
 export class MobileMenuComponent {
-  private readonly elRef: ElementRef = inject(ElementRef);
+  readonly #elRef: ElementRef = inject(ElementRef);
 
   @Input() menuItems!: MenuItem[];
 
   @HostListener('document:click', ['$event.target']) onClick(target: EventTarget) {
-    if (this.isOpen() && !this.elRef.nativeElement.contains(target)) {
+    if (this.isOpen() && !this.#elRef.nativeElement.contains(target)) {
       this.isOpen.update(() => false);
     }
   }
 
-  public isOpen: WritableSignal<boolean> = signal(false);
+  isOpen: WritableSignal<boolean> = signal(false);
 
   public toggle(): void {
     this.isOpen.update((isOpen) => !isOpen);

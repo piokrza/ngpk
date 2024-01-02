@@ -7,10 +7,10 @@ import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/model
 
 @Injectable({ providedIn: 'root' })
 export class TaskerApiService {
-  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
+  readonly #angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public loadTasks$(uid: string) {
-    const tasks$: AngularFirestoreCollection<Task> = this.angularFirestore.collection<Task>(Collection.TASKS, (ref) => {
+    const tasks$: AngularFirestoreCollection<Task> = this.#angularFirestore.collection<Task>(Collection.TASKS, (ref) => {
       return ref.where('uid', '==', uid);
     });
 
@@ -18,7 +18,7 @@ export class TaskerApiService {
   }
 
   public loadNotes$(uid: string) {
-    const notes$: AngularFirestoreCollection<Note> = this.angularFirestore.collection<Note>(Collection.NOTES, (ref) => {
+    const notes$: AngularFirestoreCollection<Note> = this.#angularFirestore.collection<Note>(Collection.NOTES, (ref) => {
       return ref.where('uid', '==', uid);
     });
 
@@ -26,7 +26,7 @@ export class TaskerApiService {
   }
 
   public addTask(task: Task): Promise<DocumentReference<Task>> {
-    const tasksCollection: AngularFirestoreCollection<Task> = this.angularFirestore.collection<Task>(Collection.TASKS);
+    const tasksCollection: AngularFirestoreCollection<Task> = this.#angularFirestore.collection<Task>(Collection.TASKS);
     return tasksCollection.add(task);
   }
 
@@ -68,7 +68,7 @@ export class TaskerApiService {
   }
 
   public addNote(note: Note): Promise<DocumentReference<Note>> {
-    const notesCollection: AngularFirestoreCollection<Note> = this.angularFirestore.collection<Note>(Collection.NOTES);
+    const notesCollection: AngularFirestoreCollection<Note> = this.#angularFirestore.collection<Note>(Collection.NOTES);
     return notesCollection.add(note);
   }
 
@@ -81,10 +81,10 @@ export class TaskerApiService {
   }
 
   private getTaskRef(taskId: string): AngularFirestoreDocument<Task> {
-    return this.angularFirestore.collection(Collection.TASKS).doc(taskId);
+    return this.#angularFirestore.collection(Collection.TASKS).doc(taskId);
   }
 
   private getNoteRef(noteId: string): AngularFirestoreDocument<Note> {
-    return this.angularFirestore.collection(Collection.NOTES).doc(noteId);
+    return this.#angularFirestore.collection(Collection.NOTES).doc(noteId);
   }
 }

@@ -7,10 +7,10 @@ import { AccountSettingsForm } from '#settings/models';
 export class AccountSettingsFormService {
   get form(): FormGroup<AccountSettingsForm> {
     return new FormGroup<AccountSettingsForm>({
-      displayName: new FormControl<string | null>(null),
-      email: new FormControl<string | null>({ value: null, disabled: true }, { validators: [Validators.required] }),
-      phoneNumber: new FormControl<string | null>(null),
-      photoURL: new FormControl<string | null>(null),
+      displayName: new FormControl<string>(''),
+      email: new FormControl<string>({ value: '', disabled: true }, { validators: [Validators.required] }),
+      phoneNumber: new FormControl<string>(''),
+      photoURL: new FormControl<string>(''),
     });
   }
 }

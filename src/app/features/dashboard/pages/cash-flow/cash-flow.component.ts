@@ -13,33 +13,33 @@ import { CashFlowFacadeService } from '#cash-flow/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowComponent {
-  private readonly cashFlowFacadeService: CashFlowFacadeService = inject(CashFlowFacadeService);
+  readonly #cashFlowFacadeService: CashFlowFacadeService = inject(CashFlowFacadeService);
 
-  public readonly isLoading$: Observable<boolean> = this.cashFlowFacadeService.isLoading$;
-  public readonly incomesDataset$: Observable<CashFlowData> = this.cashFlowFacadeService.incomesDataset$;
-  public readonly expensesDataset$: Observable<CashFlowData> = this.cashFlowFacadeService.expensesDataset$;
+  readonly isLoading$: Observable<boolean> = this.#cashFlowFacadeService.isLoading$;
+  readonly incomesDataset$: Observable<CashFlowData> = this.#cashFlowFacadeService.incomesDataset$;
+  readonly expensesDataset$: Observable<CashFlowData> = this.#cashFlowFacadeService.expensesDataset$;
 
-  public readonly activeTabIndex$: Observable<number> = this.cashFlowFacadeService.activeTabIndex$;
+  readonly activeTabIndex$: Observable<number> = this.#cashFlowFacadeService.activeTabIndex$;
 
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public addCashFlow(isIncomeMode: boolean): void {
-    this.cashFlowFacadeService.openCashFlowDialog$(isIncomeMode).pipe(untilDestroyed(this)).subscribe();
+    this.#cashFlowFacadeService.openCashFlowDialog$(isIncomeMode).pipe(untilDestroyed(this)).subscribe();
   }
 
   public updateIncome(updatedIncome: CashFlow): void {
-    this.cashFlowFacadeService.updateIncome$(updatedIncome).pipe(untilDestroyed(this)).subscribe();
+    this.#cashFlowFacadeService.updateIncome$(updatedIncome).pipe(untilDestroyed(this)).subscribe();
   }
 
   public removeIncome(incomeId: string): void {
-    this.cashFlowFacadeService.removeIncome(incomeId);
+    this.#cashFlowFacadeService.removeIncome(incomeId);
   }
 
   public updateExpense(updatedExpense: CashFlow): void {
-    this.cashFlowFacadeService.updateExpense$(updatedExpense).pipe(untilDestroyed(this)).subscribe();
+    this.#cashFlowFacadeService.updateExpense$(updatedExpense).pipe(untilDestroyed(this)).subscribe();
   }
 
   public removeExpense(expenseId: string): void {
-    this.cashFlowFacadeService.removeExpense(expenseId);
+    this.#cashFlowFacadeService.removeExpense(expenseId);
   }
 }

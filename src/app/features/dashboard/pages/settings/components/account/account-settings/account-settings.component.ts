@@ -18,15 +18,15 @@ import { AuthActions, AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsComponent implements OnInit {
-  private readonly store: Store = inject(Store);
-  private readonly dialogService: DialogService = inject(DialogService);
-  private readonly transalteService: TranslateService = inject(TranslateService);
+  readonly #store: Store = inject(Store);
+  readonly #dialogService: DialogService = inject(DialogService);
+  readonly #transalteService: TranslateService = inject(TranslateService);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   private user: IUser | null = null;
 
   public ngOnInit(): void {
-    this.store
+    this.#store
       .select(AuthSelectors.user)
       .pipe(
         tap((user: IUser | null) => (this.user = user)),
@@ -36,8 +36,8 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   public openAccountSettingsDialog(): void {
-    const dialogRef: DynamicDialogRef = this.dialogService.open(AccountSettingsFormComponent, {
-      header: this.transalteService.instant('settings.accountForm.title'),
+    const dialogRef: DynamicDialogRef = this.#dialogService.open(AccountSettingsFormComponent, {
+      header: this.#transalteService.instant('settings.accountForm.title'),
       style: BaseDialogStyles,
       data: this.user,
     });
@@ -46,7 +46,7 @@ export class AccountSettingsComponent implements OnInit {
       .pipe(
         tap((updatedUserData?: IUser): void => {
           updatedUserData &&
-            this.store.dispatch(AuthActions.updateAccount({ updatedUserData: { ...updatedUserData, config: this.user!.config } }));
+            this.#store.dispatch(AuthActions.updateAccount({ updatedUserData: { ...updatedUserData, config: this.user!.config } }));
         }),
         untilDestroyed(this)
       )

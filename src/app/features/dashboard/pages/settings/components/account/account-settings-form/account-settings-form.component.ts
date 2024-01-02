@@ -13,32 +13,31 @@ import { AccountSettingsFormService } from '#settings/services/account-settings-
   providers: [AccountSettingsFormService],
 })
 export class AccountSettingsFormComponent implements OnInit {
-  private readonly dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
-  private readonly userData: IUser = inject(DynamicDialogConfig).data;
-  public readonly form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).form;
+  readonly #userData: IUser = inject(DynamicDialogConfig).data;
+  readonly form: FormGroup<AccountSettingsForm> = inject(AccountSettingsFormService).form;
 
-  public readonly trPath: string = 'settings.accountForm.';
+  readonly trPath: string = 'settings.accountForm.';
 
   public ngOnInit(): void {
-    this.userData && this.patchAccountFormValues();
-  }
-
-  private patchAccountFormValues(): void {
-    const { displayName, email, phoneNumber, photoURL } = this.userData;
-
-    this.form.patchValue({ displayName, email, phoneNumber, photoURL });
+    this.form.patchValue({
+      email: this.#userData.email,
+      photoURL: this.#userData.photoURL,
+      displayName: this.#userData.displayName,
+      phoneNumber: this.#userData.phoneNumber,
+    });
   }
 
   public onSubmit(): void {
     const controls: AccountSettingsForm = this.form.controls;
 
-    this.dialogRef.close({
+    this.#dialogRef.close({
       displayName: controls.displayName.value,
       email: controls.email.value,
       phoneNumber: controls.phoneNumber.value,
       photoURL: controls.photoURL.value,
-      uid: this.userData.uid,
+      uid: this.#userData.uid,
     });
   }
 }
