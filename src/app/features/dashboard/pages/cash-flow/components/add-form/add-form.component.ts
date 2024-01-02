@@ -5,10 +5,9 @@ import { FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, filter, map, tap } from 'rxjs';
+import { filter } from 'rxjs';
 
 import { IUser } from '#auth/models';
-import { AuthApiService } from '#auth/services';
 import { CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
 import { AuthSelectors } from '#store/auth';
@@ -21,7 +20,6 @@ import { AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddFormComponent {
-  readonly #store: Store = inject(Store);
   readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
   readonly #firestore: AngularFirestore = inject(AngularFirestore);
   readonly #cashFlowService: CashFlowService = inject(CashFlowService);
@@ -32,16 +30,21 @@ export class AddFormComponent {
   #userId!: string;
   readonly #isIncomeMode: boolean = inject(DynamicDialogConfig).data;
 
-  public readonly categories$: Observable<Category[]> = this.getCategories$();
+  currency: string = '';
+  categories: Category[] = [];
 
   public constructor() {
-    inject(AuthApiService)
-      .authState$.pipe(
-        filter(Boolean),
-        tap((user) => (this.#userId = user.uid)),
-        untilDestroyed(this)
-      )
-      .subscribe();
+    inject(Store)
+      .select(AuthSelectors.user)
+      .pipe(filter(Boolean), untilDestroyed(this))
+      .subscribe({
+        next: ({ uid, config }: IUser) => {
+          this.#userId = uid;
+          this.currency = config.currency;
+          const { incomes, expenses } = config.categories;
+          this.categories = this.#isIncomeMode ? incomes : expenses;
+        },
+      });
   }
 
   public onSubmit(): void {
@@ -60,21 +63,11 @@ export class AddFormComponent {
     this.form.reset();
   }
 
-  get formControls(): CashFlowForm {
+  public get formControls(): CashFlowForm {
     return this.form.controls;
   }
 
-  get modeLabel(): string {
+  public get modeLabel(): string {
     return `${this.trPath}${this.#isIncomeMode ? 'income' : 'expense'}Name`;
-  }
-
-  private getCategories$(): Observable<Category[]> {
-    return this.#store.select(AuthSelectors.user).pipe(
-      filter(Boolean),
-      map((user: IUser) => {
-        const { incomes, expenses } = user.config.categories;
-        return this.#isIncomeMode ? incomes : expenses;
-      })
-    );
   }
 }

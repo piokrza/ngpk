@@ -12,17 +12,17 @@ export const signInWithGoogleSuccess = createAction(ActionTypes.SIGN_IN_WITH_GOO
 export const signOut = createAction(ActionTypes.SIGN_OUT);
 
 export const signInWithEmailAndPassword = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD, props<{ payload: AuthFormPayload }>());
-export const signInWithEmailAndPasswordSuccess = createAction(
-  ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_SUCCESS,
-  props<{ user: Partial<IUser> }>()
-);
+export const signInWithEmailAndPasswordSuccess = createAction(ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_SUCCESS);
 export const signInWithEmailAndPasswordFailure = createAction(
   ActionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_FAILURE,
   props<{ errorMessage: string }>()
 );
 
 export const signUpWithEmailAndPassword = createAction(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD, props<{ payload: AuthFormPayload }>());
-export const signUpWithEmailAndPasswordSuccess = createAction(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD_SUCCESS);
+export const signUpWithEmailAndPasswordSuccess = createAction(
+  ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD_SUCCESS,
+  props<{ user: Partial<IUser> }>()
+);
 export const signUpWithEmailAndPasswordFailure = createAction(
   ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD_FAILURE,
   props<{ errorMessage: string }>()

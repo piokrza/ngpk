@@ -13,10 +13,10 @@
         id="amount"
         mode="currency"
         inputId="currency-poland"
-        currency="PLN" />
+        [currency]="currency" />
     </span>
 
-    @if (categories$ | async; as categories) {
+    @if (categories.length) {
       <p-dropdown
         [formControl]="formControls.categoryId"
         [options]="categories"

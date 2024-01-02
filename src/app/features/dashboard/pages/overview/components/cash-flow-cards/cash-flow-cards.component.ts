@@ -1,13 +1,16 @@
-import { DecimalPipe, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AsyncPipe, DecimalPipe, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { CardModule } from 'primeng/card';
+import { Observable, filter, map } from 'rxjs';
 
 import { LabeledData } from '#common/models';
 import { ContainerComponent } from '#shared/components';
+import { AuthSelectors } from '#store/auth';
 
-const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent];
+const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent, AsyncPipe];
 
 @Component({
   selector: 'org-cash-flow-cards',
@@ -21,4 +24,11 @@ export class CashFlowCardsComponent {
   @Input({ required: true }) cashFlowDataset: LabeledData<number>[] | null = null;
 
   @Output() navigate = new EventEmitter<string>();
+
+  readonly currency$: Observable<string> = inject(Store)
+    .select(AuthSelectors.user)
+    .pipe(
+      filter(Boolean),
+      map(({ config }) => config.currency)
+    );
 }

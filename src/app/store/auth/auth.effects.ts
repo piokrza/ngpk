@@ -59,7 +59,7 @@ export class AuthEffects {
       exhaustMap(({ payload }) => {
         return from(this.authApiService.signInWithEmailAndPassword(payload)).pipe(
           tap(() => void this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
-          map(({ user }) => AuthActions.signInWithEmailAndPasswordSuccess({ user: this.userService.getIUserModel(user!) })),
+          map(() => AuthActions.signInWithEmailAndPasswordSuccess()),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message }));
           })
@@ -68,22 +68,12 @@ export class AuthEffects {
     );
   });
 
-  public signInWithEmailAndPasswordSuccess$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthActions.signInWithEmailAndPasswordSuccess),
-        exhaustMap(({ user }) => (user ? this.userService.addUserToDatabase$(user) : EMPTY))
-      );
-    },
-    { dispatch: false }
-  );
-
   public signUpWithEmailAndPassword$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
       exhaustMap(({ payload }) => {
         return from(this.authApiService.signUpWithEmailAndPassword(payload)).pipe(
-          map(() => AuthActions.signUpWithEmailAndPasswordSuccess()),
+          map(({ user }) => AuthActions.signUpWithEmailAndPasswordSuccess({ user: this.userService.getIUserModel(user!) })),
           tap(() => void this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message }));
@@ -92,6 +82,16 @@ export class AuthEffects {
       })
     );
   });
+
+  public signUpWithEmailAndPasswordSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthActions.signUpWithEmailAndPasswordSuccess),
+        exhaustMap(({ user }) => (user ? this.userService.addUserToDatabase$(user) : EMPTY))
+      );
+    },
+    { dispatch: false }
+  );
 
   public loadUserData$ = createEffect(() => {
     return this.actions$.pipe(
