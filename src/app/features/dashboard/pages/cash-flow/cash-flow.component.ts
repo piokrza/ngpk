@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { PrimeIcons } from 'primeng/api';
 import { Observable } from 'rxjs';
+
+import { PrimeIcons } from 'primeng/api';
 
 import { CashFlow, CashFlowData } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';

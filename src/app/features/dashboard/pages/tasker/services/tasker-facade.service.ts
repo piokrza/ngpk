@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable, combineLatest, map, tap } from 'rxjs';
+
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { BaseDialogStyles } from '#common/constants';
 import { LabeledData } from '#common/models';
@@ -70,14 +71,14 @@ export class TaskerFacadeService {
 
   public editTask$(task: Task): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.#dialogService.open(TaskFormComponent, {
-      header: this.tr('editTask'),
+      header: `${this.tr('editTask')}: ${task.name}`,
       style: BaseDialogStyles,
       data: task,
     });
 
     return dialogRef.onClose.pipe(
       tap((editedTask?: Task) => {
-        if (editedTask) this.#store.dispatch(TaskerActions.editTask({ editedTask }));
+        editedTask && this.#store.dispatch(TaskerActions.editTask({ editedTask }));
       })
     );
   }

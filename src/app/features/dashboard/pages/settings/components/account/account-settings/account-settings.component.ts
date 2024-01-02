@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { tap } from 'rxjs';
+
 import { PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { tap } from 'rxjs';
 
 import { IUser } from '#auth/models';
 import { BaseDialogStyles } from '#common/constants';

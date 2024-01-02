@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ChartData } from 'chart.js';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, combineLatest, map, tap } from 'rxjs';
+
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { CashFlow, Category } from '#cash-flow/models';
 import { BaseDialogStyles } from '#common/constants';
@@ -134,14 +135,19 @@ export class OverviewService {
   }
 
   private generateBgColors(amountOfColors: number, color: ChartColor) {
-    const colorScale = getRandomNumber(4, 9);
     const getClr = (clr: string): string => {
       return getComputedStyle(document.documentElement).getPropertyValue(clr);
     };
 
     return {
-      backgroundColor: Array.from({ length: amountOfColors }, () => getClr(`--${color}-${colorScale}00`)),
-      hoverBackgroundColor: Array.from({ length: amountOfColors }, () => getClr(`--${color}-${colorScale - 2}00`)),
+      backgroundColor: Array.from({ length: amountOfColors }, () => {
+        const colorScale = getRandomNumber(4, 9); //TODO: set icon and color for category (add edit category)
+        return getClr(`--${color}-${colorScale}00`);
+      }),
+      hoverBackgroundColor: Array.from({ length: amountOfColors }, () => {
+        const colorScale = getRandomNumber(4, 9);
+        return getClr(`--${color}-${colorScale - 2}00`);
+      }),
     };
   }
 }

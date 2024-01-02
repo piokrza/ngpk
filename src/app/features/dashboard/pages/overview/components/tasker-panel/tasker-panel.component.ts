@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 

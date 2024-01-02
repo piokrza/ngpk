@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { MenuItem } from 'primeng/api';
 import { Observable } from 'rxjs';
+
+import { MenuItem } from 'primeng/api';
 
 import { IUser } from '#auth/models';
 import { MenuService } from '#common/services';

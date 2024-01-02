@@ -29,8 +29,15 @@
           "error",
           {
             "alphabetize": { "order": "asc", "caseInsensitive": true },
-            "groups": [["builtin", "sibling", "parent", "index", "external"], ["internal"]],
-            "newlines-between": "always"
+            "groups": [["external", "builtin", "sibling", "parent", "index"], ["internal"]],
+            "newlines-between": "always",
+            "pathGroups": [
+              {
+                "pattern": "primeng/**",
+                "group": "internal"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": ["internal"]
           }
         ]
       }

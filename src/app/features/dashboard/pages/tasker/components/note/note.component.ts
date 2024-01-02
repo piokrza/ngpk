@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { PrimeIcons } from 'primeng/api';
 
 import { DateFormats } from '#common/enums';

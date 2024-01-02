@@ -3,10 +3,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { PrimeIcons } from 'primeng/api';
-import { FileUploadEvent } from 'primeng/fileupload';
 import { Observable, tap } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
+
+import { PrimeIcons } from 'primeng/api';
+import { FileUploadEvent } from 'primeng/fileupload';
 
 import { IUser } from '#auth/models';
 import { FileUploadPayload } from '#drive/models';

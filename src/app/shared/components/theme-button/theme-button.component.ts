@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { PrimeIcons } from 'primeng/api';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 

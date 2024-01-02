@@ -3,9 +3,10 @@ import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChartData, ChartOptions } from 'chart.js';
+import { Observable, filter, map } from 'rxjs';
+
 import { ChartModule } from 'primeng/chart';
 import { Nullable } from 'primeng/ts-helpers';
-import { Observable, filter, map } from 'rxjs';
 
 import { ContainerComponent } from '#shared/components';
 import { AuthSelectors } from '#store/auth';

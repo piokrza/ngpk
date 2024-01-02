@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { PrimeIcons } from 'primeng/api';
 import { environment as env } from 'src/environments/environment';
+
+import { PrimeIcons } from 'primeng/api';
 
 import { CashFlow } from '#cash-flow/models';
 

@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({

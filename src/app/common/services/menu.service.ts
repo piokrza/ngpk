@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 import { environment } from 'src/environments/environment';
+
+import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 
 import { DashobardPaths } from '#common/enums';
 import { AuthActions } from '#store/auth';

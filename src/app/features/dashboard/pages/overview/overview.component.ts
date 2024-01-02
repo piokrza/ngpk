@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChartData } from 'chart.js';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Observable } from 'rxjs';
+
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { CashFlowService } from '#cash-flow/services';
 import { AppPaths, DashobardPaths } from '#common/enums';

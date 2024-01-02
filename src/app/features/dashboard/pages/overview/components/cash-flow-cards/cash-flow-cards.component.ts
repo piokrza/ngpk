@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { CardModule } from 'primeng/card';
 import { Observable, filter, map } from 'rxjs';
+
+import { CardModule } from 'primeng/card';
 
 import { LabeledData } from '#common/models';
 import { ContainerComponent } from '#shared/components';

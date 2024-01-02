@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';

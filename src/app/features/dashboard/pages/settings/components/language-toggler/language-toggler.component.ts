@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 import { PrimeNGConfig } from 'primeng/api';
 import { SelectButtonChangeEvent, SelectButtonModule } from 'primeng/selectbutton';
 

@@ -3,9 +3,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
+import { filter } from 'rxjs';
+
 import { PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { filter } from 'rxjs';
 
 import { AuthSelectors } from '#store/auth';
 import { StepForm, Task, TaskForm, TaskStep } from '#tasker/models';
@@ -88,6 +89,7 @@ export class TaskFormComponent implements OnInit {
 
   public removeStep(stepIdx: number): void {
     this.stepsArray?.removeAt(stepIdx);
+    this.form.markAsDirty();
   }
 
   public get nameControl(): FormControl<string> {

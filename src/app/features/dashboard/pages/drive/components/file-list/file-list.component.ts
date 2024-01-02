@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { PrimeIcons } from 'primeng/api';
 import { Observable } from 'rxjs';
+
+import { PrimeIcons } from 'primeng/api';
 
 import { IFile } from '#drive/models';
 import { DriveFacadeService } from '#drive/services';

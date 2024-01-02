@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+
 import { PrimeIcons } from 'primeng/api';
 
 import { Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';

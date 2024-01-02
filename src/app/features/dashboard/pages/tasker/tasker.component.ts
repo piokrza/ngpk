@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Observable } from 'rxjs';
+
 import { PrimeIcons } from 'primeng/api';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { TabViewChangeEvent } from 'primeng/tabview';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
-import { Observable } from 'rxjs';
 
 import { LabeledData } from '#common/models';
 import { NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
