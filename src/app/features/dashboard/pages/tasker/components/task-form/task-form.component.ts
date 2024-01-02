@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -8,7 +8,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { filter } from 'rxjs';
 
 import { AuthSelectors } from '#store/auth';
-import { StepForm, Task, TaskForm } from '#tasker/models';
+import { StepForm, Task, TaskForm, TaskStep } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
 
 @UntilDestroy()
@@ -17,11 +17,14 @@ import { TaskerService } from '#tasker/services';
   templateUrl: './task-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnInit {
   readonly #taskerService: TaskerService = inject(TaskerService);
   readonly #firestore: AngularFirestore = inject(AngularFirestore);
   readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
 
+  readonly #taskData?: Task = inject(DynamicDialogConfig).data;
+
+  isEditMode: boolean = false;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly form: FormGroup<TaskForm> = this.#taskerService.taskForm;
   readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
@@ -35,9 +38,34 @@ export class TaskFormComponent {
       .subscribe({ next: ({ uid }) => (this.#userId = uid) });
   }
 
+  public ngOnInit(): void {
+    if (this.#taskData) {
+      this.isEditMode = true;
+
+      this.form.patchValue({
+        name: this.#taskData.name,
+        isComplete: this.#taskData.isComplete,
+      });
+
+      if (this.#taskData.steps.length) {
+        this.#taskData.steps.forEach(({ name, isComplete }) => this.addStep({ name, isComplete }));
+      }
+    }
+  }
+
   public onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAsDirty();
+      return;
+    }
+
+    if (this.isEditMode && this.form.dirty) {
+      this.#dialogRef.close({
+        ...this.form.getRawValue(),
+        id: this.#taskData!.id,
+        uid: this.#taskData!.uid,
+        steps: this.stepsArray.getRawValue().map((updatedStep) => ({ ...updatedStep, id: this.#firestore.createId() })),
+      } satisfies Task);
       return;
     }
 
@@ -45,15 +73,15 @@ export class TaskFormComponent {
       ...this.form.getRawValue(),
       id: this.#firestore.createId(),
       uid: this.#userId,
-      steps: [...this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.#firestore.createId() }))],
+      steps: this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.#firestore.createId() })),
     } satisfies Task);
   }
 
-  public addStep(): void {
+  public addStep(step?: Partial<TaskStep>): void {
     this.stepsArray.push(
       new FormGroup<StepForm>({
-        name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
-        isComplete: new FormControl<boolean>(false, { nonNullable: true }),
+        name: new FormControl<string>(step?.name ?? '', { validators: [Validators.required], nonNullable: true }),
+        isComplete: new FormControl<boolean>(step?.isComplete ?? false, { nonNullable: true }),
       })
     );
   }

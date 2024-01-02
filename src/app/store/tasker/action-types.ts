@@ -23,6 +23,10 @@ export enum ActionTypes {
   REMOVE_TASK_SUCCESS = '[Tasks] Remove task success',
   REMOVE_TASK_FAILURE = '[Tasks] Remove task failure',
 
+  EDIT_TASK = '[Tasks] Edit task',
+  EDIT_TASK_SUCCESS = '[Tasks] Edit task success',
+  EDIT_TASK_FAILURE = '[Tasks] Edit task failure',
+
   SET_TASK_FILTER = '[Tasks] Set task filter',
 
   ADD_NOTE = '[Notes] Add note',

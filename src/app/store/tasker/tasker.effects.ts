@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { catchError, exhaustMap, map, of, takeUntil } from 'rxjs';
+import { catchError, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
 import { ToastStatus } from '#common/enums';
 import { DbSubscriptionService, ToastService } from '#common/services';
@@ -80,6 +80,22 @@ export class TaskerEffects {
           catchError(() => {
             this.#toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('removeTaskError'));
             return of(TaskerActions.removeTaskFailure());
+          })
+        );
+      })
+    );
+  });
+
+  public editTask$ = createEffect(() => {
+    return this.#actions$.pipe(
+      ofType(TaskerActions.editTask),
+      exhaustMap(({ editedTask }) => {
+        return from(this.#taskerApiService.editTask(editedTask)).pipe(
+          map(() => TaskerActions.editTaskSuccess()),
+          tap(() => this.#toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('editTaskSuccess'))),
+          catchError(() => {
+            this.#toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('editTaskError'));
+            return of(TaskerActions.editTaskFailure());
           })
         );
       })

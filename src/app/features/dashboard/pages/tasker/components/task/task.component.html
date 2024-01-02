@@ -27,7 +27,10 @@
         [severity]="task.isComplete ? 'success' : 'danger'"
         (onClick)="toggleIsTaskComplete.emit(task.id)" />
 
-      <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TRASH" (onClick)="removeTask.emit(task.id)" severity="danger" />
+      <div class="flex align-content-center gap-3">
+        <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.FILE_EDIT" (onClick)="editTask.emit(task)" />
+        <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TRASH" (onClick)="removeTask.emit(task.id)" severity="danger" />
+      </div>
     </div>
   </div>
 </org-container>

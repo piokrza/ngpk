@@ -12,6 +12,7 @@ import { Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
 export class TaskComponent implements OnChanges {
   @Input({ required: true }) task!: Task;
 
+  @Output() editTask = new EventEmitter<Task>();
   @Output() removeTask = new EventEmitter<string>();
   @Output() toggleIsTaskComplete = new EventEmitter<string>();
   @Output() toggleIsStepComplete = new EventEmitter<ToggleIsStepCompletePayload>();

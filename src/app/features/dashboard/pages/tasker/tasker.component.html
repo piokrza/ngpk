@@ -21,9 +21,10 @@
               <li>
                 <org-task
                   [task]="task"
+                  (editTask)="editTask($event)"
+                  (removeTask)="removeTask($event)"
                   (toggleIsTaskComplete)="toggleIsTaskComplete($event)"
-                  (toggleIsStepComplete)="toggleIsStepComplete($event)"
-                  (removeTask)="removeTask($event)" />
+                  (toggleIsStepComplete)="toggleIsStepComplete($event)" />
               </li>
             }
 

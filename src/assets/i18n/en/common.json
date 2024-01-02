@@ -25,7 +25,10 @@
     "addFolderSuccess": "Folder successfully added",
     "addFolderError": "Something went wrong during saving folder in database",
     "accUpdateSuccess": "Account updated",
-    "urlCopied": "Url copied to clipboard"
+    "urlCopied": "Url copied to clipboard",
+    "editTaskSuccess": "Task updated",
+    "removeTaskError": "Something went wrong during removing task",
+    "editTaskError": "Something went wrong during task edit"
   },
 
   "common": {

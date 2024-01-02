@@ -58,12 +58,26 @@ export class TaskerFacadeService {
   public addTask$(): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.#dialogService.open(TaskFormComponent, {
       header: this.tr('addTask'),
-      style: { ...BaseDialogStyles },
+      style: BaseDialogStyles,
     });
 
     return dialogRef.onClose.pipe(
       tap((task?: Task) => {
         task && this.#store.dispatch(TaskerActions.addTask({ task }));
+      })
+    );
+  }
+
+  public editTask$(task: Task): Observable<Task | undefined> {
+    const dialogRef: DynamicDialogRef = this.#dialogService.open(TaskFormComponent, {
+      header: this.tr('editTask'),
+      style: BaseDialogStyles,
+      data: task,
+    });
+
+    return dialogRef.onClose.pipe(
+      tap((editedTask?: Task) => {
+        if (editedTask) this.#store.dispatch(TaskerActions.editTask({ editedTask }));
       })
     );
   }
@@ -92,7 +106,7 @@ export class TaskerFacadeService {
   public addNote$(): Observable<Note | undefined> {
     const dialogRef = this.#dialogService.open(NoteFormComponent, {
       header: this.tr('addNote'),
-      style: { ...BaseDialogStyles },
+      style: BaseDialogStyles,
     });
 
     return dialogRef.onClose.pipe(
@@ -132,18 +146,10 @@ export class TaskerFacadeService {
   private sortNotes(notes: Note[], filter: NoteFilter): Note[] {
     const clonedNotes: Note[] = [...(notes ?? [])];
 
-    if (filter === 'newest') {
-      return clonedNotes.sort((a, b) => {
-        const dateA = a.createDate.toDate().getTime();
-        const dateB = b.createDate.toDate().getTime();
-        return dateB - dateA;
-      });
-    } else {
-      return clonedNotes.sort((a, b) => {
-        const dateA = a.createDate.toDate().getTime();
-        const dateB = b.createDate.toDate().getTime();
-        return dateA - dateB;
-      });
-    }
+    return clonedNotes.sort((a, b) => {
+      const dateA = a.createDate.toDate().getTime();
+      const dateB = b.createDate.toDate().getTime();
+      return filter === 'newest' ? dateB - dateA : dateA - dateB;
+    });
   }
 }

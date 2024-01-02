@@ -7,7 +7,7 @@ import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 import { Observable } from 'rxjs';
 
 import { LabeledData } from '#common/models';
-import { NotesData, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
+import { NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 import { TaskerFacadeService } from '#tasker/services';
 
 @UntilDestroy()
@@ -32,6 +32,10 @@ export class TaskerComponent {
 
   public addTask(): void {
     this.#taskerFacadeService.addTask$().pipe(untilDestroyed(this)).subscribe();
+  }
+
+  public editTask(task: Task): void {
+    this.#taskerFacadeService.editTask$(task).pipe(untilDestroyed(this)).subscribe();
   }
 
   public removeTask(taskId: string): void {

@@ -31,22 +31,6 @@ export class OverviewService {
     return this.#store.select(CashFlowSelectors.isLoading);
   }
 
-  public get cashFlowData$(): Observable<LabeledData<number>[]> {
-    return combineLatest({
-      totalBalance: this.totalBalance$,
-      totalIncome: this.#store.select(CashFlowSelectors.totalIncomes),
-      totalExpense: this.#store.select(CashFlowSelectors.totalExpenses),
-      transactionAmount: this.transactionAmount$,
-    }).pipe(
-      map((data) => [
-        { label: 'totalBalance', data: data.totalBalance },
-        { label: 'totalExpense', data: data.totalExpense },
-        { label: 'totalIncome', data: data.totalIncome },
-        { label: 'transactionAmount', data: data.transactionAmount },
-      ])
-    );
-  }
-
   public get incomesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
       incomes: this.#store.select(CashFlowSelectors.incomes),
@@ -71,6 +55,22 @@ export class OverviewService {
         completedTasksLength: tasks?.filter(({ isComplete }) => isComplete).length,
         notesLength: notes?.length,
       }))
+    );
+  }
+
+  public get cashFlowData$(): Observable<LabeledData<number>[]> {
+    return combineLatest({
+      totalBalance: this.totalBalance$,
+      totalIncome: this.#store.select(CashFlowSelectors.totalIncomes),
+      totalExpense: this.#store.select(CashFlowSelectors.totalExpenses),
+      transactionAmount: this.transactionAmount$,
+    }).pipe(
+      map((data) => [
+        { label: 'totalBalance', data: data.totalBalance },
+        { label: 'totalExpense', data: data.totalExpense },
+        { label: 'totalIncome', data: data.totalIncome },
+        { label: 'transactionAmount', data: data.transactionAmount },
+      ])
     );
   }
 
@@ -121,16 +121,6 @@ export class OverviewService {
     };
   }
 
-  private generateBgColors(amountOfColors: number, color: ChartColor) {
-    const getClr = (clr: string) => getComputedStyle(document.documentElement).getPropertyValue(clr);
-    const colorScale: number = getRandomNumber(4, 9);
-
-    return {
-      backgroundColor: Array.from({ length: amountOfColors }, () => getClr(`--${color}-${colorScale}00`)),
-      hoverBackgroundColor: Array.from({ length: amountOfColors }, () => getClr(`--${color}-${colorScale - 2}00`)),
-    };
-  }
-
   private calculateCashflow(cashFlowList: CashFlow[], categories: Category[]): number[] {
     return categories.map((category: Category) => {
       return cashFlowList.reduce((total: number, cashFlow: CashFlow) => {
@@ -141,5 +131,17 @@ export class OverviewService {
         return total;
       }, 0);
     });
+  }
+
+  private generateBgColors(amountOfColors: number, color: ChartColor) {
+    const colorScale = getRandomNumber(4, 9);
+    const getClr = (clr: string): string => {
+      return getComputedStyle(document.documentElement).getPropertyValue(clr);
+    };
+
+    return {
+      backgroundColor: Array.from({ length: amountOfColors }, () => getClr(`--${color}-${colorScale}00`)),
+      hoverBackgroundColor: Array.from({ length: amountOfColors }, () => getClr(`--${color}-${colorScale - 2}00`)),
+    };
   }
 }

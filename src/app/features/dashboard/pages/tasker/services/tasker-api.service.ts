@@ -30,6 +30,11 @@ export class TaskerApiService {
     return tasksCollection.add(task);
   }
 
+  public async editTask(updatedTask: Task): Promise<void> {
+    const task: AngularFirestoreDocument<Task> = this.#angularFirestore.collection<Task>(Collection.TASKS).doc(updatedTask.id);
+    return await task.update(updatedTask);
+  }
+
   public toggleIsTaskComplete(taskId: string) {
     const taskRef: AngularFirestoreDocument<Task> = this.getTaskRef(taskId);
 
@@ -72,12 +77,12 @@ export class TaskerApiService {
     return notesCollection.add(note);
   }
 
-  public removeTask(taskId: string): Promise<void> {
-    return this.getTaskRef(taskId).delete();
+  public async removeTask(taskId: string): Promise<void> {
+    return await this.getTaskRef(taskId).delete();
   }
 
-  public removeNote(noteId: string): Promise<void> {
-    return this.getNoteRef(noteId).delete();
+  public async removeNote(noteId: string): Promise<void> {
+    return await this.getNoteRef(noteId).delete();
   }
 
   private getTaskRef(taskId: string): AngularFirestoreDocument<Task> {

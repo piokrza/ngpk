@@ -25,7 +25,10 @@
     "addFolderSuccess": "Folder poprawnie zapisany w bazie danych",
     "addFolderError": "Coś poszło nie tak przy próbie zapisu folderu",
     "accUpdateSuccess": "Konto poprawnie zaktualizowane",
-    "urlCopied": "Url zapisany do schowka"
+    "urlCopied": "Url zapisany do schowka",
+    "editTaskSuccess": "Zadanie zaktualizowane",
+    "removeTaskError": "Coś poszło nie tak podczas usuwania zadania",
+    "editTaskError": "Coś poszło nie tak podczas edycji zadania"
   },
 
   "drive": {

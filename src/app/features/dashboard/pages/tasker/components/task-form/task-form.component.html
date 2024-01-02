@@ -22,6 +22,9 @@
 
   <div class="mt-4 flex justify-content-between">
     <p-button (onClick)="addStep()" [label]="'tasker.addSteps' | translate" [icon]="PrimeIcons.PLUS" />
-    <p-button (onClick)="onSubmit()" [disabled]="form.invalid" [label]="'tasker.addTask' | translate" />
+    <p-button
+      (onClick)="onSubmit()"
+      [disabled]="form.invalid || (isEditMode && !form.dirty)"
+      [label]="'tasker.' + (isEditMode ? 'editTask' : 'addTask') | translate" />
   </div>
 </form>

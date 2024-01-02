@@ -91,7 +91,7 @@
   "tasker": {
     "title": "Tasker",
     "notes": "Notes",
-    "updateTask": "Update task",
+    "editTask": "Edit task",
     "addTask": "Add task",
     "removeMessage": "Are you sure that you want to remove this task?",
     "removeHeader": "Remove task",
