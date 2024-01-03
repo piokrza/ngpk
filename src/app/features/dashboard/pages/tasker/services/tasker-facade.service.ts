@@ -139,9 +139,14 @@ export class TaskerFacadeService {
   }
 
   private filterTasks({ tasks, filter }: TasksData) {
-    if (filter === 'completed') return { tasks: (tasks ?? []).filter(({ isComplete }) => isComplete), filter };
-    if (filter === 'notCompleted') return { tasks: (tasks ?? []).filter(({ isComplete }) => !isComplete), filter };
-    return { tasks, filter };
+    if (filter === 'all') {
+      return { tasks, filter };
+    } else {
+      return {
+        tasks: tasks.filter(({ isComplete }) => (filter === 'completed' ? isComplete : !isComplete)),
+        filter,
+      };
+    }
   }
 
   private sortNotes(notes: Note[], filter: NoteFilter): Note[] {
