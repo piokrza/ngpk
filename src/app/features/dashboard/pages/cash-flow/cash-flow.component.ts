@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 
-import { CashFlow, CashFlowData } from '#cash-flow/models';
+import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
 
 @UntilDestroy()
@@ -19,6 +19,7 @@ export class CashFlowComponent {
   readonly isLoading$: Observable<boolean> = this.#cashFlowFacadeService.isLoading$;
   readonly incomesDataset$: Observable<CashFlowData> = this.#cashFlowFacadeService.incomesDataset$;
   readonly expensesDataset$: Observable<CashFlowData> = this.#cashFlowFacadeService.expensesDataset$;
+  readonly categories$: Observable<{ incomes: Category[]; expenses: Category[] }> = this.#cashFlowFacadeService.categories$;
 
   readonly activeTabIndex$: Observable<number> = this.#cashFlowFacadeService.activeTabIndex$;
 
@@ -42,5 +43,13 @@ export class CashFlowComponent {
 
   public removeExpense(expenseId: string): void {
     this.#cashFlowFacadeService.removeExpense(expenseId);
+  }
+
+  public incomesCategoryChange(categoryIds: string[]): void {
+    this.#cashFlowFacadeService.setIncomesCategoryFilter(categoryIds);
+  }
+
+  public expensesCategoryChange(categoryIds: string[]): void {
+    this.#cashFlowFacadeService.setExpensesCategoryFilter(categoryIds);
   }
 }

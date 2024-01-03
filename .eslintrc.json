@@ -21,7 +21,7 @@
         "@angular-eslint/no-inputs-metadata-property": "warn",
         "@angular-eslint/no-output-on-prefix": "warn",
         "@angular-eslint/no-input-rename": "warn",
-        "no-console": "error",
+        "no-console": ["error", { "allow": ["error"] }],
         "no-debugger": "error",
         "import/first": "error",
         "prefer-const": "error",

@@ -11,6 +11,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
@@ -48,6 +49,7 @@ const imports = [
   TabViewModule,
   TimestampPipe,
   ContainerComponent,
+  MultiSelectModule,
 ];
 const providers: Provider[] = [CashFlowFacadeService];
 

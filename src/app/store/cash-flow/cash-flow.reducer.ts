@@ -9,6 +9,8 @@ export const FeatureKey = 'cashflow';
 export interface State {
   incomes: CashFlow[];
   expenses: CashFlow[];
+  incomesFilter: string[];
+  expensesFilter: string[];
   isLoading: boolean;
 }
 
@@ -16,6 +18,8 @@ const initialState: State = {
   incomes: [],
   expenses: [],
   isLoading: false,
+  incomesFilter: [],
+  expensesFilter: [],
 };
 
 export const Reducer = createReducer(
@@ -39,7 +43,13 @@ export const Reducer = createReducer(
   on(CashFlowActions.loadIncomesFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
+  on(CashFlowActions.setIncomesFilter, (state, { categoryIds }): State => {
+    return { ...state, isLoading: false, incomesFilter: categoryIds };
+  }),
+  on(CashFlowActions.setExpensesFilter, (state, { categoryIds }): State => {
+    return { ...state, isLoading: false, expensesFilter: categoryIds };
+  }),
   on(AuthActions.signOut, (): State => {
-    return { incomes: [], expenses: [], isLoading: false };
+    return { incomes: [], expenses: [], incomesFilter: [], expensesFilter: [], isLoading: false };
   })
 );

@@ -23,15 +23,7 @@
       "updateAmount": "Edytuj kwotę",
       "update": "Aktualizuj"
     },
-    "categories": {
-      "concerts": "Koncerty",
-      "gifts": "Prezenty",
-      "salary": "Wynagrodzenie",
-      "rentalFees": "Opłaty wynajmu",
-      "travel": "Podróże",
-      "food": "Food",
-      "entertainment": "Entertainment"
-    }
+    "allCategories": "Wszystkie"
   },
 
   "overview": {

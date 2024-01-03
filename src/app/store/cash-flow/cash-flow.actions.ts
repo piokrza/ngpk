@@ -34,3 +34,6 @@ export const removeExpenseFailure = createAction(ActionTypes.REMOVE_EXPENSE_FAIL
 export const updateExpense = createAction(ActionTypes.UPDATE_EXPENSE, props<{ updatedExpense: CashFlow }>());
 export const updateExpenseSuccess = createAction(ActionTypes.UPDATE_EXPENSE_SUCCESS);
 export const updateExpenseFailure = createAction(ActionTypes.UPDATE_EXPENSE_FAILURE);
+
+export const setIncomesFilter = createAction(ActionTypes.SET_INCOMES_FILTER, props<{ categoryIds: string[] }>());
+export const setExpensesFilter = createAction(ActionTypes.SET_EXPENSES_FILTER, props<{ categoryIds: string[] }>());

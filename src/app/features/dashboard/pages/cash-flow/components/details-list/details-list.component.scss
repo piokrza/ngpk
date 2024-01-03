@@ -1,0 +1,8 @@
+.select-wrapper {
+  width: 100%;
+  max-width: 350px;
+
+  ::ng-deep .p-multiselect-label.p-placeholder {
+    color: var(--color-text);
+  }
+}
