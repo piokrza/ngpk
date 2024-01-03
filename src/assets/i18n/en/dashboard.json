@@ -23,15 +23,7 @@
       "updateAmount": "Update amount",
       "update": "Aktualizuj"
     },
-    "categories": {
-      "concerts": "Concerts",
-      "gifts": "Gifts",
-      "salary": "Salary",
-      "rentalFees": "Rental fees",
-      "travel": "Travel",
-      "food": "Food",
-      "entertainment": "Entertainment"
-    }
+    "allCategories": "All categories"
   },
 
   "overview": {

@@ -7,9 +7,10 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
-import { CashFlow, CashFlowData } from '#cash-flow/models';
+import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
 import { BaseDialogStyles } from '#common/constants';
+import { AuthSelectors } from '#store/auth';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
 @Injectable({ providedIn: 'root' })
@@ -40,6 +41,10 @@ export class CashFlowFacadeService {
 
   public get isLoading$(): Observable<boolean> {
     return this.#store.select(CashFlowSelectors.isLoading);
+  }
+
+  public get categories$(): Observable<{ incomes: Category[]; expenses: Category[] }> {
+    return this.#store.select(AuthSelectors.categories);
   }
 
   public removeIncome(incomeId: string): void {
@@ -104,5 +109,12 @@ export class CashFlowFacadeService {
         updatedExpense && this.#store.dispatch(CashFlowActions.updateExpense({ updatedExpense }));
       })
     );
+  }
+
+  public setIncomesCategoryFilter(categoryIds: string[]): void {
+    this.#store.dispatch(CashFlowActions.setIncomesFilter({ categoryIds }));
+  }
+  public setExpensesCategoryFilter(categoryIds: string[]): void {
+    this.#store.dispatch(CashFlowActions.setExpensesFilter({ categoryIds }));
   }
 }

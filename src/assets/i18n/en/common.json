@@ -36,7 +36,8 @@
     "of": "of",
     "enterText": "Enter text",
     "emptyMessage": "List is empty",
-    "name": "Name"
+    "name": "Name",
+    "categories": "Categories"
   },
 
   "drive": {

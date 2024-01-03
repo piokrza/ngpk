@@ -5,9 +5,11 @@
         [isIncomeMode]="true"
         [isLoading]="!!(isLoading$ | async)"
         [cashFlowList]="incomes.data"
+        [categories]="(categories$ | async)?.incomes ?? []"
         (addCashFlow)="addCashFlow($event)"
-        (cashFlowToRemoveId)="removeIncome($event)"
-        (cashFlowToUpdate)="updateIncome($event)"
+        (removeCashFlow)="removeIncome($event)"
+        (updateCashFlow)="updateIncome($event)"
+        (categoryChange)="incomesCategoryChange($event)"
         class="wrapper" />
     }
   </p-tabPanel>
@@ -19,9 +21,11 @@
           [isIncomeMode]="false"
           [isLoading]="!!(isLoading$ | async)"
           [cashFlowList]="expenses.data"
+          [categories]="(categories$ | async)?.expenses ?? []"
           (addCashFlow)="addCashFlow($event)"
-          (cashFlowToRemoveId)="removeExpense($event)"
-          (cashFlowToUpdate)="updateExpense($event)"
+          (removeCashFlow)="removeExpense($event)"
+          (updateCashFlow)="updateExpense($event)"
+          (categoryChange)="expensesCategoryChange($event)"
           class="wrapper" />
       }
     }

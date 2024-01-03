@@ -49,7 +49,7 @@ export class WeatherWidgetComponent implements OnInit {
   readonly isLoading$: Observable<boolean> = this.#weatherFacadeService.isLoading$;
   readonly errorMessage$: Observable<string | null> = this.#weatherFacadeService.errorMessage$;
 
-  isOpen: WritableSignal<boolean> = signal(false);
+  readonly isOpen: WritableSignal<boolean> = signal(false);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 

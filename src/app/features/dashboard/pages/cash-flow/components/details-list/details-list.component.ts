@@ -2,31 +2,32 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { environment as env } from 'src/environments/environment';
 
 import { PrimeIcons } from 'primeng/api';
+import { MultiSelectChangeEvent } from 'primeng/multiselect';
 
-import { CashFlow } from '#cash-flow/models';
+import { CashFlow, Category } from '#cash-flow/models';
 
 @Component({
   selector: 'org-details-list',
   templateUrl: './details-list.component.html',
+  styleUrl: './details-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailsListComponent {
   @Input({ required: true }) cashFlowList!: CashFlow[];
   @Input({ required: true }) isLoading!: boolean;
   @Input({ required: true }) isIncomeMode!: boolean;
+  @Input({ required: true }) categories!: Category[];
 
   @Output() addCashFlow = new EventEmitter<boolean>();
-  @Output() cashFlowToRemoveId = new EventEmitter<string>();
-  @Output() cashFlowToUpdate = new EventEmitter<CashFlow>();
+  @Output() removeCashFlow = new EventEmitter<string>();
+  @Output() updateCashFlow = new EventEmitter<CashFlow>();
+  @Output() categoryChange = new EventEmitter<string[]>();
 
   readonly maxItemsPerPage = env.maxItemPerPage; //TODO: add pagination
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
-  public removeCashFlow(cashFlowId: string): void {
-    this.cashFlowToRemoveId.emit(cashFlowId);
-  }
-
-  public updateCashFlow(cashFlow: CashFlow): void {
-    this.cashFlowToUpdate.emit(cashFlow);
+  public onCategoryFilterChange({ value }: MultiSelectChangeEvent): void {
+    const categoryIds: string[] = value.map((category: Category) => category.id);
+    this.categoryChange.emit(categoryIds);
   }
 }

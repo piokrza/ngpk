@@ -1,6 +1,14 @@
 @if (isLoading) {
   <p-progressSpinner class="spinner" />
 } @else {
+  <small class="block mb-2">{{ 'common.categories' | translate }}</small>
+  <p-multiSelect
+    [placeholder]="'cashFlow.allCategories' | translate"
+    [options]="categories"
+    [showHeader]="false"
+    (onChange)="onCategoryFilterChange($event)"
+    optionLabel="name" />
+
   <ul class="grid-container">
     @if (cashFlowList.length) {
       @for (item of cashFlowList; track item.id) {
@@ -8,8 +16,8 @@
           <org-details
             [isIncomeMode]="isIncomeMode"
             [details]="item"
-            (removeCashFlow)="removeCashFlow($event)"
-            (updateCashFlow)="updateCashFlow($event)" />
+            (removeCashFlow)="removeCashFlow.emit($event)"
+            (updateCashFlow)="updateCashFlow.emit($event)" />
         </li>
       }
     }

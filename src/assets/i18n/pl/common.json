@@ -48,7 +48,8 @@
     "of": "z",
     "enterText": "Wprowadź tekst",
     "emptyMessage": "Lista jest pusta",
-    "name": "Nazwa"
+    "name": "Nazwa",
+    "categories": "Kategorie"
   },
 
   "primeng": {

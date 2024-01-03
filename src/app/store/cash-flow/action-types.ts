@@ -30,4 +30,7 @@ export enum ActionTypes {
   UPDATE_EXPENSE = '[Expenses] Update expense',
   UPDATE_EXPENSE_SUCCESS = '[Incomes] Update expense success',
   UPDATE_EXPENSE_FAILURE = '[Incomes] Update expense failure',
+
+  SET_INCOMES_FILTER = '[Cash flow] Set incomes filter',
+  SET_EXPENSES_FILTER = '[Cash flow] Set expenses filter',
 }
