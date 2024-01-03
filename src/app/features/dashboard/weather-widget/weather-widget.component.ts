@@ -13,6 +13,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 
 import { isWidgetOpen } from '#common/constants';
 import { Nullable } from '#common/models';
+import { ContainerComponent } from '#shared/components';
 import { DetailsComponent } from '#weather-widget/components';
 import { WeatherResponse } from '#weather-widget/models';
 import { WeatherIconPipe } from '#weather-widget/pipes';
@@ -27,6 +28,7 @@ const imports = [
   DetailsComponent,
   SkeletonModule,
   WeatherIconPipe,
+  ContainerComponent,
 ];
 const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherStateService];
 

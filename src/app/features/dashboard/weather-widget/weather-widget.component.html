@@ -1,33 +1,35 @@
-<div class="my-4 rounded widget">
-  <div [class.pb-0]="data()" class="flex justify-content-between align-items-center p-3">
-    @if (data() === null) {
-      <p-button
-        [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
-        [label]="'weather.fetchData' | translate"
-        [text]="true"
-        (onClick)="loadWeatherData()"
-        severity="secondary"
-        class="w-full btn" />
-    }
-    @if (data()?.name) {
-      <p>
-        {{ data()?.name }} <small>({{ data()?.sys?.country }})</small>
-      </p>
-    }
-    <div class="flex align-items-center">
-      @if (data()?.main?.temp) {
-        <span class="mr-2">{{ data()?.main?.temp | number: '1.0-0' }} ℃</span>
+<org-container [noPadding]="true" styleClass="my-4">
+  <div (click)="toggleDetails()" class="rounded widget">
+    <div [class.pb-0]="data()" class="flex justify-content-between align-items-center">
+      @if (data() === null) {
+        <p-button
+          [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
+          [label]="'weather.fetchData' | translate"
+          [text]="true"
+          (onClick)="loadWeatherData()"
+          severity="secondary"
+          class="w-full btn" />
       }
-      @if (data()?.weather?.[0]?.icon; as icon) {
-        <div class="w-3rem">
-          <img [src]="icon | weatherIcon" alt="weather-icon" />
-        </div>
+      @if (data()?.name) {
+        <p>
+          {{ data()?.name }} <small>({{ data()?.sys?.country }})</small>
+        </p>
       }
+      <div class="flex align-items-center">
+        @if (data()?.main?.temp) {
+          <span class="mr-2">{{ data()?.main?.temp | number: '1.0-0' }} ℃</span>
+        }
+        @if (data()?.weather?.[0]?.icon; as icon) {
+          <div class="w-3rem">
+            <img [src]="icon | weatherIcon" alt="weather-icon" />
+          </div>
+        }
+      </div>
     </div>
   </div>
 
   @if (data() !== null) {
-    <div [class.widget__details--active]="isOpen()" class="px-3 widget__details">
+    <div [class.widget__details--active]="isOpen()" class="widget__details">
       <p>{{ data()!.weather[0].description | titlecase }}</p>
 
       <div class="flex gap-3 justify-content-between my-3">
@@ -62,9 +64,5 @@
         <small class="error">{{ errorMessage }}</small>
       }
     </div>
-
-    <small (click)="toggleDetails()" class="block text-center rounded widget__toggle">
-      <i [class]="isOpen() ? PrimeIcons.ANGLE_UP : PrimeIcons.ANGLE_DOWN" class="text-xs widget__toggle-icon"></i>
-    </small>
   }
-</div>
+</org-container>

@@ -16,15 +16,45 @@
       ],
       "rules": {
         "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "org", "style": "kebab-case" }],
-        "no-console": 1,
-        "no-debugger": 1,
-        "import/first": 1,
-        "prefer-const": 1,
+        "@angular-eslint/component-class-suffix": "warn",
+        "@angular-eslint/no-output-native": "warn",
+        "@angular-eslint/no-inputs-metadata-property": "warn",
+        "@angular-eslint/no-output-on-prefix": "warn",
+        "@angular-eslint/no-input-rename": "warn",
+        "no-console": "error",
+        "no-debugger": "error",
+        "import/first": "error",
+        "prefer-const": "error",
         "import/namespace": "warn",
         "@typescript-eslint/no-explicit-any": "off",
         "import/no-unresolved": "off",
         "import/no-named-as-default": "off",
         "import/export": "off",
+        "@typescript-eslint/member-ordering": [
+          1,
+          {
+            "default": [
+              "constructor",
+              "private-static-field",
+              "public-static-field",
+              "static-field",
+              "instance-field",
+              "public-instance-method",
+              "private-instance-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "lodash",
+                "message": "Please import specific funtions from 'lodash/*' instead."
+              }
+            ]
+          }
+        ],
         "import/order": [
           "error",
           {

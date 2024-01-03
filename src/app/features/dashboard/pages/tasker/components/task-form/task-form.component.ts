@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -19,6 +19,13 @@ import { TaskerService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormComponent implements OnInit {
+  public constructor() {
+    inject(Store)
+      .select(AuthSelectors.user)
+      .pipe(filter(Boolean), untilDestroyed(this))
+      .subscribe({ next: ({ uid }) => this.#userId.set(uid) });
+  }
+
   readonly #taskerService: TaskerService = inject(TaskerService);
   readonly #firestore: AngularFirestore = inject(AngularFirestore);
   readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
@@ -30,14 +37,7 @@ export class TaskFormComponent implements OnInit {
   readonly form: FormGroup<TaskForm> = this.#taskerService.taskForm;
   readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
-  #userId: string = '';
-
-  public constructor() {
-    inject(Store)
-      .select(AuthSelectors.user)
-      .pipe(filter(Boolean), untilDestroyed(this))
-      .subscribe({ next: ({ uid }) => (this.#userId = uid) });
-  }
+  #userId: WritableSignal<string> = signal('');
 
   public ngOnInit(): void {
     if (this.#taskData) {
@@ -73,7 +73,7 @@ export class TaskFormComponent implements OnInit {
     this.#dialogRef.close({
       ...this.form.getRawValue(),
       id: this.#firestore.createId(),
-      uid: this.#userId,
+      uid: this.#userId(),
       steps: this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.#firestore.createId() })),
     } satisfies Task);
   }

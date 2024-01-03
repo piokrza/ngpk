@@ -14,6 +14,8 @@ import { FADE_IN } from '#common/constants';
 export class MobileMenuComponent {
   readonly #elRef: ElementRef = inject(ElementRef);
 
+  readonly isOpen: WritableSignal<boolean> = signal(false);
+
   @Input() menuItems!: MenuItem[];
 
   @HostListener('document:click', ['$event.target']) onClick(target: EventTarget) {
@@ -21,8 +23,6 @@ export class MobileMenuComponent {
       this.isOpen.update(() => false);
     }
   }
-
-  isOpen: WritableSignal<boolean> = signal(false);
 
   public toggle(): void {
     this.isOpen.update((isOpen) => !isOpen);

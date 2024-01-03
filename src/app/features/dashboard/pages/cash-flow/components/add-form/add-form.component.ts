@@ -21,19 +21,6 @@ import { AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddFormComponent {
-  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-  readonly #firestore: AngularFirestore = inject(AngularFirestore);
-  readonly #cashFlowService: CashFlowService = inject(CashFlowService);
-
-  readonly form: FormGroup<CashFlowForm> = this.#cashFlowService.form;
-  readonly trPath: string = 'cashFlow.form.';
-
-  #userId!: string;
-  readonly #isIncomeMode: boolean = inject(DynamicDialogConfig).data;
-
-  currency: string = '';
-  categories: Category[] = [];
-
   public constructor() {
     inject(Store)
       .select(AuthSelectors.user)
@@ -47,6 +34,19 @@ export class AddFormComponent {
         },
       });
   }
+
+  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  readonly #firestore: AngularFirestore = inject(AngularFirestore);
+  readonly #cashFlowService: CashFlowService = inject(CashFlowService);
+
+  readonly form: FormGroup<CashFlowForm> = this.#cashFlowService.form;
+  readonly trPath: string = 'cashFlow.form.';
+
+  #userId!: string;
+  readonly #isIncomeMode: boolean = inject(DynamicDialogConfig).data;
+
+  currency: string = '';
+  categories: Category[] = [];
 
   public onSubmit(): void {
     if (this.form.invalid) {
