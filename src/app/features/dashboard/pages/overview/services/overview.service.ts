@@ -67,9 +67,9 @@ export class OverviewService {
       transactionAmount: this.transactionAmount$,
     }).pipe(
       map((data) => [
-        { label: 'totalBalance', data: data.totalBalance },
-        { label: 'totalExpense', data: data.totalExpense },
         { label: 'totalIncome', data: data.totalIncome },
+        { label: 'totalExpense', data: data.totalExpense },
+        { label: 'totalBalance', data: data.totalBalance },
         { label: 'transactionAmount', data: data.transactionAmount },
       ])
     );

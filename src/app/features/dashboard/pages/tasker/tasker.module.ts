@@ -9,10 +9,10 @@ import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DataViewModule } from 'primeng/dataview';
 import { DividerModule } from 'primeng/divider';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
@@ -36,7 +36,7 @@ const imports = [
   InputTextModule,
   ProgressSpinnerModule,
   FormsModule,
-  SelectButtonModule,
+  DropdownModule,
   CheckboxModule,
   InputTextareaModule,
   DividerModule,

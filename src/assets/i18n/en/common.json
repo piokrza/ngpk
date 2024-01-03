@@ -37,7 +37,8 @@
     "enterText": "Enter text",
     "emptyMessage": "List is empty",
     "name": "Name",
-    "categories": "Categories"
+    "categories": "Categories",
+    "status": "Status"
   },
 
   "drive": {

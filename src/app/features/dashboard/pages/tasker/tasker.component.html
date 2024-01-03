@@ -7,14 +7,16 @@
     } @else {
       @if (tasksData$ | async; as data) {
         <div class="container">
-          <p-selectButton
-            [options]="filters"
-            [allowEmpty]="false"
-            [(ngModel)]="data.filter"
-            (onChange)="taskFilterChange($event)"
-            optionLabel="label"
-            optionValue="data"
-            styleClass="center-element" />
+          <div class="dropdown-wrapper">
+            <small class="block mb-2"> {{ 'common.status' | translate }}</small>
+            <p-dropdown
+              [options]="filters"
+              [(ngModel)]="data.filter"
+              (onChange)="taskFilterChange($event)"
+              optionLabel="label"
+              optionValue="data"
+              styleClass="w-full" />
+          </div>
 
           <ul class="grid-container">
             @for (task of data.tasks; track task.id) {
