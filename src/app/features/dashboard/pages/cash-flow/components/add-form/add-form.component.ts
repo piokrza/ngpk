@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
@@ -20,21 +20,8 @@ import { AuthSelectors } from '#store/auth';
   styleUrl: './add-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddFormComponent {
-  public constructor() {
-    inject(Store)
-      .select(AuthSelectors.user)
-      .pipe(filter(Boolean), untilDestroyed(this))
-      .subscribe({
-        next: ({ uid, config }: IUser) => {
-          this.#userId = uid;
-          this.currency = config.currency;
-          const { incomes, expenses } = config.categories;
-          this.categories = this.#isIncomeMode ? incomes : expenses;
-        },
-      });
-  }
-
+export class AddFormComponent implements OnInit {
+  readonly #store = inject(Store);
   readonly #dialogRef = inject(DynamicDialogRef);
   readonly #firestore = inject(AngularFirestore);
   readonly #cashFlowService = inject(CashFlowService);
@@ -47,6 +34,20 @@ export class AddFormComponent {
 
   currency: string = '';
   categories: Category[] = [];
+
+  public ngOnInit(): void {
+    this.#store
+      .select(AuthSelectors.user)
+      .pipe(filter(Boolean), untilDestroyed(this))
+      .subscribe({
+        next: ({ uid, config }: IUser) => {
+          this.#userId = uid;
+          this.currency = config.currency;
+          const { incomes, expenses } = config.categories;
+          this.categories = this.#isIncomeMode ? incomes : expenses;
+        },
+      });
+  }
 
   public onSubmit(): void {
     if (this.form.invalid) {

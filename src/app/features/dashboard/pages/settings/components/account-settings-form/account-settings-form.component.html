@@ -1,0 +1,30 @@
+<section class="mx-auto lg:w-6">
+  <div class="flex align-items-center gap-4">
+    <p-button [icon]="PrimeIcons.ARROW_LEFT" (onClick)="navigateBack()" severity="secondary" />
+    <h1 class="text-2xl">Edit profile</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <span class="p-float-label my-4">
+      <input [formControl]="form.controls.displayName" pInputText id="displayName" class="w-full" />
+      <label htmlFor="displayName">{{ trPath + 'displayName' | translate }}</label>
+    </span>
+
+    <span class="p-float-label my-4">
+      <input [formControl]="form.controls.email" pInputText id="email" class="w-full" />
+      <label htmlFor="email">{{ trPath + 'email' | translate }}</label>
+    </span>
+
+    <span class="p-float-label my-4">
+      <p-inputNumber [formControl]="form.controls.phoneNumber" [useGrouping]="false" id="phoneNumer" class="w-full" />
+      <label htmlFor="phoneNumer">{{ trPath + 'phoneNumber' | translate }}</label>
+    </span>
+
+    <span class="p-float-label my-4">
+      <input [formControl]="form.controls.photoURL" pInputText id="photoURL" class="w-full" />
+      <label htmlFor="photoURL">{{ trPath + 'avatar' | translate }}</label>
+    </span>
+
+    <p-button [disabled]="!form.dirty || form.invalid" [label]="trPath + 'update' | translate" styleClass="w-full" type="submit" />
+  </form>
+</section>

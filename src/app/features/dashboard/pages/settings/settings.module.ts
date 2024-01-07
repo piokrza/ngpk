@@ -14,11 +14,12 @@ import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
   LanguageTogglerComponent,
+  PanelComponent,
   ThemeTogglerComponent,
 } from '#settings/components';
 import { ContainerComponent, ThemeButtonComponent } from '#shared/components';
 
-const declarations = [SettingsComponent, ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent];
+const declarations = [SettingsComponent, ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];
 const imports = [
   CommonModule,
   SettingsRoutingModule,
