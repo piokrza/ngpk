@@ -13,7 +13,7 @@ export function injectThemeLink$(themeInitService: ThemeInitService) {
 export class ThemeInitService {
   readonly #document: Document = inject(DOCUMENT);
 
-  #isLightMode = !!inject(PersistanceService).get<boolean>(isLightMode);
+  readonly #isLightMode = !!inject(PersistanceService).get<boolean>(isLightMode);
 
   public injectThemeLink$(): Observable<HTMLLinkElement> {
     return this.themeLink$.pipe(

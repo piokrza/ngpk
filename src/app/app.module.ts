@@ -14,12 +14,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AppComponent, routes } from 'src/app';
 import { environment } from 'src/environments/environment';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AppComponent, routes } from '#app/.';
 import { injectThemeLink$, ThemeInitService } from '#common/services';
 import { CustomTranslateHttpLoader, initializeTranslations } from '#common/utils';
 import { AuthEffects } from '#store/auth';
