@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
-import { EMPTY, from, iif, switchMap } from 'rxjs';
+import { EMPTY, from, switchMap } from 'rxjs';
 
 import { IUser } from '#auth/models';
 import { UserConfigService } from '#auth/services';
@@ -20,20 +20,18 @@ export class UserService {
       .get()
       .pipe(
         switchMap((data) => {
-          return iif(
-            () => !data.exists,
-            from(
-              usersCollectionRef.doc(user.uid).set({
-                displayName: user.displayName ?? '',
-                email: user.email ?? '',
-                phoneNumber: user.phoneNumber ?? '',
-                photoURL: user.photoURL ?? '',
-                uid: user.uid ?? '',
-                config: this.#userConfigService.initialUserConfig,
-              })
-            ),
-            EMPTY
-          );
+          return !data.exists
+            ? from(
+                usersCollectionRef.doc(user.uid).set({
+                  displayName: user.displayName!,
+                  email: user.email!,
+                  phoneNumber: user.phoneNumber!,
+                  photoURL: user.photoURL!,
+                  uid: user.uid!,
+                  config: this.#userConfigService.initialUserConfig,
+                })
+              )
+            : EMPTY;
         })
       );
   }
