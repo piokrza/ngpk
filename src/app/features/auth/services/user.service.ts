@@ -3,13 +3,14 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import firebase from 'firebase/compat';
 import { EMPTY, from, iif, switchMap } from 'rxjs';
 
-import { IUser, UserConfig } from '#auth/models';
+import { IUser } from '#auth/models';
+import { UserConfigService } from '#auth/services';
 import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  readonly #firestore = inject(AngularFirestore);
   readonly #angularFirestore = inject(AngularFirestore);
+  readonly #userConfigService = inject(UserConfigService);
 
   public addUserToDatabase$(user: Partial<IUser>) {
     const usersCollectionRef: AngularFirestoreCollection<IUser> = this.#angularFirestore.collection(Collection.USERS);
@@ -28,7 +29,7 @@ export class UserService {
                 phoneNumber: user.phoneNumber ?? '',
                 photoURL: user.photoURL ?? '',
                 uid: user.uid ?? '',
-                config: this.initialUserConfig,
+                config: this.#userConfigService.initialUserConfig,
               })
             ),
             EMPTY
@@ -44,26 +45,5 @@ export class UserService {
 
   public getIUserModel(user: firebase.User): Partial<IUser> {
     return { displayName: user.displayName, email: user.email, phoneNumber: user.phoneNumber, photoURL: user.photoURL, uid: user.uid };
-  }
-
-  private get initialUserConfig(): UserConfig {
-    return {
-      categories: {
-        incomes: [
-          { name: 'Concerts', id: this.#firestore.createId() },
-          { name: 'Salary', id: this.#firestore.createId() },
-          { name: 'Gifts', id: this.#firestore.createId() },
-          { name: 'Other', id: this.#firestore.createId() },
-        ],
-        expenses: [
-          { name: 'Rental fees', id: this.#firestore.createId() },
-          { name: 'Entertainment', id: this.#firestore.createId() },
-          { name: 'General', id: this.#firestore.createId() },
-          { name: 'Other', id: this.#firestore.createId() },
-        ],
-      },
-      language: 'en',
-      currency: 'PLN',
-    };
   }
 }
