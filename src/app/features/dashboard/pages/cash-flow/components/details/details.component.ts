@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { PrimeIcons } from 'primeng/api';
 
 import { CashFlow } from '#cash-flow/models';
-import { DateFormats } from '#common/enums';
+import { DateFormats } from '#core/enums';
 
 @Component({
   selector: 'org-details',

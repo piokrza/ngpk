@@ -9,7 +9,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
-import { BaseDialogStyles } from '#common/constants';
+import { BaseDialogStyles } from '#core/constants';
 import { AuthSelectors } from '#store/auth';
 import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 

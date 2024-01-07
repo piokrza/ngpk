@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 
-import { DashobardPaths } from '#common/enums';
+import { DashobardPaths } from '#core/enums';
 import { AuthActions } from '#store/auth';
 
 @Injectable({ providedIn: 'root' })

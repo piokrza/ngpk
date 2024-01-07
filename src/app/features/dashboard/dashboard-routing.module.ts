@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashobardPaths } from '#common/enums';
-import { featureFlagGuard } from '#common/guards';
-import { getTitle } from '#common/utils';
+import { DashobardPaths } from '#core/enums';
+import { featureFlagGuard } from '#core/guards';
+import { getTitle } from '#core/utils';
 import { DashboardComponent } from '#dashboard/.';
 
 const routes: Routes = [

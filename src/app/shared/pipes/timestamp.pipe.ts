@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform, inject } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 
-import { DateFormats } from '#common/enums';
+import { DateFormats } from '#core/enums';
 
 @Pipe({ name: 'timestamp', standalone: true })
 export class TimestampPipe implements PipeTransform {

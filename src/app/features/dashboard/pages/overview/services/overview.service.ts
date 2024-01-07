@@ -8,10 +8,10 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { CashFlow, Category } from '#cash-flow/models';
-import { BaseDialogStyles } from '#common/constants';
-import { AppPaths, DashobardPaths } from '#common/enums';
-import { LabeledData } from '#common/models';
-import { getRandomNumber } from '#common/utils';
+import { BaseDialogStyles } from '#core/constants';
+import { AppPaths, DashobardPaths } from '#core/enums';
+import { LabeledData } from '#core/models';
+import { getRandomNumber } from '#core/utils';
 import { ChartColor, TaskerData } from '#overview/models';
 import { AuthSelectors } from '#store/auth';
 import { CashFlowSelectors } from '#store/cash-flow';

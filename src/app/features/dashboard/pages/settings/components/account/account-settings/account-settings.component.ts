@@ -8,7 +8,7 @@ import { PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { IUser } from '#auth/models';
-import { BaseDialogStyles } from '#common/constants';
+import { BaseDialogStyles } from '#core/constants';
 import { AccountSettingsFormComponent } from '#settings/components';
 import { AuthActions, AuthSelectors } from '#store/auth';
 

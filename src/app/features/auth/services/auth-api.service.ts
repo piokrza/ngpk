@@ -6,7 +6,7 @@ import firebase from 'firebase/compat';
 import { filter, Observable } from 'rxjs';
 
 import { AuthFormPayload, IUser } from '#auth/models';
-import { Collection } from '#common/enums';
+import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {

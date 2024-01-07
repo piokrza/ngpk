@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { isLightMode } from '#common/constants';
-import { PersistanceService } from '#common/services';
+import { isLightMode } from '#core/constants';
+import { PersistanceService } from '#core/services';
 
 const imports = [ToggleButtonModule, FormsModule];
 

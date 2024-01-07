@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { finalize, interval, takeWhile, tap } from 'rxjs';
 
-import { AppPaths } from '#common/enums';
+import { AppPaths } from '#core/enums';
 
 const imports = [TranslateModule];
 

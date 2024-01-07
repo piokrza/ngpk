@@ -7,8 +7,8 @@ import firebase from 'firebase/compat';
 import { catchError, EMPTY, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
 import { AuthApiService, UserService } from '#auth/services';
-import { AppPaths, ToastStatus } from '#common/enums';
-import { DbSubscriptionService, ToastService } from '#common/services';
+import { AppPaths, ToastStatus } from '#core/enums';
+import { DbSubscriptionService, ToastService } from '#core/services';
 import { AuthActions } from '#store/auth';
 import { ActionTypes } from '#store/auth/action-types';
 

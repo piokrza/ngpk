@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
-import { ToastStatus } from '#common/enums';
-import { DbSubscriptionService, ToastService } from '#common/services';
+import { ToastStatus } from '#core/enums';
+import { DbSubscriptionService, ToastService } from '#core/services';
 import { IFile } from '#drive/models';
 import { DriveApiService } from '#drive/services';
 import { DriveActions } from '#store/drive';

@@ -6,7 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { SelectButtonChangeEvent, SelectButtonModule } from 'primeng/selectbutton';
 
-import { LANG } from '#common/utils';
+import { LANG } from '#core/utils';
 
 const imports = [SelectButtonModule, FormsModule, TranslateModule];
 

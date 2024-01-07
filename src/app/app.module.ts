@@ -20,8 +20,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { AppComponent, routes } from '#app/.';
-import { injectThemeLink$, ThemeInitService } from '#common/services';
-import { CustomTranslateHttpLoader, initializeTranslations } from '#common/utils';
+import { injectThemeLink$, ThemeInitService } from '#core/services';
+import { CustomTranslateHttpLoader, initializeTranslations } from '#core/utils';
 import { AuthEffects } from '#store/auth';
 import { CashFlowEffects } from '#store/cash-flow';
 import { DriveEffects } from '#store/drive';

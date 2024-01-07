@@ -11,8 +11,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 
-import { isWidgetOpen } from '#common/constants';
-import { Nullable } from '#common/models';
+import { isWidgetOpen } from '#core/constants';
+import { Nullable } from '#core/models';
 import { ContainerComponent } from '#shared/components';
 import { DetailsComponent } from '#weather-widget/components';
 import { WeatherResponse } from '#weather-widget/models';

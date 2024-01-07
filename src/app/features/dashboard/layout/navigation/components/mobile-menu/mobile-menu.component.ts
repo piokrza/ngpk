@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Input, Wr
 
 import { MenuItem } from 'primeng/api';
 
-import { FADE_IN } from '#common/constants';
+import { FADE_IN } from '#core/constants';
 
 @Component({
   selector: 'org-mobile-menu',

@@ -7,7 +7,7 @@ import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 import { TabViewChangeEvent } from 'primeng/tabview';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 
-import { LabeledData } from '#common/models';
+import { LabeledData } from '#core/models';
 import { NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 import { TaskerFacadeService } from '#tasker/services';
 

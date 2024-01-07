@@ -2,8 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { inject, Injectable } from '@angular/core';
 import { first, Observable, of, tap } from 'rxjs';
 
-import { isLightMode } from '#common/constants';
-import { PersistanceService } from '#common/services';
+import { isLightMode } from '#core/constants';
+import { PersistanceService } from '#core/services';
 
 export function injectThemeLink$(themeInitService: ThemeInitService) {
   return () => themeInitService.injectThemeLink$();

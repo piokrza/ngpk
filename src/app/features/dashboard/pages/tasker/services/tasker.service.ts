@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { LabeledData } from '#common/models';
+import { LabeledData } from '#core/models';
 import { NoteForm, StepForm, TaskFilter, TaskForm } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })

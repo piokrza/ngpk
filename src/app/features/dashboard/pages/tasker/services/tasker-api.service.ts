@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 import { tap } from 'rxjs';
 
-import { Collection } from '#common/enums';
+import { Collection } from '#core/enums';
 import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })

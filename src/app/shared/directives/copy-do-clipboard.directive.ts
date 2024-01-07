@@ -3,7 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
 import { fromEvent, switchMap, tap } from 'rxjs';
 
-import { ToastService } from '#common/services';
+import { ToastService } from '#core/services';
 
 @UntilDestroy()
 @Directive({ selector: '[copyToClipboard]', standalone: true })

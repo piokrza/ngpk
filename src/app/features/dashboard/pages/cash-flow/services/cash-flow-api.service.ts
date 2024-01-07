@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@
 import { Observable } from 'rxjs';
 
 import { CashFlow } from '#cash-flow/models';
-import { Collection } from '#common/enums';
+import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowApiService {

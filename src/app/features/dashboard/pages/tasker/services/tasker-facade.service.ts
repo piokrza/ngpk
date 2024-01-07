@@ -6,8 +6,8 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { BaseDialogStyles } from '#common/constants';
-import { LabeledData } from '#common/models';
+import { BaseDialogStyles } from '#core/constants';
+import { LabeledData } from '#core/models';
 import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent, TaskFormComponent } from '#tasker/components';
 import { Note, NoteFilter, NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';

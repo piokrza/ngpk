@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 
 import { IUser } from '#auth/models';
-import { MenuService } from '#common/services';
+import { MenuService } from '#core/services';
 import { AuthSelectors } from '#store/auth';
 
 @Component({

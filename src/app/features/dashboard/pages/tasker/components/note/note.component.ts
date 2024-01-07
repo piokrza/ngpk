@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { PrimeIcons } from 'primeng/api';
 
-import { DateFormats } from '#common/enums';
+import { DateFormats } from '#core/enums';
 import { Note } from '#tasker/models';
 
 @Component({

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
 
 import { AuthApiService } from '#auth/services';
-import { DbSubscriptionService } from '#common/services';
+import { DbSubscriptionService } from '#core/services';
 import { AuthActions } from '#store/auth';
 import { CashFlowActions } from '#store/cash-flow';
 import { DriveActions } from '#store/drive';

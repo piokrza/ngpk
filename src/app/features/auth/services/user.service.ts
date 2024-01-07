@@ -4,7 +4,7 @@ import firebase from 'firebase/compat';
 import { EMPTY, from, switchMap } from 'rxjs';
 
 import { IUser, UserConfig } from '#auth/models';
-import { Collection } from '#common/enums';
+import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

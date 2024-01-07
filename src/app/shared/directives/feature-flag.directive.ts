@@ -1,7 +1,7 @@
 import { Directive, Input, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
-import { Feature } from '#common/models';
+import { Feature } from '#core/models';
 
 @Directive({ selector: '[featureEnabled]', standalone: true })
 export class FeatureFlagDirective {
