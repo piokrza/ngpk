@@ -18,9 +18,9 @@ import { TaskerService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteFormComponent {
-  readonly #noteService: TaskerService = inject(TaskerService);
-  readonly #firestore: AngularFirestore = inject(AngularFirestore);
-  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  readonly #noteService = inject(TaskerService);
+  readonly #firestore = inject(AngularFirestore);
+  readonly #dialogRef = inject(DynamicDialogRef);
 
   readonly form: FormGroup<NoteForm> = this.#noteService.noteForm;
   readonly #user: Signal<IUser | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });

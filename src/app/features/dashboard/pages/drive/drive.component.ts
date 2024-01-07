@@ -21,8 +21,8 @@ import { DriveFacadeService } from '#drive/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriveComponent implements OnInit {
-  readonly #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
-  readonly #driveFacadeService: DriveFacadeService = inject(DriveFacadeService);
+  readonly #activatedRoute = inject(ActivatedRoute);
+  readonly #driveFacadeService = inject(DriveFacadeService);
 
   readonly isProcessing$: Observable<boolean> = this.#driveFacadeService.isProcessing$;
 

@@ -43,7 +43,7 @@ const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherS
   imports,
 })
 export class WeatherWidgetComponent implements OnInit {
-  readonly #weatherFacadeService: WeatherFacadeService = inject(WeatherFacadeService);
+  readonly #weatherFacadeService = inject(WeatherFacadeService);
 
   readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.#weatherFacadeService.weatherData$);
   readonly isLoading$: Observable<boolean> = this.#weatherFacadeService.isLoading$;

@@ -22,11 +22,11 @@ import { TaskerService } from '#tasker/services';
 
 @Injectable()
 export class OverviewService {
-  readonly #store: Store = inject(Store);
-  readonly #router: Router = inject(Router);
-  readonly #taskerService: TaskerService = inject(TaskerService);
-  readonly #dialogService: DialogService = inject(DialogService);
-  readonly #translate: TranslateService = inject(TranslateService);
+  readonly #store = inject(Store);
+  readonly #router = inject(Router);
+  readonly #taskerService = inject(TaskerService);
+  readonly #dialogService = inject(DialogService);
+  readonly #translateService = inject(TranslateService);
 
   public get isLoading$(): Observable<boolean> {
     return this.#store.select(CashFlowSelectors.isLoading);
@@ -77,7 +77,7 @@ export class OverviewService {
 
   public addQuickNote$(): Observable<Note | undefined> {
     const dialogRef: DynamicDialogRef = this.#dialogService.open(NoteFormComponent, {
-      header: this.#translate.instant('tasker.addNote'),
+      header: this.#translateService.instant('tasker.addNote'),
       style: BaseDialogStyles,
     });
 

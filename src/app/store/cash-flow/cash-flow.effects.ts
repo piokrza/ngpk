@@ -10,11 +10,11 @@ import { CashFlowActions } from '#store/cash-flow';
 
 @Injectable()
 export class CashFlowEffects {
-  readonly #actions$: Actions = inject(Actions);
-  readonly #toastService: ToastService = inject(ToastService);
-  readonly #translateService: TranslateService = inject(TranslateService);
-  readonly #cashFlowApiService: CashFlowApiService = inject(CashFlowApiService);
-  readonly #dbSubscriptionService: DbSubscriptionService = inject(DbSubscriptionService);
+  readonly #actions$ = inject(Actions);
+  readonly #toastService = inject(ToastService);
+  readonly #translateService = inject(TranslateService);
+  readonly #cashFlowApiService = inject(CashFlowApiService);
+  readonly #dbSubscriptionService = inject(DbSubscriptionService);
 
   public getExpenses$ = createEffect(() => {
     return this.#actions$.pipe(

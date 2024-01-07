@@ -19,9 +19,9 @@ import { AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpdateFormComponent implements OnInit {
-  readonly #store: Store = inject(Store);
-  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-  readonly #cashFlowService: CashFlowService = inject(CashFlowService);
+  readonly #store = inject(Store);
+  readonly #dialogRef = inject(DynamicDialogRef);
+  readonly #cashFlowService = inject(CashFlowService);
 
   readonly categories$ = this.getCategories$();
 

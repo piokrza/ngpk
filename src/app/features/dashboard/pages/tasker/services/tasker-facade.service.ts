@@ -15,11 +15,11 @@ import { TaskerService } from '#tasker/services';
 
 @Injectable()
 export class TaskerFacadeService {
-  readonly #store: Store = inject(Store);
-  readonly #taskerService: TaskerService = inject(TaskerService);
-  readonly #dialogService: DialogService = inject(DialogService);
-  readonly #translateService: TranslateService = inject(TranslateService);
-  readonly #confirmationService: ConfirmationService = inject(ConfirmationService);
+  readonly #store = inject(Store);
+  readonly #taskerService = inject(TaskerService);
+  readonly #dialogService = inject(DialogService);
+  readonly #translateService = inject(TranslateService);
+  readonly #confirmationService = inject(ConfirmationService);
 
   public get tasksData$(): Observable<TasksData> {
     return combineLatest({

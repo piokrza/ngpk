@@ -6,8 +6,8 @@ import { WeatherApiService, WeatherStateService } from '#weather-widget/services
 
 @Injectable()
 export class WeatherFacadeService {
-  readonly #weatherApiService: WeatherApiService = inject(WeatherApiService);
-  readonly #weatherStateService: WeatherStateService = inject(WeatherStateService);
+  readonly #weatherApiService = inject(WeatherApiService);
+  readonly #weatherStateService = inject(WeatherStateService);
 
   readonly #weatherDataKey = 'weatherData';
   readonly #defaultCityNameQuery = 'Krakow';

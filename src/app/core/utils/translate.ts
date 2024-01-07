@@ -17,7 +17,7 @@ export function initializeTranslations(translateService: TranslateService) {
 }
 
 export class CustomTranslateHttpLoader implements TranslateLoader {
-  readonly #http: HttpClient = inject(HttpClient);
+  readonly #http = inject(HttpClient);
 
   public getTranslation(lang: string): Observable<object> {
     const requests = [`/assets/i18n/${lang}/auth.json`, `/assets/i18n/${lang}/common.json`, `/assets/i18n/${lang}/dashboard.json`].map(

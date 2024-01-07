@@ -19,9 +19,9 @@ import { AuthActions, AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsComponent implements OnInit {
-  readonly #store: Store = inject(Store);
-  readonly #dialogService: DialogService = inject(DialogService);
-  readonly #transalteService: TranslateService = inject(TranslateService);
+  readonly #store = inject(Store);
+  readonly #dialogService = inject(DialogService);
+  readonly #transalteService = inject(TranslateService);
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   private user: IUser | null = null;

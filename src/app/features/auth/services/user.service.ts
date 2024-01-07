@@ -1,15 +1,15 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
-import { EMPTY, from, switchMap } from 'rxjs';
+import { EMPTY, from, iif, switchMap } from 'rxjs';
 
 import { IUser, UserConfig } from '#auth/models';
 import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  readonly #firestore: AngularFirestore = inject(AngularFirestore);
-  readonly #angularFirestore: AngularFirestore = inject(AngularFirestore);
+  readonly #firestore = inject(AngularFirestore);
+  readonly #angularFirestore = inject(AngularFirestore);
 
   public addUserToDatabase$(user: Partial<IUser>) {
     const usersCollectionRef: AngularFirestoreCollection<IUser> = this.#angularFirestore.collection(Collection.USERS);
@@ -19,18 +19,20 @@ export class UserService {
       .get()
       .pipe(
         switchMap((data) => {
-          return !data.exists
-            ? from(
-                usersCollectionRef.doc(user.uid).set({
-                  displayName: user.displayName ?? '',
-                  email: user.email ?? '',
-                  phoneNumber: user.phoneNumber ?? '',
-                  photoURL: user.photoURL ?? '',
-                  uid: user.uid ?? '',
-                  config: this.initialUserConfig,
-                })
-              )
-            : EMPTY;
+          return iif(
+            () => !data.exists,
+            from(
+              usersCollectionRef.doc(user.uid).set({
+                displayName: user.displayName ?? '',
+                email: user.email ?? '',
+                phoneNumber: user.phoneNumber ?? '',
+                photoURL: user.photoURL ?? '',
+                uid: user.uid ?? '',
+                config: this.initialUserConfig,
+              })
+            ),
+            EMPTY
+          );
         })
       );
   }

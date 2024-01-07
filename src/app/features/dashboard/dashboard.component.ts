@@ -19,9 +19,9 @@ import { TaskerActions } from '#store/tasker';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  readonly #store: Store = inject(Store);
-  readonly #authApiService: AuthApiService = inject(AuthApiService);
-  readonly #dbSubscriptionService: DbSubscriptionService = inject(DbSubscriptionService);
+  readonly #store = inject(Store);
+  readonly #authApiService = inject(AuthApiService);
+  readonly #dbSubscriptionService = inject(DbSubscriptionService);
 
   public ngOnInit(): void {
     this.#authApiService.authState$

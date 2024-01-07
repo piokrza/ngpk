@@ -15,7 +15,7 @@ import { AuthActions, AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {
-  readonly #store: Store = inject(Store);
+  readonly #store = inject(Store);
 
   readonly form: FormGroup<RegisterForm> = inject(AuthFormService).registerForm;
   readonly AuthPaths: typeof AuthPaths = AuthPaths;

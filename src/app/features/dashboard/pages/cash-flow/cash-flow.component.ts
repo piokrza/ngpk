@@ -14,7 +14,7 @@ import { CashFlowFacadeService } from '#cash-flow/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowComponent {
-  readonly #cashFlowFacadeService: CashFlowFacadeService = inject(CashFlowFacadeService);
+  readonly #cashFlowFacadeService = inject(CashFlowFacadeService);
 
   readonly isLoading$: Observable<boolean> = this.#cashFlowFacadeService.isLoading$;
   readonly incomesDataset$: Observable<CashFlowData> = this.#cashFlowFacadeService.incomesDataset$;

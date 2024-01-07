@@ -10,11 +10,11 @@ import { TaskerApiService } from '#tasker/services';
 
 @Injectable()
 export class TaskerEffects {
-  readonly #actions$: Actions = inject(Actions);
-  readonly #toastService: ToastService = inject(ToastService);
-  readonly #translateService: TranslateService = inject(TranslateService);
-  readonly #taskerApiService: TaskerApiService = inject(TaskerApiService);
-  readonly #dbSubscriptionService: DbSubscriptionService = inject(DbSubscriptionService);
+  readonly #actions$ = inject(Actions);
+  readonly #toastService = inject(ToastService);
+  readonly #translateService = inject(TranslateService);
+  readonly #taskerApiService = inject(TaskerApiService);
+  readonly #dbSubscriptionService = inject(DbSubscriptionService);
 
   public getTasks$ = createEffect(() => {
     return this.#actions$.pipe(

@@ -20,7 +20,7 @@ const imports = [SelectButtonModule, FormsModule, TranslateModule];
 })
 export class LanguageTogglerComponent {
   readonly #config: PrimeNGConfig = inject(PrimeNGConfig);
-  readonly #translateService: TranslateService = inject(TranslateService);
+  readonly #translateService = inject(TranslateService);
 
   languageValue = localStorage.getItem(LANG) ?? 'pl';
 

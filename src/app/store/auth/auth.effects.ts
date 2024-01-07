@@ -14,13 +14,13 @@ import { ActionTypes } from '#store/auth/action-types';
 
 @Injectable()
 export class AuthEffects {
-  readonly #router: Router = inject(Router);
-  readonly #actions$: Actions = inject(Actions);
-  readonly #userService: UserService = inject(UserService);
-  readonly #toastService: ToastService = inject(ToastService);
-  readonly #authApiService: AuthApiService = inject(AuthApiService);
-  readonly #translateService: TranslateService = inject(TranslateService);
-  readonly #dbSubscriptionService: DbSubscriptionService = inject(DbSubscriptionService);
+  readonly #router = inject(Router);
+  readonly #actions$ = inject(Actions);
+  readonly #userService = inject(UserService);
+  readonly #toastService = inject(ToastService);
+  readonly #authApiService = inject(AuthApiService);
+  readonly #translateService = inject(TranslateService);
+  readonly #dbSubscriptionService = inject(DbSubscriptionService);
 
   public signInWithGoogle$ = createEffect(() => {
     return this.#actions$.pipe(

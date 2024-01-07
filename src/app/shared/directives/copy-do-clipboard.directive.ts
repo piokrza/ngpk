@@ -8,9 +8,9 @@ import { ToastService } from '#core/services';
 @UntilDestroy()
 @Directive({ selector: '[copyToClipboard]', standalone: true })
 export class CopyToClipboardDirective implements OnInit {
-  readonly #zone: NgZone = inject(NgZone);
-  readonly #toastService: ToastService = inject(ToastService);
-  readonly #translateService: TranslateService = inject(TranslateService);
+  readonly #zone = inject(NgZone);
+  readonly #toastService = inject(ToastService);
+  readonly #translateService = inject(TranslateService);
   readonly #host: ElementRef<HTMLElement> = inject(ElementRef<HTMLElement>);
 
   @Input({ required: true }) copyToClipboard!: string;

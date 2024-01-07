@@ -11,11 +11,11 @@ import { DriveActions } from '#store/drive';
 
 @Injectable()
 export class DriveEffects {
-  readonly #actions$: Actions = inject(Actions);
-  readonly #toastService: ToastService = inject(ToastService);
-  readonly #driveApiService: DriveApiService = inject(DriveApiService);
-  readonly #translateService: TranslateService = inject(TranslateService);
-  readonly #dbSubscriptionService: DbSubscriptionService = inject(DbSubscriptionService);
+  readonly #actions$ = inject(Actions);
+  readonly #toastService = inject(ToastService);
+  readonly #driveApiService = inject(DriveApiService);
+  readonly #translateService = inject(TranslateService);
+  readonly #dbSubscriptionService = inject(DbSubscriptionService);
 
   public loadFiles$ = createEffect(() => {
     return this.#actions$.pipe(

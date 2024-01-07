@@ -15,11 +15,11 @@ import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {
-  readonly #store: Store = inject(Store);
-  readonly #dialogService: DialogService = inject(DialogService);
-  readonly #cashFlowService: CashFlowService = inject(CashFlowService);
-  readonly #translateService: TranslateService = inject(TranslateService);
-  readonly #confirmationService: ConfirmationService = inject(ConfirmationService);
+  readonly #store = inject(Store);
+  readonly #dialogService = inject(DialogService);
+  readonly #cashFlowService = inject(CashFlowService);
+  readonly #translateService = inject(TranslateService);
+  readonly #confirmationService = inject(ConfirmationService);
 
   public get incomesDataset$(): Observable<CashFlowData> {
     return combineLatest({

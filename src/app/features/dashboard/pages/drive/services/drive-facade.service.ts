@@ -12,9 +12,9 @@ import { DriveActions, DriveSelectors } from '#store/drive';
 
 @Injectable()
 export class DriveFacadeService {
-  readonly #store: Store = inject(Store);
-  readonly #router: Router = inject(Router);
-  readonly #driveService: DriveService = inject(DriveService);
+  readonly #store = inject(Store);
+  readonly #router = inject(Router);
+  readonly #driveService = inject(DriveService);
 
   public get files$(): Observable<IFile[]> {
     return this.parentId$.pipe(

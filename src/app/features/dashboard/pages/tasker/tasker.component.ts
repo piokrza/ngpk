@@ -19,7 +19,7 @@ import { TaskerFacadeService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskerComponent {
-  readonly #taskerFacadeService: TaskerFacadeService = inject(TaskerFacadeService);
+  readonly #taskerFacadeService = inject(TaskerFacadeService);
 
   readonly tasksData$: Observable<TasksData> = this.#taskerFacadeService.tasksData$;
   readonly isTasksLoading$: Observable<boolean> = this.#taskerFacadeService.isTasksLoading$;

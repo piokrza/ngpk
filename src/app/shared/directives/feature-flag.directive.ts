@@ -5,7 +5,7 @@ import { Feature } from '#core/models';
 
 @Directive({ selector: '[featureEnabled]', standalone: true })
 export class FeatureFlagDirective {
-  readonly #viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
+  readonly #viewContainerRef = inject(ViewContainerRef);
   readonly #templateRef: TemplateRef<unknown> = inject(TemplateRef<unknown>);
 
   @Input({ required: true }) set featureEnabled(featureName: Feature) {

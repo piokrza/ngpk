@@ -14,8 +14,8 @@ import { DriveFacadeService } from '#drive/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileListComponent {
-  protected location: Location = inject(Location);
-  readonly #driveFacadeService: DriveFacadeService = inject(DriveFacadeService);
+  readonly #location = inject(Location);
+  readonly #driveFacadeService = inject(DriveFacadeService);
 
   readonly files$: Observable<IFile[]> = this.#driveFacadeService.files$;
   readonly isLoading$: Observable<boolean> = this.#driveFacadeService.isLoading$;
@@ -26,5 +26,9 @@ export class FileListComponent {
 
   public fileClick(file: IFile): void {
     this.#driveFacadeService.fileClick(file);
+  }
+
+  public navigateBack(): void {
+    this.#location.back();
   }
 }

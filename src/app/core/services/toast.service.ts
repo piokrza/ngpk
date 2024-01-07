@@ -4,8 +4,8 @@ import { MessageService } from 'primeng/api';
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
-  readonly #messageService: MessageService = inject(MessageService);
-  readonly #ngZone: NgZone = inject(NgZone);
+  readonly #messageService = inject(MessageService);
+  readonly #ngZone = inject(NgZone);
 
   readonly #duration = 5000;
 

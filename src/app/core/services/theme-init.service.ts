@@ -12,7 +12,6 @@ export function injectThemeLink$(themeInitService: ThemeInitService) {
 @Injectable({ providedIn: 'root' })
 export class ThemeInitService {
   readonly #document: Document = inject(DOCUMENT);
-
   readonly #isLightMode = !!inject(PersistanceService).get<boolean>(isLightMode);
 
   public injectThemeLink$(): Observable<HTMLLinkElement> {

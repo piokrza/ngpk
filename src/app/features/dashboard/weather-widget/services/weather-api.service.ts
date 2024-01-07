@@ -8,8 +8,8 @@ import { IGeolocation, WeatherResponse } from '#weather-widget/models';
 
 @Injectable()
 export class WeatherApiService {
-  readonly #http: HttpClient = inject(HttpClient);
-  readonly #translateService: TranslateService = inject(TranslateService);
+  readonly #http = inject(HttpClient);
+  readonly #translateService = inject(TranslateService);
 
   readonly #baseUrl: string = env.weatherBaseUrl;
   readonly #weatherApiKey: string = env.weatherApiKey;

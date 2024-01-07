@@ -29,9 +29,9 @@ const providers: Provider[] = [OverviewService];
   imports,
 })
 export default class OverviewComponent {
-  readonly #router: Router = inject(Router);
-  readonly #overviewService: OverviewService = inject(OverviewService);
-  readonly #cashFlowService: CashFlowService = inject(CashFlowService);
+  readonly #router = inject(Router);
+  readonly #overviewService = inject(OverviewService);
+  readonly #cashFlowService = inject(CashFlowService);
 
   readonly taskerData$: Observable<TaskerData> = this.#overviewService.taskerData$;
   readonly isLoading$: Observable<boolean> = this.#overviewService.isLoading$;

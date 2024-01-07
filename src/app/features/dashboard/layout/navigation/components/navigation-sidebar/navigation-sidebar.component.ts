@@ -13,9 +13,9 @@ import { AuthActions } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationSidebarComponent {
-  readonly #store: Store = inject(Store);
-  readonly #translateService: TranslateService = inject(TranslateService);
-  readonly #confirmationService: ConfirmationService = inject(ConfirmationService);
+  readonly #store = inject(Store);
+  readonly #translateService = inject(TranslateService);
+  readonly #confirmationService = inject(ConfirmationService);
 
   @Input({ required: true }) public menuLinks!: MenuItem[];
 

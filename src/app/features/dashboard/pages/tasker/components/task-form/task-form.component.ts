@@ -26,9 +26,9 @@ export class TaskFormComponent implements OnInit {
       .subscribe({ next: ({ uid }) => this.#userId.set(uid) });
   }
 
-  readonly #taskerService: TaskerService = inject(TaskerService);
-  readonly #firestore: AngularFirestore = inject(AngularFirestore);
-  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+  readonly #firestore = inject(AngularFirestore);
+  readonly #dialogRef = inject(DynamicDialogRef);
+  readonly #taskerService = inject(TaskerService);
 
   readonly #taskData?: Task = inject(DynamicDialogConfig).data;
 

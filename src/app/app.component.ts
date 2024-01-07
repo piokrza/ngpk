@@ -8,8 +8,8 @@ import { PrimeNGConfig } from 'primeng/api';
   template: `<router-outlet />`,
 })
 export class AppComponent implements OnInit {
-  readonly #primengConfig: PrimeNGConfig = inject(PrimeNGConfig);
-  readonly #translateService: TranslateService = inject(TranslateService);
+  readonly #primengConfig = inject(PrimeNGConfig);
+  readonly #translateService = inject(TranslateService);
 
   public ngOnInit(): void {
     this.setPrimeNgConfig();

@@ -35,9 +35,9 @@ export class AddFormComponent {
       });
   }
 
-  readonly #dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-  readonly #firestore: AngularFirestore = inject(AngularFirestore);
-  readonly #cashFlowService: CashFlowService = inject(CashFlowService);
+  readonly #dialogRef = inject(DynamicDialogRef);
+  readonly #firestore = inject(AngularFirestore);
+  readonly #cashFlowService = inject(CashFlowService);
 
   readonly form: FormGroup<CashFlowForm> = this.#cashFlowService.form;
   readonly trPath: string = 'cashFlow.form.';
