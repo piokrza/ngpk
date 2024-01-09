@@ -11,15 +11,15 @@ export class CopyToClipboardDirective implements OnInit {
   readonly #zone = inject(NgZone);
   readonly #toastService = inject(ToastService);
   readonly #translateService = inject(TranslateService);
-  readonly #host: ElementRef<HTMLElement> = inject(ElementRef<HTMLElement>);
+  readonly #elementRef: ElementRef<HTMLElement> = inject(ElementRef<HTMLElement>);
 
   @Input({ required: true }) copyToClipboard!: string;
 
   public ngOnInit(): void {
     this.#zone.runOutsideAngular(() => {
-      fromEvent(this.#host.nativeElement, 'click')
+      fromEvent(this.#elementRef.nativeElement, 'click')
         .pipe(
-          switchMap(() => navigator.clipboard.writeText(this.copyToClipboard ?? '')),
+          switchMap((): Promise<void> => navigator.clipboard.writeText(this.copyToClipboard ?? '')),
           tap(() => this.#toastService.showMessage('success', '', this.#translateService.instant('toastMessage.urlCopied'))),
           untilDestroyed(this)
         )

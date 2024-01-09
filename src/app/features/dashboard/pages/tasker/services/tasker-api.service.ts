@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { Collection } from '#core/enums';
 import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/models';
@@ -9,7 +9,7 @@ import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/model
 export class TaskerApiService {
   readonly #angularFirestore: AngularFirestore = inject(AngularFirestore);
 
-  public loadTasks$(uid: string) {
+  public loadTasks$(uid: string): Observable<Task[]> {
     const tasks$: AngularFirestoreCollection<Task> = this.#angularFirestore.collection<Task>(Collection.TASKS, (ref) => {
       return ref.where('uid', '==', uid);
     });
@@ -17,7 +17,7 @@ export class TaskerApiService {
     return tasks$.valueChanges({ idField: 'id' });
   }
 
-  public loadNotes$(uid: string) {
+  public loadNotes$(uid: string): Observable<Note[]> {
     const notes$: AngularFirestoreCollection<Note> = this.#angularFirestore.collection<Note>(Collection.NOTES, (ref) => {
       return ref.where('uid', '==', uid);
     });
@@ -43,7 +43,7 @@ export class TaskerApiService {
         if (task.exists) {
           taskRef.update({
             isComplete: !task.data()?.isComplete,
-            steps: task.data()?.steps.map((step: TaskStep) => ({ ...step, isComplete: !task.data()?.isComplete })) ?? undefined,
+            steps: task.data()?.steps.map((step: TaskStep) => ({ ...step, isComplete: !task.data()?.isComplete })),
           });
         }
       })
@@ -64,7 +64,7 @@ export class TaskerApiService {
 
             taskRef.update({
               steps: taskSteps,
-              isComplete: taskSteps.every(({ isComplete }) => isComplete),
+              isComplete: taskSteps.every((step) => step.isComplete),
             });
           }
         }

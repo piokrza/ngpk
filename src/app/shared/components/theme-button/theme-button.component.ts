@@ -26,7 +26,7 @@ export class ThemeButtonComponent {
 
   readonly #themeLink: HTMLLinkElement;
 
-  isLightMode: boolean = !!inject(PersistanceService).get(isLightMode);
+  isLightMode: boolean = !!this.persistanceService.get(isLightMode);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public toggleTheme(): void {
