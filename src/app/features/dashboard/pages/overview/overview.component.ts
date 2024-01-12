@@ -28,7 +28,7 @@ const providers: Provider[] = [OverviewService];
   providers,
   imports,
 })
-export default class OverviewComponent {
+export class OverviewComponent {
   readonly #router = inject(Router);
   readonly #overviewService = inject(OverviewService);
   readonly #cashFlowService = inject(CashFlowService);

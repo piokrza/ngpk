@@ -13,4 +13,4 @@ const declarations = [DashboardComponent];
 const imports = [CommonModule, DashboardRoutingModule, ChartModule, LayoutModule, CardModule, ProgressSpinnerModule, ContainerComponent];
 
 @NgModule({ declarations, imports })
-export default class DashboardModule {}
+export class DashboardModule {}

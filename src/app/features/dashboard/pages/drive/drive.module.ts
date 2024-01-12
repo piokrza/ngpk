@@ -32,4 +32,4 @@ const imports = [
 const providers: Array<Provider> = [DriveFacadeService, DriveService];
 
 @NgModule({ declarations, imports, providers, exports: [DriveComponent] })
-export default class DriveModule {}
+export class DriveModule {}

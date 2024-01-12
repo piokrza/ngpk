@@ -37,4 +37,4 @@ const imports = [
 ];
 
 @NgModule({ declarations, imports })
-export default class SettingsModule {}
+export class SettingsModule {}

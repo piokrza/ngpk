@@ -15,7 +15,7 @@ const imports = [TranslateModule];
   standalone: true,
   imports,
 })
-export default class PageNotFoundComponent implements OnInit {
+export class PageNotFoundComponent implements OnInit {
   readonly #router = inject(Router);
 
   readonly count: WritableSignal<number> = signal(8);
