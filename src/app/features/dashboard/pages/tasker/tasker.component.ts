@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
@@ -11,7 +10,6 @@ import { LabeledData } from '#core/models';
 import { NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 import { TaskerFacadeService } from '#tasker/services';
 
-@UntilDestroy()
 @Component({
   selector: 'org-tasker',
   templateUrl: './tasker.component.html',
@@ -32,11 +30,11 @@ export class TaskerComponent {
   readonly filters: Array<LabeledData<TaskFilter>> = this.#taskerFacadeService.taskFilters;
 
   public addTask(): void {
-    this.#taskerFacadeService.addTask$().pipe(untilDestroyed(this)).subscribe();
+    this.#taskerFacadeService.addTask$().pipe(first()).subscribe();
   }
 
   public editTask(task: Task): void {
-    this.#taskerFacadeService.editTask$(task).pipe(untilDestroyed(this)).subscribe();
+    this.#taskerFacadeService.editTask$(task).pipe(first()).subscribe();
   }
 
   public removeTask(taskId: string): void {
@@ -60,7 +58,7 @@ export class TaskerComponent {
   }
 
   public addNote(): void {
-    this.#taskerFacadeService.addNote$().pipe(untilDestroyed(this)).subscribe();
+    this.#taskerFacadeService.addNote$().pipe(first()).subscribe();
   }
 
   public removeNote(noteId: string): void {

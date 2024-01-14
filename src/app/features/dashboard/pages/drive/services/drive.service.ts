@@ -16,12 +16,6 @@ export class DriveService {
   }
 
   public filterFiles(files: IFile[], parentId: string): IFile[] {
-    if (files === null) return [];
-
-    if (!parentId ?? ''.length) {
-      return files.filter((file) => (file.parentId ?? '') === '');
-    } else {
-      return files.filter((file) => file.parentId === parentId);
-    }
+    return files.filter((file) => (parentId.length ? file.parentId === parentId : file.parentId === ''));
   }
 }

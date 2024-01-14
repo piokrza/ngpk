@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChartData, ChartOptions } from 'chart.js';
-import { Observable, filter, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { ChartModule } from 'primeng/chart';
 import { Nullable } from 'primeng/ts-helpers';
@@ -26,10 +26,7 @@ export class CashFlowChartComponent {
 
   readonly currency$: Observable<string> = inject(Store)
     .select(AuthSelectors.user)
-    .pipe(
-      filter(Boolean),
-      map((user) => user.config.currency)
-    );
+    .pipe(map((user) => user?.config.currency ?? ''));
 
   public get chartOptions(): ChartOptions {
     return { plugins: { legend: { display: false } } };

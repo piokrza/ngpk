@@ -1,4 +1,4 @@
-<p-button (click)="toggle()" icon="pi pi-fw pi-list" type="button" />
+<p-button icon="pi pi-fw pi-list" type="button" (onClick)="toggleIsOpen()" />
 
 @if (isOpen()) {
   <org-container [@fadeIn] class="list">

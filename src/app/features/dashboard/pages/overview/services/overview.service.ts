@@ -141,7 +141,7 @@ export class OverviewService {
 
     return {
       backgroundColor: Array.from({ length: amountOfColors }, () => {
-        const colorScale = getRandomNumber(4, 9); //TODO: set icon and color for category (add edit category)
+        const colorScale = getRandomNumber(4, 9);
         return getClr(`--${color}-${colorScale}00`);
       }),
       hoverBackgroundColor: Array.from({ length: amountOfColors }, () => {

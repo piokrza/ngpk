@@ -24,7 +24,7 @@ export class MobileMenuComponent {
     }
   }
 
-  public toggle(): void {
+  public toggleIsOpen(): void {
     this.isOpen.update((isOpen) => !isOpen);
   }
 

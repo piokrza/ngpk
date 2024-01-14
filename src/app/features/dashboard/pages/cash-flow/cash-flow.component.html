@@ -2,6 +2,7 @@
   <p-tabPanel [header]="'cashFlow.incomes' | translate">
     @if (incomesDataset$ | async; as incomes) {
       <org-details-list
+        class="wrapper"
         [isIncomeMode]="true"
         [isLoading]="!!(isLoading$ | async)"
         [cashFlowList]="incomes.data"
@@ -9,15 +10,15 @@
         (addCashFlow)="addCashFlow($event)"
         (removeCashFlow)="removeIncome($event)"
         (updateCashFlow)="updateIncome($event)"
-        (categoryChange)="incomesCategoryChange($event)"
-        class="wrapper" />
+        (categoryChange)="incomesCategoryChange($event)" />
     }
   </p-tabPanel>
 
-  <p-tabPanel #expensesPanel [header]="'cashFlow.expenses' | translate">
+  <p-tabPanel [header]="'cashFlow.expenses' | translate">
     @if (expensesDataset$ | async; as expenses) {
       @defer {
         <org-details-list
+          class="wrapper"
           [isIncomeMode]="false"
           [isLoading]="!!(isLoading$ | async)"
           [cashFlowList]="expenses.data"
@@ -25,8 +26,7 @@
           (addCashFlow)="addCashFlow($event)"
           (removeCashFlow)="removeExpense($event)"
           (updateCashFlow)="updateExpense($event)"
-          (categoryChange)="expensesCategoryChange($event)"
-          class="wrapper" />
+          (categoryChange)="expensesCategoryChange($event)" />
       }
     }
   </p-tabPanel>

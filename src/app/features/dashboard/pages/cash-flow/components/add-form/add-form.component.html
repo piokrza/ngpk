@@ -7,35 +7,35 @@
 
     <span class="p-float-label my-4">
       <p-inputNumber
-        [formControl]="formControls.amount"
-        [minFractionDigits]="1"
-        [placeholder]="trPath + 'amount' | translate"
         id="amount"
         mode="currency"
         inputId="currency-poland"
-        [currency]="currency" />
+        [currency]="currency"
+        [minFractionDigits]="1"
+        [formControl]="formControls.amount"
+        [placeholder]="trPath + 'amount' | translate" />
     </span>
 
     @if (categories.length) {
       <p-dropdown
-        [formControl]="formControls.categoryId"
-        [options]="categories"
-        [placeholder]="trPath + 'selectCategory' | translate"
         optionLabel="name"
         optionValue="id"
-        styleClass="w-full" />
+        styleClass="w-full"
+        [options]="categories"
+        [formControl]="formControls.categoryId"
+        [placeholder]="trPath + 'selectCategory' | translate" />
     }
 
     <span class="p-float-label my-4">
-      <p-calendar [formControl]="formControls.date" id="date" class="w-full" appendTo="body" readonly />
+      <p-calendar readonly id="date" class="w-full" appendTo="body" [formControl]="formControls.date" />
       <label for="date">{{ trPath + 'pickDate' | translate }}</label>
     </span>
 
     <span class="p-float-label my-4">
-      <textarea [formControl]="formControls.description" id="description" class="w-full" pInputTextarea></textarea>
+      <textarea pInputTextarea id="description" class="w-full" [formControl]="formControls.description"></textarea>
       <label for="description">{{ trPath + 'addDescription' | translate }}</label>
     </span>
 
-    <button [disabled]="form.invalid" [label]="modeLabel + 'Add' | translate" type="submit" class="w-full" pButton></button>
+    <p-button type="submit" class="w-full" [disabled]="form.invalid" [label]="modeLabel + 'Add' | translate" />
   </form>
 </div>

@@ -10,7 +10,6 @@ import { PrimeIcons } from 'primeng/api';
 import { FileUploadEvent } from 'primeng/fileupload';
 
 import { IUser } from '#auth/models';
-import { FileUploadPayload } from '#drive/models';
 import { DriveFacadeService } from '#drive/services';
 
 @UntilDestroy()
@@ -51,7 +50,7 @@ export class DriveComponent implements OnInit {
         file: files[0],
         uid: this.#user()!.uid,
         parentId: this.parentId(),
-      } satisfies FileUploadPayload);
+      });
   }
 
   public addFolder(): void {

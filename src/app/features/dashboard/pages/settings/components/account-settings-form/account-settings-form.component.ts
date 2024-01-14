@@ -46,15 +46,13 @@ export class AccountSettingsFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.#store.dispatch(
-      AuthActions.updateAccount({
-        updatedUserData: {
-          ...this.form.getRawValue(),
-          uid: this.#user.uid,
-          config: this.#user.config,
-        },
-      })
-    );
+    const updatedUserData = {
+      ...this.form.getRawValue(),
+      uid: this.#user.uid,
+      config: this.#user.config,
+    } satisfies IUser;
+
+    this.#store.dispatch(AuthActions.updateAccount({ updatedUserData }));
   }
 
   public navigateBack(): void {

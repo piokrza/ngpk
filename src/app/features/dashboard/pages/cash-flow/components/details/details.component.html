@@ -3,26 +3,26 @@
     <div class="card__inner">
       <div>
         <div class="mb-2 text-xl card__inner">
-          <span [class]="['card__dot', isIncomeMode ? 'card__dot--success' : 'card__dot--danger']"></span>
+          <span [class]="['card__dot', 'card__dot--' + isIncomeMode ? 'success' : 'danger']"></span>
           {{ details.name | titlecase }}
         </div>
 
         @if (details.description) {
-          <org-details-box [detail]="details.description" iconName="comment" class="mt-3 block" />
+          <org-details-box iconName="comment" class="mt-3 block" [detail]="details.description" />
         }
 
         <div class="mt-3 card__flex-wrap">
-          <org-details-box [detail]="details.amount + ''" iconName="dollar" />
+          <org-details-box iconName="dollar" [detail]="details.amount + ''" />
           @if (details.date) {
-            <org-details-box [detail]="(details.date | timestamp: DateFormats.DATE) ?? ''" iconName="calendar" />
+            <org-details-box iconName="calendar" [detail]="(details.date | timestamp: DateFormats.DATE) ?? ''" />
           }
         </div>
       </div>
     </div>
 
     <div class="card__inner mt-auto gap-3">
-      <p-button (click)="updateCashFlow.emit(details)" [text]="true" [icon]="PrimeIcons.FILE_EDIT" />
-      <p-button (click)="removeCashFlow.emit(details.id)" [text]="true" [icon]="PrimeIcons.TRASH" severity="danger" />
+      <p-button [text]="true" [icon]="PrimeIcons.FILE_EDIT" (onClick)="updateCashFlow.emit(details)" />
+      <p-button severity="danger" [text]="true" [icon]="PrimeIcons.TRASH" (onClick)="removeCashFlow.emit(details.id)" />
     </div>
   </div>
 </org-container>

@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 
 import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
 
-@UntilDestroy()
 @Component({
   selector: 'org-cash-flow',
   templateUrl: './cash-flow.component.html',
@@ -26,11 +24,11 @@ export class CashFlowComponent {
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public addCashFlow(isIncomeMode: boolean): void {
-    this.#cashFlowFacadeService.openCashFlowDialog$(isIncomeMode).pipe(untilDestroyed(this)).subscribe();
+    this.#cashFlowFacadeService.openCashFlowDialog$(isIncomeMode).pipe(first()).subscribe();
   }
 
   public updateIncome(updatedIncome: CashFlow): void {
-    this.#cashFlowFacadeService.updateIncome$(updatedIncome).pipe(untilDestroyed(this)).subscribe();
+    this.#cashFlowFacadeService.updateIncome$(updatedIncome).pipe(first()).subscribe();
   }
 
   public removeIncome(incomeId: string): void {
@@ -38,7 +36,7 @@ export class CashFlowComponent {
   }
 
   public updateExpense(updatedExpense: CashFlow): void {
-    this.#cashFlowFacadeService.updateExpense$(updatedExpense).pipe(untilDestroyed(this)).subscribe();
+    this.#cashFlowFacadeService.updateExpense$(updatedExpense).pipe(first()).subscribe();
   }
 
   public removeExpense(expenseId: string): void {
