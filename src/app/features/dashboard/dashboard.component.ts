@@ -19,27 +19,27 @@ import { TaskerActions } from '#store/tasker';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  readonly #store = inject(Store);
-  readonly #authApiService = inject(AuthApiService);
-  readonly #dbSubscriptionService = inject(DbSubscriptionService);
+  private readonly store = inject(Store);
+  private readonly authApiService = inject(AuthApiService);
+  private readonly dbSubscriptionService = inject(DbSubscriptionService);
 
   public ngOnInit(): void {
-    this.#authApiService.authState$
+    this.authApiService.authState$
       .pipe(
         filter(Boolean),
         tap(({ uid }) => {
-          this.#store.dispatch(AuthActions.loadUserData({ uid }));
-          this.#store.dispatch(TaskerActions.loadTasks({ uid }));
-          this.#store.dispatch(TaskerActions.loadNotes({ uid }));
-          this.#store.dispatch(CashFlowActions.loadExpenses({ uid }));
-          this.#store.dispatch(CashFlowActions.loadIncomes({ uid }));
-          this.#store.dispatch(DriveActions.loadFiles({ uid }));
+          this.store.dispatch(AuthActions.loadUserData({ uid }));
+          this.store.dispatch(TaskerActions.loadTasks({ uid }));
+          this.store.dispatch(TaskerActions.loadNotes({ uid }));
+          this.store.dispatch(CashFlowActions.loadExpenses({ uid }));
+          this.store.dispatch(CashFlowActions.loadIncomes({ uid }));
+          this.store.dispatch(DriveActions.loadFiles({ uid }));
         })
       )
       .subscribe();
   }
 
   public ngOnDestroy(): void {
-    this.#dbSubscriptionService.unsubscribe();
+    this.dbSubscriptionService.unsubscribe();
   }
 }

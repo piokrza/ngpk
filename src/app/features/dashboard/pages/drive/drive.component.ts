@@ -20,23 +20,23 @@ import { DriveFacadeService } from '#drive/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriveComponent implements OnInit {
-  readonly #activatedRoute = inject(ActivatedRoute);
-  readonly #driveFacadeService = inject(DriveFacadeService);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly driveFacadeService = inject(DriveFacadeService);
 
-  readonly isProcessing$: Observable<boolean> = this.#driveFacadeService.isProcessing$;
+  readonly isProcessing$: Observable<boolean> = this.driveFacadeService.isProcessing$;
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly folderMode: WritableSignal<'initial' | 'edit'> = signal('initial');
   readonly folderNameControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
-  readonly parentId: Signal<string> = toSignal(this.#driveFacadeService.parentId$, { initialValue: '' });
+  readonly parentId: Signal<string> = toSignal(this.driveFacadeService.parentId$, { initialValue: '' });
 
-  readonly #user: Signal<IUser | null> = toSignal(this.#driveFacadeService.user$, { initialValue: null });
+  private readonly user: Signal<IUser | null> = toSignal(this.driveFacadeService.user$, { initialValue: null });
   protected uploadUrl: string = env.uploadUrl;
 
   public ngOnInit(): void {
-    this.#activatedRoute.params
+    this.activatedRoute.params
       .pipe(
-        tap(({ id }) => this.#driveFacadeService.setParentId(id ?? '')),
+        tap(({ id }) => this.driveFacadeService.setParentId(id ?? '')),
         untilDestroyed(this)
       )
       .subscribe();
@@ -46,17 +46,17 @@ export class DriveComponent implements OnInit {
     this.folderMode() === 'edit' && this.folderMode.set('initial');
 
     files.length &&
-      this.#driveFacadeService.uploadFile({
+      this.driveFacadeService.uploadFile({
         file: files[0],
-        uid: this.#user()!.uid,
+        uid: this.user()!.uid,
         parentId: this.parentId(),
       });
   }
 
   public addFolder(): void {
-    this.#driveFacadeService.uploadFolder({
+    this.driveFacadeService.uploadFolder({
       name: this.folderNameControl.value,
-      uid: this.#user()!.uid,
+      uid: this.user()!.uid,
       parentId: this.parentId(),
     });
 

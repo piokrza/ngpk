@@ -17,7 +17,7 @@ import { ContainerComponent } from '#shared/components';
 import { DetailsComponent } from '#weather-widget/components';
 import { WeatherResponse } from '#weather-widget/models';
 import { WeatherIconPipe } from '#weather-widget/pipes';
-import { WeatherApiService, WeatherStateService, WeatherFacadeService } from '#weather-widget/services';
+import { WeatherApiService, WeatherFacadeService, WeatherStateService } from '#weather-widget/services';
 
 const imports = [
   CommonModule,
@@ -43,26 +43,26 @@ const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherS
   imports,
 })
 export class WeatherWidgetComponent implements OnInit {
-  readonly #weatherFacadeService = inject(WeatherFacadeService);
+  private readonly weatherFacadeService = inject(WeatherFacadeService);
 
-  readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.#weatherFacadeService.weatherData$);
-  readonly isLoading$: Observable<boolean> = this.#weatherFacadeService.isLoading$;
-  readonly errorMessage$: Observable<string | null> = this.#weatherFacadeService.errorMessage$;
+  readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.weatherFacadeService.weatherData$);
+  readonly isLoading$: Observable<boolean> = this.weatherFacadeService.isLoading$;
+  readonly errorMessage$: Observable<string | null> = this.weatherFacadeService.errorMessage$;
 
   readonly isOpen: WritableSignal<boolean> = signal(false);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
   public ngOnInit(): void {
-    this.#weatherFacadeService.checkWeatherData();
-    this.#weatherFacadeService.checkGeolocation();
+    this.weatherFacadeService.checkWeatherData();
+    this.weatherFacadeService.checkGeolocation();
 
     this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? false.toString()));
   }
 
   public loadWeatherDataByCityName(cityName: string): void {
     cityName.length &&
-      this.#weatherFacadeService
+      this.weatherFacadeService
         .loadWeatherDataByCityName$(cityName)
         .pipe(
           tap(() => this.searchCityNameControl.reset()),
@@ -72,7 +72,7 @@ export class WeatherWidgetComponent implements OnInit {
   }
 
   public loadWeatherData(): void {
-    this.#weatherFacadeService.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
+    this.weatherFacadeService.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public toggleDetails(): void {

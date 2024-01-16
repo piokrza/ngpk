@@ -23,33 +23,33 @@ export class TaskFormComponent implements OnInit {
     inject(Store)
       .select(AuthSelectors.user)
       .pipe(filter(Boolean), untilDestroyed(this))
-      .subscribe({ next: ({ uid }) => this.#userId.set(uid) });
+      .subscribe({ next: ({ uid }) => this.userId.set(uid) });
   }
 
-  readonly #firestore = inject(AngularFirestore);
-  readonly #dialogRef = inject(DynamicDialogRef);
-  readonly #taskerService = inject(TaskerService);
+  private readonly firestore = inject(AngularFirestore);
+  private readonly dialogRef = inject(DynamicDialogRef);
+  private readonly taskerService = inject(TaskerService);
 
-  readonly #taskData?: Task = inject(DynamicDialogConfig).data;
+  private readonly taskData?: Task = inject(DynamicDialogConfig).data;
 
-  isEditMode: boolean = false;
-  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  readonly form: FormGroup<TaskForm> = this.#taskerService.taskForm;
-  readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
+  public isEditMode: boolean = false;
+  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  public readonly form: FormGroup<TaskForm> = this.taskerService.taskForm;
+  public readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
-  #userId: WritableSignal<string> = signal('');
+  private userId: WritableSignal<string> = signal('');
 
   public ngOnInit(): void {
-    if (this.#taskData) {
+    if (this.taskData) {
       this.isEditMode = true;
 
       this.form.patchValue({
-        name: this.#taskData.name,
-        isComplete: this.#taskData.isComplete,
+        name: this.taskData.name,
+        isComplete: this.taskData.isComplete,
       });
 
-      if (this.#taskData.steps.length) {
-        this.#taskData.steps.forEach(({ name, isComplete }) => this.addStep({ name, isComplete }));
+      if (this.taskData.steps.length) {
+        this.taskData.steps.forEach(({ name, isComplete }) => this.addStep({ name, isComplete }));
       }
     }
   }
@@ -61,20 +61,20 @@ export class TaskFormComponent implements OnInit {
     }
 
     if (this.isEditMode && this.form.dirty) {
-      this.#dialogRef.close({
+      this.dialogRef.close({
         ...this.form.getRawValue(),
-        id: this.#taskData!.id,
-        uid: this.#taskData!.uid,
-        steps: this.stepsArray.getRawValue().map((updatedStep) => ({ ...updatedStep, id: this.#firestore.createId() })),
+        id: this.taskData!.id,
+        uid: this.taskData!.uid,
+        steps: this.stepsArray.getRawValue().map((updatedStep) => ({ ...updatedStep, id: this.firestore.createId() })),
       } satisfies Task);
       return;
     }
 
-    this.#dialogRef.close({
+    this.dialogRef.close({
       ...this.form.getRawValue(),
-      id: this.#firestore.createId(),
-      uid: this.#userId(),
-      steps: this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.#firestore.createId() })),
+      id: this.firestore.createId(),
+      uid: this.userId(),
+      steps: this.form.controls.steps.getRawValue().map((step) => ({ ...step, id: this.firestore.createId() })),
     } satisfies Task);
   }
 

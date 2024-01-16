@@ -10,9 +10,9 @@ import { AuthActions } from '#store/auth';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
-  readonly #store = inject(Store);
-  readonly #translateService = inject(TranslateService);
-  readonly #confirmationService = inject(ConfirmationService);
+  private readonly store = inject(Store);
+  private readonly translateService = inject(TranslateService);
+  private readonly confirmationService = inject(ConfirmationService);
 
   public getMenuLinks(): MenuItem[] {
     return [
@@ -56,10 +56,10 @@ export class MenuService {
   }
 
   private signOut(): void {
-    this.#confirmationService.confirm({
-      message: this.#translateService.instant('auth.signoutMessage'),
-      header: this.#translateService.instant('auth.signout'),
-      accept: (): void => this.#store.dispatch(AuthActions.signOut()),
+    this.confirmationService.confirm({
+      message: this.translateService.instant('auth.signoutMessage'),
+      header: this.translateService.instant('auth.signout'),
+      accept: (): void => this.store.dispatch(AuthActions.signOut()),
     });
   }
 }

@@ -22,34 +22,34 @@ import { TaskerService } from '#tasker/services';
 
 @Injectable()
 export class OverviewService {
-  readonly #store = inject(Store);
-  readonly #router = inject(Router);
-  readonly #taskerService = inject(TaskerService);
-  readonly #dialogService = inject(DialogService);
-  readonly #translateService = inject(TranslateService);
+  private readonly store = inject(Store);
+  private readonly router = inject(Router);
+  private readonly taskerService = inject(TaskerService);
+  private readonly dialogService = inject(DialogService);
+  private readonly translateService = inject(TranslateService);
 
   public get isLoading$(): Observable<boolean> {
-    return this.#store.select(CashFlowSelectors.isLoading);
+    return this.store.select(CashFlowSelectors.isLoading);
   }
 
   public get incomesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
-      incomes: this.#store.select(CashFlowSelectors.incomes),
-      categories: this.#store.select(AuthSelectors.categories),
+      incomes: this.store.select(CashFlowSelectors.incomes),
+      categories: this.store.select(AuthSelectors.categories),
     }).pipe(map(({ incomes, categories }) => this.generateCashFlowChartData(incomes, categories.incomes, 'green')));
   }
 
   public get expensesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
-      expenses: this.#store.select(CashFlowSelectors.expenses),
-      categories: this.#store.select(AuthSelectors.categories),
+      expenses: this.store.select(CashFlowSelectors.expenses),
+      categories: this.store.select(AuthSelectors.categories),
     }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories.expenses, 'pink')));
   }
 
   public get taskerData$(): Observable<TaskerData> {
     return combineLatest({
-      tasks: this.#store.select(TaskerSelectors.tasks),
-      notes: this.#store.select(TaskerSelectors.notes),
+      tasks: this.store.select(TaskerSelectors.tasks),
+      notes: this.store.select(TaskerSelectors.notes),
     }).pipe(
       map(({ tasks, notes }) => ({
         totalTasksLength: tasks?.length,
@@ -62,8 +62,8 @@ export class OverviewService {
   public get cashFlowData$(): Observable<LabeledData<number>[]> {
     return combineLatest({
       totalBalance: this.totalBalance$,
-      totalIncome: this.#store.select(CashFlowSelectors.totalIncomes),
-      totalExpense: this.#store.select(CashFlowSelectors.totalExpenses),
+      totalIncome: this.store.select(CashFlowSelectors.totalIncomes),
+      totalExpense: this.store.select(CashFlowSelectors.totalExpenses),
       transactionAmount: this.transactionAmount$,
     }).pipe(
       map((data) => [
@@ -76,17 +76,17 @@ export class OverviewService {
   }
 
   public addQuickNote$(): Observable<Note | undefined> {
-    const dialogRef: DynamicDialogRef = this.#dialogService.open(NoteFormComponent, {
-      header: this.#translateService.instant('tasker.addNote'),
+    const dialogRef: DynamicDialogRef = this.dialogService.open(NoteFormComponent, {
+      header: this.translateService.instant('tasker.addNote'),
       style: BaseDialogStyles,
     });
 
     return dialogRef.onClose.pipe(
       tap((note?: Note) => {
         if (note) {
-          this.#store.dispatch(TaskerActions.addNote({ note }));
-          this.#taskerService.setActiveTabIndex(1);
-          void this.#router.navigate([AppPaths.DASHBOARD, DashobardPaths.TASKER]);
+          this.store.dispatch(TaskerActions.addNote({ note }));
+          this.taskerService.setActiveTabIndex(1);
+          void this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.TASKER]);
         }
       })
     );
@@ -94,15 +94,15 @@ export class OverviewService {
 
   private get totalBalance$(): Observable<number> {
     return combineLatest({
-      totalIncomes: this.#store.select(CashFlowSelectors.totalIncomes),
-      totalExpenses: this.#store.select(CashFlowSelectors.totalExpenses),
+      totalIncomes: this.store.select(CashFlowSelectors.totalIncomes),
+      totalExpenses: this.store.select(CashFlowSelectors.totalExpenses),
     }).pipe(map(({ totalIncomes, totalExpenses }) => totalIncomes - totalExpenses));
   }
 
   private get transactionAmount$(): Observable<number> {
     return combineLatest({
-      incomesLength: this.#store.select(CashFlowSelectors.incomes).pipe(map((incomes) => incomes.length)),
-      expensesLength: this.#store.select(CashFlowSelectors.expenses).pipe(map((expenses) => expenses.length)),
+      incomesLength: this.store.select(CashFlowSelectors.incomes).pipe(map((incomes) => incomes.length)),
+      expensesLength: this.store.select(CashFlowSelectors.expenses).pipe(map((expenses) => expenses.length)),
     }).pipe(map(({ incomesLength, expensesLength }): number => incomesLength + expensesLength));
   }
 

@@ -11,21 +11,21 @@ export function injectThemeLink$(themeInitService: ThemeInitService) {
 
 @Injectable({ providedIn: 'root' })
 export class ThemeInitService {
-  readonly #document: Document = inject(DOCUMENT);
-  readonly #isLightMode = !!inject(PersistanceService).get<boolean>(isLightMode);
+  private readonly document: Document = inject(DOCUMENT);
+  private readonly isLightMode = !!inject(PersistanceService).get<boolean>(isLightMode);
 
   public injectThemeLink$(): Observable<HTMLLinkElement> {
     return this.themeLink$.pipe(
-      tap((themeLink: HTMLLinkElement) => this.#document.head.appendChild(themeLink)),
+      tap((themeLink: HTMLLinkElement) => this.document.head.appendChild(themeLink)),
       first()
     );
   }
 
   private get themeLink$(): Observable<HTMLLinkElement> {
-    const themeLink: HTMLLinkElement = this.#document.createElement('link');
+    const themeLink: HTMLLinkElement = this.document.createElement('link');
     themeLink.type = 'text/css';
     themeLink.rel = 'stylesheet';
-    themeLink.href = `${this.#isLightMode ? 'light' : 'dark'}-theme.css`;
+    themeLink.href = `${this.isLightMode ? 'light' : 'dark'}-theme.css`;
     themeLink.id = 'theme-link';
 
     return of(themeLink);

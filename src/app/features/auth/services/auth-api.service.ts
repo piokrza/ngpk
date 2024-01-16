@@ -10,30 +10,30 @@ import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
-  readonly #afAuth: AngularFireAuth = inject(AngularFireAuth);
-  readonly #angularFirestore: AngularFirestore = inject(AngularFirestore);
+  private readonly afAuth: AngularFireAuth = inject(AngularFireAuth);
+  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public async signinWithGoogle(): Promise<firebase.auth.UserCredential> {
-    return await this.#afAuth.signInWithPopup(new GoogleAuthProvider());
+    return await this.afAuth.signInWithPopup(new GoogleAuthProvider());
   }
 
   public async signOut(): Promise<void> {
-    return await this.#afAuth.signOut();
+    return await this.afAuth.signOut();
   }
 
   public async signInWithEmailAndPassword({ email, password }: AuthFormPayload): Promise<firebase.auth.UserCredential> {
-    return await this.#afAuth.signInWithEmailAndPassword(email, password);
+    return await this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
   public async signUpWithEmailAndPassword({ email, password }: AuthFormPayload): Promise<firebase.auth.UserCredential> {
-    return await this.#afAuth.createUserWithEmailAndPassword(email, password);
+    return await this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
   public loadUserData$(uid: string): Observable<IUser> {
-    return this.#angularFirestore.doc<IUser>(`${Collection.USERS}/${uid}`).valueChanges().pipe(filter(Boolean));
+    return this.angularFirestore.doc<IUser>(`${Collection.USERS}/${uid}`).valueChanges().pipe(filter(Boolean));
   }
 
   public get authState$(): Observable<firebase.User | null> {
-    return this.#afAuth.authState;
+    return this.afAuth.authState;
   }
 }

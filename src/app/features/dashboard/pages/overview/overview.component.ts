@@ -29,23 +29,23 @@ const providers: Provider[] = [OverviewService];
   imports,
 })
 export class OverviewComponent {
-  readonly #router = inject(Router);
-  readonly #overviewService = inject(OverviewService);
-  readonly #cashFlowService = inject(CashFlowService);
+  private readonly router = inject(Router);
+  private readonly overviewService = inject(OverviewService);
+  private readonly cashFlowService = inject(CashFlowService);
 
-  readonly taskerData$: Observable<TaskerData> = this.#overviewService.taskerData$;
-  readonly isLoading$: Observable<boolean> = this.#overviewService.isLoading$;
-  readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.#overviewService.cashFlowData$;
+  readonly taskerData$: Observable<TaskerData> = this.overviewService.taskerData$;
+  readonly isLoading$: Observable<boolean> = this.overviewService.isLoading$;
+  readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.overviewService.cashFlowData$;
 
-  readonly incomesChartData$: Observable<ChartData | undefined> = this.#overviewService.incomesChartData$;
-  readonly expensesChartData$: Observable<ChartData | undefined> = this.#overviewService.expensesChartData$;
+  readonly incomesChartData$: Observable<ChartData | undefined> = this.overviewService.incomesChartData$;
+  readonly expensesChartData$: Observable<ChartData | undefined> = this.overviewService.expensesChartData$;
 
   public addQuickNote(): void {
-    this.#overviewService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
+    this.overviewService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
   }
 
   public navigateToCashFlow(itemLabel: string): void {
-    this.#cashFlowService.setActiveTabIndex(itemLabel === 'totalExpense' ? 1 : 0);
-    this.#router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
+    this.cashFlowService.setActiveTabIndex(itemLabel === 'totalExpense' ? 1 : 0);
+    this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
   }
 }

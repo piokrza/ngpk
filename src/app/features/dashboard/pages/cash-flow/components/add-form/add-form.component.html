@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <span class="p-float-label my-4">
       <input [formControl]="formControls.name" id="name" type="text" pInputText class="w-full" />
       <label for="name">{{ modeLabel | translate }}</label>

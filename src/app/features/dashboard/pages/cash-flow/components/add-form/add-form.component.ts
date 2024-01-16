@@ -21,30 +21,30 @@ import { AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddFormComponent implements OnInit {
-  readonly #store = inject(Store);
-  readonly #dialogRef = inject(DynamicDialogRef);
-  readonly #firestore = inject(AngularFirestore);
-  readonly #cashFlowService = inject(CashFlowService);
+  private readonly store = inject(Store);
+  private readonly dialogRef = inject(DynamicDialogRef);
+  private readonly firestore = inject(AngularFirestore);
+  private readonly cashFlowService = inject(CashFlowService);
 
-  readonly form: FormGroup<CashFlowForm> = this.#cashFlowService.form;
+  readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   readonly trPath: string = 'cashFlow.form.';
 
-  #userId!: string;
-  readonly #isIncomeMode: boolean = inject(DynamicDialogConfig).data;
+  private userId!: string;
+  private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
 
   currency: string = '';
   categories: Category[] = [];
 
   public ngOnInit(): void {
-    this.#store
+    this.store
       .select(AuthSelectors.user)
       .pipe(filter(Boolean), untilDestroyed(this))
       .subscribe({
         next: ({ uid, config }: IUser) => {
-          this.#userId = uid;
+          this.userId = uid;
           this.currency = config.currency;
           const { incomes, expenses } = config.categories;
-          this.categories = this.#isIncomeMode ? incomes : expenses;
+          this.categories = this.isIncomeMode ? incomes : expenses;
         },
       });
   }
@@ -55,11 +55,11 @@ export class AddFormComponent implements OnInit {
       return;
     }
 
-    this.#dialogRef.close({
+    this.dialogRef.close({
       ...this.form.getRawValue(),
       date: Timestamp.fromDate(this.form.getRawValue().date!),
-      uid: this.#userId,
-      id: this.#firestore.createId(),
+      uid: this.userId,
+      id: this.firestore.createId(),
     });
 
     this.form.reset();
@@ -70,6 +70,6 @@ export class AddFormComponent implements OnInit {
   }
 
   public get modeLabel(): string {
-    return `${this.trPath}${this.#isIncomeMode ? 'income' : 'expense'}Name`;
+    return `${this.trPath}${this.isIncomeMode ? 'income' : 'expense'}Name`;
   }
 }
