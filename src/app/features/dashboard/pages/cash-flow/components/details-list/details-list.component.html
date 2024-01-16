@@ -12,7 +12,7 @@
       (onChange)="onCategoryFilterChange($event)" />
   </div>
 
-  <ul class="grid-container">
+  <ul class="flex-container">
     @if (cashFlowList.length) {
       @for (item of cashFlowList; track item.id) {
         <li>

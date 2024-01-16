@@ -39,10 +39,14 @@ small.error {
   text-decoration: underline;
 }
 
-.grid-container {
-  display: grid;
+.flex-container {
+  display: flex;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+  flex-wrap: wrap;
+
+  & > * {
+    flex-grow: 1;
+  }
 }
 
 .center-element {
