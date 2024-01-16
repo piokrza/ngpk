@@ -1,17 +1,7 @@
-:host {
-  display: block;
-  width: 100%;
-
-  .container {
-    height: 100%;
-
-    &__inner {
-      padding: 1rem;
-      border-radius: var(--radius);
-      height: 100%;
-      border: solid 1px var(--surface-hover);
-      background-color: var(--surface-section);
-      overflow-y: auto;
-    }
-  }
+.container {
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: solid 1px var(--surface-hover);
+  background-color: var(--surface-section);
+  overflow-y: auto;
 }
