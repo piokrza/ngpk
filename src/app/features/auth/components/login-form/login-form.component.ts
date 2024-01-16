@@ -17,18 +17,18 @@ import { AuthActions, AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {
-  readonly #store = inject(Store);
+  private readonly store = inject(Store);
 
   readonly AuthPaths: typeof AuthPaths = AuthPaths;
   readonly form: FormGroup<LoginForm> = inject(AuthFormService).loginForm;
-  readonly errorMessage$: Observable<string | null> = this.#store.select(AuthSelectors.errorMessage).pipe(
+  readonly errorMessage$: Observable<string | null> = this.store.select(AuthSelectors.errorMessage).pipe(
     tap((errorMessage) => {
-      typeof errorMessage === 'string' && setTimeout(() => this.#store.dispatch(AuthActions.resetErrorMessage()), 5000);
+      typeof errorMessage === 'string' && setTimeout(() => this.store.dispatch(AuthActions.resetErrorMessage()), 5000);
     })
   );
 
   public signinWithGoogle(): void {
-    this.#store.dispatch(AuthActions.signInWithGoogle());
+    this.store.dispatch(AuthActions.signInWithGoogle());
   }
 
   public onSubmit(): void {
@@ -37,6 +37,6 @@ export class LoginFormComponent {
       return;
     }
 
-    this.#store.dispatch(AuthActions.signInWithEmailAndPassword({ payload: this.form.getRawValue() }));
+    this.store.dispatch(AuthActions.signInWithEmailAndPassword({ payload: this.form.getRawValue() }));
   }
 }

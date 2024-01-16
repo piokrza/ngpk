@@ -15,14 +15,14 @@ import { AuthActions, AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {
-  readonly #store = inject(Store);
+  private readonly store = inject(Store);
 
-  readonly form: FormGroup<RegisterForm> = inject(AuthFormService).registerForm;
-  readonly AuthPaths: typeof AuthPaths = AuthPaths;
-  readonly errorMessage$: Observable<string | null> = this.#store.select(AuthSelectors.errorMessage).pipe(
+  public readonly form: FormGroup<RegisterForm> = inject(AuthFormService).registerForm;
+  public readonly AuthPaths: typeof AuthPaths = AuthPaths;
+  public readonly errorMessage$: Observable<string | null> = this.store.select(AuthSelectors.errorMessage).pipe(
     tap((errorMessage) => {
-      typeof errorMessage === 'string' && setTimeout(() => this.#store.dispatch(AuthActions.resetErrorMessage()), 4000);
-    })
+      typeof errorMessage === 'string' && setTimeout(() => this.store.dispatch(AuthActions.resetErrorMessage()), 4000);
+    }) // TODO: handle it better
   );
 
   public onSubmit(): void {
@@ -33,7 +33,7 @@ export class RegisterFormComponent {
 
     const { email, password } = this.form.getRawValue();
 
-    this.#store.dispatch(AuthActions.signUpWithEmailAndPassword({ payload: { email, password } }));
+    this.store.dispatch(AuthActions.signUpWithEmailAndPassword({ payload: { email, password } }));
     this.form.reset();
   }
 }

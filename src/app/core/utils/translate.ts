@@ -17,11 +17,11 @@ export function initializeTranslations(translateService: TranslateService) {
 }
 
 export class CustomTranslateHttpLoader implements TranslateLoader {
-  readonly #http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   public getTranslation(lang: string): Observable<object> {
     const requests = [`/assets/i18n/${lang}/auth.json`, `/assets/i18n/${lang}/common.json`, `/assets/i18n/${lang}/dashboard.json`].map(
-      (url: string) => this.#http.get<object>(url)
+      (url: string) => this.http.get<object>(url)
     );
 
     return forkJoin(requests).pipe(map((responses: object[]) => Object.assign({}, ...responses)));

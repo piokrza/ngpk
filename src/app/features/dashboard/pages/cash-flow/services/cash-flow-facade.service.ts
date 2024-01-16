@@ -15,65 +15,65 @@ import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {
-  readonly #store = inject(Store);
-  readonly #dialogService = inject(DialogService);
-  readonly #cashFlowService = inject(CashFlowService);
-  readonly #translateService = inject(TranslateService);
-  readonly #confirmationService = inject(ConfirmationService);
+  private readonly store = inject(Store);
+  private readonly dialogService = inject(DialogService);
+  private readonly cashFlowService = inject(CashFlowService);
+  private readonly translateService = inject(TranslateService);
+  private readonly confirmationService = inject(ConfirmationService);
 
   public get incomesDataset$(): Observable<CashFlowData> {
     return combineLatest({
-      data: this.#store.select(CashFlowSelectors.incomes),
-      amount: this.#store.select(CashFlowSelectors.totalIncomes),
+      data: this.store.select(CashFlowSelectors.incomes),
+      amount: this.store.select(CashFlowSelectors.totalIncomes),
     });
   }
 
   public get expensesDataset$(): Observable<CashFlowData> {
     return combineLatest({
-      data: this.#store.select(CashFlowSelectors.expenses),
-      amount: this.#store.select(CashFlowSelectors.totalExpenses),
+      data: this.store.select(CashFlowSelectors.expenses),
+      amount: this.store.select(CashFlowSelectors.totalExpenses),
     });
   }
 
   public get activeTabIndex$(): Observable<number> {
-    return this.#cashFlowService.activeTabIndex$;
+    return this.cashFlowService.activeTabIndex$;
   }
 
   public get isLoading$(): Observable<boolean> {
-    return this.#store.select(CashFlowSelectors.isLoading);
+    return this.store.select(CashFlowSelectors.isLoading);
   }
 
   public get categories$(): Observable<{ incomes: Category[]; expenses: Category[] }> {
-    return this.#store.select(AuthSelectors.categories);
+    return this.store.select(AuthSelectors.categories);
   }
 
   public removeIncome(incomeId: string): void {
-    this.#confirmationService.confirm({
-      message: this.#translateService.instant('incomes.removeMessage'),
-      header: this.#translateService.instant('incomes.removeHeader'),
+    this.confirmationService.confirm({
+      message: this.translateService.instant('incomes.removeMessage'),
+      header: this.translateService.instant('incomes.removeHeader'),
       icon: PrimeIcons.TRASH,
-      accept: (): void => this.#store.dispatch(CashFlowActions.removeIncome({ incomeId })),
+      accept: (): void => this.store.dispatch(CashFlowActions.removeIncome({ incomeId })),
     });
   }
 
   public updateIncome$(updatedIncome: CashFlow): Observable<CashFlow | undefined> {
-    const dialogRef: DynamicDialogRef = this.#dialogService.open(UpdateFormComponent, {
-      header: this.#translateService.instant('incomes.updateIncome'),
+    const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
+      header: this.translateService.instant('incomes.updateIncome'),
       style: { ...BaseDialogStyles },
       data: { updatedCashFlow: updatedIncome, isIncomeMode: true },
     });
 
     return dialogRef.onClose.pipe(
       tap((updatedIncome?: CashFlow): void => {
-        updatedIncome && this.#store.dispatch(CashFlowActions.updateIncome({ updatedIncome }));
+        updatedIncome && this.store.dispatch(CashFlowActions.updateIncome({ updatedIncome }));
       })
     );
   }
 
   public openCashFlowDialog$(isIncomeMode: boolean): Observable<CashFlow | undefined> {
-    const dialogRef: DynamicDialogRef = this.#dialogService.open(AddFormComponent, {
+    const dialogRef: DynamicDialogRef = this.dialogService.open(AddFormComponent, {
       data: isIncomeMode,
-      header: this.#translateService.instant('cashFlow.addCashFlow'),
+      header: this.translateService.instant('cashFlow.addCashFlow'),
       style: BaseDialogStyles,
     });
 
@@ -81,40 +81,40 @@ export class CashFlowFacadeService {
       tap((cashFlow: CashFlow | undefined) => {
         if (cashFlow) {
           isIncomeMode
-            ? this.#store.dispatch(CashFlowActions.addIncome({ income: cashFlow }))
-            : this.#store.dispatch(CashFlowActions.addExpense({ expense: cashFlow }));
+            ? this.store.dispatch(CashFlowActions.addIncome({ income: cashFlow }))
+            : this.store.dispatch(CashFlowActions.addExpense({ expense: cashFlow }));
         }
       })
     );
   }
 
   public removeExpense(expenseId: string): void {
-    this.#confirmationService.confirm({
-      message: this.#translateService.instant('expenses.removeMessage'),
-      header: this.#translateService.instant('expenses.removeHeader'),
+    this.confirmationService.confirm({
+      message: this.translateService.instant('expenses.removeMessage'),
+      header: this.translateService.instant('expenses.removeHeader'),
       icon: PrimeIcons.TRASH,
-      accept: (): void => this.#store.dispatch(CashFlowActions.removeExpense({ expenseId })),
+      accept: (): void => this.store.dispatch(CashFlowActions.removeExpense({ expenseId })),
     });
   }
 
   public updateExpense$(updatedExpense: CashFlow): Observable<CashFlow | undefined> {
-    const dialogRef: DynamicDialogRef = this.#dialogService.open(UpdateFormComponent, {
-      header: this.#translateService.instant('expenses.updateMessage'),
+    const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
+      header: this.translateService.instant('expenses.updateMessage'),
       style: { ...BaseDialogStyles },
       data: { updatedCashFlow: updatedExpense, isIncomeMode: false },
     });
 
     return dialogRef.onClose.pipe(
       tap((updatedExpense?: CashFlow): void => {
-        updatedExpense && this.#store.dispatch(CashFlowActions.updateExpense({ updatedExpense }));
+        updatedExpense && this.store.dispatch(CashFlowActions.updateExpense({ updatedExpense }));
       })
     );
   }
 
   public setIncomesCategoryFilter(categoryIds: string[]): void {
-    this.#store.dispatch(CashFlowActions.setIncomesFilter({ categoryIds }));
+    this.store.dispatch(CashFlowActions.setIncomesFilter({ categoryIds }));
   }
   public setExpensesCategoryFilter(categoryIds: string[]): void {
-    this.#store.dispatch(CashFlowActions.setExpensesFilter({ categoryIds }));
+    this.store.dispatch(CashFlowActions.setExpensesFilter({ categoryIds }));
   }
 }

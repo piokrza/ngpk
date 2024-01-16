@@ -8,21 +8,21 @@ import { IGeolocation, WeatherResponse } from '#weather-widget/models';
 
 @Injectable()
 export class WeatherApiService {
-  readonly #http = inject(HttpClient);
-  readonly #translateService = inject(TranslateService);
+  private readonly http = inject(HttpClient);
+  private readonly translateService = inject(TranslateService);
 
-  readonly #baseUrl = env.weatherBaseUrl;
-  readonly #weatherApiKey = env.weatherApiKey;
+  private readonly baseUrl = env.weatherBaseUrl;
+  private readonly weatherApiKey = env.weatherApiKey;
 
   public searchByCityName$(cityName: string): Observable<WeatherResponse> {
-    return this.#http.get<WeatherResponse>(
-      `${this.#baseUrl}?q=${cityName}&units=Metric&appid=${this.#weatherApiKey}&lang=${this.#translateService.currentLang}`
+    return this.http.get<WeatherResponse>(
+      `${this.baseUrl}?q=${cityName}&units=Metric&appid=${this.weatherApiKey}&lang=${this.translateService.currentLang}`
     );
   }
 
   public seatchByGeoCords$(geolocation: IGeolocation): Observable<WeatherResponse> {
-    return this.#http.get<WeatherResponse>(
-      `${this.#baseUrl}?lat=${geolocation.latitude}&lon=${geolocation.longitude}&units=Metric&appid=${this.#weatherApiKey}&lang=${this.#translateService.currentLang}`
+    return this.http.get<WeatherResponse>(
+      `${this.baseUrl}?lat=${geolocation.latitude}&lon=${geolocation.longitude}&units=Metric&appid=${this.weatherApiKey}&lang=${this.translateService.currentLang}`
     );
   }
 }

@@ -1,4 +1,4 @@
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -50,10 +50,8 @@ const imports = [
   TimestampPipe,
   ContainerComponent,
   MultiSelectModule,
-
-  JsonPipe,
 ];
 const providers: Provider[] = [CashFlowFacadeService];
 
 @NgModule({ declarations, imports, providers })
-export default class CashFlowModule {}
+export class CashFlowModule {}

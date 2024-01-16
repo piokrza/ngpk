@@ -29,6 +29,7 @@
                   (toggleIsStepComplete)="toggleIsStepComplete($event)" />
               </li>
             }
+
             <li>
               <org-container [noPadding]="true" class="h-full">
                 <p-button
@@ -65,13 +66,13 @@
             <ul class="m-0">
               @for (note of data.notes; track note.id) {
                 <li class="my-3">
-                  <org-note [note]="note" (removeNote)="removeNote($event)" class="flex-grow-1" />
+                  <org-note class="flex-grow-1" [note]="note" (removeNote)="removeNote($event)" />
                 </li>
               }
 
               <li>
                 <org-container [noPadding]="true">
-                  <p-button [text]="true" [icon]="PrimeIcons.PLUS" (onClick)="addNote()" severity="secondary" styleClass="w-full py-3" />
+                  <p-button severity="secondary" styleClass="w-full py-3" [text]="true" [icon]="PrimeIcons.PLUS" (onClick)="addNote()" />
                 </org-container>
               </li>
             </ul>

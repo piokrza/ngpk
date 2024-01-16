@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
 
@@ -11,54 +11,52 @@ import { IUser } from '#auth/models';
 import { AccountSettingsForm } from '#settings/models';
 import { AuthActions, AuthSelectors } from '#store/auth';
 
-@UntilDestroy()
 @Component({
   selector: 'org-account-settings-form',
   templateUrl: './account-settings-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountSettingsFormComponent implements OnInit {
-  readonly #store = inject(Store);
-  readonly #location = inject(Location);
+  private readonly store = inject(Store);
+  private readonly location = inject(Location);
+  private readonly destroyRef = inject(DestroyRef);
 
-  #user!: IUser;
+  private user!: IUser;
   readonly trPath: string = 'settings.accountForm.';
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly form: FormGroup<AccountSettingsForm> = this.accountSettingsForm;
 
   public ngOnInit(): void {
-    this.#store
+    this.store
       .select(AuthSelectors.user)
       .pipe(
         filter(Boolean),
         tap((user: IUser) => {
-          this.#user = user;
+          this.user = user;
           this.form.patchValue({
-            email: this.#user.email,
-            photoURL: this.#user.photoURL,
-            displayName: this.#user.displayName,
-            phoneNumber: this.#user.phoneNumber,
+            email: this.user.email,
+            photoURL: this.user.photoURL,
+            displayName: this.user.displayName,
+            phoneNumber: this.user.phoneNumber,
           });
         }),
-        untilDestroyed(this)
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe();
   }
 
   public onSubmit(): void {
-    this.#store.dispatch(
-      AuthActions.updateAccount({
-        updatedUserData: {
-          ...this.form.getRawValue(),
-          uid: this.#user.uid,
-          config: this.#user.config,
-        },
-      })
-    );
+    const updatedUserData = {
+      ...this.form.getRawValue(),
+      uid: this.user.uid,
+      config: this.user.config,
+    } satisfies IUser;
+
+    this.store.dispatch(AuthActions.updateAccount({ updatedUserData }));
   }
 
   public navigateBack(): void {
-    this.#location.back();
+    this.location.back();
   }
 
   private get accountSettingsForm(): FormGroup<AccountSettingsForm> {

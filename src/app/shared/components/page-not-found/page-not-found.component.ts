@@ -15,8 +15,8 @@ const imports = [TranslateModule];
   standalone: true,
   imports,
 })
-export default class PageNotFoundComponent implements OnInit {
-  readonly #router = inject(Router);
+export class PageNotFoundComponent implements OnInit {
+  private readonly router = inject(Router);
 
   readonly count: WritableSignal<number> = signal(8);
 
@@ -25,7 +25,7 @@ export default class PageNotFoundComponent implements OnInit {
       .pipe(
         tap(() => this.count.update((count) => count - 1)),
         takeWhile(() => this.count() > 0),
-        finalize(() => this.#router.navigate([AppPaths.DASHBOARD]))
+        finalize(() => this.router.navigate([AppPaths.DASHBOARD]))
       )
       .subscribe();
   }

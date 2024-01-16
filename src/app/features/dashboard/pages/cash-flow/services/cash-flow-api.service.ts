@@ -7,16 +7,16 @@ import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowApiService {
-  readonly #angularFirestore: AngularFirestore = inject(AngularFirestore);
+  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
   public loadExpenses$(uid: string): Observable<CashFlow[]> {
-    return this.#angularFirestore
+    return this.angularFirestore
       .collection<CashFlow>(Collection.EXPENSES, (ref) => ref.where('uid', '==', uid))
       .valueChanges({ idField: 'id' });
   }
 
   public loadIncomes$(uid: string): Observable<CashFlow[]> {
-    return this.#angularFirestore
+    return this.angularFirestore
       .collection<CashFlow>(Collection.INCOMES, (ref) => ref.where('uid', '==', uid))
       .valueChanges({ idField: 'id' });
   }
@@ -25,17 +25,17 @@ export class CashFlowApiService {
     collectionName: Collection.EXPENSES | Collection.INCOMES,
     cashFlow: CashFlow
   ): Promise<DocumentReference<CashFlow>> {
-    return await this.#angularFirestore.collection<CashFlow>(collectionName).add(cashFlow);
+    return await this.angularFirestore.collection<CashFlow>(collectionName).add(cashFlow);
   }
 
   public async removeCashFlow$(collectionName: Collection.EXPENSES | Collection.INCOMES, cashFlowId: string): Promise<void> {
-    const cashFlow: AngularFirestoreDocument<CashFlow> = this.#angularFirestore.collection(collectionName).doc(cashFlowId);
+    const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore.collection(collectionName).doc(cashFlowId);
 
     return await cashFlow.delete();
   }
 
   public async updateCashFlow$(collectionName: Collection.EXPENSES | Collection.INCOMES, updatedCashFlowData: CashFlow): Promise<void> {
-    const cashFlow: AngularFirestoreDocument<CashFlow> = this.#angularFirestore
+    const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore
       .collection<CashFlow>(collectionName)
       .doc(updatedCashFlowData.id);
 

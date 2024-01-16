@@ -4,12 +4,12 @@
   <div class="select-wrapper">
     <small class="block mb-2">{{ 'common.categories' | translate }}</small>
     <p-multiSelect
+      optionLabel="name"
+      styleClass="w-full"
       [placeholder]="'cashFlow.allCategories' | translate"
       [options]="categories"
       [showHeader]="false"
-      (onChange)="onCategoryFilterChange($event)"
-      optionLabel="name"
-      styleClass="w-full" />
+      (onChange)="onCategoryFilterChange($event)" />
   </div>
 
   <ul class="grid-container">
@@ -27,11 +27,11 @@
     <li>
       <org-container [noPadding]="true" class="h-full">
         <p-button
+          severity="secondary"
+          styleClass="w-full h-full py-5"
           [text]="true"
           [icon]="PrimeIcons.PLUS"
-          (onClick)="addCashFlow.emit(isIncomeMode)"
-          severity="secondary"
-          styleClass="w-full h-full py-5" />
+          (onClick)="addCashFlow.emit(isIncomeMode)" />
       </org-container>
     </li>
   </ul>

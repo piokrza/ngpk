@@ -14,21 +14,21 @@ import { DriveFacadeService } from '#drive/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileListComponent {
-  readonly #location = inject(Location);
-  readonly #driveFacadeService = inject(DriveFacadeService);
+  private readonly location = inject(Location);
+  private readonly driveFacadeService = inject(DriveFacadeService);
 
-  readonly files$: Observable<IFile[]> = this.#driveFacadeService.files$;
-  readonly isLoading$: Observable<boolean> = this.#driveFacadeService.isLoading$;
-  readonly parentFile$: Observable<IFile | undefined> = this.#driveFacadeService.parentFile$;
+  readonly files$: Observable<IFile[]> = this.driveFacadeService.files$;
+  readonly isLoading$: Observable<boolean> = this.driveFacadeService.isLoading$;
+  readonly parentFile$: Observable<IFile | undefined> = this.driveFacadeService.parentFile$;
 
   readonly nameLimit = 12;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public fileClick(file: IFile): void {
-    this.#driveFacadeService.fileClick(file);
+    this.driveFacadeService.fileClick(file);
   }
 
   public navigateBack(): void {
-    this.#location.back();
+    this.location.back();
   }
 }

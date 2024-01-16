@@ -1,27 +1,30 @@
-<org-container [noPadding]="true" styleClass="my-4">
-  <div (click)="toggleDetails()" class="rounded widget">
+<org-container styleClass="my-4" [noPadding]="true">
+  <div class="rounded widget" (click)="toggleDetails()">
     <div [class.pb-0]="data()" class="flex justify-content-between align-items-center">
       @if (data() === null) {
         <p-button
+          severity="secondary"
+          class="w-full btn"
           [icon]="(isLoading$ | async) ? PrimeIcons.SPINNER : ''"
           [label]="'weather.fetchData' | translate"
           [text]="true"
-          (onClick)="loadWeatherData()"
-          severity="secondary"
-          class="w-full btn" />
+          (onClick)="loadWeatherData()" />
       }
+
       @if (data()?.name) {
         <p>
           {{ data()?.name }} <small>({{ data()?.sys?.country }})</small>
         </p>
       }
+
       <div class="flex align-items-center">
         @if (data()?.main?.temp) {
           <span class="mr-2">{{ data()?.main?.temp | number: '1.0-0' }} ℃</span>
         }
+
         @if (data()?.weather?.[0]?.icon; as icon) {
           <div class="w-3rem">
-            <img [src]="icon | weatherIcon" alt="weather-icon" />
+            <img alt="weather-icon" [src]="icon | weatherIcon" />
           </div>
         }
       </div>
@@ -29,35 +32,35 @@
   </div>
 
   @if (data() !== null) {
-    <div [class.widget__details--active]="isOpen()" class="widget__details">
+    <div class="widget__details" [class.widget__details--active]="isOpen()">
       <p>{{ data()!.weather[0].description | titlecase }}</p>
 
       <div class="flex gap-3 justify-content-between my-3">
         <org-details
-          [amount]="(data()?.main?.humidity | number: '1.0-0') + '%'"
+          icon="assets/img/weather-icons/humidity.png"
           [name]="'weather.humidity' | translate"
-          icon="assets/img/weather-icons/humidity.png">
+          [amount]="(data()?.main?.humidity | number: '1.0-0') + '%'">
         </org-details>
 
         <org-details
+          icon="assets/img/weather-icons/wind.png"
           [amount]="(data()?.wind?.speed | number: '1.0-0') + ' km/h'"
-          [name]="'weather.wind' | translate"
-          icon="assets/img/weather-icons/wind.png">
+          [name]="'weather.wind' | translate">
         </org-details>
       </div>
 
       <div class="flex align-items-center justify-content-between">
         <input
-          (keyup.enter)="loadWeatherDataByCityName(searchCityNameControl.value)"
-          [formControl]="searchCityNameControl"
-          [placeholder]="'weather.searchCity' | translate"
+          pInputText
           type="text"
           class="w-full"
-          pInputText />
+          [formControl]="searchCityNameControl"
+          [placeholder]="'weather.searchCity' | translate"
+          (keyup.enter)="loadWeatherDataByCityName(searchCityNameControl.value)" />
         <p-button
-          (onClick)="loadWeatherDataByCityName(searchCityNameControl.value)"
+          [icon]="PrimeIcons.SEARCH"
           [disabled]="!searchCityNameControl.value || !!(isLoading$ | async)"
-          [icon]="PrimeIcons.SEARCH" />
+          (onClick)="loadWeatherDataByCityName(searchCityNameControl.value)" />
       </div>
 
       @if (errorMessage$ | async; as errorMessage) {

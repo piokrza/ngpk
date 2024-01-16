@@ -48,4 +48,4 @@ const declarations = [TaskComponent, TaskFormComponent, TaskerComponent, NoteFor
 const providers: Provider[] = [TaskerFacadeService, DatePipe];
 
 @NgModule({ declarations, imports, providers })
-export default class TaskerModule {}
+export class TaskerModule {}

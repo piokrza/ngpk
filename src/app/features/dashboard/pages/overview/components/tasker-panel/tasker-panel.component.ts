@@ -19,7 +19,7 @@ const imports = [ContainerComponent, TranslateModule, ButtonModule];
 export class TaskerPanelComponent {
   @Input({ required: true }) taskerData: TaskerData | null = null;
 
-  @Output() quickNote = new EventEmitter<void>();
+  @Output() addQuickNote = new EventEmitter<void>();
 
   public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 }

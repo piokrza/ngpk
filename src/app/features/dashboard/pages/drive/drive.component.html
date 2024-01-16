@@ -1,13 +1,13 @@
 <div class="drive">
   <div class="drive__buttons">
     <p-fileUpload
+      mode="basic"
       [auto]="true"
       [chooseLabel]="'drive.addFile' | translate"
       [url]="uploadUrl"
       [chooseIcon]="(isProcessing$ | async) ? PrimeIcons.SPINNER + ' pi-spin' : PrimeIcons.PLUS"
       [disabled]="!!(isProcessing$ | async)"
-      (onUpload)="uploadFile($event)"
-      mode="basic" />
+      (onUpload)="uploadFile($event)" />
 
     @switch (folderMode()) {
       @case ('initial') {

@@ -16,4 +16,4 @@ const imports = [CommonModule, AuthRoutingModule, ReactiveFormsModule, InputText
 const providers: Provider[] = [AuthFormService, AuthApiService];
 
 @NgModule({ declarations, imports, providers })
-export default class AuthModule {}
+export class AuthModule {}

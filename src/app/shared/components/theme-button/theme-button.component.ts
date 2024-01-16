@@ -21,16 +21,16 @@ const imports = [ToggleButtonModule, FormsModule];
 })
 export class ThemeButtonComponent {
   public constructor(private readonly persistanceService: PersistanceService) {
-    this.#themeLink = inject(DOCUMENT).getElementById(themeLink) as HTMLLinkElement;
+    this.themeLink = inject(DOCUMENT).getElementById(themeLink) as HTMLLinkElement;
   }
 
-  readonly #themeLink: HTMLLinkElement;
+  private readonly themeLink: HTMLLinkElement;
 
   isLightMode: boolean = !!this.persistanceService.get(isLightMode);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public toggleTheme(): void {
-    this.#themeLink.href = this.isLightMode ? 'light-theme.css' : 'dark-theme.css';
+    this.themeLink.href = this.isLightMode ? 'light-theme.css' : 'dark-theme.css';
     this.persistanceService.set(isLightMode, this.isLightMode);
   }
 }

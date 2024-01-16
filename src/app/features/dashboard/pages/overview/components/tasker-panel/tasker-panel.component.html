@@ -1,7 +1,7 @@
 <org-container styleClass="px-0" class="h-full">
   <div class="flex flex-column justify-content-between h-full">
     <div>
-      <h1 class="mt-0">{{ 'menu.tasker' | translate }}</h1>
+      <h1 class="mt-0 text-2xl">{{ 'menu.tasker' | translate }}</h1>
 
       @if (taskerData) {
         <p>{{ 'overview.todos' | translate }}: {{ taskerData.totalTasksLength }}</p>
@@ -13,6 +13,6 @@
       }
     </div>
 
-    <p-button [icon]="PrimeIcons.PLUS" [label]="'overview.quickNote' | translate" (onClick)="quickNote.emit()" styleClass="w-full" />
+    <p-button [icon]="PrimeIcons.PLUS" [label]="'overview.quickNote' | translate" (onClick)="addQuickNote.emit()" styleClass="w-full" />
   </div>
 </org-container>

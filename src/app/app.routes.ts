@@ -12,20 +12,20 @@ export const routes: Routes = [
   },
   {
     path: AppPaths.DASHBOARD,
-    loadChildren: () => import('#dashboard/dashboard.module'),
+    loadChildren: async () => (await import('#dashboard/dashboard.module')).DashboardModule,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
   },
   {
     path: AppPaths.AUTHENTICATION,
-    loadChildren: () => import('#auth/auth.module'),
+    loadChildren: async () => (await import('#auth/auth.module')).AuthModule,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
     title: getTitle('auth'),
   },
   {
     path: '**',
-    loadComponent: () => import('#shared/components/page-not-found/page-not-found.component'),
+    loadComponent: async () => (await import('#shared/components/page-not-found/page-not-found.component')).PageNotFoundComponent,
     title: getTitle('pageNotFound'),
   },
 ];

@@ -8,11 +8,11 @@ import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  readonly #firestore = inject(AngularFirestore);
-  readonly #angularFirestore = inject(AngularFirestore);
+  private readonly firestore = inject(AngularFirestore);
+  private readonly angularFirestore = inject(AngularFirestore);
 
   public addUserToDatabase$(user: Partial<IUser>) {
-    const usersCollectionRef: AngularFirestoreCollection<IUser> = this.#angularFirestore.collection(Collection.USERS);
+    const usersCollectionRef: AngularFirestoreCollection<IUser> = this.angularFirestore.collection(Collection.USERS);
 
     return usersCollectionRef
       .doc(user.uid)
@@ -36,7 +36,7 @@ export class UserService {
   }
 
   public async updateUser$(updatedUserData: IUser): Promise<void> {
-    const user: AngularFirestoreDocument<IUser> = this.#angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
+    const user: AngularFirestoreDocument<IUser> = this.angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
     return await user.update(updatedUserData);
   }
 
@@ -48,16 +48,16 @@ export class UserService {
     return Object.freeze({
       categories: {
         incomes: [
-          { name: 'Concerts', id: this.#firestore.createId() },
-          { name: 'Salary', id: this.#firestore.createId() },
-          { name: 'Gifts', id: this.#firestore.createId() },
-          { name: 'Other', id: this.#firestore.createId() },
+          { name: 'Concerts', id: this.firestore.createId() },
+          { name: 'Salary', id: this.firestore.createId() },
+          { name: 'Gifts', id: this.firestore.createId() },
+          { name: 'Other', id: this.firestore.createId() },
         ],
         expenses: [
-          { name: 'Rental fees', id: this.#firestore.createId() },
-          { name: 'Entertainment', id: this.#firestore.createId() },
-          { name: 'General', id: this.#firestore.createId() },
-          { name: 'Other', id: this.#firestore.createId() },
+          { name: 'Rental fees', id: this.firestore.createId() },
+          { name: 'Entertainment', id: this.firestore.createId() },
+          { name: 'General', id: this.firestore.createId() },
+          { name: 'Other', id: this.firestore.createId() },
         ],
       },
       language: 'en',

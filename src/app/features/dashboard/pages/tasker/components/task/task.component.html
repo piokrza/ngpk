@@ -13,7 +13,7 @@
       @if (task.steps.length) {
         <ul class="pl-3">
           @for (step of task.steps; track step.id) {
-            <li (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })" class="my-2 cursor-pointer task__step">
+            <li class="my-2 cursor-pointer task__step" (click)="toggleIsStepComplete.emit({ taskId: task.id, stepId: step.id })">
               - <span [class.task__name--complete]="step.isComplete">{{ step.name }}</span>
             </li>
           }
