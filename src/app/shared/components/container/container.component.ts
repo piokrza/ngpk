@@ -7,6 +7,5 @@ import { Component, Input } from '@angular/core';
   standalone: true,
 })
 export class ContainerComponent {
-  @Input() styleClass = '';
-  @Input() noPadding = false;
+  @Input() styleClass: string[] = [];
 }

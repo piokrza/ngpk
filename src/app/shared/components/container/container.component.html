@@ -1,5 +1,3 @@
-<div [class]="['container', 'h-full', 'box', noPadding ? '' : 'p-3', styleClass]">
-  <div class="container__inner">
-    <ng-content />
-  </div>
+<div class="container" [class]="styleClass">
+  <ng-content />
 </div>

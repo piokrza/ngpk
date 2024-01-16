@@ -3,10 +3,6 @@
   flex-wrap: wrap;
   gap: 1rem;
 
-  ::ng-deep org-container .container {
-    padding: 0 !important;
-  }
-
   a {
     flex-grow: 1;
     flex-basis: 300px;
