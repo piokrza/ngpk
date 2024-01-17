@@ -1,8 +1,6 @@
 .sidebar__link {
-  border: 1px solid var(--surface-hover);
-
   &:hover,
   &.active {
-    background-color: var(--surface-hover);
+    border: 1px solid var(--highlight-bg) !important;
   }
 }

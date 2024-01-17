@@ -4,4 +4,9 @@
   border: solid 1px var(--surface-hover);
   background-color: var(--surface-section);
   overflow-y: auto;
+  transition: 250ms;
+
+  &.hover:hover {
+    border-color: var(--highlight-bg);
+  }
 }

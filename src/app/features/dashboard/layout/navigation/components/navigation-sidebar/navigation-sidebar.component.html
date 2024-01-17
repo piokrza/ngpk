@@ -5,7 +5,7 @@
         <org-user-info />
         <org-weather-widget />
 
-        <ul class="gap-3 mt-6">
+        <ul class="sidebar__list">
           @for (link of menuLinks; track $index) {
             <li routerLinkActive="active" class="sidebar__link">
               <a [routerLink]="link.routerLink" class="block p-4">
