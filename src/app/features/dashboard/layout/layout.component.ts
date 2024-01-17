@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <org-navigation />
 
       <main>
-        <org-container [styleClass]="['xl:h-full']">
+        <org-container [styleClass]="['h-full']">
           <ng-content />
         </org-container>
       </main>

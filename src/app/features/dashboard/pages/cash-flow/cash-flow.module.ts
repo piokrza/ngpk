@@ -19,7 +19,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/.';
 import { AddFormComponent, DetailsBoxComponent, DetailsComponent, DetailsListComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
-import { CashFlowFacadeService } from '#cash-flow/services';
+import { CashFlowFacadeService, CashFlowPaginationService } from '#cash-flow/services';
 import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
 
@@ -55,7 +55,7 @@ const imports = [
   PaginatorModule,
 ];
 
-const providers: Provider[] = [CashFlowFacadeService];
+const providers: Provider[] = [CashFlowFacadeService, CashFlowPaginationService];
 
 @NgModule({ declarations, imports, providers })
 export class CashFlowModule {}

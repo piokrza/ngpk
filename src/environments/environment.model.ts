@@ -8,7 +8,6 @@ export interface Environment {
     messagingSenderId: string;
     measurementId: string;
   };
-  maxItemPerPage: number;
   weatherBaseUrl: string;
   weatherApiKey: string;
   uploadUrl: string;
