@@ -10,7 +10,6 @@ export const environment: Environment = {
     appId: '1:731403343161:web:c3b3ae2f486b4d1bb384e8',
     measurementId: 'G-R3YVX64CVE',
   },
-  maxItemPerPage: 6,
   weatherBaseUrl: 'https://api.openweathermap.org/data/2.5/weather',
   weatherApiKey: '253353dc15d16c96be28e7780f4d500f',
   uploadUrl: 'https://www.primefaces.org/cdn/api/upload.php',

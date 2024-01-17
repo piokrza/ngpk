@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { environment as env } from 'src/environments/environment';
 
 import { PrimeIcons } from 'primeng/api';
 import { MultiSelectChangeEvent } from 'primeng/multiselect';
@@ -23,7 +22,6 @@ export class DetailsListComponent {
   @Output() updateCashFlow = new EventEmitter<CashFlow>();
   @Output() categoryChange = new EventEmitter<string[]>();
 
-  readonly maxItemsPerPage = env.maxItemPerPage; //TODO: add pagination
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   public onCategoryFilterChange({ value }: MultiSelectChangeEvent): void {

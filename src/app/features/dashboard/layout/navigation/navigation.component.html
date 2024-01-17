@@ -1,6 +1,6 @@
 <div class="mobile">
-  <div class="p-3 rounded panel">
-    <org-mobile-menu [menuItems]="menuLinks" #menu />
+  <div class="py-3 rounded panel">
+    <org-mobile-menu #menu [menuItems]="menuLinks" />
 
     @if (user$ | async; as user) {
       <div class="mr-4">

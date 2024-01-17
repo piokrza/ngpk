@@ -12,13 +12,14 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
 import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/.';
-import { AddFormComponent, DetailsComponent, DetailsBoxComponent, DetailsListComponent, UpdateFormComponent } from '#cash-flow/components';
+import { AddFormComponent, DetailsBoxComponent, DetailsComponent, DetailsListComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
-import { CashFlowFacadeService } from '#cash-flow/services';
+import { CashFlowFacadeService, CashFlowPaginationService } from '#cash-flow/services';
 import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
 
@@ -30,6 +31,7 @@ const declarations = [
   UpdateFormComponent,
   CashFlowComponent,
 ];
+
 const imports = [
   CashFlowRoutingModule,
   CommonModule,
@@ -50,8 +52,10 @@ const imports = [
   TimestampPipe,
   ContainerComponent,
   MultiSelectModule,
+  PaginatorModule,
 ];
-const providers: Provider[] = [CashFlowFacadeService];
+
+const providers: Provider[] = [CashFlowFacadeService, CashFlowPaginationService];
 
 @NgModule({ declarations, imports, providers })
 export class CashFlowModule {}

@@ -3,7 +3,7 @@
     <div class="card__inner">
       <div>
         <div class="mb-2 text-xl card__inner">
-          <span [class]="['card__dot', 'card__dot--' + isIncomeMode ? 'success' : 'danger']"></span>
+          <span [class]="['card__dot', 'card__dot--' + (isIncomeMode ? 'success' : 'danger')]"></span>
           {{ details.name | titlecase }}
         </div>
 

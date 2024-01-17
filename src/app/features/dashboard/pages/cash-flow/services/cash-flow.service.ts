@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 
-import { CashFlowForm } from '#cash-flow/models';
+import { PaginatorState } from 'primeng/paginator';
+
+import { CashFlow, CashFlowData, CashFlowForm } from '#cash-flow/models';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowService {
@@ -24,5 +26,18 @@ export class CashFlowService {
       categoryId: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
       description: new FormControl<string>('', { validators: [Validators.maxLength(40)], nonNullable: true }),
     });
+  }
+
+  public setCashFlowData(cashFlow$: Observable<CashFlow[]>, paginatorState$: Observable<PaginatorState>): Observable<CashFlowData> {
+    return combineLatest({
+      cashFlow: cashFlow$,
+      paginatorState: paginatorState$,
+    }).pipe(
+      map(({ cashFlow, paginatorState }) => ({
+        paginatorState,
+        totalLength: cashFlow.length,
+        paginatedCashFlow: cashFlow.slice(paginatorState.first, (paginatorState.first ?? 0) + (paginatorState?.rows ?? 0)),
+      }))
+    );
   }
 }

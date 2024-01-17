@@ -1,32 +1,50 @@
 <p-tabView [activeIndex]="(activeTabIndex$ | async)!">
   <p-tabPanel [header]="'cashFlow.incomes' | translate">
-    @if (incomesDataset$ | async; as incomes) {
+    @if (incomes$ | async; as data) {
       <org-details-list
         class="wrapper"
         [isIncomeMode]="true"
         [isLoading]="!!(isLoading$ | async)"
-        [cashFlowList]="incomes.data"
+        [cashFlowList]="data.paginatedCashFlow"
         [categories]="(categories$ | async)?.incomes ?? []"
         (addCashFlow)="addCashFlow($event)"
         (removeCashFlow)="removeIncome($event)"
         (updateCashFlow)="updateIncome($event)"
         (categoryChange)="incomesCategoryChange($event)" />
+
+      @if (data.totalLength > rowsPerPageOptions[0]) {
+        <p-paginator
+          [rows]="rowsPerPageOptions[0]"
+          [totalRecords]="data.totalLength"
+          [first]="data.paginatorState.first ?? 0"
+          [rowsPerPageOptions]="rowsPerPageOptions"
+          (onPageChange)="incomesPageChange($event)" />
+      }
     }
   </p-tabPanel>
 
   <p-tabPanel [header]="'cashFlow.expenses' | translate">
-    @if (expensesDataset$ | async; as expenses) {
+    @if (expenses$ | async; as data) {
       @defer {
         <org-details-list
           class="wrapper"
           [isIncomeMode]="false"
           [isLoading]="!!(isLoading$ | async)"
-          [cashFlowList]="expenses.data"
+          [cashFlowList]="data.paginatedCashFlow"
           [categories]="(categories$ | async)?.expenses ?? []"
           (addCashFlow)="addCashFlow($event)"
           (removeCashFlow)="removeExpense($event)"
           (updateCashFlow)="updateExpense($event)"
           (categoryChange)="expensesCategoryChange($event)" />
+
+        @if (data.totalLength > rowsPerPageOptions[0]) {
+          <p-paginator
+            [rows]="rowsPerPageOptions[0]"
+            [totalRecords]="data.totalLength"
+            [first]="data.paginatorState.first ?? 0"
+            [rowsPerPageOptions]="rowsPerPageOptions"
+            (onPageChange)="expensesPageChange($event)" />
+        }
       }
     }
   </p-tabPanel>
