@@ -9,7 +9,7 @@ import { Note, Task, TaskStep, ToggleIsStepCompletePayload } from '#tasker/model
 export class TaskerApiService {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
-  public loadTasks$(uid: string): Observable<Task[]> {
+  loadTasks$(uid: string): Observable<Task[]> {
     const tasks$: AngularFirestoreCollection<Task> = this.angularFirestore.collection<Task>(Collection.TASKS, (ref) => {
       return ref.where('uid', '==', uid);
     });
@@ -17,7 +17,7 @@ export class TaskerApiService {
     return tasks$.valueChanges({ idField: 'id' });
   }
 
-  public loadNotes$(uid: string): Observable<Note[]> {
+  loadNotes$(uid: string): Observable<Note[]> {
     const notes$: AngularFirestoreCollection<Note> = this.angularFirestore.collection<Note>(Collection.NOTES, (ref) => {
       return ref.where('uid', '==', uid);
     });
@@ -25,17 +25,17 @@ export class TaskerApiService {
     return notes$.valueChanges({ idField: 'id' });
   }
 
-  public addTask(task: Task): Promise<DocumentReference<Task>> {
+  addTask(task: Task): Promise<DocumentReference<Task>> {
     const tasksCollection: AngularFirestoreCollection<Task> = this.angularFirestore.collection<Task>(Collection.TASKS);
     return tasksCollection.add(task);
   }
 
-  public async editTask(updatedTask: Task): Promise<void> {
+  async editTask(updatedTask: Task): Promise<void> {
     const task: AngularFirestoreDocument<Task> = this.angularFirestore.collection<Task>(Collection.TASKS).doc(updatedTask.id);
     return await task.update(updatedTask);
   }
 
-  public toggleIsTaskComplete(taskId: string) {
+  toggleIsTaskComplete(taskId: string) {
     const taskRef: AngularFirestoreDocument<Task> = this.getTaskRef(taskId);
 
     return taskRef.get().pipe(
@@ -50,7 +50,7 @@ export class TaskerApiService {
     );
   }
 
-  public toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
+  toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
     const taskRef: AngularFirestoreDocument<Task> = this.getTaskRef(payload.taskId);
 
     return taskRef.get().pipe(
@@ -72,16 +72,16 @@ export class TaskerApiService {
     );
   }
 
-  public addNote(note: Note): Promise<DocumentReference<Note>> {
+  addNote(note: Note): Promise<DocumentReference<Note>> {
     const notesCollection: AngularFirestoreCollection<Note> = this.angularFirestore.collection<Note>(Collection.NOTES);
     return notesCollection.add(note);
   }
 
-  public async removeTask(taskId: string): Promise<void> {
+  async removeTask(taskId: string): Promise<void> {
     return await this.getTaskRef(taskId).delete();
   }
 
-  public async removeNote(noteId: string): Promise<void> {
+  async removeNote(noteId: string): Promise<void> {
     return await this.getNoteRef(noteId).delete();
   }
 

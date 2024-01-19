@@ -22,7 +22,7 @@ export class AuthEffects {
   private readonly translateService = inject(TranslateService);
   private readonly dbSubscriptionService = inject(DbSubscriptionService);
 
-  public signInWithGoogle$ = createEffect(() => {
+  signInWithGoogle$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signInWithGoogle),
       exhaustMap(() => {
@@ -35,7 +35,7 @@ export class AuthEffects {
     );
   });
 
-  public signInWithGoogleSuccess$ = createEffect(
+  signInWithGoogleSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.signInWithGoogleSuccess),
@@ -45,7 +45,7 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  public signOut$ = createEffect(() => {
+  signOut$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signOut),
       exhaustMap((): Promise<void> => this.authApiService.signOut()),
@@ -54,7 +54,7 @@ export class AuthEffects {
     );
   });
 
-  public signInWithEmailAndPassword$ = createEffect(() => {
+  signInWithEmailAndPassword$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.signInWithEmailAndPassword),
       exhaustMap(({ payload }) => {
@@ -69,7 +69,7 @@ export class AuthEffects {
     );
   });
 
-  public signUpWithEmailAndPassword$ = createEffect(() => {
+  signUpWithEmailAndPassword$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ActionTypes.SIGN_UP_WITH_EMAIL_AND_PASSWORD),
       exhaustMap(({ payload }) => {
@@ -86,7 +86,7 @@ export class AuthEffects {
     );
   });
 
-  public signUpWithEmailAndPasswordSuccess$ = createEffect(
+  signUpWithEmailAndPasswordSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(AuthActions.signUpWithEmailAndPasswordSuccess),
@@ -96,7 +96,7 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  public loadUserData$ = createEffect(() => {
+  loadUserData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loadUserData),
       exhaustMap(({ uid }) =>
@@ -108,7 +108,7 @@ export class AuthEffects {
     );
   });
 
-  public updateAccount$ = createEffect(() => {
+  updateAccount$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.updateAccount),
       exhaustMap(({ updatedUserData }) => {

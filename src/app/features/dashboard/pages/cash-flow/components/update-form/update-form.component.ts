@@ -29,21 +29,21 @@ export class UpdateFormComponent implements OnInit {
   readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   readonly cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.form.patchValue({
       ...this.cashFlowUpdateFormData.updatedCashFlow,
       date: this.cashFlowUpdateFormData.updatedCashFlow.date.toDate(),
     });
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     const id: string = this.cashFlowUpdateFormData.updatedCashFlow.id;
     const date: Timestamp = Timestamp.fromDate(this.form.getRawValue().date!);
 
     this.dialogRef.close({ ...this.form.getRawValue(), date, id });
   }
 
-  public get formControls(): CashFlowForm {
+  get formControls(): CashFlowForm {
     return this.form.controls;
   }
 

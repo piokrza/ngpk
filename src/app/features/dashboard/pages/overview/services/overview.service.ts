@@ -28,25 +28,25 @@ export class OverviewService {
   private readonly dialogService = inject(DialogService);
   private readonly translateService = inject(TranslateService);
 
-  public get isLoading$(): Observable<boolean> {
+  get isLoading$(): Observable<boolean> {
     return this.store.select(CashFlowSelectors.isLoading);
   }
 
-  public get incomesChartData$(): Observable<ChartData | undefined> {
+  get incomesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
       incomes: this.store.select(CashFlowSelectors.incomes),
       categories: this.store.select(AuthSelectors.categories),
     }).pipe(map(({ incomes, categories }) => this.generateCashFlowChartData(incomes, categories.incomes, 'green')));
   }
 
-  public get expensesChartData$(): Observable<ChartData | undefined> {
+  get expensesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
       expenses: this.store.select(CashFlowSelectors.expenses),
       categories: this.store.select(AuthSelectors.categories),
     }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories.expenses, 'pink')));
   }
 
-  public get taskerData$(): Observable<TaskerData> {
+  get taskerData$(): Observable<TaskerData> {
     return combineLatest({
       tasks: this.store.select(TaskerSelectors.tasks),
       notes: this.store.select(TaskerSelectors.notes),
@@ -59,7 +59,7 @@ export class OverviewService {
     );
   }
 
-  public get cashFlowData$(): Observable<LabeledData<number>[]> {
+  get cashFlowData$(): Observable<LabeledData<number>[]> {
     return combineLatest({
       totalBalance: this.totalBalance$,
       totalIncome: this.store.select(CashFlowSelectors.totalIncomes),
@@ -75,7 +75,7 @@ export class OverviewService {
     );
   }
 
-  public addQuickNote$(): Observable<Note | undefined> {
+  addQuickNote$(): Observable<Note | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(NoteFormComponent, {
       header: this.translateService.instant('tasker.addNote'),
       style: BaseDialogStyles,

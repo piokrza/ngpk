@@ -16,7 +16,7 @@ export class TaskerEffects {
   private readonly taskerApiService = inject(TaskerApiService);
   private readonly dbSubscriptionService = inject(DbSubscriptionService);
 
-  public getTasks$ = createEffect(() => {
+  getTasks$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.loadTasks),
       exhaustMap(({ uid }) => {
@@ -32,7 +32,7 @@ export class TaskerEffects {
     );
   });
 
-  public addTask$ = createEffect(() => {
+  addTask$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.addTask),
       exhaustMap(({ task }) => {
@@ -47,7 +47,7 @@ export class TaskerEffects {
     );
   });
 
-  public toggleIsTaskComplete$ = createEffect(() => {
+  toggleIsTaskComplete$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.toggleIsTaskComplete),
       exhaustMap(({ taskId }) => {
@@ -59,7 +59,7 @@ export class TaskerEffects {
     );
   });
 
-  public toggleIsStepComplete$ = createEffect(() => {
+  toggleIsStepComplete$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.toggleIsStepComplete),
       exhaustMap(({ payload }) => {
@@ -71,7 +71,7 @@ export class TaskerEffects {
     );
   });
 
-  public removeTask$ = createEffect(() => {
+  removeTask$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.removeTask),
       exhaustMap(({ taskId }) => {
@@ -86,7 +86,7 @@ export class TaskerEffects {
     );
   });
 
-  public editTask$ = createEffect(() => {
+  editTask$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.editTask),
       exhaustMap(({ editedTask }) => {
@@ -102,7 +102,7 @@ export class TaskerEffects {
     );
   });
 
-  public getNotes$ = createEffect(() => {
+  getNotes$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.loadNotes),
       exhaustMap(({ uid }) => {
@@ -118,7 +118,7 @@ export class TaskerEffects {
     );
   });
 
-  public addNote$ = createEffect(() => {
+  addNote$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.addNote),
       exhaustMap(({ note }) => {
@@ -133,7 +133,7 @@ export class TaskerEffects {
     );
   });
 
-  public removeNote$ = createEffect(() => {
+  removeNote$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.removeNote),
       exhaustMap(({ noteId }) => {

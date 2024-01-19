@@ -25,7 +25,7 @@ export class NoteFormComponent {
   readonly form: FormGroup<NoteForm> = this.noteService.noteForm;
   private readonly user: Signal<IUser | null> = toSignal(inject(Store).select(AuthSelectors.user), { initialValue: null });
 
-  public onSubmit(): void {
+  onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAsDirty();
       return;

@@ -12,15 +12,15 @@ export class TaskerService {
 
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
-  public setActiveTabIndex(idx: number): void {
+  setActiveTabIndex(idx: number): void {
     this.activeTabIndex$$.next(idx);
   }
 
-  public get activeTabIndex$(): Observable<number> {
+  get activeTabIndex$(): Observable<number> {
     return this.activeTabIndex$$.asObservable();
   }
 
-  public get taskForm(): FormGroup<TaskForm> {
+  get taskForm(): FormGroup<TaskForm> {
     return new FormGroup<TaskForm>({
       name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
       isComplete: new FormControl<boolean>(false, { nonNullable: true }),
@@ -28,14 +28,14 @@ export class TaskerService {
     });
   }
 
-  public get noteForm(): FormGroup<NoteForm> {
+  get noteForm(): FormGroup<NoteForm> {
     return new FormGroup({
       name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
       content: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
     });
   }
 
-  public get taskFilters(): LabeledData<TaskFilter>[] {
+  get taskFilters(): LabeledData<TaskFilter>[] {
     const filters: TaskFilter[] = ['all', 'completed', 'notCompleted'];
 
     return filters.map((name) => ({

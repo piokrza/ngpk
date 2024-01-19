@@ -24,11 +24,11 @@ export class FileListComponent {
   readonly nameLimit = 12;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
-  public fileClick(file: IFile): void {
+  fileClick(file: IFile): void {
     this.driveFacadeService.fileClick(file);
   }
 
-  public navigateBack(): void {
+  navigateBack(): void {
     this.location.back();
   }
 }

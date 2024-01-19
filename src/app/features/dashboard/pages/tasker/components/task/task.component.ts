@@ -21,7 +21,7 @@ export class TaskComponent implements OnChanges {
   completedSteps!: number;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
-  public ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['task']) {
       this.completedSteps = this.task.steps.filter(({ isComplete }: TaskStep) => isComplete).length;
     }

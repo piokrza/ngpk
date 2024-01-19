@@ -12,19 +12,19 @@ export class WeatherFacadeService {
   private readonly weatherDataKey = 'weatherData';
   private readonly defaultCityNameQuery = 'Krakow';
 
-  public get weatherData$(): Observable<WeatherResponse | null> {
+  get weatherData$(): Observable<WeatherResponse | null> {
     return this.weatherStateService.weatherData$;
   }
 
-  public get isLoading$(): Observable<boolean> {
+  get isLoading$(): Observable<boolean> {
     return this.weatherStateService.isLoading$;
   }
 
-  public get errorMessage$(): Observable<string | null> {
+  get errorMessage$(): Observable<string | null> {
     return this.weatherStateService.errorMessage$;
   }
 
-  public loadWeatherData$(): Observable<WeatherResponse> {
+  loadWeatherData$(): Observable<WeatherResponse> {
     return this.weatherStateService.geolocation
       ? this.weatherApiService.seatchByGeoCords$(this.weatherStateService.geolocation).pipe(
           tap((data: WeatherResponse) => {
@@ -42,7 +42,7 @@ export class WeatherFacadeService {
         );
   }
 
-  public loadWeatherDataByCityName$(cityName: string): Observable<WeatherResponse> {
+  loadWeatherDataByCityName$(cityName: string): Observable<WeatherResponse> {
     this.weatherStateService.setErrorMessage(null);
     this.weatherStateService.setIsLoading(true);
 
@@ -59,7 +59,7 @@ export class WeatherFacadeService {
     );
   }
 
-  public checkGeolocation(): void {
+  checkGeolocation(): void {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }: GeolocationPosition) => {
         this.weatherStateService.setGeolocation({ latitude, longitude });
@@ -67,7 +67,7 @@ export class WeatherFacadeService {
     }
   }
 
-  public checkWeatherData(): void {
+  checkWeatherData(): void {
     const weatherData = sessionStorage.getItem(this.weatherDataKey);
     weatherData && this.weatherStateService.setWeatherData(JSON.parse(weatherData));
   }

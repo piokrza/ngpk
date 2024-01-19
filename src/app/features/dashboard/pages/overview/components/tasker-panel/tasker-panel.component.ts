@@ -21,5 +21,5 @@ export class TaskerPanelComponent {
 
   @Output() addQuickNote = new EventEmitter<void>();
 
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 }

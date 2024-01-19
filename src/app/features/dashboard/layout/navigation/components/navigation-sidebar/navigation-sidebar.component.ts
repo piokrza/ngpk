@@ -17,9 +17,9 @@ export class NavigationSidebarComponent {
   private readonly translateService = inject(TranslateService);
   private readonly confirmationService = inject(ConfirmationService);
 
-  @Input({ required: true }) public menuLinks!: MenuItem[];
+  @Input({ required: true }) menuLinks!: MenuItem[];
 
-  public signOut(): void {
+  signOut(): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('auth.signoutMessage'),
       header: this.translateService.instant('auth.signout'),

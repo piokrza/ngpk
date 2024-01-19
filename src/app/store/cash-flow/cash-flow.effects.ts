@@ -16,7 +16,7 @@ export class CashFlowEffects {
   private readonly cashFlowApiService = inject(CashFlowApiService);
   private readonly dbSubscriptionService = inject(DbSubscriptionService);
 
-  public getExpenses$ = createEffect(() => {
+  getExpenses$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.loadExpenses),
       exhaustMap(({ uid }) => {
@@ -32,7 +32,7 @@ export class CashFlowEffects {
     );
   });
 
-  public getIncomes$ = createEffect(() => {
+  getIncomes$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.loadIncomes),
       exhaustMap(({ uid }) => {
@@ -48,7 +48,7 @@ export class CashFlowEffects {
     );
   });
 
-  public addIncome$ = createEffect(() => {
+  addIncome$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.addIncome),
       exhaustMap(({ income }) => {
@@ -66,7 +66,7 @@ export class CashFlowEffects {
     );
   });
 
-  public addExpense$ = createEffect(() => {
+  addExpense$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.addExpense),
       exhaustMap(({ expense }) => {
@@ -84,7 +84,7 @@ export class CashFlowEffects {
     );
   });
 
-  public removeIncome$ = createEffect(() => {
+  removeIncome$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.removeIncome),
       exhaustMap(({ incomeId }) => {
@@ -102,7 +102,7 @@ export class CashFlowEffects {
     );
   });
 
-  public removeExpense$ = createEffect(() => {
+  removeExpense$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.removeExpense),
       exhaustMap(({ expenseId }) => {
@@ -120,7 +120,7 @@ export class CashFlowEffects {
     );
   });
 
-  public updateIncome$ = createEffect(() => {
+  updateIncome$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.updateIncome),
       exhaustMap(({ updatedIncome }) => {
@@ -138,7 +138,7 @@ export class CashFlowEffects {
     );
   });
 
-  public updateExpense$ = createEffect(() => {
+  updateExpense$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashFlowActions.updateExpense),
       exhaustMap(({ updatedExpense }) => {

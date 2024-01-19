@@ -23,33 +23,33 @@ export class CashFlowFacadeService {
   private readonly confirmationService = inject(ConfirmationService);
   private readonly cashFlowPaginationService = inject(CashFlowPaginationService);
 
-  public get incomesDataset$(): Observable<CashFlowData> {
+  get incomesDataset$(): Observable<CashFlowData> {
     return this.cashFlowService.setCashFlowData(
       this.store.select(CashFlowSelectors.incomes),
       this.cashFlowPaginationService.incomesPaginatorState$
     );
   }
 
-  public get expensesDataset$(): Observable<CashFlowData> {
+  get expensesDataset$(): Observable<CashFlowData> {
     return this.cashFlowService.setCashFlowData(
       this.store.select(CashFlowSelectors.expenses),
       this.cashFlowPaginationService.expensesPaginatorState$
     );
   }
 
-  public get activeTabIndex$(): Observable<number> {
+  get activeTabIndex$(): Observable<number> {
     return this.cashFlowService.activeTabIndex$;
   }
 
-  public get isLoading$(): Observable<boolean> {
+  get isLoading$(): Observable<boolean> {
     return this.store.select(CashFlowSelectors.isLoading);
   }
 
-  public get categories$(): Observable<{ incomes: Category[]; expenses: Category[] }> {
+  get categories$(): Observable<{ incomes: Category[]; expenses: Category[] }> {
     return this.store.select(AuthSelectors.categories);
   }
 
-  public removeIncome(incomeId: string): void {
+  removeIncome(incomeId: string): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('incomes.removeMessage'),
       header: this.translateService.instant('incomes.removeHeader'),
@@ -58,7 +58,7 @@ export class CashFlowFacadeService {
     });
   }
 
-  public updateIncome$(updatedIncome: CashFlow): Observable<CashFlow | undefined> {
+  updateIncome$(updatedIncome: CashFlow): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
       header: this.translateService.instant('incomes.updateIncome'),
       style: BaseDialogStyles,
@@ -72,7 +72,7 @@ export class CashFlowFacadeService {
     );
   }
 
-  public openCashFlowDialog$(isIncomeMode: boolean): Observable<CashFlow | undefined> {
+  openCashFlowDialog$(isIncomeMode: boolean): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(AddFormComponent, {
       data: isIncomeMode,
       header: this.translateService.instant('cashFlow.addCashFlow'),
@@ -90,7 +90,7 @@ export class CashFlowFacadeService {
     );
   }
 
-  public removeExpense(expenseId: string): void {
+  removeExpense(expenseId: string): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('expenses.removeMessage'),
       header: this.translateService.instant('expenses.removeHeader'),
@@ -99,7 +99,7 @@ export class CashFlowFacadeService {
     });
   }
 
-  public updateExpense$(updatedExpense: CashFlow): Observable<CashFlow | undefined> {
+  updateExpense$(updatedExpense: CashFlow): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
       header: this.translateService.instant('expenses.updateMessage'),
       style: { ...BaseDialogStyles },
@@ -113,19 +113,19 @@ export class CashFlowFacadeService {
     );
   }
 
-  public setIncomesCategoryFilter(categoryIds: string[]): void {
+  setIncomesCategoryFilter(categoryIds: string[]): void {
     this.store.dispatch(CashFlowActions.setIncomesFilter({ categoryIds }));
   }
 
-  public setExpensesCategoryFilter(categoryIds: string[]): void {
+  setExpensesCategoryFilter(categoryIds: string[]): void {
     this.store.dispatch(CashFlowActions.setExpensesFilter({ categoryIds }));
   }
 
-  public setIncomesPaginatorState(event: PaginatorState): void {
+  setIncomesPaginatorState(event: PaginatorState): void {
     this.cashFlowPaginationService.setIncomesPaginatorState(event);
   }
 
-  public setExpensesPaginatorState(event: PaginatorState): void {
+  setExpensesPaginatorState(event: PaginatorState): void {
     this.cashFlowPaginationService.setExpensesPaginatorState(event);
   }
 }

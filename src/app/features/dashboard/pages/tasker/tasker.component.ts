@@ -29,43 +29,43 @@ export class TaskerComponent {
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly filters: Array<LabeledData<TaskFilter>> = this.taskerFacadeService.taskFilters;
 
-  public addTask(): void {
+  addTask(): void {
     this.taskerFacadeService.addTask$().pipe(first()).subscribe();
   }
 
-  public editTask(task: Task): void {
+  editTask(task: Task): void {
     this.taskerFacadeService.editTask$(task).pipe(first()).subscribe();
   }
 
-  public removeTask(taskId: string): void {
+  removeTask(taskId: string): void {
     this.taskerFacadeService.removeTask(taskId);
   }
 
-  public toggleIsTaskComplete(taskId: string): void {
+  toggleIsTaskComplete(taskId: string): void {
     this.taskerFacadeService.toggleIsTaskComplete(taskId);
   }
 
-  public toggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
+  toggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
     this.taskerFacadeService.toggleIsStepComplete(payload);
   }
 
-  public taskFilterChange({ value }: SelectButtonChangeEvent) {
+  taskFilterChange({ value }: SelectButtonChangeEvent) {
     this.taskerFacadeService.onTaskFilterChange(value);
   }
 
-  public noteFilterChange({ checked }: ToggleButtonChangeEvent): void {
+  noteFilterChange({ checked }: ToggleButtonChangeEvent): void {
     this.taskerFacadeService.onNoteFilterChange(checked ? 'newest' : 'oldest');
   }
 
-  public addNote(): void {
+  addNote(): void {
     this.taskerFacadeService.addNote$().pipe(first()).subscribe();
   }
 
-  public removeNote(noteId: string): void {
+  removeNote(noteId: string): void {
     this.taskerFacadeService.removeNote(noteId);
   }
 
-  public onTabviewChange({ index }: TabViewChangeEvent): void {
+  onTabviewChange({ index }: TabViewChangeEvent): void {
     this.taskerFacadeService.setActiveTabIdx(index);
   }
 }

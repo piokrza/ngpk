@@ -24,7 +24,7 @@ export class LanguageTogglerComponent {
 
   languageValue = localStorage.getItem(LANG) ?? 'pl';
 
-  public onLangChange({ value }: SelectButtonChangeEvent): void {
+  onLangChange({ value }: SelectButtonChangeEvent): void {
     localStorage.setItem(LANG, value ?? 'pl');
     this.translateService.use(value ?? 'pl');
     this.translateService

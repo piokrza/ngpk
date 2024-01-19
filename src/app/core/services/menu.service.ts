@@ -14,7 +14,7 @@ export class MenuService {
   private readonly translateService = inject(TranslateService);
   private readonly confirmationService = inject(ConfirmationService);
 
-  public getMenuLinks(): MenuItem[] {
+  getMenuLinks(): MenuItem[] {
     return [
       {
         label: 'menu.home',

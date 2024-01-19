@@ -17,7 +17,7 @@ export class DriveEffects {
   private readonly translateService = inject(TranslateService);
   private readonly dbSubscriptionService = inject(DbSubscriptionService);
 
-  public loadFiles$ = createEffect(() => {
+  loadFiles$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DriveActions.loadFiles),
       exhaustMap(({ uid }) => {
@@ -32,7 +32,7 @@ export class DriveEffects {
     );
   });
 
-  public uploadFile$ = createEffect(() => {
+  uploadFile$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DriveActions.uploadFile),
       exhaustMap(({ payload }) => {
@@ -48,7 +48,7 @@ export class DriveEffects {
     );
   });
 
-  public uploadFolder$ = createEffect(() => {
+  uploadFolder$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DriveActions.uploadFolder),
       exhaustMap(({ payload }) => {

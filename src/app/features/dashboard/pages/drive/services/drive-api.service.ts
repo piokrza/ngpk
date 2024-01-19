@@ -12,7 +12,7 @@ export class DriveApiService {
   private readonly fireStorage: AngularFireStorage = inject(AngularFireStorage);
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
-  public loadFiles$(uid: string): Observable<IFile[]> {
+  loadFiles$(uid: string): Observable<IFile[]> {
     const files$: AngularFirestoreCollection<IFile> = this.angularFirestore.collection<IFile>(Collection.FILES, (ref) => {
       return ref.where('uid', '==', uid);
     });
@@ -20,7 +20,7 @@ export class DriveApiService {
     return files$.valueChanges({ idField: 'id' });
   }
 
-  public async uploadFile({ file, uid, parentId }: FileUploadPayload): Promise<DocumentReference<IFile>> {
+  async uploadFile({ file, uid, parentId }: FileUploadPayload): Promise<DocumentReference<IFile>> {
     const path: string = `files/${file.name}`;
     const task: UploadTaskSnapshot = await this.fireStorage.upload(path, file);
     const url: string = await task.ref.getDownloadURL();
@@ -35,7 +35,7 @@ export class DriveApiService {
     });
   }
 
-  public async uploadFolder({ uid, name, parentId }: FolderUploadPayload): Promise<DocumentReference<IFile>> {
+  async uploadFolder({ uid, name, parentId }: FolderUploadPayload): Promise<DocumentReference<IFile>> {
     return await this.angularFirestore.collection<IFile>(Collection.FILES).add({
       uid,
       name,

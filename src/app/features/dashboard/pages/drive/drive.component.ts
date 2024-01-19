@@ -33,7 +33,7 @@ export class DriveComponent implements OnInit {
   private readonly user: Signal<IUser | null> = toSignal(this.driveFacadeService.user$, { initialValue: null });
   protected uploadUrl: string = env.uploadUrl;
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
         tap(({ id }) => this.driveFacadeService.setParentId(id ?? '')),
@@ -42,7 +42,7 @@ export class DriveComponent implements OnInit {
       .subscribe();
   }
 
-  public uploadFile({ files }: FileUploadEvent): void {
+  uploadFile({ files }: FileUploadEvent): void {
     this.folderMode() === 'edit' && this.folderMode.set('initial');
 
     files.length &&
@@ -53,7 +53,7 @@ export class DriveComponent implements OnInit {
       });
   }
 
-  public addFolder(): void {
+  addFolder(): void {
     this.driveFacadeService.uploadFolder({
       name: this.folderNameControl.value,
       uid: this.user()!.uid,

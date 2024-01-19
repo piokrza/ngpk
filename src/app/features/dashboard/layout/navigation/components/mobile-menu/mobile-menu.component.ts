@@ -24,11 +24,11 @@ export class MobileMenuComponent {
     }
   }
 
-  public toggleIsOpen(): void {
+  toggleIsOpen(): void {
     this.isOpen.update((isOpen) => !isOpen);
   }
 
-  public itemClick(command?: any): void {
+  itemClick(command?: any): void {
     command && command();
     this.isOpen.update(() => false);
   }

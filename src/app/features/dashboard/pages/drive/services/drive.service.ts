@@ -7,15 +7,15 @@ import { IFile } from '#drive/models';
 export class DriveService {
   private readonly parentId$$ = new BehaviorSubject<string>('');
 
-  public setParentId(id: string): void {
+  setParentId(id: string): void {
     this.parentId$$.next(id);
   }
 
-  public get parentId$(): Observable<string> {
+  get parentId$(): Observable<string> {
     return this.parentId$$.asObservable();
   }
 
-  public filterFiles(files: IFile[], parentId: string): IFile[] {
+  filterFiles(files: IFile[], parentId: string): IFile[] {
     return files.filter((file) => (parentId.length ? file.parentId === parentId : file.parentId === ''));
   }
 }

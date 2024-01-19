@@ -35,7 +35,7 @@ export class AddFormComponent implements OnInit {
   currency: string = '';
   categories: Category[] = [];
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.store
       .select(AuthSelectors.user)
       .pipe(filter(Boolean), untilDestroyed(this))
@@ -49,7 +49,7 @@ export class AddFormComponent implements OnInit {
       });
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -65,11 +65,11 @@ export class AddFormComponent implements OnInit {
     this.form.reset();
   }
 
-  public get formControls(): CashFlowForm {
+  get formControls(): CashFlowForm {
     return this.form.controls;
   }
 
-  public get modeLabel(): string {
+  get modeLabel(): string {
     return `${this.trPath}${this.isIncomeMode ? 'income' : 'expense'}Name`;
   }
 }

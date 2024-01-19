@@ -24,7 +24,7 @@ export class DetailsListComponent {
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
-  public onCategoryFilterChange({ value }: MultiSelectChangeEvent): void {
+  onCategoryFilterChange({ value }: MultiSelectChangeEvent): void {
     const categoryIds: string[] = value.map((category: Category) => category.id);
     this.categoryChange.emit(categoryIds);
   }

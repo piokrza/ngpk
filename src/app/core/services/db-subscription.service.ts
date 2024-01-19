@@ -5,11 +5,11 @@ import { Observable, Subject } from 'rxjs';
 export class DbSubscriptionService {
   private readonly unsubscribe$$ = new Subject<void>();
 
-  public get unsubscribe$(): Observable<void> {
+  get unsubscribe$(): Observable<void> {
     return this.unsubscribe$$.asObservable();
   }
 
-  public unsubscribe(): void {
+  unsubscribe(): void {
     this.unsubscribe$$.next();
   }
 }

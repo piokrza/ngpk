@@ -26,7 +26,7 @@ export class AccountSettingsFormComponent implements OnInit {
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly form: FormGroup<AccountSettingsForm> = this.accountSettingsForm;
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.store
       .select(AuthSelectors.user)
       .pipe(
@@ -45,7 +45,7 @@ export class AccountSettingsFormComponent implements OnInit {
       .subscribe();
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     const updatedUserData = {
       ...this.form.getRawValue(),
       uid: this.user.uid,
@@ -55,7 +55,7 @@ export class AccountSettingsFormComponent implements OnInit {
     this.store.dispatch(AuthActions.updateAccount({ updatedUserData }));
   }
 
-  public navigateBack(): void {
+  navigateBack(): void {
     this.location.back();
   }
 
