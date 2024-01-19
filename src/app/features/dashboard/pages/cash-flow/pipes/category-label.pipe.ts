@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class CategoryLabelPipe implements PipeTransform {
   private readonly translateService = inject(TranslateService);
 
-  public transform(categoryName: string): string {
+  transform(categoryName: string): string {
     return this.translateService.instant('categories.' + categoryName);
   }
 }

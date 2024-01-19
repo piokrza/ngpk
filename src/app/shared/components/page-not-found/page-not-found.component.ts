@@ -20,7 +20,7 @@ export class PageNotFoundComponent implements OnInit {
 
   readonly count: WritableSignal<number> = signal(8);
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     interval(1000)
       .pipe(
         tap(() => this.count.update((count) => count - 1)),

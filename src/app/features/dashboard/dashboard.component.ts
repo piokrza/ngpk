@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private readonly authApiService = inject(AuthApiService);
   private readonly dbSubscriptionService = inject(DbSubscriptionService);
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.authApiService.authState$
       .pipe(
         filter(Boolean),
@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.dbSubscriptionService.unsubscribe();
   }
 }

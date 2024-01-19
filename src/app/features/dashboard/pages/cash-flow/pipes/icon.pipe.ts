@@ -14,7 +14,7 @@ export class IconPipe implements PipeTransform {
     6: PrimeIcons.GIFT,
   };
 
-  public transform(categoryCode: number): string {
+  transform(categoryCode: number): string {
     return this.CAT_ICON_DIC[categoryCode];
   }
 }

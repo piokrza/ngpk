@@ -12,5 +12,5 @@ import { AuthSelectors } from '#store/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInfoComponent {
-  public readonly user$: Observable<IUser | null> = inject(Store).select(AuthSelectors.user);
+  readonly user$: Observable<IUser | null> = inject(Store).select(AuthSelectors.user);
 }

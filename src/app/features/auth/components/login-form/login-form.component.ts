@@ -27,11 +27,11 @@ export class LoginFormComponent {
     })
   );
 
-  public signinWithGoogle(): void {
+  signinWithGoogle(): void {
     this.store.dispatch(AuthActions.signInWithGoogle());
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;

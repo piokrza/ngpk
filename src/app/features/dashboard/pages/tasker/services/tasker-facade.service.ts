@@ -21,26 +21,26 @@ export class TaskerFacadeService {
   private readonly translateService = inject(TranslateService);
   private readonly confirmationService = inject(ConfirmationService);
 
-  public get tasksData$(): Observable<TasksData> {
+  get tasksData$(): Observable<TasksData> {
     return combineLatest({
       tasks: this.store.select(TaskerSelectors.tasks),
       filter: this.store.select(TaskerSelectors.taskFilter),
     }).pipe(map((tasksData) => this.filterTasks(tasksData)));
   }
 
-  public get isTasksLoading$(): Observable<boolean> {
+  get isTasksLoading$(): Observable<boolean> {
     return this.store.select(TaskerSelectors.isTasksLoading);
   }
 
-  public get taskFilters(): LabeledData<TaskFilter>[] {
+  get taskFilters(): LabeledData<TaskFilter>[] {
     return this.taskerService.taskFilters;
   }
 
-  public get activeTabIndex$(): Observable<number> {
+  get activeTabIndex$(): Observable<number> {
     return this.taskerService.activeTabIndex$;
   }
 
-  public get notesData$(): Observable<NotesData> {
+  get notesData$(): Observable<NotesData> {
     return combineLatest({
       notes: this.store.select(TaskerSelectors.notes),
       filter: this.store.select(TaskerSelectors.noteFilter),
@@ -52,11 +52,11 @@ export class TaskerFacadeService {
     );
   }
 
-  public get isNotesLoading$(): Observable<boolean> {
+  get isNotesLoading$(): Observable<boolean> {
     return this.store.select(TaskerSelectors.isNotesLoading);
   }
 
-  public addTask$(): Observable<Task | undefined> {
+  addTask$(): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(TaskFormComponent, {
       header: this.tr('addTask'),
       style: BaseDialogStyles,
@@ -69,7 +69,7 @@ export class TaskerFacadeService {
     );
   }
 
-  public editTask$(task: Task): Observable<Task | undefined> {
+  editTask$(task: Task): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(TaskFormComponent, {
       header: `${this.tr('editTask')}: ${task.name}`,
       style: BaseDialogStyles,
@@ -83,7 +83,7 @@ export class TaskerFacadeService {
     );
   }
 
-  public removeTask(taskId: string): void {
+  removeTask(taskId: string): void {
     this.confirmationService.confirm({
       message: this.tr('removeMessage'),
       header: this.tr('removeHeader'),
@@ -92,19 +92,19 @@ export class TaskerFacadeService {
     });
   }
 
-  public toggleIsTaskComplete(taskId: string): void {
+  toggleIsTaskComplete(taskId: string): void {
     this.store.dispatch(TaskerActions.toggleIsTaskComplete({ taskId }));
   }
 
-  public toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
+  toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
     this.store.dispatch(TaskerActions.toggleIsStepComplete({ payload }));
   }
 
-  public onTaskFilterChange(taskFilter: TaskFilter): void {
+  onTaskFilterChange(taskFilter: TaskFilter): void {
     this.store.dispatch(TaskerActions.setTaskFilter({ taskFilter }));
   }
 
-  public addNote$(): Observable<Note | undefined> {
+  addNote$(): Observable<Note | undefined> {
     const dialogRef = this.dialogService.open(NoteFormComponent, {
       header: this.tr('addNote'),
       style: BaseDialogStyles,
@@ -117,7 +117,7 @@ export class TaskerFacadeService {
     );
   }
 
-  public removeNote(noteId: string): void {
+  removeNote(noteId: string): void {
     this.confirmationService.confirm({
       message: this.tr('removeNoteMessage'),
       header: this.tr('removeNoteHeader'),
@@ -126,11 +126,11 @@ export class TaskerFacadeService {
     });
   }
 
-  public onNoteFilterChange(noteFilter: NoteFilter): void {
+  onNoteFilterChange(noteFilter: NoteFilter): void {
     this.store.dispatch(TaskerActions.setNoteFilter({ noteFilter }));
   }
 
-  public setActiveTabIdx(idx: number): void {
+  setActiveTabIdx(idx: number): void {
     this.taskerService.setActiveTabIndex(idx);
   }
 

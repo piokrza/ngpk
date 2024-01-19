@@ -53,14 +53,14 @@ export class WeatherWidgetComponent implements OnInit {
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.weatherFacadeService.checkWeatherData();
     this.weatherFacadeService.checkGeolocation();
 
     this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? false.toString()));
   }
 
-  public loadWeatherDataByCityName(cityName: string): void {
+  loadWeatherDataByCityName(cityName: string): void {
     cityName.length &&
       this.weatherFacadeService
         .loadWeatherDataByCityName$(cityName)
@@ -71,11 +71,11 @@ export class WeatherWidgetComponent implements OnInit {
         .subscribe();
   }
 
-  public loadWeatherData(): void {
+  loadWeatherData(): void {
     this.weatherFacadeService.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
   }
 
-  public toggleDetails(): void {
+  toggleDetails(): void {
     this.isOpen.set(!this.isOpen());
     sessionStorage.setItem(isWidgetOpen, JSON.stringify(this.isOpen()));
   }

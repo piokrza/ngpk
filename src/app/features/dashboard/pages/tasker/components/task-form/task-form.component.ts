@@ -19,7 +19,7 @@ import { TaskerService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormComponent implements OnInit {
-  public constructor() {
+  constructor() {
     inject(Store)
       .select(AuthSelectors.user)
       .pipe(filter(Boolean), untilDestroyed(this))
@@ -32,14 +32,14 @@ export class TaskFormComponent implements OnInit {
 
   private readonly taskData?: Task = inject(DynamicDialogConfig).data;
 
-  public isEditMode: boolean = false;
-  public readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  public readonly form: FormGroup<TaskForm> = this.taskerService.taskForm;
-  public readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
+  isEditMode: boolean = false;
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly form: FormGroup<TaskForm> = this.taskerService.taskForm;
+  readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
   private userId: WritableSignal<string> = signal('');
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     if (this.taskData) {
       this.isEditMode = true;
 
@@ -54,7 +54,7 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAsDirty();
       return;
@@ -78,7 +78,7 @@ export class TaskFormComponent implements OnInit {
     } satisfies Task);
   }
 
-  public addStep(step?: Partial<TaskStep>): void {
+  addStep(step?: Partial<TaskStep>): void {
     this.stepsArray.push(
       new FormGroup<StepForm>({
         name: new FormControl<string>(step?.name ?? '', { validators: [Validators.required], nonNullable: true }),
@@ -87,20 +87,20 @@ export class TaskFormComponent implements OnInit {
     );
   }
 
-  public removeStep(stepIdx: number): void {
+  removeStep(stepIdx: number): void {
     this.stepsArray?.removeAt(stepIdx);
     this.form.markAsDirty();
   }
 
-  public get nameControl(): FormControl<string> {
+  get nameControl(): FormControl<string> {
     return this.form.controls.name;
   }
 
-  public get isCompleteControl(): FormControl<boolean> {
+  get isCompleteControl(): FormControl<boolean> {
     return this.form.controls.isComplete;
   }
 
-  public get stepsArray(): FormArray<FormGroup<StepForm>> {
+  get stepsArray(): FormArray<FormGroup<StepForm>> {
     return this.form.controls.steps;
   }
 }

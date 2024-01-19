@@ -10,15 +10,15 @@ import { CashFlow, CashFlowData, CashFlowForm } from '#cash-flow/models';
 export class CashFlowService {
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
-  public get activeTabIndex$(): Observable<number> {
+  get activeTabIndex$(): Observable<number> {
     return this.activeTabIndex$$.asObservable();
   }
 
-  public setActiveTabIndex(idx: number): void {
+  setActiveTabIndex(idx: number): void {
     this.activeTabIndex$$.next(idx);
   }
 
-  public get form(): FormGroup<CashFlowForm> {
+  get form(): FormGroup<CashFlowForm> {
     return new FormGroup({
       name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
       amount: new FormControl<number>(0, { validators: [Validators.required], nonNullable: true }),
@@ -28,7 +28,7 @@ export class CashFlowService {
     });
   }
 
-  public setCashFlowData(cashFlow$: Observable<CashFlow[]>, paginatorState$: Observable<PaginatorState>): Observable<CashFlowData> {
+  setCashFlowData(cashFlow$: Observable<CashFlow[]>, paginatorState$: Observable<PaginatorState>): Observable<CashFlowData> {
     return combineLatest({
       cashFlow: cashFlow$,
       paginatorState: paginatorState$,

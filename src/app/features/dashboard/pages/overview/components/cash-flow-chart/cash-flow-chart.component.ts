@@ -28,7 +28,7 @@ export class CashFlowChartComponent {
     .select(AuthSelectors.user)
     .pipe(map((user) => user?.config.currency ?? ''));
 
-  public get chartOptions(): ChartOptions {
+  get chartOptions(): ChartOptions {
     return { plugins: { legend: { display: false } } };
   }
 }

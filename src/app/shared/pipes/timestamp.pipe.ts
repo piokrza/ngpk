@@ -8,7 +8,7 @@ import { DateFormats } from '#core/enums';
 export class TimestampPipe implements PipeTransform {
   private readonly datePipe = inject(DatePipe);
 
-  public transform(timestamp: Timestamp, format: DateFormats): string {
+  transform(timestamp: Timestamp, format: DateFormats): string {
     return this.datePipe.transform(timestamp.toDate(), format) ?? '';
   }
 }

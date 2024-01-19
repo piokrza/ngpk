@@ -11,7 +11,7 @@ export class UserService {
   private readonly firestore = inject(AngularFirestore);
   private readonly angularFirestore = inject(AngularFirestore);
 
-  public addUserToDatabase$(user: Partial<IUser>) {
+  addUserToDatabase$(user: Partial<IUser>) {
     const usersCollectionRef: AngularFirestoreCollection<IUser> = this.angularFirestore.collection(Collection.USERS);
 
     return usersCollectionRef
@@ -35,12 +35,12 @@ export class UserService {
       );
   }
 
-  public async updateUser$(updatedUserData: IUser): Promise<void> {
+  async updateUser$(updatedUserData: IUser): Promise<void> {
     const user: AngularFirestoreDocument<IUser> = this.angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
     return await user.update(updatedUserData);
   }
 
-  public getIUserModel(user: firebase.User): Partial<IUser> {
+  getIUserModel(user: firebase.User): Partial<IUser> {
     return { displayName: user.displayName, email: user.email, phoneNumber: user.phoneNumber, photoURL: user.photoURL, uid: user.uid };
   }
 

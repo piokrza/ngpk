@@ -15,7 +15,7 @@ export class CopyToClipboardDirective implements OnInit {
 
   @Input({ required: true }) copyToClipboard!: string;
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.zone.runOutsideAngular(() => {
       fromEvent(this.elementRef.nativeElement, 'click')
         .pipe(

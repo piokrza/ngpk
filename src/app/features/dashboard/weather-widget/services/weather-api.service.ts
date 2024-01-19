@@ -14,13 +14,13 @@ export class WeatherApiService {
   private readonly baseUrl = env.weatherBaseUrl;
   private readonly weatherApiKey = env.weatherApiKey;
 
-  public searchByCityName$(cityName: string): Observable<WeatherResponse> {
+  searchByCityName$(cityName: string): Observable<WeatherResponse> {
     return this.http.get<WeatherResponse>(
       `${this.baseUrl}?q=${cityName}&units=Metric&appid=${this.weatherApiKey}&lang=${this.translateService.currentLang}`
     );
   }
 
-  public seatchByGeoCords$(geolocation: IGeolocation): Observable<WeatherResponse> {
+  seatchByGeoCords$(geolocation: IGeolocation): Observable<WeatherResponse> {
     return this.http.get<WeatherResponse>(
       `${this.baseUrl}?lat=${geolocation.latitude}&lon=${geolocation.longitude}&units=Metric&appid=${this.weatherApiKey}&lang=${this.translateService.currentLang}`
     );

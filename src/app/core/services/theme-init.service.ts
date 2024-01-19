@@ -14,7 +14,7 @@ export class ThemeInitService {
   private readonly document: Document = inject(DOCUMENT);
   private readonly isLightMode = !!inject(PersistanceService).get<boolean>(isLightMode);
 
-  public injectThemeLink$(): Observable<HTMLLinkElement> {
+  injectThemeLink$(): Observable<HTMLLinkElement> {
     return this.themeLink$.pipe(
       tap((themeLink: HTMLLinkElement) => this.document.head.appendChild(themeLink)),
       first()

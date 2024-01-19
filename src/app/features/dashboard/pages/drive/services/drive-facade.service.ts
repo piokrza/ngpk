@@ -16,7 +16,7 @@ export class DriveFacadeService {
   private readonly router = inject(Router);
   private readonly driveService = inject(DriveService);
 
-  public get files$(): Observable<IFile[]> {
+  get files$(): Observable<IFile[]> {
     return this.parentId$.pipe(
       switchMap((parentId: string) => {
         return this.store.select(DriveSelectors.files).pipe(map((files) => this.driveService.filterFiles(files, parentId)));
@@ -24,43 +24,43 @@ export class DriveFacadeService {
     );
   }
 
-  public get isLoading$(): Observable<boolean> {
+  get isLoading$(): Observable<boolean> {
     return this.store.select(DriveSelectors.isLoading);
   }
 
-  public get isProcessing$(): Observable<boolean> {
+  get isProcessing$(): Observable<boolean> {
     return this.store.select(DriveSelectors.isProcessing);
   }
 
-  public get user$(): Observable<IUser | null> {
+  get user$(): Observable<IUser | null> {
     return this.store.select(AuthSelectors.user);
   }
 
-  public get parentId$(): Observable<string> {
+  get parentId$(): Observable<string> {
     return this.driveService.parentId$;
   }
 
-  public get parentFile$(): Observable<IFile | undefined> {
+  get parentFile$(): Observable<IFile | undefined> {
     return this.parentId$.pipe(switchMap((id) => this.store.select(DriveSelectors.fileById(id))));
   }
 
-  public getFolderDetails$(fileId: string): Observable<IFile | undefined> {
+  getFolderDetails$(fileId: string): Observable<IFile | undefined> {
     return this.store.select(DriveSelectors.fileById(fileId));
   }
 
-  public setParentId(id: string): void {
+  setParentId(id: string): void {
     this.driveService.setParentId(id);
   }
 
-  public uploadFile(payload: FileUploadPayload): void {
+  uploadFile(payload: FileUploadPayload): void {
     this.store.dispatch(DriveActions.uploadFile({ payload }));
   }
 
-  public uploadFolder(payload: FolderUploadPayload): void {
+  uploadFolder(payload: FolderUploadPayload): void {
     this.store.dispatch(DriveActions.uploadFolder({ payload }));
   }
 
-  public fileClick(file: IFile): void {
+  fileClick(file: IFile): void {
     if (file.type === 'file') {
       window.open(file.url);
     } else {

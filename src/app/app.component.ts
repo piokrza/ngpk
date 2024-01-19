@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   private readonly primengConfig = inject(PrimeNGConfig);
   private readonly translateService = inject(TranslateService);
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.setPrimeNgConfig();
   }
 

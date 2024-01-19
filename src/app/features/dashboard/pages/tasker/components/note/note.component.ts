@@ -14,13 +14,13 @@ import { Note } from '#tasker/models';
 export class NoteComponent {
   @Input({ required: true }) note!: Note;
 
-  @Output() public removeNote = new EventEmitter<string>();
+  @Output() removeNote = new EventEmitter<string>();
 
   isTaskContentVisible = false;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly DateFormats: typeof DateFormats = DateFormats;
 
-  public toggleNoteVisibility(): void {
+  toggleNoteVisibility(): void {
     this.isTaskContentVisible = !this.isTaskContentVisible;
   }
 }

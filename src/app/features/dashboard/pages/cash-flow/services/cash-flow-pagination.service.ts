@@ -11,21 +11,21 @@ export class CashFlowPaginationService {
   private readonly incomesPaginatorState$$ = new BehaviorSubject<PaginatorState>(this.getPaginationState('incomes'));
   private readonly expensesPaginatorState$$ = new BehaviorSubject<PaginatorState>(this.getPaginationState('expenses'));
 
-  public setIncomesPaginatorState(paginatorState: PaginatorState): void {
+  setIncomesPaginatorState(paginatorState: PaginatorState): void {
     this.incomesPaginatorState$$.next(paginatorState);
     this.setPaginationState('incomes', paginatorState);
   }
 
-  public get incomesPaginatorState$(): Observable<PaginatorState> {
+  get incomesPaginatorState$(): Observable<PaginatorState> {
     return this.incomesPaginatorState$$.asObservable();
   }
 
-  public setExpensesPaginatorState(paginatorState: PaginatorState): void {
+  setExpensesPaginatorState(paginatorState: PaginatorState): void {
     this.expensesPaginatorState$$.next(paginatorState);
     this.setPaginationState('expenses', paginatorState);
   }
 
-  public get expensesPaginatorState$(): Observable<PaginatorState> {
+  get expensesPaginatorState$(): Observable<PaginatorState> {
     return this.expensesPaginatorState$$.asObservable();
   }
 

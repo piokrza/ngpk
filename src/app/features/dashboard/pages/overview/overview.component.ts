@@ -40,11 +40,11 @@ export class OverviewComponent {
   readonly incomesChartData$: Observable<ChartData | undefined> = this.overviewService.incomesChartData$;
   readonly expensesChartData$: Observable<ChartData | undefined> = this.overviewService.expensesChartData$;
 
-  public addQuickNote(): void {
+  addQuickNote(): void {
     this.overviewService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
   }
 
-  public navigateToCashFlow(itemLabel: string): void {
+  navigateToCashFlow(itemLabel: string): void {
     this.cashFlowService.setActiveTabIndex(itemLabel === 'totalExpense' ? 1 : 0);
     this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
   }
