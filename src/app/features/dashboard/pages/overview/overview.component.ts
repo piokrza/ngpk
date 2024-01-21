@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, Provider, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,7 +16,7 @@ import { TaskerData } from '#overview/models';
 import { OverviewService } from '#overview/services';
 
 const imports = [ProgressSpinnerModule, AsyncPipe, TaskerPanelComponent, CashFlowChartComponent, CashFlowCardsComponent, TranslateModule];
-const providers: Provider[] = [OverviewService];
+const providers = [OverviewService];
 
 @Component({
   selector: 'org-overview',

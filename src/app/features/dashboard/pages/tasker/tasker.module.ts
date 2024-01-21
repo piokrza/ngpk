@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { NgModule, Provider } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -45,7 +45,7 @@ const imports = [
   ContainerComponent,
 ];
 const declarations = [TaskComponent, TaskFormComponent, TaskerComponent, NoteFormComponent, NoteComponent];
-const providers: Provider[] = [TaskerFacadeService, DatePipe];
+const providers = [TaskerFacadeService, DatePipe];
 
 @NgModule({ declarations, imports, providers })
 export class TaskerModule {}

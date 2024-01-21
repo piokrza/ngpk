@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, Provider, Signal, WritableSignal, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, Signal, WritableSignal, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -29,7 +29,7 @@ const imports = [
   WeatherIconPipe,
   ContainerComponent,
 ];
-const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherStateService];
+const providers = [WeatherFacadeService, WeatherApiService, WeatherStateService];
 
 @Component({
   selector: 'org-weather-widget',

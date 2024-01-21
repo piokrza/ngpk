@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, Provider } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -55,7 +55,7 @@ const imports = [
   PaginatorModule,
 ];
 
-const providers: Provider[] = [CashFlowFacadeService, CashFlowPaginationService];
+const providers = [CashFlowFacadeService, CashFlowPaginationService];
 
 @NgModule({ declarations, imports, providers })
 export class CashFlowModule {}
