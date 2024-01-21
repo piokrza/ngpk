@@ -6,12 +6,12 @@ import { MultiSelectChangeEvent } from 'primeng/multiselect';
 import { CashFlow, Category } from '#cash-flow/models';
 
 @Component({
-  selector: 'org-details-list',
-  templateUrl: './details-list.component.html',
-  styleUrl: './details-list.component.scss',
+  selector: 'org-tile-list',
+  templateUrl: './tile-list.component.html',
+  styleUrl: './tile-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailsListComponent {
+export class TileListComponent {
   @Input({ required: true }) cashFlowList!: CashFlow[];
   @Input({ required: true }) isLoading!: boolean;
   @Input({ required: true }) isIncomeMode!: boolean;

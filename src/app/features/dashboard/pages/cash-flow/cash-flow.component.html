@@ -1,7 +1,7 @@
 <p-tabView [activeIndex]="(activeTabIndex$ | async)!">
   <p-tabPanel [header]="'cashFlow.incomes' | translate">
     @if (incomes$ | async; as data) {
-      <org-details-list
+      <org-tile-list
         class="wrapper"
         [isIncomeMode]="true"
         [isLoading]="!!(isLoading$ | async)"
@@ -26,7 +26,7 @@
   <p-tabPanel [header]="'cashFlow.expenses' | translate">
     @if (expenses$ | async; as data) {
       @defer {
-        <org-details-list
+        <org-tile-list
           class="wrapper"
           [isIncomeMode]="false"
           [isLoading]="!!(isLoading$ | async)"
