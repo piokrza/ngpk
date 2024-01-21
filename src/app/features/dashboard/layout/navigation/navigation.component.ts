@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 
 import { IUser } from '#auth/models';
+import { AuthSelectors } from '#auth/store';
 import { MenuService } from '#core/services';
-import { AuthSelectors } from '#store/auth';
 
 @Component({
   selector: 'org-navigation',

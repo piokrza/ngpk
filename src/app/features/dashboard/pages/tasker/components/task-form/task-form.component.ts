@@ -8,7 +8,7 @@ import { filter } from 'rxjs';
 import { PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { AuthSelectors } from '#store/auth';
+import { AuthSelectors } from '#auth/store';
 import { StepForm, Task, TaskForm, TaskStep } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
 

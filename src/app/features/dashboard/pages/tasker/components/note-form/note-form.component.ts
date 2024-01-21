@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { IUser } from '#auth/models';
-import { AuthSelectors } from '#store/auth';
+import { AuthSelectors } from '#auth/store';
 import { Note, NoteForm } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
 

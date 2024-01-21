@@ -8,8 +8,8 @@ import { Observable, map } from 'rxjs';
 import { ChartModule } from 'primeng/chart';
 import { Nullable } from 'primeng/ts-helpers';
 
+import { AuthSelectors } from '#auth/store';
 import { ContainerComponent } from '#shared/components';
-import { AuthSelectors } from '#store/auth';
 
 const imports = [ChartModule, ContainerComponent, TranslateModule, AsyncPipe];
 

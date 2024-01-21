@@ -8,8 +8,8 @@ import { filter, tap } from 'rxjs';
 import { PrimeIcons } from 'primeng/api';
 
 import { IUser } from '#auth/models';
+import { AuthActions, AuthSelectors } from '#auth/store';
 import { AccountSettingsForm } from '#settings/models';
-import { AuthActions, AuthSelectors } from '#store/auth';
 
 @Component({
   selector: 'org-account-settings-form',

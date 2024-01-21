@@ -7,18 +7,18 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
+import { AuthSelectors } from '#auth/store';
 import { CashFlow, Category } from '#cash-flow/models';
+import { CashFlowSelectors } from '#cash-flow/store';
 import { BaseDialogStyles } from '#core/constants';
 import { AppPaths, DashobardPaths } from '#core/enums';
 import { LabeledData } from '#core/models';
 import { getRandomNumber } from '#core/utils';
 import { ChartColor, TaskerData } from '#overview/models';
-import { AuthSelectors } from '#store/auth';
-import { CashFlowSelectors } from '#store/cash-flow';
-import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent } from '#tasker/components';
 import { Note } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
+import { TaskerActions, TaskerSelectors } from '#tasker/store';
 
 @Injectable()
 export class OverviewService {

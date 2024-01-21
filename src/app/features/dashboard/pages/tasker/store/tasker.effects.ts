@@ -5,8 +5,8 @@ import { catchError, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
 import { ToastStatus } from '#core/enums';
 import { DbSubscriptionService, ToastService } from '#core/services';
-import { TaskerActions } from '#store/tasker';
 import { TaskerApiService } from '#tasker/services';
+import { TaskerActions } from '#tasker/store';
 
 @Injectable()
 export class TaskerEffects {

@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { CashFlow } from '#cash-flow/models';
-import { ActionTypes } from '#store/cash-flow/action-types';
+import { ActionTypes } from '#cash-flow/store/action-types';
 
 export const loadExpenses = createAction(ActionTypes.LOAD_EXPENSES, props<{ uid: string }>());
 export const loadExpensesSuccess = createAction(ActionTypes.LOAD_EXPENSES_SUCCESS, props<{ expenses: CashFlow[] }>());

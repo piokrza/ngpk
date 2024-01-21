@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { CashFlow } from '#cash-flow/models';
-import { State as CashFlowState, FeatureKey } from '#store/cash-flow';
+import { State as CashFlowState, FeatureKey } from '#cash-flow/store';
 
 const CashFlowStateSelector = createFeatureSelector<CashFlowState>(FeatureKey);
 

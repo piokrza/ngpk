@@ -1,8 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { IUser } from '#auth/models';
+import { FeatureKey, State as AuthState } from '#auth/store';
 import { Category } from '#dashboard/pages/cash-flow/models';
-import { FeatureKey, State as AuthState } from '#store/auth';
 
 const AuthStateSelector = createFeatureSelector<AuthState>(FeatureKey);
 

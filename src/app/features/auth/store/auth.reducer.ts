@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
 import { IUser } from '#auth/models';
-import { AuthActions } from '#store/auth';
+import { AuthActions } from '#auth/store';
 
 export const FeatureKey = 'auth';
 

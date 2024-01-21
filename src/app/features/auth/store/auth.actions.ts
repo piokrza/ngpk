@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { AuthFormPayload, IUser } from '#auth/models';
-import { ActionTypes } from '#store/auth/action-types';
+import { ActionTypes } from '#auth/store/action-types';
 
 export const userAuthenticated = createAction(ActionTypes.USER_AUTHENTICATED, props<{ user: IUser }>());
 export const userNotAuthenticated = createAction(ActionTypes.USER_NOT_AUTHENTICATED);

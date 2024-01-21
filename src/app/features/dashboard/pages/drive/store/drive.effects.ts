@@ -7,7 +7,7 @@ import { ToastStatus } from '#core/enums';
 import { DbSubscriptionService, ToastService } from '#core/services';
 import { IFile } from '#drive/models';
 import { DriveApiService } from '#drive/services';
-import { DriveActions } from '#store/drive';
+import { DriveActions } from '#drive/store';
 
 @Injectable()
 export class DriveEffects {

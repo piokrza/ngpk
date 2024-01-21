@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 
+import { AuthActions } from '#auth/store';
 import { IFile } from '#drive/models';
-import { AuthActions } from '#store/auth';
-import { DriveActions } from '#store/drive';
+import { DriveActions } from '#drive/store';
 
 export const FeatureKey = 'drive';
 

@@ -4,9 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
 import { CashFlowApiService } from '#cash-flow/services';
+import { CashFlowActions } from '#cash-flow/store';
 import { Collection, ToastStatus } from '#core/enums/';
 import { DbSubscriptionService, ToastService } from '#core/services';
-import { CashFlowActions } from '#store/cash-flow';
 
 @Injectable()
 export class CashFlowEffects {

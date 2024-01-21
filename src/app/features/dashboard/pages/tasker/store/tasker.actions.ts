@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-import { ActionTypes } from '#store/tasker/action-types';
 import { Note, NoteFilter, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
+import { ActionTypes } from '#tasker/store/action-types';
 
 export const loadTasks = createAction(ActionTypes.LOAD_TASKS, props<{ uid: string }>());
 export const loadTasksSuccess = createAction(ActionTypes.LOAD_TASKS_SUCCESS, props<{ tasks: Task[] }>());

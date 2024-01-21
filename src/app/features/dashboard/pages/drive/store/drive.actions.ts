@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
-import { ActionTypes } from '#store/drive/action-types';
+import { ActionTypes } from '#drive/store/action-types';
 
 export const loadFiles = createAction(ActionTypes.LOAD_FILES, props<{ uid: string }>());
 export const loadFilesSuccess = createAction(ActionTypes.LOAD_FILES_SUCCESS, props<{ files: IFile[] }>());

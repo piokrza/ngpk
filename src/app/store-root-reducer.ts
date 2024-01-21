@@ -1,10 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromAuth from '#store/auth';
-import * as fromCashFlow from '#store/cash-flow';
-import * as fromDrive from '#store/drive';
-import * as fromTasker from '#store/tasker';
+import * as fromAuth from '#auth/store';
+import * as fromCashFlow from '#cash-flow/store';
+import * as fromDrive from '#drive/store';
+import * as fromTasker from '#tasker/store';
 
 export interface AppState {
   [fromCashFlow.FeatureKey]: fromCashFlow.State;
@@ -13,7 +13,7 @@ export interface AppState {
   [fromDrive.FeatureKey]: fromDrive.State;
 }
 
-export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState>>('ROOT_REDUCERS', {
+export const STORE_ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState>>('ROOT_REDUCERS', {
   factory: (): ActionReducerMap<AppState> => ({
     [fromCashFlow.FeatureKey]: fromCashFlow.Reducer,
     [fromAuth.FeatureKey]: fromAuth.Reducer,
