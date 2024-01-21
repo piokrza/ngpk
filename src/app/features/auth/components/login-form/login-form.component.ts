@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { UntilDestroy } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
 
@@ -9,7 +8,6 @@ import { LoginForm } from '#auth/models';
 import { AuthFormService } from '#auth/services';
 import { AuthActions, AuthSelectors } from '#store/auth';
 
-@UntilDestroy()
 @Component({
   selector: 'org-login-form',
   templateUrl: './login-form.component.html',

@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, Provider, Signal, WritableSignal, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, Provider, Signal, WritableSignal, inject, signal } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, tap } from 'rxjs';
 
@@ -32,7 +31,6 @@ const imports = [
 ];
 const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherStateService];
 
-@UntilDestroy()
 @Component({
   selector: 'org-weather-widget',
   templateUrl: './weather-widget.component.html',
@@ -43,6 +41,7 @@ const providers: Provider[] = [WeatherFacadeService, WeatherApiService, WeatherS
   imports,
 })
 export class WeatherWidgetComponent implements OnInit {
+  private readonly destroyRef = inject(DestroyRef);
   private readonly weatherFacadeService = inject(WeatherFacadeService);
 
   readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.weatherFacadeService.weatherData$);
@@ -66,13 +65,13 @@ export class WeatherWidgetComponent implements OnInit {
         .loadWeatherDataByCityName$(cityName)
         .pipe(
           tap(() => this.searchCityNameControl.reset()),
-          untilDestroyed(this)
+          takeUntilDestroyed(this.destroyRef)
         )
         .subscribe();
   }
 
   loadWeatherData(): void {
-    this.weatherFacadeService.loadWeatherData$().pipe(untilDestroyed(this)).subscribe();
+    this.weatherFacadeService.loadWeatherData$().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
   toggleDetails(): void {

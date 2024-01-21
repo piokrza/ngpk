@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit, Signal, WritableSignal, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, Signal, WritableSignal, inject, signal } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, tap } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
@@ -12,7 +11,6 @@ import { FileUploadEvent } from 'primeng/fileupload';
 import { IUser } from '#auth/models';
 import { DriveFacadeService } from '#drive/services';
 
-@UntilDestroy()
 @Component({
   selector: 'org-drive',
   templateUrl: './drive.component.html',
@@ -20,6 +18,7 @@ import { DriveFacadeService } from '#drive/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriveComponent implements OnInit {
+  private readonly destroyRef = inject(DestroyRef);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly driveFacadeService = inject(DriveFacadeService);
 
@@ -37,7 +36,7 @@ export class DriveComponent implements OnInit {
     this.activatedRoute.params
       .pipe(
         tap(({ id }) => this.driveFacadeService.setParentId(id ?? '')),
-        untilDestroyed(this)
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe();
   }

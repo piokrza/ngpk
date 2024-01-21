@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 
@@ -13,7 +13,6 @@ import { CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
 import { AuthSelectors } from '#store/auth';
 
-@UntilDestroy()
 @Component({
   selector: 'org-add-form',
   templateUrl: './add-form.component.html',
@@ -22,6 +21,7 @@ import { AuthSelectors } from '#store/auth';
 })
 export class AddFormComponent implements OnInit {
   private readonly store = inject(Store);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly dialogRef = inject(DynamicDialogRef);
   private readonly firestore = inject(AngularFirestore);
   private readonly cashFlowService = inject(CashFlowService);
@@ -38,7 +38,7 @@ export class AddFormComponent implements OnInit {
   ngOnInit(): void {
     this.store
       .select(AuthSelectors.user)
-      .pipe(filter(Boolean), untilDestroyed(this))
+      .pipe(filter(Boolean), takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: ({ uid, config }: IUser) => {
           this.userId = uid;
