@@ -6,12 +6,12 @@ import { CashFlow } from '#cash-flow/models';
 import { DateFormats } from '#core/enums';
 
 @Component({
-  selector: 'org-details',
-  templateUrl: './details.component.html',
-  styleUrl: './details.component.scss',
+  selector: 'org-tile',
+  templateUrl: './tile.component.html',
+  styleUrl: './tile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailsComponent {
+export class TileComponent {
   @Input({ required: true }) details!: CashFlow;
   @Input({ required: true }) isIncomeMode!: boolean;
 

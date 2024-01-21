@@ -16,7 +16,7 @@
     @if (cashFlowList.length) {
       @for (item of cashFlowList; track item.id) {
         <li>
-          <org-details
+          <org-tile
             [isIncomeMode]="isIncomeMode"
             [details]="item"
             (removeCashFlow)="removeCashFlow.emit($event)"
