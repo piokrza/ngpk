@@ -11,7 +11,6 @@ const routes: Routes = [
   },
   {
     path: `${PathFragment.DETAILS}/${PathFragment.ID}`,
-    // TODO: resolve data
     loadComponent: async () => (await import('#cash-flow/cash-flow-details/cash-flow-details.component')).CashFlowDetailsComponent,
   },
 ];

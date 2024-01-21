@@ -9,7 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideRouter, RouterOutlet, withViewTransitions } from '@angular/router';
+import { provideRouter, RouterOutlet, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -50,7 +50,7 @@ const imports = [
   }),
 ];
 const providers: Array<Provider | EnvironmentProviders> = [
-  provideRouter(routes, withViewTransitions()),
+  provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [ThemeInitService], multi: true },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },

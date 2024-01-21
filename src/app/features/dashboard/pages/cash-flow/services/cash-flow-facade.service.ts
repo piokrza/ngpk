@@ -113,6 +113,10 @@ export class CashFlowFacadeService {
     );
   }
 
+  getCashFlowById$(id: string): Observable<CashFlow | undefined> {
+    return this.store.select(CashFlowSelectors.cashFlowById(id));
+  }
+
   setIncomesCategoryFilter(categoryIds: string[]): void {
     this.store.dispatch(CashFlowActions.setIncomesFilter({ categoryIds }));
   }

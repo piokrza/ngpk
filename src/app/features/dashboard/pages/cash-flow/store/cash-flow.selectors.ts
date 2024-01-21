@@ -27,4 +27,8 @@ export const totalExpenses = createSelector(CashFlowStateSelector, ({ expenses }
   return expenses.reduce((acc: number, expense: CashFlow): number => acc + expense.amount, 0);
 });
 
+export const cashFlowById = (id: string) => {
+  return createSelector(CashFlowStateSelector, ({ incomes, expenses }) => [...incomes, ...expenses].find((cashFlow) => cashFlow.id === id));
+};
+
 export const totalBalance = createSelector(totalIncomes, totalExpenses, (): number => Number(totalIncomes) - Number(totalExpenses));

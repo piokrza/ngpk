@@ -1,1 +1,3 @@
-<h1>CF details works! ! !</h1>
+@if (details$ | async; as data) {
+  <pre>{{ data | json }}</pre>
+}

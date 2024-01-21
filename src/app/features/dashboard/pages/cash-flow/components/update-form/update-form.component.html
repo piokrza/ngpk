@@ -7,7 +7,7 @@
   </span>
 
   <span class="p-float-label my-4">
-    <p-inputNumber [formControl]="formControls.amount" id="amount" mode="currency" inputId="currency-poland" currency="PLN" />
+    <p-inputNumber id="amount" mode="currency" inputId="currency-poland" currency="PLN" [formControl]="formControls.amount" />
     <label for="amount">
       {{ trPath + 'update' + (cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense') | translate }}
     </label>
@@ -15,12 +15,12 @@
 
   @if (categories$ | async; as categories) {
     <p-dropdown
-      [formControl]="formControls.categoryId"
-      [options]="categories"
       optionLabel="name"
       optionValue="id"
       styleClass="w-full"
-      placeholder="Select category" />
+      placeholder="Select category"
+      [options]="categories"
+      [formControl]="formControls.categoryId" />
   }
 
   <span class="p-float-label my-4">
@@ -33,5 +33,5 @@
     <label for="description">{{ trPath + 'addDescription' | translate }}</label>
   </span>
 
-  <button [disabled]="form.invalid || !form.dirty" [label]="trPath + 'update' | translate" type="submit" class="w-full" pButton></button>
+  <p-button type="submit" class="w-full" [disabled]="form.invalid || !form.dirty" [label]="trPath + 'update' | translate" />
 </form>
