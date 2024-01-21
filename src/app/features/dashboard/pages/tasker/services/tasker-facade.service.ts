@@ -96,7 +96,7 @@ export class TaskerFacadeService {
     this.store.dispatch(TaskerActions.toggleIsTaskComplete({ taskId }));
   }
 
-  toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
+  toggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
     this.store.dispatch(TaskerActions.toggleIsStepComplete({ payload }));
   }
 
@@ -138,7 +138,7 @@ export class TaskerFacadeService {
     return this.translateService.instant(`tasker.${path}`);
   }
 
-  private filterTasks({ tasks, filter }: TasksData) {
+  private filterTasks({ tasks, filter }: TasksData): TasksData {
     if (filter === 'all') {
       return { tasks, filter };
     } else {

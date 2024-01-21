@@ -37,7 +37,7 @@ export class TaskFormComponent implements OnInit {
   readonly form: FormGroup<TaskForm> = this.taskerService.taskForm;
   readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
-  private userId: WritableSignal<string> = signal('');
+  private readonly userId: WritableSignal<string> = signal('');
 
   ngOnInit(): void {
     if (this.taskData) {
