@@ -19,17 +19,15 @@ import { environment } from 'src/environments/environment';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { AppComponent, routes } from '#app/.';
+import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/.';
+import { AuthEffects } from '#auth/store';
+import { CashFlowEffects } from '#cash-flow/store';
 import { injectThemeLink$, ThemeInitService } from '#core/services';
 import { CustomTranslateHttpLoader, initializeTranslations } from '#core/utils';
-import { AuthEffects } from '#store/auth';
-import { CashFlowEffects } from '#store/cash-flow';
-import { DriveEffects } from '#store/drive';
-import { ROOT_REDUCERS } from '#store/root-reducer';
-import { TaskerEffects } from '#store/tasker';
+import { DriveEffects } from '#drive/store';
+import { TaskerEffects } from '#tasker/store';
 
-const StoreEffects = [CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
-
+const storeEffects = [CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
 const declarations = [AppComponent];
 const imports = [
   BrowserModule,
@@ -37,8 +35,8 @@ const imports = [
   HttpClientModule,
   RouterOutlet,
 
-  StoreModule.forRoot(ROOT_REDUCERS),
-  EffectsModule.forRoot(StoreEffects),
+  StoreModule.forRoot(STORE_ROOT_REDUCERS),
+  EffectsModule.forRoot(storeEffects),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),
 
   provideFirebaseApp(() => initializeApp(environment.firebase)),

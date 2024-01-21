@@ -3,11 +3,11 @@ import { Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
 
 import { AuthApiService } from '#auth/services';
+import { AuthActions } from '#auth/store';
+import { CashFlowActions } from '#cash-flow/store';
 import { DbSubscriptionService } from '#core/services';
-import { AuthActions } from '#store/auth';
-import { CashFlowActions } from '#store/cash-flow';
-import { DriveActions } from '#store/drive';
-import { TaskerActions } from '#store/tasker';
+import { DriveActions } from '#drive/store';
+import { TaskerActions } from '#tasker/store';
 
 @Component({
   selector: 'org-dashboard',

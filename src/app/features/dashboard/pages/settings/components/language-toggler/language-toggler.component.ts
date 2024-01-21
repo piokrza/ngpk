@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { PrimeNGConfig } from 'primeng/api';
@@ -10,7 +10,6 @@ import { LANG } from '#core/utils';
 
 const imports = [SelectButtonModule, FormsModule, TranslateModule];
 
-@UntilDestroy()
 @Component({
   selector: 'org-language-toggler',
   templateUrl: './language-toggler.component.html',
@@ -19,6 +18,7 @@ const imports = [SelectButtonModule, FormsModule, TranslateModule];
   imports,
 })
 export class LanguageTogglerComponent {
+  private readonly destroyRef = inject(DestroyRef);
   private readonly translateService = inject(TranslateService);
   private readonly config: PrimeNGConfig = inject(PrimeNGConfig);
 
@@ -29,7 +29,7 @@ export class LanguageTogglerComponent {
     this.translateService.use(value ?? 'pl');
     this.translateService
       .get('primeng')
-      .pipe(untilDestroyed(this))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res) => this.config.setTranslation(res));
   }
 }

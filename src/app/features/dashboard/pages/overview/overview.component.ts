@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Provider, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChartData } from 'chart.js';
 import { Observable } from 'rxjs';
@@ -16,9 +16,8 @@ import { TaskerData } from '#overview/models';
 import { OverviewService } from '#overview/services';
 
 const imports = [ProgressSpinnerModule, AsyncPipe, TaskerPanelComponent, CashFlowChartComponent, CashFlowCardsComponent, TranslateModule];
-const providers: Provider[] = [OverviewService];
+const providers = [OverviewService];
 
-@UntilDestroy()
 @Component({
   selector: 'org-overview',
   templateUrl: './overview.component.html',
@@ -30,6 +29,7 @@ const providers: Provider[] = [OverviewService];
 })
 export class OverviewComponent {
   private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly overviewService = inject(OverviewService);
   private readonly cashFlowService = inject(CashFlowService);
 
@@ -41,7 +41,7 @@ export class OverviewComponent {
   readonly expensesChartData$: Observable<ChartData | undefined> = this.overviewService.expensesChartData$;
 
   addQuickNote(): void {
-    this.overviewService.addQuickNote$().pipe(untilDestroyed(this)).subscribe();
+    this.overviewService.addQuickNote$().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
   navigateToCashFlow(itemLabel: string): void {

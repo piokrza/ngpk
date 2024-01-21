@@ -7,12 +7,12 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 
+import { AuthSelectors } from '#auth/store';
 import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
+import { CashFlowActions, CashFlowSelectors } from '#cash-flow/store';
 import { BaseDialogStyles } from '#core/constants';
-import { AuthSelectors } from '#store/auth';
-import { CashFlowActions, CashFlowSelectors } from '#store/cash-flow';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {
@@ -101,8 +101,8 @@ export class CashFlowFacadeService {
 
   updateExpense$(updatedExpense: CashFlow): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
-      header: this.translateService.instant('expenses.updateMessage'),
-      style: { ...BaseDialogStyles },
+      header: this.translateService.instant('expenses.updateExpence'),
+      style: BaseDialogStyles,
       data: { updatedCashFlow: updatedExpense, isIncomeMode: false },
     });
 

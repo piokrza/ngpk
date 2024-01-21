@@ -7,9 +7,9 @@ import { Observable, filter, map } from 'rxjs';
 
 import { CardModule } from 'primeng/card';
 
+import { AuthSelectors } from '#auth/store';
 import { LabeledData } from '#core/models';
 import { ContainerComponent } from '#shared/components';
-import { AuthSelectors } from '#store/auth';
 
 const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent, AsyncPipe];
 

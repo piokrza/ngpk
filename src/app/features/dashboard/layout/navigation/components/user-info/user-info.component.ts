@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { IUser } from '#auth/models';
-import { AuthSelectors } from '#store/auth';
+import { AuthSelectors } from '#auth/store';
 
 @Component({
   selector: 'org-user-info',

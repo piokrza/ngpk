@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, Provider } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -17,20 +17,13 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
 import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/.';
-import { AddFormComponent, DetailsBoxComponent, DetailsComponent, DetailsListComponent, UpdateFormComponent } from '#cash-flow/components';
+import { AddFormComponent, DetailsBoxComponent, TileComponent, TileListComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
 import { CashFlowFacadeService, CashFlowPaginationService } from '#cash-flow/services';
 import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
 
-const declarations = [
-  DetailsComponent,
-  DetailsBoxComponent,
-  DetailsListComponent,
-  AddFormComponent,
-  UpdateFormComponent,
-  CashFlowComponent,
-];
+const declarations = [TileComponent, DetailsBoxComponent, TileListComponent, AddFormComponent, UpdateFormComponent, CashFlowComponent];
 
 const imports = [
   CashFlowRoutingModule,
@@ -55,7 +48,7 @@ const imports = [
   PaginatorModule,
 ];
 
-const providers: Provider[] = [CashFlowFacadeService, CashFlowPaginationService];
+const providers = [CashFlowFacadeService, CashFlowPaginationService];
 
 @NgModule({ declarations, imports, providers })
 export class CashFlowModule {}

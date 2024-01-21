@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, Provider } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -13,7 +13,7 @@ import { AuthFormService, AuthApiService } from '#auth/services';
 
 const declarations = [AuthComponent, LoginFormComponent, RegisterFormComponent];
 const imports = [CommonModule, AuthRoutingModule, ReactiveFormsModule, InputTextModule, ButtonModule, PasswordModule, TranslateModule];
-const providers: Provider[] = [AuthFormService, AuthApiService];
+const providers = [AuthFormService, AuthApiService];
 
 @NgModule({ declarations, imports, providers })
 export class AuthModule {}

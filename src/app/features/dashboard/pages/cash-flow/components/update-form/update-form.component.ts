@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
@@ -9,9 +7,9 @@ import { filter, map, Observable } from 'rxjs';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { IUser } from '#auth/models';
+import { AuthSelectors } from '#auth/store';
 import { CashFlowForm, CashFlowUpdateFormData, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
-import { AuthSelectors } from '#store/auth';
 
 @Component({
   selector: 'org-update-form',

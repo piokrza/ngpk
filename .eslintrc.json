@@ -4,6 +4,9 @@
   "overrides": [
     {
       "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"]
+      },
       "extends": [
         "eslint:recommended",
         "plugin:@angular-eslint/recommended",
@@ -21,12 +24,13 @@
         "@angular-eslint/no-inputs-metadata-property": "warn",
         "@angular-eslint/no-output-on-prefix": "warn",
         "@angular-eslint/no-input-rename": "warn",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/prefer-readonly": "warn",
         "no-console": ["error", { "allow": ["error"] }],
         "no-debugger": "error",
         "import/first": "error",
         "prefer-const": "error",
         "import/namespace": "warn",
-        "@typescript-eslint/no-explicit-any": "off",
         "import/no-unresolved": "off",
         "import/no-named-as-default": "off",
         "import/export": "off",

@@ -1,5 +1,5 @@
-@use 'src/assets/styles/variables/sizes' as s;
-@use 'src/assets/styles/variables/breakpoints' as b;
+@use 'sizes' as s;
+@use 'breakpoints' as b;
 
 :root {
   --radius: 0.75rem;

@@ -8,10 +8,10 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { BaseDialogStyles } from '#core/constants';
 import { LabeledData } from '#core/models';
-import { TaskerActions, TaskerSelectors } from '#store/tasker';
 import { NoteFormComponent, TaskFormComponent } from '#tasker/components';
 import { Note, NoteFilter, NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
+import { TaskerActions, TaskerSelectors } from '#tasker/store';
 
 @Injectable()
 export class TaskerFacadeService {
@@ -96,7 +96,7 @@ export class TaskerFacadeService {
     this.store.dispatch(TaskerActions.toggleIsTaskComplete({ taskId }));
   }
 
-  toggleIsStepComplete(payload: ToggleIsStepCompletePayload) {
+  toggleIsStepComplete(payload: ToggleIsStepCompletePayload): void {
     this.store.dispatch(TaskerActions.toggleIsStepComplete({ payload }));
   }
 
@@ -138,7 +138,7 @@ export class TaskerFacadeService {
     return this.translateService.instant(`tasker.${path}`);
   }
 
-  private filterTasks({ tasks, filter }: TasksData) {
+  private filterTasks({ tasks, filter }: TasksData): TasksData {
     if (filter === 'all') {
       return { tasks, filter };
     } else {

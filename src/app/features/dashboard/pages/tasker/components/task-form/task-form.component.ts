@@ -1,18 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { AuthSelectors } from '#store/auth';
+import { AuthSelectors } from '#auth/store';
 import { StepForm, Task, TaskForm, TaskStep } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
 
-@UntilDestroy()
 @Component({
   selector: 'org-task-form',
   templateUrl: './task-form.component.html',
@@ -22,10 +21,11 @@ export class TaskFormComponent implements OnInit {
   constructor() {
     inject(Store)
       .select(AuthSelectors.user)
-      .pipe(filter(Boolean), untilDestroyed(this))
+      .pipe(filter(Boolean), takeUntilDestroyed(this.destroyRef))
       .subscribe({ next: ({ uid }) => this.userId.set(uid) });
   }
 
+  private readonly destroyRef = inject(DestroyRef);
   private readonly firestore = inject(AngularFirestore);
   private readonly dialogRef = inject(DynamicDialogRef);
   private readonly taskerService = inject(TaskerService);
@@ -37,7 +37,7 @@ export class TaskFormComponent implements OnInit {
   readonly form: FormGroup<TaskForm> = this.taskerService.taskForm;
   readonly formData: Task | undefined = inject(DynamicDialogConfig).data;
 
-  private userId: WritableSignal<string> = signal('');
+  private readonly userId: WritableSignal<string> = signal('');
 
   ngOnInit(): void {
     if (this.taskData) {

@@ -1,0 +1,38 @@
+@if (isLoading) {
+  <p-progressSpinner class="spinner" />
+} @else {
+  <div class="select-wrapper">
+    <small class="block mb-2">{{ 'common.categories' | translate }}</small>
+    <p-multiSelect
+      optionLabel="name"
+      styleClass="w-full"
+      [placeholder]="'cashFlow.allCategories' | translate"
+      [options]="categories"
+      [showHeader]="false"
+      (onChange)="onCategoryFilterChange($event)" />
+  </div>
+
+  <ul class="flex-container">
+    @if (cashFlowList.length) {
+      @for (item of cashFlowList; track item.id) {
+        <li>
+          <org-tile
+            [isIncomeMode]="isIncomeMode"
+            [details]="item"
+            (removeCashFlow)="removeCashFlow.emit($event)"
+            (updateCashFlow)="updateCashFlow.emit($event)" />
+        </li>
+      }
+    }
+    <li>
+      <org-container [styleClass]="['h-full']">
+        <p-button
+          severity="secondary"
+          styleClass="w-full h-full py-5"
+          [text]="true"
+          [icon]="PrimeIcons.PLUS"
+          (onClick)="addCashFlow.emit(isIncomeMode)" />
+      </org-container>
+    </li>
+  </ul>
+}
