@@ -5,7 +5,8 @@ import { Observable, map, switchMap } from 'rxjs';
 
 import { IUser } from '#auth/models';
 import { AuthSelectors } from '#auth/store';
-import { AppPaths, DashobardPaths } from '#core/enums';
+import { AppPaths } from '#core/enums';
+import { DashobardPaths } from '#dashboard/enums';
 import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
 import { DriveService } from '#drive/services';
 import { DriveActions, DriveSelectors } from '#drive/store';
