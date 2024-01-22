@@ -2,10 +2,10 @@
 @use 'breakpoints' as b;
 
 .wrapper {
-  padding: 0 1rem;
+  padding: 0 1rem 1rem;
 
   main {
-    height: calc(100vh - s.$menubarHeight);
+    height: calc(100vh - s.$menubarHeight - 1rem);
     max-width: 100vw;
   }
 }
