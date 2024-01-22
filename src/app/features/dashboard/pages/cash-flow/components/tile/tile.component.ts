@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PrimeIcons } from 'primeng/api';
-
 import { CashFlow } from '#cash-flow/models';
 import { AppPaths, DateFormats, PathFragment } from '#core/enums';
 import { DashobardPaths } from '#dashboard/enums';
@@ -22,7 +20,6 @@ export class TileComponent {
   @Output() removeCashFlow = new EventEmitter<string>();
   @Output() updateCashFlow = new EventEmitter<CashFlow>();
 
-  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly DateFormats: typeof DateFormats = DateFormats;
 
   navigateToDetails(id: string): void {

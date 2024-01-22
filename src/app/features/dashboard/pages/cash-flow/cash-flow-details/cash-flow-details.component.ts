@@ -1,15 +1,20 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe, Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, switchMap, tap } from 'rxjs';
 
+import { PrimeIcons } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+
 import { CashFlow } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
-import { AppPaths } from '#core/enums';
+import { AppPaths, DateFormats } from '#core/enums';
 import { DashobardPaths } from '#dashboard/enums';
+import { ContainerComponent } from '#shared/components';
+import { TimestampPipe } from '#shared/pipes';
 
-const imports = [TranslateModule, AsyncPipe, JsonPipe];
+const imports = [TranslateModule, AsyncPipe, TimestampPipe, ContainerComponent, ButtonModule];
 
 @Component({
   selector: 'org-cash-flow-details',
@@ -20,10 +25,26 @@ const imports = [TranslateModule, AsyncPipe, JsonPipe];
 })
 export class CashFlowDetailsComponent {
   private readonly router = inject(Router);
+  private readonly location = inject(Location);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly cashFlowFacade = inject(CashFlowFacadeService);
 
   readonly details$: Observable<CashFlow | undefined> = this.cashFlowDetails$;
+
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly DateFormats: typeof DateFormats = DateFormats;
+
+  updateCashFlow(cashFlow: CashFlow): void {
+    // this.cashFlowFacade.updateExpense$(cashFlow);
+  }
+
+  deleteCashFlow(id: string): void {
+    // this.cashFlowFacade.removeExpense(id);
+  }
+
+  navigateBack(): void {
+    this.location.back();
+  }
 
   private get cashFlowDetails$(): Observable<CashFlow | undefined> {
     return this.activatedRoute.params.pipe(

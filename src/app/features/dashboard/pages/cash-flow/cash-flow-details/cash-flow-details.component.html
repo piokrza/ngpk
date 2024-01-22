@@ -1,3 +1,29 @@
 @if (details$ | async; as data) {
-  <pre>{{ data | json }}</pre>
+  <org-container>
+    <div class="flex">
+      <div class="flex-grow-1">
+        <div class="flex align-items-center gap-3">
+          <p-button [icon]="PrimeIcons.ARROW_LEFT" [text]="true" (onClick)="navigateBack()" />
+          <h1>{{ data.name }}</h1>
+        </div>
+
+        <p>
+          <i [class]="PrimeIcons.DOLLAR"></i>
+          {{ data.amount }}
+        </p>
+
+        <p>{{ data.date | timestamp: DateFormats.DATE }}</p>
+
+        <div class="mt-6">
+          <small>{{ 'Description' }}</small>
+          <p>{{ data.description }}</p>
+        </div>
+      </div>
+
+      <div class="mt-3 flex gap-2">
+        <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.FILE_EDIT" (onClick)="updateCashFlow(data)" />
+        <p-button severity="danger" [rounded]="true" [text]="true" [icon]="PrimeIcons.TRASH" (onClick)="deleteCashFlow(data.id)" />
+      </div>
+    </div>
+  </org-container>
 }
