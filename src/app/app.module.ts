@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/.';
+import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/index';
 import { AuthEffects } from '#auth/store';
 import { CashFlowEffects } from '#cash-flow/store';
 import { injectThemeLink$, ThemeInitService } from '#core/services';

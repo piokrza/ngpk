@@ -8,8 +8,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { LayoutModule } from '#layout/.';
-import { SettingsComponent, SettingsRoutingModule } from '#settings/.';
+import { LayoutModule } from '#layout/index';
 import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
@@ -17,6 +16,7 @@ import {
   PanelComponent,
   ThemeTogglerComponent,
 } from '#settings/components';
+import { SettingsComponent, SettingsRoutingModule } from '#settings/index';
 import { ContainerComponent, ThemeButtonComponent } from '#shared/components';
 
 const declarations = [SettingsComponent, ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];

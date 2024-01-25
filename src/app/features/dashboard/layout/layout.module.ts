@@ -12,7 +12,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { WeatherWidgetComponent } from '#dashboard/weather-widget';
-import { LayoutComponent } from '#layout/.';
+import { LayoutComponent } from '#layout/index';
 import { MobileMenuComponent, NavigationComponent, NavigationSidebarComponent, UserInfoComponent } from '#layout/navigation/components';
 import { ContainerComponent } from '#shared/components';
 import { FeatureFlagDirective } from '#shared/directives';

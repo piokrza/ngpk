@@ -9,8 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
 
-import { DriveComponent, DriveRoutingModule } from '#drive/.';
 import { FileListComponent } from '#drive/components/file-list';
+import { DriveComponent, DriveRoutingModule } from '#drive/index';
 import { DriveFacadeService, DriveService } from '#drive/services';
 import { TruncatePipe } from '#shared/pipes';
 

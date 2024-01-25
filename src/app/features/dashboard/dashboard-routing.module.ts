@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { featureFlagGuard } from '#core/guards';
 import { getTitle } from '#core/utils';
-import { DashboardComponent } from '#dashboard/.';
 import { DashobardPaths } from '#dashboard/enums';
+import { DashboardComponent } from '#dashboard/index';
 
 const routes: Routes = [
   {
