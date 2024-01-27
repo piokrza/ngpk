@@ -1,24 +1,26 @@
-import { Environment } from 'src/environments/environment.model';
+import { Environment, FeatureFlags, FirebaseConfig } from 'src/environments';
 
-export const environment: Environment = {
-  firebase: {
-    projectId: 'organizer-3e6d6',
-    appId: '1:811307138027:web:18466cad2a7edcf19eb7ae',
-    storageBucket: 'organizer-3e6d6.appspot.com',
-    apiKey: 'AIzaSyC-rnkobDHdR-hZ5KioItptFDJ9M5iabbk',
-    authDomain: 'organizer-3e6d6.firebaseapp.com',
-    messagingSenderId: '811307138027',
-    measurementId: 'G-0TLBMDV7W7',
-  },
-  weatherBaseUrl: 'https://api.openweathermap.org/data/2.5/weather',
-  weatherApiKey: '253353dc15d16c96be28e7780f4d500f',
-  uploadUrl: 'https://www.primefaces.org/cdn/api/upload.php',
-  production: true,
-  featureFlags: {
+class EnvironmentImpl implements Environment {
+  firebase = {
+    appId: '1:731403343161:web:c3b3ae2f486b4d1bb384e8',
+    authDomain: 'organizer-20ce6.firebaseapp.com',
+    storageBucket: 'organizer-20ce6.appspot.com',
+    projectId: 'organizer-20ce6',
+    apiKey: 'AIzaSyD2c0-tW9kRahL_raHQI9dImxL-keO_zNg',
+    messagingSenderId: '731403343161',
+    measurementId: 'G-R3YVX64CVE',
+  } satisfies FirebaseConfig;
+  featureFlags = {
     drive: true,
     cashFlow: true,
     settings: true,
     tasker: true,
     overview: true,
-  },
-};
+  } satisfies FeatureFlags;
+  weatherBaseUrl = 'https://api.openweathermap.org/data/2.5/weather';
+  weatherApiKey = '253353dc15d16c96be28e7780f4d500f';
+  uploadUrl = 'https://www.primefaces.org/cdn/api/upload.php';
+  production = true;
+}
+
+export const environment = new EnvironmentImpl();

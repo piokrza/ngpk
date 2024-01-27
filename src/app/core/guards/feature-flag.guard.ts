@@ -1,8 +1,9 @@
+import { inject } from '@angular/core';
 import { CanMatchFn } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { Environment } from 'src/environments';
 
 import { Feature } from '#core/models';
 
 export function featureFlagGuard(featureName: Feature): CanMatchFn {
-  return () => environment.featureFlags[featureName];
+  return () => inject(Environment).featureFlags[featureName];
 }

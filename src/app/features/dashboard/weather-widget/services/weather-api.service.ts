@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { environment as env } from 'src/environments/environment';
+import { Environment } from 'src/environments';
 
 import { IGeolocation, WeatherResponse } from '#weather-widget/models';
 
 @Injectable()
 export class WeatherApiService {
   private readonly http = inject(HttpClient);
+  private readonly environment = inject(Environment);
   private readonly translateService = inject(TranslateService);
 
-  private readonly baseUrl = env.weatherBaseUrl;
-  private readonly weatherApiKey = env.weatherApiKey;
+  private readonly baseUrl = this.environment.weatherBaseUrl;
+  private readonly weatherApiKey = this.environment.weatherApiKey;
 
   searchByCityName$(cityName: string): Observable<WeatherResponse> {
     return this.http.get<WeatherResponse>(

@@ -12,16 +12,16 @@ export const routes: Routes = [
   },
   {
     path: AppPaths.DASHBOARD,
-    loadChildren: async () => (await import('#dashboard/dashboard.module')).DashboardModule,
     canActivate: [AngularFireAuthGuard],
+    loadChildren: async () => (await import('#dashboard/dashboard.module')).DashboardModule,
     data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
   },
   {
     path: AppPaths.AUTHENTICATION,
-    loadChildren: async () => (await import('#auth/auth.module')).AuthModule,
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
     title: getTitle('auth'),
+    data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
+    loadChildren: async () => (await import('#auth/auth.module')).AuthModule,
   },
   {
     path: '**',

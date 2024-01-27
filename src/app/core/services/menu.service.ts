@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from 'src/environments/environment';
+import { Environment } from 'src/environments';
 
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 
@@ -11,6 +11,7 @@ import { DashobardPaths } from '#dashboard/enums';
 @Injectable({ providedIn: 'root' })
 export class MenuService {
   private readonly store = inject(Store);
+  private readonly environment = inject(Environment);
   private readonly translateService = inject(TranslateService);
   private readonly confirmationService = inject(ConfirmationService);
 
@@ -21,31 +22,31 @@ export class MenuService {
         routerLink: DashobardPaths.OVERVIEW,
         icon: PrimeIcons.HOME,
         styleClass: 'lg:mr-2',
-        visible: environment.featureFlags['overview'],
+        visible: this.environment.featureFlags['overview'],
       },
       {
         label: 'menu.drive',
         routerLink: DashobardPaths.DRIVE,
         icon: PrimeIcons.FOLDER,
-        visible: environment.featureFlags['drive'],
+        visible: this.environment.featureFlags['drive'],
       },
       {
         label: 'menu.cashFlow',
         routerLink: DashobardPaths.CASH_FLOW,
         icon: PrimeIcons.SIGN_IN,
-        visible: environment.featureFlags['cashFlow'],
+        visible: this.environment.featureFlags['cashFlow'],
       },
       {
         label: 'menu.tasker',
         routerLink: DashobardPaths.TASKER,
         icon: PrimeIcons.BOOK,
-        visible: environment.featureFlags['tasker'],
+        visible: this.environment.featureFlags['tasker'],
       },
       {
         label: 'menu.settings',
         routerLink: DashobardPaths.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,
-        visible: environment.featureFlags['settings'],
+        visible: this.environment.featureFlags['settings'],
       },
       {
         label: 'menu.logout',

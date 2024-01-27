@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Environment } from 'src/environments';
 import { environment } from 'src/environments/environment';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -50,6 +51,7 @@ const imports = [
   }),
 ];
 const providers: Array<Provider | EnvironmentProviders> = [
+  { provide: Environment, useValue: environment },
   provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [ThemeInitService], multi: true },
