@@ -16,7 +16,7 @@ const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, 
 @Component({
   selector: 'org-cash-flow-cards',
   templateUrl: './cash-flow-cards.component.html',
-  styleUrls: ['./cash-flow-cards.component.scss'],
+  styleUrl: './cash-flow-cards.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,

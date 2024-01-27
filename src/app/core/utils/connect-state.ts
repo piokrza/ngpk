@@ -57,7 +57,7 @@ export function connectState<T>(destroyRef: DestroyRef, sources: RestrictedKeys<
       })
     )
     .pipe(takeUntilDestroyed(destroyRef))
-    .subscribe(() => cdRef.markForCheck());
+    .subscribe({ next: () => cdRef.markForCheck() });
 
   return sink;
 }

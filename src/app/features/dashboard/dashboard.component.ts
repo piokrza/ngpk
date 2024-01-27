@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
 
@@ -20,6 +21,7 @@ import { TaskerActions } from '#tasker/store';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private readonly store = inject(Store);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly authApiService = inject(AuthApiService);
   private readonly dbSubscriptionService = inject(DbSubscriptionService);
 
@@ -33,7 +35,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.store.dispatch(TaskerActions.loadNotes({ uid }));
           this.store.dispatch(CashFlowActions.loadCashFlow({ uid }));
           this.store.dispatch(DriveActions.loadFiles({ uid }));
-        })
+        }),
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe();
   }

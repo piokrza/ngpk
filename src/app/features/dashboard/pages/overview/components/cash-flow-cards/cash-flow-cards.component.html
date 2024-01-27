@@ -1,12 +1,10 @@
 <section class="cards">
-  @for (item of cashFlowDataset; track $index; let last = $last) {
+  @for (item of cashFlowDataset; track $index) {
     <a (click)="navigate.emit(item.label)">
       <org-container [styleClass]="['hover']">
         <h3 class="heading">
           <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
-          <span [ngClass]="{ 'text--success': item.label === 'totalIncome', 'text--danger': item.label === 'totalExpense' }">
-            {{ item.data ? (item.data | number) : '-' }} {{ last ? '' : (currency$ | async) }}
-          </span>
+          <span> {{ item.data ? (item.data | number) : '-' }} {{ $last ? '' : (currency$ | async) }} </span>
         </h3>
       </org-container>
     </a>

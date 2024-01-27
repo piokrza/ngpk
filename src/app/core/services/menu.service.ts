@@ -59,7 +59,7 @@ export class MenuService {
     this.confirmationService.confirm({
       message: this.translateService.instant('auth.signoutMessage'),
       header: this.translateService.instant('auth.signout'),
-      accept: (): void => this.store.dispatch(AuthActions.signOut()),
+      accept: () => this.store.dispatch(AuthActions.signOut()),
     });
   }
 }

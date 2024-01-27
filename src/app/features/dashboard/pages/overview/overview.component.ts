@@ -1,8 +1,8 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { first } from 'rxjs';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
@@ -40,7 +40,7 @@ export class OverviewComponent {
   });
 
   addQuickNote(): void {
-    this.overviewService.addQuickNote$().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+    this.overviewService.addQuickNote$().pipe(first()).subscribe();
   }
 
   navigateToCashFlow(itemLabel: string): void {
