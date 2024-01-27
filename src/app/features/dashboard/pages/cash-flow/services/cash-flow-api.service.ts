@@ -9,31 +9,25 @@ import { Collection } from '#core/enums';
 export class CashFlowApiService {
   private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
 
-  loadExpenses$(uid: string): Observable<CashFlow[]> {
+  loadCashFlow$(uid: string): Observable<CashFlow[]> {
     return this.angularFirestore
-      .collection<CashFlow>(Collection.EXPENSES, (ref) => ref.where('uid', '==', uid))
+      .collection<CashFlow>(Collection.CASHFLOW, (ref) => ref.where('uid', '==', uid))
       .valueChanges({ idField: 'id' });
   }
 
-  loadIncomes$(uid: string): Observable<CashFlow[]> {
-    return this.angularFirestore
-      .collection<CashFlow>(Collection.INCOMES, (ref) => ref.where('uid', '==', uid))
-      .valueChanges({ idField: 'id' });
+  async addCashFlow$(cashFlow: CashFlow): Promise<DocumentReference<CashFlow>> {
+    return await this.angularFirestore.collection<CashFlow>(Collection.CASHFLOW).add(cashFlow);
   }
 
-  async addCashFlow$(collectionName: Collection.EXPENSES | Collection.INCOMES, cashFlow: CashFlow): Promise<DocumentReference<CashFlow>> {
-    return await this.angularFirestore.collection<CashFlow>(collectionName).add(cashFlow);
-  }
-
-  async removeCashFlow$(collectionName: Collection.EXPENSES | Collection.INCOMES, cashFlowId: string): Promise<void> {
-    const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore.collection(collectionName).doc(cashFlowId);
+  async removeCashFlow$(cashFlowId: string): Promise<void> {
+    const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore.collection(Collection.CASHFLOW).doc(cashFlowId);
 
     return await cashFlow.delete();
   }
 
-  async updateCashFlow$(collectionName: Collection.EXPENSES | Collection.INCOMES, updatedCashFlowData: CashFlow): Promise<void> {
+  async updateCashFlow$(updatedCashFlowData: CashFlow): Promise<void> {
     const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore
-      .collection<CashFlow>(collectionName)
+      .collection<CashFlow>(Collection.CASHFLOW)
       .doc(updatedCashFlowData.id);
 
     return await cashFlow.update(updatedCashFlowData);

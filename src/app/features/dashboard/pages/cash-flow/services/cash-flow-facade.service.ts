@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, filter, tap } from 'rxjs';
 
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -13,10 +14,13 @@ import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
 import { CashFlowActions, CashFlowSelectors } from '#cash-flow/store';
 import { BaseDialogStyles } from '#core/constants';
+import { AppPaths } from '#core/enums';
+import { DashobardPaths } from '#dashboard/enums';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {
   private readonly store = inject(Store);
+  private readonly router = inject(Router);
   private readonly dialogService = inject(DialogService);
   private readonly cashFlowService = inject(CashFlowService);
   private readonly translateService = inject(TranslateService);
@@ -49,25 +53,28 @@ export class CashFlowFacadeService {
     return this.store.select(AuthSelectors.categories);
   }
 
-  removeIncome(incomeId: string): void {
+  removeCashFlow(id: string): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('incomes.removeMessage'),
       header: this.translateService.instant('incomes.removeHeader'),
       icon: PrimeIcons.TRASH,
-      accept: (): void => this.store.dispatch(CashFlowActions.removeIncome({ incomeId })),
+      accept: (): void => {
+        this.store.dispatch(CashFlowActions.removeCashFlow({ id }));
+        this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
+      },
     });
   }
 
-  updateIncome$(updatedIncome: CashFlow): Observable<CashFlow | undefined> {
+  updateCashFlow$(cashFlow: CashFlow): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
       header: this.translateService.instant('incomes.updateIncome'),
       style: BaseDialogStyles,
-      data: { updatedCashFlow: updatedIncome, isIncomeMode: true },
+      data: cashFlow,
     });
 
     return dialogRef.onClose.pipe(
-      tap((updatedIncome?: CashFlow): void => {
-        updatedIncome && this.store.dispatch(CashFlowActions.updateIncome({ updatedIncome }));
+      tap((cashFlow?: CashFlow) => {
+        cashFlow && this.store.dispatch(CashFlowActions.updateCashFlow({ cashFlow }));
       })
     );
   }
@@ -81,36 +88,13 @@ export class CashFlowFacadeService {
 
     return dialogRef.onClose.pipe(
       tap((cashFlow?: CashFlow) => {
-        if (cashFlow) {
-          isIncomeMode
-            ? this.store.dispatch(CashFlowActions.addIncome({ income: cashFlow }))
-            : this.store.dispatch(CashFlowActions.addExpense({ expense: cashFlow }));
-        }
+        cashFlow && this.store.dispatch(CashFlowActions.addCashFlow({ cashFlow }));
       })
     );
   }
 
-  removeExpense(expenseId: string): void {
-    this.confirmationService.confirm({
-      message: this.translateService.instant('expenses.removeMessage'),
-      header: this.translateService.instant('expenses.removeHeader'),
-      icon: PrimeIcons.TRASH,
-      accept: (): void => this.store.dispatch(CashFlowActions.removeExpense({ expenseId })),
-    });
-  }
-
-  updateExpense$(updatedExpense: CashFlow): Observable<CashFlow | undefined> {
-    const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
-      header: this.translateService.instant('expenses.updateExpence'),
-      style: BaseDialogStyles,
-      data: { updatedCashFlow: updatedExpense, isIncomeMode: false },
-    });
-
-    return dialogRef.onClose.pipe(
-      tap((updatedExpense?: CashFlow): void => {
-        updatedExpense && this.store.dispatch(CashFlowActions.updateExpense({ updatedExpense }));
-      })
-    );
+  getCashFlowById$(id: string): Observable<CashFlow | undefined> {
+    return this.store.select(CashFlowSelectors.cashFlowById(id)).pipe(filter(Boolean));
   }
 
   setIncomesCategoryFilter(categoryIds: string[]): void {

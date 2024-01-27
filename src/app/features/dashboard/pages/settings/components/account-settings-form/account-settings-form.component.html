@@ -1,6 +1,6 @@
 <section class="mx-auto lg:w-6">
-  <div class="flex align-items-center gap-4">
-    <p-button [icon]="PrimeIcons.ARROW_LEFT" (onClick)="navigateBack()" severity="secondary" />
+  <div class="flex align-items-center gap-2">
+    <p-button [text]="true" [icon]="PrimeIcons.ARROW_LEFT" (onClick)="navigateBack()" />
     <h1 class="text-2xl">Edit profile</h1>
   </div>
 
@@ -16,12 +16,12 @@
     </span>
 
     <span class="p-float-label my-4">
-      <p-inputNumber [formControl]="form.controls.phoneNumber" [useGrouping]="false" id="phoneNumer" class="w-full" />
+      <p-inputNumber id="phoneNumer" class="w-full" [formControl]="form.controls.phoneNumber" [useGrouping]="false" />
       <label htmlFor="phoneNumer">{{ trPath + 'phoneNumber' | translate }}</label>
     </span>
 
     <span class="p-float-label my-4">
-      <input [formControl]="form.controls.photoURL" pInputText id="photoURL" class="w-full" />
+      <input pInputText id="photoURL" class="w-full" [formControl]="form.controls.photoURL" />
       <label htmlFor="photoURL">{{ trPath + 'avatar' | translate }}</label>
     </span>
 

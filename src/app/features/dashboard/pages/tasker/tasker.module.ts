@@ -18,8 +18,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
-import { TaskerComponent } from '#tasker/.';
 import { TaskFormComponent, TaskComponent, NoteFormComponent, NoteComponent } from '#tasker/components';
+import { TaskerComponent } from '#tasker/index';
 import { TaskerFacadeService } from '#tasker/services';
 
 const routes: Routes = [{ path: '', component: TaskerComponent }];

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthComponent } from '#auth/.';
 import { LoginFormComponent, RegisterFormComponent } from '#auth/components';
 import { AuthPaths } from '#auth/enums';
+import { AuthComponent } from '#auth/index';
 
 const routes: Routes = [
   {

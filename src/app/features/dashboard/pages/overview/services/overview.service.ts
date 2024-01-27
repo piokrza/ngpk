@@ -11,9 +11,10 @@ import { AuthSelectors } from '#auth/store';
 import { CashFlow, Category } from '#cash-flow/models';
 import { CashFlowSelectors } from '#cash-flow/store';
 import { BaseDialogStyles } from '#core/constants';
-import { AppPaths, DashobardPaths } from '#core/enums';
+import { AppPaths } from '#core/enums';
 import { LabeledData } from '#core/models';
 import { getRandomNumber } from '#core/utils';
+import { DashobardPaths } from '#dashboard/enums';
 import { ChartColor, TaskerData } from '#overview/models';
 import { NoteFormComponent } from '#tasker/components';
 import { Note } from '#tasker/models';
@@ -125,11 +126,7 @@ export class OverviewService {
   private calculateCashflow(cashFlowList: CashFlow[], categories: Category[]): number[] {
     return categories.map((category: Category) => {
       return cashFlowList.reduce((total: number, cashFlow: CashFlow) => {
-        if (cashFlow.categoryId === category.id) {
-          return total + cashFlow.amount;
-        }
-
-        return total;
+        return cashFlow.categoryId === category.id ? total + cashFlow.amount : total;
       }, 0);
     });
   }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DriveComponent } from '#drive/.';
+import { DriveComponent } from '#drive/index';
 
 const routes: Routes = [
   {

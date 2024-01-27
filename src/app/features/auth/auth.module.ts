@@ -7,8 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 
-import { AuthRoutingModule, AuthComponent } from '#auth/.';
 import { LoginFormComponent, RegisterFormComponent } from '#auth/components';
+import { AuthRoutingModule, AuthComponent } from '#auth/index';
 import { AuthFormService, AuthApiService } from '#auth/services';
 
 const declarations = [AuthComponent, LoginFormComponent, RegisterFormComponent];

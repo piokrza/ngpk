@@ -10,7 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { IUser } from '#auth/models';
 import { AuthSelectors } from '#auth/store';
-import { CashFlowForm, Category } from '#cash-flow/models';
+import { CashFlow, CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
 
 @Component({
@@ -58,9 +58,10 @@ export class AddFormComponent implements OnInit {
     this.dialogRef.close({
       ...this.form.getRawValue(),
       date: Timestamp.fromDate(this.form.getRawValue().date!),
+      type: this.isIncomeMode ? 'income' : 'expense',
       uid: this.userId,
       id: this.firestore.createId(),
-    });
+    } satisfies CashFlow);
 
     this.form.reset();
   }

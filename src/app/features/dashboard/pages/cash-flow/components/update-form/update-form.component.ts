@@ -8,7 +8,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { IUser } from '#auth/models';
 import { AuthSelectors } from '#auth/store';
-import { CashFlowForm, CashFlowUpdateFormData, Category } from '#cash-flow/models';
+import { CashFlow, CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
 
 @Component({
@@ -21,21 +21,21 @@ export class UpdateFormComponent implements OnInit {
   private readonly dialogRef = inject(DynamicDialogRef);
   private readonly cashFlowService = inject(CashFlowService);
 
-  readonly categories$ = this.getCategories$();
+  readonly categories$: Observable<Category[]> = this.getCategories$();
 
   readonly trPath: string = 'cashFlow.form.';
+  readonly cashFlow: CashFlow = inject(DynamicDialogConfig).data;
   readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
-  readonly cashFlowUpdateFormData: CashFlowUpdateFormData = inject(DynamicDialogConfig).data;
 
   ngOnInit(): void {
     this.form.patchValue({
-      ...this.cashFlowUpdateFormData.updatedCashFlow,
-      date: this.cashFlowUpdateFormData.updatedCashFlow.date.toDate(),
+      ...this.cashFlow,
+      date: this.cashFlow.date.toDate(),
     });
   }
 
   onSubmit(): void {
-    const id: string = this.cashFlowUpdateFormData.updatedCashFlow.id;
+    const id: string = this.cashFlow.id;
     const date: Timestamp = Timestamp.fromDate(this.form.getRawValue().date!);
 
     this.dialogRef.close({ ...this.form.getRawValue(), date, id });
@@ -50,7 +50,7 @@ export class UpdateFormComponent implements OnInit {
       filter(Boolean),
       map((user: IUser) => {
         const { incomes, expenses } = user.config.categories;
-        return this.cashFlowUpdateFormData.isIncomeMode ? incomes : expenses;
+        return this.cashFlow.type === 'income' ? incomes : expenses;
       })
     );
   }

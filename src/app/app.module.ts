@@ -9,7 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideRouter, RouterOutlet, withViewTransitions } from '@angular/router';
+import { provideRouter, RouterOutlet, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/.';
+import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/index';
 import { AuthEffects } from '#auth/store';
 import { CashFlowEffects } from '#cash-flow/store';
 import { injectThemeLink$, ThemeInitService } from '#core/services';
@@ -50,7 +50,7 @@ const imports = [
   }),
 ];
 const providers: Array<Provider | EnvironmentProviders> = [
-  provideRouter(routes, withViewTransitions()),
+  provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [ThemeInitService], multi: true },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },
