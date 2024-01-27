@@ -3,17 +3,14 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { ChartData } from 'chart.js';
-import { Observable } from 'rxjs';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
+import { connectState } from '#app/core/utils';
 import { CashFlowService } from '#cash-flow/services';
 import { AppPaths } from '#core/enums';
-import { LabeledData } from '#core/models';
 import { DashobardPaths } from '#dashboard/enums';
 import { CashFlowCardsComponent, CashFlowChartComponent, TaskerPanelComponent } from '#overview/components';
-import { TaskerData } from '#overview/models';
 import { OverviewService } from '#overview/services';
 
 const imports = [ProgressSpinnerModule, AsyncPipe, TaskerPanelComponent, CashFlowChartComponent, CashFlowCardsComponent, TranslateModule];
@@ -34,12 +31,13 @@ export class OverviewComponent {
   private readonly overviewService = inject(OverviewService);
   private readonly cashFlowService = inject(CashFlowService);
 
-  readonly taskerData$: Observable<TaskerData> = this.overviewService.taskerData$;
-  readonly isLoading$: Observable<boolean> = this.overviewService.isLoading$;
-  readonly cashFlowDataset$: Observable<LabeledData<number>[]> = this.overviewService.cashFlowData$;
-
-  readonly incomesChartData$: Observable<ChartData | undefined> = this.overviewService.incomesChartData$;
-  readonly expensesChartData$: Observable<ChartData | undefined> = this.overviewService.expensesChartData$;
+  readonly state = connectState(this.destroyRef, {
+    taskerData: this.overviewService.taskerData$,
+    isLoading: this.overviewService.isLoading$,
+    cashFlowDataSet: this.overviewService.cashFlowData$,
+    incomesChartData: this.overviewService.incomesChartData$,
+    expensesChartData: this.overviewService.expensesChartData$,
+  });
 
   addQuickNote(): void {
     this.overviewService.addQuickNote$().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();

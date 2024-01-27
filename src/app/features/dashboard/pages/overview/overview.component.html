@@ -1,11 +1,11 @@
-@if (isLoading$ | async) {
+@if (state.isLoading) {
   <p-progressSpinner class="spinner" />
 } @else {
-  <org-cash-flow-cards [cashFlowDataset]="cashFlowDataset$ | async" (navigate)="navigateToCashFlow($event)" />
+  <org-cash-flow-cards [cashFlowDataset]="state.cashFlowDataSet" (navigate)="navigateToCashFlow($event)" />
 
   <div class="panels">
-    <org-cash-flow-chart [title]="'cashFlow.incomes' | translate" [chartDataset]="incomesChartData$ | async" />
-    <org-cash-flow-chart [title]="'cashFlow.expenses' | translate" [chartDataset]="expensesChartData$ | async" />
-    <org-tasker-panel [taskerData]="taskerData$ | async" (addQuickNote)="addQuickNote()" />
+    <org-cash-flow-chart [title]="'cashFlow.incomes' | translate" [chartDataset]="state.incomesChartData" />
+    <org-cash-flow-chart [title]="'cashFlow.expenses' | translate" [chartDataset]="state.expensesChartData" />
+    <org-tasker-panel [taskerData]="state.taskerData" (addQuickNote)="addQuickNote()" />
   </div>
 }
