@@ -53,13 +53,13 @@ export class CashFlowFacadeService {
     return this.store.select(AuthSelectors.categories);
   }
 
-  removeCashFlow(id: string): void {
+  deleteCashFlow(id: string): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('incomes.removeMessage'),
       header: this.translateService.instant('incomes.removeHeader'),
       icon: PrimeIcons.TRASH,
       accept: (): void => {
-        this.store.dispatch(CashFlowActions.removeCashFlow({ id }));
+        this.store.dispatch(CashFlowActions.deleteCashFlow({ id }));
         this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
       },
     });

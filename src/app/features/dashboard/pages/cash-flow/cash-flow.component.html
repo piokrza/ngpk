@@ -8,7 +8,7 @@
         [cashFlowList]="data.paginatedCashFlow"
         [categories]="(categories$ | async)?.incomes ?? []"
         (addCashFlow)="addCashFlow($event)"
-        (removeCashFlow)="removeCashFlow($event)"
+        (removeCashFlow)="deleteCashFlow($event)"
         (updateCashFlow)="updateCashFlow($event)"
         (categoryChange)="incomesCategoryChange($event)" />
 
@@ -33,7 +33,7 @@
           [cashFlowList]="data.paginatedCashFlow"
           [categories]="(categories$ | async)?.expenses ?? []"
           (addCashFlow)="addCashFlow($event)"
-          (removeCashFlow)="removeCashFlow($event)"
+          (removeCashFlow)="deleteCashFlow($event)"
           (updateCashFlow)="updateCashFlow($event)"
           (categoryChange)="expensesCategoryChange($event)" />
 

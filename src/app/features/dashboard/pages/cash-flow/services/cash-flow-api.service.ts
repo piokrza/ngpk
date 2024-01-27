@@ -19,7 +19,7 @@ export class CashFlowApiService {
     return await this.angularFirestore.collection<CashFlow>(Collection.CASHFLOW).add(cashFlow);
   }
 
-  async removeCashFlow$(cashFlowId: string): Promise<void> {
+  async deleteCashFlow$(cashFlowId: string): Promise<void> {
     const cashFlow: AngularFirestoreDocument<CashFlow> = this.angularFirestore.collection(Collection.CASHFLOW).doc(cashFlowId);
 
     return await cashFlow.delete();

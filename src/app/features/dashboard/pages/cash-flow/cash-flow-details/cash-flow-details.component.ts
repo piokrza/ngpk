@@ -39,7 +39,7 @@ export class CashFlowDetailsComponent {
   }
 
   deleteCashFlow(id: string): void {
-    this.cashFlowFacade.removeCashFlow(id);
+    this.cashFlowFacade.deleteCashFlow(id);
   }
 
   navigateBack(): void {

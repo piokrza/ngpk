@@ -52,16 +52,16 @@ export class CashFlowEffects {
 
   removeCashFlow$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashFlowActions.removeCashFlow),
+      ofType(CashFlowActions.deleteCashFlow),
       exhaustMap(({ id }) => {
-        return of(this.cashFlowApiService.removeCashFlow$(id)).pipe(
+        return of(this.cashFlowApiService.deleteCashFlow$(id)).pipe(
           map(() => {
             this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), 'Income successfully removed');
-            return CashFlowActions.removeCashFlowSuccess();
+            return CashFlowActions.deleteCashFlowSuccess();
           }),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), 'Something went wrong during storing data in database');
-            return of(CashFlowActions.removeCashFlowFailure());
+            return of(CashFlowActions.deleteCashFlowFailure());
           })
         );
       })

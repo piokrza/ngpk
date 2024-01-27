@@ -11,9 +11,9 @@ export const addCashFlow = createAction(ActionTypes.ADD_CASHFLOW, props<{ cashFl
 export const addCashFlowSuccess = createAction(ActionTypes.ADD_CASHFLOW_SUCCESS);
 export const addCashFlowFailure = createAction(ActionTypes.ADD_CASHFLOW_FAILURE);
 
-export const removeCashFlow = createAction(ActionTypes.REMOVE_CASHFLOW, props<{ id: string }>());
-export const removeCashFlowSuccess = createAction(ActionTypes.REMOVE_CASHFLOW_SUCCESS);
-export const removeCashFlowFailure = createAction(ActionTypes.REMOVE_CASHFLOW_FAILURE);
+export const deleteCashFlow = createAction(ActionTypes.DELETE_CASHFLOW, props<{ id: string }>());
+export const deleteCashFlowSuccess = createAction(ActionTypes.DELETE_CASHFLOW_SUCCESS);
+export const deleteCashFlowFailure = createAction(ActionTypes.DELETE_CASHFLOW_FAILURE);
 
 export const updateCashFlow = createAction(ActionTypes.UPDATE_CASHFLOW, props<{ cashFlow: CashFlow }>());
 export const updateCashFlowSuccess = createAction(ActionTypes.UPDATE_CASHFLOW_SUCCESS);

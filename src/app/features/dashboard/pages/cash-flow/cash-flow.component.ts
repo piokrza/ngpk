@@ -35,8 +35,8 @@ export class CashFlowComponent {
     this.cashFlowFacadeService.updateCashFlow$(cashFlow).pipe(first()).subscribe();
   }
 
-  removeCashFlow(id: string): void {
-    this.cashFlowFacadeService.removeCashFlow(id);
+  deleteCashFlow(id: string): void {
+    this.cashFlowFacadeService.deleteCashFlow(id);
   }
 
   incomesCategoryChange(categoryIds: string[]): void {
