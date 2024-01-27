@@ -1,4 +1,4 @@
-<p-tabView [activeIndex]="(activeTabIndex$ | async)!">
+<p-tabView [activeIndex]="(activeTabIndex$ | async)!" (onChange)="setActiveIndex($event)">
   <p-tabPanel [header]="'cashFlow.incomes' | translate">
     @if (incomes$ | async; as data) {
       <org-tile-list

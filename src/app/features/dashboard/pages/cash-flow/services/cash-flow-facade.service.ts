@@ -112,4 +112,8 @@ export class CashFlowFacadeService {
   setExpensesPaginatorState(event: PaginatorState): void {
     this.cashFlowPaginationService.setExpensesPaginatorState(event);
   }
+
+  setActiveTabIndex(idx: number): void {
+    this.cashFlowService.setActiveTabIndex(idx);
+  }
 }

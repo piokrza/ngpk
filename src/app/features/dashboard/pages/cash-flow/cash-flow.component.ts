@@ -3,6 +3,7 @@ import { Observable, first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
+import { TabViewChangeEvent } from 'primeng/tabview';
 
 import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
@@ -52,5 +53,9 @@ export class CashFlowComponent {
 
   expensesPageChange(event: PaginatorState): void {
     this.cashFlowFacadeService.setExpensesPaginatorState(event);
+  }
+
+  setActiveIndex(event: TabViewChangeEvent): void {
+    this.cashFlowFacadeService.setActiveTabIndex(event.index);
   }
 }
