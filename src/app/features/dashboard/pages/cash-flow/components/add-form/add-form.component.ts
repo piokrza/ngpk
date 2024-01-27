@@ -32,7 +32,7 @@ export class AddFormComponent implements OnInit {
   private userId!: string;
   private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
 
-  currency: string = '';
+  currency = '';
   categories: Category[] = [];
 
   ngOnInit(): void {

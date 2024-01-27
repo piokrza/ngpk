@@ -1,5 +1,4 @@
-
-<org-container [styleClass]="['hover']" (click)="navigateToDetails(details.id)">
+<org-container [styleClass]="['hover']" (click)="navigateToDetails()">
   <div class="card">
     <div>
       <div class="mb-2 text-xl card__inner">
@@ -12,6 +11,5 @@
         <org-details-box iconName="calendar" [detail]="(details.date | timestamp: DateFormats.DATE) ?? ''" />
       </div>
     </div>
-
   </div>
 </org-container>

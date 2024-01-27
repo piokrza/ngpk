@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, Signal, WritableSignal, inject, signal } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -11,10 +11,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 
 import { isWidgetOpen } from '#core/constants';
-import { Nullable } from '#core/models';
+import { connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
 import { DetailsComponent } from '#weather-widget/components';
-import { WeatherResponse } from '#weather-widget/models';
 import { WeatherIconPipe } from '#weather-widget/pipes';
 import { WeatherApiService, WeatherFacadeService, WeatherStateService } from '#weather-widget/services';
 
@@ -44,12 +43,14 @@ export class WeatherWidgetComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly weatherFacadeService = inject(WeatherFacadeService);
 
-  readonly data: Signal<Nullable<WeatherResponse>> = toSignal(this.weatherFacadeService.weatherData$);
-  readonly isLoading$: Observable<boolean> = this.weatherFacadeService.isLoading$;
-  readonly errorMessage$: Observable<string | null> = this.weatherFacadeService.errorMessage$;
+  readonly state = connectState(this.destroyRef, {
+    weatherData: this.weatherFacadeService.weatherData$,
+    isLoading: this.weatherFacadeService.isLoading$,
+    errorMessage: this.weatherFacadeService.errorMessage$,
+  });
 
-  readonly isOpen: WritableSignal<boolean> = signal(false);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly isOpen: WritableSignal<boolean> = signal(false);
   readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
   ngOnInit(): void {
