@@ -1,3 +1,4 @@
+
 <org-container [styleClass]="['hover']" (click)="navigateToDetails(details.id)">
   <div class="card">
     <div>
@@ -11,5 +12,6 @@
         <org-details-box iconName="calendar" [detail]="(details.date | timestamp: DateFormats.DATE) ?? ''" />
       </div>
     </div>
+
   </div>
 </org-container>

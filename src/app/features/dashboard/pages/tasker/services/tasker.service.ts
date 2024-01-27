@@ -12,10 +12,6 @@ export class TaskerService {
 
   private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
 
-  setActiveTabIndex(idx: number): void {
-    this.activeTabIndex$$.next(idx);
-  }
-
   get activeTabIndex$(): Observable<number> {
     return this.activeTabIndex$$.asObservable();
   }
@@ -42,5 +38,9 @@ export class TaskerService {
       label: this.translate.instant(`tasker.filter.${name}`),
       data: name,
     }));
+  }
+
+  setActiveTabIndex(idx: number): void {
+    this.activeTabIndex$$.next(idx);
   }
 }

@@ -18,6 +18,7 @@ import { TabViewModule } from 'primeng/tabview';
 
 import { AddFormComponent, DetailsBoxComponent, TileComponent, TileListComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/index';
+
 import { CategoryLabelPipe, IconPipe } from '#cash-flow/pipes';
 import { CashFlowFacadeService, CashFlowPaginationService } from '#cash-flow/services';
 import { ContainerComponent } from '#shared/components';

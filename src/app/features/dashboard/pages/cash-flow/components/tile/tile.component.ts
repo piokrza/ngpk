@@ -1,9 +1,11 @@
+
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CashFlow } from '#cash-flow/models';
 import { AppPaths, DateFormats, PathFragment } from '#core/enums';
 import { DashobardPaths } from '#dashboard/enums';
+
 
 @Component({
   selector: 'org-tile',
@@ -13,6 +15,7 @@ import { DashobardPaths } from '#dashboard/enums';
 })
 export class TileComponent {
   private readonly router = inject(Router);
+
 
   @Input({ required: true }) details!: CashFlow;
   @Input({ required: true }) isIncomeMode!: boolean;
@@ -25,4 +28,5 @@ export class TileComponent {
   navigateToDetails(id: string): void {
     this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW, PathFragment.DETAILS, id]);
   }
+
 }
