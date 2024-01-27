@@ -2,7 +2,7 @@ import { AsyncPipe, Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, first, switchMap, tap } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -35,11 +35,11 @@ export class CashFlowDetailsComponent {
   readonly DateFormats: typeof DateFormats = DateFormats;
 
   updateCashFlow(cashFlow: CashFlow): void {
-    // this.cashFlowFacade.updateExpense$(cashFlow);
+    this.cashFlowFacade.updateCashFlow$(cashFlow).pipe(first()).subscribe();
   }
 
   deleteCashFlow(id: string): void {
-    // this.cashFlowFacade.removeExpense(id);
+    this.cashFlowFacade.removeCashFlow(id);
   }
 
   navigateBack(): void {

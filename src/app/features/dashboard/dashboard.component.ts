@@ -31,8 +31,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.store.dispatch(AuthActions.loadUserData({ uid }));
           this.store.dispatch(TaskerActions.loadTasks({ uid }));
           this.store.dispatch(TaskerActions.loadNotes({ uid }));
-          this.store.dispatch(CashFlowActions.loadExpenses({ uid }));
-          this.store.dispatch(CashFlowActions.loadIncomes({ uid }));
+          this.store.dispatch(CashFlowActions.loadCashFlow({ uid }));
           this.store.dispatch(DriveActions.loadFiles({ uid }));
         })
       )

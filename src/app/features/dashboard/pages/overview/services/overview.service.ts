@@ -126,11 +126,7 @@ export class OverviewService {
   private calculateCashflow(cashFlowList: CashFlow[], categories: Category[]): number[] {
     return categories.map((category: Category) => {
       return cashFlowList.reduce((total: number, cashFlow: CashFlow) => {
-        if (cashFlow.categoryId === category.id) {
-          return total + cashFlow.amount;
-        }
-
-        return total;
+        return cashFlow.categoryId === category.id ? total + cashFlow.amount : total;
       }, 0);
     });
   }

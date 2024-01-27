@@ -8,8 +8,8 @@
         [cashFlowList]="data.paginatedCashFlow"
         [categories]="(categories$ | async)?.incomes ?? []"
         (addCashFlow)="addCashFlow($event)"
-        (removeCashFlow)="removeIncome($event)"
-        (updateCashFlow)="updateIncome($event)"
+        (removeCashFlow)="removeCashFlow($event)"
+        (updateCashFlow)="updateCashFlow($event)"
         (categoryChange)="incomesCategoryChange($event)" />
 
       @if (data.totalLength > rowsPerPageOptions[0]) {
@@ -33,8 +33,8 @@
           [cashFlowList]="data.paginatedCashFlow"
           [categories]="(categories$ | async)?.expenses ?? []"
           (addCashFlow)="addCashFlow($event)"
-          (removeCashFlow)="removeExpense($event)"
-          (updateCashFlow)="updateExpense($event)"
+          (removeCashFlow)="removeCashFlow($event)"
+          (updateCashFlow)="updateCashFlow($event)"
           (categoryChange)="expensesCategoryChange($event)" />
 
         @if (data.totalLength > rowsPerPageOptions[0]) {

@@ -7,16 +7,14 @@ import { CashFlowActions } from '#cash-flow/store';
 export const FeatureKey = 'cashflow';
 
 export interface State {
-  incomes: CashFlow[];
-  expenses: CashFlow[];
+  cashFlow: CashFlow[];
   incomesFilter: string[];
   expensesFilter: string[];
   isLoading: boolean;
 }
 
 const initialState: State = {
-  incomes: [],
-  expenses: [],
+  cashFlow: [],
   isLoading: false,
   incomesFilter: [],
   expensesFilter: [],
@@ -25,22 +23,13 @@ const initialState: State = {
 export const Reducer = createReducer(
   initialState,
 
-  on(CashFlowActions.loadExpenses, (state): State => {
+  on(CashFlowActions.loadCashFlow, (state): State => {
     return { ...state, isLoading: true };
   }),
-  on(CashFlowActions.loadExpensesSuccess, (state, { expenses }): State => {
-    return { ...state, expenses, isLoading: false };
+  on(CashFlowActions.loadCashFlowSuccess, (state, { cashFlow }): State => {
+    return { ...state, cashFlow, isLoading: false };
   }),
-  on(CashFlowActions.loadExpensesFailure, (state): State => {
-    return { ...state, isLoading: false };
-  }),
-  on(CashFlowActions.loadIncomes, (state): State => {
-    return { ...state, isLoading: true };
-  }),
-  on(CashFlowActions.loadIncomesSuccess, (state, { incomes }): State => {
-    return { ...state, incomes, isLoading: false };
-  }),
-  on(CashFlowActions.loadIncomesFailure, (state): State => {
+  on(CashFlowActions.loadCashFlowFailure, (state): State => {
     return { ...state, isLoading: false };
   }),
   on(CashFlowActions.setIncomesFilter, (state, { categoryIds }): State => {
@@ -50,6 +39,6 @@ export const Reducer = createReducer(
     return { ...state, isLoading: false, expensesFilter: categoryIds };
   }),
   on(AuthActions.signOut, (): State => {
-    return { incomes: [], expenses: [], incomesFilter: [], expensesFilter: [], isLoading: false };
+    return { cashFlow: [], incomesFilter: [], expensesFilter: [], isLoading: false };
   })
 );

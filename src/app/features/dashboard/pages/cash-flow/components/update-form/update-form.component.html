@@ -2,14 +2,14 @@
   <span class="p-float-label my-4">
     <input [formControl]="formControls.name" id="name" type="text" pInputText class="w-full" />
     <label for="name">
-      {{ trPath + 'update' + (cashFlowUpdateFormData.isIncomeMode ? 'IncomeName' : 'ExpenseName') | translate }}
+      {{ trPath + 'update' + (cashFlow.type === 'income' ? 'IncomeName' : 'ExpenseName') | translate }}
     </label>
   </span>
 
   <span class="p-float-label my-4">
     <p-inputNumber id="amount" mode="currency" inputId="currency-poland" currency="PLN" [formControl]="formControls.amount" />
     <label for="amount">
-      {{ trPath + 'update' + (cashFlowUpdateFormData.isIncomeMode ? 'Income' : 'Expense') | translate }}
+      {{ trPath + 'update' + (cashFlow.type === 'income' ? 'Income' : 'Expense') | translate }}
     </label>
   </span>
 

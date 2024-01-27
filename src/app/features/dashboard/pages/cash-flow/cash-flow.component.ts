@@ -30,20 +30,12 @@ export class CashFlowComponent {
     this.cashFlowFacadeService.openCashFlowDialog$(isIncomeMode).pipe(first()).subscribe();
   }
 
-  updateIncome(updatedIncome: CashFlow): void {
-    this.cashFlowFacadeService.updateIncome$(updatedIncome).pipe(first()).subscribe();
+  updateCashFlow(cashFlow: CashFlow): void {
+    this.cashFlowFacadeService.updateCashFlow$(cashFlow).pipe(first()).subscribe();
   }
 
-  removeIncome(incomeId: string): void {
-    this.cashFlowFacadeService.removeIncome(incomeId);
-  }
-
-  updateExpense(updatedExpense: CashFlow): void {
-    this.cashFlowFacadeService.updateExpense$(updatedExpense).pipe(first()).subscribe();
-  }
-
-  removeExpense(expenseId: string): void {
-    this.cashFlowFacadeService.removeExpense(expenseId);
+  removeCashFlow(id: string): void {
+    this.cashFlowFacadeService.removeCashFlow(id);
   }
 
   incomesCategoryChange(categoryIds: string[]): void {

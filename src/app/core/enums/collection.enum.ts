@@ -1,6 +1,5 @@
 export enum Collection {
-  EXPENSES = 'expenses',
-  INCOMES = 'incomes',
+  CASHFLOW = 'cashflow',
   USERS = 'users',
   TASKS = 'tasks',
   NOTES = 'notes',
