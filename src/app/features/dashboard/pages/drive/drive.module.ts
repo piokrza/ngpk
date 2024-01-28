@@ -9,12 +9,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
 
-import { FileListComponent } from '#drive/components/file-list';
+import { FileListComponent, ActionButtonsComponent } from '#drive/components';
 import { DriveComponent, DriveRoutingModule } from '#drive/index';
 import { DriveFacadeService, DriveService } from '#drive/services';
 import { TruncatePipe } from '#shared/pipes';
 
-const declarations = [DriveComponent, FileListComponent];
+const declarations = [DriveComponent, FileListComponent, ActionButtonsComponent];
 const imports = [
   DriveRoutingModule,
   ButtonModule,

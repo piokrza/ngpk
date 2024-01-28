@@ -16,7 +16,7 @@
     "error": "Error!",
     "fetchUser": "Something went wrong during fetch user data",
     "addCashFlowSuccess": "Income successfully added",
-    "addCashFlowError": "Something went wrong during storing data in database",
+    "loadDataError": "Something went wrong during storing data in database",
     "fetchTasksError": "Something went wrong during fetching tasks data",
     "fetchNotesError": "Something went wrong during fetching notes data",
     "addTaskError": "Something went wrong during removing task from database",

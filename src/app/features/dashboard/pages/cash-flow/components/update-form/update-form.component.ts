@@ -2,14 +2,13 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { filter, map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { IUser } from '#auth/models';
-import { AuthSelectors } from '#auth/store';
 import { CashFlow, CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
+import { ConfigSelectors } from '#core/config/store';
 
 @Component({
   selector: 'org-update-form',
@@ -21,11 +20,11 @@ export class UpdateFormComponent implements OnInit {
   private readonly dialogRef = inject(DynamicDialogRef);
   private readonly cashFlowService = inject(CashFlowService);
 
-  readonly categories$: Observable<Category[]> = this.getCategories$();
-
   readonly trPath: string = 'cashFlow.form.';
   readonly cashFlow: CashFlow = inject(DynamicDialogConfig).data;
   readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
+
+  readonly categories$: Observable<Category[]> = this.getCategories$();
 
   ngOnInit(): void {
     this.form.patchValue({
@@ -46,12 +45,6 @@ export class UpdateFormComponent implements OnInit {
   }
 
   private getCategories$(): Observable<Category[]> {
-    return this.store.select(AuthSelectors.user).pipe(
-      filter(Boolean),
-      map((user: IUser) => {
-        const { incomes, expenses } = user.config.categories;
-        return this.cashFlow.type === 'income' ? incomes : expenses;
-      })
-    );
+    return this.store.select(ConfigSelectors.cashFlowCategories(this.cashFlow.type));
   }
 }

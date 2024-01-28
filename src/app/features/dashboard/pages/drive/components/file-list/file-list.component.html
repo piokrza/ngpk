@@ -1,15 +1,15 @@
-@if (parentFile$ | async; as parentFile) {
+@if (state.parentFile; as parentFile) {
   <div class="flex align-items-center gap-4">
     <p-button styleClass="my-3" severity="secondary" [icon]="PrimeIcons.ARROW_LEFT" (onClick)="navigateBack()" />
     <p class="font-semibold text-lg">{{ parentFile.name | uppercase }}</p>
   </div>
 }
 
-@if (isLoading$ | async) {
+@if (state.isLoading) {
   <p-progressSpinner />
 } @else {
   <ul class="file-list">
-    @for (file of files$ | async; track file.id) {
+    @for (file of state.files; track file.id) {
       <li
         tooltipPosition="bottom"
         class="file-list__item"
@@ -19,7 +19,7 @@
         <span> {{ file.name | truncate: nameLimit }}</span>
       </li>
     } @empty {
-      <p>{{ 'overview.' + ((parentFile$ | async)?.id ? 'emptyFolder' : 'noData') | translate }}</p>
+      <p>{{ 'overview.' + (state.parentFile?.id ? 'emptyFolder' : 'noData') | translate }}</p>
     }
   </ul>
 }

@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 
 import { PrimeIcons } from 'primeng/api';
 
+import { connectState } from '#core/utils';
 import { IFile } from '#drive/models';
 import { DriveFacadeService } from '#drive/services';
 
@@ -15,11 +15,14 @@ import { DriveFacadeService } from '#drive/services';
 })
 export class FileListComponent {
   private readonly location = inject(Location);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly driveFacadeService = inject(DriveFacadeService);
 
-  readonly files$: Observable<IFile[]> = this.driveFacadeService.files$;
-  readonly isLoading$: Observable<boolean> = this.driveFacadeService.isLoading$;
-  readonly parentFile$: Observable<IFile | undefined> = this.driveFacadeService.parentFile$;
+  readonly state = connectState(this.destroyRef, {
+    files: this.driveFacadeService.files$,
+    isLoading: this.driveFacadeService.isLoading$,
+    parentFile: this.driveFacadeService.parentFile$,
+  });
 
   readonly nameLimit = 12;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;

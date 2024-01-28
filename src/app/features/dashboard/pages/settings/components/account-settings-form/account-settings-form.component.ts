@@ -49,7 +49,6 @@ export class AccountSettingsFormComponent implements OnInit {
     const updatedUserData = {
       ...this.form.getRawValue(),
       uid: this.user.uid,
-      config: this.user.config,
     } satisfies IUser;
 
     this.store.dispatch(AuthActions.updateAccount({ updatedUserData }));

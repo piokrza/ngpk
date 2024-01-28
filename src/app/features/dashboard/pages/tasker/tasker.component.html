@@ -30,14 +30,14 @@
               </li>
             }
 
-            <li>
-              <org-container class="h-full">
+            <li class="add-button">
+              <org-container>
                 <p-button
-                  [text]="true"
                   severity="secondary"
+                  styleClass="w-full h-full py-3"
+                  [text]="true"
                   [icon]="PrimeIcons.PLUS"
-                  (onClick)="addTask()"
-                  styleClass="w-full h-full py-5" />
+                  (onClick)="addTask()" />
               </org-container>
             </li>
           </ul>
@@ -63,15 +63,15 @@
                 (onChange)="noteFilterChange($event)" />
             }
 
-            <ul class="m-0">
+            <ul class="flex-container">
               @for (note of data.notes; track note.id) {
                 <li class="my-3">
                   <org-note class="flex-grow-1" [note]="note" (removeNote)="removeNote($event)" />
                 </li>
               }
 
-              <li>
-                <org-container>
+              <li class="add-button">
+                <org-container [styleClass]="['h-full']">
                   <p-button severity="secondary" styleClass="w-full py-3" [text]="true" [icon]="PrimeIcons.PLUS" (onClick)="addNote()" />
                 </org-container>
               </li>

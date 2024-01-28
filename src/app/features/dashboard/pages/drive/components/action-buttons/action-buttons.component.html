@@ -1,0 +1,30 @@
+<div class="container">
+  <p-fileUpload
+    mode="basic"
+    styleClass="p-button-outlined"
+    [auto]="true"
+    [url]="uploadUrl"
+    [disabled]="state.isProcessing"
+    [chooseLabel]="'drive.addFile' | translate"
+    [chooseIcon]="state.isProcessing ? PrimeIcons.SPINNER + ' pi-spin' : PrimeIcons.PLUS"
+    (onUpload)="uploadFile($event)" />
+
+  @if (isEditing() === false) {
+    <p-button
+      styleClass="p-button-outlined"
+      [icon]="PrimeIcons.PLUS"
+      [label]="'drive.addFolder' | translate"
+      (onClick)="isEditing.set(true)" />
+  } @else {
+    <div class="flex">
+      <input
+        pInputText
+        type="text"
+        [formControl]="folderNameControl"
+        [placeholder]="'drive.enterFolderName' | translate"
+        (keyup.enter)="addFolder()" />
+      <p-button [disabled]="folderNameControl.value.length < 3" [icon]="PrimeIcons.PLUS" [text]="true" (onClick)="addFolder()" />
+      <p-button [icon]="PrimeIcons.TIMES" [text]="true" (onClick)="cancelEditing()" />
+    </div>
+  }
+</div>

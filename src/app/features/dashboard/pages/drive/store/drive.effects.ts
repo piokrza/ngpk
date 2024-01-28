@@ -40,7 +40,7 @@ export class DriveEffects {
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addFileSuccess'))),
           map(() => DriveActions.uploadFileSuccess()),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('error'), this.tr('addFileError'));
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addFileError'));
             return of(DriveActions.uploadFileFailure());
           })
         );
@@ -56,7 +56,7 @@ export class DriveEffects {
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addFolderSuccess'))),
           map(() => DriveActions.uploadFolderSuccess()),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('error'), this.tr('addFolderError'));
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addFolderError'));
             return of(DriveActions.uploadFolderFailure());
           })
         );

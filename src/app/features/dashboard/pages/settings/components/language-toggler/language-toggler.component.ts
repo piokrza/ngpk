@@ -6,7 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { SelectButtonChangeEvent, SelectButtonModule } from 'primeng/selectbutton';
 
-import { LANG } from '#core/utils';
+import { lang } from '#core/utils';
 
 const imports = [SelectButtonModule, FormsModule, TranslateModule];
 
@@ -22,10 +22,10 @@ export class LanguageTogglerComponent {
   private readonly translateService = inject(TranslateService);
   private readonly config: PrimeNGConfig = inject(PrimeNGConfig);
 
-  languageValue = localStorage.getItem(LANG) ?? 'pl';
+  languageValue = localStorage.getItem(lang) ?? 'pl';
 
   onLangChange({ value }: SelectButtonChangeEvent): void {
-    localStorage.setItem(LANG, value ?? 'pl');
+    localStorage.setItem(lang, value ?? 'pl');
     this.translateService.use(value ?? 'pl');
     this.translateService
       .get('primeng')

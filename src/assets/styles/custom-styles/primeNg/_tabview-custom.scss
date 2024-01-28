@@ -1,26 +1,6 @@
 @use 'sizes' as s;
 
-p-tabview .p-tabview {
-  .p-tabview {
-    &-nav-container {
-      max-width: s.$containerMaxWidth;
-      margin: 0 auto;
-    }
-
-    &-panels {
-      background: transparent;
-      padding: 1rem 0;
-    }
-
-    &-nav {
-      li {
-        flex-grow: 1;
-      }
-
-      a {
-        display: block;
-        text-align: center;
-      }
-    }
-  }
+p-tabview .p-tabview .p-tabview-panels {
+  background: transparent;
+  padding: 1rem 0;
 }

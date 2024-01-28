@@ -6,6 +6,7 @@ import { filter, tap } from 'rxjs';
 import { AuthApiService } from '#auth/services';
 import { AuthActions } from '#auth/store';
 import { CashFlowActions } from '#cash-flow/store';
+import { ConfigActions } from '#core/config/store';
 import { DbSubscriptionService } from '#core/services';
 import { DriveActions } from '#drive/store';
 import { TaskerActions } from '#tasker/store';
@@ -31,6 +32,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         filter(Boolean),
         tap(({ uid }) => {
           this.store.dispatch(AuthActions.loadUserData({ uid }));
+          this.store.dispatch(ConfigActions.loadConfig({ uid }));
           this.store.dispatch(TaskerActions.loadTasks({ uid }));
           this.store.dispatch(TaskerActions.loadNotes({ uid }));
           this.store.dispatch(CashFlowActions.loadCashFlow({ uid }));
