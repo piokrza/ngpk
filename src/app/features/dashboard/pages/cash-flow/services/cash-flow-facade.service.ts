@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, filter, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -94,7 +94,7 @@ export class CashFlowFacadeService {
   }
 
   getCashFlowById$(id: string): Observable<CashFlow | undefined> {
-    return this.store.select(CashFlowSelectors.cashFlowById(id)).pipe(filter(Boolean));
+    return this.store.select(CashFlowSelectors.cashFlowById(id));
   }
 
   setIncomesCategoryFilter(categoryIds: string[]): void {

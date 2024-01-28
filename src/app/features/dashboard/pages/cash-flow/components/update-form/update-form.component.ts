@@ -41,7 +41,7 @@ export class UpdateFormComponent implements OnInit {
     this.dialogRef.close({ ...this.form.getRawValue(), date, id });
   }
 
-  get formControls(): CashFlowForm {
+  get controls(): CashFlowForm {
     return this.form.controls;
   }
 
