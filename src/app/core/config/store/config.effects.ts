@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { catchError, exhaustMap, map, of, takeUntil } from 'rxjs';
+import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
 import { ConfigApiService } from '#core/config/services';
 import { ConfigActions } from '#core/config/store';
@@ -25,6 +25,22 @@ export class ConfigEffects {
           catchError(() => {
             this.toastService.showMessage('error', this.tr('success'), this.tr('loadDataError'));
             return of(ConfigActions.loadConfigFailure());
+          })
+        )
+      )
+    );
+  });
+
+  updateConfig$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ConfigActions.updateConfig),
+      exhaustMap(({ config }) =>
+        from(this.configApiService.updateConfig(config)).pipe(
+          map(() => ConfigActions.updateConfigSuccess()),
+          takeUntil(this.dbSubscriptionService.unsubscribe$),
+          catchError(() => {
+            this.toastService.showMessage('error', this.tr('success'), this.tr('loadDataError'));
+            return of(ConfigActions.updateConfigFailure());
           })
         )
       )

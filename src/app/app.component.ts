@@ -3,16 +3,20 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { PrimeNGConfig } from 'primeng/api';
 
+import { ThemeService } from '#core/services';
+
 @Component({
   selector: 'org-root',
   template: `<router-outlet />`,
 })
 export class AppComponent implements OnInit {
+  private readonly themeService = inject(ThemeService);
   private readonly primengConfig = inject(PrimeNGConfig);
   private readonly translateService = inject(TranslateService);
 
   ngOnInit(): void {
     this.setPrimeNgConfig();
+    this.themeService.applyTheme$().subscribe();
   }
 
   private setPrimeNgConfig(): void {

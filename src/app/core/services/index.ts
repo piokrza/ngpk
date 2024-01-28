@@ -1,4 +1,4 @@
-export * from './theme-init.service';
+export * from './theme.service';
 export * from './menu.service';
 export * from './persistance.service';
 export * from './toast.service';

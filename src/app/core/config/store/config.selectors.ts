@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { Category, CategoryType } from '#cash-flow/models';
-import { AppConfig } from '#core/config/models';
+import { AppConfig, ThemeType } from '#core/config/models';
 import { State as ConfigState, FeatureKey } from '#core/config/store';
 
 const ConfigStateSelector = createFeatureSelector<ConfigState>(FeatureKey);
@@ -14,4 +14,4 @@ export const cashFlowCategories = (type?: CategoryType) => {
   });
 };
 export const currency = createSelector(ConfigStateSelector, ({ config }: ConfigState): string => config?.currency ?? '');
-export const theme = createSelector(ConfigStateSelector, ({ config }: ConfigState): string => config?.theme ?? '');
+export const theme = createSelector(ConfigStateSelector, ({ config }: ConfigState): ThemeType => config?.theme ?? 'dark');

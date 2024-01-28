@@ -3,16 +3,18 @@ import { inject } from '@angular/core';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { Observable, forkJoin, map } from 'rxjs';
 
-export const LANG = 'lang';
+import { AppLanguage } from '#core/config/models';
+
+export const lang = 'lang';
 
 export function initializeTranslations(translateService: TranslateService) {
-  const languages: Array<'pl' | 'en'> = ['pl', 'en'];
+  const languages: Array<AppLanguage> = ['pl', 'en'];
 
   return () => {
     translateService.addLangs(languages);
     translateService.setDefaultLang('pl');
 
-    return translateService.use(localStorage.getItem(LANG) ?? 'pl');
+    return translateService.use(localStorage.getItem(lang) ?? 'pl');
   };
 }
 

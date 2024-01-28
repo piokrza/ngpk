@@ -1,12 +1,16 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { isLightMode, themeLink } from '#core/constants';
-import { PersistanceService } from '#core/services';
+import { AppConfig, ThemeType } from '#core/config/models';
+import { ConfigActions, ConfigSelectors } from '#core/config/store';
+import { themeLink } from '#core/constants';
+import { connectState } from '#core/utils';
 
 const imports = [ToggleButtonModule, FormsModule];
 
@@ -20,17 +24,30 @@ const imports = [ToggleButtonModule, FormsModule];
   imports,
 })
 export class ThemeButtonComponent {
-  constructor(private readonly persistanceService: PersistanceService) {
+  constructor(
+    private readonly store: Store,
+    private readonly destroyRef: DestroyRef
+  ) {
     this.themeLink = inject(DOCUMENT).getElementById(themeLink) as HTMLLinkElement;
   }
 
-  private readonly themeLink: HTMLLinkElement;
+  readonly state = connectState(this.destroyRef, {
+    config: this.store.select(ConfigSelectors.config),
+    isLightMode: this.store.select(ConfigSelectors.theme).pipe(map((theme: ThemeType) => theme === 'light')),
+  });
 
-  isLightMode: boolean = !!this.persistanceService.get(isLightMode);
+  private readonly themeLink: HTMLLinkElement;
+  isLightMode: boolean = this.state.isLightMode;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   toggleTheme(): void {
-    this.themeLink.href = this.isLightMode ? 'light-theme.css' : 'dark-theme.css';
-    this.persistanceService.set(isLightMode, this.isLightMode);
+    this.themeLink.href = this.state.isLightMode ? 'light-theme.css' : 'dark-theme.css';
+
+    const config: AppConfig = {
+      ...this.state.config!,
+      theme: this.state.config?.theme === 'light' ? 'dark' : 'light',
+    };
+
+    this.store.dispatch(ConfigActions.updateConfig({ config }));
   }
 }

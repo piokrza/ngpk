@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
 
 import { AppConfig } from '#core/config/models';
@@ -16,11 +16,7 @@ export class ConfigApiService {
       .pipe(map((config: AppConfig[]) => config[0]));
   }
 
-  async addConfig$(config: AppConfig): Promise<DocumentReference<AppConfig>> {
-    return await this.angularFirestore.collection<AppConfig>(Collection.CONFIG).add(config);
-  }
-
-  async updateConfig$(config: AppConfig): Promise<void> {
+  async updateConfig(config: AppConfig): Promise<void> {
     const cashFlow: AngularFirestoreDocument<AppConfig> = this.angularFirestore.collection<AppConfig>(Collection.CONFIG).doc(config.id);
 
     return await cashFlow.update(config);
