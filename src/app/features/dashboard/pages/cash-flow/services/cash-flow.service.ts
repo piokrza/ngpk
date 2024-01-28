@@ -5,10 +5,11 @@ import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 import { PaginatorState } from 'primeng/paginator';
 
 import { CashFlow, CashFlowData, CashFlowForm } from '#cash-flow/models';
+import { cashFlowActiveTabIndex } from '#core/constants';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowService {
-  private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
+  private readonly activeTabIndex$$ = new BehaviorSubject<number>(parseInt(sessionStorage.getItem(cashFlowActiveTabIndex) ?? '0'));
 
   get activeTabIndex$(): Observable<number> {
     return this.activeTabIndex$$.asObservable();
@@ -16,6 +17,7 @@ export class CashFlowService {
 
   setActiveTabIndex(idx: number): void {
     this.activeTabIndex$$.next(idx);
+    sessionStorage.setItem(cashFlowActiveTabIndex, `${idx}`);
   }
 
   get form(): FormGroup<CashFlowForm> {

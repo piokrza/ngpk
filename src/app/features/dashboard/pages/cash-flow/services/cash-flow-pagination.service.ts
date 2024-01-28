@@ -13,7 +13,7 @@ export class CashFlowPaginationService {
 
   setIncomesPaginatorState(paginatorState: PaginatorState): void {
     this.incomesPaginatorState$$.next(paginatorState);
-    this.setPaginationState('incomes', paginatorState);
+    sessionStorage.setItem('incomes', JSON.stringify(paginatorState));
   }
 
   get incomesPaginatorState$(): Observable<PaginatorState> {
@@ -22,15 +22,11 @@ export class CashFlowPaginationService {
 
   setExpensesPaginatorState(paginatorState: PaginatorState): void {
     this.expensesPaginatorState$$.next(paginatorState);
-    this.setPaginationState('expenses', paginatorState);
+    sessionStorage.setItem('expenses', JSON.stringify(paginatorState));
   }
 
   get expensesPaginatorState$(): Observable<PaginatorState> {
     return this.expensesPaginatorState$$.asObservable();
-  }
-
-  private setPaginationState(featureName: CashFlowFeatureName, paginatorState: PaginatorState): void {
-    sessionStorage.setItem(featureName, JSON.stringify(paginatorState));
   }
 
   private getPaginationState(featureName: CashFlowFeatureName): PaginatorState {
