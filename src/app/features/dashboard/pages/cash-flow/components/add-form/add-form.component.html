@@ -10,13 +10,13 @@
         id="amount"
         mode="currency"
         inputId="currency-poland"
-        [currency]="currency"
+        [currency]="(currency$ | async) ?? ''"
         [minFractionDigits]="1"
         [formControl]="formControls.amount"
         [placeholder]="trPath + 'amount' | translate" />
     </span>
 
-    @if (categories.length) {
+    @if (categories$ | async; as categories) {
       <p-dropdown
         optionLabel="name"
         optionValue="id"

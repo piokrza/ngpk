@@ -42,7 +42,7 @@ export class CashFlowEffects {
             return CashFlowActions.addCashFlowSuccess();
           }),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addCashFlowError'));
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('loadDataError'));
             return of(CashFlowActions.addCashFlowFailure());
           })
         );

@@ -1,18 +1,20 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
-import { EMPTY, from, switchMap } from 'rxjs';
+import { EMPTY, forkJoin, switchMap } from 'rxjs';
 
-import { IUser, UserConfig } from '#auth/models';
+import { Category } from '#app/features/dashboard/pages/cash-flow/models';
+import { IUser } from '#auth/models';
+import { AppConfig } from '#core/config/models';
 import { Collection } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private readonly firestore = inject(AngularFirestore);
   private readonly angularFirestore = inject(AngularFirestore);
 
   addUserToDatabase$(user: Partial<IUser>) {
     const usersCollectionRef: AngularFirestoreCollection<IUser> = this.angularFirestore.collection(Collection.USERS);
+    const configCollectionRef: AngularFirestoreCollection<AppConfig> = this.angularFirestore.collection(Collection.CONFIG);
 
     return usersCollectionRef
       .doc(user.uid)
@@ -20,16 +22,16 @@ export class UserService {
       .pipe(
         switchMap((data) => {
           return !data.exists
-            ? from(
+            ? forkJoin([
                 usersCollectionRef.doc(user.uid).set({
                   displayName: user.displayName!,
                   email: user.email!,
                   phoneNumber: user.phoneNumber!,
                   photoURL: user.photoURL!,
                   uid: user.uid!,
-                  config: this.initialUserConfig,
-                })
-              )
+                }),
+                configCollectionRef.doc(user.uid).set(this.getInitialAppConfig(user.uid!)),
+              ])
             : EMPTY;
         })
       );
@@ -44,24 +46,45 @@ export class UserService {
     return { displayName: user.displayName, email: user.email, phoneNumber: user.phoneNumber, photoURL: user.photoURL, uid: user.uid };
   }
 
-  private get initialUserConfig(): UserConfig {
+  private getInitialAppConfig(uid: string): AppConfig {
     return Object.freeze({
-      categories: {
-        incomes: [
-          { name: 'Concerts', id: this.firestore.createId() },
-          { name: 'Salary', id: this.firestore.createId() },
-          { name: 'Gifts', id: this.firestore.createId() },
-          { name: 'Other', id: this.firestore.createId() },
-        ],
-        expenses: [
-          { name: 'Rental fees', id: this.firestore.createId() },
-          { name: 'Entertainment', id: this.firestore.createId() },
-          { name: 'General', id: this.firestore.createId() },
-          { name: 'Other', id: this.firestore.createId() },
-        ],
-      },
-      language: 'en',
       currency: 'PLN',
+      language: 'pl',
+      theme: 'dark',
+      id: this.angularFirestore.createId(),
+      uid,
+      cashFlowCategories: [
+        {
+          name: 'Concerts',
+          type: 'income',
+          id: this.angularFirestore.createId(),
+        },
+        {
+          name: 'Salary',
+          type: 'income',
+          id: this.angularFirestore.createId(),
+        },
+        {
+          name: 'Gifts',
+          type: 'income',
+          id: this.angularFirestore.createId(),
+        },
+        {
+          name: 'Rental fees',
+          type: 'expense',
+          id: this.angularFirestore.createId(),
+        },
+        {
+          name: 'Entertainment',
+          type: 'expense',
+          id: this.angularFirestore.createId(),
+        },
+        {
+          name: 'Other',
+          type: 'expense',
+          id: this.angularFirestore.createId(),
+        },
+      ] satisfies Array<Category>,
     });
   }
 }

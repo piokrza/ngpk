@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { filter } from 'rxjs';
+import { Observable, filter } from 'rxjs';
 
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -12,6 +12,7 @@ import { IUser } from '#auth/models';
 import { AuthSelectors } from '#auth/store';
 import { CashFlow, CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
+import { ConfigSelectors } from '#core/config/store';
 
 @Component({
   selector: 'org-add-form',
@@ -26,26 +27,21 @@ export class AddFormComponent implements OnInit {
   private readonly firestore = inject(AngularFirestore);
   private readonly cashFlowService = inject(CashFlowService);
 
+  readonly categories$: Observable<Category[]> = this.getCategories$();
+  readonly currency$: Observable<string> = this.store.select(ConfigSelectors.currency);
+
   readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   readonly trPath: string = 'cashFlow.form.';
 
   private userId!: string;
   private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
 
-  currency = '';
-  categories: Category[] = [];
-
   ngOnInit(): void {
     this.store
       .select(AuthSelectors.user)
       .pipe(filter(Boolean), takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: ({ uid, config }: IUser) => {
-          this.userId = uid;
-          this.currency = config.currency;
-          const { incomes, expenses } = config.categories;
-          this.categories = this.isIncomeMode ? incomes : expenses;
-        },
+        next: ({ uid }: IUser) => (this.userId = uid),
       });
   }
 
@@ -72,5 +68,9 @@ export class AddFormComponent implements OnInit {
 
   get modeLabel(): string {
     return `${this.trPath}${this.isIncomeMode ? 'income' : 'expense'}Name`;
+  }
+
+  private getCategories$(): Observable<Category[]> {
+    return this.store.select(ConfigSelectors.cashFlowCategories(this.isIncomeMode ? 'income' : 'expense'));
   }
 }

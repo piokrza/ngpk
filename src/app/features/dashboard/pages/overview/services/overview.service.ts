@@ -7,9 +7,9 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { AuthSelectors } from '#auth/store';
 import { CashFlow, Category } from '#cash-flow/models';
 import { CashFlowSelectors } from '#cash-flow/store';
+import { ConfigSelectors } from '#core/config/store';
 import { BaseDialogStyles } from '#core/constants';
 import { AppPaths } from '#core/enums';
 import { LabeledData } from '#core/models';
@@ -36,15 +36,15 @@ export class OverviewService {
   get incomesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
       incomes: this.store.select(CashFlowSelectors.incomes),
-      categories: this.store.select(AuthSelectors.categories),
-    }).pipe(map(({ incomes, categories }) => this.generateCashFlowChartData(incomes, categories.incomes, 'green')));
+      categories: this.store.select(ConfigSelectors.cashFlowCategories('income')),
+    }).pipe(map(({ incomes, categories }) => this.generateCashFlowChartData(incomes, categories, 'green')));
   }
 
   get expensesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
       expenses: this.store.select(CashFlowSelectors.expenses),
-      categories: this.store.select(AuthSelectors.categories),
-    }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories.expenses, 'pink')));
+      categories: this.store.select(ConfigSelectors.cashFlowCategories('expense')),
+    }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories, 'pink')));
   }
 
   get taskerData$(): Observable<TaskerData> {

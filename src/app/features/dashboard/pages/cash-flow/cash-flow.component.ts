@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Observable, first } from 'rxjs';
+import { Observable, first, map } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
@@ -20,7 +20,7 @@ export class CashFlowComponent {
   readonly isLoading$: Observable<boolean> = this.cashFlowFacadeService.isLoading$;
   readonly incomes$: Observable<CashFlowData> = this.cashFlowFacadeService.incomesDataset$;
   readonly expenses$: Observable<CashFlowData> = this.cashFlowFacadeService.expensesDataset$;
-  readonly categories$: Observable<{ incomes: Category[]; expenses: Category[] }> = this.cashFlowFacadeService.categories$;
+  readonly categories$: Observable<{ incomes: Category[]; expenses: Category[] }> = this.getCategories$();
 
   readonly activeTabIndex$: Observable<number> = this.cashFlowFacadeService.activeTabIndex$;
 
@@ -57,5 +57,14 @@ export class CashFlowComponent {
 
   setActiveIndex(event: TabViewChangeEvent): void {
     this.cashFlowFacadeService.setActiveTabIndex(event.index);
+  }
+
+  private getCategories$(): Observable<{ incomes: Category[]; expenses: Category[] }> {
+    return this.cashFlowFacadeService.categories$.pipe(
+      map((categories) => ({
+        incomes: categories.filter((cat) => cat.type === 'income'),
+        expenses: categories.filter((cat) => cat.type === 'expense'),
+      }))
+    );
   }
 }

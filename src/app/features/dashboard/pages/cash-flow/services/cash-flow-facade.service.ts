@@ -8,7 +8,7 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 
-import { AuthSelectors } from '#auth/store';
+import { ConfigSelectors } from '#app/core/config/store';
 import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
@@ -49,8 +49,8 @@ export class CashFlowFacadeService {
     return this.store.select(CashFlowSelectors.isLoading);
   }
 
-  get categories$(): Observable<{ incomes: Category[]; expenses: Category[] }> {
-    return this.store.select(AuthSelectors.categories);
+  get categories$(): Observable<Category[]> {
+    return this.store.select(ConfigSelectors.cashFlowCategories());
   }
 
   deleteCashFlow(id: string): void {

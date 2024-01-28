@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable, filter, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { CardModule } from 'primeng/card';
 
-import { AuthSelectors } from '#auth/store';
+import { ConfigSelectors } from '#core/config/store';
 import { LabeledData } from '#core/models';
 import { ContainerComponent } from '#shared/components';
 
@@ -26,10 +26,5 @@ export class CashFlowCardsComponent {
 
   @Output() navigate = new EventEmitter<string>();
 
-  readonly currency$: Observable<string> = inject(Store)
-    .select(AuthSelectors.user)
-    .pipe(
-      filter(Boolean),
-      map(({ config }) => config.currency)
-    );
+  readonly currency$: Observable<string> = inject(Store).select(ConfigSelectors.currency);
 }

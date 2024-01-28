@@ -23,12 +23,13 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/index';
 import { AuthEffects } from '#auth/store';
 import { CashFlowEffects } from '#cash-flow/store';
+import { ConfigEffects } from '#core/config/store';
 import { injectThemeLink$, ThemeInitService } from '#core/services';
 import { CustomTranslateHttpLoader, initializeTranslations } from '#core/utils';
 import { DriveEffects } from '#drive/store';
 import { TaskerEffects } from '#tasker/store';
 
-const storeEffects = [CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
+const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
 const declarations = [AppComponent];
 const imports = [
   BrowserModule,
@@ -51,8 +52,8 @@ const imports = [
   }),
 ];
 const providers: Array<Provider | EnvironmentProviders> = [
-  { provide: Environment, useValue: environment },
   provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
+  { provide: Environment, useValue: environment },
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   { provide: APP_INITIALIZER, useFactory: injectThemeLink$, deps: [ThemeInitService], multi: true },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },
