@@ -39,14 +39,12 @@
         <org-details
           icon="assets/img/weather-icons/humidity.png"
           [name]="'weather.humidity' | translate"
-          [amount]="(state.weatherData.main.humidity | number: '1.0-0') + '%'">
-        </org-details>
+          [amount]="(state.weatherData.main.humidity | number: '1.0-0') + '%'" />
 
         <org-details
           icon="assets/img/weather-icons/wind.png"
           [amount]="(state.weatherData.wind.speed | number: '1.0-0') + ' km/h'"
-          [name]="'weather.wind' | translate">
-        </org-details>
+          [name]="'weather.wind' | translate" />
       </div>
 
       <div class="flex align-items-center justify-content-between">
