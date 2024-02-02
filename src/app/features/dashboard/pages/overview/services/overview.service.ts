@@ -10,7 +10,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CashFlow, Category } from '#cash-flow/models';
 import { CashFlowSelectors } from '#cash-flow/store';
 import { ConfigSelectors } from '#core/config/store';
-import { BaseDialogStyles } from '#core/constants';
+import { baseDialogStyles } from '#core/constants';
 import { AppPaths } from '#core/enums';
 import { LabeledData } from '#core/models';
 import { getRandomNumber } from '#core/utils';
@@ -79,7 +79,7 @@ export class OverviewService {
   addQuickNote$(): Observable<Note | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(NoteFormComponent, {
       header: this.translateService.instant('tasker.addNote'),
-      style: BaseDialogStyles,
+      style: baseDialogStyles,
     });
 
     return dialogRef.onClose.pipe(

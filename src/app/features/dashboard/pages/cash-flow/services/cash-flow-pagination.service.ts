@@ -33,7 +33,7 @@ export class CashFlowPaginationService {
     let paginatorState: PaginatorState | undefined;
 
     if (sessionStorage.getItem(featureName)?.length) {
-      paginatorState = JSON.parse(sessionStorage.getItem(featureName) ?? '') as PaginatorState;
+      paginatorState = JSON.parse(sessionStorage.getItem(featureName) ?? '');
     }
 
     return paginatorState ?? initialPaginationData;

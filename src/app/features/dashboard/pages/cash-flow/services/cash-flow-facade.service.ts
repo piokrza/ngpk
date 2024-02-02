@@ -8,12 +8,12 @@ import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 
-import { ConfigSelectors } from '#app/core/config/store';
 import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
 import { CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
 import { CashFlowActions, CashFlowSelectors } from '#cash-flow/store';
-import { BaseDialogStyles } from '#core/constants';
+import { ConfigSelectors } from '#core/config/store';
+import { baseDialogStyles } from '#core/constants';
 import { AppPaths } from '#core/enums';
 import { DashobardPaths } from '#dashboard/enums';
 
@@ -58,7 +58,7 @@ export class CashFlowFacadeService {
       message: this.translateService.instant('incomes.removeMessage'),
       header: this.translateService.instant('incomes.removeHeader'),
       icon: PrimeIcons.TRASH,
-      accept: (): void => {
+      accept: () => {
         this.store.dispatch(CashFlowActions.deleteCashFlow({ id }));
         this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
       },
@@ -68,7 +68,7 @@ export class CashFlowFacadeService {
   updateCashFlow$(cashFlow: CashFlow): Observable<CashFlow | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(UpdateFormComponent, {
       header: this.translateService.instant('incomes.updateIncome'),
-      style: BaseDialogStyles,
+      style: baseDialogStyles,
       data: cashFlow,
     });
 
@@ -83,7 +83,7 @@ export class CashFlowFacadeService {
     const dialogRef: DynamicDialogRef = this.dialogService.open(AddFormComponent, {
       data: isIncomeMode,
       header: this.translateService.instant('cashFlow.addCashFlow'),
-      style: BaseDialogStyles,
+      style: baseDialogStyles,
     });
 
     return dialogRef.onClose.pipe(

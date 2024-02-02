@@ -6,7 +6,7 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { BaseDialogStyles } from '#core/constants';
+import { baseDialogStyles } from '#core/constants';
 import { LabeledData } from '#core/models';
 import { NoteFormComponent, TaskFormComponent } from '#tasker/components';
 import { Note, NoteFilter, NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
@@ -59,7 +59,7 @@ export class TaskerFacadeService {
   addTask$(): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(TaskFormComponent, {
       header: this.tr('addTask'),
-      style: BaseDialogStyles,
+      style: baseDialogStyles,
     });
 
     return dialogRef.onClose.pipe(
@@ -72,7 +72,7 @@ export class TaskerFacadeService {
   editTask$(task: Task): Observable<Task | undefined> {
     const dialogRef: DynamicDialogRef = this.dialogService.open(TaskFormComponent, {
       header: `${this.tr('editTask')}: ${task.name}`,
-      style: BaseDialogStyles,
+      style: baseDialogStyles,
       data: task,
     });
 
@@ -107,7 +107,7 @@ export class TaskerFacadeService {
   addNote$(): Observable<Note | undefined> {
     const dialogRef = this.dialogService.open(NoteFormComponent, {
       header: this.tr('addNote'),
-      style: BaseDialogStyles,
+      style: baseDialogStyles,
     });
 
     return dialogRef.onClose.pipe(

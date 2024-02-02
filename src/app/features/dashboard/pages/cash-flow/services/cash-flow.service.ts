@@ -24,7 +24,7 @@ export class CashFlowService {
     return new FormGroup({
       name: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
       amount: new FormControl<number>(0, { validators: [Validators.required], nonNullable: true }),
-      date: new FormControl<Date | null>(null, { validators: [Validators.required] }),
+      date: new FormControl<Date>(new Date(), { validators: [Validators.required] }),
       categoryId: new FormControl<string>('', { validators: [Validators.required], nonNullable: true }),
       description: new FormControl<string>('', { nonNullable: true }),
     });
