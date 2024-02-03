@@ -23,6 +23,9 @@
 
     <div class="flex justify-content-between mt-4">
       <p-button
+        size="small"
+        [outlined]="true"
+        [rounded]="true"
         [label]="(task.isComplete ? 'tasker.completed' : 'tasker.uncompleted') | translate"
         [severity]="task.isComplete ? 'success' : 'danger'"
         (onClick)="toggleIsTaskComplete.emit(task.id)" />

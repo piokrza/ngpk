@@ -7,15 +7,13 @@
           <h1>{{ data.name }}</h1>
         </div>
 
-        <p>
-          <i [class]="PrimeIcons.DOLLAR"></i>
-          {{ data.amount }}
-        </p>
-
-        <p>{{ data.date | timestamp: DateFormats.DATE }}</p>
+        <div class="text-lg">
+          <p>{{ 'cashFlow.amount' | translate }}: {{ data.amount }} {{ currency$ | async }}</p>
+          <p>{{ 'cashFlow.createDate' | translate }}: {{ data.date | timestamp: DateFormats.DATE }}</p>
+        </div>
 
         <div class="mt-6">
-          <small>{{ 'Description' }}</small>
+          <p>{{ 'common.description' | translate }}</p>
           <p>{{ data.description }}</p>
         </div>
       </div>

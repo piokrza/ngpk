@@ -23,7 +23,9 @@
       "updateAmount": "Update amount",
       "update": "Aktualizuj"
     },
-    "allCategories": "All categories"
+    "allCategories": "All categories",
+    "amount": "Amount",
+    "createDate": "Create date"
   },
 
   "overview": {
@@ -101,6 +103,12 @@
     "completed": "Completed",
     "uncompleted": "Uncompleted",
     "maxlength": "Max steps length: 5"
+  },
+
+  "drive": {
+    "addFile": "Add file",
+    "addFolder": "Add folder",
+    "enterFolderName": "Enter folder name"
   },
 
   "weather": {

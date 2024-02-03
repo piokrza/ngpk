@@ -23,7 +23,9 @@
       "updateAmount": "Edytuj kwotę",
       "update": "Aktualizuj"
     },
-    "allCategories": "Wszystkie"
+    "allCategories": "Wszystkie",
+    "amount": "Kwota",
+    "createDate": "Data utworzenia"
   },
 
   "overview": {
@@ -101,6 +103,12 @@
     "completed": "Ukończone",
     "uncompleted": "Nieukończone",
     "maxlength": "Maksymalna ilość kroków: 5"
+  },
+
+  "drive": {
+    "addFile": "Dodaj plik",
+    "addFolder": "Dodaj folder",
+    "enterFolderName": "Wprowadź nazwę"
   },
 
   "weather": {

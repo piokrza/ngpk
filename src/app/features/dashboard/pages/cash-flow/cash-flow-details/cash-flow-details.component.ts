@@ -1,6 +1,7 @@
 import { AsyncPipe, Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, first, switchMap, tap } from 'rxjs';
 
@@ -9,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { CashFlow } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
+import { ConfigSelectors } from '#core/config/store';
 import { AppPaths, DateFormats } from '#core/enums';
 import { DashobardPaths } from '#dashboard/enums';
 import { ContainerComponent } from '#shared/components';
@@ -30,6 +32,7 @@ export class CashFlowDetailsComponent {
   private readonly cashFlowFacade = inject(CashFlowFacadeService);
 
   readonly details$: Observable<CashFlow | undefined> = this.cashFlowDetails$;
+  readonly currency$: Observable<string> = inject(Store).select(ConfigSelectors.currency);
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly DateFormats: typeof DateFormats = DateFormats;

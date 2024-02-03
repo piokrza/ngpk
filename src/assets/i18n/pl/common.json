@@ -32,12 +32,6 @@
     "editNoteError": "Coś poszło nie tak podczas edycji notatki"
   },
 
-  "drive": {
-    "addFile": "Dodaj plik",
-    "addFolder": "Dodaj folder",
-    "enterFolderName": "Wprowadź nazwę"
-  },
-
   "pageNotFound": {
     "title": "Strona nieznaleziona",
     "redirectText": "Zostaniesz przeniesiony na strone glówną za ",
@@ -51,7 +45,8 @@
     "emptyMessage": "Lista jest pusta",
     "name": "Nazwa",
     "categories": "Kategorie",
-    "status": "Status"
+    "status": "Status",
+    "description": "Opis"
   },
 
   "primeng": {

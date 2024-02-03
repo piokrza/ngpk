@@ -39,13 +39,8 @@
     "emptyMessage": "List is empty",
     "name": "Name",
     "categories": "Categories",
-    "status": "Status"
-  },
-
-  "drive": {
-    "addFile": "Add file",
-    "addFolder": "Add folder",
-    "enterFolderName": "Enter folder name"
+    "status": "Status",
+    "description": "Description"
   },
 
   "pageNotFound": {

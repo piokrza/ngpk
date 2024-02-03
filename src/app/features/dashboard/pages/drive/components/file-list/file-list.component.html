@@ -1,6 +1,6 @@
 @if (state.parentFile; as parentFile) {
   <div class="flex align-items-center gap-4">
-    <p-button styleClass="my-3" severity="secondary" [icon]="PrimeIcons.ARROW_LEFT" (onClick)="navigateBack()" />
+    <p-button styleClass="my-3" severity="secondary" [text]="true" [icon]="PrimeIcons.ARROW_LEFT" (onClick)="navigateBack()" />
     <p class="font-semibold text-lg">{{ parentFile.name | uppercase }}</p>
   </div>
 }
@@ -11,8 +11,8 @@
   <ul class="file-list">
     @for (file of state.files; track file.id) {
       <li
-        tooltipPosition="bottom"
         class="file-list__item"
+        tooltipPosition="bottom"
         [pTooltip]="file.name.length > nameLimit ? file.name : ''"
         (click)="fileClick(file)">
         <i style="font-size: 2rem" [class]="file.type === 'folder' ? PrimeIcons.FOLDER : PrimeIcons.FILE"></i>
