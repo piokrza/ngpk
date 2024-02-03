@@ -6,9 +6,9 @@ import { first } from 'rxjs';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-import { connectState } from '#app/core/utils';
 import { CashFlowService } from '#cash-flow/services';
 import { AppPaths } from '#core/enums';
+import { connectState } from '#core/utils';
 import { DashobardPaths } from '#dashboard/enums';
 import { CashFlowCardsComponent, CashFlowChartComponent, TaskerPanelComponent } from '#overview/components';
 import { OverviewService } from '#overview/services';
@@ -31,13 +31,7 @@ export class OverviewComponent {
   private readonly overviewService = inject(OverviewService);
   private readonly cashFlowService = inject(CashFlowService);
 
-  readonly state = connectState(this.destroyRef, {
-    taskerData: this.overviewService.taskerData$,
-    isLoading: this.overviewService.isLoading$,
-    cashFlowDataSet: this.overviewService.cashFlowData$,
-    incomesChartData: this.overviewService.incomesChartData$,
-    expensesChartData: this.overviewService.expensesChartData$,
-  });
+  readonly state = connectState(this.destroyRef, this.overviewService.state);
 
   addQuickNote(): void {
     this.overviewService.addQuickNote$().pipe(first()).subscribe();

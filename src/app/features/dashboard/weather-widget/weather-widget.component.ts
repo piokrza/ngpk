@@ -15,7 +15,8 @@ import { connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
 import { DetailsComponent } from '#weather-widget/components';
 import { WeatherIconPipe } from '#weather-widget/pipes';
-import { WeatherApiService, WeatherFacadeService, WeatherStateService } from '#weather-widget/services';
+import { WeatherWidgetApiService, WeatherWidgetFacadeService } from '#weather-widget/services';
+import { WeatherWidgetState } from '#weather-widget/state';
 
 const imports = [
   CommonModule,
@@ -28,7 +29,7 @@ const imports = [
   WeatherIconPipe,
   ContainerComponent,
 ];
-const providers = [WeatherFacadeService, WeatherApiService, WeatherStateService];
+const providers = [WeatherWidgetFacadeService, WeatherWidgetApiService, WeatherWidgetState];
 
 @Component({
   selector: 'org-weather-widget',
@@ -41,28 +42,24 @@ const providers = [WeatherFacadeService, WeatherApiService, WeatherStateService]
 })
 export class WeatherWidgetComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly weatherFacadeService = inject(WeatherFacadeService);
+  private readonly weatherWidgetFacadeService = inject(WeatherWidgetFacadeService);
 
-  readonly state = connectState(this.destroyRef, {
-    weatherData: this.weatherFacadeService.weatherData$,
-    isLoading: this.weatherFacadeService.isLoading$,
-    errorMessage: this.weatherFacadeService.errorMessage$,
-  });
+  readonly state = connectState(this.destroyRef, this.weatherWidgetFacadeService.state);
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly isOpen: WritableSignal<boolean> = signal(false);
   readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
 
   ngOnInit(): void {
-    this.weatherFacadeService.checkWeatherData();
-    this.weatherFacadeService.checkGeolocation();
+    this.weatherWidgetFacadeService.checkWeatherData();
+    this.weatherWidgetFacadeService.checkGeolocation();
 
-    this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? false.toString()));
+    this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? 'false'));
   }
 
   loadWeatherDataByCityName(cityName: string): void {
     cityName.length &&
-      this.weatherFacadeService
+      this.weatherWidgetFacadeService
         .loadWeatherDataByCityName$(cityName)
         .pipe(
           tap(() => this.searchCityNameControl.reset()),
@@ -72,7 +69,7 @@ export class WeatherWidgetComponent implements OnInit {
   }
 
   loadWeatherData(): void {
-    this.weatherFacadeService.loadWeatherData$().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+    this.weatherWidgetFacadeService.loadWeatherData$(this.state.geolocation).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
   toggleDetails(): void {

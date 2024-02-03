@@ -24,14 +24,11 @@
         </li>
       }
     }
-    <li class="add-button">
-      <org-container [styleClass]="['h-full']">
-        <p-button
-          severity="secondary"
-          styleClass="w-full h-full py-3"
-          [text]="true"
-          [icon]="PrimeIcons.PLUS"
-          (onClick)="addCashFlow.emit(isIncomeMode)" />
+    <li class="max-w-19rem">
+      <org-container
+        [styleClass]="['h-full', 'hover', 'flex', 'justify-content-center', 'align-items-center']"
+        (click)="addCashFlow.emit(isIncomeMode)">
+        <i [class]="PrimeIcons.TIMES"></i>
       </org-container>
     </li>
   </ul>

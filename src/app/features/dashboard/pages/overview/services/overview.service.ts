@@ -12,10 +12,10 @@ import { CashFlowSelectors } from '#cash-flow/store';
 import { ConfigSelectors } from '#core/config/store';
 import { baseDialogStyles } from '#core/constants';
 import { AppPaths } from '#core/enums';
-import { LabeledData } from '#core/models';
+import { LabeledData, ObservableDictionary } from '#core/models';
 import { getRandomNumber } from '#core/utils';
 import { DashobardPaths } from '#dashboard/enums';
-import { ChartColor, TaskerData } from '#overview/models';
+import { ChartColor, OverviewStateModel, TaskerData } from '#overview/models';
 import { NoteFormComponent } from '#tasker/components';
 import { Note } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
@@ -29,51 +29,14 @@ export class OverviewService {
   private readonly dialogService = inject(DialogService);
   private readonly translateService = inject(TranslateService);
 
-  get isLoading$(): Observable<boolean> {
-    return this.store.select(CashFlowSelectors.isLoading);
-  }
-
-  get incomesChartData$(): Observable<ChartData | undefined> {
-    return combineLatest({
-      incomes: this.store.select(CashFlowSelectors.incomes),
-      categories: this.store.select(ConfigSelectors.cashFlowCategories('income')),
-    }).pipe(map(({ incomes, categories }) => this.generateCashFlowChartData(incomes, categories, 'green')));
-  }
-
-  get expensesChartData$(): Observable<ChartData | undefined> {
-    return combineLatest({
-      expenses: this.store.select(CashFlowSelectors.expenses),
-      categories: this.store.select(ConfigSelectors.cashFlowCategories('expense')),
-    }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories, 'pink')));
-  }
-
-  get taskerData$(): Observable<TaskerData> {
-    return combineLatest({
-      tasks: this.store.select(TaskerSelectors.tasks),
-      notes: this.store.select(TaskerSelectors.notes),
-    }).pipe(
-      map(({ tasks, notes }) => ({
-        totalTasksLength: tasks?.length,
-        completedTasksLength: tasks?.filter(({ isComplete }) => isComplete).length,
-        notesLength: notes?.length,
-      }))
-    );
-  }
-
-  get cashFlowData$(): Observable<LabeledData<number>[]> {
-    return combineLatest({
-      totalBalance: this.totalBalance$,
-      totalIncome: this.store.select(CashFlowSelectors.totalIncomes),
-      totalExpense: this.store.select(CashFlowSelectors.totalExpenses),
-      transactionAmount: this.transactionAmount$,
-    }).pipe(
-      map((data) => [
-        { label: 'totalIncome', data: data.totalIncome },
-        { label: 'totalExpense', data: data.totalExpense },
-        { label: 'totalBalance', data: data.totalBalance },
-        { label: 'transactionAmount', data: data.transactionAmount },
-      ])
-    );
+  get state(): ObservableDictionary<OverviewStateModel> {
+    return {
+      taskerData: this.taskerData$,
+      isLoading: this.store.select(CashFlowSelectors.isLoading),
+      cashFlowDataSet: this.cashFlowData$,
+      incomesChartData: this.incomesChartData$,
+      expensesChartData: this.expensesChartData$,
+    };
   }
 
   addQuickNote$(): Observable<Note | undefined> {
@@ -90,6 +53,49 @@ export class OverviewService {
           void this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.TASKER]);
         }
       })
+    );
+  }
+
+  private get incomesChartData$(): Observable<ChartData | undefined> {
+    return combineLatest({
+      incomes: this.store.select(CashFlowSelectors.incomes),
+      categories: this.store.select(ConfigSelectors.cashFlowCategories('income')),
+    }).pipe(map(({ incomes, categories }) => this.generateCashFlowChartData(incomes, categories, 'green')));
+  }
+
+  private get expensesChartData$(): Observable<ChartData | undefined> {
+    return combineLatest({
+      expenses: this.store.select(CashFlowSelectors.expenses),
+      categories: this.store.select(ConfigSelectors.cashFlowCategories('expense')),
+    }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories, 'pink')));
+  }
+
+  private get taskerData$(): Observable<TaskerData> {
+    return combineLatest({
+      tasks: this.store.select(TaskerSelectors.tasks),
+      notes: this.store.select(TaskerSelectors.notes),
+    }).pipe(
+      map(({ tasks, notes }) => ({
+        totalTasksLength: tasks?.length,
+        completedTasksLength: tasks?.filter(({ isComplete }) => isComplete).length,
+        notesLength: notes?.length,
+      }))
+    );
+  }
+
+  private get cashFlowData$(): Observable<LabeledData<number>[]> {
+    return combineLatest({
+      totalBalance: this.totalBalance$,
+      totalIncome: this.store.select(CashFlowSelectors.totalIncomes),
+      totalExpense: this.store.select(CashFlowSelectors.totalExpenses),
+      transactionAmount: this.transactionAmount$,
+    }).pipe(
+      map((data) => [
+        { label: 'totalIncome', data: data.totalIncome },
+        { label: 'totalExpense', data: data.totalExpense },
+        { label: 'totalBalance', data: data.totalBalance },
+        { label: 'transactionAmount', data: data.transactionAmount },
+      ])
     );
   }
 

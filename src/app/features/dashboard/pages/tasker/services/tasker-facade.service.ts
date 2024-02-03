@@ -47,7 +47,7 @@ export class TaskerFacadeService {
     }).pipe(
       map(({ notes, filter }) => ({
         notes: this.sortNotes(notes, filter),
-        filter: filter === 'newest' ? true : false,
+        filter: Boolean(filter === 'newest'),
       }))
     );
   }

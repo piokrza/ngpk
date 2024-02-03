@@ -7,7 +7,7 @@ import { Environment } from 'src/environments';
 import { IGeolocation, WeatherResponse } from '#weather-widget/models';
 
 @Injectable()
-export class WeatherApiService {
+export class WeatherWidgetApiService {
   private readonly http = inject(HttpClient);
   private readonly environment = inject(Environment);
   private readonly translateService = inject(TranslateService);

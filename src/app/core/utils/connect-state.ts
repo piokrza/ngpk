@@ -1,63 +1,33 @@
 import type { DestroyRef } from '@angular/core';
 import { ChangeDetectorRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import type { Observable, Subject } from 'rxjs';
-import { ReplaySubject, from, mergeMap, tap } from 'rxjs';
+import { from, mergeMap, tap } from 'rxjs';
 
-type ObservableDictionary<T> = {
-  [P in keyof T]: Observable<T[P]>;
-};
+import { ObservableDictionary } from '#core/models';
 
-type SubjectDictionary<T> = {
-  [P in keyof T]: Subject<T[P]>;
-};
+export type StateObject<T = unknown> = Readonly<T> & object;
 
-type LoadingDictionary<T> = {
-  [P in keyof T]: boolean;
-};
-
-type RestrictedKeys<T> = ObservableDictionary<T> & { loading?: never; $?: never };
-
-export type StateObject<T = unknown> = Readonly<T> & {
-  $: SubjectDictionary<T>;
-  loading: LoadingDictionary<T>;
-};
-
-export function connectState<T>(destroyRef: DestroyRef, sources: RestrictedKeys<T>) {
+export function connectState<T>(destroyRef: DestroyRef, sourcesObject: ObservableDictionary<T>) {
   const cdRef = inject(ChangeDetectorRef);
 
-  const sink = {
-    $: {},
-    loading: {},
-  } as StateObject<T>;
-
-  const sourceKeys = Object.keys(sources) as Array<keyof T>;
-
-  for (const key of sourceKeys) {
-    sink.$[key] = new ReplaySubject<T[keyof T]>(1);
-    sink.loading[key] = true;
-  }
+  const stateObject = {} as StateObject<T>;
+  const sourceKeys = Object.keys(sourcesObject) as Array<keyof T>;
 
   from(sourceKeys)
     .pipe(
       mergeMap((sourceKey: keyof T) => {
-        const source$ = (sources as ObservableDictionary<T>)[sourceKey];
+        const sourceValue$ = sourcesObject[sourceKey];
 
-        if (!source$?.pipe) {
-          throw new Error(`connectState: source of "state.${String(sourceKey)}" is not an Observable.`);
-        }
-
-        return source$.pipe(
-          tap((sinkValue: T[keyof T]) => {
-            sink.loading[sourceKey] = false;
-            sink.$[sourceKey].next(sinkValue);
-            sink[sourceKey] = sinkValue as StateObject<T>[keyof T];
+        return sourceValue$.pipe(
+          tap((sourceValue: T[keyof T]) => {
+            stateObject[sourceKey] = sourceValue as StateObject<T>[keyof T];
           })
         );
-      })
+      }),
+      takeUntilDestroyed(destroyRef)
     )
-    .pipe(takeUntilDestroyed(destroyRef))
-    .subscribe({ next: () => cdRef.markForCheck() });
 
-  return sink;
+    .subscribe(() => cdRef.markForCheck());
+
+  return stateObject;
 }
