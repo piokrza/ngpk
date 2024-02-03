@@ -3,17 +3,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { PaginatorState } from 'primeng/paginator';
 
-import { CashFlowFeatureName } from '#cash-flow/models';
+import { CashFlowFeatureName } from '#cash-flow/enum';
 import { initialPaginationData } from '#core/constants';
 
 @Injectable()
 export class CashFlowPaginationService {
-  private readonly incomesPaginatorState$$ = new BehaviorSubject<PaginatorState>(this.getPaginationState('incomes'));
-  private readonly expensesPaginatorState$$ = new BehaviorSubject<PaginatorState>(this.getPaginationState('expenses'));
+  private readonly incomesPaginatorState$$ = new BehaviorSubject<PaginatorState>(this.getPaginationState(CashFlowFeatureName.INCOMES));
+  private readonly expensesPaginatorState$$ = new BehaviorSubject<PaginatorState>(this.getPaginationState(CashFlowFeatureName.EXPENSES));
 
   setIncomesPaginatorState(paginatorState: PaginatorState): void {
     this.incomesPaginatorState$$.next(paginatorState);
-    sessionStorage.setItem('incomes', JSON.stringify(paginatorState));
+    sessionStorage.setItem(CashFlowFeatureName.INCOMES, JSON.stringify(paginatorState));
   }
 
   get incomesPaginatorState$(): Observable<PaginatorState> {
@@ -22,7 +22,7 @@ export class CashFlowPaginationService {
 
   setExpensesPaginatorState(paginatorState: PaginatorState): void {
     this.expensesPaginatorState$$.next(paginatorState);
-    sessionStorage.setItem('expenses', JSON.stringify(paginatorState));
+    sessionStorage.setItem(CashFlowFeatureName.EXPENSES, JSON.stringify(paginatorState));
   }
 
   get expensesPaginatorState$(): Observable<PaginatorState> {

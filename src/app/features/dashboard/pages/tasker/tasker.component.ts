@@ -7,7 +7,7 @@ import { TabViewChangeEvent } from 'primeng/tabview';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 
 import { LabeledData } from '#core/models';
-import { NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
+import { Note, NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
 import { TaskerFacadeService } from '#tasker/services';
 
 @Component({
@@ -59,6 +59,10 @@ export class TaskerComponent {
 
   addNote(): void {
     this.taskerFacadeService.addNote$().pipe(first()).subscribe();
+  }
+
+  editNote(note: Note): void {
+    this.taskerFacadeService.editNote$(note).pipe(first()).subscribe();
   }
 
   removeNote(noteId: string): void {

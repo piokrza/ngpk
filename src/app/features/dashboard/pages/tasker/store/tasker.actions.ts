@@ -31,6 +31,10 @@ export const editTask = createAction(ActionTypes.EDIT_TASK, props<{ editedTask: 
 export const editTaskSuccess = createAction(ActionTypes.EDIT_TASK_SUCCESS);
 export const editTaskFailure = createAction(ActionTypes.EDIT_TASK_FAILURE);
 
+export const editNote = createAction(ActionTypes.EDIT_NOTE, props<{ editedNote: Note }>());
+export const editNoteSuccess = createAction(ActionTypes.EDIT_NOTE_SUCCESS);
+export const editNoteFailure = createAction(ActionTypes.EDIT_NOTE_FAILURE);
+
 export const setTaskFilter = createAction(ActionTypes.SET_TASK_FILTER, props<{ taskFilter: TaskFilter }>());
 
 export const addNote = createAction(ActionTypes.ADD_NOTE, props<{ note: Note }>());

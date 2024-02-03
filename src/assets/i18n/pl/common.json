@@ -28,7 +28,8 @@
     "urlCopied": "Url zapisany do schowka",
     "editTaskSuccess": "Zadanie zaktualizowane",
     "removeTaskError": "Coś poszło nie tak podczas usuwania zadania",
-    "editTaskError": "Coś poszło nie tak podczas edycji zadania"
+    "editTaskError": "Coś poszło nie tak podczas edycji zadania",
+    "editNoteError": "Coś poszło nie tak podczas edycji notatki"
   },
 
   "drive": {

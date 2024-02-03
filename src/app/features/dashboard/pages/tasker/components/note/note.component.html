@@ -4,11 +4,14 @@
 
     <div class="note__flex">
       <span>{{ note.createDate | timestamp: DateFormats.HOUR_AND_DATE }}</span>
-      <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.TIMES" (onClick)="removeNote.emit(note.id)" severity="danger" />
+      <div>
+        <p-button [rounded]="true" [text]="true" [icon]="PrimeIcons.FILE_EDIT" (onClick)="editNote.emit(note)" />
+        <p-button severity="danger" [rounded]="true" [text]="true" [icon]="PrimeIcons.TIMES" (onClick)="removeNote.emit(note.id)" />
+      </div>
     </div>
   </div>
 
-  <p [class.note__content--visible]="isTaskContentVisible" class="note__content">
+  <p class="note__content" [class.note__content--visible]="isTaskContentVisible()">
     {{ note.content }}
   </p>
 </org-container>

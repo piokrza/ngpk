@@ -117,12 +117,26 @@ export class TaskerFacadeService {
     );
   }
 
+  editNote$(note: Note): Observable<Note | undefined> {
+    const dialogRef = this.dialogService.open(NoteFormComponent, {
+      header: this.tr('editNote'),
+      data: note,
+      style: baseDialogStyles,
+    });
+
+    return dialogRef.onClose.pipe(
+      tap((editedNote?: Note) => {
+        editedNote && this.store.dispatch(TaskerActions.editNote({ editedNote }));
+      })
+    );
+  }
+
   removeNote(noteId: string): void {
     this.confirmationService.confirm({
       message: this.tr('removeNoteMessage'),
       header: this.tr('removeNoteHeader'),
       icon: PrimeIcons.TRASH,
-      accept: (): void => this.store.dispatch(TaskerActions.removeNote({ noteId })),
+      accept: () => this.store.dispatch(TaskerActions.removeNote({ noteId })),
     });
   }
 

@@ -28,7 +28,8 @@
     "urlCopied": "Url copied to clipboard",
     "editTaskSuccess": "Task updated",
     "removeTaskError": "Something went wrong during removing task",
-    "editTaskError": "Something went wrong during task edit"
+    "editTaskError": "Something went wrong during task edit",
+    "editNoteError": "Something went wrong during note edit"
   },
 
   "common": {

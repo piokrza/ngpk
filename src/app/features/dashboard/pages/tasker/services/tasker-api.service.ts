@@ -35,6 +35,11 @@ export class TaskerApiService {
     return await task.update(updatedTask);
   }
 
+  async editNote(updatedNote: Note): Promise<void> {
+    const note: AngularFirestoreDocument<Note> = this.angularFirestore.collection<Task>(Collection.NOTES).doc(updatedNote.id);
+    return await note.update(updatedNote);
+  }
+
   toggleIsTaskComplete(taskId: string) {
     const taskRef: AngularFirestoreDocument<Task> = this.getTaskRef(taskId);
 

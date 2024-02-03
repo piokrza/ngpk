@@ -95,6 +95,7 @@
       "notCompleted": "Nieukończone"
     },
     "addNote": "Dodaj notatkę",
+    "editNote": "Edytuj notatkę",
     "removeNoteHeader": "Usuń notatkę",
     "removeNoteMessage": "Na pewno chcesz usunąć notatkę?",
     "completed": "Ukończone",

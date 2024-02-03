@@ -102,6 +102,21 @@ export class TaskerEffects {
     );
   });
 
+  editNote$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.editNote),
+      exhaustMap(({ editedNote }) => {
+        return from(this.taskerApiService.editNote(editedNote)).pipe(
+          map(() => TaskerActions.editNoteSuccess()),
+          catchError(() => {
+            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('editNoteError'));
+            return of(TaskerActions.editNoteFailure());
+          })
+        );
+      })
+    );
+  });
+
   getNotes$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.loadNotes),

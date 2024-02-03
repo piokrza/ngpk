@@ -33,6 +33,10 @@ export enum ActionTypes {
   ADD_NOTE_SUCCESS = '[Notes] Add note success',
   ADD_NOTE_FAILURE = '[Notes] Add note failure',
 
+  EDIT_NOTE = '[Notes] Edit note',
+  EDIT_NOTE_SUCCESS = '[Notes] Edit note success',
+  EDIT_NOTE_FAILURE = '[Notes] Edit note failure',
+
   REMOVE_NOTE = '[Notes] Remove note',
   REMOVE_NOTE_SUCCESS = '[Notes] Remove note success',
   REMOVE_NOTE_FAILURE = '[Notes] Remove note failure',

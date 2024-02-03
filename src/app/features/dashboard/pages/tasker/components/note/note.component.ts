@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, signal } from '@angular/core';
 
 import { PrimeIcons } from 'primeng/api';
 
@@ -14,13 +14,14 @@ import { Note } from '#tasker/models';
 export class NoteComponent {
   @Input({ required: true }) note!: Note;
 
+  @Output() editNote = new EventEmitter<Note>();
   @Output() removeNote = new EventEmitter<string>();
 
-  isTaskContentVisible = false;
+  isTaskContentVisible = signal(false);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly DateFormats: typeof DateFormats = DateFormats;
 
   toggleNoteVisibility(): void {
-    this.isTaskContentVisible = !this.isTaskContentVisible;
+    this.isTaskContentVisible.update((isVisible) => !isVisible);
   }
 }

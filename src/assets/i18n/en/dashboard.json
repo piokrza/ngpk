@@ -95,6 +95,7 @@
       "notCompleted": "Not completed"
     },
     "addNote": "Add note",
+    "editNote": "Edit note",
     "removeNoteHeader": "Remove note",
     "removeNoteMessage": "Are you sure that you want to remove this note?",
     "completed": "Completed",

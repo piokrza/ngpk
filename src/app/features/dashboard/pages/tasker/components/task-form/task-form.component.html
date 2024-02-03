@@ -8,8 +8,8 @@
           <span class="mr-4">{{ 'tasker.step' | translate }} {{ $index + 1 }}</span>
 
           <div [formGroup]="stepFormGroup" class="flex">
-            <input [formControl]="stepFormGroup.controls.name" [placeholder]="'common.enterName' | translate" pInputText />
-            <p-button (onClick)="removeStep($index)" [icon]="PrimeIcons.MINUS" severity="danger" />
+            <input pInputText [formControl]="stepFormGroup.controls.name" [placeholder]="'common.enterName' | translate" />
+            <p-button severity="danger" [text]="true" [icon]="PrimeIcons.MINUS" (onClick)="removeStep($index)" />
           </div>
         </li>
       }
@@ -21,10 +21,10 @@
   }
 
   <div class="mt-4 flex justify-content-between">
-    <p-button (onClick)="addStep()" [label]="'tasker.addSteps' | translate" [icon]="PrimeIcons.PLUS" />
+    <p-button [label]="'tasker.addSteps' | translate" [icon]="PrimeIcons.PLUS" (onClick)="addStep()" />
     <p-button
-      (onClick)="onSubmit()"
       [disabled]="form.invalid || (isEditMode && !form.dirty)"
-      [label]="'tasker.' + (isEditMode ? 'editTask' : 'addTask') | translate" />
+      [label]="'tasker.' + (isEditMode ? 'editTask' : 'addTask') | translate"
+      (onClick)="onSubmit()" />
   </div>
 </form>
