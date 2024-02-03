@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { taskerActiveTabIndex } from '#core/constants';
 import { LabeledData } from '#core/models';
 import { NoteForm, StepForm, TaskFilter, TaskForm } from '#tasker/models';
 
@@ -10,7 +11,7 @@ import { NoteForm, StepForm, TaskFilter, TaskForm } from '#tasker/models';
 export class TaskerService {
   private readonly translate: TranslateService = inject(TranslateService);
 
-  private readonly activeTabIndex$$ = new BehaviorSubject<number>(0);
+  private readonly activeTabIndex$$ = new BehaviorSubject<number>(this.sessionStorageTaskerActiveTabIdx);
 
   get activeTabIndex$(): Observable<number> {
     return this.activeTabIndex$$.asObservable();
@@ -42,5 +43,10 @@ export class TaskerService {
 
   setActiveTabIndex(idx: number): void {
     this.activeTabIndex$$.next(idx);
+    sessionStorage.setItem(taskerActiveTabIndex, idx.toString());
+  }
+
+  private get sessionStorageTaskerActiveTabIdx(): number {
+    return parseInt(sessionStorage.getItem(taskerActiveTabIndex) ?? '0');
   }
 }

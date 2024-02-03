@@ -150,7 +150,7 @@ export class TaskerFacadeService {
   }
 
   private sortNotes(notes: Note[], filter: NoteFilter): Note[] {
-    const clonedNotes: Note[] = [...(notes ?? [])];
+    const clonedNotes: Note[] = [...notes];
 
     return clonedNotes.sort((a, b) => {
       const dateA = a.createDate.toDate().getTime();

@@ -65,13 +65,13 @@
 
             <ul class="flex-container">
               @for (note of data.notes; track note.id) {
-                <li class="my-3">
+                <li>
                   <org-note class="flex-grow-1" [note]="note" (removeNote)="removeNote($event)" />
                 </li>
               }
 
               <li class="add-button">
-                <org-container [styleClass]="['h-full']">
+                <org-container>
                   <p-button severity="secondary" styleClass="w-full py-3" [text]="true" [icon]="PrimeIcons.PLUS" (onClick)="addNote()" />
                 </org-container>
               </li>
