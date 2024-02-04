@@ -1,6 +1,6 @@
 import { PaginatorState } from 'primeng/paginator';
 
-export const rowsPerPageOptions = [2, 10, 20];
+export const rowsPerPageOptions = [6, 10, 20];
 export const initialPaginationData: PaginatorState = {
   page: 0,
   first: 0,

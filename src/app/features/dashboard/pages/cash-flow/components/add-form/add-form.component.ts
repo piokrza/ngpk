@@ -27,14 +27,14 @@ export class AddFormComponent implements OnInit {
   private readonly firestore = inject(AngularFirestore);
   private readonly cashFlowService = inject(CashFlowService);
 
+  private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
+
   readonly categories$: Observable<Category[]> = this.getCategories$();
   readonly currency$: Observable<string> = this.store.select(ConfigSelectors.currency);
 
-  readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   readonly trPath: string = 'cashFlow.form.';
-
+  readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   private userId!: string;
-  private readonly isIncomeMode: boolean = inject(DynamicDialogConfig).data;
 
   ngOnInit(): void {
     this.store
