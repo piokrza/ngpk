@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { APP_INITIALIZER, EnvironmentProviders, isDevMode, NgModule, Provider } from '@angular/core';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -24,16 +24,17 @@ import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/index';
 import { AuthEffects } from '#auth/store';
 import { CashFlowEffects } from '#cash-flow/store';
 import { ConfigEffects } from '#core/config/store';
+import { httpErrorInterceptor } from '#core/interceptors';
 import { CustomTranslateHttpLoader, initializeTranslations } from '#core/utils';
 import { DriveEffects } from '#drive/store';
 import { TaskerEffects } from '#tasker/store';
 
 const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
+const interceptors = [httpErrorInterceptor];
 const declarations = [AppComponent];
 const imports = [
   BrowserModule,
   BrowserAnimationsModule,
-  HttpClientModule,
   RouterOutlet,
 
   StoreModule.forRoot(STORE_ROOT_REDUCERS),
@@ -52,6 +53,7 @@ const imports = [
 ];
 const providers: Array<Provider | EnvironmentProviders> = [
   provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
+  provideHttpClient(withInterceptors(interceptors)),
   { provide: Environment, useValue: environment },
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },

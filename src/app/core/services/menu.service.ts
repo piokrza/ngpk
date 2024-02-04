@@ -51,7 +51,7 @@ export class MenuService {
       {
         label: 'menu.logout',
         icon: PrimeIcons.POWER_OFF,
-        command: (): void => this.signOut(),
+        command: () => this.signOut(),
       },
     ];
   }

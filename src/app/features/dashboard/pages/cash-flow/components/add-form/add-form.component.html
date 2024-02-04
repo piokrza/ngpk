@@ -16,15 +16,13 @@
         [placeholder]="trPath + 'amount' | translate" />
     </span>
 
-    @if (categories$ | async; as categories) {
-      <p-dropdown
-        optionLabel="name"
-        optionValue="id"
-        styleClass="w-full"
-        [options]="categories"
-        [formControl]="formControls.categoryId"
-        [placeholder]="trPath + 'selectCategory' | translate" />
-    }
+    <p-dropdown
+      optionValue="id"
+      optionLabel="name"
+      styleClass="w-full"
+      [options]="(categories$ | async) ?? []"
+      [formControl]="formControls.categoryId"
+      [placeholder]="trPath + 'selectCategory' | translate" />
 
     <span class="p-float-label my-4">
       <p-calendar readonly id="date" class="w-full" appendTo="body" [formControl]="formControls.date" />

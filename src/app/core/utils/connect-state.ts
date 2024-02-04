@@ -11,9 +11,8 @@ export function connectState<T>(destroyRef: DestroyRef, sourcesObject: Observabl
   const cdRef = inject(ChangeDetectorRef);
 
   const stateObject = {} as StateObject<T>;
-  const sourceKeys = Object.keys(sourcesObject) as Array<keyof T>;
 
-  from(sourceKeys)
+  from(Object.keys(sourcesObject) as Array<keyof T>)
     .pipe(
       mergeMap((sourceKey: keyof T) => {
         const sourceValue$ = sourcesObject[sourceKey];

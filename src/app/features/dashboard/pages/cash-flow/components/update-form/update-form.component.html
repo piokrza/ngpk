@@ -13,15 +13,13 @@
     </label>
   </span>
 
-  @if (categories$ | async; as categories) {
-    <p-dropdown
-      optionLabel="name"
-      optionValue="id"
-      styleClass="w-full"
-      placeholder="Select category"
-      [options]="categories"
-      [formControl]="controls.categoryId" />
-  }
+  <p-dropdown
+    optionValue="id"
+    optionLabel="name"
+    styleClass="w-full"
+    placeholder="Select category"
+    [options]="(categories$ | async) ?? []"
+    [formControl]="controls.categoryId" />
 
   <span class="p-float-label my-4">
     <p-calendar [formControl]="controls.date" id="date" class="w-full" appendTo="body" readonly />
