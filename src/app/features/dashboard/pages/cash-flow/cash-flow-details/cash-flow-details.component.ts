@@ -1,17 +1,18 @@
 import { AsyncPipe, Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable, first, switchMap, tap } from 'rxjs';
+import { Observable, first, map, switchMap, tap } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 
-import { CashFlow } from '#cash-flow/models';
+import { CashFlow, Category } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
 import { ConfigSelectors } from '#core/config/store';
 import { AppPaths, DateFormats } from '#core/enums';
+import { connectState } from '#core/utils';
 import { DashobardPaths } from '#dashboard/enums';
 import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
@@ -26,13 +27,17 @@ const imports = [TranslateModule, AsyncPipe, TimestampPipe, ContainerComponent, 
   imports,
 })
 export class CashFlowDetailsComponent {
+  private readonly store = inject(Store);
   private readonly router = inject(Router);
   private readonly location = inject(Location);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly cashFlowFacade = inject(CashFlowFacadeService);
 
-  readonly details$: Observable<CashFlow | undefined> = this.cashFlowDetails$;
-  readonly currency$: Observable<string> = inject(Store).select(ConfigSelectors.currency);
+  readonly state = connectState(this.destroyRef, {
+    details: this.cashFlowDetails$,
+    currency: this.store.select(ConfigSelectors.currency),
+  });
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly DateFormats: typeof DateFormats = DateFormats;
@@ -47,6 +52,12 @@ export class CashFlowDetailsComponent {
 
   navigateBack(): void {
     this.location.back();
+  }
+
+  get categoryLabel$(): Observable<string | undefined> {
+    return this.store
+      .select(ConfigSelectors.cashFlowCategories())
+      .pipe(map((categories) => categories.find(({ id }: Category) => id === this.state.details?.categoryId)?.name));
   }
 
   private get cashFlowDetails$(): Observable<CashFlow | undefined> {

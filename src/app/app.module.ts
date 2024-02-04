@@ -29,40 +29,37 @@ import { CustomTranslateHttpLoader, initializeTranslations } from '#core/utils';
 import { DriveEffects } from '#drive/store';
 import { TaskerEffects } from '#tasker/store';
 
-const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
-const interceptors = [httpErrorInterceptor];
 const declarations = [AppComponent];
+const interceptors = [httpErrorInterceptor];
+const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
+
 const imports = [
   BrowserModule,
   BrowserAnimationsModule,
   RouterOutlet,
-
   StoreModule.forRoot(STORE_ROOT_REDUCERS),
   EffectsModule.forRoot(storeEffects),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),
-
   provideFirebaseApp(() => initializeApp(environment.firebase)),
   provideAnalytics(() => getAnalytics()),
   provideAuth(() => getAuth()),
   provideFirestore(() => getFirestore()),
   AngularFireAuthModule,
-
-  TranslateModule.forRoot({
-    loader: { provide: TranslateLoader, useClass: CustomTranslateHttpLoader },
-  }),
+  TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: CustomTranslateHttpLoader } }),
 ];
+
 const providers: Array<Provider | EnvironmentProviders> = [
+  DatePipe,
+  DialogService,
+  MessageService,
+  ConfirmationService,
+  UserTrackingService,
+  ScreenTrackingService,
   provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
   provideHttpClient(withInterceptors(interceptors)),
   { provide: Environment, useValue: environment },
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },
-  DatePipe,
-  MessageService,
-  ConfirmationService,
-  ScreenTrackingService,
-  UserTrackingService,
-  DialogService,
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })

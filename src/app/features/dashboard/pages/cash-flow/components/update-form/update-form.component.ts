@@ -24,27 +24,28 @@ export class UpdateFormComponent implements OnInit {
   readonly cashFlow: CashFlow = inject(DynamicDialogConfig).data;
   readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
 
-  readonly categories$: Observable<Category[]> = this.getCategories$();
+  readonly categories$: Observable<Category[]> = this.store.select(ConfigSelectors.cashFlowCategories(this.cashFlow.type));
 
   ngOnInit(): void {
-    this.form.patchValue({
-      ...this.cashFlow,
-      date: this.cashFlow.date.toDate(),
-    });
+    setTimeout(() => {
+      this.form.patchValue({
+        name: this.cashFlow.name,
+        amount: this.cashFlow.amount,
+        categoryId: this.cashFlow.categoryId,
+        description: this.cashFlow.description,
+        date: this.cashFlow.date.toDate(),
+      });
+    }, 0);
   }
 
   onSubmit(): void {
     const id: string = this.cashFlow.id;
     const date: Timestamp = Timestamp.fromDate(this.form.getRawValue().date!);
 
-    this.dialogRef.close({ ...this.form.getRawValue(), date, id });
+    this.dialogRef.close({ ...this.cashFlow, ...this.form.getRawValue(), date, id } satisfies CashFlow);
   }
 
   get controls(): CashFlowForm {
     return this.form.controls;
-  }
-
-  private getCategories$(): Observable<Category[]> {
-    return this.store.select(ConfigSelectors.cashFlowCategories(this.cashFlow.type));
   }
 }

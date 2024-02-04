@@ -1,4 +1,4 @@
-@if (details$ | async; as data) {
+@if (state.details; as data) {
   <org-container>
     <div class="flex">
       <div class="flex-grow-1">
@@ -7,12 +7,16 @@
           <h1>{{ data.name }}</h1>
         </div>
 
+        @if (categoryLabel$ | async; as categoryLabel) {
+          <p-button styleClass="mt-3" [outlined]="true" [rounded]="true" [label]="categoryLabel" />
+        }
+
         <div class="text-lg">
-          <p>{{ 'cashFlow.amount' | translate }}: {{ data.amount }} {{ currency$ | async }}</p>
+          <p>{{ 'cashFlow.amount' | translate }}: {{ data.amount }} {{ state.currency }}</p>
           <p>{{ 'cashFlow.createDate' | translate }}: {{ data.date | timestamp: DateFormats.DATE }}</p>
         </div>
 
-        <div class="mt-6">
+        <div>
           <p>{{ 'common.description' | translate }}</p>
           <p>{{ data.description }}</p>
         </div>

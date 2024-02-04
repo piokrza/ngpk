@@ -9,7 +9,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 
 import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
-import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
+import { CashFlow, CashFlowData, Category, CategoryType } from '#cash-flow/models';
 import { CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
 import { CashFlowActions, CashFlowSelectors } from '#cash-flow/store';
 import { ConfigSelectors } from '#core/config/store';
@@ -51,6 +51,10 @@ export class CashFlowFacadeService {
 
   get categories$(): Observable<Category[]> {
     return this.store.select(ConfigSelectors.cashFlowCategories());
+  }
+
+  getCategories(type: CategoryType): Observable<Category[]> {
+    return this.store.select(ConfigSelectors.cashFlowCategories(type));
   }
 
   deleteCashFlow(id: string): void {

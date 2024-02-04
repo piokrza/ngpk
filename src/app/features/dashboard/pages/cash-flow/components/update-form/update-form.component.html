@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <span class="p-float-label my-4">
-    <input [formControl]="controls.name" id="name" type="text" pInputText class="w-full" />
+    <input pInputText id="name" type="text" class="w-full" [formControl]="controls.name" />
     <label for="name">
       {{ trPath + 'update' + (cashFlow.type === 'income' ? 'IncomeName' : 'ExpenseName') | translate }}
     </label>
@@ -22,12 +22,12 @@
     [formControl]="controls.categoryId" />
 
   <span class="p-float-label my-4">
-    <p-calendar [formControl]="controls.date" id="date" class="w-full" appendTo="body" readonly />
+    <p-calendar readonly id="date" class="w-full" appendTo="body" [formControl]="controls.date" />
     <label for="date">{{ trPath + 'pickDate' | translate }}</label>
   </span>
 
   <span class="p-float-label my-4">
-    <textarea [formControl]="controls.description" id="description" class="w-full" pInputTextarea></textarea>
+    <textarea pInputTextarea id="description" class="w-full" [formControl]="controls.description"></textarea>
     <label for="description">{{ trPath + 'addDescription' | translate }}</label>
   </span>
 

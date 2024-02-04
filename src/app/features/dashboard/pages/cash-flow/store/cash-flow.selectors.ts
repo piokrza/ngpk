@@ -7,19 +7,16 @@ const CashFlowStateSelector = createFeatureSelector<CashFlowState>(FeatureKey);
 
 export const isLoading = createSelector(CashFlowStateSelector, ({ isLoading }: CashFlowState): boolean => isLoading);
 export const cashFlow = createSelector(CashFlowStateSelector, ({ cashFlow }: CashFlowState): CashFlow[] => cashFlow);
-
 export const incomes = createSelector(CashFlowStateSelector, ({ cashFlow, incomesFilter }: CashFlowState): CashFlow[] => {
   return cashFlow
     .filter((cashFlow) => cashFlow.type === 'income')
     .filter((income) => (incomesFilter.length ? incomesFilter.includes(income.categoryId) : income));
 });
-
 export const expenses = createSelector(CashFlowStateSelector, ({ cashFlow, expensesFilter }: CashFlowState): CashFlow[] => {
   return cashFlow
     .filter((cashFlow) => cashFlow.type === 'expense')
     .filter((expense) => (expensesFilter.length ? expensesFilter.includes(expense.categoryId) : expense));
 });
-
 export const incomesFilter = createSelector(CashFlowStateSelector, ({ incomesFilter }: CashFlowState): string[] => incomesFilter);
 export const expensesFilter = createSelector(CashFlowStateSelector, ({ expensesFilter }: CashFlowState): string[] => expensesFilter);
 export const totalIncomes = createSelector(CashFlowStateSelector, ({ cashFlow }: CashFlowState): number => {

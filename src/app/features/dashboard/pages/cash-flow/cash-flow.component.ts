@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Observable, first, map } from 'rxjs';
+import { Observable, first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
 import { TabViewChangeEvent } from 'primeng/tabview';
 
-import { CashFlow, CashFlowData, Category } from '#cash-flow/models';
+import { CashFlow, CashFlowData } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
 import { rowsPerPageOptions } from '#core/constants';
 
@@ -17,10 +17,11 @@ import { rowsPerPageOptions } from '#core/constants';
 export class CashFlowComponent {
   private readonly cashFlowFacadeService = inject(CashFlowFacadeService);
 
-  readonly isLoading$: Observable<boolean> = this.cashFlowFacadeService.isLoading$;
   readonly incomes$: Observable<CashFlowData> = this.cashFlowFacadeService.incomesDataset$;
+  readonly incomeCategories$ = this.cashFlowFacadeService.getCategories('income');
   readonly expenses$: Observable<CashFlowData> = this.cashFlowFacadeService.expensesDataset$;
-  readonly categories$: Observable<{ incomes: Category[]; expenses: Category[] }> = this.getCategories$();
+  readonly expenseCategories$ = this.cashFlowFacadeService.getCategories('expense');
+  readonly isLoading$: Observable<boolean> = this.cashFlowFacadeService.isLoading$;
 
   readonly activeTabIndex$: Observable<number> = this.cashFlowFacadeService.activeTabIndex$;
 
@@ -57,14 +58,5 @@ export class CashFlowComponent {
 
   setActiveIndex(event: TabViewChangeEvent): void {
     this.cashFlowFacadeService.setActiveTabIndex(event.index);
-  }
-
-  private getCategories$(): Observable<{ incomes: Category[]; expenses: Category[] }> {
-    return this.cashFlowFacadeService.categories$.pipe(
-      map((categories) => ({
-        incomes: categories.filter((cat) => cat.type === 'income'),
-        expenses: categories.filter((cat) => cat.type === 'expense'),
-      }))
-    );
   }
 }
