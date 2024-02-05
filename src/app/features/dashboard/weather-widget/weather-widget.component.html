@@ -57,7 +57,7 @@
           (keyup.enter)="loadWeatherDataByCityName(searchCityNameControl.value)" />
         <p-button
           [icon]="PrimeIcons.SEARCH"
-          [disabled]="!searchCityNameControl.value || !!state.isLoading"
+          [disabled]="searchCityNameControl.invalid || !!state.isLoading"
           (onClick)="loadWeatherDataByCityName(searchCityNameControl.value)" />
       </div>
 

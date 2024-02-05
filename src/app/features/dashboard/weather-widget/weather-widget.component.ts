@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { tap } from 'rxjs';
 
@@ -47,25 +47,22 @@ export class WeatherWidgetComponent implements OnInit {
   readonly state = connectState(this.destroyRef, this.weatherWidgetFacadeService.state);
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  readonly isOpen: WritableSignal<boolean> = signal(false);
-  readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true });
+  readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true, validators: [Validators.required] });
+  readonly isOpen: WritableSignal<boolean> = signal(JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? 'false'));
 
   ngOnInit(): void {
     this.weatherWidgetFacadeService.checkWeatherData();
     this.weatherWidgetFacadeService.checkGeolocation();
-
-    this.isOpen.update(() => JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? 'false'));
   }
 
   loadWeatherDataByCityName(cityName: string): void {
-    cityName.length &&
-      this.weatherWidgetFacadeService
-        .loadWeatherDataByCityName$(cityName)
-        .pipe(
-          tap(() => this.searchCityNameControl.reset()),
-          takeUntilDestroyed(this.destroyRef)
-        )
-        .subscribe();
+    this.weatherWidgetFacadeService
+      .loadWeatherDataByCityName$(cityName)
+      .pipe(
+        tap(() => this.searchCityNameControl.reset()),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   loadWeatherData(): void {

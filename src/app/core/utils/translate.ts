@@ -7,7 +7,8 @@ import { AppLanguage } from '#core/config/models';
 
 export const lang = 'lang';
 
-export function initializeTranslations(translateService: TranslateService) {
+export function initializeTranslations() {
+  const translateService = inject(TranslateService);
   const languages: Array<AppLanguage> = ['pl', 'en'];
 
   return () => {

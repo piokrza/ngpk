@@ -50,8 +50,8 @@ export class WeatherWidgetFacadeService {
         this.weatherWidgetState.update('weatherData', data);
         sessionStorage.setItem(weatherData, JSON.stringify(data));
       }),
-      catchError(({ error }): Observable<never> => {
-        this.weatherWidgetState.update('errorMessage', error.message);
+      catchError((err): Observable<never> => {
+        this.weatherWidgetState.update('errorMessage', err);
         return EMPTY;
       }),
       finalize(() => this.weatherWidgetState.update('isLoading', false))

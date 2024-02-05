@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PathFragment } from '#core/enums';
 import { DriveComponent } from '#drive/index';
 
 const routes: Routes = [
@@ -9,7 +10,7 @@ const routes: Routes = [
     component: DriveComponent,
   },
   {
-    path: `:id`,
+    path: `${PathFragment.ID}`,
     component: DriveComponent,
   },
 ];

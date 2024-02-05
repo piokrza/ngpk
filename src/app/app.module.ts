@@ -13,7 +13,7 @@ import { provideRouter, RouterOutlet, withComponentInputBinding, withViewTransit
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { Environment } from 'src/environments';
 import { environment } from 'src/environments/environment';
 
@@ -59,7 +59,7 @@ const providers: Array<Provider | EnvironmentProviders> = [
   provideHttpClient(withInterceptors(interceptors)),
   { provide: Environment, useValue: environment },
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
-  { provide: APP_INITIALIZER, useFactory: initializeTranslations, deps: [TranslateService], multi: true },
+  { provide: APP_INITIALIZER, useFactory: initializeTranslations, multi: true },
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })
