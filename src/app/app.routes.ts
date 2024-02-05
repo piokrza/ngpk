@@ -13,7 +13,7 @@ export const routes: Routes = [
   {
     path: AppPaths.DASHBOARD,
     canActivate: [AngularFireAuthGuard],
-    loadChildren: async () => (await import('#dashboard/dashboard.module')).DashboardModule,
+    loadChildren: async () => (await import('#dashboard/index')).DashboardModule,
     data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
   },
   {
@@ -21,11 +21,11 @@ export const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     title: getTitle('auth'),
     data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
-    loadChildren: async () => (await import('#auth/auth.module')).AuthModule,
+    loadChildren: async () => (await import('#auth/index')).AuthModule,
   },
   {
     path: '**',
-    loadComponent: async () => (await import('#shared/components/page-not-found/page-not-found.component')).PageNotFoundComponent,
+    loadComponent: async () => (await import('#shared/components')).PageNotFoundComponent,
     title: getTitle('pageNotFound'),
   },
 ];

@@ -35,7 +35,7 @@ export class UpdateFormComponent implements OnInit {
         description: this.cashFlow.description,
         date: this.cashFlow.date.toDate(),
       });
-    }, 0);
+    }, 50);
   }
 
   onSubmit(): void {
