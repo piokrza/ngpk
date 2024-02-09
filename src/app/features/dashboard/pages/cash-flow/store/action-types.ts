@@ -14,7 +14,4 @@ export enum ActionTypes {
   DELETE_CASHFLOW = '[Incomes] Delete cashflow',
   DELETE_CASHFLOW_SUCCESS = '[Incomes] Delete cashflow success',
   DELETE_CASHFLOW_FAILURE = '[Incomes] Delete cashflow failure',
-
-  SET_INCOMES_FILTER = '[Cash flow] Set incomes filter',
-  SET_EXPENSES_FILTER = '[Cash flow] Set expenses filter',
 }

@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, combineLatestWith, map, tap } from 'rxjs';
 
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -10,7 +10,7 @@ import { PaginatorState } from 'primeng/paginator';
 
 import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowData, Category, CategoryType } from '#cash-flow/models';
-import { CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
+import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
 import { CashFlowActions, CashFlowSelectors } from '#cash-flow/store';
 import { ConfigSelectors } from '#core/config/store';
 import { baseDialogStyles } from '#core/constants';
@@ -25,20 +25,15 @@ export class CashFlowFacadeService {
   private readonly cashFlowService = inject(CashFlowService);
   private readonly translateService = inject(TranslateService);
   private readonly confirmationService = inject(ConfirmationService);
+  private readonly cashFlowFilterService = inject(CashFlowFilterService);
   private readonly cashFlowPaginationService = inject(CashFlowPaginationService);
 
   get incomesDataset$(): Observable<CashFlowData> {
-    return this.cashFlowService.setCashFlowData(
-      this.store.select(CashFlowSelectors.incomes),
-      this.cashFlowPaginationService.incomesPaginatorState$
-    );
+    return this.cashFlowService.setCashFlowData(this.incomes$, this.cashFlowPaginationService.incomesPaginatorState$);
   }
 
   get expensesDataset$(): Observable<CashFlowData> {
-    return this.cashFlowService.setCashFlowData(
-      this.store.select(CashFlowSelectors.expenses),
-      this.cashFlowPaginationService.expensesPaginatorState$
-    );
+    return this.cashFlowService.setCashFlowData(this.expenses$, this.cashFlowPaginationService.expensesPaginatorState$);
   }
 
   get activeTabIndex$(): Observable<number> {
@@ -51,6 +46,24 @@ export class CashFlowFacadeService {
 
   get categories$(): Observable<Category[]> {
     return this.store.select(ConfigSelectors.cashFlowCategories());
+  }
+
+  private get incomes$(): Observable<CashFlow[]> {
+    return this.store.select(CashFlowSelectors.cashFlow('income')).pipe(
+      combineLatestWith(this.cashFlowFilterService.select('incomeCategory')),
+      map(([incomes, categoryFilter]) => {
+        return incomes.filter((income) => (categoryFilter.length ? categoryFilter.includes(income.categoryId) : income));
+      })
+    );
+  }
+
+  private get expenses$(): Observable<CashFlow[]> {
+    return this.store.select(CashFlowSelectors.cashFlow('expense')).pipe(
+      combineLatestWith(this.cashFlowFilterService.select('expenseCategory')),
+      map(([expenses, categoryFilter]) => {
+        return expenses.filter((income) => (categoryFilter.length ? categoryFilter.includes(income.categoryId) : income));
+      })
+    );
   }
 
   getCategories(type: CategoryType): Observable<Category[]> {
@@ -102,11 +115,11 @@ export class CashFlowFacadeService {
   }
 
   setIncomesCategoryFilter(categoryIds: string[]): void {
-    this.store.dispatch(CashFlowActions.setIncomesFilter({ categoryIds }));
+    this.cashFlowFilterService.update('incomeCategory', categoryIds);
   }
 
   setExpensesCategoryFilter(categoryIds: string[]): void {
-    this.store.dispatch(CashFlowActions.setExpensesFilter({ categoryIds }));
+    this.cashFlowFilterService.update('expenseCategory', categoryIds);
   }
 
   setIncomesPaginatorState(event: PaginatorState): void {

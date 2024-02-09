@@ -18,6 +18,3 @@ export const deleteCashFlowFailure = createAction(ActionTypes.DELETE_CASHFLOW_FA
 export const updateCashFlow = createAction(ActionTypes.UPDATE_CASHFLOW, props<{ cashFlow: CashFlow }>());
 export const updateCashFlowSuccess = createAction(ActionTypes.UPDATE_CASHFLOW_SUCCESS);
 export const updateCashFlowFailure = createAction(ActionTypes.UPDATE_CASHFLOW_FAILURE);
-
-export const setIncomesFilter = createAction(ActionTypes.SET_INCOMES_FILTER, props<{ categoryIds: string[] }>());
-export const setExpensesFilter = createAction(ActionTypes.SET_EXPENSES_FILTER, props<{ categoryIds: string[] }>());
