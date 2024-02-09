@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Observable, first } from 'rxjs';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
@@ -7,7 +7,8 @@ import { TabViewChangeEvent } from 'primeng/tabview';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 
 import { LabeledData } from '#core/models';
-import { Note, NotesData, Task, TaskFilter, TasksData, ToggleIsStepCompletePayload } from '#tasker/models';
+import { connectState } from '#core/utils';
+import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
 import { TaskerFacadeService } from '#tasker/services';
 
 @Component({
@@ -17,14 +18,16 @@ import { TaskerFacadeService } from '#tasker/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskerComponent {
+  private readonly destroyRef = inject(DestroyRef);
   private readonly taskerFacadeService = inject(TaskerFacadeService);
 
-  readonly tasksData$: Observable<TasksData> = this.taskerFacadeService.tasksData$;
-  readonly isTasksLoading$: Observable<boolean> = this.taskerFacadeService.isTasksLoading$;
-  readonly notesData$: Observable<NotesData> = this.taskerFacadeService.notesData$;
-  readonly isNotesLoading$: Observable<boolean> = this.taskerFacadeService.isNotesLoading$;
-
-  readonly activeTabIndex$: Observable<number> = this.taskerFacadeService.activeTabIndex$;
+  readonly state = connectState(this.destroyRef, {
+    tasksData: this.taskerFacadeService.tasksData$,
+    isTasksLoading: this.taskerFacadeService.isTasksLoading$,
+    notesData: this.taskerFacadeService.notesData$,
+    isNotesLoading: this.taskerFacadeService.isNotesLoading$,
+    activeTabIndex: this.taskerFacadeService.activeTabIndex$,
+  });
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly filters: Array<LabeledData<TaskFilter>> = this.taskerFacadeService.taskFilters;

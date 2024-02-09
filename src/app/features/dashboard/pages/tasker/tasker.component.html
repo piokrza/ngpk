@@ -1,21 +1,21 @@
-<p-tabView [activeIndex]="(activeTabIndex$ | async) ?? 0" (onChange)="onTabviewChange($event)">
+<p-tabView [activeIndex]="state.activeTabIndex" (onChange)="onTabviewChange($event)">
   <p-tabPanel [header]="'tasker.title' | translate">
-    @if (isTasksLoading$ | async) {
+    @if (state.isTasksLoading) {
       <div class="flex justify-content-center">
         <p-progressSpinner />
       </div>
     } @else {
-      @if (tasksData$ | async; as data) {
+      @if (state.tasksData; as data) {
         <div class="container">
           <div class="dropdown-wrapper">
             <small class="block mb-2"> {{ 'common.status' | translate }}</small>
             <p-dropdown
-              [options]="filters"
-              [(ngModel)]="data.filter"
-              (onChange)="taskFilterChange($event)"
               optionLabel="label"
               optionValue="data"
-              styleClass="w-full" />
+              styleClass="w-full"
+              [options]="filters"
+              [(ngModel)]="data.filter"
+              (onChange)="taskFilterChange($event)" />
           </div>
 
           <ul class="flex-container">
@@ -47,13 +47,13 @@
   </p-tabPanel>
 
   <p-tabPanel [header]="'tasker.notes' | translate">
-    @if (isNotesLoading$ | async) {
+    @if (state.isNotesLoading) {
       <div class="flex justify-content-center">
         <p-progressSpinner />
       </div>
     } @else {
       @defer {
-        @if (notesData$ | async; as data) {
+        @if (state.notesData; as data) {
           <div class="container">
             @if (data.notes.length) {
               <p-toggleButton
