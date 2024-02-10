@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { AuthPaths } from '#auth/enums';
 import { LoginForm } from '#auth/models';
@@ -19,11 +19,7 @@ export class LoginFormComponent {
 
   readonly AuthPaths: typeof AuthPaths = AuthPaths;
   readonly form: FormGroup<LoginForm> = inject(AuthFormService).loginForm;
-  readonly errorMessage$: Observable<string | null> = this.store.select(AuthSelectors.errorMessage).pipe(
-    tap((errorMessage) => {
-      typeof errorMessage === 'string' && setTimeout(() => this.store.dispatch(AuthActions.resetErrorMessage()), 5000);
-    })
-  );
+  readonly errorMessage$: Observable<string | null> = this.store.select(AuthSelectors.errorMessage);
 
   signinWithGoogle(): void {
     this.store.dispatch(AuthActions.signInWithGoogle());
