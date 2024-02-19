@@ -8,7 +8,6 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { LayoutModule } from '#layout/index';
 import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
@@ -25,7 +24,6 @@ const imports = [
   SettingsRoutingModule,
   FormsModule,
   ContainerComponent,
-  LayoutModule,
   DynamicDialogModule,
   ButtonModule,
   ReactiveFormsModule,

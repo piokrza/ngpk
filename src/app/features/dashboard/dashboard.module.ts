@@ -6,11 +6,10 @@ import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { DashboardRoutingModule, DashboardComponent } from '#dashboard/index';
-import { LayoutModule } from '#layout/index';
 import { ContainerComponent } from '#shared/components';
 
 const declarations = [DashboardComponent];
-const imports = [CommonModule, DashboardRoutingModule, ChartModule, LayoutModule, CardModule, ProgressSpinnerModule, ContainerComponent];
+const imports = [CommonModule, DashboardRoutingModule, ChartModule, CardModule, ProgressSpinnerModule, ContainerComponent];
 
 @NgModule({ declarations, imports })
 export class DashboardModule {}

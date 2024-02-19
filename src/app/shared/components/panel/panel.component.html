@@ -1,0 +1,19 @@
+<div class="h-screen p-4">
+  <org-container [styleClass]="['h-full']">
+    <div class="flex justify-content-between mb-4">
+      <div></div>
+
+      <p-button class="sidebar-btn" size="large" [rounded]="true" [icon]="PrimeIcons.BARS" (onClick)="sidebarVisible = true" />
+    </div>
+
+    <main>
+      <router-outlet />
+    </main>
+  </org-container>
+
+  <p-sidebar position="right" [(visible)]="sidebarVisible">
+    <h3>Sidebar</h3>
+
+    <h1>links here</h1>
+  </p-sidebar>
+</div>

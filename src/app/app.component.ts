@@ -7,7 +7,11 @@ import { ThemeService } from '#core/services';
 
 @Component({
   selector: 'org-root',
-  template: `<router-outlet />`,
+  template: `
+    <org-panel>
+      <router-outlet />
+    </org-panel>
+  `,
 })
 export class AppComponent implements OnInit {
   private readonly themeService = inject(ThemeService);

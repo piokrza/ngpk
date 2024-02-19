@@ -13,11 +13,7 @@ import { TaskerActions } from '#tasker/store';
 
 @Component({
   selector: 'org-dashboard',
-  template: `
-    <org-layout>
-      <router-outlet />
-    </org-layout>
-  `,
+  template: `<router-outlet />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit, OnDestroy {
