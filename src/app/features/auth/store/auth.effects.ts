@@ -28,6 +28,7 @@ export class AuthEffects {
       exhaustMap(() => {
         return from(this.authApiService.signinWithGoogle()).pipe(
           map(({ user }) => AuthActions.signInWithGoogleSuccess({ user: this.userService.getIUserModel(user as firebase.User) })),
+          tap(() => this.router.navigate([''])),
           catchError(() => of(AuthActions.userNotAuthenticated()))
         );
       })
@@ -49,7 +50,8 @@ export class AuthEffects {
       ofType(AuthActions.signOut),
       exhaustMap((): Promise<void> => this.authApiService.signOut()),
       map(() => AuthActions.userNotAuthenticated()),
-      tap(() => void this.router.navigateByUrl(`/${AppPaths.AUTHENTICATION}`))
+      tap(() => this.dbSubscriptionService.unsubscribe()),
+      tap(() => void this.router.navigate([AppPaths.AUTHENTICATION]))
     );
   });
 
@@ -59,6 +61,7 @@ export class AuthEffects {
       exhaustMap(({ payload }) => {
         return from(this.authApiService.signInWithEmailAndPassword(payload)).pipe(
           map(() => AuthActions.signInWithEmailAndPasswordSuccess()),
+          tap(() => this.router.navigate([''])),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message }));
           })
@@ -75,6 +78,7 @@ export class AuthEffects {
           map(({ user }) => {
             return AuthActions.signUpWithEmailAndPasswordSuccess({ user: this.userService.getIUserModel(user as firebase.User) });
           }),
+          tap(() => this.router.navigate([''])),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message }));
           })

@@ -14,6 +14,7 @@ export interface FeatureFlags {
   settings: boolean;
   tasker: boolean;
   overview: boolean;
+  home: boolean;
 }
 
 export abstract class Environment {

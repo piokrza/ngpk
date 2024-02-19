@@ -34,7 +34,7 @@ export const routes: Routes = [
     path: AppPaths.SETTINGS,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('settings'),
-    data: { authGuardPipe: () => redirectUnauthorizedTo(['']) },
+    data: { authGuardPipe: () => redirectUnauthorizedTo('') },
     loadChildren: async () => (await import('#settings/index')).SettingsModule,
   },
   {

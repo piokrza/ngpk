@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { Observable, first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
@@ -8,13 +8,15 @@ import { TabViewChangeEvent } from 'primeng/tabview';
 import { CashFlow, CashFlowData } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
 import { rowsPerPageOptions } from '#core/constants';
+import { TitleService } from '#core/services';
 
 @Component({
   selector: 'org-cash-flow',
   templateUrl: './cash-flow.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowComponent {
+export class CashFlowComponent implements OnInit {
+  private readonly titleService = inject(TitleService);
   private readonly cashFlowFacadeService = inject(CashFlowFacadeService);
 
   readonly incomes$: Observable<CashFlowData> = this.cashFlowFacadeService.incomesDataset$;
@@ -27,6 +29,10 @@ export class CashFlowComponent {
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions;
+
+  ngOnInit(): void {
+    this.titleService.setTitle('cashFlow');
+  }
 
   addCashFlow(isIncomeMode: boolean): void {
     this.cashFlowFacadeService.openCashFlowDialog$(isIncomeMode).pipe(first()).subscribe();

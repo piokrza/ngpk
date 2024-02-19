@@ -1,21 +1,52 @@
 <div class="h-screen p-4">
   <org-container [styleClass]="['h-full']">
-    <div class="flex justify-content-between mb-4">
-      <div></div>
+    <div class="wrapper">
+      <div class="flex justify-content-between align-items-center mb-4">
+        <h1>
+          @if (state.isAuthPage === false) {
+            {{ state.title | translate }}
+          }
+        </h1>
 
-      <p-button class="sidebar-btn" size="large" [rounded]="true" [icon]="PrimeIcons.BARS" (onClick)="sidebarVisible = true" />
+        <p-button
+          class="sidebar-btn"
+          size="large"
+          [text]="true"
+          [rounded]="true"
+          [icon]="PrimeIcons.BARS"
+          (onClick)="sidebarVisible = true" />
+      </div>
+
+      <main>
+        <ng-content />
+      </main>
     </div>
-
-    <main>
-      <ng-content />
-    </main>
   </org-container>
 
   <p-sidebar position="right" [(visible)]="sidebarVisible">
-    <div class="h-full flex flex-column justify-content-between">
-      <div>Links here</div>
+    <ng-template pTemplate="header">
+      <div class="flex justify-content-center align-items-center gap-2">
+        <img [src]="state.user?.photoURL" class="border-circle w-3rem" alt="userImg" />
+        <span>{{ state.user?.displayName }}</span>
+      </div>
+    </ng-template>
 
-      <p-button styleClass="w-full" [label]="'Logout'" />
+    <div class="h-full flex flex-column justify-content-between sidebar">
+      <ul class="sidebar__list">
+        @for (link of state.links; track $index) {
+          <li routerLinkActive="active" class="sidebar__link" [routerLinkActiveOptions]="{ exact: true }" (click)="sidebarVisible = false">
+            <a [routerLink]="link.routerLink" class="block p-3">
+              <i [class]="link.icon + ' mr-2'"></i>
+              {{ link.label ?? '' | translate }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <p-button styleClass="w-full" [label]="'auth.' + (state.user ? 'signout' : 'loginLabel') | translate" (onClick)="authorize()" />
     </div>
   </p-sidebar>
 </div>
+
+<p-toast position="top-right" />
+<p-confirmDialog />

@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params } from '@angular/router';
 import { tap } from 'rxjs';
 
+import { TitleService } from '#core/services';
 import { DriveFacadeService } from '#drive/services';
 
 @Component({
@@ -15,10 +16,13 @@ import { DriveFacadeService } from '#drive/services';
 })
 export class DriveComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly titleService = inject(TitleService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly driveFacadeService = inject(DriveFacadeService);
 
   ngOnInit(): void {
+    this.titleService.setTitle('drive');
+
     this.activatedRoute.params
       .pipe(
         tap((params: Params) => this.driveFacadeService.setParentId(params['id'] ?? '')),

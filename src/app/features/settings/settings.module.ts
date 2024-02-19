@@ -15,10 +15,10 @@ import {
   PanelComponent,
   ThemeTogglerComponent,
 } from '#settings/components';
-import { SettingsComponent, SettingsRoutingModule } from '#settings/index';
+import { SettingsRoutingModule } from '#settings/index';
 import { ContainerComponent, ThemeButtonComponent } from '#shared/components';
 
-const declarations = [SettingsComponent, ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];
+const declarations = [ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];
 const imports = [
   CommonModule,
   SettingsRoutingModule,

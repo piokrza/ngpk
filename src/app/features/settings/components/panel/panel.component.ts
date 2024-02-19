@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+
+import { TitleService } from '#core/services';
 
 @Component({
   selector: 'org-panel',
@@ -6,4 +8,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './panel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PanelComponent {}
+export class PanelComponent implements OnInit {
+  private readonly titleService = inject(TitleService);
+
+  ngOnInit(): void {
+    this.titleService.setTitle('settings');
+  }
+}

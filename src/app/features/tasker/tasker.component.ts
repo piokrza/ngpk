@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
@@ -7,6 +7,7 @@ import { TabViewChangeEvent } from 'primeng/tabview';
 import { ToggleButtonChangeEvent } from 'primeng/togglebutton';
 
 import { LabeledData } from '#core/models';
+import { TitleService } from '#core/services';
 import { connectState } from '#core/utils';
 import { Note, Task, TaskFilter, ToggleIsStepCompletePayload } from '#tasker/models';
 import { TaskerFacadeService } from '#tasker/services';
@@ -17,8 +18,9 @@ import { TaskerFacadeService } from '#tasker/services';
   styleUrl: './tasker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskerComponent {
+export class TaskerComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly titleService = inject(TitleService);
   private readonly taskerFacadeService = inject(TaskerFacadeService);
 
   readonly state = connectState(this.destroyRef, {
@@ -31,6 +33,10 @@ export class TaskerComponent {
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly filters: Array<LabeledData<TaskFilter>> = this.taskerFacadeService.taskFilters;
+
+  ngOnInit(): void {
+    this.titleService.setTitle('tasker');
+  }
 
   addTask(): void {
     this.taskerFacadeService.addTask$().pipe(first()).subscribe();
