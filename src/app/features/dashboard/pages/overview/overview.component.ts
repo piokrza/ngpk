@@ -9,7 +9,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CashFlowService } from '#cash-flow/services';
 import { AppPaths } from '#core/enums';
 import { connectState } from '#core/utils';
-import { DashobardPaths } from '#dashboard/enums';
 import { CashFlowCardsComponent, CashFlowChartComponent, TaskerPanelComponent } from '#overview/components';
 import { OverviewService } from '#overview/services';
 
@@ -39,6 +38,6 @@ export class OverviewComponent {
 
   navigateToCashFlow(itemLabel: string): void {
     this.cashFlowService.setActiveTabIndex(itemLabel === 'totalExpense' ? 1 : 0);
-    this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
+    this.router.navigate([AppPaths.CASH_FLOW]);
   }
 }

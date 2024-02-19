@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { PrimeIcons } from 'primeng/api';
@@ -11,7 +10,7 @@ import { AuthSelectors } from '#auth/store';
 import { connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
 
-const imports = [SidebarModule, ButtonModule, FormsModule, ContainerComponent, RouterOutlet];
+const imports = [SidebarModule, ButtonModule, FormsModule, ContainerComponent];
 
 @Component({
   selector: 'org-panel',

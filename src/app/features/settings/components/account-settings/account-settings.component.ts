@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { PrimeIcons } from 'primeng/api';
 
-import { DashboardPathFragments } from '#dashboard/enums';
+import { PathFragment } from '#core/enums';
 
 @Component({
   selector: 'org-account-settings',
@@ -11,5 +11,5 @@ import { DashboardPathFragments } from '#dashboard/enums';
 })
 export class AccountSettingsComponent {
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  readonly DashboardPathFragments: typeof DashboardPathFragments = DashboardPathFragments;
+  readonly PathFragment: typeof PathFragment = PathFragment;
 }

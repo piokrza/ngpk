@@ -6,7 +6,7 @@ import { Environment } from 'src/environments';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 
 import { AuthActions } from '#auth/store';
-import { DashobardPaths } from '#dashboard/enums';
+import { AppPaths } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
@@ -18,33 +18,26 @@ export class MenuService {
   getMenuLinks(): MenuItem[] {
     return [
       {
-        label: 'menu.home',
-        routerLink: DashobardPaths.OVERVIEW,
-        icon: PrimeIcons.HOME,
-        styleClass: 'lg:mr-2',
-        visible: this.environment.featureFlags['overview'],
-      },
-      {
         label: 'menu.drive',
-        routerLink: DashobardPaths.DRIVE,
+        routerLink: AppPaths.DRIVE,
         icon: PrimeIcons.FOLDER,
         visible: this.environment.featureFlags['drive'],
       },
       {
         label: 'menu.cashFlow',
-        routerLink: DashobardPaths.CASH_FLOW,
+        routerLink: AppPaths.CASH_FLOW,
         icon: PrimeIcons.SIGN_IN,
         visible: this.environment.featureFlags['cashFlow'],
       },
       {
         label: 'menu.tasker',
-        routerLink: DashobardPaths.TASKER,
+        routerLink: AppPaths.TASKER,
         icon: PrimeIcons.BOOK,
         visible: this.environment.featureFlags['tasker'],
       },
       {
         label: 'menu.settings',
-        routerLink: DashobardPaths.SETTINGS,
+        routerLink: AppPaths.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,
         visible: this.environment.featureFlags['settings'],
       },

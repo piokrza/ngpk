@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { finalize, interval, takeWhile, tap } from 'rxjs';
 
-import { AppPaths } from '#core/enums';
-
 const imports = [TranslateModule];
 
 @Component({
@@ -24,7 +22,7 @@ export class PageNotFoundComponent implements OnInit {
       .pipe(
         tap(() => this.count.update((count) => count - 1)),
         takeWhile(() => this.count() > 0),
-        finalize(() => this.router.navigate([AppPaths.DASHBOARD]))
+        finalize(() => this.router.navigate(['']))
       )
       .subscribe();
   }

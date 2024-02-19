@@ -7,20 +7,41 @@ import { getTitle } from '#core/utils';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: AppPaths.DASHBOARD,
-    pathMatch: 'full',
+    loadComponent: async () => (await import('#browser/index')).BrowserComponent,
   },
   {
-    path: AppPaths.DASHBOARD,
+    path: AppPaths.CASH_FLOW,
     canActivate: [AngularFireAuthGuard],
-    loadChildren: async () => (await import('#dashboard/index')).DashboardModule,
+    title: getTitle('cashFlow'),
     data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
+    loadChildren: async () => (await import('#cash-flow/index')).CashFlowModule,
+  },
+  {
+    path: AppPaths.DRIVE,
+    canActivate: [AngularFireAuthGuard],
+    title: getTitle('drive'),
+    data: { authGuardPipe: () => redirectUnauthorizedTo(['']) },
+    loadChildren: async () => (await import('#drive/index')).DriveModule,
+  },
+  {
+    path: AppPaths.TASKER,
+    canActivate: [AngularFireAuthGuard],
+    title: getTitle('tasker'),
+    data: { authGuardPipe: () => redirectUnauthorizedTo(['']) },
+    loadChildren: async () => (await import('#tasker/index')).TaskerModule,
+  },
+  {
+    path: AppPaths.SETTINGS,
+    canActivate: [AngularFireAuthGuard],
+    title: getTitle('settings'),
+    data: { authGuardPipe: () => redirectUnauthorizedTo(['']) },
+    loadChildren: async () => (await import('#settings/index')).SettingsModule,
   },
   {
     path: AppPaths.AUTHENTICATION,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('auth'),
-    data: { authGuardPipe: () => redirectLoggedInTo([AppPaths.DASHBOARD]) },
+    data: { authGuardPipe: () => redirectLoggedInTo(['']) },
     loadChildren: async () => (await import('#auth/index')).AuthModule,
   },
   {

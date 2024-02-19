@@ -6,7 +6,6 @@ import { Observable, map, switchMap } from 'rxjs';
 import { IUser } from '#auth/models';
 import { AuthSelectors } from '#auth/store';
 import { AppPaths } from '#core/enums';
-import { DashobardPaths } from '#dashboard/enums';
 import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
 import { DriveService } from '#drive/services';
 import { DriveActions, DriveSelectors } from '#drive/store';
@@ -65,7 +64,7 @@ export class DriveFacadeService {
     if (file.type === 'file') {
       window.open(file.url);
     } else {
-      this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.DRIVE, file.id]);
+      this.router.navigate([AppPaths.DRIVE, file.id]);
     }
   }
 }

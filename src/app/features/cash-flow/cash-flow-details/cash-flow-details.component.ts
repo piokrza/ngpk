@@ -13,7 +13,6 @@ import { CashFlowFacadeService } from '#cash-flow/services';
 import { ConfigSelectors } from '#core/config/store';
 import { AppPaths, DateFormats } from '#core/enums';
 import { connectState } from '#core/utils';
-import { DashobardPaths } from '#dashboard/enums';
 import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
 
@@ -63,7 +62,7 @@ export class CashFlowDetailsComponent {
   private get cashFlowDetails$(): Observable<CashFlow | undefined> {
     return this.activatedRoute.params.pipe(
       switchMap((params: Params) => this.cashFlowFacade.getCashFlowById$(params['id'] as string)),
-      tap((cashFlow) => !cashFlow && this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]))
+      tap((cashFlow) => !cashFlow && this.router.navigate([AppPaths.CASH_FLOW]))
     );
   }
 }

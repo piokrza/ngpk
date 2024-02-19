@@ -15,7 +15,6 @@ import { CashFlowActions, CashFlowSelectors } from '#cash-flow/store';
 import { ConfigSelectors } from '#core/config/store';
 import { baseDialogStyles } from '#core/constants';
 import { AppPaths } from '#core/enums';
-import { DashobardPaths } from '#dashboard/enums';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {
@@ -77,7 +76,7 @@ export class CashFlowFacadeService {
       icon: PrimeIcons.TRASH,
       accept: () => {
         this.store.dispatch(CashFlowActions.deleteCashFlow({ id }));
-        this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW]);
+        this.router.navigate([AppPaths.CASH_FLOW]);
       },
     });
   }

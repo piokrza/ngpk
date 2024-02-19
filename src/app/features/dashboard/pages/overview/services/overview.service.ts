@@ -14,7 +14,6 @@ import { baseDialogStyles } from '#core/constants';
 import { AppPaths } from '#core/enums';
 import { LabeledData, ObservableDictionary } from '#core/models';
 import { getRandomNumber } from '#core/utils';
-import { DashobardPaths } from '#dashboard/enums';
 import { ChartColor, OverviewStateModel, TaskerData } from '#overview/models';
 import { NoteFormComponent } from '#tasker/components';
 import { Note } from '#tasker/models';
@@ -50,7 +49,7 @@ export class OverviewService {
         if (note) {
           this.store.dispatch(TaskerActions.addNote({ note }));
           this.taskerService.setActiveTabIndex(1);
-          void this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.TASKER]);
+          void this.router.navigate([AppPaths.TASKER]);
         }
       })
     );

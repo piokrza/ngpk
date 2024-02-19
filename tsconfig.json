@@ -23,19 +23,15 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "#app/*": ["src/app/*"],
-
       "#core/*": ["src/app/core/*"],
       "#shared/*": ["src/app/shared/*"],
       "#store/*": ["src/app/store/*"],
       "#auth/*": ["src/app/features/auth/*"],
+      "#browser/*": ["src/app/features/browser/*"],
       "#settings/*": ["src/app/features/settings/*"],
       "#cash-flow/*": ["src/app/features/cash-flow/*"],
       "#tasker/*": ["src/app/features/tasker/*"],
       "#drive/*": ["src/app/features/drive/*"],
-
-      "#dashboard/*": ["src/app/features/dashboard/*"],
-      "#overview/*": ["src/app/features/dashboard/pages/overview/*"],
-
       "#weather-widget/*": ["src/app/features/weather-widget/*"]
     }
   },

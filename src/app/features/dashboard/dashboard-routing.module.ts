@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AppPaths } from '#core/enums';
 import { featureFlagGuard } from '#core/guards';
 import { getTitle } from '#core/utils';
-import { DashobardPaths } from '#dashboard/enums';
 import { DashboardComponent } from '#dashboard/index';
 
 const routes: Routes = [
@@ -12,36 +12,25 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: '',
-        redirectTo: DashobardPaths.OVERVIEW,
-        pathMatch: 'full',
-      },
-      {
-        path: DashobardPaths.OVERVIEW,
-        canMatch: [featureFlagGuard('overview')],
-        loadComponent: async () => (await import('#overview/index')).OverviewComponent,
-        title: getTitle('home'),
-      },
-      {
-        path: DashobardPaths.DRIVE,
+        path: AppPaths.DRIVE,
         canMatch: [featureFlagGuard('drive')],
         loadChildren: async () => (await import('#drive/index')).DriveModule,
         title: getTitle('drive'),
       },
       {
-        path: DashobardPaths.CASH_FLOW,
+        path: AppPaths.CASH_FLOW,
         canMatch: [featureFlagGuard('cashFlow')],
         loadChildren: async () => (await import('#cash-flow/index')).CashFlowModule,
         title: getTitle('cashFlow'),
       },
       {
-        path: DashobardPaths.SETTINGS,
+        path: AppPaths.SETTINGS,
         canMatch: [featureFlagGuard('settings')],
         loadChildren: async () => (await import('#settings/index')).SettingsModule,
         title: getTitle('settings'),
       },
       {
-        path: DashobardPaths.TASKER,
+        path: AppPaths.TASKER,
         canMatch: [featureFlagGuard('tasker')],
         loadChildren: async () => (await import('#tasker/index')).TaskerModule,
         title: getTitle('tasker'),

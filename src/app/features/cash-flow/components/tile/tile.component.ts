@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import { CashFlow } from '#cash-flow/models';
 import { AppPaths, DateFormats, PathFragment } from '#core/enums';
-import { DashobardPaths } from '#dashboard/enums';
 
 @Component({
   selector: 'org-tile',
@@ -23,6 +22,6 @@ export class TileComponent {
   readonly DateFormats: typeof DateFormats = DateFormats;
 
   navigateToDetails(): void {
-    this.router.navigate([AppPaths.DASHBOARD, DashobardPaths.CASH_FLOW, PathFragment.DETAILS, this.details.id]);
+    this.router.navigate([AppPaths.CASH_FLOW, PathFragment.DETAILS, this.details.id]);
   }
 }
