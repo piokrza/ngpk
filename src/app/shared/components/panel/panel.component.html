@@ -12,8 +12,10 @@
   </org-container>
 
   <p-sidebar position="right" [(visible)]="sidebarVisible">
-    <h3>Sidebar</h3>
+    <div class="h-full flex flex-column justify-content-between">
+      <div>Links here</div>
 
-    <h1>links here</h1>
+      <p-button styleClass="w-full" [label]="'Logout'" />
+    </div>
   </p-sidebar>
 </div>

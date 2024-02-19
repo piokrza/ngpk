@@ -3,8 +3,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import firebase from 'firebase/compat';
 import { EMPTY, forkJoin, switchMap } from 'rxjs';
 
-import { Category } from '#app/features/dashboard/pages/cash-flow/models';
 import { IUser } from '#auth/models';
+import { Category } from '#cash-flow/models';
 import { AppConfig } from '#core/config/models';
 import { Collection } from '#core/enums';
 

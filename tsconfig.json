@@ -31,7 +31,7 @@
 
       "#dashboard/*": ["src/app/features/dashboard/*"],
       "#layout/*": ["src/app/features/dashboard/layout/*"],
-      "#cash-flow/*": ["src/app/features/dashboard/pages/cash-flow/*"],
+      "#cash-flow/*": ["src/app/features/cash-flow/*"],
       "#overview/*": ["src/app/features/dashboard/pages/overview/*"],
       "#settings/*": ["src/app/features/dashboard/pages/settings/*"],
       "#tasker/*": ["src/app/features/dashboard/pages/tasker/*"],
