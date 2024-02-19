@@ -13,10 +13,10 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { isWidgetOpen } from '#core/constants';
 import { connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
-import { DetailsComponent } from '#weather-widget/components';
-import { WeatherIconPipe } from '#weather-widget/pipes';
-import { WeatherWidgetApiService, WeatherWidgetFacadeService } from '#weather-widget/services';
-import { WeatherWidgetState } from '#weather-widget/state';
+import { DetailsComponent } from '#weather/components';
+import { WeatherIconPipe } from '#weather/pipes';
+import { WeatherWidgetApiService, WeatherWidgetFacadeService } from '#weather/services';
+import { WeatherWidgetState } from '#weather/state';
 
 const imports = [
   CommonModule,
@@ -33,8 +33,8 @@ const providers = [WeatherWidgetFacadeService, WeatherWidgetApiService, WeatherW
 
 @Component({
   selector: 'org-weather-widget',
-  templateUrl: './weather-widget.component.html',
-  styleUrl: './weather-widget.component.scss',
+  templateUrl: './widget.component.html',
+  styleUrl: './widget.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   providers,

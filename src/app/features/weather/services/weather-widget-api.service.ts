@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { Environment } from 'src/environments';
 
-import { IGeolocation, WeatherResponse } from '#weather-widget/models';
+import { IGeolocation, WeatherResponse } from '#app/features/weather/models';
 
 @Injectable()
 export class WeatherWidgetApiService {

@@ -17,9 +17,9 @@ import { TaskerActions } from '#tasker/store';
 @Component({
   selector: 'org-root',
   template: `
-    <org-panel>
+    <org-layout>
       <router-outlet />
-    </org-panel>
+    </org-layout>
   `,
 })
 export class AppComponent implements OnInit {

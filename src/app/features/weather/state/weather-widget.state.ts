@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { State } from '#core/abstracts';
-import { WeatherWidgetStateModel } from '#weather-widget/models';
+import { WeatherWidgetStateModel } from '#weather/models';
 
 const initialState: WeatherWidgetStateModel = {
   isLoading: false,

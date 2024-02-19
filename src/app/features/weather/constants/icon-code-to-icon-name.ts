@@ -1,4 +1,4 @@
-import { WeatherIconCode, WeatherIconName } from '#weather-widget/models';
+import { WeatherIconCode, WeatherIconName } from '#app/features/weather/models';
 
 export const iconCodeToIconName: Record<WeatherIconCode, WeatherIconName> = {
   '01d': 'clear',

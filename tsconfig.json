@@ -32,7 +32,7 @@
       "#cash-flow/*": ["src/app/features/cash-flow/*"],
       "#tasker/*": ["src/app/features/tasker/*"],
       "#drive/*": ["src/app/features/drive/*"],
-      "#weather-widget/*": ["src/app/features/weather-widget/*"]
+      "#weather/*": ["src/app/features/weather/*"]
     }
   },
   "angularCompilerOptions": {

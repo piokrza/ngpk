@@ -116,6 +116,7 @@ export class AuthEffects {
         return from(this.userService.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('accUpdateSuccess'))),
+          tap(() => this.router.navigate([''])),
           catchError(() => of(AuthActions.updateAccountFailure()))
         );
       })

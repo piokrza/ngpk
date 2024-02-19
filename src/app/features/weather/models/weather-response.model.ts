@@ -1,4 +1,4 @@
-import { WeatherIconCode } from '#weather-widget/models';
+import { WeatherIconCode } from '#app/features/weather/models';
 
 export interface WeatherResponse {
   coord: {

@@ -3,9 +3,9 @@ import { EMPTY, Observable, catchError, finalize, tap } from 'rxjs';
 
 import { weatherData } from '#core/constants';
 import { ObservableDictionary } from '#core/models';
-import { IGeolocation, WeatherResponse, WeatherWidgetStateModel } from '#weather-widget/models';
-import { WeatherWidgetApiService } from '#weather-widget/services';
-import { WeatherWidgetState } from '#weather-widget/state';
+import { IGeolocation, WeatherResponse, WeatherWidgetStateModel } from '#weather/models';
+import { WeatherWidgetApiService } from '#weather/services';
+import { WeatherWidgetState } from '#weather/state';
 
 @Injectable()
 export class WeatherWidgetFacadeService {

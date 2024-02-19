@@ -1,4 +1,4 @@
-import { IGeolocation, WeatherResponse } from '#weather-widget/models';
+import { IGeolocation, WeatherResponse } from '#app/features/weather/models';
 
 export interface WeatherWidgetStateModel {
   isLoading: boolean;

@@ -11,11 +11,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
 
-import { AppPaths } from '#app/core/enums';
 import { AuthActions, AuthSelectors } from '#auth/store';
+import { AppPaths } from '#core/enums';
 import { MenuService, TitleService } from '#core/services';
 import { connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
+import { WeatherWidgetComponent } from '#weather/components';
 
 const imports = [
   RouterLink,
@@ -27,17 +28,18 @@ const imports = [
   RouterLinkActive,
   ContainerComponent,
   ConfirmDialogModule,
+  WeatherWidgetComponent,
 ];
 
 @Component({
-  selector: 'org-panel',
-  templateUrl: './panel.component.html',
-  styleUrl: './panel.component.scss',
+  selector: 'org-layout',
+  templateUrl: './layout.component.html',
+  styleUrl: './layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,
 })
-export class PanelComponent implements OnInit {
+export class LayoutComponent implements OnInit {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);

@@ -27,7 +27,7 @@ import { ConfigEffects } from '#core/config/store';
 import { httpErrorInterceptor } from '#core/interceptors';
 import { CustomTranslateHttpLoader, initializeTranslations } from '#core/utils';
 import { DriveEffects } from '#drive/store';
-import { PanelComponent } from '#shared/components';
+import { LayoutComponent } from '#shared/components';
 import { TaskerEffects } from '#tasker/store';
 
 const declarations = [AppComponent];
@@ -38,7 +38,7 @@ const imports = [
   BrowserModule,
   BrowserAnimationsModule,
   RouterOutlet,
-  PanelComponent,
+  LayoutComponent,
   StoreModule.forRoot(STORE_ROOT_REDUCERS),
   EffectsModule.forRoot(storeEffects),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),
