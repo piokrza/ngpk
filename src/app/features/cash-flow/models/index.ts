@@ -5,3 +5,5 @@ export * from './cash-flow.model';
 export * from './category.model';
 export * from './cash-flow-filters.model';
 export * from './cash-flow-type.model';
+export * from './chart-colors.model';
+export * from './overview-state.model';

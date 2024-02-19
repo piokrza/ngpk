@@ -16,9 +16,17 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
-import { AddFormComponent, DetailsBoxComponent, TileComponent, TileListComponent, UpdateFormComponent } from '#cash-flow/components';
+import {
+  AddFormComponent,
+  CashFlowCardsComponent,
+  CashFlowChartComponent,
+  DetailsBoxComponent,
+  TileComponent,
+  TileListComponent,
+  UpdateFormComponent,
+} from '#cash-flow/components';
 import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/index';
-import { CashFlowFacadeService, CashFlowFilterService, CashFlowPaginationService } from '#cash-flow/services';
+import { CashFlowFacadeService, CashFlowFilterService, CashFlowPaginationService, OverviewService } from '#cash-flow/services';
 import { ContainerComponent } from '#shared/components';
 import { TimestampPipe } from '#shared/pipes';
 
@@ -43,9 +51,11 @@ const imports = [
   ContainerComponent,
   MultiSelectModule,
   PaginatorModule,
+  CashFlowCardsComponent,
+  CashFlowChartComponent,
 ];
 
-const providers = [CashFlowFacadeService, CashFlowPaginationService, CashFlowFilterService];
+const providers = [CashFlowFacadeService, CashFlowPaginationService, CashFlowFilterService, OverviewService];
 
 @NgModule({ declarations, imports, providers })
 export class CashFlowModule {}

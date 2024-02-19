@@ -1,5 +1,6 @@
 {
   "cashFlow": {
+    "overview": "Overview",
     "incomes": "Incomes",
     "expenses": "Expenses",
     "addCashFlow": "Add cashflow",
@@ -26,6 +27,33 @@
     "allCategories": "All categories",
     "amount": "Amount",
     "createDate": "Create date"
+  },
+
+  "overview": {
+    "totalBalance": "Total balance:",
+    "totalIncome": "Total income:",
+    "totalExpense": "Total expense:",
+    "transactionAmount": "Transaction amount:",
+    "noProvidedData1": "No provided data, add",
+    "expence": " expence",
+    "income": " income",
+    "or": " or",
+    "noProvidedData2": " to calculate your balance.",
+    "expenses": "Expenses",
+    "incomes": "Incomes",
+    "todos": "Todos",
+    "completed": "Completed",
+    "notes": "Notes",
+    "rentalFees": "Rental fees",
+    "travel": "Travel",
+    "food": "Food",
+    "entertainment": "Entertainment",
+    "concerts": "Concerts",
+    "salary": "Salary",
+    "gifts": "Gifts",
+    "quickNote": "Quick note",
+    "noData": "No data",
+    "emptyFolder": "Folder is empty"
   },
 
   "incomes": {

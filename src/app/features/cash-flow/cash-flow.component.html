@@ -1,12 +1,23 @@
 <p-tabView [activeIndex]="(activeTabIndex$ | async) ?? 0" (onChange)="setActiveIndex($event)">
+  <p-tabPanel [header]="'cashFlow.overview' | translate">
+    <div class="mb-4">
+      <org-cash-flow-cards [cashFlowDataset]="overviewState.cashFlowDataSet" />
+    </div>
+
+    <div class="panels">
+      <org-cash-flow-chart [title]="'cashFlow.incomes' | translate" [chartDataset]="overviewState.incomesChartData" />
+      <org-cash-flow-chart [title]="'cashFlow.expenses' | translate" [chartDataset]="overviewState.expensesChartData" />
+    </div>
+  </p-tabPanel>
+
   <p-tabPanel [header]="'cashFlow.incomes' | translate">
-    @if (incomes$ | async; as data) {
+    @if (state.incomes; as data) {
       <org-tile-list
         class="wrapper"
         [isIncomeMode]="true"
-        [isLoading]="!!(isLoading$ | async)"
+        [isLoading]="!!state.isLoading"
         [cashFlowList]="data.paginatedCashFlow"
-        [categories]="(incomeCategories$ | async) ?? []"
+        [categories]="state.incomesCategories"
         (addCashFlow)="addCashFlow($event)"
         (removeCashFlow)="deleteCashFlow($event)"
         (updateCashFlow)="updateCashFlow($event)"
@@ -24,14 +35,14 @@
   </p-tabPanel>
 
   <p-tabPanel [header]="'cashFlow.expenses' | translate">
-    @if (expenses$ | async; as data) {
+    @if (state.expenses; as data) {
       @defer {
         <org-tile-list
           class="wrapper"
           [isIncomeMode]="false"
-          [isLoading]="!!(isLoading$ | async)"
+          [isLoading]="!!state.isLoading"
           [cashFlowList]="data.paginatedCashFlow"
-          [categories]="(expenseCategories$ | async) ?? []"
+          [categories]="state.expensesCategories"
           (addCashFlow)="addCashFlow($event)"
           (removeCashFlow)="deleteCashFlow($event)"
           (updateCashFlow)="updateCashFlow($event)"

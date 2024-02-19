@@ -1,5 +1,6 @@
 {
   "cashFlow": {
+    "overview": "Przegląd",
     "incomes": "Przychody",
     "expenses": "Wydatki",
     "addCashFlow": "Dodaj transakcje",
@@ -26,6 +27,33 @@
     "allCategories": "Wszystkie",
     "amount": "Kwota",
     "createDate": "Data utworzenia"
+  },
+
+  "overview": {
+    "totalBalance": "Balans:",
+    "totalIncome": "Przychód:",
+    "totalExpense": "Wydatki:",
+    "transactionAmount": "Ilość transakcji:",
+    "noProvidedData1": "Brak danych, dodaj",
+    "expence": " wydatek",
+    "income": " przychód",
+    "or": " lub",
+    "noProvidedData2": " by przeliczyć Twoj balans.",
+    "expenses": "Wydatki",
+    "incomes": "Przychody",
+    "todos": "Zadania",
+    "completed": "Ukończone",
+    "notes": "Notatki",
+    "rentalFees": "Wynajem",
+    "travel": "Podróże",
+    "food": "Jedzenie",
+    "entertainment": "Rozrywka",
+    "concerts": "Koncerty",
+    "salary": "Wynagrodzenie",
+    "gifts": "Prezenty",
+    "quickNote": "Szybka notatka",
+    "noData": "Brak danych",
+    "emptyFolder": "Folder jest pusty"
   },
 
   "incomes": {

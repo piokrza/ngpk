@@ -1,29 +1,37 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { Observable, first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
 import { TabViewChangeEvent } from 'primeng/tabview';
 
-import { CashFlow, CashFlowData } from '#cash-flow/models';
-import { CashFlowFacadeService } from '#cash-flow/services';
+import { CashFlow } from '#cash-flow/models';
+import { CashFlowFacadeService, OverviewService } from '#cash-flow/services';
 import { rowsPerPageOptions } from '#core/constants';
 import { TitleService } from '#core/services';
+import { connectState } from '#core/utils';
 
 @Component({
   selector: 'org-cash-flow',
   templateUrl: './cash-flow.component.html',
+  styleUrl: './cash-flow.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CashFlowComponent implements OnInit {
+  private readonly destroyRef = inject(DestroyRef);
   private readonly titleService = inject(TitleService);
+  private readonly overviewService = inject(OverviewService);
   private readonly cashFlowFacadeService = inject(CashFlowFacadeService);
 
-  readonly incomes$: Observable<CashFlowData> = this.cashFlowFacadeService.incomesDataset$;
-  readonly incomeCategories$ = this.cashFlowFacadeService.getCategories('income');
-  readonly expenses$: Observable<CashFlowData> = this.cashFlowFacadeService.expensesDataset$;
-  readonly expenseCategories$ = this.cashFlowFacadeService.getCategories('expense');
-  readonly isLoading$: Observable<boolean> = this.cashFlowFacadeService.isLoading$;
+  readonly state = connectState(this.destroyRef, {
+    incomes: this.cashFlowFacadeService.incomesDataset$,
+    incomesCategories: this.cashFlowFacadeService.getCategories('income'),
+    expenses: this.cashFlowFacadeService.expensesDataset$,
+    expensesCategories: this.cashFlowFacadeService.getCategories('expense'),
+    isLoading: this.cashFlowFacadeService.isLoading$,
+  });
+
+  readonly overviewState = connectState(this.destroyRef, this.overviewService.state);
 
   readonly activeTabIndex$: Observable<number> = this.cashFlowFacadeService.activeTabIndex$;
 

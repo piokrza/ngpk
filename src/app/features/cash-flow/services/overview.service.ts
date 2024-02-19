@@ -7,18 +7,18 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { CashFlow, Category } from '#cash-flow/models';
+import { OverviewStateModel } from '#app/features/cash-flow/models/overview-state.model';
+import { CashFlow, Category, ChartColor } from '#cash-flow/models';
 import { CashFlowSelectors } from '#cash-flow/store';
 import { ConfigSelectors } from '#core/config/store';
 import { baseDialogStyles } from '#core/constants';
 import { AppPaths } from '#core/enums';
 import { LabeledData, ObservableDictionary } from '#core/models';
 import { getRandomNumber } from '#core/utils';
-import { ChartColor, OverviewStateModel, TaskerData } from '#overview/models';
 import { NoteFormComponent } from '#tasker/components';
 import { Note } from '#tasker/models';
 import { TaskerService } from '#tasker/services';
-import { TaskerActions, TaskerSelectors } from '#tasker/store';
+import { TaskerActions } from '#tasker/store';
 
 @Injectable()
 export class OverviewService {
@@ -30,7 +30,6 @@ export class OverviewService {
 
   get state(): ObservableDictionary<OverviewStateModel> {
     return {
-      taskerData: this.taskerData$,
       isLoading: this.store.select(CashFlowSelectors.isLoading),
       cashFlowDataSet: this.cashFlowData$,
       incomesChartData: this.incomesChartData$,
@@ -67,19 +66,6 @@ export class OverviewService {
       expenses: this.store.select(CashFlowSelectors.cashFlow('expense')),
       categories: this.store.select(ConfigSelectors.cashFlowCategories('expense')),
     }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories, 'pink')));
-  }
-
-  private get taskerData$(): Observable<TaskerData> {
-    return combineLatest({
-      tasks: this.store.select(TaskerSelectors.tasks),
-      notes: this.store.select(TaskerSelectors.notes),
-    }).pipe(
-      map(({ tasks, notes }) => ({
-        totalTasksLength: tasks?.length,
-        completedTasksLength: tasks?.filter(({ isComplete }) => isComplete).length,
-        notesLength: notes?.length,
-      }))
-    );
   }
 
   private get cashFlowData$(): Observable<LabeledData<number>[]> {
