@@ -28,13 +28,13 @@
       "#shared/*": ["src/app/shared/*"],
       "#store/*": ["src/app/store/*"],
       "#auth/*": ["src/app/features/auth/*"],
+      "#settings/*": ["src/app/features/settings/*"],
+      "#cash-flow/*": ["src/app/features/cash-flow/*"],
 
       "#dashboard/*": ["src/app/features/dashboard/*"],
-      "#layout/*": ["src/app/features/dashboard/layout/*"],
-      "#cash-flow/*": ["src/app/features/cash-flow/*"],
       "#overview/*": ["src/app/features/dashboard/pages/overview/*"],
-      "#settings/*": ["src/app/features/dashboard/pages/settings/*"],
-      "#tasker/*": ["src/app/features/dashboard/pages/tasker/*"],
+
+      "#tasker/*": ["src/app/features/tasker/*"],
       "#drive/*": ["src/app/features/dashboard/pages/drive/*"],
       "#weather-widget/*": ["src/app/features/dashboard/weather-widget/*"]
     }
