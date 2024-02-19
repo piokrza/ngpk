@@ -31,12 +31,12 @@
       "#settings/*": ["src/app/features/settings/*"],
       "#cash-flow/*": ["src/app/features/cash-flow/*"],
       "#tasker/*": ["src/app/features/tasker/*"],
+      "#drive/*": ["src/app/features/drive/*"],
 
       "#dashboard/*": ["src/app/features/dashboard/*"],
       "#overview/*": ["src/app/features/dashboard/pages/overview/*"],
 
-      "#drive/*": ["src/app/features/drive/*"],
-      "#weather-widget/*": ["src/app/features/dashboard/weather-widget/*"]
+      "#weather-widget/*": ["src/app/features/weather-widget/*"]
     }
   },
   "angularCompilerOptions": {
