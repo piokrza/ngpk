@@ -1,1 +1,11 @@
-<h1>this is browser</h1>
+<div class="flex justify-content-center">
+  <div>
+    <h1 class="text-center text-5xl">{{ 'Search' | translate }}</h1>
+    <span class="p-input-icon-left">
+      <i [class]="PrimeIcons.SEARCH"></i>
+      <input type="text" pInputText pAutoFocus [autofocus]="true" [(ngModel)]="searchField" />
+    </span>
+  </div>
+</div>
+
+<p-divider styleClass="my-6" />

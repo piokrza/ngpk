@@ -52,7 +52,7 @@ export class LayoutComponent {
     user: this.store.select(AuthSelectors.user),
     links: this.menuService.links$,
     title: this.titleService.title$,
-    isAuthPage: this.isAuthPage$,
+    isTitleVisible: this.isTitleVisible$,
   });
 
   sidebarVisible = false;
@@ -71,10 +71,10 @@ export class LayoutComponent {
     this.sidebarVisible = false;
   }
 
-  get isAuthPage$(): Observable<boolean> {
+  get isTitleVisible$(): Observable<boolean> {
     return this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map(({ url }) => url.includes(AppPaths.AUTHENTICATION))
+      map(({ url }) => url.includes(AppPaths.AUTHENTICATION) || url === '/')
     );
   }
 }
