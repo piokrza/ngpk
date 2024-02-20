@@ -17,6 +17,8 @@ class EnvironmentImpl implements Environment {
     tasker: true,
     overview: true,
     home: true,
+    pageNotFound: true,
+    auth: true,
   };
   weatherBaseUrl = 'https://api.openweathermap.org/data/2.5/weather';
   weatherApiKey = '253353dc15d16c96be28e7780f4d500f';

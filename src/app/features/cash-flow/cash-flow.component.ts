@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { Observable, first } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
@@ -8,7 +8,6 @@ import { TabViewChangeEvent } from 'primeng/tabview';
 import { CashFlow } from '#cash-flow/models';
 import { CashFlowFacadeService, OverviewService } from '#cash-flow/services';
 import { rowsPerPageOptions } from '#core/constants';
-import { TitleService } from '#core/services';
 import { connectState } from '#core/utils';
 
 @Component({
@@ -17,9 +16,8 @@ import { connectState } from '#core/utils';
   styleUrl: './cash-flow.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CashFlowComponent implements OnInit {
+export class CashFlowComponent {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly titleService = inject(TitleService);
   private readonly overviewService = inject(OverviewService);
   private readonly cashFlowFacadeService = inject(CashFlowFacadeService);
 
@@ -37,10 +35,6 @@ export class CashFlowComponent implements OnInit {
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions;
-
-  ngOnInit(): void {
-    this.titleService.setTitle('cashFlow');
-  }
 
   addCashFlow(isIncomeMode: boolean): void {
     this.cashFlowFacadeService.openCashFlowDialog$(isIncomeMode).pipe(first()).subscribe();

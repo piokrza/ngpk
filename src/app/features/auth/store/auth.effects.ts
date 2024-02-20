@@ -9,7 +9,7 @@ import { catchError, EMPTY, exhaustMap, from, map, of, takeUntil, tap } from 'rx
 import { AuthApiService, UserService } from '#auth/services';
 import { AuthActions } from '#auth/store';
 import { ActionTypes } from '#auth/store/action-types';
-import { AppPaths, ToastStatus } from '#core/enums';
+import { ToastStatus } from '#core/enums';
 import { DbSubscriptionService, ToastService } from '#core/services';
 
 @Injectable()
@@ -28,7 +28,7 @@ export class AuthEffects {
       exhaustMap(() => {
         return from(this.authApiService.signinWithGoogle()).pipe(
           map(({ user }) => AuthActions.signInWithGoogleSuccess({ user: this.userService.getIUserModel(user as firebase.User) })),
-          tap(() => this.router.navigate([''])),
+          tap(() => this.router.navigateByUrl('')),
           catchError(() => of(AuthActions.userNotAuthenticated()))
         );
       })
@@ -51,7 +51,7 @@ export class AuthEffects {
       exhaustMap((): Promise<void> => this.authApiService.signOut()),
       map(() => AuthActions.userNotAuthenticated()),
       tap(() => this.dbSubscriptionService.unsubscribe()),
-      tap(() => void this.router.navigate([AppPaths.AUTHENTICATION]))
+      tap(() => void this.router.navigateByUrl(''))
     );
   });
 
@@ -61,7 +61,7 @@ export class AuthEffects {
       exhaustMap(({ payload }) => {
         return from(this.authApiService.signInWithEmailAndPassword(payload)).pipe(
           map(() => AuthActions.signInWithEmailAndPasswordSuccess()),
-          tap(() => this.router.navigate([''])),
+          tap(() => this.router.navigateByUrl('')),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message }));
           })
@@ -78,7 +78,7 @@ export class AuthEffects {
           map(({ user }) => {
             return AuthActions.signUpWithEmailAndPasswordSuccess({ user: this.userService.getIUserModel(user as firebase.User) });
           }),
-          tap(() => this.router.navigate([''])),
+          tap(() => this.router.navigateByUrl('')),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message }));
           })
@@ -116,7 +116,7 @@ export class AuthEffects {
         return from(this.userService.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('accUpdateSuccess'))),
-          tap(() => this.router.navigate([''])),
+          tap(() => this.router.navigateByUrl('')),
           catchError(() => of(AuthActions.updateAccountFailure()))
         );
       })

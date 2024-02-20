@@ -15,6 +15,8 @@ export interface FeatureFlags {
   tasker: boolean;
   overview: boolean;
   home: boolean;
+  pageNotFound: boolean;
+  auth: boolean;
 }
 
 export abstract class Environment {

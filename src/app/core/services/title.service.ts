@@ -1,16 +1,33 @@
+import { AppPaths } from '../enums';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { BehaviorSubject, Observable, filter, tap } from 'rxjs';
 import { Environment } from 'src/environments';
 
 @Injectable({ providedIn: 'root' })
 export class TitleService {
-  private readonly title$$ = new BehaviorSubject<string>('');
-
-  get title$(): Observable<string> {
-    return this.title$$.asObservable();
+  constructor(private readonly router: Router) {
+    this.router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        tap((event) => this.handleTitle(event.url))
+      )
+      .subscribe();
   }
 
-  setTitle(title: keyof Environment['featureFlags']): void {
+  private readonly title$$ = new BehaviorSubject<string>('');
+  readonly title$: Observable<string> = this.title$$.asObservable();
+
+  private setTitle(title: keyof Environment['featureFlags']): void {
     this.title$$.next(`menu.${title}`);
+  }
+
+  private handleTitle(url: string): void {
+    if (!url.length) this.setTitle('home');
+    if (url.includes(AppPaths.DRIVE)) this.setTitle('drive');
+    if (url.includes(AppPaths.TASKER)) this.setTitle('tasker');
+    if (url.includes(AppPaths.SETTINGS)) this.setTitle('settings');
+    if (url.includes(AppPaths.CASH_FLOW)) this.setTitle('cashFlow');
+    if (url.includes(AppPaths.AUTHENTICATION)) this.setTitle('auth');
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -39,7 +39,7 @@ const imports = [
   standalone: true,
   imports,
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
@@ -57,10 +57,6 @@ export class LayoutComponent implements OnInit {
 
   sidebarVisible = false;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-
-  ngOnInit(): void {
-    this.titleService.setTitle('home');
-  }
 
   authorize(): void {
     this.state.user &&
