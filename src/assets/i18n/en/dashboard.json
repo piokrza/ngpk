@@ -1,5 +1,6 @@
 {
   "cashFlow": {
+    "overview": "Overview",
     "incomes": "Incomes",
     "expenses": "Expenses",
     "addCashFlow": "Add cashflow",

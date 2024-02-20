@@ -25,7 +25,6 @@ export function connectState<T>(destroyRef: DestroyRef, sourcesObject: Observabl
       }),
       takeUntilDestroyed(destroyRef)
     )
-
     .subscribe(() => cdRef.markForCheck());
 
   return stateObject;

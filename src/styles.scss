@@ -13,6 +13,28 @@
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: var(--mask-bg);
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: var(--mask-bg);
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: var(--mask-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--highlight-bg);
+}
+
 body {
   min-height: 100vh;
   margin: 0;

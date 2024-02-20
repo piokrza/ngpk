@@ -9,7 +9,7 @@ import { catchError, EMPTY, exhaustMap, from, map, of, takeUntil, tap } from 'rx
 import { AuthApiService, UserService } from '#auth/services';
 import { AuthActions } from '#auth/store';
 import { ActionTypes } from '#auth/store/action-types';
-import { AppPaths, ToastStatus } from '#core/enums';
+import { ToastStatus } from '#core/enums';
 import { DbSubscriptionService, ToastService } from '#core/services';
 
 @Injectable()
@@ -27,8 +27,8 @@ export class AuthEffects {
       ofType(AuthActions.signInWithGoogle),
       exhaustMap(() => {
         return from(this.authApiService.signinWithGoogle()).pipe(
-          tap(() => void this.router.navigateByUrl(AppPaths.DASHBOARD)),
           map(({ user }) => AuthActions.signInWithGoogleSuccess({ user: this.userService.getIUserModel(user as firebase.User) })),
+          tap(() => this.router.navigateByUrl('')),
           catchError(() => of(AuthActions.userNotAuthenticated()))
         );
       })
@@ -50,7 +50,8 @@ export class AuthEffects {
       ofType(AuthActions.signOut),
       exhaustMap((): Promise<void> => this.authApiService.signOut()),
       map(() => AuthActions.userNotAuthenticated()),
-      tap(() => void this.router.navigateByUrl(`/${AppPaths.AUTHENTICATION}`))
+      tap(() => this.dbSubscriptionService.unsubscribe()),
+      tap(() => void this.router.navigateByUrl(''))
     );
   });
 
@@ -59,8 +60,8 @@ export class AuthEffects {
       ofType(AuthActions.signInWithEmailAndPassword),
       exhaustMap(({ payload }) => {
         return from(this.authApiService.signInWithEmailAndPassword(payload)).pipe(
-          tap(() => void this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
           map(() => AuthActions.signInWithEmailAndPasswordSuccess()),
+          tap(() => this.router.navigateByUrl('')),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signInWithEmailAndPasswordFailure({ errorMessage: message }));
           })
@@ -77,7 +78,7 @@ export class AuthEffects {
           map(({ user }) => {
             return AuthActions.signUpWithEmailAndPasswordSuccess({ user: this.userService.getIUserModel(user as firebase.User) });
           }),
-          tap(() => void this.router.navigateByUrl(`/${AppPaths.DASHBOARD}`)),
+          tap(() => this.router.navigateByUrl('')),
           catchError(({ message }: HttpErrorResponse) => {
             return of(AuthActions.signUpWithEmailAndPasswordFailure({ errorMessage: message }));
           })
@@ -115,6 +116,7 @@ export class AuthEffects {
         return from(this.userService.updateUser$(updatedUserData)).pipe(
           map(() => AuthActions.updateAccountSuccess()),
           tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('accUpdateSuccess'))),
+          tap(() => this.router.navigateByUrl('')),
           catchError(() => of(AuthActions.updateAccountFailure()))
         );
       })

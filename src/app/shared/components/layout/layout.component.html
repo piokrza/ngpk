@@ -1,0 +1,61 @@
+<div class="h-screen p-3">
+  <org-container [styleClass]="['h-full']">
+    <div class="wrapper">
+      <div class="flex justify-content-between align-items-center mb-4">
+        <h1>
+          @if (state.isAuthPage === false) {
+            {{ state.title | translate }}
+          }
+        </h1>
+
+        <p-button
+          class="sidebar-btn"
+          size="large"
+          [text]="true"
+          [rounded]="true"
+          [icon]="PrimeIcons.BARS"
+          (onClick)="sidebarVisible = true" />
+      </div>
+
+      <main>
+        <ng-content />
+      </main>
+    </div>
+  </org-container>
+
+  <p-sidebar position="right" styleClass="w-24rem" [(visible)]="sidebarVisible">
+    <ng-template pTemplate="header">
+      @if (state.user) {
+        <div class="flex justify-content-center align-items-center gap-2">
+          <img [src]="state.user.photoURL" class="border-circle w-3rem" alt="userImg" />
+          <div>
+            <p class="my-1">{{ state.user.displayName }}</p>
+            <p class="my-1">{{ state.user.email }}</p>
+          </div>
+        </div>
+      }
+    </ng-template>
+
+    @if (state.user) {
+      <org-weather-widget />
+    }
+
+    <ul class="sidebar__list">
+      @for (link of state.links; track $index) {
+        <li routerLinkActive="active" class="sidebar__link" [routerLinkActiveOptions]="{ exact: true }" (click)="sidebarVisible = false">
+          <a [routerLink]="link.routerLink" class="block p-3">
+            <i [class]="link.icon + ' mr-2'"></i>
+            {{ link.label ?? '' | translate }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <div class="mt-12">
+      <p-button styleClass="w-full mt-3" [label]="'auth.' + (state.user ? 'signout' : 'loginLabel') | translate" (onClick)="authorize()" />
+    </div>
+  </p-sidebar>
+</div>
+
+<p-toast position="top-right" />
+<p-confirmDialog />

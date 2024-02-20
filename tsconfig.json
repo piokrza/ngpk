@@ -23,20 +23,16 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "#app/*": ["src/app/*"],
-
       "#core/*": ["src/app/core/*"],
       "#shared/*": ["src/app/shared/*"],
       "#store/*": ["src/app/store/*"],
       "#auth/*": ["src/app/features/auth/*"],
-
-      "#dashboard/*": ["src/app/features/dashboard/*"],
-      "#layout/*": ["src/app/features/dashboard/layout/*"],
-      "#cash-flow/*": ["src/app/features/dashboard/pages/cash-flow/*"],
-      "#overview/*": ["src/app/features/dashboard/pages/overview/*"],
-      "#settings/*": ["src/app/features/dashboard/pages/settings/*"],
-      "#tasker/*": ["src/app/features/dashboard/pages/tasker/*"],
-      "#drive/*": ["src/app/features/dashboard/pages/drive/*"],
-      "#weather-widget/*": ["src/app/features/dashboard/weather-widget/*"]
+      "#browser/*": ["src/app/features/browser/*"],
+      "#settings/*": ["src/app/features/settings/*"],
+      "#cash-flow/*": ["src/app/features/cash-flow/*"],
+      "#tasker/*": ["src/app/features/tasker/*"],
+      "#drive/*": ["src/app/features/drive/*"],
+      "#weather/*": ["src/app/features/weather/*"]
     }
   },
   "angularCompilerOptions": {

@@ -1,5 +1,6 @@
 {
   "cashFlow": {
+    "overview": "Przegląd",
     "incomes": "Przychody",
     "expenses": "Wydatki",
     "addCashFlow": "Dodaj transakcje",
