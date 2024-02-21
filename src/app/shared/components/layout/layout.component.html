@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="flex justify-content-between align-items-center mb-4">
         <h1>
-          @if (state.isAuthPage === false) {
+          @if (state.isTitleVisible) {
             {{ state.title | translate }}
           }
         </h1>
@@ -26,32 +26,38 @@
   <p-sidebar position="right" styleClass="w-24rem" [(visible)]="sidebarVisible">
     <ng-template pTemplate="header">
       @if (state.user) {
-        <div class="flex justify-content-center align-items-center gap-2">
+        <div class="flex justify-content-center align-items-center gap-3">
           <img [src]="state.user.photoURL" class="border-circle w-3rem" alt="userImg" />
           <div>
-            <p class="my-1">{{ state.user.displayName }}</p>
-            <p class="my-1">{{ state.user.email }}</p>
+            <p class="my-0 font-semibold">{{ state.user.displayName }}</p>
+            <small>{{ state.user.email }}</small>
           </div>
         </div>
       }
     </ng-template>
 
-    @if (state.user) {
-      <org-weather-widget />
-    }
+    <div class="h-full flex flex-column justify-content-between">
+      <div>
+        @if (state.user) {
+          <org-weather-widget />
+        }
 
-    <ul class="sidebar__list">
-      @for (link of state.links; track $index) {
-        <li routerLinkActive="active" class="sidebar__link" [routerLinkActiveOptions]="{ exact: true }" (click)="sidebarVisible = false">
-          <a [routerLink]="link.routerLink" class="block p-3">
-            <i [class]="link.icon + ' mr-2'"></i>
-            {{ link.label ?? '' | translate }}
-          </a>
-        </li>
-      }
-    </ul>
+        <ul class="sidebar__list">
+          @for (link of state.links; track $index) {
+            <li
+              routerLinkActive="active"
+              class="sidebar__link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="sidebarVisible = false">
+              <a [routerLink]="link.routerLink" class="block p-3">
+                <i [class]="link.icon + ' mr-2'"></i>
+                {{ link.label ?? '' | translate }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
 
-    <div class="mt-12">
       <p-button styleClass="w-full mt-3" [label]="'auth.' + (state.user ? 'signout' : 'loginLabel') | translate" (onClick)="authorize()" />
     </div>
   </p-sidebar>

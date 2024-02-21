@@ -27,7 +27,7 @@
       "#shared/*": ["src/app/shared/*"],
       "#store/*": ["src/app/store/*"],
       "#auth/*": ["src/app/features/auth/*"],
-      "#browser/*": ["src/app/features/browser/*"],
+      "#search/*": ["src/app/features/search/*"],
       "#settings/*": ["src/app/features/settings/*"],
       "#cash-flow/*": ["src/app/features/cash-flow/*"],
       "#tasker/*": ["src/app/features/tasker/*"],

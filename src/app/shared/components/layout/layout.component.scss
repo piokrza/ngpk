@@ -7,11 +7,6 @@
 }
 
 .sidebar {
-  ul {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
   &__inner {
     height: 100%;
     display: flex;
@@ -21,7 +16,9 @@
 
   &__list {
     margin: 2rem 0;
-    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 
   &__link {

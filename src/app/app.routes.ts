@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: '',
     title: getTitle('home'),
-    loadComponent: async () => (await import('#browser/index')).BrowserComponent,
+    loadComponent: async () => (await import('#search/index')).SearchComponent,
   },
   {
     path: AppPaths.CASH_FLOW,

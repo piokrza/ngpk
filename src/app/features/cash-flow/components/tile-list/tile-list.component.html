@@ -1,15 +1,19 @@
 @if (isLoading) {
   <p-progressSpinner class="spinner" />
 } @else {
-  <div class="select-wrapper">
-    <small class="block mb-2">{{ 'common.categories' | translate }}</small>
-    <p-multiSelect
-      optionLabel="name"
-      styleClass="w-full"
-      [placeholder]="'cashFlow.allCategories' | translate"
-      [options]="categories"
-      [showHeader]="false"
-      (onChange)="onCategoryFilterChange($event)" />
+  <div class="flex justify-content-between align-items-center">
+    <div class="select-wrapper">
+      <small class="block mb-2">{{ 'common.categories' | translate }}</small>
+      <p-multiSelect
+        optionLabel="name"
+        styleClass="w-full"
+        [placeholder]="'cashFlow.allCategories' | translate"
+        [options]="categories"
+        [showHeader]="false"
+        (onChange)="onCategoryFilterChange($event)" />
+    </div>
+
+    <p-button size="small" [text]="true" [icon]="PrimeIcons.PLUS" (onClick)="addCashFlow.emit(isIncomeMode)" />
   </div>
 
   <ul class="flex-container">
