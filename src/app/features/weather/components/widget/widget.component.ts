@@ -11,9 +11,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 
 import { isWidgetOpen } from '#core/constants';
-import { connectState } from '#core/utils';
+import { StateObject, connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
 import { DetailsComponent } from '#weather/components';
+import { WeatherWidgetStateModel } from '#weather/models';
 import { WeatherIconPipe } from '#weather/pipes';
 import { WeatherWidgetApiService, WeatherWidgetFacadeService } from '#weather/services';
 import { WeatherWidgetState } from '#weather/state';
@@ -44,7 +45,7 @@ export class WeatherWidgetComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly weatherWidgetFacadeService = inject(WeatherWidgetFacadeService);
 
-  readonly state = connectState(this.destroyRef, this.weatherWidgetFacadeService.state);
+  readonly state: StateObject<WeatherWidgetStateModel> = connectState(this.destroyRef, this.weatherWidgetFacadeService.state);
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true, validators: [Validators.required] });

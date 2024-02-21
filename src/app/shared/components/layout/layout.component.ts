@@ -74,7 +74,7 @@ export class LayoutComponent {
   get isTitleVisible$(): Observable<boolean> {
     return this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map(({ url }) => url.includes(AppPaths.AUTHENTICATION) || url === '/')
+      map(({ url }) => !(url.includes(AppPaths.AUTHENTICATION) || url === '/')),
     );
   }
 }
