@@ -1,5 +1,5 @@
 import { AsyncPipe, DecimalPipe, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 
 import { CardModule } from 'primeng/card';
 
+import { CashFlowDataSet } from '#cash-flow/models';
 import { ConfigSelectors } from '#core/config/store';
 import { LabeledData } from '#core/models';
 import { ContainerComponent } from '#shared/components';
@@ -22,7 +23,16 @@ const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, 
   imports,
 })
 export class CashFlowCardsComponent {
-  @Input({ required: true }) cashFlowDataset: LabeledData<number>[] | null = null;
+  @Input({ required: true }) cashFlowDataset: LabeledData<CashFlowDataSet>[] | null = null;
+
+  @Output() setTabIdx = new EventEmitter();
 
   readonly currency$: Observable<string> = inject(Store).select(ConfigSelectors.currency);
+
+  itemClick(isIncome: boolean | null): void {
+    if (isIncome === null) return;
+
+    const tabIndex = isIncome ? 1 : 2;
+    this.setTabIdx.emit({ index: tabIndex });
+  }
 }

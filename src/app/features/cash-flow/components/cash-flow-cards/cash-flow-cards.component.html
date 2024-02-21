@@ -1,10 +1,10 @@
 <ul class="cards">
   @for (item of cashFlowDataset; track $index) {
     <li>
-      <org-container [styleClass]="['hover']">
+      <org-container [styleClass]="[item.data.isIncome === null ? '' : 'hover']" (click)="itemClick(item.data.isIncome)">
         <h3 class="heading">
           <p class="m-0">{{ 'overview.' + item.label | translate }}</p>
-          <span> {{ item.data ? (item.data | number) : '-' }} {{ $last ? '' : (currency$ | async) }} </span>
+          <span> {{ item.data ? (item.data.amount | number) : '-' }} {{ $last ? '' : (currency$ | async) }} </span>
         </h3>
       </org-container>
     </li>

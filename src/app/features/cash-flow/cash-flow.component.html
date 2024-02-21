@@ -1,7 +1,7 @@
 <p-tabView [activeIndex]="(activeTabIndex$ | async) ?? 0" (onChange)="setActiveIndex($event)">
   <p-tabPanel [header]="'cashFlow.overview' | translate">
     <div class="mb-4">
-      <org-cash-flow-cards [cashFlowDataset]="overviewState.cashFlowDataSet" />
+      <org-cash-flow-cards [cashFlowDataset]="overviewState.cashFlowDataSet" (setTabIdx)="setActiveIndex($event)" />
     </div>
 
     <div class="panels">

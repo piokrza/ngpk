@@ -7,8 +7,7 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { OverviewStateModel } from '#app/features/cash-flow/models/overview-state.model';
-import { CashFlow, Category, ChartColor } from '#cash-flow/models';
+import { CashFlowDataSet, OverviewStateModel, CashFlow, Category, ChartColor } from '#cash-flow/models';
 import { CashFlowSelectors } from '#cash-flow/store';
 import { ConfigSelectors } from '#core/config/store';
 import { baseDialogStyles } from '#core/constants';
@@ -68,18 +67,18 @@ export class OverviewService {
     }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories, 'pink')));
   }
 
-  private get cashFlowData$(): Observable<LabeledData<number>[]> {
+  private get cashFlowData$(): Observable<LabeledData<CashFlowDataSet>[]> {
     return combineLatest({
       totalBalance: this.totalBalance$,
       totalIncome: this.store.select(CashFlowSelectors.totalCashFlow('income')),
       totalExpense: this.store.select(CashFlowSelectors.totalCashFlow('expense')),
       transactionAmount: this.transactionAmount$,
     }).pipe(
-      map((data) => [
-        { label: 'totalIncome', data: data.totalIncome },
-        { label: 'totalExpense', data: data.totalExpense },
-        { label: 'totalBalance', data: data.totalBalance },
-        { label: 'transactionAmount', data: data.transactionAmount },
+      map(data => [
+        { label: 'totalIncome', data: { amount: data.totalIncome, isIncome: true } },
+        { label: 'totalExpense', data: { amount: data.totalExpense, isIncome: false } },
+        { label: 'totalBalance', data: { amount: data.totalBalance, isIncome: null } },
+        { label: 'transactionAmount', data: { amount: data.transactionAmount, isIncome: null } },
       ])
     );
   }
@@ -93,8 +92,8 @@ export class OverviewService {
 
   private get transactionAmount$(): Observable<number> {
     return combineLatest({
-      incomesLength: this.store.select(CashFlowSelectors.cashFlow('income')).pipe(map((incomes) => incomes.length)),
-      expensesLength: this.store.select(CashFlowSelectors.cashFlow('expense')).pipe(map((expenses) => expenses.length)),
+      incomesLength: this.store.select(CashFlowSelectors.cashFlow('income')).pipe(map(incomes => incomes.length)),
+      expensesLength: this.store.select(CashFlowSelectors.cashFlow('expense')).pipe(map(expenses => expenses.length)),
     }).pipe(map(({ incomesLength, expensesLength }): number => incomesLength + expensesLength));
   }
 
