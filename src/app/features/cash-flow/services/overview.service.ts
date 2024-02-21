@@ -1,31 +1,17 @@
 import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
 import { ChartData } from 'chart.js';
-import { Observable, combineLatest, map, tap } from 'rxjs';
-
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Observable, combineLatest, map } from 'rxjs';
 
 import { CashFlowDataSet, OverviewStateModel, CashFlow, Category, ChartColor } from '#cash-flow/models';
 import { CashFlowSelectors } from '#cash-flow/store';
 import { ConfigSelectors } from '#core/config/store';
-import { baseDialogStyles } from '#core/constants';
-import { AppPaths } from '#core/enums';
 import { LabeledData, ObservableDictionary } from '#core/models';
 import { getRandomNumber } from '#core/utils';
-import { NoteFormComponent } from '#tasker/components';
-import { Note } from '#tasker/models';
-import { TaskerService } from '#tasker/services';
-import { TaskerActions } from '#tasker/store';
 
 @Injectable()
 export class OverviewService {
   private readonly store = inject(Store);
-  private readonly router = inject(Router);
-  private readonly taskerService = inject(TaskerService);
-  private readonly dialogService = inject(DialogService);
-  private readonly translateService = inject(TranslateService);
 
   get state(): ObservableDictionary<OverviewStateModel> {
     return {
@@ -34,23 +20,6 @@ export class OverviewService {
       incomesChartData: this.incomesChartData$,
       expensesChartData: this.expensesChartData$,
     };
-  }
-
-  addQuickNote$(): Observable<Note | undefined> {
-    const dialogRef: DynamicDialogRef = this.dialogService.open(NoteFormComponent, {
-      header: this.translateService.instant('tasker.addNote'),
-      style: baseDialogStyles,
-    });
-
-    return dialogRef.onClose.pipe(
-      tap((note?: Note) => {
-        if (note) {
-          this.store.dispatch(TaskerActions.addNote({ note }));
-          this.taskerService.setActiveTabIndex(1);
-          void this.router.navigate([AppPaths.TASKER]);
-        }
-      })
-    );
   }
 
   private get incomesChartData$(): Observable<ChartData | undefined> {

@@ -12,7 +12,6 @@ import { CashFlowActions } from '#cash-flow/store';
 import { ConfigActions } from '#core/config/store';
 import { ThemeService } from '#core/services';
 import { DriveActions } from '#drive/store';
-import { TaskerActions } from '#tasker/store';
 
 @Component({
   selector: 'org-root',
@@ -41,8 +40,6 @@ export class AppComponent implements OnInit {
       tap(({ uid }) => {
         this.store.dispatch(AuthActions.loadUserData({ uid }));
         this.store.dispatch(ConfigActions.loadConfig({ uid }));
-        this.store.dispatch(TaskerActions.loadTasks({ uid }));
-        this.store.dispatch(TaskerActions.loadNotes({ uid }));
         this.store.dispatch(CashFlowActions.loadCashFlow({ uid }));
         this.store.dispatch(DriveActions.loadFiles({ uid }));
       })
@@ -51,6 +48,6 @@ export class AppComponent implements OnInit {
 
   private setPrimeNgConfig(): void {
     this.primengConfig.ripple = true;
-    this.translateService.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
+    this.translateService.get('primeng').subscribe(res => this.primengConfig.setTranslation(res));
   }
 }

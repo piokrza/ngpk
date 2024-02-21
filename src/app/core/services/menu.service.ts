@@ -14,7 +14,7 @@ export class MenuService {
   private readonly environment = inject(Environment);
 
   get links$(): Observable<MenuItem[]> {
-    return this.store.select(AuthSelectors.user).pipe(map((user) => this.setMenuLinks(!!user)));
+    return this.store.select(AuthSelectors.user).pipe(map(user => this.setMenuLinks(!!user)));
   }
 
   private setMenuLinks(isLoggedIn: boolean): MenuItem[] {
@@ -38,13 +38,6 @@ export class MenuService {
         routerLink: AppPaths.CASH_FLOW,
         icon: PrimeIcons.SIGN_IN,
         visible: this.environment.featureFlags['cashFlow'],
-        state: { isVisible: isLoggedIn },
-      },
-      {
-        label: 'menu.tasker',
-        routerLink: AppPaths.TASKER,
-        icon: PrimeIcons.BOOK,
-        visible: this.environment.featureFlags['tasker'],
         state: { isVisible: isLoggedIn },
       },
       {

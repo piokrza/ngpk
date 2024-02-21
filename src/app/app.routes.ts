@@ -25,13 +25,6 @@ export const routes: Routes = [
     loadChildren: async () => (await import('#drive/index')).DriveModule,
   },
   {
-    path: AppPaths.TASKER,
-    canActivate: [AngularFireAuthGuard],
-    title: getTitle('tasker'),
-    data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
-    loadChildren: async () => (await import('#tasker/index')).TaskerModule,
-  },
-  {
     path: AppPaths.SETTINGS,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('settings'),
