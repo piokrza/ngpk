@@ -29,7 +29,9 @@
     "editTaskSuccess": "Task updated",
     "removeTaskError": "Something went wrong during removing task",
     "editTaskError": "Something went wrong during task edit",
-    "editNoteError": "Something went wrong during note edit"
+    "editNoteError": "Something went wrong during note edit",
+    "loginSuccess": "Successfully logged in",
+    "logoutSuccess": "Successfully logged out"
   },
 
   "common": {

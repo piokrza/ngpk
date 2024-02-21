@@ -7,15 +7,19 @@
     } @else {
       @if (state.tasksData; as data) {
         <div class="container">
-          <div class="dropdown-wrapper">
-            <small class="block mb-2"> {{ 'common.status' | translate }}</small>
-            <p-dropdown
-              optionLabel="label"
-              optionValue="data"
-              styleClass="w-full"
-              [options]="filters"
-              [(ngModel)]="data.filter"
-              (onChange)="taskFilterChange($event)" />
+          <div class="flex justify-content-between align-items-center">
+            <div class="dropdown-wrapper">
+              <small class="block mb-2"> {{ 'common.status' | translate }}</small>
+              <p-dropdown
+                optionLabel="label"
+                optionValue="data"
+                styleClass="w-full"
+                [options]="filters"
+                [(ngModel)]="data.filter"
+                (onChange)="taskFilterChange($event)" />
+            </div>
+
+            <p-button size="small" [text]="true" [icon]="PrimeIcons.PLUS" (onClick)="addTask()" />
           </div>
 
           <ul class="flex-container">
