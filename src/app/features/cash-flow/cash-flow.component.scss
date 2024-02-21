@@ -1,6 +1,14 @@
+@use 'breakpoints' as b;
+
 .panels {
   margin-top: 1rem;
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
+}
+
+@media only screen and (min-width: b.$lg) {
+  .panels {
+    grid-template-columns: 1fr 1fr;
+  }
 }
