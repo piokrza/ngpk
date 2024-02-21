@@ -11,6 +11,13 @@ export const routes: Routes = [
     loadComponent: async () => (await import('#search/index')).SearchComponent,
   },
   {
+    path: AppPaths.TASKER,
+    canActivate: [AngularFireAuthGuard],
+    title: getTitle('tasker'),
+    data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
+    loadChildren: async () => (await import('#tasker/index')).TaskerModule,
+  },
+  {
     path: AppPaths.CASH_FLOW,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('cashFlow'),
