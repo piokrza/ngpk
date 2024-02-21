@@ -40,7 +40,8 @@
     "name": "Name",
     "categories": "Categories",
     "status": "Status",
-    "description": "Description"
+    "description": "Description",
+    "searchIn": "Search in "
   },
 
   "pageNotFound": {

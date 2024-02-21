@@ -10,14 +10,19 @@ import { InputTextModule } from 'primeng/inputtext';
 const imports = [InputTextModule, FormsModule, TranslateModule, AutoFocusModule, DividerModule];
 
 @Component({
-  selector: 'org-browser',
-  templateUrl: './browser.component.html',
+  selector: 'org-search',
+  templateUrl: './search.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,
 })
-export class BrowserComponent {
+export class SearchComponent {
   searchField = '';
-
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+
+  search(): void {
+    const baseUrl = 'https://www.google.pl/search?q=';
+    window.open(`${baseUrl}${this.searchField.replace(/\s/g, '+')}`);
+    this.searchField = '';
+  }
 }

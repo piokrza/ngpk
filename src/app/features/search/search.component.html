@@ -1,0 +1,11 @@
+<div class="flex justify-content-center">
+  <div>
+    <h1 class="text-center text-5xl">{{ 'common.searchIn' | translate }} Google</h1>
+    <span class="p-input-icon-left w-full">
+      <i [class]="PrimeIcons.SEARCH"></i>
+      <input type="text" class="w-full" pInputText pAutoFocus [autofocus]="true" [(ngModel)]="searchField" (keyup.enter)="search()" />
+    </span>
+  </div>
+</div>
+
+<p-divider styleClass="my-6" />

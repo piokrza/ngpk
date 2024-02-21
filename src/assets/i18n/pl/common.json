@@ -46,7 +46,8 @@
     "name": "Nazwa",
     "categories": "Kategorie",
     "status": "Status",
-    "description": "Opis"
+    "description": "Opis",
+    "searchIn": "Wyszukaj w "
   },
 
   "primeng": {
