@@ -5,12 +5,14 @@ import * as fromAuth from '#auth/store';
 import * as fromCashFlow from '#cash-flow/store';
 import * as fromConfig from '#core/config/store';
 import * as fromDrive from '#drive/store';
+import * as fromTasker from '#tasker/store';
 
 export interface AppState {
   [fromConfig.FeatureKey]: fromConfig.State;
   [fromCashFlow.FeatureKey]: fromCashFlow.State;
   [fromAuth.FeatureKey]: fromAuth.State;
   [fromDrive.FeatureKey]: fromDrive.State;
+  [fromTasker.FeatureKey]: fromTasker.State;
 }
 
 export const STORE_ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState>>('ROOT_REDUCERS', {
@@ -19,5 +21,6 @@ export const STORE_ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState>
     [fromCashFlow.FeatureKey]: fromCashFlow.Reducer,
     [fromAuth.FeatureKey]: fromAuth.Reducer,
     [fromDrive.FeatureKey]: fromDrive.Reducer,
+    [fromTasker.FeatureKey]: fromTasker.Reducer,
   }),
 });

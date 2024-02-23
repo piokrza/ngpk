@@ -28,10 +28,11 @@ import { httpErrorInterceptor } from '#core/interceptors';
 import { CustomTranslateHttpLoader, initializeTranslations } from '#core/utils';
 import { DriveEffects } from '#drive/store';
 import { LayoutComponent } from '#shared/components';
+import { TaskerEffects } from '#tasker/store';
 
 const declarations = [AppComponent];
 const interceptors = [httpErrorInterceptor];
-const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, DriveEffects];
+const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, DriveEffects, TaskerEffects];
 
 const imports = [
   BrowserModule,
