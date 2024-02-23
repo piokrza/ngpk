@@ -1,4 +1,6 @@
+import { Board } from '#tasker/models';
+
 export interface BoardsState {
-  boards: Array<any>;
+  boards: Array<Board>;
   isLoading: boolean;
 }
