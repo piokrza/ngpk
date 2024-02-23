@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { CashFlowFilters } from '#cash-flow/models';
-import { State } from '#core/abstracts';
+import { Store } from '#core/abstracts';
 
 const initialState: CashFlowFilters = {
   incomeCategory: [],
@@ -9,7 +9,7 @@ const initialState: CashFlowFilters = {
 };
 
 @Injectable()
-export class CashFlowFilterService extends State<CashFlowFilters> {
+export class CashFlowFilterService extends Store<CashFlowFilters> {
   constructor() {
     super(initialState);
   }
