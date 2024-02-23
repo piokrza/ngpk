@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'org-tasker',
-  template: `<h1>Tasker działa</h1>`,
+  selector: 'org-board-list',
+  templateUrl: './board-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskerComponent {}
+export class BoardListComponent {}

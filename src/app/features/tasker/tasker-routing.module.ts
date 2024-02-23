@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TaskerComponent } from '#tasker/components';
+import { PathFragment } from '#core/enums';
+import { BoardListComponent } from '#tasker/components';
 
 const routes: Routes = [
   {
     path: '',
-    component: TaskerComponent,
+    component: BoardListComponent,
+  },
+  {
+    path: PathFragment.ID,
+    loadComponent: async () => (await import('#tasker/components')).BoardComponent,
   },
 ];
 

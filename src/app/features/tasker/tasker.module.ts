@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { TaskerComponent } from '#tasker/components';
+import { BoardListComponent } from '#tasker/components';
 import { TaskerRoutingModule } from '#tasker/index';
 
 const imports = [TaskerRoutingModule];
-const declarations = [TaskerComponent];
+const declarations = [BoardListComponent];
 
 @NgModule({ declarations, imports })
 export class TaskerModule {}
