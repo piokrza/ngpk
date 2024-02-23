@@ -10,6 +10,10 @@ export class BoardsApiService {
   private readonly angularFirestore = inject(AngularFirestore);
 
   loadBoards$(uid: string): Observable<Board[]> {
-    return this.angularFirestore.collection<Board>(Collection.BOARDS, (ref) => ref.where('uid', '==', uid)).valueChanges({ idField: 'id' });
+    return this.angularFirestore
+      .collection<Board>(Collection.BOARDS, (ref) => {
+        return ref.where('uid', '==', uid);
+      })
+      .valueChanges({ idField: 'id' });
   }
 }

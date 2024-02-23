@@ -8,6 +8,7 @@ import { TaskerSelectors } from '#tasker/store';
   selector: 'org-board-list',
   templateUrl: './board-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class BoardListComponent {
   private readonly store = inject(Store);
