@@ -1,7 +1,13 @@
-<h1>board list works!!!</h1>
+<section class="flex gap-3 flex-wrap">
+  @for (board of state.boards; track board.id) {
+    <org-container [styleClass]="['hover']" (click)="navigateToDetails(board.id)">
+      {{ board.name }}
+    </org-container>
+  }
 
-@for (board of state.boards; track board.id) {
-  <div class="p-4 border-1 inline-block border-50 cursor-pointer" (click)="navigateToDetails(board.id)">
-    {{ board.name }}
-  </div>
-}
+  <org-container [styleClass]="['hover', 'flex', 'align-items-center', 'gap-2']" (click)="addBoard()">
+    <i [class]="PrimeIcons.PLUS"></i>
+    4 remaining
+    <i [pTooltip]="'Text for subscription' | translate" [classList]="PrimeIcons.INFO_CIRCLE"></i>
+  </org-container>
+</section>

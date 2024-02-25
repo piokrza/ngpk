@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { AppPaths } from '#app/core/enums';
+import { PrimeIcons } from 'primeng/api';
+import { TooltipModule } from 'primeng/tooltip';
+
 import { connectState } from '#core/utils';
-import { TaskerActions, TaskerSelectors } from '#tasker/store';
+import { ContainerComponent } from '#shared/components';
+import { BoardsFacadeService } from '#tasker/services';
 
-const imports = [RouterLink]; // Remove routerlink
+const imports = [ContainerComponent, TooltipModule, TranslateModule];
 
 @Component({
   selector: 'org-board-list',
@@ -16,17 +18,15 @@ const imports = [RouterLink]; // Remove routerlink
   imports,
 })
 export class BoardListComponent {
-  private readonly store = inject(Store);
-  private readonly router = inject(Router);
+  private readonly boardsFacadeService = inject(BoardsFacadeService);
   private readonly destroyRef = inject(DestroyRef);
 
-  readonly state = connectState(this.destroyRef, {
-    boards: this.store.select(TaskerSelectors.boards),
-    isLoading: this.store.select(TaskerSelectors.isLoading),
-  });
+  readonly state = connectState(this.destroyRef, this.boardsFacadeService.state);
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   navigateToDetails(id: string): void {
-    this.store.dispatch(TaskerActions.setActiveBoard({ id }));
-    this.router.navigate([AppPaths.TASKER, id]);
+    this.boardsFacadeService.navigateToDetails(id);
   }
+
+  addBoard(): void {}
 }
