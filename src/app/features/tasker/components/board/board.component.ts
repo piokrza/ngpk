@@ -27,10 +27,12 @@ export class BoardComponent implements OnInit {
     board: this.store.select(TaskerSelectors.activeBoard),
   });
 
+  readonly todos: Task[] = [...(this.state.board?.todoTasks ?? [])];
+  readonly doing: Task[] = [...(this.state.board?.doingTasks ?? [])];
+  readonly done: Task[] = [...(this.state.board?.doneTasks ?? [])];
+
   ngOnInit(): void {
-    if (!this.state.board) {
-      this.router.navigate([AppPaths.TASKER]);
-    }
+    if (!this.state.board) this.router.navigate([AppPaths.TASKER]);
   }
 
   onDrop(event: CdkDragDrop<Task[]>): void {

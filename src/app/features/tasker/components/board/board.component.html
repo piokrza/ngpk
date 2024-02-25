@@ -1,31 +1,35 @@
-<div cdkDropListGroup>
-  <div class="example-container">
-    <h2>To do</h2>
+@if (state.board) {
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h2>To do</h2>
 
-    <div cdkDropList [cdkDropListData]="state.board?.todoTasks ?? []" class="example-list" (cdkDropListDropped)="onDrop($event)">
-      @for (item of state.board?.todoTasks; track item.id) {
-        <div class="example-box" cdkDrag>{{ item.name }}</div>
-      }
+      <div cdkDropList [cdkDropListData]="todos" class="example-list" (cdkDropListDropped)="onDrop($event)">
+        @for (item of todos; track item.id) {
+          <div class="example-box" cdkDrag>{{ item.name }}</div>
+        }
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Doing</h2>
+
+      <div cdkDropList [cdkDropListData]="doing" class="example-list" (cdkDropListDropped)="onDrop($event)">
+        @for (item of doing; track item.id) {
+          <div class="example-box" cdkDrag>{{ item.name }}</div>
+        }
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Done</h2>
+
+      <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="onDrop($event)">
+        @for (item of done; track item.id) {
+          <div class="example-box" cdkDrag>{{ item.name }}</div>
+        } @empty {
+          <div class="example-box">List is empty</div>
+        }
+      </div>
     </div>
   </div>
-
-  <div class="example-container">
-    <h2>Doing</h2>
-
-    <div cdkDropList [cdkDropListData]="state.board?.doingTasks ?? []" class="example-list" (cdkDropListDropped)="onDrop($event)">
-      @for (item of state.board?.doingTasks; track item.id) {
-        <div class="example-box" cdkDrag>{{ item.name }}</div>
-      }
-    </div>
-  </div>
-
-  <div class="example-container">
-    <h2>Done</h2>
-
-    <div cdkDropList [cdkDropListData]="state.board?.doneTasks ?? []" class="example-list" (cdkDropListDropped)="onDrop($event)">
-      @for (item of state.board?.doneTasks; track item.id) {
-        <div class="example-box" cdkDrag>{{ item.name }}</div>
-      }
-    </div>
-  </div>
-</div>
+}
