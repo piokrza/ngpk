@@ -7,11 +7,13 @@ export const FeatureKey = 'tasker';
 
 export interface State {
   boards: Board[];
+  activeBoardId: string | null;
   isLoading: boolean;
 }
 
 const initialState: State = {
   boards: [],
+  activeBoardId: null,
   isLoading: false,
 };
 
@@ -22,9 +24,12 @@ export const Reducer = createReducer(
     return { ...state, isLoading: true };
   }),
   on(TaskerActions.loadBoardsSuccess, (state, { boards }): State => {
-    return { boards, isLoading: false };
+    return { ...state, boards, isLoading: false };
   }),
   on(TaskerActions.loadBoardsFailure, (state): State => {
     return { ...state, isLoading: false };
+  }),
+  on(TaskerActions.setActiveBoard, (state, { id }): State => {
+    return { ...state, activeBoardId: id };
   })
 );

@@ -1,7 +1,7 @@
 <h1>board list works!!!</h1>
 
 @for (board of state.boards; track board.id) {
-  <div>
+  <div class="p-4 border-1 inline-block border-50 cursor-pointer" (click)="navigateToDetails(board.id)">
     {{ board.name }}
   </div>
 }

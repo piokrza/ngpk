@@ -1,5 +1,12 @@
 import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import { AppPaths } from '#core/enums';
+import { connectState } from '#core/utils';
+import { Task } from '#tasker/models';
+import { TaskerSelectors } from '#tasker/store';
 
 const imports = [DragDropModule];
 
@@ -11,14 +18,22 @@ const imports = [DragDropModule];
   standalone: true,
   imports,
 })
-export class BoardComponent {
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+export class BoardComponent implements OnInit {
+  private readonly store = inject(Store);
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
 
-  doing = ['This is doing example'];
+  readonly state = connectState(this.destroyRef, {
+    board: this.store.select(TaskerSelectors.activeBoard),
+  });
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  ngOnInit(): void {
+    if (!this.state.board) {
+      this.router.navigate([AppPaths.TASKER]);
+    }
+  }
 
-  onDrop(event: CdkDragDrop<string[]>): void {
+  onDrop(event: CdkDragDrop<Task[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
