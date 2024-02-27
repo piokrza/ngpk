@@ -7,4 +7,8 @@ export const loadBoards = createAction(ActionTypes.LOAD_BOARDS, props<{ uid: str
 export const loadBoardsSuccess = createAction(ActionTypes.LOAD_BOARDS_SUCCESS, props<{ boards: Board[] }>());
 export const loadBoardsFailure = createAction(ActionTypes.LOAD_BOARDS_FAILURE);
 
+export const addBoard = createAction(ActionTypes.ADD_BOARD, props<{ uid: string; name: string }>());
+export const addBoardSuccess = createAction(ActionTypes.ADD_BOARD_SUCCESS);
+export const addBoardFailure = createAction(ActionTypes.ADD_BOARD_FAILURE);
+
 export const setActiveBoard = createAction(ActionTypes.SET_ACTIVE_BOARD, props<{ id: string }>());

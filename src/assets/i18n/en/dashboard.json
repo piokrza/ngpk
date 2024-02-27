@@ -83,7 +83,12 @@
     }
   },
 
-  "tasker": {},
+  "tasker": {
+    "emptyList": "List is empty",
+    "todo": "Todos",
+    "doing": "Doing",
+    "done": "Done"
+  },
 
   "drive": {
     "addFile": "Add file",

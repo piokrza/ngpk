@@ -3,5 +3,9 @@ export enum ActionTypes {
   LOAD_BOARDS_SUCCESS = '[Tasker] Load boards success',
   LOAD_BOARDS_FAILURE = '[Tasker] Load boards failure',
 
+  ADD_BOARD = '[Tasker] Add board',
+  ADD_BOARD_SUCCESS = '[Tasker] Add board success',
+  ADD_BOARD_FAILURE = '[Tasker] Add board failure',
+
   SET_ACTIVE_BOARD = '[Tasker] Set active board',
 }

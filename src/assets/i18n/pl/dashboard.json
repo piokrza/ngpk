@@ -83,7 +83,12 @@
     }
   },
 
-  "tasker": {},
+  "tasker": {
+    "emptyList": "Lista jest pusta",
+    "todo": "Do zrobienia",
+    "doing": "W trakcie",
+    "done": "Zakończone"
+  },
 
   "drive": {
     "addFile": "Dodaj plik",

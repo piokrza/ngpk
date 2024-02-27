@@ -1,33 +1,41 @@
 @if (state.board) {
+  <div>
+    <p-button size="large" [icon]="PrimeIcons.ARROW_LEFT" [text]="true" [rounded]="true" (onClick)="navigateBack()" />
+  </div>
+
   <div cdkDropListGroup>
     <div class="example-container">
-      <h2>To do</h2>
+      <h2>{{ 'tasker.todo' | translate }}</h2>
 
       <div cdkDropList [cdkDropListData]="todos" class="example-list" (cdkDropListDropped)="onDrop($event)">
         @for (item of todos; track item.id) {
           <div class="example-box" cdkDrag>{{ item.name }}</div>
+        } @empty {
+          <div class="example-box">{{ 'tasker.emptyList' | translate }}</div>
         }
       </div>
     </div>
 
     <div class="example-container">
-      <h2>Doing</h2>
+      <h2>{{ 'tasker.doing' | translate }}</h2>
 
       <div cdkDropList [cdkDropListData]="doing" class="example-list" (cdkDropListDropped)="onDrop($event)">
         @for (item of doing; track item.id) {
           <div class="example-box" cdkDrag>{{ item.name }}</div>
+        } @empty {
+          <div class="example-box">{{ 'tasker.emptyList' | translate }}</div>
         }
       </div>
     </div>
 
     <div class="example-container">
-      <h2>Done</h2>
+      <h2>{{ 'tasker.done' | translate }}</h2>
 
       <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="onDrop($event)">
         @for (item of done; track item.id) {
           <div class="example-box" cdkDrag>{{ item.name }}</div>
         } @empty {
-          <div class="example-box">List is empty</div>
+          <div class="example-box">{{ 'tasker.emptyList' | translate }}</div>
         }
       </div>
     </div>

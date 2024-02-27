@@ -16,4 +16,10 @@ export class BoardsApiService {
       })
       .valueChanges({ idField: 'id' });
   }
+
+  async addBoard(name: string, uid: string) {
+    const newBoard: Board = { name, uid, todo: [], doing: [], done: [], id: this.angularFirestore.createId() };
+
+    return await this.angularFirestore.collection<Board>(Collection.BOARDS).add(newBoard);
+  }
 }

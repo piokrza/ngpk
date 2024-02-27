@@ -1,7 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 
+import { AuthSelectors } from '#app/features/auth/store';
 import { AppPaths } from '#core/enums';
 import { ObservableDictionary } from '#core/models';
 import { BoardsState } from '#tasker/models';
@@ -16,7 +18,12 @@ export class BoardsFacadeService {
     return {
       boards: this.store.select(TaskerSelectors.boards),
       isLoading: this.store.select(TaskerSelectors.isLoading),
+      userId: this.store.select(AuthSelectors.user).pipe(map((user) => user?.uid ?? '')),
     };
+  }
+
+  addBoard(name: string, uid: string): void {
+    this.store.dispatch(TaskerActions.addBoard({ name, uid }));
   }
 
   navigateToDetails(id: string): void {

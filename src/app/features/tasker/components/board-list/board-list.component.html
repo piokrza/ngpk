@@ -5,9 +5,5 @@
     </org-container>
   }
 
-  <org-container [styleClass]="['hover', 'flex', 'align-items-center', 'gap-2']" (click)="addBoard()">
-    <i [class]="PrimeIcons.PLUS"></i>
-    4 remaining
-    <i [pTooltip]="'Text for subscription' | translate" [classList]="PrimeIcons.INFO_CIRCLE"></i>
-  </org-container>
+  <org-add-task-btn (addBoard)="addBoard($event)" />
 </section>

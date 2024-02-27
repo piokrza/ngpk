@@ -31,7 +31,8 @@
     "editTaskError": "Coś poszło nie tak podczas edycji zadania",
     "editNoteError": "Coś poszło nie tak podczas edycji notatki",
     "loginSuccess": "Zalogowano",
-    "logoutSuccess": "Wylogowano"
+    "logoutSuccess": "Wylogowano",
+    "addBoardSuccess": "Dodano tablicę"
   },
 
   "pageNotFound": {
