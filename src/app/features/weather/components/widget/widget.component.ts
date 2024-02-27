@@ -14,10 +14,10 @@ import { isWidgetOpen } from '#core/constants';
 import { StateObject, connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
 import { DetailsComponent } from '#weather/components';
-import { WeatherWidgetStateModel } from '#weather/models';
+import { WeatherStateModel } from '#weather/models';
 import { WeatherIconPipe } from '#weather/pipes';
-import { WeatherWidgetApiService, WeatherWidgetFacadeService } from '#weather/services';
-import { WeatherWidgetState } from '#weather/state';
+import { WeatherApiService, WeatherFacadeService } from '#weather/services';
+import { WeatherState } from '#weather/state';
 
 const imports = [
   CommonModule,
@@ -30,7 +30,7 @@ const imports = [
   WeatherIconPipe,
   ContainerComponent,
 ];
-const providers = [WeatherWidgetFacadeService, WeatherWidgetApiService, WeatherWidgetState];
+const providers = [WeatherFacadeService, WeatherApiService, WeatherState];
 
 @Component({
   selector: 'org-weather-widget',
@@ -43,21 +43,21 @@ const providers = [WeatherWidgetFacadeService, WeatherWidgetApiService, WeatherW
 })
 export class WeatherWidgetComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly weatherWidgetFacadeService = inject(WeatherWidgetFacadeService);
+  private readonly weatherFacadeService = inject(WeatherFacadeService);
 
-  readonly state: StateObject<WeatherWidgetStateModel> = connectState(this.destroyRef, this.weatherWidgetFacadeService.state);
+  readonly state: StateObject<WeatherStateModel> = connectState(this.destroyRef, this.weatherFacadeService.state);
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly searchCityNameControl = new FormControl<string>('', { nonNullable: true, validators: [Validators.required] });
   readonly isOpen: WritableSignal<boolean> = signal(JSON.parse(sessionStorage.getItem(isWidgetOpen) ?? 'false'));
 
   ngOnInit(): void {
-    this.weatherWidgetFacadeService.checkWeatherData();
-    this.weatherWidgetFacadeService.checkGeolocation();
+    this.weatherFacadeService.checkWeatherData();
+    this.weatherFacadeService.checkGeolocation();
   }
 
   loadWeatherDataByCityName(cityName: string): void {
-    this.weatherWidgetFacadeService
+    this.weatherFacadeService
       .loadWeatherDataByCityName$(cityName)
       .pipe(
         tap(() => this.searchCityNameControl.reset()),
@@ -67,7 +67,7 @@ export class WeatherWidgetComponent implements OnInit {
   }
 
   loadWeatherData(): void {
-    this.weatherWidgetFacadeService.loadWeatherData$(this.state.geolocation).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+    this.weatherFacadeService.loadWeatherData$(this.state.geolocation).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
   toggleDetails(): void {

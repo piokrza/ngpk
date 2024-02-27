@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { Store } from '#core/abstracts';
-import { WeatherWidgetStateModel } from '#weather/models';
+import { WeatherStateModel } from '#weather/models';
 
-const initialState: WeatherWidgetStateModel = {
+const initialState: WeatherStateModel = {
   isLoading: false,
   weatherData: null,
   errorMessage: null,
@@ -11,7 +11,7 @@ const initialState: WeatherWidgetStateModel = {
 };
 
 @Injectable()
-export class WeatherWidgetState extends Store<WeatherWidgetStateModel> {
+export class WeatherState extends Store<WeatherStateModel> {
   constructor() {
     super(initialState);
   }

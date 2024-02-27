@@ -1,1 +1,1 @@
-export * from './weather-widget.state';
+export * from './weather.state';

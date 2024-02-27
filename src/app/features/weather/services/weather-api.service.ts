@@ -4,10 +4,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { Environment } from 'src/environments';
 
-import { IGeolocation, WeatherResponse } from '#app/features/weather/models';
+import { IGeolocation, WeatherResponse } from '#weather/models';
 
 @Injectable()
-export class WeatherWidgetApiService {
+export class WeatherApiService {
   private readonly http = inject(HttpClient);
   private readonly environment = inject(Environment);
   private readonly translateService = inject(TranslateService);
