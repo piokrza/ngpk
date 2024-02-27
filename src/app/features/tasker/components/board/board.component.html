@@ -1,41 +1,63 @@
 @if (state.board) {
-  <div>
+  <div class="flex justify-content-between align-items-center">
     <p-button size="large" [icon]="PrimeIcons.ARROW_LEFT" [text]="true" [rounded]="true" (onClick)="navigateBack()" />
+    <p-button size="large" severity="danger" [icon]="PrimeIcons.TRASH" [text]="true" [rounded]="true" (onClick)="deleteBoard()" />
   </div>
 
   <div cdkDropListGroup>
-    <div class="example-container">
+    <div class="container">
       <h2>{{ 'tasker.todo' | translate }}</h2>
 
-      <div cdkDropList [cdkDropListData]="todos" class="example-list" (cdkDropListDropped)="onDrop($event)">
+      <div cdkDropList [cdkDropListData]="todos" class="list" (cdkDropListDropped)="onDrop($event)">
         @for (item of todos; track item.id) {
-          <div class="example-box" cdkDrag>{{ item.name }}</div>
+          <org-container cdkDrag>
+            {{ item.name }}
+          </org-container>
         } @empty {
-          <div class="example-box">{{ 'tasker.emptyList' | translate }}</div>
+          <org-add-item-btn>
+            <div class="flex justify-content-between align-items-center w-full">
+              <span>{{ 'tasker.emptyList' | translate }}</span>
+              <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
+            </div>
+          </org-add-item-btn>
         }
       </div>
     </div>
 
-    <div class="example-container">
+    <div class="container">
       <h2>{{ 'tasker.doing' | translate }}</h2>
 
-      <div cdkDropList [cdkDropListData]="doing" class="example-list" (cdkDropListDropped)="onDrop($event)">
+      <div cdkDropList [cdkDropListData]="doing" class="list" (cdkDropListDropped)="onDrop($event)">
         @for (item of doing; track item.id) {
-          <div class="example-box" cdkDrag>{{ item.name }}</div>
+          <org-container cdkDrag>
+            {{ item.name }}
+          </org-container>
         } @empty {
-          <div class="example-box">{{ 'tasker.emptyList' | translate }}</div>
+          <org-add-item-btn>
+            <div class="flex justify-content-between align-items-center w-full">
+              <span>{{ 'tasker.emptyList' | translate }}</span>
+              <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
+            </div>
+          </org-add-item-btn>
         }
       </div>
     </div>
 
-    <div class="example-container">
+    <div class="container">
       <h2>{{ 'tasker.done' | translate }}</h2>
 
-      <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="onDrop($event)">
+      <div cdkDropList [cdkDropListData]="done" class="list" (cdkDropListDropped)="onDrop($event)">
         @for (item of done; track item.id) {
-          <div class="example-box" cdkDrag>{{ item.name }}</div>
+          <org-container cdkDrag>
+            {{ item.name }}
+          </org-container>
         } @empty {
-          <div class="example-box">{{ 'tasker.emptyList' | translate }}</div>
+          <org-add-item-btn>
+            <div class="flex justify-content-between align-items-center w-full">
+              <span>{{ 'tasker.emptyList' | translate }}</span>
+              <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
+            </div>
+          </org-add-item-btn>
         }
       </div>
     </div>

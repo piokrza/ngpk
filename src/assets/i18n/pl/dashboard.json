@@ -87,7 +87,9 @@
     "emptyList": "Lista jest pusta",
     "todo": "Do zrobienia",
     "doing": "W trakcie",
-    "done": "Zakończone"
+    "done": "Zakończone",
+    "deleteBoardMessage": "Na pewno chcesz usunąć tę tablicę?",
+    "deleteBoardHeader": "Usuwanie tablicy"
   },
 
   "drive": {

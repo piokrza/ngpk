@@ -10,10 +10,13 @@ import { ButtonModule } from 'primeng/button';
 
 import { AppPaths } from '#core/enums';
 import { connectState } from '#core/utils';
+import { ContainerComponent } from '#shared/components';
+import { AddItemBtnComponent } from '#tasker/components';
 import { Task } from '#tasker/models';
+import { BoardsFacadeService } from '#tasker/services';
 import { TaskerSelectors } from '#tasker/store';
 
-const imports = [TranslateModule, DragDropModule, ButtonModule];
+const imports = [TranslateModule, DragDropModule, ButtonModule, ContainerComponent, AddItemBtnComponent];
 
 @Component({
   selector: 'org-board',
@@ -28,6 +31,7 @@ export class BoardComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly location = inject(Location);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly boardsFacadeService = inject(BoardsFacadeService);
 
   readonly state = connectState(this.destroyRef, {
     board: this.store.select(TaskerSelectors.activeBoard),
@@ -53,5 +57,9 @@ export class BoardComponent implements OnInit {
 
   navigateBack(): void {
     this.location.back();
+  }
+
+  deleteBoard(): void {
+    this.state.board && this.boardsFacadeService.deleteBoard(this.state.board.id);
   }
 }

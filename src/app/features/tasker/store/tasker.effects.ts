@@ -1,14 +1,17 @@
 import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
+import { AppPaths } from '#app/core/enums';
 import { DbSubscriptionService, ToastService } from '#core/services';
 import { BoardsApiService } from '#tasker/services';
 import { TaskerActions } from '#tasker/store';
 
 @Injectable()
 export class TaskerEffects {
+  private readonly router = inject(Router);
   private readonly actions$ = inject(Actions);
   private readonly toastService = inject(ToastService);
   private readonly translateService = inject(TranslateService);
@@ -41,6 +44,22 @@ export class TaskerEffects {
             return TaskerActions.addBoardSuccess();
           }),
           catchError(() => of(TaskerActions.addBoardFailure()))
+        );
+      })
+    );
+  });
+
+  deleteBoard$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.deleteBoard),
+      exhaustMap(({ boardId }) => {
+        return from(this.boardsApiService.deleteBoard(boardId)).pipe(
+          map(() => {
+            this.toastService.showMessage('success', this.tr('success'), this.tr('deleteBoardSuccess'));
+            this.router.navigate([AppPaths.TASKER]);
+            return TaskerActions.deleteBoardSuccess();
+          }),
+          catchError(() => of(TaskerActions.deleteBoardFailure()))
         );
       })
     );

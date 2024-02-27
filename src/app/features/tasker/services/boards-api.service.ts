@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
 import { Collection } from '#core/enums';
@@ -17,9 +17,14 @@ export class BoardsApiService {
       .valueChanges({ idField: 'id' });
   }
 
-  async addBoard(name: string, uid: string) {
+  async addBoard(name: string, uid: string): Promise<DocumentReference<Board>> {
     const newBoard: Board = { name, uid, todo: [], doing: [], done: [], id: this.angularFirestore.createId() };
 
     return await this.angularFirestore.collection<Board>(Collection.BOARDS).add(newBoard);
+  }
+
+  async deleteBoard(boardId: string) {
+    const boardRef: AngularFirestoreDocument<Board> = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(boardId);
+    return await boardRef.delete();
   }
 }

@@ -2,13 +2,14 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular
 import { TranslateModule } from '@ngx-translate/core';
 
 import { PrimeIcons } from 'primeng/api';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
-import { AddTaskBtnComponent } from '#tasker/components';
+import { AddItemBtnComponent } from '#tasker/components';
 import { BoardsFacadeService } from '#tasker/services';
 
-const imports = [ContainerComponent, TranslateModule, AddTaskBtnComponent];
+const imports = [ContainerComponent, TranslateModule, AddItemBtnComponent, TooltipModule];
 
 @Component({
   selector: 'org-board-list',

@@ -32,7 +32,8 @@
     "editNoteError": "Coś poszło nie tak podczas edycji notatki",
     "loginSuccess": "Zalogowano",
     "logoutSuccess": "Wylogowano",
-    "addBoardSuccess": "Dodano tablicę"
+    "addBoardSuccess": "Dodano tablicę",
+    "deleteBoardSuccess": "Usunięto tablicę"
   },
 
   "pageNotFound": {

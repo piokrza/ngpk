@@ -5,5 +5,9 @@
     </org-container>
   }
 
-  <org-add-task-btn (addBoard)="addBoard($event)" />
+  <org-add-item-btn (itemNameSubmit)="addBoard($event)">
+    <i [class]="PrimeIcons.PLUS"></i>
+    4 remaining
+    <i [pTooltip]="'Text for subscription' | translate" [classList]="PrimeIcons.INFO_CIRCLE"></i>
+  </org-add-item-btn>
 </section>

@@ -11,4 +11,8 @@ export const addBoard = createAction(ActionTypes.ADD_BOARD, props<{ uid: string;
 export const addBoardSuccess = createAction(ActionTypes.ADD_BOARD_SUCCESS);
 export const addBoardFailure = createAction(ActionTypes.ADD_BOARD_FAILURE);
 
+export const deleteBoard = createAction(ActionTypes.DELETE_BOARD, props<{ boardId: string }>());
+export const deleteBoardSuccess = createAction(ActionTypes.DELETE_BOARD_SUCCESS);
+export const deleteBoardFailure = createAction(ActionTypes.DELETE_BOARD_FAILURE);
+
 export const setActiveBoard = createAction(ActionTypes.SET_ACTIVE_BOARD, props<{ id: string }>());
