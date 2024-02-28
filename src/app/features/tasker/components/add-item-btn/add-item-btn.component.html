@@ -1,8 +1,9 @@
 @if (isEditing()) {
   <input
+    pInputText
     #inputEl
     type="text"
-    pInputText
+    class="p-4 w-full radius"
     [placeholder]="'Wprowadź nazwę' | translate"
     [formControl]="boardNameControl"
     (keyup.enter)="emitBoardName()" />
