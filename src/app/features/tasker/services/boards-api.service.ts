@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
 import { Collection } from '#core/enums';
-import { Board } from '#tasker/models';
+import { AddTaskPayload, Board } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsApiService {
@@ -23,8 +23,12 @@ export class BoardsApiService {
     return await this.angularFirestore.collection<Board>(Collection.BOARDS).add(newBoard);
   }
 
-  async deleteBoard(boardId: string) {
-    const boardRef: AngularFirestoreDocument<Board> = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(boardId);
+  async deleteBoard(boardId: string): Promise<void> {
+    const boardRef = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(boardId);
     return await boardRef.delete();
+  }
+
+  async addTask(payload: AddTaskPayload) {
+    const boardRef = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(payload.boardId);
   }
 }

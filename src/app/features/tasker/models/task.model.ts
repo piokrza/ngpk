@@ -5,6 +5,4 @@ export interface Task {
   name: string;
   description: string;
   boardType: Board;
-  // createDate: Timestamp;
-  // updateDate: Timestamp | null;
 }

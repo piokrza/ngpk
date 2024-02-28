@@ -14,7 +14,7 @@
             {{ item.name }}
           </org-container>
         } @empty {
-          <org-add-item-btn>
+          <org-add-item-btn (itemNameSubmit)="addTask($event, Board.TODO)">
             <div class="flex justify-content-between align-items-center w-full">
               <span>{{ 'tasker.emptyList' | translate }}</span>
               <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
@@ -33,7 +33,7 @@
             {{ item.name }}
           </org-container>
         } @empty {
-          <org-add-item-btn>
+          <org-add-item-btn (itemNameSubmit)="addTask($event, Board.DOING)">
             <div class="flex justify-content-between align-items-center w-full">
               <span>{{ 'tasker.emptyList' | translate }}</span>
               <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
@@ -52,7 +52,7 @@
             {{ item.name }}
           </org-container>
         } @empty {
-          <org-add-item-btn>
+          <org-add-item-btn (itemNameSubmit)="addTask($event, Board.DONE)">
             <div class="flex justify-content-between align-items-center w-full">
               <span>{{ 'tasker.emptyList' | translate }}</span>
               <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
