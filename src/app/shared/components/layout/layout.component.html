@@ -14,7 +14,7 @@
           [text]="true"
           [rounded]="true"
           [icon]="PrimeIcons.BARS"
-          (onClick)="sidebarVisible = true" />
+          (onClick)="sidebarVisible.set(true)" />
       </div>
 
       <main class="overflow-x-hidden">
@@ -48,7 +48,7 @@
               routerLinkActive="active"
               class="sidebar__link"
               [routerLinkActiveOptions]="{ exact: true }"
-              (click)="sidebarVisible = false">
+              (click)="sidebarVisible.set(false)">
               <a [routerLink]="link.routerLink" class="block p-3">
                 <i [class]="link.icon + ' mr-2'"></i>
                 {{ link.label ?? '' | translate }}

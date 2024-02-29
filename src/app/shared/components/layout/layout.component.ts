@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -55,7 +55,7 @@ export class LayoutComponent {
     isTitleVisible: this.isTitleVisible$,
   });
 
-  sidebarVisible = false;
+  readonly sidebarVisible = signal(false);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   authorize(): void {
@@ -69,7 +69,7 @@ export class LayoutComponent {
       this.router.navigate([AppPaths.AUTHENTICATION]);
     }
 
-    this.sidebarVisible = false;
+    this.sidebarVisible.set(false);
   }
 
   get isTitleVisible$(): Observable<boolean> {
