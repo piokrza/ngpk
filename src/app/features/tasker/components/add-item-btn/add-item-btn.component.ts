@@ -3,11 +3,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { PrimeIcons } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
 import { ContainerComponent } from '#shared/components';
 
-const imports = [TranslateModule, ContainerComponent, ReactiveFormsModule, InputTextModule];
+const imports = [TranslateModule, ContainerComponent, ReactiveFormsModule, InputTextModule, ButtonModule];
 
 @Component({
   selector: 'org-add-item-btn',

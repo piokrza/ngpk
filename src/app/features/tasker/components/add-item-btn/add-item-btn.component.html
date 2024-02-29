@@ -1,12 +1,15 @@
 @if (isEditing()) {
-  <input
-    pInputText
-    #inputEl
-    type="text"
-    class="p-4 w-full radius"
-    [placeholder]="'Wprowadź nazwę' | translate"
-    [formControl]="boardNameControl"
-    (keyup.enter)="emitBoardName()" />
+  <div class="flex align-items-center gap-2 w-full">
+    <input
+      pInputText
+      #inputEl
+      type="text"
+      class="p-4 w-full radius"
+      [placeholder]="'Wprowadź nazwę' | translate"
+      [formControl]="boardNameControl"
+      (keyup.enter)="emitBoardName()" />
+    <p-button [icon]="PrimeIcons.TIMES" [text]="true" [rounded]="true" (onClick)="isEditing.set(false)" />
+  </div>
 } @else {
   <org-container class="w-full" [styleClass]="['hover', 'flex', 'align-items-center', 'gap-2']" (click)="setIsEditing()">
     <ng-content />
