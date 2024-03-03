@@ -90,8 +90,10 @@
     "doing": "Doing",
     "done": "Done",
     "deleteBoardMessage": "Are you sure you want to delete this board?",
+    "deleteTaskMessage": "Are you sure you want to delete this task?",
     "deleteTaskListMessage": "Are you sure you want to delete this task list?",
     "deleteBoardHeader": "Delete board",
+    "deleteTaskHeader": "Delete task",
     "deleteTaskListHeader": "Delete task list"
   },
 

@@ -1,20 +1,39 @@
+import { Location } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { filter, map } from 'rxjs';
 
 import { ConfirmationService } from 'primeng/api';
 
+import { AuthSelectors } from '#auth/store';
 import { AppPaths } from '#core/enums';
-import { AddTaskPayload } from '#tasker/models';
-import { TaskerActions } from '#tasker/store';
+import { AddTaskPayload, DeleteTaskPayload, DragDropTaskPayload } from '#tasker/models';
+import { TaskerActions, TaskerSelectors } from '#tasker/store';
 
 @Injectable()
 export class BoardsFacadeService {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
+  private readonly location = inject(Location);
   private readonly translateService = inject(TranslateService);
   private readonly confirmationService = inject(ConfirmationService);
+
+  get boardState() {
+    return {
+      user: this.store.select(AuthSelectors.user).pipe(filter(Boolean)),
+      board: this.store.select(TaskerSelectors.activeBoard).pipe(filter(Boolean)),
+    };
+  }
+
+  get boardListState() {
+    return {
+      boards: this.store.select(TaskerSelectors.boards),
+      isLoading: this.store.select(TaskerSelectors.isLoading),
+      userId: this.store.select(AuthSelectors.user).pipe(map((user) => user?.uid ?? '')),
+    };
+  }
 
   addBoard(name: string, uid: string): void {
     this.store.dispatch(TaskerActions.addBoard({ name, uid }));
@@ -47,5 +66,25 @@ export class BoardsFacadeService {
 
   addTask(payload: AddTaskPayload): void {
     this.store.dispatch(TaskerActions.addTask({ payload }));
+  }
+
+  deleteTask(payload: DeleteTaskPayload): void {
+    this.confirmationService.confirm({
+      message: this.translateService.instant('tasker.deleteTaskMessage'),
+      header: this.translateService.instant('tasker.deleteTaskHeader'),
+      accept: () => this.store.dispatch(TaskerActions.deleteTask({ payload })),
+    });
+  }
+
+  dragDropTask(payload: DragDropTaskPayload): void {
+    this.store.dispatch(TaskerActions.dragDropTask({ payload }));
+  }
+
+  navigateToTaskerPage(): void {
+    this.router.navigate([AppPaths.TASKER]);
+  }
+
+  navigateBack(): void {
+    this.location.back();
   }
 }

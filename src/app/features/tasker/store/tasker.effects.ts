@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
-import { AppPaths } from '#app/core/enums';
+import { AppPaths } from '#core/enums';
 import { DbSubscriptionService, ToastService } from '#core/services';
 import { BoardsApiService } from '#tasker/services';
 import { TaskerActions } from '#tasker/store';
@@ -69,25 +69,23 @@ export class TaskerEffects {
     return this.actions$.pipe(
       ofType(TaskerActions.addTaskList),
       exhaustMap(({ boardId, taskListName }) => {
-        return this.boardsApiService.addTaskList$(boardId, taskListName);
-      }),
-      map(() => {
-        this.toastService.showMessage('success', this.tr('success'), '');
-        return TaskerActions.addTaskListSuccess();
-      }),
-      catchError(() => of(TaskerActions.addTaskListFailure()))
+        return this.boardsApiService.addTaskList$(boardId, taskListName).pipe(
+          map(() => TaskerActions.addTaskListSuccess()),
+          catchError(() => of(TaskerActions.addTaskListFailure()))
+        );
+      })
     );
   });
 
   deleteTaskList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(TaskerActions.deleteTaskList),
-      exhaustMap(({ boardId, taskListId }) => this.boardsApiService.deleteTaskList$(boardId, taskListId)),
-      map(() => {
-        this.toastService.showMessage('success', this.tr('success'), '');
-        return TaskerActions.deleteTaskListSuccess();
-      }),
-      catchError(() => of(TaskerActions.deleteTaskListFailure()))
+      exhaustMap(({ boardId, taskListId }) => {
+        return this.boardsApiService.deleteTaskList$(boardId, taskListId).pipe(
+          map(() => TaskerActions.deleteTaskListSuccess()),
+          catchError(() => of(TaskerActions.deleteTaskListFailure()))
+        );
+      })
     );
   });
 
@@ -95,10 +93,31 @@ export class TaskerEffects {
     return this.actions$.pipe(
       ofType(TaskerActions.addTask),
       exhaustMap(({ payload }) => this.boardsApiService.addTask$(payload)),
-      map(() => {
-        this.toastService.showMessage('success', this.tr('success'), '');
-        return TaskerActions.addTaskSuccess();
-      })
+      map(() => TaskerActions.addTaskSuccess())
+    );
+  });
+
+  deleteTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.deleteTask),
+      exhaustMap(({ payload }) =>
+        this.boardsApiService.deleteTask$(payload).pipe(
+          map(() => TaskerActions.deleteTaskSuccess()),
+          catchError(() => of(TaskerActions.deleteTaskFailure()))
+        )
+      )
+    );
+  });
+
+  dragDropTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.dragDropTask),
+      exhaustMap(({ payload }) =>
+        this.boardsApiService.dragDropTask$(payload).pipe(
+          map(() => TaskerActions.dragDropTaskSuccess()),
+          catchError(() => of(TaskerActions.dragDropTaskFailure()))
+        )
+      )
     );
   });
 

@@ -14,7 +14,7 @@ export class MenuService {
   private readonly environment = inject(Environment);
 
   get links$(): Observable<MenuItem[]> {
-    return this.store.select(AuthSelectors.user).pipe(map(user => this.setMenuLinks(!!user)));
+    return this.store.select(AuthSelectors.user).pipe(map((user) => this.setMenuLinks(!!user)));
   }
 
   private setMenuLinks(isLoggedIn: boolean): MenuItem[] {

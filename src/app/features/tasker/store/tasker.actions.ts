@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { AddTaskPayload, Board } from '#tasker/models';
+import { AddTaskPayload, Board, DeleteTaskPayload, DragDropTaskPayload } from '#tasker/models';
 import { ActionTypes } from '#tasker/store/action-types';
 
 export const loadBoards = createAction(ActionTypes.LOAD_BOARDS, props<{ uid: string }>());
@@ -26,5 +26,13 @@ export const deleteBoardFailure = createAction(ActionTypes.DELETE_BOARD_FAILURE)
 export const addTask = createAction(ActionTypes.ADD_TASK, props<{ payload: AddTaskPayload }>());
 export const addTaskSuccess = createAction(ActionTypes.ADD_TASK_SUCCESS);
 export const addTaskFailure = createAction(ActionTypes.ADD_TASK_FAILURE);
+
+export const deleteTask = createAction(ActionTypes.DELETE_TASK, props<{ payload: DeleteTaskPayload }>());
+export const deleteTaskSuccess = createAction(ActionTypes.DELETE_TASK_SUCCESS);
+export const deleteTaskFailure = createAction(ActionTypes.DELETE_TASK_FAILURE);
+
+export const dragDropTask = createAction(ActionTypes.DRAG_DROP_TASK, props<{ payload: DragDropTaskPayload }>());
+export const dragDropTaskSuccess = createAction(ActionTypes.DRAG_DROP_TASK_SUCCESS);
+export const dragDropTaskFailure = createAction(ActionTypes.DRAG_DROP_TASK_FAILURE);
 
 export const setActiveBoard = createAction(ActionTypes.SET_ACTIVE_BOARD, props<{ id: string }>());

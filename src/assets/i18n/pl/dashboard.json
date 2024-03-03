@@ -90,8 +90,10 @@
     "doing": "W trakcie",
     "done": "Zakończone",
     "deleteBoardMessage": "Na pewno chcesz usunąć tę tablicę?",
+    "deleteTaskMessage": "Na pewno chcesz usunąć to zadanie?",
     "deleteTaskListMessage": "Na pewno chcesz usunąć tę listę zadań?",
     "deleteBoardHeader": "Usuwanie tablicy",
+    "deleteTaskHeader": "Usuwanie zadania",
     "deleteTaskListHeader": "Usuwanie listy zadań"
   },
 

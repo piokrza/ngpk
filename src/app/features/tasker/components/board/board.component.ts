@@ -1,21 +1,14 @@
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
-import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { filter } from 'rxjs';
 
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 
-import { AuthSelectors } from '#auth/store';
-import { AppPaths } from '#core/enums';
 import { connectState } from '#core/utils';
 import { ContainerComponent, AddItemBtnComponent } from '#shared/components';
-import { AddTaskPayload } from '#tasker/models';
+import { AddTaskPayload, DeleteTaskPayload, Task } from '#tasker/models';
 import { BoardsFacadeService } from '#tasker/services';
-import { TaskerSelectors } from '#tasker/store';
 
 const imports = [TranslateModule, DragDropModule, ButtonModule, ContainerComponent, AddItemBtnComponent];
 
@@ -28,29 +21,27 @@ const imports = [TranslateModule, DragDropModule, ButtonModule, ContainerCompone
   imports,
 })
 export class BoardComponent implements OnInit {
-  private readonly store = inject(Store);
-  private readonly router = inject(Router);
-  private readonly location = inject(Location);
   private readonly destroyRef = inject(DestroyRef);
   private readonly boardsFacadeService = inject(BoardsFacadeService);
 
-  readonly state = connectState(this.destroyRef, {
-    board: this.store.select(TaskerSelectors.activeBoard).pipe(filter(Boolean)),
-    user: this.store.select(AuthSelectors.user).pipe(filter(Boolean)),
-  });
-
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+  readonly state = connectState(this.destroyRef, this.boardsFacadeService.boardState);
 
   ngOnInit(): void {
-    if (!this.state.board) this.router.navigate([AppPaths.TASKER]);
+    if (!this.state.board) this.boardsFacadeService.navigateToTaskerPage();
   }
 
   onDrop(event: CdkDragDrop<string>): void {
-    event;
+    this.boardsFacadeService.dragDropTask({
+      boardId: this.state.board.id,
+      task: event.item.data satisfies Task,
+      nextTaskListId: event.container.data,
+      prevTaskListId: event.previousContainer.data,
+    });
   }
 
   navigateBack(): void {
-    this.location.back();
+    this.boardsFacadeService.navigateBack();
   }
 
   deleteBoard(): void {
@@ -70,5 +61,8 @@ export class BoardComponent implements OnInit {
     this.boardsFacadeService.addTask(payload);
   }
 
-  deleteTask(): void {}
+  deleteTask(taskId: string, taskListId: string): void {
+    const payload: DeleteTaskPayload = { boardId: this.state.board.id, taskId, taskListId };
+    this.boardsFacadeService.deleteTask(payload);
+  }
 }

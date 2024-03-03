@@ -23,5 +23,13 @@ export enum ActionTypes {
   ADD_TASK_SUCCESS = '[Tasker] Add task success',
   ADD_TASK_FAILURE = '[Tasker] Add task failure',
 
+  DELETE_TASK = '[Tasker] Delete task',
+  DELETE_TASK_SUCCESS = '[Tasker] Delete task success',
+  DELETE_TASK_FAILURE = '[Tasker] Delete task failure',
+
+  DRAG_DROP_TASK = '[Tasker] Drag drop task',
+  DRAG_DROP_TASK_SUCCESS = '[Tasker] Drag drop task success',
+  DRAG_DROP_TASK_FAILURE = '[Tasker] Drag drop task failure',
+
   SET_ACTIVE_BOARD = '[Tasker] Set active board',
 }

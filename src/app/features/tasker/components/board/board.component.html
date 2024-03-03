@@ -4,9 +4,9 @@
     <p-button size="large" severity="danger" [icon]="PrimeIcons.TRASH" [text]="true" [rounded]="true" (onClick)="deleteBoard()" />
   </div>
 
-  <div cdkDropListGroup class="flex gap-4 overflow-x-scroll">
+  <div cdkDropListGroup class="flex gap-4 overflow-x-scroll mt-6">
     @for (taskList of state.board.tasksLists; track taskList.id) {
-      <org-container [styleClass]="['mt-6']">
+      <org-container>
         <div class="container">
           <div class="flex justify-content-between align-items-center">
             <h2 class="my-2">{{ taskList.name }}</h2>
@@ -19,9 +19,9 @@
               (onClick)="deleteTaskList(taskList.id)" />
           </div>
 
-          <div cdkDropList [cdkDropListData]="taskList.id" class="list mt-5" (cdkDropListDropped)="onDrop($event)">
+          <div cdkDropList class="list mt-5" [cdkDropListData]="taskList.id" (cdkDropListDropped)="onDrop($event)">
             @for (task of taskList.tasks; track task.id) {
-              <org-container cdkDrag [styleClass]="['mb-3']">
+              <org-container cdkDrag [cdkDragData]="task" [styleClass]="['mb-3']">
                 <div class="flex justify-content-between align-items-center">
                   <span> {{ task.name }}</span>
                   <p-button
@@ -30,7 +30,7 @@
                     [icon]="PrimeIcons.TRASH"
                     [text]="true"
                     [rounded]="true"
-                    (onClick)="deleteTask()" />
+                    (onClick)="deleteTask(task.id, taskList.id)" />
                 </div>
               </org-container>
             }

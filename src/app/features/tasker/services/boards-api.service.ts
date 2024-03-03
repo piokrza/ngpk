@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@
 import { Observable, switchMap } from 'rxjs';
 
 import { Collection } from '#core/enums';
-import { AddTaskPayload, Board, Task, TaskList } from '#tasker/models';
+import { AddTaskPayload, Board, DeleteTaskPayload, DragDropTaskPayload, Task, TaskList } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsApiService {
@@ -45,7 +45,7 @@ export class BoardsApiService {
     const boardRef = this.getBoardById(boardId);
     return boardRef.get().pipe(
       switchMap((boardData) => {
-        const filteredTaskLists: TaskList[] = (boardData.data()?.tasksLists ?? []).filter(({ id }) => id === taskListId);
+        const filteredTaskLists: TaskList[] = (boardData.data()?.tasksLists ?? []).filter(({ id }) => id !== taskListId);
         return boardRef.update({ tasksLists: filteredTaskLists });
       })
     );
@@ -53,12 +53,31 @@ export class BoardsApiService {
 
   addTask$(payload: AddTaskPayload): Observable<void> {
     const boardRef = this.getBoardById(payload.boardId);
-
     return boardRef.get().pipe(
       switchMap((boardData) => {
         return boardRef.update({
           tasksLists: this.addTaskToTaskList(boardData.data()?.tasksLists ?? [], payload),
         });
+      })
+    );
+  }
+
+  deleteTask$(payload: DeleteTaskPayload): Observable<void> {
+    const boardRef = this.getBoardById(payload.boardId);
+    return boardRef
+      .get()
+      .pipe(
+        switchMap((boardData) => boardRef.update({ tasksLists: this.deleteTaskFromTaskList(boardData.data()?.tasksLists ?? [], payload) }))
+      );
+  }
+
+  dragDropTask$(payload: DragDropTaskPayload) {
+    const boardRef = this.getBoardById(payload.boardId);
+    return boardRef.get().pipe(
+      switchMap((boardData) => {
+        const updatedTasksLists: TaskList[] = this.updateTasksListAfterDragDrop(boardData.data()?.tasksLists ?? [], payload);
+
+        return boardRef.update({ tasksLists: updatedTasksLists });
       })
     );
   }
@@ -78,6 +97,36 @@ export class BoardsApiService {
         };
 
         return { ...taskList, tasks: [...taskList.tasks, newTask] };
+      }
+
+      return taskList;
+    });
+  }
+
+  private deleteTaskFromTaskList(tasksLists: TaskList[], payload: DeleteTaskPayload): TaskList[] {
+    return tasksLists.map((taskList) => {
+      if (taskList.id === payload.taskListId) {
+        return { ...taskList, tasks: [...taskList.tasks].filter(({ id }) => id !== payload.taskId) };
+      }
+
+      return taskList;
+    });
+  }
+
+  private updateTasksListAfterDragDrop(tasksLists: TaskList[], payload: DragDropTaskPayload): TaskList[] {
+    return tasksLists.map((taskList) => {
+      if (payload.prevTaskListId === payload.nextTaskListId) {
+        return taskList;
+      }
+
+      if (payload.prevTaskListId === taskList.id) {
+        const updatedTasks: Task[] = taskList.tasks.filter(({ id }) => id !== payload.task.id);
+        return { ...taskList, tasks: updatedTasks };
+      }
+
+      if (payload.nextTaskListId === taskList.id) {
+        const updatedTasks: Task[] = [...taskList.tasks, { ...payload.task, listId: payload.nextTaskListId }];
+        return { ...taskList, tasks: updatedTasks };
       }
 
       return taskList;

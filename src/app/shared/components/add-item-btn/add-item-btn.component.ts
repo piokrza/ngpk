@@ -25,7 +25,7 @@ export class AddItemBtnComponent {
   readonly isEditing: WritableSignal<boolean> = signal<boolean>(false);
   readonly boardNameControl = new FormControl<string>('', { nonNullable: true });
 
-  emitBoardName(): void {
+  emitItemName(): void {
     if (!this.boardNameControl.value.length) return;
 
     this.itemNameSubmit.emit(this.boardNameControl.value);
