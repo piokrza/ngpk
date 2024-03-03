@@ -9,12 +9,11 @@ import { filter } from 'rxjs';
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 
-import { AuthSelectors } from '#app/features/auth/store';
+import { AuthSelectors } from '#auth/store';
 import { AppPaths } from '#core/enums';
 import { connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
 import { AddItemBtnComponent } from '#tasker/components';
-import { Board } from '#tasker/enums';
 import { AddTaskPayload, Task } from '#tasker/models';
 import { BoardsFacadeService } from '#tasker/services';
 import { TaskerSelectors } from '#tasker/store';
@@ -41,11 +40,6 @@ export class BoardComponent implements OnInit {
     user: this.store.select(AuthSelectors.user).pipe(filter(Boolean)),
   });
 
-  readonly todos: Task[] = [...(this.state.board?.todo ?? [])];
-  readonly doing: Task[] = [...(this.state.board?.doing ?? [])];
-  readonly done: Task[] = [...(this.state.board?.done ?? [])];
-
-  readonly Board: typeof Board = Board;
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   ngOnInit(): void {
@@ -68,10 +62,14 @@ export class BoardComponent implements OnInit {
     this.state.board && this.boardsFacadeService.deleteBoard(this.state.board.id);
   }
 
-  addTask(taskName: string, boardType: Board): void {
+  addTaskList(taskListName: string): void {
+    this.state.board && this.boardsFacadeService.addTaskList(this.state.board.id, taskListName);
+  }
+
+  addTask(taskName: string, listId: string): void {
     const payload: AddTaskPayload = {
       taskName,
-      boardType,
+      listId,
       boardId: this.state.board!.id,
     };
 

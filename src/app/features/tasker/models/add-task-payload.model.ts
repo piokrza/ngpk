@@ -1,7 +1,5 @@
-import { Board } from '#tasker/enums';
-
 export interface AddTaskPayload {
   taskName: string;
-  boardType: Board;
+  listId: string;
   boardId: string;
 }

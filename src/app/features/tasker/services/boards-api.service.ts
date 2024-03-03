@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Observable, switchMap, tap } from 'rxjs';
 
 import { Collection } from '#core/enums';
-import { AddTaskPayload, Board } from '#tasker/models';
+import { AddTaskPayload, Board, TaskList } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsApiService {
@@ -18,17 +19,35 @@ export class BoardsApiService {
   }
 
   async addBoard(name: string, uid: string): Promise<DocumentReference<Board>> {
-    const newBoard: Board = { name, uid, todo: [], doing: [], done: [], id: this.angularFirestore.createId() };
+    return await this.angularFirestore
+      .collection<Board>(Collection.BOARDS)
+      .add({ name, uid, tasksList: [], id: this.angularFirestore.createId() } satisfies Board);
+  }
 
-    return await this.angularFirestore.collection<Board>(Collection.BOARDS).add(newBoard);
+  addTaskList$(boardId: string, taskListName: string): Observable<void> {
+    const boardRef = this.getBoardById(boardId);
+    return boardRef.get().pipe(
+      switchMap((boardData) => {
+        return boardRef.update({
+          tasksList: [
+            ...(boardData.data()?.tasksList ?? []),
+            { id: this.angularFirestore.createId(), name: taskListName, items: [] } satisfies TaskList,
+          ],
+        });
+      })
+    );
   }
 
   async deleteBoard(boardId: string): Promise<void> {
-    const boardRef = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(boardId);
-    return await boardRef.delete();
+    return await this.getBoardById(boardId).delete();
   }
 
   async addTask(payload: AddTaskPayload) {
-    const boardRef = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(payload.boardId);
+    payload;
+    // const boardRef = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(payload.boardId);
+  }
+
+  private getBoardById(boardId: string): AngularFirestoreDocument<Board> {
+    return this.angularFirestore.collection<Board>(Collection.BOARDS).doc(boardId);
   }
 }

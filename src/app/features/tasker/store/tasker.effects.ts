@@ -65,6 +65,20 @@ export class TaskerEffects {
     );
   });
 
+  addTaskList$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.addTaskList),
+      exhaustMap(({ boardId, taskListName }) => {
+        return this.boardsApiService.addTaskList$(boardId, taskListName);
+      }),
+      map(() => {
+        this.toastService.showMessage('success', this.tr('success'), '');
+        return TaskerActions.addTaskListSuccess();
+      }),
+      catchError(() => of(TaskerActions.addTaskListFailure()))
+    );
+  });
+
   private tr(path: string): string {
     return this.translateService.instant('toastMessage.' + path);
   }

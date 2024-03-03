@@ -20,6 +20,10 @@ export class BoardsFacadeService {
     this.store.dispatch(TaskerActions.addBoard({ name, uid }));
   }
 
+  addTaskList(boardId: string, taskListName: string): void {
+    this.store.dispatch(TaskerActions.addTaskList({ boardId, taskListName }));
+  }
+
   deleteBoard(boardId: string): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('tasker.deleteBoardMessage'),

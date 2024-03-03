@@ -32,7 +32,8 @@ export class AddItemBtnComponent {
     this.isEditing.set(false);
   }
 
-  setIsEditing(): void {
-    this.isEditing.set(true);
+  setIsEditing(isEditing: boolean): void {
+    this.isEditing.set(isEditing);
+    !isEditing && this.boardNameControl.setValue('');
   }
 }

@@ -11,6 +11,10 @@ export const addBoard = createAction(ActionTypes.ADD_BOARD, props<{ uid: string;
 export const addBoardSuccess = createAction(ActionTypes.ADD_BOARD_SUCCESS);
 export const addBoardFailure = createAction(ActionTypes.ADD_BOARD_FAILURE);
 
+export const addTaskList = createAction(ActionTypes.ADD_TASK_LIST, props<{ boardId: string; taskListName: string }>());
+export const addTaskListSuccess = createAction(ActionTypes.ADD_TASK_LIST_SUCCESS);
+export const addTaskListFailure = createAction(ActionTypes.ADD_TASK_LIST_FAILURE);
+
 export const deleteBoard = createAction(ActionTypes.DELETE_BOARD, props<{ boardId: string }>());
 export const deleteBoardSuccess = createAction(ActionTypes.DELETE_BOARD_SUCCESS);
 export const deleteBoardFailure = createAction(ActionTypes.DELETE_BOARD_FAILURE);
