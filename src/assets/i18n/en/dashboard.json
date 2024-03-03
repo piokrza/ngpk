@@ -84,7 +84,8 @@
   },
 
   "tasker": {
-    "emptyList": "List is empty",
+    "addTask": "Add task",
+    "addList": "Add list",
     "todo": "Todos",
     "doing": "Doing",
     "done": "Done",

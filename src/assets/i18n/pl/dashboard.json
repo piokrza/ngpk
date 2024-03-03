@@ -84,7 +84,8 @@
   },
 
   "tasker": {
-    "emptyList": "Lista jest pusta",
+    "addTask": "Dodaj zadanie",
+    "addList": "Dodaj listę zadań",
     "todo": "Do zrobienia",
     "doing": "W trakcie",
     "done": "Zakończone",

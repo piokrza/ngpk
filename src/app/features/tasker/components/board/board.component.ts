@@ -1,4 +1,4 @@
-import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { AuthSelectors } from '#auth/store';
 import { AppPaths } from '#core/enums';
 import { connectState } from '#core/utils';
 import { ContainerComponent, AddItemBtnComponent } from '#shared/components';
-import { AddTaskPayload, Task } from '#tasker/models';
+import { AddTaskPayload } from '#tasker/models';
 import { BoardsFacadeService } from '#tasker/services';
 import { TaskerSelectors } from '#tasker/store';
 
@@ -45,12 +45,8 @@ export class BoardComponent implements OnInit {
     if (!this.state.board) this.router.navigate([AppPaths.TASKER]);
   }
 
-  onDrop(event: CdkDragDrop<Task[]>): void {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-    }
+  onDrop(event: CdkDragDrop<string>): void {
+    event;
   }
 
   navigateBack(): void {
@@ -73,4 +69,6 @@ export class BoardComponent implements OnInit {
     const payload: AddTaskPayload = { boardId: this.state.board.id, taskListId, taskName };
     this.boardsFacadeService.addTask(payload);
   }
+
+  deleteTask(): void {}
 }
