@@ -69,13 +69,8 @@ export class BoardComponent implements OnInit {
     this.boardsFacadeService.deleteTaskList(this.state.board.id, taskListId);
   }
 
-  addTask(taskName: string, listId: string): void {
-    const payload: AddTaskPayload = {
-      taskName,
-      listId,
-      boardId: this.state.board!.id,
-    };
-
+  addTask(taskName: string, taskListId: string): void {
+    const payload: AddTaskPayload = { boardId: this.state.board.id, taskListId, taskName };
     this.boardsFacadeService.addTask(payload);
   }
 }

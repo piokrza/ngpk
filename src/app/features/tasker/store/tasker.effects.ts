@@ -86,6 +86,18 @@ export class TaskerEffects {
       map(() => {
         this.toastService.showMessage('success', this.tr('success'), '');
         return TaskerActions.deleteTaskListSuccess();
+      }),
+      catchError(() => of(TaskerActions.deleteTaskListFailure()))
+    );
+  });
+
+  addTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.addTask),
+      exhaustMap(({ payload }) => this.boardsApiService.addTask$(payload)),
+      map(() => {
+        this.toastService.showMessage('success', this.tr('success'), '');
+        return TaskerActions.addTaskSuccess();
       })
     );
   });

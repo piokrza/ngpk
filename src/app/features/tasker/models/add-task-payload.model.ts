@@ -1,5 +1,5 @@
 export interface AddTaskPayload {
   taskName: string;
-  listId: string;
+  taskListId: string;
   boardId: string;
 }

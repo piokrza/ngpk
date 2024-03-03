@@ -5,26 +5,26 @@
   </div>
 
   <div cdkDropListGroup class="mt-6 flex align-items-end">
-    @for (task of state.board.tasksList; track task.id) {
+    @for (taskList of state.board.tasksLists; track taskList.id) {
       <div class="container">
         <div class="flex justify-content-between align-items-center">
-          <h2>{{ task.name }}</h2>
+          <h2>{{ taskList.name }}</h2>
           <p-button
             size="large"
             severity="danger"
-            [icon]="PrimeIcons.TRASH"
             [text]="true"
             [rounded]="true"
-            (onClick)="deleteTaskList(task.id)" />
+            [icon]="PrimeIcons.TRASH"
+            (onClick)="deleteTaskList(taskList.id)" />
         </div>
 
-        <div cdkDropList [cdkDropListData]="task.items" class="list" (cdkDropListDropped)="onDrop($event)">
-          @for (item of task.items; track item.id) {
+        <div cdkDropList [cdkDropListData]="taskList.tasks" class="list" (cdkDropListDropped)="onDrop($event)">
+          @for (task of taskList.tasks; track task.id) {
             <org-container cdkDrag>
-              {{ item.name }}
+              {{ task.name }}
             </org-container>
           } @empty {
-            <org-add-item-btn (itemNameSubmit)="addTask($event, task.id)">
+            <org-add-item-btn (itemNameSubmit)="addTask($event, taskList.id)">
               <div class="flex justify-content-between align-items-center w-full">
                 <span>{{ 'tasker.emptyList' | translate }}</span>
                 <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />

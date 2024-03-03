@@ -1,10 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 
 import { Collection } from '#core/enums';
-import { AddTaskPayload, Board, TaskList } from '#tasker/models';
+import { AddTaskPayload, Board, Task, TaskList } from '#tasker/models';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsApiService {
@@ -21,7 +20,7 @@ export class BoardsApiService {
   async addBoard(name: string, uid: string): Promise<DocumentReference<Board>> {
     return await this.angularFirestore
       .collection<Board>(Collection.BOARDS)
-      .add({ name, uid, tasksList: [], id: this.angularFirestore.createId() } satisfies Board);
+      .add({ name, uid, tasksLists: [], id: this.angularFirestore.createId() } satisfies Board);
   }
 
   addTaskList$(boardId: string, taskListName: string): Observable<void> {
@@ -29,9 +28,9 @@ export class BoardsApiService {
     return boardRef.get().pipe(
       switchMap((boardData) => {
         return boardRef.update({
-          tasksList: [
-            ...(boardData.data()?.tasksList ?? []),
-            { id: this.angularFirestore.createId(), name: taskListName, items: [] } satisfies TaskList,
+          tasksLists: [
+            ...(boardData.data()?.tasksLists ?? []),
+            { id: this.angularFirestore.createId(), name: taskListName, tasks: [] } satisfies TaskList,
           ],
         });
       })
@@ -46,18 +45,42 @@ export class BoardsApiService {
     const boardRef = this.getBoardById(boardId);
     return boardRef.get().pipe(
       switchMap((boardData) => {
-        const filteredTaskList: TaskList[] = (boardData.data()?.tasksList ?? []).filter(({ id }) => id === taskListId);
-        return boardRef.update({ tasksList: filteredTaskList });
+        const filteredTaskLists: TaskList[] = (boardData.data()?.tasksLists ?? []).filter(({ id }) => id === taskListId);
+        return boardRef.update({ tasksLists: filteredTaskLists });
       })
     );
   }
 
-  async addTask(payload: AddTaskPayload) {
-    payload;
-    // const boardRef = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(payload.boardId);
+  addTask$(payload: AddTaskPayload): Observable<void> {
+    const boardRef = this.getBoardById(payload.boardId);
+
+    return boardRef.get().pipe(
+      switchMap((boardData) => {
+        return boardRef.update({
+          tasksLists: this.addTaskToTaskList(boardData.data()?.tasksLists ?? [], payload),
+        });
+      })
+    );
   }
 
   private getBoardById(boardId: string): AngularFirestoreDocument<Board> {
     return this.angularFirestore.collection<Board>(Collection.BOARDS).doc(boardId);
+  }
+
+  private addTaskToTaskList(tasksLists: TaskList[], payload: AddTaskPayload): TaskList[] {
+    return tasksLists.map((taskList) => {
+      if (taskList.id === payload.taskListId) {
+        const newTask: Task = {
+          description: '',
+          name: payload.taskName,
+          listId: payload.taskListId,
+          id: this.angularFirestore.createId(),
+        };
+
+        return { ...taskList, tasks: [...taskList.tasks, newTask] };
+      }
+
+      return taskList;
+    });
   }
 }
