@@ -4,10 +4,19 @@
     <p-button size="large" severity="danger" [icon]="PrimeIcons.TRASH" [text]="true" [rounded]="true" (onClick)="deleteBoard()" />
   </div>
 
-  <div cdkDropListGroup class="mt-6">
+  <div cdkDropListGroup class="mt-6 flex align-items-end">
     @for (task of state.board.tasksList; track task.id) {
       <div class="container">
-        <h2>{{ task.name }}</h2>
+        <div class="flex justify-content-between align-items-center">
+          <h2>{{ task.name }}</h2>
+          <p-button
+            size="large"
+            severity="danger"
+            [icon]="PrimeIcons.TRASH"
+            [text]="true"
+            [rounded]="true"
+            (onClick)="deleteTaskList(task.id)" />
+        </div>
 
         <div cdkDropList [cdkDropListData]="task.items" class="list" (cdkDropListDropped)="onDrop($event)">
           @for (item of task.items; track item.id) {

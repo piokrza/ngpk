@@ -24,6 +24,14 @@ export class BoardsFacadeService {
     this.store.dispatch(TaskerActions.addTaskList({ boardId, taskListName }));
   }
 
+  deleteTaskList(boardId: string, taskListId: string): void {
+    this.confirmationService.confirm({
+      message: this.translateService.instant('tasker.deleteTaskListMessage'),
+      header: this.translateService.instant('tasker.deleteTaskListHeader'),
+      accept: () => this.store.dispatch(TaskerActions.deleteTaskList({ boardId, taskListId })),
+    });
+  }
+
   deleteBoard(boardId: string): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('tasker.deleteBoardMessage'),

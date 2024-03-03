@@ -15,6 +15,10 @@ export const addTaskList = createAction(ActionTypes.ADD_TASK_LIST, props<{ board
 export const addTaskListSuccess = createAction(ActionTypes.ADD_TASK_LIST_SUCCESS);
 export const addTaskListFailure = createAction(ActionTypes.ADD_TASK_LIST_FAILURE);
 
+export const deleteTaskList = createAction(ActionTypes.DELETE_TASK_LIST, props<{ boardId: string; taskListId: string }>());
+export const deleteTaskListSuccess = createAction(ActionTypes.DELETE_TASK_LIST_SUCCESS);
+export const deleteTaskListFailure = createAction(ActionTypes.DELETE_TASK_LIST_FAILURE);
+
 export const deleteBoard = createAction(ActionTypes.DELETE_BOARD, props<{ boardId: string }>());
 export const deleteBoardSuccess = createAction(ActionTypes.DELETE_BOARD_SUCCESS);
 export const deleteBoardFailure = createAction(ActionTypes.DELETE_BOARD_FAILURE);

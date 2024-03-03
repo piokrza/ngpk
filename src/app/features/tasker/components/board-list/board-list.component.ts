@@ -8,8 +8,7 @@ import { TooltipModule } from 'primeng/tooltip';
 
 import { AuthSelectors } from '#auth/store';
 import { connectState } from '#core/utils';
-import { ContainerComponent } from '#shared/components';
-import { AddItemBtnComponent } from '#tasker/components';
+import { ContainerComponent, AddItemBtnComponent } from '#shared/components';
 import { BoardsFacadeService } from '#tasker/services';
 import { TaskerSelectors } from '#tasker/store';
 

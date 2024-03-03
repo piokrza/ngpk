@@ -89,7 +89,9 @@
     "doing": "W trakcie",
     "done": "Zakończone",
     "deleteBoardMessage": "Na pewno chcesz usunąć tę tablicę?",
-    "deleteBoardHeader": "Usuwanie tablicy"
+    "deleteTaskListMessage": "Na pewno chcesz usunąć tę listę zadań?",
+    "deleteBoardHeader": "Usuwanie tablicy",
+    "deleteTaskListHeader": "Usuwanie listy zadań"
   },
 
   "drive": {

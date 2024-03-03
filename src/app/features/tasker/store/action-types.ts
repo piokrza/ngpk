@@ -11,6 +11,10 @@ export enum ActionTypes {
   ADD_TASK_LIST_SUCCESS = '[Tasker] Add tasklist success',
   ADD_TASK_LIST_FAILURE = '[Tasker] Add tasklist failure',
 
+  DELETE_TASK_LIST = '[Tasker] Delete tasklist',
+  DELETE_TASK_LIST_SUCCESS = '[Tasker] Delete tasklist success',
+  DELETE_TASK_LIST_FAILURE = '[Tasker] Delete tasklist failure',
+
   DELETE_BOARD = '[Tasker] Delete board',
   DELETE_BOARD_SUCCESS = '[Tasker] Delete board success',
   DELETE_BOARD_FAILURE = '[Tasker] Delete board failure',

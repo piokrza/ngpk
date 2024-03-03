@@ -89,7 +89,9 @@
     "doing": "Doing",
     "done": "Done",
     "deleteBoardMessage": "Are you sure you want to delete this board?",
-    "deleteBoardHeader": "Delete board"
+    "deleteTaskListMessage": "Are you sure you want to delete this task list?",
+    "deleteBoardHeader": "Delete board",
+    "deleteTaskListHeader": "Delete task list"
   },
 
   "drive": {

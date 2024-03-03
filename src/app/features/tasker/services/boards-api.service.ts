@@ -42,6 +42,16 @@ export class BoardsApiService {
     return await this.getBoardById(boardId).delete();
   }
 
+  deleteTaskList$(boardId: string, taskListId: string): Observable<void> {
+    const boardRef = this.getBoardById(boardId);
+    return boardRef.get().pipe(
+      switchMap((boardData) => {
+        const filteredTaskList: TaskList[] = (boardData.data()?.tasksList ?? []).filter(({ id }) => id === taskListId);
+        return boardRef.update({ tasksList: filteredTaskList });
+      })
+    );
+  }
+
   async addTask(payload: AddTaskPayload) {
     payload;
     // const boardRef = this.angularFirestore.collection<Board>(Collection.BOARDS).doc(payload.boardId);

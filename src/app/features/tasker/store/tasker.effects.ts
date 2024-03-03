@@ -79,6 +79,17 @@ export class TaskerEffects {
     );
   });
 
+  deleteTaskList$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TaskerActions.deleteTaskList),
+      exhaustMap(({ boardId, taskListId }) => this.boardsApiService.deleteTaskList$(boardId, taskListId)),
+      map(() => {
+        this.toastService.showMessage('success', this.tr('success'), '');
+        return TaskerActions.deleteTaskListSuccess();
+      })
+    );
+  });
+
   private tr(path: string): string {
     return this.translateService.instant('toastMessage.' + path);
   }

@@ -39,11 +39,11 @@ export class AppComponent implements OnInit {
     return this.authApiService.authState$.pipe(
       filter(Boolean),
       tap(({ uid }) => {
+        this.store.dispatch(DriveActions.loadFiles({ uid }));
         this.store.dispatch(AuthActions.loadUserData({ uid }));
         this.store.dispatch(ConfigActions.loadConfig({ uid }));
-        this.store.dispatch(CashFlowActions.loadCashFlow({ uid }));
-        this.store.dispatch(DriveActions.loadFiles({ uid }));
         this.store.dispatch(TaskerActions.loadBoards({ uid }));
+        this.store.dispatch(CashFlowActions.loadCashFlow({ uid }));
       })
     );
   }
