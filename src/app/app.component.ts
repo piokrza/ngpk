@@ -1,3 +1,4 @@
+import { TaskerActions } from './features/tasker/store';
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,7 +13,6 @@ import { CashFlowActions } from '#cash-flow/store';
 import { ConfigActions } from '#core/config/store';
 import { ThemeService } from '#core/services';
 import { DriveActions } from '#drive/store';
-import { TaskerActions } from '#tasker/store';
 
 @Component({
   selector: 'org-root',
@@ -39,12 +39,11 @@ export class AppComponent implements OnInit {
     return this.authApiService.authState$.pipe(
       filter(Boolean),
       tap(({ uid }) => {
+        this.store.dispatch(DriveActions.loadFiles({ uid }));
         this.store.dispatch(AuthActions.loadUserData({ uid }));
         this.store.dispatch(ConfigActions.loadConfig({ uid }));
-        this.store.dispatch(TaskerActions.loadTasks({ uid }));
-        this.store.dispatch(TaskerActions.loadNotes({ uid }));
+        this.store.dispatch(TaskerActions.loadBoards({ uid }));
         this.store.dispatch(CashFlowActions.loadCashFlow({ uid }));
-        this.store.dispatch(DriveActions.loadFiles({ uid }));
       })
     );
   }

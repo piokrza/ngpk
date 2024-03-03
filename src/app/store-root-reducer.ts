@@ -11,8 +11,8 @@ export interface AppState {
   [fromConfig.FeatureKey]: fromConfig.State;
   [fromCashFlow.FeatureKey]: fromCashFlow.State;
   [fromAuth.FeatureKey]: fromAuth.State;
-  [fromTasker.FeatureKey]: fromTasker.State;
   [fromDrive.FeatureKey]: fromDrive.State;
+  [fromTasker.FeatureKey]: fromTasker.State;
 }
 
 export const STORE_ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState>>('ROOT_REDUCERS', {
@@ -20,7 +20,7 @@ export const STORE_ROOT_REDUCERS = new InjectionToken<ActionReducerMap<AppState>
     [fromConfig.FeatureKey]: fromConfig.Reducer,
     [fromCashFlow.FeatureKey]: fromCashFlow.Reducer,
     [fromAuth.FeatureKey]: fromAuth.Reducer,
-    [fromTasker.FeatureKey]: fromTasker.Reducer,
     [fromDrive.FeatureKey]: fromDrive.Reducer,
+    [fromTasker.FeatureKey]: fromTasker.Reducer,
   }),
 });

@@ -1,2 +1,2 @@
-export * from './weather-widget-api.service';
-export * from './weather-widget-facade.service';
+export * from './weather-api.service';
+export * from './weather-facade.service';

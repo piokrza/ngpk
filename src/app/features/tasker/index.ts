@@ -1,2 +1,2 @@
-export * from './tasker.component';
+export * from './tasker-routing.module';
 export * from './tasker.module';

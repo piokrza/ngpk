@@ -1,8 +1,9 @@
-import { AppPaths } from '../enums';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Observable, filter, tap } from 'rxjs';
 import { Environment } from 'src/environments';
+
+import { AppPaths } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
 export class TitleService {

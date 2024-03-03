@@ -1,5 +1,5 @@
 {
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "jsonRecursiveSort": true,
   "quoteProps": "consistent",
   "tabWidth": 2,

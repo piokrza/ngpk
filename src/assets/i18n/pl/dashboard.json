@@ -84,26 +84,17 @@
   },
 
   "tasker": {
-    "title": "Zadania",
-    "notes": "Notatki",
-    "editTask": "Edytuj zadanie",
     "addTask": "Dodaj zadanie",
-    "removeMessage": "Na pewno chcesz usunąć zadanie?",
-    "removeHeader": "Usuń zadanie",
-    "addSteps": "Dodaj krok",
-    "step": "Krok",
-    "filter": {
-      "all": "Wszystkie",
-      "completed": "Ukończone",
-      "notCompleted": "Nieukończone"
-    },
-    "addNote": "Dodaj notatkę",
-    "editNote": "Edytuj notatkę",
-    "removeNoteHeader": "Usuń notatkę",
-    "removeNoteMessage": "Na pewno chcesz usunąć notatkę?",
-    "completed": "Ukończone",
-    "uncompleted": "Nieukończone",
-    "maxlength": "Maksymalna ilość kroków: 5"
+    "addList": "Dodaj listę zadań",
+    "todo": "Do zrobienia",
+    "doing": "W trakcie",
+    "done": "Zakończone",
+    "deleteBoardMessage": "Na pewno chcesz usunąć tę tablicę?",
+    "deleteTaskMessage": "Na pewno chcesz usunąć to zadanie?",
+    "deleteTaskListMessage": "Na pewno chcesz usunąć tę listę zadań?",
+    "deleteBoardHeader": "Usuwanie tablicy",
+    "deleteTaskHeader": "Usuwanie zadania",
+    "deleteTaskListHeader": "Usuwanie listy zadań"
   },
 
   "drive": {

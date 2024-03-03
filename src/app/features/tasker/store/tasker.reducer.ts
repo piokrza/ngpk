@@ -1,91 +1,35 @@
-import { Action, ActionReducer, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
-import { AuthActions } from '#auth/store';
-import { Note, NoteFilter, Task, TaskFilter } from '#tasker/models';
+import { Board } from '#tasker/models';
 import { TaskerActions } from '#tasker/store';
 
 export const FeatureKey = 'tasker';
 
 export interface State {
-  tasks: Task[];
-  notes: Note[];
-  isTasksLoading: boolean;
-  isNotesLoading: boolean;
-  taskFilter: TaskFilter;
-  noteFilter: NoteFilter;
+  boards: Board[];
+  activeBoardId: string | null;
+  isLoading: boolean;
 }
 
 const initialState: State = {
-  tasks: [],
-  notes: [],
-  isTasksLoading: false,
-  isNotesLoading: false,
-  taskFilter: 'all',
-  noteFilter: 'newest',
+  boards: [],
+  activeBoardId: null,
+  isLoading: false,
 };
 
-export const Reducer: ActionReducer<State, Action> = createReducer(
+export const Reducer = createReducer(
   initialState,
 
-  on(TaskerActions.loadTasks, (state): State => {
-    return {
-      ...state,
-      isTasksLoading: true,
-    };
+  on(TaskerActions.loadBoards, (state): State => {
+    return { ...state, isLoading: true };
   }),
-  on(TaskerActions.loadTasksSuccess, (state: State, { tasks }): State => {
-    return {
-      ...state,
-      tasks,
-      isTasksLoading: false,
-    };
+  on(TaskerActions.loadBoardsSuccess, (state, { boards }): State => {
+    return { ...state, boards, isLoading: false };
   }),
-  on(TaskerActions.loadTasksError, (state): State => {
-    return {
-      ...state,
-      isTasksLoading: false,
-    };
+  on(TaskerActions.loadBoardsFailure, (state): State => {
+    return { ...state, isLoading: false };
   }),
-  on(TaskerActions.loadNotes, (state): State => {
-    return {
-      ...state,
-      isNotesLoading: true,
-    };
-  }),
-  on(TaskerActions.loadNotesSuccess, (state: State, { notes }): State => {
-    return {
-      ...state,
-      notes,
-      isNotesLoading: false,
-    };
-  }),
-  on(TaskerActions.loadNotesError, (state): State => {
-    return {
-      ...state,
-      isNotesLoading: false,
-    };
-  }),
-  on(TaskerActions.addTask, (state, { task }): State => {
-    return {
-      ...state,
-      tasks: [...(state.tasks as Task[]), task],
-    };
-  }),
-  on(TaskerActions.addNote, (state, { note }): State => {
-    return {
-      ...state,
-      notes: [...(state.notes as Note[]), note],
-    };
-  }),
-  on(TaskerActions.setTaskFilter, (state, { taskFilter }): State => ({ ...state, taskFilter })),
-  on(TaskerActions.setNoteFilter, (state, { noteFilter }): State => ({ ...state, noteFilter })),
-
-  on(AuthActions.signOut, (state): State => {
-    return {
-      ...state,
-      taskFilter: 'all',
-      tasks: [],
-      notes: [],
-    };
+  on(TaskerActions.setActiveBoard, (state, { id }): State => {
+    return { ...state, activeBoardId: id };
   })
 );

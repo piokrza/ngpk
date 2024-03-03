@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -55,26 +55,27 @@ export class LayoutComponent {
     isTitleVisible: this.isTitleVisible$,
   });
 
-  sidebarVisible = false;
+  readonly sidebarVisible = signal(false);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 
   authorize(): void {
-    this.state.user &&
+    if (this.state.user) {
       this.confirmationService.confirm({
         message: this.translateService.instant('auth.signoutMessage'),
         header: this.translateService.instant('auth.signout'),
         accept: () => this.store.dispatch(AuthActions.signOut()),
       });
+    } else {
+      this.router.navigate([AppPaths.AUTHENTICATION]);
+    }
 
-    !this.state.user && this.router.navigate([AppPaths.AUTHENTICATION]);
-
-    this.sidebarVisible = false;
+    this.sidebarVisible.set(false);
   }
 
   get isTitleVisible$(): Observable<boolean> {
     return this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map(({ url }) => !(url.includes(AppPaths.AUTHENTICATION) || url === '/')),
+      map(({ url }) => !(url.includes(AppPaths.AUTHENTICATION) || url === '/'))
     );
   }
 }

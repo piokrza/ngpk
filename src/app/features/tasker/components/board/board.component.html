@@ -1,0 +1,58 @@
+@if (state.board) {
+  <div class="flex justify-content-between align-items-center">
+    <p-button size="large" [icon]="PrimeIcons.ARROW_LEFT" [text]="true" [rounded]="true" (onClick)="navigateBack()" />
+    <p-button size="large" severity="danger" [icon]="PrimeIcons.TRASH" [text]="true" [rounded]="true" (onClick)="deleteBoard()" />
+  </div>
+
+  <div cdkDropListGroup class="flex gap-4 overflow-x-scroll mt-6">
+    @for (taskList of state.board.tasksLists; track taskList.id) {
+      <org-container>
+        <div class="container">
+          <div class="flex justify-content-between align-items-center">
+            <h2 class="my-2">{{ taskList.name }}</h2>
+            <p-button
+              size="large"
+              severity="danger"
+              [text]="true"
+              [rounded]="true"
+              [icon]="PrimeIcons.TRASH"
+              (onClick)="deleteTaskList(taskList.id)" />
+          </div>
+
+          <div cdkDropList class="list mt-5" [cdkDropListData]="taskList.id" (cdkDropListDropped)="onDrop($event)">
+            @for (task of taskList.tasks; track task.id) {
+              <org-container cdkDrag [cdkDragData]="task" [styleClass]="['mb-3']">
+                <div class="flex justify-content-between align-items-center">
+                  <span> {{ task.name }}</span>
+                  <p-button
+                    size="large"
+                    severity="danger"
+                    [icon]="PrimeIcons.TRASH"
+                    [text]="true"
+                    [rounded]="true"
+                    (onClick)="deleteTask(task.id, taskList.id)" />
+                </div>
+              </org-container>
+            }
+
+            <org-add-item-btn (itemNameSubmit)="addTask($event, taskList.id)">
+              <div class="flex justify-content-between align-items-center w-full">
+                <span>{{ 'tasker.addTask' | translate }}</span>
+                <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
+              </div>
+            </org-add-item-btn>
+          </div>
+        </div>
+      </org-container>
+    }
+
+    <div class="container">
+      <org-add-item-btn (itemNameSubmit)="addTaskList($event)">
+        <div class="flex justify-content-between align-items-center w-full">
+          <span>{{ 'tasker.addList' | translate }}</span>
+          <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
+        </div>
+      </org-add-item-btn>
+    </div>
+  </div>
+}

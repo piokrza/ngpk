@@ -1,3 +1,2 @@
-export * from './tasker.service';
-export * from './tasker-api.service';
-export * from './tasker-facade.service';
+export * from './boards-api.service';
+export * from './boards-facade.service';

@@ -27,10 +27,10 @@ export class MenuService {
         state: { isVisible: true },
       },
       {
-        label: 'menu.drive',
-        routerLink: AppPaths.DRIVE,
-        icon: PrimeIcons.FOLDER,
-        visible: this.environment.featureFlags['drive'],
+        label: 'menu.tasker',
+        routerLink: AppPaths.TASKER,
+        icon: PrimeIcons.SIGN_IN,
+        visible: this.environment.featureFlags['tasker'],
         state: { isVisible: isLoggedIn },
       },
       {
@@ -41,10 +41,10 @@ export class MenuService {
         state: { isVisible: isLoggedIn },
       },
       {
-        label: 'menu.tasker',
-        routerLink: AppPaths.TASKER,
-        icon: PrimeIcons.BOOK,
-        visible: this.environment.featureFlags['tasker'],
+        label: 'menu.drive',
+        routerLink: AppPaths.DRIVE,
+        icon: PrimeIcons.FOLDER,
+        visible: this.environment.featureFlags['drive'],
         state: { isVisible: isLoggedIn },
       },
       {

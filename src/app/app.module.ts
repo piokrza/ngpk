@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { APP_INITIALIZER, EnvironmentProviders, isDevMode, NgModule, Provider } from '@angular/core';
+import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -32,7 +32,7 @@ import { TaskerEffects } from '#tasker/store';
 
 const declarations = [AppComponent];
 const interceptors = [httpErrorInterceptor];
-const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, TaskerEffects, DriveEffects];
+const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, DriveEffects, TaskerEffects];
 
 const imports = [
   BrowserModule,
@@ -50,15 +50,15 @@ const imports = [
   TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: CustomTranslateHttpLoader } }),
 ];
 
-const providers: Array<Provider | EnvironmentProviders> = [
+const providers = [
   DatePipe,
   DialogService,
   MessageService,
   ConfirmationService,
   UserTrackingService,
   ScreenTrackingService,
-  provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
   provideHttpClient(withInterceptors(interceptors)),
+  provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
   { provide: Environment, useValue: environment },
   { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
   { provide: APP_INITIALIZER, useFactory: initializeTranslations, multi: true },

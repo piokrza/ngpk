@@ -31,7 +31,9 @@
     "editTaskError": "Something went wrong during task edit",
     "editNoteError": "Something went wrong during note edit",
     "loginSuccess": "Successfully logged in",
-    "logoutSuccess": "Successfully logged out"
+    "logoutSuccess": "Successfully logged out",
+    "addBoardSuccess": "Board added",
+    "deleteBoardSuccess": "Board deleted"
   },
 
   "common": {
