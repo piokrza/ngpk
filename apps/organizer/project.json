@@ -1,0 +1,137 @@
+{
+  "name": "organizer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "standalone": true,
+      "skipTests": true
+    },
+    "@schematics/angular:guard": {
+      "skipTests": true,
+      "functional": true
+    },
+    "@schematics/angular:interceptor": {
+      "skipTests": true,
+      "functional": true
+    },
+    "@schematics/angular:resolver": {
+      "skipTests": true,
+      "functional": true
+    },
+    "@schematics/angular:pipe": {
+      "skipTests": true,
+      "standalone": true
+    },
+    "@schematics/angular:directive": {
+      "skipTests": true,
+      "standalone": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
+    }
+  },
+  "sourceRoot": "apps/organizer/src",
+  "prefix": "org",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/organizer",
+        "index": "apps/organizer/src/index.html",
+        "main": "apps/organizer/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/organizer/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/organizer/src/favicon.ico", "apps/organizer/src/assets"],
+        "styles": [
+          "apps/organizer/src/styles.scss",
+          {
+            "input": "apps/organizer/src/assets/styles/themes/dark-theme.scss",
+            "bundleName": "dark-theme",
+            "inject": false
+          },
+          {
+            "input": "apps/organizer/src/assets/styles/themes/light-theme.scss",
+            "bundleName": "light-theme",
+            "inject": false
+          }
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["../organizer/src/assets/styles/variables/"]
+        },
+        "scripts": ["node_modules/chart.js/dist/chart.js"]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/organizer/src/environments/environment.ts",
+              "with": "apps/organizer/src/environments/environment.development.ts"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "organizer:build:production"
+        },
+        "development": {
+          "buildTarget": "organizer:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "organizer:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "polyfills": ["zone.js", "zone.js/testing"],
+        "tsConfig": "apps/organizer/tsconfig.spec.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/organizer/src/favicon.ico", "apps/organizer/src/assets"],
+        "styles": ["apps/organizer/src/styles.scss"],
+        "scripts": []
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/organizer/**/*.ts", "apps/organizer/**/*.html"],
+        "hasTypeAwareRules": true
+      }
+    }
+  }
+}

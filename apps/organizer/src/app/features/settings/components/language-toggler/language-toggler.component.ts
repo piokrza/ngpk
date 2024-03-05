@@ -45,6 +45,6 @@ export class LanguageTogglerComponent {
     this.translateService
       .get('primeng')
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(res => this.config.setTranslation(res));
+      .subscribe((res) => this.config.setTranslation(res));
   }
 }

@@ -114,7 +114,7 @@ export class AuthEffects {
       ofType(AuthActions.loadUserData),
       exhaustMap(({ uid }) =>
         this.authApiService.loadUserData$(uid).pipe(
-          map(user => AuthActions.loadUserDataSuccess({ user })),
+          map((user) => AuthActions.loadUserDataSuccess({ user })),
           takeUntil(this.dbSubscriptionService.unsubscribe$)
         )
       )

@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -23,22 +23,24 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "#app/*": ["src/app/*"],
-      "#core/*": ["src/app/core/*"],
-      "#shared/*": ["src/app/shared/*"],
-      "#store/*": ["src/app/store/*"],
       "#auth/*": ["src/app/features/auth/*"],
+      "#cash-flow/*": ["src/app/features/cash-flow/*"],
+      "#core/*": ["src/app/core/*"],
+      "#drive/*": ["src/app/features/drive/*"],
       "#search/*": ["src/app/features/search/*"],
       "#settings/*": ["src/app/features/settings/*"],
-      "#cash-flow/*": ["src/app/features/cash-flow/*"],
+      "#shared/*": ["src/app/shared/*"],
+      "#store/*": ["src/app/store/*"],
       "#tasker/*": ["src/app/features/tasker/*"],
-      "#drive/*": ["src/app/features/drive/*"],
       "#weather/*": ["src/app/features/weather/*"]
-    }
+    },
+    "rootDir": "."
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "exclude": ["node_modules", "tmp"]
 }

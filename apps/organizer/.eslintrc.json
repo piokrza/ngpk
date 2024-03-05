@@ -1,10 +1,11 @@
 {
-  "root": true,
-  "ignorePatterns": ["**/*"],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
-      "parserOptions": {},
+      "parserOptions": {
+        "project": ["apps/organizer/tsconfig.*?.json"]
+      },
       "extends": [
         "eslint:recommended",
         "plugin:@angular-eslint/recommended",
@@ -102,25 +103,7 @@
       "rules": {
         "@angular-eslint/template/prefer-self-closing-tags": "error"
       }
-    },
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
-              }
-            ]
-          }
-        ]
-      }
     }
   ],
-  "plugins": ["@nx"]
+  "extends": "../../.eslintrc.json"
 }
