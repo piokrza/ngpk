@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start:organizer": "nx serve organizer",
-    "build": "nx build",
+    "build:organizer": "nx build organizer",
     "watch": "nx build --watch --configuration development",
-    "test": "nx test",
-    "lint": "nx lint",
+    "test": "nx test organizer",
+    "lint:organizer": "nx lint organizer",
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
@@ -50,6 +50,7 @@
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@nx/angular": "18.0.7",
     "@nx/eslint": "18.0.7",
+    "@nx/eslint-plugin": "^18.0.7",
     "@nx/js": "18.0.7",
     "@nx/workspace": "18.0.7",
     "@schematics/angular": "~17.2.2",

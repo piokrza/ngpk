@@ -1,4 +1,3 @@
-import { TaskerActions } from './features/tasker/store';
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,6 +12,7 @@ import { CashFlowActions } from '#cash-flow/store';
 import { ConfigActions } from '#core/config/store';
 import { ThemeService } from '#core/services';
 import { DriveActions } from '#drive/store';
+import { TaskerActions } from '#tasker/store';
 
 @Component({
   selector: 'org-root',
