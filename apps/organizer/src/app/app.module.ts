@@ -14,8 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { Environment } from 'src/environments';
-import { environment } from 'src/environments/environment';
+import { Environment } from 'apps/organizer/src/environments';
+import { environment } from 'apps/organizer/src/environments/environment';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';

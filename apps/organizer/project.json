@@ -60,7 +60,7 @@
           }
         ],
         "stylePreprocessorOptions": {
-          "includePaths": ["../organizer/src/assets/styles/variables/"]
+          "includePaths": ["apps/organizer/src/assets/styles/variables/"]
         },
         "scripts": ["node_modules/chart.js/dist/chart.js"]
       },

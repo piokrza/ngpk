@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
-import { Environment } from 'src/environments';
+import { Environment } from 'apps/organizer/src/environments';
 
 import { MenuItem, PrimeIcons } from 'primeng/api';
 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { Environment } from 'src/environments';
+import { Environment } from 'apps/organizer/src/environments';
 
 import { IGeolocation, WeatherResponse } from '#weather/models';
 

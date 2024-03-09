@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Observable, filter, tap } from 'rxjs';
-import { Environment } from 'src/environments';
+import { Environment } from 'apps/organizer/src/environments';
 
 import { AppPaths } from '#core/enums';
 

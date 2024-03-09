@@ -22,17 +22,17 @@
     "skipLibCheck": true,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "#app/*": ["src/app/*"],
-      "#auth/*": ["src/app/features/auth/*"],
-      "#cash-flow/*": ["src/app/features/cash-flow/*"],
-      "#core/*": ["src/app/core/*"],
-      "#drive/*": ["src/app/features/drive/*"],
-      "#search/*": ["src/app/features/search/*"],
-      "#settings/*": ["src/app/features/settings/*"],
-      "#shared/*": ["src/app/shared/*"],
-      "#store/*": ["src/app/store/*"],
-      "#tasker/*": ["src/app/features/tasker/*"],
-      "#weather/*": ["src/app/features/weather/*"]
+      "#app/*": ["apps/organizer/src/app/*"],
+      "#auth/*": ["apps/organizer/src/app/features/auth/*"],
+      "#cash-flow/*": ["apps/organizer/src/app/features/cash-flow/*"],
+      "#core/*": ["apps/organizer/src/app/core/*"],
+      "#drive/*": ["apps/organizer/src/app/features/drive/*"],
+      "#search/*": ["apps/organizer/src/app/features/search/*"],
+      "#settings/*": ["apps/organizer/src/app/features/settings/*"],
+      "#shared/*": ["apps/organizer/src/app/shared/*"],
+      "#store/*": ["apps/organizer/src/app/store/*"],
+      "#tasker/*": ["apps/organizer/src/app/features/tasker/*"],
+      "#weather/*": ["apps/organizer/src/app/features/weather/*"]
     },
     "rootDir": "."
   },
