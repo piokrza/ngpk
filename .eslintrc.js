@@ -17,6 +17,7 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
       ],
       rules: {
+        '@nx/enforce-module-boundaries': [], // TODO: Add rules
         '@angular-eslint/component-selector': [
           'error',
           {

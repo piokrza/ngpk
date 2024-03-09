@@ -33,7 +33,9 @@
       "#shared/*": ["apps/organizer/src/app/shared/*"],
       "#store/*": ["apps/organizer/src/app/store/*"],
       "#tasker/*": ["apps/organizer/src/app/features/tasker/*"],
-      "#weather/*": ["apps/organizer/src/app/features/weather/*"]
+      "#weather/*": ["apps/organizer/src/app/features/weather/*"],
+      "@ng-pk/auth": ["libs/auth/feature/index.ts"],
+      "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]
     },
     "rootDir": "."
   },

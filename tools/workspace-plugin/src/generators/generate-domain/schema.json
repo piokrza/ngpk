@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "generate-domain",
+  "type": "object",
+  "description": "Generate a new domain.",
+  "properties": {
+    "domainName": {
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": {
+        "message": "Provide the domain name",
+        "type": "string"
+      }
+    }
+  },
+  "required": ["domainName"]
+}

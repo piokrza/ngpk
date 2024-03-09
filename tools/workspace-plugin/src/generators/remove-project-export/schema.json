@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "remove-project-export",
+  "type": "object",
+  "description": "Removes the path alias in tsconfig.base and the index.ts file it targets.",
+  "properties": {
+    "libraryName": {
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": {
+        "message": "Provide the library name.",
+        "type": "string"
+      }
+    },
+    "exportName": {
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": {
+        "message": "Provide the name of the deep export (optional)",
+        "type": "string"
+      }
+    }
+  },
+  "required": ["libraryName"]
+}
