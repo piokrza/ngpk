@@ -1,0 +1,48 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDirs": ["./"],
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "skipLibCheck": true,
+    "lib": ["ES2022", "dom"],
+    "paths": {
+      "#app/*": ["apps/organizer/src/app/*"],
+      "#cash-flow/*": ["apps/organizer/src/app/features/cash-flow/*"],
+      "#core/*": ["apps/organizer/src/app/core/*"],
+      "#drive/*": ["apps/organizer/src/app/features/drive/*"],
+      "#search/*": ["apps/organizer/src/app/features/search/*"],
+      "#settings/*": ["apps/organizer/src/app/features/settings/*"],
+      "#shared/*": ["apps/organizer/src/app/shared/*"],
+      "#store/*": ["apps/organizer/src/app/store/*"],
+      "#tasker/*": ["apps/organizer/src/app/features/tasker/*"],
+      "#weather/*": ["apps/organizer/src/app/features/weather/*"],
+      "@ngpk/auth-organizer/*": ["libs/auth-organizer/*"],
+      "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]
+    },
+    "rootDir": "."
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "exclude": ["node_modules", "tmp"]
+}

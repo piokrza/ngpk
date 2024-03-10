@@ -1,0 +1,34 @@
+{
+  "generators": {
+    "add-lint-changed": {
+      "implementation": "./src/generators/add-lint-changed",
+      "schema": "./src/generators/add-lint-changed/schema.json",
+      "description": "Adds a lint-changed script which runs ESLint only on files that have changed in respect to the default branch."
+    },
+    "add-type-check": {
+      "implementation": "./src/generators/add-type-check",
+      "schema": "./src/generators/add-type-check/schema.json",
+      "description": "Adds a type-check script which runs TSC on all .spec files."
+    },
+    "generate-angular-library": {
+      "implementation": "./src/generators/generate-angular-library",
+      "schema": "./src/generators/generate-angular-library/schema.json",
+      "description": "Generate a new Angular library."
+    },
+    "generate-domain": {
+      "implementation": "./src/generators/generate-domain",
+      "schema": "./src/generators/generate-domain/schema.json",
+      "description": "Generate a new domain."
+    },
+    "generate-sub-domain": {
+      "implementation": "./src/generators/generate-sub-domain",
+      "schema": "./src/generators/generate-sub-domain/schema.json",
+      "description": "Generate a new sub-domain under the specified domain."
+    },
+    "generate-core-library": {
+      "implementation": "./src/generators/generate-core-library",
+      "schema": "./src/generators/generate-core-library/schema.json",
+      "description": "Generate a new library under 'core'."
+    }
+  }
+}

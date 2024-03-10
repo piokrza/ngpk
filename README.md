@@ -1,13 +1,13 @@
 # CashControl
 
 Technologies used:
+
 - Angular 17,
 - NgRx,
 - Firebase,
 - PrimeNg,
 - Typescript,
 - PrimeFlex,
-
 
 Work in progress...
 

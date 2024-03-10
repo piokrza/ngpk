@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "generate-sub-domain",
+  "type": "object",
+  "description": "Generate a new sub-domain/project under the specified domain.",
+  "properties": {
+    "domainName": {
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": {
+        "message": "Provide the domain name",
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": {
+        "message": "Provide the sub-domain name",
+        "type": "string"
+      }
+    },
+    "pathAlias": {
+      "type": "string",
+      "x-prompt": {
+        "message": "Do you want to generate a path alias for this sub-domain?",
+        "type": "list",
+        "items": [
+          {
+            "value": "no",
+            "label": "No"
+          },
+          {
+            "value": "single",
+            "label": "Generate a 'single' export"
+          }
+        ]
+      }
+    }
+  },
+  "required": ["domainName", "name"]
+}

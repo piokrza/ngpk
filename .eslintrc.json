@@ -1,12 +1,10 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
   "overrides": [
     {
       "files": ["*.ts"],
-      "parserOptions": {
-        "project": ["tsconfig.json"]
-      },
       "extends": [
         "eslint:recommended",
         "plugin:@angular-eslint/recommended",
@@ -18,7 +16,14 @@
         "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
-        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "org", "style": "kebab-case" }],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "org",
+            "style": "kebab-case"
+          }
+        ],
         "@angular-eslint/component-class-suffix": "warn",
         "@angular-eslint/no-output-native": "warn",
         "@angular-eslint/no-inputs-metadata-property": "warn",
@@ -64,12 +69,15 @@
         "import/order": [
           "error",
           {
-            "alphabetize": { "order": "asc", "caseInsensitive": true },
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            },
             "groups": [["external", "builtin", "sibling", "parent", "index"], ["internal"]],
             "newlines-between": "always",
             "pathGroups": [
               {
-                "pattern": "primeng/**",
+                "pattern": "@ngpk/**",
                 "group": "internal"
               }
             ],
@@ -84,6 +92,9 @@
       "rules": {
         "@angular-eslint/template/prefer-self-closing-tags": "error"
       }
+    },
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"]
     }
   ]
 }
