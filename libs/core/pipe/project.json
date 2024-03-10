@@ -1,0 +1,8 @@
+{
+  "name": "core-pipe",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:core", "project:core-pipe", "public:core", "sub-domain:pipe", "type:api"],
+  "sourceRoot": "libs/core/pipe",
+  "prefix": "ngpk"
+}

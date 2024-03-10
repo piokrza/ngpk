@@ -4,8 +4,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
-import { AppPaths } from '#core/enums';
-import { DbSubscriptionService, ToastService } from '#core/services';
+import { AppPaths } from '@ngpk/core/enum';
+import { DbSubscriptionService, ToastService } from '@ngpk/core/service';
+
 import { BoardsApiService } from '#tasker/services';
 import { TaskerActions } from '#tasker/store';
 

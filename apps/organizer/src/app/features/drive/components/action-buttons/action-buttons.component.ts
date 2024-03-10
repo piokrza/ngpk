@@ -6,8 +6,8 @@ import { PrimeIcons } from 'primeng/api';
 import { FileUploadEvent } from 'primeng/fileupload';
 
 import { IUser } from '@ngpk/auth-organizer/model';
+import { connectState } from '@ngpk/core/util';
 
-import { connectState } from '#app/core/utils';
 import { DriveFacadeService } from '#drive/services';
 
 @Component({

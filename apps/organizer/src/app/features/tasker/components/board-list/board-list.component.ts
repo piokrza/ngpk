@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PrimeIcons } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 
-import { connectState } from '#core/utils';
+import { connectState } from '@ngpk/core/util';
 import { ContainerComponent, AddItemBtnComponent } from '#shared/components';
 import { BoardsFacadeService } from '#tasker/services';
 

@@ -1,0 +1,8 @@
+{
+  "name": "core-model",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:core", "project:core-model", "public:core", "sub-domain:model", "type:api"],
+  "sourceRoot": "libs/core/model",
+  "prefix": "ngpk"
+}

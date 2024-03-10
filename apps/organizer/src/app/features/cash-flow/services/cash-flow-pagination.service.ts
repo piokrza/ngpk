@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import { PaginatorState } from 'primeng/paginator';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { PaginatorState } from 'primeng/paginator';
+import { initialPaginationData } from '@ngpk/core/constant';
 
 import { CashFlowFeatureName } from '#cash-flow/enum';
-import { initialPaginationData } from '#core/constants';
 
 @Injectable()
 export class CashFlowPaginationService {

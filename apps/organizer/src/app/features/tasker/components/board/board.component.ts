@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 
-import { connectState } from '#core/utils';
+import { connectState } from '@ngpk/core/util';
 import { ContainerComponent, AddItemBtnComponent } from '#shared/components';
 import { AddTaskPayload, DeleteTaskPayload, Task } from '#tasker/models';
 import { BoardsFacadeService } from '#tasker/services';

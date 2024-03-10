@@ -3,15 +3,15 @@ import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, WritableSignal,
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { tap } from 'rxjs';
-
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
+import { tap } from 'rxjs';
 
-import { isWidgetOpen } from '#core/constants';
-import { StateObject, connectState } from '#core/utils';
+import { isWidgetOpen } from '@ngpk/core/constant';
+import { StateObject, connectState } from '@ngpk/core/util';
+
 import { ContainerComponent } from '#shared/components';
 import { DetailsComponent } from '#weather/components';
 import { WeatherStateModel } from '#weather/models';

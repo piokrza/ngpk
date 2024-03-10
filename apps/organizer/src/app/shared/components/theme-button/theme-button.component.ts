@@ -2,15 +2,15 @@ import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs';
-
 import { PrimeIcons } from 'primeng/api';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { map } from 'rxjs';
 
-import { AppConfig, ThemeType } from '#core/config/models';
-import { ConfigActions, ConfigSelectors } from '#core/config/store';
-import { themeLink } from '#core/constants';
-import { connectState } from '#core/utils';
+import { themeLink } from '@ngpk/core/constant';
+import { connectState } from '@ngpk/core/util';
+
+import { AppConfig, ThemeType } from '#config/models';
+import { ConfigActions, ConfigSelectors } from '#config/store';
 
 const imports = [ToggleButtonModule, FormsModule];
 

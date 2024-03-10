@@ -1,0 +1,8 @@
+{
+  "name": "core-interceptor",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:core", "project:core-interceptor", "public:core", "sub-domain:interceptor", "type:api"],
+  "sourceRoot": "libs/core/interceptor",
+  "prefix": "ngpk"
+}

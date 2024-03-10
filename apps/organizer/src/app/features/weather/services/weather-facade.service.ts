@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { EMPTY, Observable, catchError, finalize, tap } from 'rxjs';
 
-import { weatherData } from '#core/constants';
-import { ObservableDictionary } from '#core/models';
+import { weatherData } from '@ngpk/core/constant';
+import { ObservableDictionary } from '@ngpk/core/model';
+
 import { IGeolocation, WeatherResponse, WeatherStateModel } from '#weather/models';
 import { WeatherApiService } from '#weather/services';
 import { WeatherState } from '#weather/state';

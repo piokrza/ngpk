@@ -1,0 +1,8 @@
+{
+  "name": "core-directive",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:core", "project:core-directive", "public:core", "sub-domain:directive", "type:api"],
+  "sourceRoot": "libs/core/directive",
+  "prefix": "ngpk"
+}

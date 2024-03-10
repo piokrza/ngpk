@@ -1,0 +1,8 @@
+{
+  "name": "core-guard",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:core", "project:core-guard", "public:core", "sub-domain:guard", "type:api"],
+  "sourceRoot": "libs/core/guard",
+  "prefix": "ngpk"
+}

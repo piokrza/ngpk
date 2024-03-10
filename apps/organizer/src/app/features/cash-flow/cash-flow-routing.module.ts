@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CashFlowComponent } from '#cash-flow/index';
-import { PathFragment } from '#core/enums';
+import { PathFragment } from '@ngpk/core/enum';
 
 const routes: Routes = [
   {

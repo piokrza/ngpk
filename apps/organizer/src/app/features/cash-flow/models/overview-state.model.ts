@@ -1,6 +1,6 @@
 import { ChartData } from 'chart.js';
 
-import { LabeledData } from '#core/models';
+import { LabeledData } from '@ngpk/core/model';
 
 export interface OverviewStateModel {
   isLoading: boolean;

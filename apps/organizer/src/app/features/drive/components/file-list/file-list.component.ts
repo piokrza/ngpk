@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular
 
 import { PrimeIcons } from 'primeng/api';
 
-import { connectState } from '#core/utils';
+import { connectState } from '@ngpk/core/util';
 import { IFile } from '#drive/models';
 import { DriveFacadeService } from '#drive/services';
 

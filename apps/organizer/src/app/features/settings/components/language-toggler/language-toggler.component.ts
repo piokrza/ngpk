@@ -2,12 +2,11 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
 import { PrimeNGConfig } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 
-import { lang } from '#core/utils';
+import { lang } from '@ngpk/core/util';
 
 const imports = [FormsModule, TranslateModule, DropdownModule];
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
+import { Store } from '@ngpk/core/abstract';
+
 import { CashFlowFilters } from '#cash-flow/models';
-import { Store } from '#core/abstracts';
 
 const initialState: CashFlowFilters = {
   incomeCategory: [],

@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';
@@ -16,6 +15,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
+import { TimestampPipe } from '@ngpk/core/pipe';
+
 import {
   AddFormComponent,
   CashFlowCardsComponent,
@@ -28,7 +29,6 @@ import {
 import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/index';
 import { CashFlowFacadeService, CashFlowFilterService, CashFlowPaginationService, OverviewService } from '#cash-flow/services';
 import { ContainerComponent } from '#shared/components';
-import { TimestampPipe } from '#shared/pipes';
 
 const declarations = [TileComponent, DetailsBoxComponent, TileListComponent, AddFormComponent, UpdateFormComponent, CashFlowComponent];
 

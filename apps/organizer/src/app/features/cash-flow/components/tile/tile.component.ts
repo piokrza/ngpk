@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject
 import { Router } from '@angular/router';
 
 import { CashFlow } from '#cash-flow/models';
-import { AppPaths, DateFormats, PathFragment } from '#core/enums';
+import { AppPaths, DateFormats, PathFragment } from '@ngpk/core/enum';
 
 @Component({
   selector: 'org-tile',

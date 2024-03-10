@@ -2,13 +2,12 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Observable } from 'rxjs';
 
 import { CashFlow, CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
-import { ConfigSelectors } from '#core/config/store';
+import { ConfigSelectors } from '#config/store';
 
 @Component({
   selector: 'org-update-form',

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PathFragment } from '#core/enums';
+import { PathFragment } from '@ngpk/core/enum';
 
 const routes: Routes = [
   {

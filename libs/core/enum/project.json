@@ -1,0 +1,8 @@
+{
+  "name": "core-enum",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:core", "project:core-enum", "public:core", "sub-domain:enum", "type:api"],
+  "sourceRoot": "libs/core/enum",
+  "prefix": "ngpk"
+}
