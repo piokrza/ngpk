@@ -3,6 +3,7 @@
 Technologies used:
 
 - Angular 17,
+- Nx
 - NgRx,
 - Firebase,
 - PrimeNg,
