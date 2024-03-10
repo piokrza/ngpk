@@ -30,10 +30,12 @@
       "@ngpk/auth-organizer/*": ["libs/auth-organizer/*"],
       "@ngpk/core/*": ["libs/core/*"],
       "@ngpk/drive/*": ["libs/drive/*"],
+      "@ngpk/settings-organizer/*": ["libs/settings-organizer/*"],
       "@ngpk/shared-ui/*": ["libs/shared-ui/*"],
       "@ngpk/tasker/*": ["libs/tasker/*"],
       "@ngpk/weather/*": ["libs/weather/*"],
       "drive": ["libs/drive/src/index.ts"],
+      "settings-organizer": ["libs/settings-organizer/src/index.ts"],
       "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]
     },
     "rootDir": "."

@@ -8,11 +8,10 @@ import { filter, tap } from 'rxjs';
 
 import { IUser } from '@ngpk/auth-organizer/model';
 import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
-
-import { AccountSettingsForm } from '#settings/models';
+import { AccountSettingsForm } from '@ngpk/settings-organizer/model';
 
 @Component({
-  selector: 'org-account-settings-form',
+  selector: 'ngpk-account-settings-form',
   templateUrl: './account-settings-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

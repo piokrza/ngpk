@@ -1,0 +1,8 @@
+{
+  "name": "settings-organizer-model",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:settings-organizer", "project:settings-organizer-model", "public:settings-organizer", "sub-domain:model", "type:api"],
+  "sourceRoot": "libs/settings-organizer/model",
+  "prefix": "ngpk"
+}

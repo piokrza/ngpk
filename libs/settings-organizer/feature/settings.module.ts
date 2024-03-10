@@ -7,16 +7,15 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { ContainerComponent, ThemeButtonComponent } from '@ngpk/shared-ui/shared';
-
+import { SettingsRoutingModule } from '@ngpk/settings-organizer/feature';
 import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
   LanguageTogglerComponent,
   PanelComponent,
   ThemeTogglerComponent,
-} from '#settings/components';
-import { SettingsRoutingModule } from '#settings/index';
+} from '@ngpk/settings-organizer/shared';
+import { ContainerComponent, ThemeButtonComponent } from '@ngpk/shared-ui/shared';
 
 const declarations = [ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];
 const imports = [

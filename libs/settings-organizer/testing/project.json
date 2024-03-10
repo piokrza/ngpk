@@ -1,0 +1,14 @@
+{
+  "name": "settings-organizer-testing",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": [
+    "domain:settings-organizer",
+    "project:settings-organizer-testing",
+    "public:settings-organizer",
+    "sub-domain:testing",
+    "type:api"
+  ],
+  "sourceRoot": "libs/settings-organizer/testing",
+  "prefix": "ngpk"
+}

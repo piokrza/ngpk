@@ -11,7 +11,7 @@ import { lang } from '@ngpk/core/util';
 const imports = [FormsModule, TranslateModule, DropdownModule];
 
 @Component({
-  selector: 'org-language-toggler',
+  selector: 'ngpk-language-toggler',
   template: `
     <div class="flex justify-content-between align-items-center">
       {{ 'settings.selectLanguage' | translate }}

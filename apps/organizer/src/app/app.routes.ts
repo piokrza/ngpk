@@ -36,7 +36,7 @@ export const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     title: getTitle('settings'),
     data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
-    loadChildren: async () => (await import('#settings/index')).SettingsModule,
+    loadChildren: async () => (await import('@ngpk/settings-organizer/feature')).SettingsModule,
   },
   {
     path: AppPaths.AUTHENTICATION,
