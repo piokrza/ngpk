@@ -3,10 +3,9 @@ import { ActionReducerMap } from '@ngrx/store';
 
 import * as fromConfig from '@ngpk/auth-organizer/config/store';
 import * as fromAuth from '@ngpk/auth-organizer/state';
+import * as fromCashFlow from '@ngpk/cash-flow/state';
 import * as fromDrive from '@ngpk/drive/state';
 import * as fromTasker from '@ngpk/tasker/state';
-
-import * as fromCashFlow from '#cash-flow/store';
 
 export interface AppState {
   [fromConfig.FeatureKey]: fromConfig.State;

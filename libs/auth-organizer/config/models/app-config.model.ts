@@ -1,4 +1,4 @@
-import { Category } from '#cash-flow/models';
+import { Category } from '@ngpk/cash-flow/model';
 
 export type ThemeType = 'light' | 'dark';
 export type AppLanguage = 'pl' | 'en';

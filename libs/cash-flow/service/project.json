@@ -1,0 +1,8 @@
+{
+  "name": "cash-flow-service",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:cash-flow", "project:cash-flow-service", "public:cash-flow", "sub-domain:service", "type:api"],
+  "sourceRoot": "libs/cash-flow/service",
+  "prefix": "ngpk"
+}

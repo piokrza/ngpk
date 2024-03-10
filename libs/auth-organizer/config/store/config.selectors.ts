@@ -1,8 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { Category, CategoryType } from '#cash-flow/models';
 import { AppConfig, ThemeType } from '@ngpk/auth-organizer/config/models';
 import { State as ConfigState, FeatureKey } from '@ngpk/auth-organizer/config/store';
+import { Category, CategoryType } from '@ngpk/cash-flow/model';
 
 const ConfigStateSelector = createFeatureSelector<ConfigState>(FeatureKey);
 

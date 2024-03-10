@@ -3,11 +3,10 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import firebase from 'firebase/compat';
 import { EMPTY, forkJoin, switchMap } from 'rxjs';
 
-import { IUser } from '@ngpk/auth-organizer/model';
-import { Collection } from '@ngpk/core/enum';
-
-import { Category } from '#cash-flow/models';
 import { AppConfig } from '@ngpk/auth-organizer/config/models';
+import { IUser } from '@ngpk/auth-organizer/model';
+import { Category } from '@ngpk/cash-flow/model';
+import { Collection } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

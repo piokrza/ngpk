@@ -1,0 +1,62 @@
+<p-tabView [activeIndex]="(activeTabIndex$ | async) ?? 0" (onChange)="setActiveIndex($event)">
+  <p-tabPanel [header]="'cashFlow.overview' | translate">
+    <div class="mb-4">
+      <ngpk-cash-flow-cards [cashFlowDataset]="overviewState.cashFlowDataSet" (setTabIdx)="setActiveIndex($event)" />
+    </div>
+
+    <div class="panels">
+      <ngpk-cash-flow-chart [title]="'cashFlow.incomes' | translate" [chartDataset]="overviewState.incomesChartData" />
+      <ngpk-cash-flow-chart [title]="'cashFlow.expenses' | translate" [chartDataset]="overviewState.expensesChartData" />
+    </div>
+  </p-tabPanel>
+
+  <p-tabPanel [header]="'cashFlow.incomes' | translate">
+    @if (state.incomes; as data) {
+      <ngpk-tile-list
+        class="wrapper"
+        [isIncomeMode]="true"
+        [isLoading]="!!state.isLoading"
+        [cashFlowList]="data.paginatedCashFlow"
+        [categories]="state.incomesCategories"
+        (addCashFlow)="addCashFlow($event)"
+        (removeCashFlow)="deleteCashFlow($event)"
+        (updateCashFlow)="updateCashFlow($event)"
+        (categoryChange)="incomesCategoryChange($event)" />
+
+      @if (data.totalLength > rowsPerPageOptions[0]) {
+        <p-paginator
+          [rows]="rowsPerPageOptions[0]"
+          [totalRecords]="data.totalLength"
+          [first]="data.paginatorState.first ?? 0"
+          [rowsPerPageOptions]="rowsPerPageOptions"
+          (onPageChange)="incomesPageChange($event)" />
+      }
+    }
+  </p-tabPanel>
+
+  <p-tabPanel [header]="'cashFlow.expenses' | translate">
+    @if (state.expenses; as data) {
+      @defer {
+        <ngpk-tile-list
+          class="wrapper"
+          [isIncomeMode]="false"
+          [isLoading]="!!state.isLoading"
+          [cashFlowList]="data.paginatedCashFlow"
+          [categories]="state.expensesCategories"
+          (addCashFlow)="addCashFlow($event)"
+          (removeCashFlow)="deleteCashFlow($event)"
+          (updateCashFlow)="updateCashFlow($event)"
+          (categoryChange)="expensesCategoryChange($event)" />
+
+        @if (data.totalLength > rowsPerPageOptions[0]) {
+          <p-paginator
+            [rows]="rowsPerPageOptions[0]"
+            [totalRecords]="data.totalLength"
+            [first]="data.paginatorState.first ?? 0"
+            [rowsPerPageOptions]="rowsPerPageOptions"
+            (onPageChange)="expensesPageChange($event)" />
+        }
+      }
+    }
+  </p-tabPanel>
+</p-tabView>

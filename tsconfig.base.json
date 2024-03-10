@@ -23,19 +23,15 @@
     "skipLibCheck": true,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "#cash-flow/*": ["apps/organizer/src/app/features/cash-flow/*"],
       "#search/*": ["apps/organizer/src/app/features/search/*"],
-      "#settings/*": ["apps/organizer/src/app/features/settings/*"],
-      "#shared/*": ["apps/organizer/src/app/shared/*"],
       "@ngpk/auth-organizer/*": ["libs/auth-organizer/*"],
+      "@ngpk/cash-flow/*": ["libs/cash-flow/*"],
       "@ngpk/core/*": ["libs/core/*"],
       "@ngpk/drive/*": ["libs/drive/*"],
       "@ngpk/settings-organizer/*": ["libs/settings-organizer/*"],
       "@ngpk/shared-ui/*": ["libs/shared-ui/*"],
       "@ngpk/tasker/*": ["libs/tasker/*"],
       "@ngpk/weather/*": ["libs/weather/*"],
-      "drive": ["libs/drive/src/index.ts"],
-      "settings-organizer": ["libs/settings-organizer/src/index.ts"],
       "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]
     },
     "rootDir": "."

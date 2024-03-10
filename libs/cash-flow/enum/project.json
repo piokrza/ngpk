@@ -1,0 +1,8 @@
+{
+  "name": "cash-flow-enum",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:cash-flow", "project:cash-flow-enum", "public:cash-flow", "sub-domain:enum", "type:api"],
+  "sourceRoot": "libs/cash-flow/enum",
+  "prefix": "ngpk"
+}

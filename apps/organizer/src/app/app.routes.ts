@@ -22,7 +22,7 @@ export const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     title: getTitle('cashFlow'),
     data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
-    loadChildren: async () => (await import('#cash-flow/index')).CashFlowModule,
+    loadChildren: async () => (await import('@ngpk/cash-flow/feature')).CashFlowModule,
   },
   {
     path: AppPaths.DRIVE,

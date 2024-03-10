@@ -1,0 +1,33 @@
+{
+  "name": "cash-flow",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/cash-flow",
+  "prefix": "ngpk",
+  "tags": ["domain:cash-flow", "project:cash-flow"],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/cash-flow/jest.config.ts"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc -p libs/cash-flow/tsconfig.spec.json --noEmit"]
+      }
+    }
+  },
+  "implicitDependencies": [
+    "cash-flow-api",
+    "cash-flow-enum",
+    "cash-flow-feature",
+    "cash-flow-model",
+    "cash-flow-service",
+    "cash-flow-shared",
+    "cash-flow-state",
+    "cash-flow-testing"
+  ]
+}
