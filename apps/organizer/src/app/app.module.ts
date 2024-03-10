@@ -25,10 +25,10 @@ import { AuthEffects } from '@ngpk/auth-organizer/state';
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/shared';
+import { TaskerEffects } from '@ngpk/tasker/state';
 
 import { CashFlowEffects } from '#cash-flow/store';
 import { DriveEffects } from '#drive/store';
-import { TaskerEffects } from '#tasker/store';
 
 const declarations = [AppComponent];
 const interceptors = [httpErrorInterceptor];

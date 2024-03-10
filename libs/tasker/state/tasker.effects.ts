@@ -6,9 +6,8 @@ import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
 import { AppPaths } from '@ngpk/core/enum';
 import { DbSubscriptionService, ToastService } from '@ngpk/core/service';
-
-import { BoardsApiService } from '#tasker/services';
-import { TaskerActions } from '#tasker/store';
+import { BoardsApiService } from '@ngpk/tasker/api';
+import { TaskerActions } from '@ngpk/tasker/state';
 
 @Injectable()
 export class TaskerEffects {

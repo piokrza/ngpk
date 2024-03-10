@@ -5,13 +5,12 @@ import { TooltipModule } from 'primeng/tooltip';
 
 import { connectState } from '@ngpk/core/util';
 import { ContainerComponent, AddItemBtnComponent } from '@ngpk/shared-ui/shared';
-
-import { BoardsFacadeService } from '#tasker/services';
+import { BoardsFacadeService } from '@ngpk/tasker/service';
 
 const imports = [ContainerComponent, TranslateModule, AddItemBtnComponent, TooltipModule];
 
 @Component({
-  selector: 'org-board-list',
+  selector: 'ngpk-board-list',
   templateUrl: './board-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

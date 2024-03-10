@@ -1,4 +1,4 @@
-import { Task } from '#tasker/models';
+import { Task } from '@ngpk/tasker/model';
 
 export interface TaskList {
   name: string;

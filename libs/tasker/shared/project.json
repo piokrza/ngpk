@@ -1,0 +1,8 @@
+{
+  "name": "tasker-shared",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:tasker", "project:tasker-shared", "public:tasker", "sub-domain:shared", "type:api"],
+  "sourceRoot": "libs/tasker/shared",
+  "prefix": "ngpk"
+}

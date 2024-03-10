@@ -6,14 +6,13 @@ import { ButtonModule } from 'primeng/button';
 
 import { connectState } from '@ngpk/core/util';
 import { ContainerComponent, AddItemBtnComponent } from '@ngpk/shared-ui/shared';
-
-import { AddTaskPayload, DeleteTaskPayload, Task } from '#tasker/models';
-import { BoardsFacadeService } from '#tasker/services';
+import { AddTaskPayload, DeleteTaskPayload, Task } from '@ngpk/tasker/model';
+import { BoardsFacadeService } from '@ngpk/tasker/service';
 
 const imports = [TranslateModule, DragDropModule, ButtonModule, ContainerComponent, AddItemBtnComponent];
 
 @Component({
-  selector: 'org-board',
+  selector: 'ngpk-board',
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -6,11 +6,11 @@ import { PathFragment } from '@ngpk/core/enum';
 const routes: Routes = [
   {
     path: '',
-    loadComponent: async () => (await import('#tasker/components')).BoardListComponent,
+    loadComponent: async () => (await import('@ngpk/tasker/shared')).BoardListComponent,
   },
   {
     path: PathFragment.ID,
-    loadComponent: async () => (await import('#tasker/components')).BoardComponent,
+    loadComponent: async () => (await import('@ngpk/tasker/shared')).BoardComponent,
   },
 ];
 

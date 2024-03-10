@@ -1,0 +1,8 @@
+{
+  "name": "tasker-model",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:tasker", "project:tasker-model", "public:tasker", "sub-domain:model", "type:api"],
+  "sourceRoot": "libs/tasker/model",
+  "prefix": "ngpk"
+}

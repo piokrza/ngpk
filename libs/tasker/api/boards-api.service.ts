@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@
 import { Observable, switchMap } from 'rxjs';
 
 import { Collection } from '@ngpk/core/enum';
-import { AddTaskPayload, Board, DeleteTaskPayload, DragDropTaskPayload, Task, TaskList } from '#tasker/models';
+import { AddTaskPayload, Board, DeleteTaskPayload, DragDropTaskPayload, Task, TaskList } from '@ngpk/tasker/model';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsApiService {

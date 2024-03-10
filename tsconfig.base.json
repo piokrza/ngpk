@@ -28,12 +28,13 @@
       "#search/*": ["apps/organizer/src/app/features/search/*"],
       "#settings/*": ["apps/organizer/src/app/features/settings/*"],
       "#shared/*": ["apps/organizer/src/app/shared/*"],
-      "#tasker/*": ["apps/organizer/src/app/features/tasker/*"],
+
       "@ngpk/auth-organizer/*": ["libs/auth-organizer/*"],
       "@ngpk/core/*": ["libs/core/*"],
       "@ngpk/shared-ui/*": ["libs/shared-ui/*"],
+      "@ngpk/tasker/*": ["libs/tasker/*"],
       "@ngpk/weather/*": ["libs/weather/*"],
-      "weather": ["libs/weather/src/index.ts"],
+
       "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]
     },
     "rootDir": "."
