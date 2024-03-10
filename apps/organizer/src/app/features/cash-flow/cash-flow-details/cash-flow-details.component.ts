@@ -10,11 +10,11 @@ import { Observable, first, map, switchMap, tap } from 'rxjs';
 import { AppPaths, DateFormats } from '@ngpk/core/enum';
 import { TimestampPipe } from '@ngpk/core/pipe';
 import { connectState } from '@ngpk/core/util';
+import { ContainerComponent } from '@ngpk/shared-ui/shared';
 
 import { CashFlow, Category } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
 import { ConfigSelectors } from '#config/store';
-import { ContainerComponent } from '#shared/components';
 
 const imports = [TranslateModule, AsyncPipe, TimestampPipe, ContainerComponent, ButtonModule];
 

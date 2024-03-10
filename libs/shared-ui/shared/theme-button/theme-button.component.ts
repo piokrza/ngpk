@@ -15,7 +15,7 @@ import { ConfigActions, ConfigSelectors } from '#config/store';
 const imports = [ToggleButtonModule, FormsModule];
 
 @Component({
-  selector: 'org-theme-button',
+  selector: 'ngpk-theme-button',
   template: `
     <p-toggleButton [onIcon]="PrimeIcons.SUN" [offIcon]="PrimeIcons.MOON" [(ngModel)]="isLightMode" (onChange)="toggleTheme()" />
   `,

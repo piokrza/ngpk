@@ -1,17 +1,16 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output, WritableSignal, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { ContainerComponent } from '#shared/components';
+import { ContainerComponent } from '@ngpk/shared-ui/shared';
 
 const imports = [TranslateModule, ContainerComponent, ReactiveFormsModule, InputTextModule, ButtonModule];
 
 @Component({
-  selector: 'org-add-item-btn',
+  selector: 'ngpk-add-item-btn',
   templateUrl: './add-item-btn.component.html',
   styleUrl: './add-item-btn.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

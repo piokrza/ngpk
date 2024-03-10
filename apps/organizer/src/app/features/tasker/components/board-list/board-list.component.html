@@ -1,13 +1,13 @@
 <section class="flex gap-3 flex-wrap">
   @for (board of state.boards; track board.id) {
-    <org-container [styleClass]="['hover']" (click)="navigateToDetails(board.id)">
+    <ngpk-container [styleClass]="['hover']" (click)="navigateToDetails(board.id)">
       {{ board.name }}
-    </org-container>
+    </ngpk-container>
   }
 
-  <org-add-item-btn (itemNameSubmit)="addBoard($event)">
+  <ngpk-add-item-btn (itemNameSubmit)="addBoard($event)">
     <i [class]="PrimeIcons.PLUS"></i>
     4 remaining
     <i [pTooltip]="'Text for subscription' | translate" [classList]="PrimeIcons.INFO_CIRCLE"></i>
-  </org-add-item-btn>
+  </ngpk-add-item-btn>
 </section>

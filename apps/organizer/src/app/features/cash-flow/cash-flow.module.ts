@@ -16,6 +16,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 
 import { TimestampPipe } from '@ngpk/core/pipe';
+import { ContainerComponent } from '@ngpk/shared-ui/shared';
 
 import {
   AddFormComponent,
@@ -28,7 +29,6 @@ import {
 } from '#cash-flow/components';
 import { CashFlowComponent, CashFlowRoutingModule } from '#cash-flow/index';
 import { CashFlowFacadeService, CashFlowFilterService, CashFlowPaginationService, OverviewService } from '#cash-flow/services';
-import { ContainerComponent } from '#shared/components';
 
 const declarations = [TileComponent, DetailsBoxComponent, TileListComponent, AddFormComponent, UpdateFormComponent, CashFlowComponent];
 

@@ -6,7 +6,7 @@
 
   <div cdkDropListGroup class="flex gap-4 overflow-x-scroll mt-6">
     @for (taskList of state.board.tasksLists; track taskList.id) {
-      <org-container>
+      <ngpk-container>
         <div class="container">
           <div class="flex justify-content-between align-items-center">
             <h2 class="my-2">{{ taskList.name }}</h2>
@@ -21,7 +21,7 @@
 
           <div cdkDropList class="list mt-5" [cdkDropListData]="taskList.id" (cdkDropListDropped)="onDrop($event)">
             @for (task of taskList.tasks; track task.id) {
-              <org-container cdkDrag [cdkDragData]="task" [styleClass]="['mb-3']">
+              <ngpk-container cdkDrag [cdkDragData]="task" [styleClass]="['mb-3']">
                 <div class="flex justify-content-between align-items-center">
                   <span> {{ task.name }}</span>
                   <p-button
@@ -32,27 +32,27 @@
                     [rounded]="true"
                     (onClick)="deleteTask(task.id, taskList.id)" />
                 </div>
-              </org-container>
+              </ngpk-container>
             }
 
-            <org-add-item-btn (itemNameSubmit)="addTask($event, taskList.id)">
+            <ngpk-add-item-btn (itemNameSubmit)="addTask($event, taskList.id)">
               <div class="flex justify-content-between align-items-center w-full">
                 <span>{{ 'tasker.addTask' | translate }}</span>
                 <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
               </div>
-            </org-add-item-btn>
+            </ngpk-add-item-btn>
           </div>
         </div>
-      </org-container>
+      </ngpk-container>
     }
 
     <div class="container">
-      <org-add-item-btn (itemNameSubmit)="addTaskList($event)">
+      <ngpk-add-item-btn (itemNameSubmit)="addTaskList($event)">
         <div class="flex justify-content-between align-items-center w-full">
           <span>{{ 'tasker.addList' | translate }}</span>
           <p-button size="large" [icon]="PrimeIcons.PLUS" [text]="true" [rounded]="true" />
         </div>
-      </org-add-item-btn>
+      </ngpk-add-item-btn>
     </div>
   </div>
 }

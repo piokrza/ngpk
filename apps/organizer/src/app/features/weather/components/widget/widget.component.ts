@@ -12,7 +12,7 @@ import { tap } from 'rxjs';
 import { isWidgetOpen } from '@ngpk/core/constant';
 import { StateObject, connectState } from '@ngpk/core/util';
 
-import { ContainerComponent } from '#shared/components';
+import { ContainerComponent } from '@ngpk/shared-ui/shared';
 import { DetailsComponent } from '#weather/components';
 import { WeatherStateModel } from '#weather/models';
 import { WeatherIconPipe } from '#weather/pipes';

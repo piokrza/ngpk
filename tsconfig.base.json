@@ -34,6 +34,12 @@
       "#weather/*": ["apps/organizer/src/app/features/weather/*"],
       "@ngpk/auth-organizer/*": ["libs/auth-organizer/*"],
       "@ngpk/core/*": ["libs/core/*"],
+      "@ngpk/shared-ui/feature": ["libs/shared-ui/feature/index.ts"],
+      "@ngpk/shared-ui/model": ["libs/shared-ui/model/index.ts"],
+      "@ngpk/shared-ui/shared": ["libs/shared-ui/shared/index.ts"],
+      "@ngpk/shared-ui/state": ["libs/shared-ui/state/index.ts"],
+      "@ngpk/shared-ui/testing": ["libs/shared-ui/testing/index.ts"],
+      "shared-ui": ["libs/shared-ui/src/index.ts"],
       "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]
     },
     "rootDir": "."

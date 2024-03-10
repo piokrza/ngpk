@@ -14,8 +14,8 @@ import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
 import { AppPaths } from '@ngpk/core/enum';
 import { MenuService, TitleService } from '@ngpk/core/service';
 import { connectState } from '@ngpk/core/util';
+import { ContainerComponent } from '@ngpk/shared-ui/shared';
 
-import { ContainerComponent } from '#shared/components';
 import { WeatherWidgetComponent } from '#weather/components';
 
 const imports = [
@@ -32,14 +32,14 @@ const imports = [
 ];
 
 @Component({
-  selector: 'org-layout',
-  templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss',
+  selector: 'ngpk-organizer-layout',
+  templateUrl: './organizer-layout.component.html',
+  styleUrl: './organizer-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,
 })
-export class LayoutComponent {
+export class OrganizerLayoutComponent {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
