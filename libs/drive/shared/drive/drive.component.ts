@@ -3,13 +3,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params } from '@angular/router';
 import { tap } from 'rxjs';
 
-import { DriveFacadeService } from '#drive/services';
+import { DriveFacadeService } from '@ngpk/drive/service';
 
 @Component({
-  selector: 'org-drive',
+  selector: 'ngpk-drive',
   template: `
-    <org-action-buttons />
-    <org-file-list />
+    <ngpk-action-buttons />
+    <ngpk-file-list />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

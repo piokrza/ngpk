@@ -5,10 +5,9 @@ import { catchError, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
 import { DbSubscriptionService, ToastService } from '@ngpk/core//service';
 import { ToastStatus } from '@ngpk/core/enum';
-
-import { IFile } from '#drive/models';
-import { DriveApiService } from '#drive/services';
-import { DriveActions } from '#drive/store';
+import { DriveApiService } from '@ngpk/drive/api';
+import { IFile } from '@ngpk/drive/model';
+import { DriveActions } from '@ngpk/drive/state';
 
 @Injectable()
 export class DriveEffects {

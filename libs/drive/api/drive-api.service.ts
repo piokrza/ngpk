@@ -5,7 +5,7 @@ import { UploadTaskSnapshot } from '@angular/fire/compat/storage/interfaces';
 import { Observable } from 'rxjs';
 
 import { Collection } from '@ngpk/core/enum';
-import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
+import { FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/drive/model';
 
 @Injectable({ providedIn: 'root' })
 export class DriveApiService {

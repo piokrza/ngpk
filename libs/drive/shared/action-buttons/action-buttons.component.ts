@@ -1,17 +1,15 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, Signal, WritableSignal, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, DestroyRef, WritableSignal, inject, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Environment } from 'apps/organizer/src/environments';
 import { PrimeIcons } from 'primeng/api';
 import { FileUploadEvent } from 'primeng/fileupload';
+import { filter } from 'rxjs';
 
-import { IUser } from '@ngpk/auth-organizer/model';
 import { connectState } from '@ngpk/core/util';
-
-import { DriveFacadeService } from '#drive/services';
+import { DriveFacadeService } from '@ngpk/drive/service';
 
 @Component({
-  selector: 'org-action-buttons',
+  selector: 'ngpk-action-buttons',
   templateUrl: './action-buttons.component.html',
   styleUrl: './action-buttons.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,13 +22,13 @@ export class ActionButtonsComponent {
   readonly state = connectState(this.destroyRef, {
     parentId: this.driveFacadeService.parentId$,
     isProcessing: this.driveFacadeService.isProcessing$,
+    user: this.driveFacadeService.user$.pipe(filter(Boolean)),
   });
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly isEditing: WritableSignal<boolean> = signal(false);
   readonly folderNameControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
 
-  private readonly user: Signal<IUser | null> = toSignal(this.driveFacadeService.user$, { initialValue: null });
   protected uploadUrl: string = this.environment.uploadUrl;
 
   uploadFile({ files }: FileUploadEvent): void {
@@ -39,7 +37,7 @@ export class ActionButtonsComponent {
     files.length &&
       this.driveFacadeService.uploadFile({
         file: files[0],
-        uid: this.user()!.uid,
+        uid: this.state.user.uid,
         parentId: this.state.parentId,
       });
   }
@@ -47,7 +45,7 @@ export class ActionButtonsComponent {
   addFolder(): void {
     this.driveFacadeService.uploadFolder({
       name: this.folderNameControl.value,
-      uid: this.user()!.uid,
+      uid: this.state.user.uid,
       parentId: this.state.parentId,
     });
 

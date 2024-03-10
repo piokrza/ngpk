@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IFile } from '#drive/models';
+import { IFile } from '@ngpk/drive/model';
 
 @Injectable()
 export class DriveService {

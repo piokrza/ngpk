@@ -1,0 +1,8 @@
+{
+  "name": "drive-model",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:drive", "project:drive-model", "public:drive", "sub-domain:model", "type:api"],
+  "sourceRoot": "libs/drive/model",
+  "prefix": "ngpk"
+}

@@ -9,10 +9,10 @@ import { AuthApiService } from '@ngpk/auth-organizer/api';
 import { ConfigActions } from '@ngpk/auth-organizer/config/store';
 import { AuthActions } from '@ngpk/auth-organizer/state';
 import { ThemeService } from '@ngpk/core/service';
+import { DriveActions } from '@ngpk/drive/state';
 import { TaskerActions } from '@ngpk/tasker/state';
 
 import { CashFlowActions } from '#cash-flow/store';
-import { DriveActions } from '#drive/store';
 
 @Component({
   selector: 'org-root',

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PathFragment } from '@ngpk/core/enum';
-import { DriveComponent } from '#drive/components';
+import { DriveComponent } from '@ngpk/drive/shared';
 
 const routes: Routes = [
   {

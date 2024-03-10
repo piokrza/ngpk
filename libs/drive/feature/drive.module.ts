@@ -9,10 +9,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
 
 import { TruncatePipe } from '@ngpk/core/pipe';
-
-import { FileListComponent, ActionButtonsComponent, DriveComponent } from '#drive/components';
-import { DriveRoutingModule } from '#drive/index';
-import { DriveFacadeService, DriveService } from '#drive/services';
+import { DriveRoutingModule } from '@ngpk/drive/feature';
+import { DriveFacadeService, DriveService } from '@ngpk/drive/service';
+import { FileListComponent, ActionButtonsComponent, DriveComponent } from '@ngpk/drive/shared';
 
 const declarations = [DriveComponent, FileListComponent, ActionButtonsComponent];
 const imports = [

@@ -1,14 +1,13 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
-
 import { PrimeIcons } from 'primeng/api';
 
 import { connectState } from '@ngpk/core/util';
-import { IFile } from '#drive/models';
-import { DriveFacadeService } from '#drive/services';
+import { IFile } from '@ngpk/drive/model';
+import { DriveFacadeService } from '@ngpk/drive/service';
 
 @Component({
-  selector: 'org-file-list',
+  selector: 'ngpk-file-list',
   templateUrl: './file-list.component.html',
   styleUrl: './file-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
