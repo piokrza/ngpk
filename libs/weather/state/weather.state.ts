@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Store } from '@ngpk/core/abstract';
-
-import { WeatherStateModel } from '#weather/models';
+import { WeatherStateModel } from '@ngpk/weather/model';
 
 const initialState: WeatherStateModel = {
   isLoading: false,

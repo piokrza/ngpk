@@ -20,13 +20,13 @@ import { environment } from 'apps/organizer/src/environments/environment';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { ConfigEffects } from '@ngpk/auth-organizer/config/store';
 import { AuthEffects } from '@ngpk/auth-organizer/state';
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/shared';
 
 import { CashFlowEffects } from '#cash-flow/store';
-import { ConfigEffects } from '@ngpk/auth-organizer/config/store';
 import { DriveEffects } from '#drive/store';
 import { TaskerEffects } from '#tasker/store';
 

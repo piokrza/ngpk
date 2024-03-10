@@ -1,4 +1,4 @@
-import { WeatherIconCode, WeatherIconName } from '#weather/models';
+import { WeatherIconCode, WeatherIconName } from '@ngpk/weather/model';
 
 export const iconCodeToIconName: Record<WeatherIconCode, WeatherIconName> = {
   '01d': 'clear',

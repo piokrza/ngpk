@@ -13,11 +13,12 @@ import { isWidgetOpen } from '@ngpk/core/constant';
 import { StateObject, connectState } from '@ngpk/core/util';
 import { ContainerComponent } from '@ngpk/shared-ui/shared';
 
-import { DetailsComponent } from '#weather/components';
-import { WeatherStateModel } from '#weather/models';
-import { WeatherIconPipe } from '#weather/pipes';
-import { WeatherApiService, WeatherFacadeService } from '#weather/services';
-import { WeatherState } from '#weather/state';
+import { DetailsComponent } from '@ngpk/weather/shared';
+import { WeatherStateModel } from '@ngpk/weather/model';
+import { WeatherIconPipe } from '@ngpk/weather/pipe';
+import { WeatherApiService } from '@ngpk/weather/api';
+import { WeatherFacadeService } from '@ngpk/weather/service';
+import { WeatherState } from '@ngpk/weather/state';
 
 const imports = [
   CommonModule,

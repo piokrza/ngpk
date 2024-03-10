@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
 import { Environment } from 'apps/organizer/src/environments';
+import { Observable } from 'rxjs';
 
-import { IGeolocation, WeatherResponse } from '#weather/models';
+import { IGeolocation, WeatherResponse } from '@ngpk/weather/model';
 
 @Injectable()
 export class WeatherApiService {

@@ -3,10 +3,9 @@ import { EMPTY, Observable, catchError, finalize, tap } from 'rxjs';
 
 import { weatherData } from '@ngpk/core/constant';
 import { ObservableDictionary } from '@ngpk/core/model';
-
-import { IGeolocation, WeatherResponse, WeatherStateModel } from '#weather/models';
-import { WeatherApiService } from '#weather/services';
-import { WeatherState } from '#weather/state';
+import { WeatherApiService } from '@ngpk/weather/api';
+import { IGeolocation, WeatherResponse, WeatherStateModel } from '@ngpk/weather/model';
+import { WeatherState } from '@ngpk/weather/state';
 
 @Injectable()
 export class WeatherFacadeService {

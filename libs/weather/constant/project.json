@@ -1,0 +1,8 @@
+{
+  "name": "weather-constant",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:weather", "project:weather-constant", "public:weather", "sub-domain:constant", "type:api"],
+  "sourceRoot": "libs/weather/constant",
+  "prefix": "ngpk"
+}

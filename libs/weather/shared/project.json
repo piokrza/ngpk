@@ -1,0 +1,8 @@
+{
+  "name": "weather-shared",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:weather", "project:weather-shared", "public:weather", "sub-domain:shared", "type:api"],
+  "sourceRoot": "libs/weather/shared",
+  "prefix": "ngpk"
+}

@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { iconCodeToIconName } from '#weather/constants';
-import { WeatherIconCode } from '#weather/models';
+import { iconCodeToIconName } from '@ngpk/weather/constant';
+import { WeatherIconCode } from '@ngpk/weather/model';
 
 @Pipe({ name: 'weatherIcon', standalone: true })
 export class WeatherIconPipe implements PipeTransform {

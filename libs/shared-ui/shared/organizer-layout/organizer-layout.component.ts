@@ -15,8 +15,7 @@ import { AppPaths } from '@ngpk/core/enum';
 import { MenuService, TitleService } from '@ngpk/core/service';
 import { connectState } from '@ngpk/core/util';
 import { ContainerComponent } from '@ngpk/shared-ui/shared';
-
-import { WeatherWidgetComponent } from '#weather/components';
+import { WeatherWidgetComponent } from '@ngpk/weather/shared';
 
 const imports = [
   RouterLink,

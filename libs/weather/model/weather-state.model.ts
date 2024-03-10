@@ -1,4 +1,4 @@
-import { IGeolocation, WeatherResponse } from '#weather/models';
+import { IGeolocation, WeatherResponse } from '@ngpk/weather/model';
 
 export interface WeatherStateModel {
   isLoading: boolean;

@@ -1,4 +1,4 @@
-import { WeatherIconCode } from '#weather/models';
+import { WeatherIconCode } from '@ngpk/weather/model';
 
 export interface WeatherResponse {
   coord: {
