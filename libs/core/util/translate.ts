@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { Observable, forkJoin, map } from 'rxjs';
 
-import { AppLanguage } from '#config/models';
+import { AppLanguage } from '@ngpk/auth-organizer/config/models';
 
 export const lang = 'lang';
 

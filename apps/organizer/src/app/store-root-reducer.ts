@@ -1,10 +1,10 @@
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap } from '@ngrx/store';
 
+import * as fromConfig from '@ngpk/auth-organizer/config/store';
 import * as fromAuth from '@ngpk/auth-organizer/state';
 
 import * as fromCashFlow from '#cash-flow/store';
-import * as fromConfig from '#config/store';
 import * as fromDrive from '#drive/store';
 import * as fromTasker from '#tasker/store';
 

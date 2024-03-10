@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
-import { ConfigApiService } from '#config/services';
-import { ConfigActions } from '#config/store';
+import { ConfigApiService } from '@ngpk/auth-organizer/config/services';
+import { ConfigActions } from '@ngpk/auth-organizer/config/store';
 import { ToastService, DbSubscriptionService } from '@ngpk/core/service';
 
 @Injectable()

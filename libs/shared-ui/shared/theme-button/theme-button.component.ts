@@ -9,8 +9,8 @@ import { map } from 'rxjs';
 import { themeLink } from '@ngpk/core/constant';
 import { connectState } from '@ngpk/core/util';
 
-import { AppConfig, ThemeType } from '#config/models';
-import { ConfigActions, ConfigSelectors } from '#config/store';
+import { AppConfig, ThemeType } from '@ngpk/auth-organizer/config/models';
+import { ConfigActions, ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 
 const imports = [ToggleButtonModule, FormsModule];
 

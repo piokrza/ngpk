@@ -26,7 +26,7 @@ import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/ut
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/shared';
 
 import { CashFlowEffects } from '#cash-flow/store';
-import { ConfigEffects } from '#config/store';
+import { ConfigEffects } from '@ngpk/auth-organizer/config/store';
 import { DriveEffects } from '#drive/store';
 import { TaskerEffects } from '#tasker/store';
 

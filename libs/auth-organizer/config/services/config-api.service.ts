@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
 
-import { AppConfig } from '#config/models';
+import { AppConfig } from '@ngpk/auth-organizer/config/models';
 import { Collection } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })

@@ -2,8 +2,8 @@ import { createReducer, on } from '@ngrx/store';
 
 import { AuthActions } from '@ngpk/auth-organizer/state';
 
-import { AppConfig } from '#config/models';
-import { ConfigActions } from '#config/store';
+import { AppConfig } from '@ngpk/auth-organizer/config/models';
+import { ConfigActions } from '@ngpk/auth-organizer/config/store';
 
 export const FeatureKey = 'config';
 

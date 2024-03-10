@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
 
-import { ThemeType } from '#config/models';
-import { ConfigSelectors } from '#config/store';
+import { ThemeType } from '@ngpk/auth-organizer/config/models';
+import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {

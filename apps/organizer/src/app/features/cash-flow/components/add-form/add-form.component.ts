@@ -12,7 +12,7 @@ import { AuthSelectors } from '@ngpk/auth-organizer/state';
 
 import { CashFlow, CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
-import { ConfigSelectors } from '#config/store';
+import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 
 @Component({
   selector: 'org-add-form',

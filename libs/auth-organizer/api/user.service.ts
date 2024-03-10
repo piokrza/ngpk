@@ -7,7 +7,7 @@ import { IUser } from '@ngpk/auth-organizer/model';
 import { Collection } from '@ngpk/core/enum';
 
 import { Category } from '#cash-flow/models';
-import { AppConfig } from '#config/models';
+import { AppConfig } from '@ngpk/auth-organizer/config/models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

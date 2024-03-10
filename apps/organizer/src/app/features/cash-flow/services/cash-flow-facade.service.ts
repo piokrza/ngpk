@@ -14,7 +14,7 @@ import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowData, Category, CategoryType } from '#cash-flow/models';
 import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
 import { CashFlowActions, CashFlowSelectors } from '#cash-flow/store';
-import { ConfigSelectors } from '#config/store';
+import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {

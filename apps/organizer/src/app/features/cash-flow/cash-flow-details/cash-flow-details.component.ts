@@ -14,7 +14,7 @@ import { ContainerComponent } from '@ngpk/shared-ui/shared';
 
 import { CashFlow, Category } from '#cash-flow/models';
 import { CashFlowFacadeService } from '#cash-flow/services';
-import { ConfigSelectors } from '#config/store';
+import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 
 const imports = [TranslateModule, AsyncPipe, TimestampPipe, ContainerComponent, ButtonModule];
 

@@ -10,7 +10,7 @@ import { AuthActions } from '@ngpk/auth-organizer/state';
 import { ThemeService } from '@ngpk/core/service';
 
 import { CashFlowActions } from '#cash-flow/store';
-import { ConfigActions } from '#config/store';
+import { ConfigActions } from '@ngpk/auth-organizer/config/store';
 import { DriveActions } from '#drive/store';
 import { TaskerActions } from '#tasker/store';
 
