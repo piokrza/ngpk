@@ -2,12 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase/compat';
+import { PrimeNGConfig } from 'primeng/api';
 import { filter, Observable, tap } from 'rxjs';
 
-import { PrimeNGConfig } from 'primeng/api';
+import { AuthApiService } from '@ngpk/auth-organizer/api';
+import { AuthActions } from '@ngpk/auth-organizer/state';
 
-import { AuthApiService } from '#auth/services';
-import { AuthActions } from '#auth/store';
 import { CashFlowActions } from '#cash-flow/store';
 import { ConfigActions } from '#core/config/store';
 import { ThemeService } from '#core/services';

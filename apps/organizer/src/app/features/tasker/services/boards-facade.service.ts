@@ -3,11 +3,11 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfirmationService } from 'primeng/api';
 import { filter, map } from 'rxjs';
 
-import { ConfirmationService } from 'primeng/api';
+import { AuthSelectors } from '@ngpk/auth-organizer/state';
 
-import { AuthSelectors } from '#auth/store';
 import { AppPaths } from '#core/enums';
 import { AddTaskPayload, DeleteTaskPayload, DragDropTaskPayload } from '#tasker/models';
 import { TaskerActions, TaskerSelectors } from '#tasker/store';

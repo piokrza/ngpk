@@ -24,7 +24,6 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "#app/*": ["apps/organizer/src/app/*"],
-      "#auth/*": ["apps/organizer/src/app/features/auth/*"],
       "#cash-flow/*": ["apps/organizer/src/app/features/cash-flow/*"],
       "#core/*": ["apps/organizer/src/app/core/*"],
       "#drive/*": ["apps/organizer/src/app/features/drive/*"],
@@ -34,7 +33,7 @@
       "#store/*": ["apps/organizer/src/app/store/*"],
       "#tasker/*": ["apps/organizer/src/app/features/tasker/*"],
       "#weather/*": ["apps/organizer/src/app/features/weather/*"],
-      "@ng-pk/auth": ["libs/auth/feature/index.ts"],
+      "@ngpk/auth-organizer/*": ["libs/auth-organizer/*"],
       "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]
     },
     "rootDir": "."

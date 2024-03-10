@@ -1,0 +1,8 @@
+{
+  "name": "auth-organizer-testing",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:auth-organizer", "project:auth-organizer-testing", "public:auth-organizer", "sub-domain:testing", "type:api"],
+  "sourceRoot": "libs/auth-organizer/testing",
+  "prefix": "ngpk"
+}

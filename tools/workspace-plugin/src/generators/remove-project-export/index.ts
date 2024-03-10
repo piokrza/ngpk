@@ -30,7 +30,7 @@ export async function removeProjectExport(tree: Tree, schema: Schema): Promise<s
     const config = readProjectConfiguration(tree, libraryName);
     const path = config.root.replace('libs/', '');
 
-    pathAlias = `@ng-pk/${path}/${exportName}`;
+    pathAlias = `@ngpk/${path}/${exportName}`;
   }
 
   const tsconfigBaseJson = readJson(tree, 'tsconfig.base.json');

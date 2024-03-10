@@ -3,15 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Observable, filter, map } from 'rxjs';
-
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
+import { Observable, filter, map } from 'rxjs';
 
-import { AuthActions, AuthSelectors } from '#auth/store';
+import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
+
 import { AppPaths } from '#core/enums';
 import { MenuService, TitleService } from '#core/services';
 import { connectState } from '#core/utils';

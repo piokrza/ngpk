@@ -17,7 +17,7 @@ export async function addProjectExport(tree: Tree, schema: Schema): Promise<stri
   const { libraryName, exportName } = schema;
   const config = readProjectConfiguration(tree, libraryName);
   const path = config.root.replace('libs/', '');
-  const typeAlias = exportName ? `@ng-pk/${path}/${exportName}` : `@ng-pk/${path}`;
+  const typeAlias = exportName ? `@ngpk/${path}/${exportName}` : `@ngpk/${path}`;
 
   const exportPath = schema.exportPath ?? `${config.sourceRoot}/${exportName}`;
   const pathToIndex = `${exportPath}/index.ts`;

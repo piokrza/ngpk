@@ -77,7 +77,7 @@
             "newlines-between": "always",
             "pathGroups": [
               {
-                "pattern": "primeng/**",
+                "pattern": "@ngpk/**",
                 "group": "internal"
               }
             ],

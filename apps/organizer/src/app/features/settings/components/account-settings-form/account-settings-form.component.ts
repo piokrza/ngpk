@@ -3,12 +3,12 @@ import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { PrimeIcons } from 'primeng/api';
 import { filter, tap } from 'rxjs';
 
-import { PrimeIcons } from 'primeng/api';
+import { IUser } from '@ngpk/auth-organizer/model';
+import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
 
-import { IUser } from '#auth/models';
-import { AuthActions, AuthSelectors } from '#auth/store';
 import { AccountSettingsForm } from '#settings/models';
 
 @Component({

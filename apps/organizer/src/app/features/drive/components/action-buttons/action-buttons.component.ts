@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, DestroyRef, Signal, WritableSignal,
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
 import { Environment } from 'apps/organizer/src/environments';
-
 import { PrimeIcons } from 'primeng/api';
 import { FileUploadEvent } from 'primeng/fileupload';
 
+import { IUser } from '@ngpk/auth-organizer/model';
+
 import { connectState } from '#app/core/utils';
-import { IUser } from '#auth/models';
 import { DriveFacadeService } from '#drive/services';
 
 @Component({

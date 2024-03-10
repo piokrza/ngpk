@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { AuthActions } from '#auth/store';
+import { AuthActions } from '@ngpk/auth-organizer/state';
+
 import { CashFlow } from '#cash-flow/models';
 import { CashFlowActions } from '#cash-flow/store';
 

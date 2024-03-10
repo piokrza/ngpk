@@ -78,6 +78,6 @@ function generatePathAlias(tree: Tree, schema: Schema, pathAlias: Schema['pathAl
     if (!tree.read(`libs/${domainName}/${name}/index.ts`)) {
       tree.write(`libs/${domainName}/${name}/index.ts`, 'export {}');
     }
-    modifyPathAlias(tree, `@ng-pk/${domainName}/${name}`, `libs/${domainName}/${name}/index.ts`);
+    modifyPathAlias(tree, `@ngpk/${domainName}/${name}`, `libs/${domainName}/${name}/index.ts`);
   }
 }

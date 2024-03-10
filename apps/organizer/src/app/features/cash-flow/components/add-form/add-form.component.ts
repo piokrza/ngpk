@@ -4,12 +4,12 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, filter } from 'rxjs';
 
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { IUser } from '@ngpk/auth-organizer/model';
+import { AuthSelectors } from '@ngpk/auth-organizer/state';
 
-import { IUser } from '#auth/models';
-import { AuthSelectors } from '#auth/store';
 import { CashFlow, CashFlowForm, Category } from '#cash-flow/models';
 import { CashFlowService } from '#cash-flow/services';
 import { ConfigSelectors } from '#core/config/store';

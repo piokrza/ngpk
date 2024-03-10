@@ -16,12 +16,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { Environment } from 'apps/organizer/src/environments';
 import { environment } from 'apps/organizer/src/environments/environment';
-
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
+import { AuthEffects } from '@ngpk/auth-organizer/state';
+
 import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/index';
-import { AuthEffects } from '#auth/store';
 import { CashFlowEffects } from '#cash-flow/store';
 import { ConfigEffects } from '#core/config/store';
 import { httpErrorInterceptor } from '#core/interceptors';

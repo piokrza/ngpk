@@ -1,11 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
 import { Environment } from 'apps/organizer/src/environments';
-
 import { MenuItem, PrimeIcons } from 'primeng/api';
+import { Observable, map } from 'rxjs';
 
-import { AuthSelectors } from '#app/features/auth/store';
+import { AuthSelectors } from '@ngpk/auth-organizer/state';
+
 import { AppPaths } from '#core/enums';
 
 @Injectable({ providedIn: 'root' })
