@@ -1,12 +1,12 @@
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 
 import { connectState } from '@ngpk/core/util';
-import { ContainerComponent, AddItemBtnComponent } from '#shared/components';
+import { ContainerComponent, AddItemBtnComponent } from '@ngpk/shared-ui/shared';
+
 import { AddTaskPayload, DeleteTaskPayload, Task } from '#tasker/models';
 import { BoardsFacadeService } from '#tasker/services';
 

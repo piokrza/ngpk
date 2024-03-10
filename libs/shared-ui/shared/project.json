@@ -1,0 +1,8 @@
+{
+  "name": "shared-ui-shared",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:shared-ui", "project:shared-ui-shared", "public:shared-ui", "sub-domain:shared", "type:api"],
+  "sourceRoot": "libs/shared-ui/shared",
+  "prefix": "ngpk"
+}

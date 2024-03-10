@@ -7,10 +7,10 @@ import { CardModule } from 'primeng/card';
 import { Observable } from 'rxjs';
 
 import { LabeledData } from '@ngpk/core/model';
+import { ContainerComponent } from '@ngpk/shared-ui/shared';
 
 import { CashFlowDataSet } from '#cash-flow/models';
 import { ConfigSelectors } from '#config/store';
-import { ContainerComponent } from '#shared/components';
 
 const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent, AsyncPipe];
 

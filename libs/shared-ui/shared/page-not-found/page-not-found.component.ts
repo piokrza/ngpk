@@ -6,7 +6,7 @@ import { finalize, interval, takeWhile, tap } from 'rxjs';
 const imports = [TranslateModule];
 
 @Component({
-  selector: 'org-page-not-found',
+  selector: 'ngpk-page-not-found',
   templateUrl: './page-not-found.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

@@ -23,11 +23,11 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AuthEffects } from '@ngpk/auth-organizer/state';
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
+import { OrganizerLayoutComponent } from '@ngpk/shared-ui/shared';
 
 import { CashFlowEffects } from '#cash-flow/store';
 import { ConfigEffects } from '#config/store';
 import { DriveEffects } from '#drive/store';
-import { LayoutComponent } from '#shared/components';
 import { TaskerEffects } from '#tasker/store';
 
 const declarations = [AppComponent];
@@ -38,7 +38,7 @@ const imports = [
   BrowserModule,
   BrowserAnimationsModule,
   RouterOutlet,
-  LayoutComponent,
+  OrganizerLayoutComponent,
   StoreModule.forRoot(STORE_ROOT_REDUCERS),
   EffectsModule.forRoot(storeEffects),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),

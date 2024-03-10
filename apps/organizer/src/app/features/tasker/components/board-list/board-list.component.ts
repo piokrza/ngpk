@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { PrimeIcons } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 
 import { connectState } from '@ngpk/core/util';
-import { ContainerComponent, AddItemBtnComponent } from '#shared/components';
+import { ContainerComponent, AddItemBtnComponent } from '@ngpk/shared-ui/shared';
+
 import { BoardsFacadeService } from '#tasker/services';
 
 const imports = [ContainerComponent, TranslateModule, AddItemBtnComponent, TooltipModule];
