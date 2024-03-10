@@ -7,7 +7,7 @@ import { filter, Observable } from 'rxjs';
 
 import { AuthFormPayload, IUser } from '@ngpk/auth-organizer/model';
 
-import { Collection } from '#core/enums';
+import { Collection } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {

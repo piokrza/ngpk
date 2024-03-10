@@ -8,7 +8,7 @@ import { filter, map } from 'rxjs';
 
 import { AuthSelectors } from '@ngpk/auth-organizer/state';
 
-import { AppPaths } from '#core/enums';
+import { AppPaths } from '@ngpk/core/enum';
 import { AddTaskPayload, DeleteTaskPayload, DragDropTaskPayload } from '#tasker/models';
 import { TaskerActions, TaskerSelectors } from '#tasker/store';
 

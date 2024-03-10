@@ -1,0 +1,35 @@
+{
+  "name": "core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core",
+  "prefix": "ngpk",
+  "tags": ["domain:core", "project:core"],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/core/jest.config.ts"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc -p libs/core/tsconfig.spec.json --noEmit"]
+      }
+    }
+  },
+  "implicitDependencies": [
+    "core-abstract",
+    "core-constant",
+    "core-directive",
+    "core-enum",
+    "core-guard",
+    "core-interceptor",
+    "core-model",
+    "core-pipe",
+    "core-service",
+    "core-util"
+  ]
+}

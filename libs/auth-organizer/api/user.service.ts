@@ -4,10 +4,10 @@ import firebase from 'firebase/compat';
 import { EMPTY, forkJoin, switchMap } from 'rxjs';
 
 import { IUser } from '@ngpk/auth-organizer/model';
+import { Collection } from '@ngpk/core/enum';
 
 import { Category } from '#cash-flow/models';
-import { AppConfig } from '#core/config/models';
-import { Collection } from '#core/enums';
+import { AppConfig } from '#config/models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

@@ -3,12 +3,11 @@ import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChartData, ChartOptions } from 'chart.js';
-import { Observable } from 'rxjs';
-
 import { ChartModule } from 'primeng/chart';
 import { Nullable } from 'primeng/ts-helpers';
+import { Observable } from 'rxjs';
 
-import { ConfigSelectors } from '#app/core/config/store';
+import { ConfigSelectors } from '#config/store';
 import { ContainerComponent } from '#shared/components';
 
 const imports = [ChartModule, ContainerComponent, TranslateModule, AsyncPipe];

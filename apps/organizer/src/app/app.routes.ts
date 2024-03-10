@@ -1,8 +1,8 @@
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { Routes } from '@angular/router';
 
-import { AppPaths } from '#core/enums';
-import { getTitle } from '#core/utils';
+import { AppPaths } from '@ngpk/core/enum';
+import { getTitle } from '@ngpk/core/util';
 
 export const routes: Routes = [
   {

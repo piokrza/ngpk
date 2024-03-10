@@ -1,0 +1,8 @@
+{
+  "name": "core-constant",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:core", "project:core-constant", "public:core", "sub-domain:constant", "type:api"],
+  "sourceRoot": "libs/core/constant",
+  "prefix": "ngpk"
+}

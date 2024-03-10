@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { PrimeIcons } from 'primeng/api';
 
-import { PathFragment } from '#core/enums';
+import { PathFragment } from '@ngpk/core/enum';
 
 @Component({
   selector: 'org-account-settings',

@@ -5,8 +5,8 @@ import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
 import { CashFlowApiService } from '#cash-flow/services';
 import { CashFlowActions } from '#cash-flow/store';
-import { ToastStatus } from '#core/enums/';
-import { DbSubscriptionService, ToastService } from '#core/services';
+import { ToastStatus } from '@ngpk/core/enum/';
+import { DbSubscriptionService, ToastService } from '@ngpk/core/service';
 
 @Injectable()
 export class CashFlowEffects {

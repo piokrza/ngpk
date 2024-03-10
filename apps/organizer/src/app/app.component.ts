@@ -7,10 +7,10 @@ import { filter, Observable, tap } from 'rxjs';
 
 import { AuthApiService } from '@ngpk/auth-organizer/api';
 import { AuthActions } from '@ngpk/auth-organizer/state';
+import { ThemeService } from '@ngpk/core/service';
 
 import { CashFlowActions } from '#cash-flow/store';
-import { ConfigActions } from '#core/config/store';
-import { ThemeService } from '#core/services';
+import { ConfigActions } from '#config/store';
 import { DriveActions } from '#drive/store';
 import { TaskerActions } from '#tasker/store';
 

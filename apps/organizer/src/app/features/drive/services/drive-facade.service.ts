@@ -6,7 +6,7 @@ import { Observable, map, switchMap } from 'rxjs';
 import { IUser } from '@ngpk/auth-organizer/model';
 import { AuthSelectors } from '@ngpk/auth-organizer/state';
 
-import { AppPaths } from '#core/enums';
+import { AppPaths } from '@ngpk/core/enum';
 import { FileUploadPayload, FolderUploadPayload, IFile } from '#drive/models';
 import { DriveService } from '#drive/services';
 import { DriveActions, DriveSelectors } from '#drive/store';

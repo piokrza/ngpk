@@ -10,8 +10,8 @@ import { AuthApiService, UserService } from '@ngpk/auth-organizer/api';
 import { AuthActions } from '@ngpk/auth-organizer/state';
 import { ActionTypes } from '@ngpk/auth-organizer/state/action-types';
 
-import { ToastStatus } from '#core/enums';
-import { DbSubscriptionService, ToastService } from '#core/services';
+import { ToastStatus } from '@ngpk/core/enum';
+import { DbSubscriptionService, ToastService } from '@ngpk/core/service';
 
 @Injectable()
 export class AuthEffects {

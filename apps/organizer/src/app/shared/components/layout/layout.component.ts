@@ -11,10 +11,10 @@ import { ToastModule } from 'primeng/toast';
 import { Observable, filter, map } from 'rxjs';
 
 import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
+import { AppPaths } from '@ngpk/core/enum';
+import { MenuService, TitleService } from '@ngpk/core/service';
+import { connectState } from '@ngpk/core/util';
 
-import { AppPaths } from '#core/enums';
-import { MenuService, TitleService } from '#core/services';
-import { connectState } from '#core/utils';
 import { ContainerComponent } from '#shared/components';
 import { WeatherWidgetComponent } from '#weather/components';
 

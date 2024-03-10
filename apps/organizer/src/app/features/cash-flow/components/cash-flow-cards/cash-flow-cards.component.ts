@@ -3,13 +3,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
+import { CardModule } from 'primeng/card';
 import { Observable } from 'rxjs';
 
-import { CardModule } from 'primeng/card';
+import { LabeledData } from '@ngpk/core/model';
 
 import { CashFlowDataSet } from '#cash-flow/models';
-import { ConfigSelectors } from '#core/config/store';
-import { LabeledData } from '#core/models';
+import { ConfigSelectors } from '#config/store';
 import { ContainerComponent } from '#shared/components';
 
 const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent, AsyncPipe];

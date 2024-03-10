@@ -1,3 +1,4 @@
+import { STORE_ROOT_REDUCERS, AppComponent, routes } from '.';
 import { DatePipe } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
@@ -20,12 +21,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { AuthEffects } from '@ngpk/auth-organizer/state';
+import { httpErrorInterceptor } from '@ngpk/core/interceptor';
+import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
 
-import { STORE_ROOT_REDUCERS, AppComponent, routes } from '#app/index';
 import { CashFlowEffects } from '#cash-flow/store';
-import { ConfigEffects } from '#core/config/store';
-import { httpErrorInterceptor } from '#core/interceptors';
-import { CustomTranslateHttpLoader, initializeTranslations } from '#core/utils';
+import { ConfigEffects } from '#config/store';
 import { DriveEffects } from '#drive/store';
 import { LayoutComponent } from '#shared/components';
 import { TaskerEffects } from '#tasker/store';

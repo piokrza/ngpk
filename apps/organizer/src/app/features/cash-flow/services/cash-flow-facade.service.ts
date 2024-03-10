@@ -2,19 +2,19 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, combineLatestWith, map, tap } from 'rxjs';
-
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
+import { Observable, combineLatestWith, map, tap } from 'rxjs';
+
+import { baseDialogStyles } from '@ngpk/core/constant';
+import { AppPaths } from '@ngpk/core/enum';
 
 import { AddFormComponent, UpdateFormComponent } from '#cash-flow/components';
 import { CashFlow, CashFlowData, Category, CategoryType } from '#cash-flow/models';
 import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } from '#cash-flow/services';
 import { CashFlowActions, CashFlowSelectors } from '#cash-flow/store';
-import { ConfigSelectors } from '#core/config/store';
-import { baseDialogStyles } from '#core/constants';
-import { AppPaths } from '#core/enums';
+import { ConfigSelectors } from '#config/store';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {
