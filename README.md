@@ -1,4 +1,5 @@
-# CashControl
+# My projects
+- Organizer 
 
 Technologies used:
 
@@ -10,7 +11,4 @@ Technologies used:
 - Typescript,
 - PrimeFlex,
 
-Work in progress...
-
-run `npm install --legacy-peer-deps` for installing dependencies,
-run `ng s` for a dev server.
+In progress...
