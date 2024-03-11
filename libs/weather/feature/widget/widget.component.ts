@@ -12,12 +12,11 @@ import { tap } from 'rxjs';
 import { isWidgetOpen } from '@ngpk/core/constant';
 import { StateObject, connectState } from '@ngpk/core/util';
 import { ContainerComponent } from '@ngpk/shared-ui/shared';
-
-import { DetailsComponent } from '@ngpk/weather/shared';
+import { WeatherApiService } from '@ngpk/weather/api';
 import { WeatherStateModel } from '@ngpk/weather/model';
 import { WeatherIconPipe } from '@ngpk/weather/pipe';
-import { WeatherApiService } from '@ngpk/weather/api';
 import { WeatherFacadeService } from '@ngpk/weather/service';
+import { DetailsComponent } from '@ngpk/weather/shared';
 import { WeatherState } from '@ngpk/weather/state';
 
 const imports = [
@@ -34,7 +33,7 @@ const imports = [
 const providers = [WeatherFacadeService, WeatherApiService, WeatherState];
 
 @Component({
-  selector: 'org-weather-widget',
+  selector: 'ngpk-weather-widget',
   templateUrl: './widget.component.html',
   styleUrl: './widget.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
