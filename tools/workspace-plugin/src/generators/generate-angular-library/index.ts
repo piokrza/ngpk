@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { libraryGenerator, UnitTestRunner } from '@nx/angular/generators';
 import { formatFiles, readJson, readProjectConfiguration, writeJson } from '@nx/devkit';
 import type { Tree } from 'nx/src/devkit-exports';

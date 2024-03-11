@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { formatFiles, names } from '@nx/devkit';
 import type { Tree } from 'nx/src/devkit-exports';
 

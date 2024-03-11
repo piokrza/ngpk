@@ -4,6 +4,9 @@
   "plugins": ["@nx"],
   "overrides": [
     {
+      "parserOptions": {
+        "project": ["./tsconfig.*?.json"]
+      },
       "files": ["*.ts"],
       "extends": [
         "eslint:recommended",

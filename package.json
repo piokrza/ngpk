@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start:organizer": "nx serve organizer",
-    "build:organizer": "nx build organizer",
-    "watch": "nx build --watch --configuration development",
-    "test": "nx test organizer",
+    "build:organizer": "nx build organizer --configuration development",
+    "watch:organizer": "nx build organizer --watch --configuration development",
+    "test:organizer": "nx test organizer",
     "lint:organizer": "nx lint organizer",
     "prettier": "prettier --write .",
     "prepare": "husky install"
