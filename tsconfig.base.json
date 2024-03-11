@@ -23,11 +23,11 @@
     "skipLibCheck": true,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "#search/*": ["apps/organizer/src/app/features/search/*"],
       "@ngpk/auth-organizer/*": ["libs/auth-organizer/*"],
       "@ngpk/cash-flow/*": ["libs/cash-flow/*"],
       "@ngpk/core/*": ["libs/core/*"],
       "@ngpk/drive/*": ["libs/drive/*"],
+      "@ngpk/search/*": ["libs/search/*"],
       "@ngpk/settings-organizer/*": ["libs/settings-organizer/*"],
       "@ngpk/shared-ui/*": ["libs/shared-ui/*"],
       "@ngpk/tasker/*": ["libs/tasker/*"],

@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: '',
     title: getTitle('home'),
-    loadComponent: async () => (await import('#search/index')).SearchComponent,
+    loadComponent: async () => (await import('@ngpk/search/feature')).SearchComponent,
   },
   {
     path: AppPaths.TASKER,

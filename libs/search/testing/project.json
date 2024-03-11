@@ -1,0 +1,8 @@
+{
+  "name": "search-testing",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:search", "project:search-testing", "public:search", "sub-domain:testing", "type:api"],
+  "sourceRoot": "libs/search/testing",
+  "prefix": "ngpk"
+}
