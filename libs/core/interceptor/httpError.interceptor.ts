@@ -3,7 +3,6 @@ import { inject } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 
 import { ToastStatus } from '@ngpk/core/enum';
-
 import { ToastService } from '@ngpk/core/service';
 
 export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {

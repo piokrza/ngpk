@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
-export abstract class Store<T> {
+export abstract class Store<T extends object> {
   constructor(private readonly initialState: T) {}
 
   private readonly state$$ = new BehaviorSubject<T>(this.initialState);
