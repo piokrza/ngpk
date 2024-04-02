@@ -20,8 +20,6 @@ class EnvironmentImpl implements Environment {
     home: true,
     pageNotFound: true,
   };
-  weatherBaseUrl = 'https://api.openweathermap.org/data/2.5/weather';
-  weatherApiKey = '253353dc15d16c96be28e7780f4d500f';
   uploadUrl = 'https://www.primefaces.org/cdn/api/upload.php';
   production = true;
 }

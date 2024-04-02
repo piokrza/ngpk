@@ -5,7 +5,7 @@
       #inputEl
       type="text"
       class="p-4 w-full radius"
-      [placeholder]="'Wprowadź nazwę' | translate"
+      [placeholder]="'common.enterName' | translate"
       [formControl]="boardNameControl"
       (keyup.enter)="emitItemName()" />
     <p-button [icon]="PrimeIcons.TIMES" [text]="true" [rounded]="true" (onClick)="setIsEditing(false)" />

@@ -21,8 +21,6 @@ export interface FeatureFlags {
 
 export abstract class Environment {
   abstract firebase: FirebaseConfig;
-  abstract weatherBaseUrl: string;
-  abstract weatherApiKey: string;
   abstract uploadUrl: string;
   abstract production: boolean;
   abstract featureFlags: FeatureFlags;
