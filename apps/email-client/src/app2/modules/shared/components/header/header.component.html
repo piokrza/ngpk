@@ -1,0 +1,12 @@
+<p-menubar [model]="links">
+  <div class="flex align-items-center">
+    <p-toggleButton
+      [(ngModel)]="isLightMode"
+      (onChange)="themeService.setTheme(isLightMode)"
+      [class.mr-3]="username"
+      onIcon="pi pi-sun"
+      offIcon="pi pi-moon"
+    ></p-toggleButton>
+    <div *ngIf="username">{{ username }}@angular-email.com</div>
+  </div>
+</p-menubar>

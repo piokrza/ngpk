@@ -27,6 +27,7 @@
       "@ngpk/cash-flow/*": ["libs/cash-flow/*"],
       "@ngpk/core/*": ["libs/core/*"],
       "@ngpk/drive/*": ["libs/drive/*"],
+      "@ngpk/email/*": ["libs/email/*"],
       "@ngpk/search/*": ["libs/search/*"],
       "@ngpk/settings-organizer/*": ["libs/settings-organizer/*"],
       "@ngpk/shared-ui/*": ["libs/shared-ui/*"],

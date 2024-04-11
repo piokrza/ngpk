@@ -1,0 +1,31 @@
+<ng-container *ngIf="signinForm; else loading">
+  <app-form-container title="Sign In">
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" class="mt-6">
+      <app-form-input *ngIf="username" [control]="username" label="Username" id="username"></app-form-input>
+      <app-form-input
+        *ngIf="password"
+        [control]="password"
+        inputType="password"
+        label="Password"
+        id="password"
+      ></app-form-input>
+
+      <div class="my-5 cursor-pointer">
+        <p-button
+          [disabled]="signinForm.invalid"
+          [icon]="(isAuthLoading$ | async) ? 'pi pi-spin pi-spinner' : ''"
+          (onClick)="onSubmit()"
+          styleClass="w-full"
+          label="Sign in!"
+        ></p-button>
+      </div>
+      <div class="text-center">Don't have an account? <a routerLink="/signup">Join for free</a></div>
+    </form>
+  </app-form-container>
+</ng-container>
+
+<ng-template #loading>
+  <div class="mx-auto">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>

@@ -1,0 +1,26 @@
+<ng-container *ngIf="email; else emailLoading">
+  <div class="flex flex-column radius card-shadow mt-5 p-4 surface-overlay overflow-y-auto min-h-300">
+    <h3 class="text-2xl font-bold">{{ email.subject }}</h3>
+    <div class="flex justify-content-between">
+      <div>
+        <div class="text-sm mt-3">
+          From: <i> {{ email.from }} </i>
+        </div>
+        <div class="text-sm">
+          To: <i> {{ email.to }} </i>
+        </div>
+      </div>
+      <div>
+        <p-button (onClick)="onReplyButtonClick()" label="Reply"></p-button>
+      </div>
+    </div>
+    <br />
+    <div class="border-bottom-solid border-bottom-1 border-black-alpha-30"></div>
+    <div [innerHTML]="email.html" class="mt-4"></div>
+  </div>
+</ng-container>
+<ng-template #emailLoading>
+  <div class="flex justify-content-center align-items-center h-full">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>
