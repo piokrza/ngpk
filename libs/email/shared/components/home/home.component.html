@@ -1,0 +1,17 @@
+<div class="flex flex-wrap p-4">
+  <div class="min-w-full">
+    <div class="mb-4">
+      <p-button (onClick)="onCreateEmail()" label="Create email" />
+    </div>
+    <ngpk-email-index *ngIf="emails; else emailIndexLoading" [emails]="emails" />
+    <ng-template #emailIndexLoading>
+      <div class="flex justify-content-center">
+        <p-progressSpinner />
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="w-full">
+    <router-outlet />
+  </div>
+</div>

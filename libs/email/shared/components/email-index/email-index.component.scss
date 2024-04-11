@@ -1,0 +1,17 @@
+@use '../../../sass/abstracts/colors' as *;
+
+a {
+  transition: 0.125s;
+
+  &.active {
+    background-color: $gray-light !important;
+  }
+}
+
+tr {
+  background-color: transparent !important;
+}
+
+td {
+  padding: 0.75rem 0 !important;
+}

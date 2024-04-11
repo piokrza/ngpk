@@ -1,0 +1,16 @@
+@if (emails.length) {
+  <p-table [value]="emails" [paginator]="emails.length > 3" [rows]="3">
+    <ng-template pTemplate="body" let-email>
+      <tr>
+        <td>
+          <a [routerLink]="email.id" routerLinkActive="active" class="block w-full p-3 card-shadow surface-overlay radius">
+            <div class="font-bold text-xl">{{ email.subject }}</div>
+            <div class="mt-1">{{ email.from }}</div>
+          </a>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+} @else {
+  <div class="text-center">Your inbox list is empty</div>
+}

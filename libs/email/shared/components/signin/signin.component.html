@@ -1,0 +1,22 @@
+@if (signinForm) {
+  <ngpk-form-container title="Sign In">
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" class="mt-6">
+      <ngpk-form-input [control]="username" label="Username" id="username" />
+      <ngpk-form-input [control]="password" inputType="password" label="Password" id="password" />
+
+      <div class="my-5 cursor-pointer">
+        <p-button
+          [disabled]="signinForm.invalid"
+          [icon]="isLoading() ? 'pi pi-spin pi-spinner' : ''"
+          (onClick)="onSubmit()"
+          styleClass="w-full"
+          label="Sign in!" />
+      </div>
+      <div class="text-center">Don't have an account? <a [routerLink]="['/signup']">Join for free</a></div>
+    </form>
+  </ngpk-form-container>
+} @else {
+  <div class="mx-auto">
+    <p-progressSpinner />
+  </div>
+}

@@ -1,0 +1,30 @@
+$white: #fff;
+$silver: #e9ecef;
+$gray: #e1e1e1;
+$gray-light: #f1f2f2;
+$gray-dark: #707070;
+$creamy: #c6a37e;
+$green: #00a021;
+$orange: #ce6300;
+$red: #a00000;
+$blue-navy: #00223e;
+$black: #000;
+
+$box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1), 0px 4px 5px -2px rgba(0, 0, 0, 0.015),
+  0px 10px 15px -5px rgba(0, 0, 0, 0.1);
+$box-shadow-light: 0px 1px 7px rgba(0, 0, 0, 0.03), 0px 4px 5px -2px rgba(0, 0, 0, 0.003),
+  0px 10px 15px -5px rgba(0, 0, 0, 0.03);
+
+$font-colors: (
+  'white': $white,
+  'silver': $silver,
+  'gray': $gray,
+  'gray-light': $gray-light,
+  'gray-dark': $gray-dark,
+  'creamy': $creamy,
+  'green': $green,
+  'orange': $orange,
+  'red': $red,
+  'blue-navy': $blue-navy,
+  'black': $black,
+);
