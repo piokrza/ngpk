@@ -12,3 +12,4 @@ export * from './email-reply/email-reply.component';
 export * from './email-show/email-show.component';
 export * from './placeholder/placeholder.component';
 export * from './home/home.component';
+export * from './layout/layout.component';

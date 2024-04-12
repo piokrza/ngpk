@@ -16,7 +16,7 @@
     </div>
     <br />
     <div class="border-bottom-solid border-bottom-1 border-black-alpha-30"></div>
-    <div [innerHTML]="email.html" class="mt-4"></div>
+    <div [innerHTML]="email.html | bypassHtml" class="mt-4"></div>
   </div>
 } @else {
   <div class="flex justify-content-center align-items-center h-full">

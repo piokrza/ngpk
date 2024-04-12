@@ -5,11 +5,12 @@ import { ButtonModule } from 'primeng/button';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
+import { BypassHtmlPipe } from '@ngpk/core/pipe';
 import { Email } from '@ngpk/email/model';
 import { EmailService } from '@ngpk/email/service';
 import { EmailReplyComponent } from '@ngpk/email/shared/components';
 
-const imports = [ButtonModule, ProgressSpinnerModule];
+const imports = [ButtonModule, ProgressSpinnerModule, BypassHtmlPipe];
 
 @Component({
   selector: 'ngpk-email-show',

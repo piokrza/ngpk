@@ -9,8 +9,8 @@ const routes: Routes = [
     loadChildren: async () => (await import('@ngpk/email/feature/auth')).AuthModule,
   },
   {
-    canMatch: [authGuard],
     path: 'inbox',
+    canMatch: [authGuard],
     loadChildren: async () => (await import('@ngpk/email/feature/inbox')).InboxModule,
   },
 ];
