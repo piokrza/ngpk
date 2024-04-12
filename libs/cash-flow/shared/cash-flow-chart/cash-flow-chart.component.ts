@@ -8,7 +8,7 @@ import { Nullable } from 'primeng/ts-helpers';
 import { Observable } from 'rxjs';
 
 import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
-import { ContainerComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const imports = [ChartModule, ContainerComponent, TranslateModule, AsyncPipe];
 

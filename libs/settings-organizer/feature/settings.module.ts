@@ -16,7 +16,7 @@ import {
   PanelComponent,
   ThemeTogglerComponent,
 } from '@ngpk/settings-organizer/shared';
-import { ContainerComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const declarations = [ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];
 const imports = [

@@ -47,7 +47,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: async () => (await import('@ngpk/shared-ui/shared')).PageNotFoundComponent,
+    loadComponent: async () => (await import('@ngpk/shared-ui/components')).PageNotFoundComponent,
     title: getTitle('pageNotFound'),
   },
 ];

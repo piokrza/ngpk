@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 import { CashFlowDataSet } from '@ngpk/cash-flow/model';
 import { LabeledData } from '@ngpk/core/model';
-import { ContainerComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent, AsyncPipe];
 

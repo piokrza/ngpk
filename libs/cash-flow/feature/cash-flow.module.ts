@@ -27,7 +27,7 @@ import {
   UpdateFormComponent,
 } from '@ngpk/cash-flow/shared';
 import { TimestampPipe } from '@ngpk/core/pipe';
-import { ContainerComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const declarations = [TileComponent, DetailsBoxComponent, TileListComponent, AddFormComponent, UpdateFormComponent, CashFlowComponent];
 

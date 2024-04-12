@@ -14,7 +14,7 @@ import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
 import { AppPaths } from '@ngpk/core/enum';
 import { MenuService, TitleService } from '@ngpk/core/service';
 import { connectState } from '@ngpk/core/util';
-import { ContainerComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent } from '@ngpk/shared-ui/components';
 import { WeatherWidgetComponent } from '@ngpk/weather/feature';
 
 const imports = [

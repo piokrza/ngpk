@@ -5,7 +5,7 @@ import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 
 import { connectState } from '@ngpk/core/util';
-import { ContainerComponent, AddItemBtnComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent, AddItemBtnComponent } from '@ngpk/shared-ui/components';
 import { AddTaskPayload, DeleteTaskPayload, Task } from '@ngpk/tasker/model';
 import { BoardsFacadeService } from '@ngpk/tasker/service';
 

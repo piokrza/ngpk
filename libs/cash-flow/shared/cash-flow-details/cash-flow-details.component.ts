@@ -13,7 +13,7 @@ import { CashFlowFacadeService } from '@ngpk/cash-flow/service';
 import { AppPaths, DateFormats } from '@ngpk/core/enum';
 import { TimestampPipe } from '@ngpk/core/pipe';
 import { connectState } from '@ngpk/core/util';
-import { ContainerComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const imports = [TranslateModule, AsyncPipe, TimestampPipe, ContainerComponent, ButtonModule];
 

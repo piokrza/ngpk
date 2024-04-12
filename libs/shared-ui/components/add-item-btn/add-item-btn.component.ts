@@ -5,7 +5,7 @@ import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { ContainerComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const imports = [TranslateModule, ContainerComponent, ReactiveFormsModule, InputTextModule, ButtonModule];
 

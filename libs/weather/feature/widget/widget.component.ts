@@ -11,7 +11,7 @@ import { tap } from 'rxjs';
 
 import { isWidgetOpen } from '@ngpk/core/constant';
 import { StateObject, connectState } from '@ngpk/core/util';
-import { ContainerComponent } from '@ngpk/shared-ui/shared';
+import { ContainerComponent } from '@ngpk/shared-ui/components';
 import { WeatherApiService } from '@ngpk/weather/api';
 import { WeatherStateModel } from '@ngpk/weather/model';
 import { WeatherIconPipe } from '@ngpk/weather/pipe';
