@@ -3,18 +3,20 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { EmailForm } from '@ngpk/email/model';
 import { EmailFormService } from '@ngpk/email/service';
 import { FormInputComponent } from '@ngpk/email/shared/components';
 
-const imports = [ButtonModule, FormInputComponent, ReactiveFormsModule];
+const imports = [ButtonModule, FormInputComponent, ReactiveFormsModule, InputTextareaModule];
+const providers = [EmailFormService];
 
 @Component({
   selector: 'ngpk-email-create',
   templateUrl: './email-create.component.html',
-  providers: [EmailFormService],
   standalone: true,
+  providers,
   imports,
 })
 export class EmailCreateComponent implements OnInit {

@@ -1,6 +1,7 @@
 @if (emailForm) {
   <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
     <div class="my-3">
+      <!-- TODO: get rid of any, replace ngIf with new control flow -->
       <ngpk-form-input *ngIf="to" [control]="$any(to)" label="To" id="to" />
     </div>
     <div class="my-3">

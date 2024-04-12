@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { authGuard } from '@ngpk/email/guard';
-import { SignoutComponent, SigninComponent, SignupComponent } from '@ngpk/email/shared/components';
 
 const routes: Routes = [
   {
@@ -13,16 +12,16 @@ const routes: Routes = [
   {
     path: 'signin',
     canMatch: [authGuard],
-    component: SigninComponent, //add lazy loading
+    loadComponent: async () => (await import('@ngpk/email/shared/components')).SigninComponent,
   },
   {
     path: 'signup',
     canMatch: [authGuard],
-    component: SignupComponent,
+    loadComponent: async () => (await import('@ngpk/email/shared/components')).SignupComponent,
   },
   {
     path: 'signout',
-    component: SignoutComponent,
+    loadComponent: async () => (await import('@ngpk/email/shared/components')).SignoutComponent,
   },
 ];
 

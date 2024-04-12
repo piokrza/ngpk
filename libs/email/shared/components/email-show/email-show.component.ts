@@ -19,10 +19,10 @@ const imports = [ButtonModule, ProgressSpinnerModule];
 })
 export class EmailShowComponent {
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly dialogService: DialogService,
+    private readonly destroyRef: DestroyRef,
     private readonly emailService: EmailService,
-    private readonly destroyRef: DestroyRef
+    private readonly dialogService: DialogService,
+    private readonly activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.data.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: ({ email }: Data) => {

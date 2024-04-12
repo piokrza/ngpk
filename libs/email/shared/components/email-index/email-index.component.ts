@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TableModule } from 'primeng/table';
 
 import { EmailSummary } from '@ngpk/email/model';
+
 const imports = [TableModule, RouterLink];
 
 @Component({

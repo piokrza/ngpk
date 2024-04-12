@@ -3,12 +3,14 @@
     <div class="mb-4">
       <p-button (onClick)="onCreateEmail()" label="Create email" />
     </div>
-    <ngpk-email-index *ngIf="emails; else emailIndexLoading" [emails]="emails" />
-    <ng-template #emailIndexLoading>
+
+    @if (state.isLoading) {
       <div class="flex justify-content-center">
         <p-progressSpinner />
       </div>
-    </ng-template>
+    } @else {
+      <ngpk-email-index [emails]="state.emails" />
+    }
   </div>
 
   <div class="w-full">

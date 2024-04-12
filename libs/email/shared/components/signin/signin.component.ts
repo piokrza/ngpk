@@ -1,5 +1,6 @@
+import { AsyncPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, DestroyRef, OnInit, Self, Signal, computed } from '@angular/core';
+import { Component, DestroyRef, OnInit, Self } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -12,7 +13,15 @@ import { SigninFormService, AuthService, ToastService } from '@ngpk/email/servic
 import { FormContainerComponent, FormInputComponent } from '@ngpk/email/shared/components';
 import { AuthStateService } from '@ngpk/email/state/auth';
 
-const imports = [ButtonModule, FormContainerComponent, FormInputComponent, ProgressSpinnerModule, RouterLink, ReactiveFormsModule];
+const imports = [
+  ButtonModule,
+  FormContainerComponent,
+  FormInputComponent,
+  ProgressSpinnerModule,
+  RouterLink,
+  ReactiveFormsModule,
+  AsyncPipe,
+];
 
 @Component({
   selector: 'ngpk-signin',
@@ -33,7 +42,7 @@ export class SigninComponent implements OnInit {
   ) {}
 
   signinForm!: FormGroup<SigninForm>;
-  isLoading: Signal<boolean> = computed(() => this.authStateService.state().isLoading);
+  isLoading$ = this.authStateService.select('isLoading');
 
   ngOnInit(): void {
     this.initializeForm();

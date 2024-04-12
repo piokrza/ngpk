@@ -1,12 +1,14 @@
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { EmailForm } from '@ngpk/email/model';
 import { FormInputComponent } from '@ngpk/email/shared/components';
 
-const imports = [ButtonModule, ReactiveFormsModule, FormInputComponent];
+const imports = [ButtonModule, ReactiveFormsModule, FormInputComponent, NgIf, InputTextareaModule];
 
 @Component({
   selector: 'ngpk-email-reply',
@@ -16,9 +18,9 @@ const imports = [ButtonModule, ReactiveFormsModule, FormInputComponent];
 })
 export class EmailReplyComponent implements OnInit {
   constructor(
-    private readonly dialogConfig: DynamicDialogConfig,
+    private readonly formBuilder: FormBuilder,
     private readonly dialogRef: DynamicDialogRef,
-    private readonly formBuilder: FormBuilder
+    private readonly dialogConfig: DynamicDialogConfig
   ) {}
 
   emailForm!: FormGroup<EmailForm>;
@@ -49,6 +51,7 @@ export class EmailReplyComponent implements OnInit {
   }
 
   buildReplyForm(): FormGroup {
+    // TODO: add form type
     return this.formBuilder.group({
       from: { value: this.emailDetails?.to, disabled: true },
       to: this.emailDetails?.from,

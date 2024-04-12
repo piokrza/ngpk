@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { take } from 'rxjs';
 
-import { EmailSummary } from '@ngpk/email/model';
+import { connectState } from '@ngpk/core/util';
 import { EmailService } from '@ngpk/email/service';
 import { EmailCreateComponent, EmailIndexComponent } from '@ngpk/email/shared/components';
 import { InboxStateService } from '@ngpk/email/state/inbox';
@@ -27,7 +27,10 @@ export class HomeComponent implements OnInit {
     private readonly destroyRef: DestroyRef
   ) {}
 
-  emails: EmailSummary[] = this.inboxStateService.state().emails;
+  readonly state = connectState(this.destroyRef, {
+    emails: this.inboxStateService.select('emails'),
+    isLoading: this.inboxStateService.select('isLoading'),
+  });
 
   ngOnInit(): void {
     this.emailService.loadEmails$().pipe(take(1)).subscribe();

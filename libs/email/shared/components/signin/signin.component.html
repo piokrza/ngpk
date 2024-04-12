@@ -7,7 +7,7 @@
       <div class="my-5 cursor-pointer">
         <p-button
           [disabled]="signinForm.invalid"
-          [icon]="isLoading() ? 'pi pi-spin pi-spinner' : ''"
+          [icon]="(isLoading$ | async) ? 'pi pi-spin pi-spinner' : ''"
           (onClick)="onSubmit()"
           styleClass="w-full"
           label="Sign in!" />

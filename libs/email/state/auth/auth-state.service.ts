@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { SignalState } from '@ngpk/core/abstract';
+import { Store } from '@ngpk/core/abstract';
 import { AuthState } from '@ngpk/email/state/auth';
 
 @Injectable({ providedIn: 'root' })
-export class AuthStateService extends SignalState<AuthState> {
+export class AuthStateService extends Store<AuthState> {
   constructor() {
     super({
       username: '',

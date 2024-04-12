@@ -1,6 +1,6 @@
-import { NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, DestroyRef, OnInit, Self, Signal, computed } from '@angular/core';
+import { Component, DestroyRef, OnInit, Self } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { AuthService, SignupFormService } from '@ngpk/email/service';
 import { FormContainerComponent, FormInputComponent } from '@ngpk/email/shared/components';
 import { AuthStateService } from '@ngpk/email/state/auth';
 
-const imports = [FormContainerComponent, ButtonModule, FormInputComponent, ProgressSpinnerModule, NgIf, ReactiveFormsModule];
+const imports = [FormContainerComponent, ButtonModule, FormInputComponent, ProgressSpinnerModule, NgIf, ReactiveFormsModule, AsyncPipe];
 
 @Component({
   selector: 'ngpk-signup',
@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
   ) {}
 
   signupForm!: FormGroup<SignupForm>;
-  isLoading: Signal<boolean> = computed(() => this.authStateService.state().isLoading);
+  isLoading$ = this.authStateService.select('isLoading');
 
   get username(): FormControl<string> {
     return this.signupForm.controls.username;

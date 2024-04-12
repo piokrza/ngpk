@@ -1,7 +1,10 @@
-import { SignalState } from '@ngpk/core/abstract';
+import { Injectable } from '@angular/core';
+
+import { Store } from '@ngpk/core/abstract';
 import { InboxState } from '@ngpk/email/state/inbox';
 
-export class InboxStateService extends SignalState<InboxState> {
+@Injectable({ providedIn: 'root' })
+export class InboxStateService extends Store<InboxState> {
   constructor() {
     super({
       emails: [],
