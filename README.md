@@ -1,5 +1,6 @@
 # My projects
-- Organizer 
+- Organizer
+- Email client
 
 Technologies used:
 
