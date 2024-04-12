@@ -1,0 +1,8 @@
+{
+  "name": "email-interceptor",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:email", "project:email-interceptor", "public:email", "sub-domain:interceptor", "type:api"],
+  "sourceRoot": "libs/email/interceptor",
+  "prefix": "ngpk"
+}

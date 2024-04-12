@@ -1,0 +1,8 @@
+{
+  "name": "email-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:email", "project:email-api", "public:email", "sub-domain:api", "type:api"],
+  "sourceRoot": "libs/email/api",
+  "prefix": "ngpk"
+}

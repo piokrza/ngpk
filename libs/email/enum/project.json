@@ -1,0 +1,8 @@
+{
+  "name": "email-enum",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:email", "project:email-enum", "public:email", "sub-domain:enum", "type:api"],
+  "sourceRoot": "libs/email/enum",
+  "prefix": "ngpk"
+}

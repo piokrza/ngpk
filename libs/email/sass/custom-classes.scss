@@ -1,0 +1,52 @@
+@use 'abstracts' as *;
+
+@each $resolution, $i in $resolutions {
+  .container-max-w-#{$resolution} {
+    max-width: #{$i};
+    margin: 0 auto !important;
+  }
+}
+
+.card-shadow {
+  box-shadow: $box-shadow !important;
+}
+
+.radius {
+  border-radius: 0.5rem !important;
+
+  &-sm {
+    border-radius: 0.25rem !important;
+  }
+}
+
+.min-h-300 {
+  min-height: 300px;
+}
+
+ul.validation-errors {
+  padding: 0.5rem;
+
+  li {
+    color: $red;
+  }
+}
+
+.error-container {
+  position: relative;
+  min-height: 1.25rem;
+  overflow: auto;
+
+  &.show-validators {
+    overflow: visible;
+  }
+}
+
+@media (min-width: $lg) {
+  .card-hover {
+    transition: 150ms ease-in-out !important;
+
+    &:hover {
+      transform: translateY(-0.25rem) !important;
+    }
+  }
+}
