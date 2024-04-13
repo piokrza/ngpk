@@ -1,9 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-// TODO: check if injectable needed
-@Injectable({ providedIn: 'root' })
 export abstract class FormService {
   private _form!: FormGroup<any>;
   private readonly _fb: FormBuilder = inject(FormBuilder);

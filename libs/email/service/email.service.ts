@@ -1,6 +1,6 @@
 import { InboxStateService } from '../state/inbox';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, tap, catchError, throwError, finalize } from 'rxjs';
 
 import { InboxApi } from '@ngpk/email/api';
@@ -10,11 +10,9 @@ import { ToastService } from '@ngpk/email/service';
 
 @Injectable()
 export class EmailService {
-  constructor(
-    private readonly inboxApi: InboxApi,
-    private readonly inboxStateService: InboxStateService,
-    private readonly toastService: ToastService
-  ) {}
+  private readonly inboxApi = inject(InboxApi);
+  private readonly toastService = inject(ToastService);
+  private readonly inboxStateService = inject(InboxStateService);
 
   loadEmails$(): Observable<EmailSummary[]> {
     this.inboxStateService.update('isLoading', true);
