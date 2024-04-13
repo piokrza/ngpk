@@ -11,7 +11,7 @@ export class CopyToClipboardDirective implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly toastService = inject(ToastService);
   private readonly translateService = inject(TranslateService);
-  private readonly elementRef: ElementRef<HTMLElement> = inject(ElementRef<HTMLElement>);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
 
   copyToClipboard = input.required<string>();
 

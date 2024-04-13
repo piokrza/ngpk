@@ -7,15 +7,15 @@ import { ObservableDictionary } from '@ngpk/core/model';
 
 export type StateObject<T = unknown> = Readonly<T> & object;
 
-export function connectState<T>(destroyRef: DestroyRef, sourcesObject: ObservableDictionary<T>) {
+export function connectState<T>(destroyRef: DestroyRef, sourceObject: ObservableDictionary<T>) {
   const cdRef = inject(ChangeDetectorRef);
 
   const stateObject = {} as StateObject<T>;
 
-  from(Object.keys(sourcesObject) as Array<keyof T>)
+  from(Object.keys(sourceObject) as Array<keyof T>)
     .pipe(
       mergeMap((sourceKey: keyof T) => {
-        const sourceValue$ = sourcesObject[sourceKey];
+        const sourceValue$ = sourceObject[sourceKey];
 
         return sourceValue$.pipe(
           tap((sourceValue: T[keyof T]) => {

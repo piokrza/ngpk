@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { PrimeIcons } from 'primeng/api';
 import { AutoFocusModule } from 'primeng/autofocus';
 import { DividerModule } from 'primeng/divider';
@@ -10,7 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 const imports = [InputTextModule, FormsModule, TranslateModule, AutoFocusModule, DividerModule];
 
 @Component({
-  selector: 'org-search',
+  selector: 'ngpk-search',
   templateUrl: './search.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

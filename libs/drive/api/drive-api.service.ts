@@ -9,8 +9,8 @@ import { FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/drive/model
 
 @Injectable({ providedIn: 'root' })
 export class DriveApiService {
-  private readonly fireStorage: AngularFireStorage = inject(AngularFireStorage);
-  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
+  private readonly fireStorage = inject(AngularFireStorage);
+  private readonly angularFirestore = inject(AngularFirestore);
 
   loadFiles$(uid: string): Observable<IFile[]> {
     const files$: AngularFirestoreCollection<IFile> = this.angularFirestore.collection<IFile>(Collection.FILES, (ref) => {

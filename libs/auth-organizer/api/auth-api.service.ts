@@ -10,8 +10,8 @@ import { Collection } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
-  private readonly afAuth: AngularFireAuth = inject(AngularFireAuth);
-  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
+  private readonly afAuth = inject(AngularFireAuth);
+  private readonly angularFirestore = inject(AngularFirestore);
 
   async signinWithGoogle(): Promise<firebase.auth.UserCredential> {
     return await this.afAuth.signInWithPopup(new GoogleAuthProvider());

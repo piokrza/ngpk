@@ -13,8 +13,8 @@ export class UserService {
   private readonly angularFirestore = inject(AngularFirestore);
 
   addUserToDatabase$(user: Partial<IUser>) {
-    const usersCollectionRef: AngularFirestoreCollection<IUser> = this.angularFirestore.collection(Collection.USERS);
-    const configCollectionRef: AngularFirestoreCollection<AppConfig> = this.angularFirestore.collection(Collection.CONFIG);
+    const usersCollectionRef = this.angularFirestore.collection(Collection.USERS);
+    const configCollectionRef = this.angularFirestore.collection(Collection.CONFIG);
 
     return usersCollectionRef
       .doc(user.uid)

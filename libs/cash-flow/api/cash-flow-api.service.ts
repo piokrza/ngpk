@@ -7,7 +7,7 @@ import { Collection } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowApiService {
-  private readonly angularFirestore: AngularFirestore = inject(AngularFirestore);
+  private readonly angularFirestore = inject(AngularFirestore);
 
   loadCashFlow$(uid: string): Observable<CashFlow[]> {
     return this.angularFirestore

@@ -15,10 +15,10 @@ export class OverviewService {
 
   get state(): ObservableDictionary<OverviewStateModel> {
     return {
-      isLoading: this.store.select(CashFlowSelectors.isLoading),
       cashFlowDataSet: this.cashFlowData$,
       incomesChartData: this.incomesChartData$,
       expensesChartData: this.expensesChartData$,
+      isLoading: this.store.select(CashFlowSelectors.isLoading),
     };
   }
 
