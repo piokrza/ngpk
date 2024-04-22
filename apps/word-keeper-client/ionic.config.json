@@ -1,0 +1,7 @@
+{
+  "name": "word-keeper-client",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
