@@ -1,0 +1,8 @@
+{
+  "name": "planner-shared",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:planner", "project:planner-shared", "public:planner", "sub-domain:shared", "type:api"],
+  "sourceRoot": "libs/planner/shared",
+  "prefix": "ngpk"
+}

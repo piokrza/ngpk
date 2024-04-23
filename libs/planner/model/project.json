@@ -1,0 +1,8 @@
+{
+  "name": "planner-model",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:planner", "project:planner-model", "public:planner", "sub-domain:model", "type:api"],
+  "sourceRoot": "libs/planner/model",
+  "prefix": "ngpk"
+}

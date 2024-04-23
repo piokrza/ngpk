@@ -1,0 +1,27 @@
+{
+  "name": "planner",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/planner",
+  "prefix": "ngpk",
+  "projectType": "library",
+  "tags": ["domain:planner", "project:planner"],
+  "implicitDependencies": ["planner-api", "planner-feature", "planner-model", "planner-shared", "planner-state", "planner-testing"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/planner/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc -p libs/planner/tsconfig.spec.json --noEmit"]
+      }
+    }
+  }
+}
