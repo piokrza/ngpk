@@ -1,8 +1,0 @@
-{
-  "name": "planner-feature",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:planner", "project:planner-feature", "public:planner", "sub-domain:feature", "type:api"],
-  "sourceRoot": "libs/planner/feature",
-  "prefix": "ngpk"
-}
