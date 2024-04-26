@@ -6,6 +6,6 @@ import { MenuLinks } from '@ngpk/email/constant';
 @Injectable({ providedIn: 'root' })
 export class MenuService {
   setLinks(signedIn: boolean): MenuItem[] {
-    return MenuLinks.filter((link) => link.state!['authenticated'] === signedIn);
+    return MenuLinks.filter((link) => !!link.state?.['authenticated'] === signedIn);
   }
 }

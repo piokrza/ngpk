@@ -33,12 +33,12 @@ const imports = [
 })
 export class SigninComponent implements OnInit {
   constructor(
-    @Self() private readonly signinFormService: SigninFormService,
-    private readonly authService: AuthService,
-    private readonly authStateService: AuthStateService,
-    private readonly toastService: ToastService,
     private readonly router: Router,
-    private readonly destroyRef: DestroyRef
+    private readonly destroyRef: DestroyRef,
+    private readonly authService: AuthService,
+    private readonly toastService: ToastService,
+    private readonly authStateService: AuthStateService,
+    @Self() private readonly signinFormService: SigninFormService
   ) {}
 
   signinForm!: FormGroup<SigninForm>;

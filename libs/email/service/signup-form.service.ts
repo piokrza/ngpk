@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 
-import { FormService } from '@ngpk/email/service';
+import { FormBase } from '@ngpk/core/abstract';
 import { UniqueUsername, MatchPassword } from '@ngpk/email/validator';
 
 @Injectable()
-export class SignupFormService extends FormService {
+export class SignupFormService extends FormBase {
   constructor(
     private readonly matchPassword: MatchPassword,
     private readonly uniqueUsername: UniqueUsername

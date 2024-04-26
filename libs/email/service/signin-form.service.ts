@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 
-import { FormService } from '@ngpk/email/service';
+import { FormBase } from '@ngpk/core/abstract';
 
 @Injectable()
-export class SigninFormService extends FormService {
-  constructor() {
-    super();
-  }
-
+export class SigninFormService extends FormBase {
   get config() {
     return {
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],

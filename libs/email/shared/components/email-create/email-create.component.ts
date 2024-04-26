@@ -21,9 +21,9 @@ const providers = [EmailFormService];
 })
 export class EmailCreateComponent implements OnInit {
   constructor(
-    @Self() private readonly emailFormService: EmailFormService,
+    private readonly destroyRef: DestroyRef,
     private readonly dialogRef: DynamicDialogRef,
-    private readonly destroyRef: DestroyRef
+    @Self() private readonly emailFormService: EmailFormService
   ) {}
 
   createEmailForm!: FormGroup<EmailForm>;

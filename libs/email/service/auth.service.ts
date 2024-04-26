@@ -1,11 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { finalize, Observable, tap, catchError, throwError } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { finalize, Observable, tap, catchError, EMPTY } from 'rxjs';
 
 import { APP_SERVICE_CONFIG } from '@ngpk/email/config';
 import { ToastStatus } from '@ngpk/email/enum';
 import {
-  AppConfig,
   AvailableUsernameResponse,
   SignupCredentials,
   SignupResponse,
@@ -18,17 +17,13 @@ import { AuthStateService } from '@ngpk/email/state/auth';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    @Inject(APP_SERVICE_CONFIG) private readonly appConfig: AppConfig,
-    private readonly http: HttpClient,
-    private readonly authStateService: AuthStateService,
-    private readonly toastService: ToastService
-  ) {}
+  private readonly http = inject(HttpClient);
+  private readonly toastService = inject(ToastService);
+  private readonly appConfig = inject(APP_SERVICE_CONFIG);
+  private readonly authStateService = inject(AuthStateService);
 
   usernameAvailable$(username: string): Observable<AvailableUsernameResponse> {
-    return this.http.post<AvailableUsernameResponse>(`${this.appConfig.BASE_URL}/auth/username`, {
-      username: username,
-    });
+    return this.http.post<AvailableUsernameResponse>(`${this.appConfig.BASE_URL}/auth/username`, { username: username });
   }
 
   signUp$(credentials: SignupCredentials): Observable<SignupResponse> {
@@ -46,7 +41,7 @@ export class AuthService {
 
     return this.http.post<SigninCredencials>(`${this.appConfig.BASE_URL}/auth/signin`, credentials).pipe(
       tap(() => this.authStateService.update('isSignedIn', true)),
-      tap(({ username }) => username && this.authStateService.update('username', username)),
+      tap(({ username }) => this.authStateService.update('username', username)),
       finalize(() => this.authStateService.update('isLoading', false))
     );
   }
@@ -66,7 +61,7 @@ export class AuthService {
         if (err.status === 0) {
           this.toastService.showInfoMessage(ToastStatus.ERROR, 'Error!', 'Check internet connection');
         }
-        return throwError(err);
+        return EMPTY;
       })
     );
   }

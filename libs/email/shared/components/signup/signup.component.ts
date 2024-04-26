@@ -24,15 +24,15 @@ const imports = [FormContainerComponent, ButtonModule, FormInputComponent, Progr
 })
 export class SignupComponent implements OnInit {
   constructor(
-    @Self() private readonly signupFormService: SignupFormService,
-    private readonly authService: AuthService,
     private readonly router: Router,
+    private readonly destroyRef: DestroyRef,
+    private readonly authService: AuthService,
     private readonly authStateService: AuthStateService,
-    private readonly destroyRef: DestroyRef
+    @Self() private readonly signupFormService: SignupFormService
   ) {}
 
   signupForm!: FormGroup<SignupForm>;
-  isLoading$ = this.authStateService.select('isLoading');
+  readonly isLoading$ = this.authStateService.select('isLoading');
 
   get username(): FormControl<string> {
     return this.signupForm.controls.username;

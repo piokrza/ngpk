@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export abstract class FormService {
+export abstract class FormBase {
   private _form!: FormGroup<any>;
   private readonly _fb: FormBuilder = inject(FormBuilder);
   private readonly _form$: BehaviorSubject<FormGroup<any>> = new BehaviorSubject<FormGroup<any>>(this._form);
