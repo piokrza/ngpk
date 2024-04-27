@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Observable, map } from 'rxjs';
 
 import { AppConfig } from '@ngpk/auth-organizer/config/models';
-import { Collection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigApiService {
@@ -11,13 +11,15 @@ export class ConfigApiService {
 
   loadConfig$(uid: string): Observable<AppConfig> {
     return this.angularFirestore
-      .collection<AppConfig>(Collection.CONFIG, (ref) => ref.where('uid', '==', uid))
+      .collection<AppConfig>(OrganizerCollection.CONFIG, (ref) => ref.where('uid', '==', uid))
       .valueChanges({ idField: 'id' })
       .pipe(map((config: AppConfig[]) => config[0]));
   }
 
   async updateConfig(config: AppConfig): Promise<void> {
-    const cashFlow: AngularFirestoreDocument<AppConfig> = this.angularFirestore.collection<AppConfig>(Collection.CONFIG).doc(config.id);
+    const cashFlow: AngularFirestoreDocument<AppConfig> = this.angularFirestore
+      .collection<AppConfig>(OrganizerCollection.CONFIG)
+      .doc(config.id);
 
     return await cashFlow.update(config);
   }

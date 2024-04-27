@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject
 import { Router } from '@angular/router';
 
 import { CashFlow } from '@ngpk/cash-flow/model';
-import { AppPaths, DateFormats, PathFragment } from '@ngpk/core/enum';
+import { OrganizerPaths, DateFormats, OrganizerPathFragment } from '@ngpk/core/enum';
 
 @Component({
   selector: 'ngpk-tile',
@@ -22,6 +22,6 @@ export class TileComponent {
   readonly DateFormats: typeof DateFormats = DateFormats;
 
   navigateToDetails(): void {
-    this.router.navigate([AppPaths.CASH_FLOW, PathFragment.DETAILS, this.details.id]);
+    this.router.navigate([OrganizerPaths.CASH_FLOW, OrganizerPathFragment.DETAILS, this.details.id]);
   }
 }

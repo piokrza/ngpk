@@ -7,7 +7,7 @@ import { ConfirmationService } from 'primeng/api';
 import { filter, map } from 'rxjs';
 
 import { AuthSelectors } from '@ngpk/auth-organizer/state';
-import { AppPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/core/enum';
 import { TaskerActions, TaskerSelectors } from '@ngpk/tasker/state';
 
 import { AddTaskPayload, DeleteTaskPayload, DragDropTaskPayload } from '@ngpk/tasker/model';
@@ -61,7 +61,7 @@ export class BoardsFacadeService {
 
   navigateToDetails(id: string): void {
     this.store.dispatch(TaskerActions.setActiveBoard({ id }));
-    this.router.navigate([AppPaths.TASKER, id]);
+    this.router.navigate([OrganizerPaths.TASKER, id]);
   }
 
   addTask(payload: AddTaskPayload): void {
@@ -81,7 +81,7 @@ export class BoardsFacadeService {
   }
 
   navigateToTaskerPage(): void {
-    this.router.navigate([AppPaths.TASKER]);
+    this.router.navigate([OrganizerPaths.TASKER]);
   }
 
   navigateBack(): void {

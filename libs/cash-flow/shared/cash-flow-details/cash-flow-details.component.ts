@@ -10,7 +10,7 @@ import { Observable, first, map, switchMap, tap } from 'rxjs';
 import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 import { CashFlow, Category } from '@ngpk/cash-flow/model';
 import { CashFlowFacadeService } from '@ngpk/cash-flow/service';
-import { AppPaths, DateFormats } from '@ngpk/core/enum';
+import { OrganizerPaths, DateFormats } from '@ngpk/core/enum';
 import { TimestampPipe } from '@ngpk/core/pipe';
 import { connectState } from '@ngpk/core/util';
 import { ContainerComponent } from '@ngpk/shared-ui/components';
@@ -61,7 +61,7 @@ export class CashFlowDetailsComponent {
   private get cashFlowDetails$(): Observable<CashFlow | undefined> {
     return this.activatedRoute.params.pipe(
       switchMap((params: Params) => this.cashFlowFacade.getCashFlowById$(params['id'] as string)),
-      tap((cashFlow) => !cashFlow && this.router.navigate([AppPaths.CASH_FLOW]))
+      tap((cashFlow) => !cashFlow && this.router.navigate([OrganizerPaths.CASH_FLOW]))
     );
   }
 }

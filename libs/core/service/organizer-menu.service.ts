@@ -5,10 +5,10 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
 import { Observable, map } from 'rxjs';
 
 import { AuthSelectors } from '@ngpk/auth-organizer/state';
-import { AppPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
-export class MenuService {
+export class OrganizerMenuService {
   private readonly store = inject(Store);
   private readonly environment = inject(Environment);
 
@@ -27,28 +27,28 @@ export class MenuService {
       },
       {
         label: 'menu.tasker',
-        routerLink: AppPaths.TASKER,
+        routerLink: OrganizerPaths.TASKER,
         icon: PrimeIcons.SIGN_IN,
         visible: this.environment.featureFlags['tasker'],
         state: { isVisible: isLoggedIn },
       },
       {
         label: 'menu.cashFlow',
-        routerLink: AppPaths.CASH_FLOW,
+        routerLink: OrganizerPaths.CASH_FLOW,
         icon: PrimeIcons.SIGN_IN,
         visible: this.environment.featureFlags['cashFlow'],
         state: { isVisible: isLoggedIn },
       },
       {
         label: 'menu.drive',
-        routerLink: AppPaths.DRIVE,
+        routerLink: OrganizerPaths.DRIVE,
         icon: PrimeIcons.FOLDER,
         visible: this.environment.featureFlags['drive'],
         state: { isVisible: isLoggedIn },
       },
       {
         label: 'menu.settings',
-        routerLink: AppPaths.SETTINGS,
+        routerLink: OrganizerPaths.SETTINGS,
         icon: PrimeIcons.SLIDERS_V,
         visible: this.environment.featureFlags['settings'],
         state: { isVisible: isLoggedIn },

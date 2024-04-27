@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PathFragment } from '@ngpk/core/enum';
+import { OrganizerPathFragment } from '@ngpk/core/enum';
 import { DriveComponent } from '@ngpk/drive/shared';
 
 const routes: Routes = [
@@ -10,7 +10,7 @@ const routes: Routes = [
     component: DriveComponent,
   },
   {
-    path: `${PathFragment.ID}`,
+    path: OrganizerPathFragment.ID,
     component: DriveComponent,
   },
 ];

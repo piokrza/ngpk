@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Environment } from 'apps/organizer/src/environments';
 import { BehaviorSubject, Observable, filter, tap } from 'rxjs';
 
-import { AppPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
 export class TitleService {
@@ -25,10 +25,10 @@ export class TitleService {
 
   private handleTitle(url: string): void {
     if (!url.length) this.setTitle('home');
-    if (url.includes(AppPaths.DRIVE)) this.setTitle('drive');
-    if (url.includes(AppPaths.TASKER)) this.setTitle('tasker');
-    if (url.includes(AppPaths.SETTINGS)) this.setTitle('settings');
-    if (url.includes(AppPaths.CASH_FLOW)) this.setTitle('cashFlow');
-    if (url.includes(AppPaths.AUTHENTICATION)) this.setTitle('auth');
+    if (url.includes(OrganizerPaths.DRIVE)) this.setTitle('drive');
+    if (url.includes(OrganizerPaths.TASKER)) this.setTitle('tasker');
+    if (url.includes(OrganizerPaths.SETTINGS)) this.setTitle('settings');
+    if (url.includes(OrganizerPaths.CASH_FLOW)) this.setTitle('cashFlow');
+    if (url.includes(OrganizerPaths.AUTHENTICATION)) this.setTitle('auth');
   }
 }

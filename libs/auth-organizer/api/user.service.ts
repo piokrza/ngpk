@@ -1,36 +1,36 @@
 import { Injectable, inject } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
 import { EMPTY, forkJoin, switchMap } from 'rxjs';
 
 import { AppConfig } from '@ngpk/auth-organizer/config/models';
 import { IUser } from '@ngpk/auth-organizer/model';
 import { Category } from '@ngpk/cash-flow/model';
-import { Collection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private readonly angularFirestore = inject(AngularFirestore);
 
   addUserToDatabase$(user: Partial<IUser>) {
-    const usersCollectionRef = this.angularFirestore.collection(Collection.USERS);
-    const configCollectionRef = this.angularFirestore.collection(Collection.CONFIG);
+    const usersOrganizerCollectionRef = this.angularFirestore.collection(OrganizerCollection.USERS);
+    const configOrganizerCollectionRef = this.angularFirestore.collection(OrganizerCollection.CONFIG);
 
-    return usersCollectionRef
+    return usersOrganizerCollectionRef
       .doc(user.uid)
       .get()
       .pipe(
         switchMap((data) => {
           return !data.exists
             ? forkJoin([
-                usersCollectionRef.doc(user.uid).set({
+                usersOrganizerCollectionRef.doc(user.uid).set({
                   displayName: user.displayName ?? '',
                   email: user.email ?? '',
                   phoneNumber: user.phoneNumber ?? '',
                   photoURL: user.photoURL ?? '',
                   uid: user.uid ?? '',
                 }),
-                configCollectionRef.doc(user.uid).set(this.getInitialAppConfig(user.uid ?? '')),
+                configOrganizerCollectionRef.doc(user.uid).set(this.getInitialAppConfig(user.uid ?? '')),
               ])
             : EMPTY;
         })
@@ -38,7 +38,9 @@ export class UserService {
   }
 
   async updateUser$(updatedUserData: IUser): Promise<void> {
-    const user: AngularFirestoreDocument<IUser> = this.angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
+    const user: AngularFirestoreDocument<IUser> = this.angularFirestore
+      .collection<IUser>(OrganizerCollection.USERS)
+      .doc(updatedUserData.uid);
     return await user.update(updatedUserData);
   }
 

@@ -11,8 +11,8 @@ import { ToastModule } from 'primeng/toast';
 import { Observable, filter, map } from 'rxjs';
 
 import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
-import { AppPaths } from '@ngpk/core/enum';
-import { MenuService, TitleService } from '@ngpk/core/service';
+import { OrganizerPaths } from '@ngpk/core/enum';
+import { OrganizerMenuService, TitleService } from '@ngpk/core/service';
 import { connectState } from '@ngpk/core/util';
 import { ContainerComponent } from '@ngpk/shared-ui/components';
 import { WeatherWidgetComponent } from '@ngpk/weather/feature';
@@ -42,14 +42,14 @@ export class OrganizerLayoutComponent {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly menuService = inject(MenuService);
   private readonly titleService = inject(TitleService);
   private readonly translateService = inject(TranslateService);
   private readonly confirmationService = inject(ConfirmationService);
+  private readonly organizerMenuService = inject(OrganizerMenuService);
 
   readonly state = connectState(this.destroyRef, {
     user: this.store.select(AuthSelectors.user),
-    links: this.menuService.links$,
+    links: this.organizerMenuService.links$,
     title: this.titleService.title$,
     isTitleVisible: this.isTitleVisible$,
   });
@@ -65,7 +65,7 @@ export class OrganizerLayoutComponent {
         accept: () => this.store.dispatch(AuthActions.signOut()),
       });
     } else {
-      this.router.navigate([AppPaths.AUTHENTICATION]);
+      this.router.navigate([OrganizerPaths.AUTHENTICATION]);
     }
 
     this.sidebarVisible.set(false);
@@ -74,7 +74,7 @@ export class OrganizerLayoutComponent {
   get isTitleVisible$(): Observable<boolean> {
     return this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map(({ url }) => !(url.includes(AppPaths.AUTHENTICATION) || url === '/'))
+      map(({ url }) => !(url.includes(OrganizerPaths.AUTHENTICATION) || url === '/'))
     );
   }
 }

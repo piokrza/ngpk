@@ -4,7 +4,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { UploadTaskSnapshot } from '@angular/fire/compat/storage/interfaces';
 import { Observable } from 'rxjs';
 
-import { Collection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/core/enum';
 import { FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/drive/model';
 
 @Injectable({ providedIn: 'root' })
@@ -13,7 +13,7 @@ export class DriveApiService {
   private readonly angularFirestore = inject(AngularFirestore);
 
   loadFiles$(uid: string): Observable<IFile[]> {
-    const files$: AngularFirestoreCollection<IFile> = this.angularFirestore.collection<IFile>(Collection.FILES, (ref) => {
+    const files$: AngularFirestoreCollection<IFile> = this.angularFirestore.collection<IFile>(OrganizerCollection.FILES, (ref) => {
       return ref.where('uid', '==', uid);
     });
 
@@ -25,7 +25,7 @@ export class DriveApiService {
     const task: UploadTaskSnapshot = await this.fireStorage.upload(path, file);
     const url: string = await task.ref.getDownloadURL();
 
-    return await this.angularFirestore.collection<IFile>(Collection.FILES).add({
+    return await this.angularFirestore.collection<IFile>(OrganizerCollection.FILES).add({
       url,
       uid,
       parentId,
@@ -36,7 +36,7 @@ export class DriveApiService {
   }
 
   async uploadFolder({ uid, name, parentId }: FolderUploadPayload): Promise<DocumentReference<IFile>> {
-    return await this.angularFirestore.collection<IFile>(Collection.FILES).add({
+    return await this.angularFirestore.collection<IFile>(OrganizerCollection.FILES).add({
       uid,
       name,
       parentId,

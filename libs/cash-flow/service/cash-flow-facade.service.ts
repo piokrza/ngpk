@@ -13,7 +13,7 @@ import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } fro
 import { AddFormComponent, UpdateFormComponent } from '@ngpk/cash-flow/shared';
 import { CashFlowActions, CashFlowSelectors } from '@ngpk/cash-flow/state';
 import { baseDialogStyles } from '@ngpk/core/constant';
-import { AppPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/core/enum';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {
@@ -75,7 +75,7 @@ export class CashFlowFacadeService {
       icon: PrimeIcons.TRASH,
       accept: () => {
         this.store.dispatch(CashFlowActions.deleteCashFlow({ id }));
-        this.router.navigate([AppPaths.CASH_FLOW]);
+        this.router.navigate([OrganizerPaths.CASH_FLOW]);
       },
     });
   }

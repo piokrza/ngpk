@@ -1,4 +1,4 @@
-export enum AppPaths {
+export enum OrganizerPaths {
   AUTHENTICATION = 'authentication',
   CASH_FLOW = 'cash-flow',
   SETTINGS = 'settings',

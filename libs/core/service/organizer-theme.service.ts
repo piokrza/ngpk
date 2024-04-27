@@ -7,7 +7,7 @@ import { ThemeType } from '@ngpk/auth-organizer/config/models';
 import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 
 @Injectable({ providedIn: 'root' })
-export class ThemeService {
+export class OrganizerThemeService {
   private readonly store = inject(Store);
   private readonly document: Document = inject(DOCUMENT);
 

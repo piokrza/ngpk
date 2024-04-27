@@ -5,7 +5,7 @@ import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
 import { ConfigApiService } from '@ngpk/auth-organizer/config/services';
 import { ConfigActions } from '@ngpk/auth-organizer/config/store';
-import { ToastService, DbSubscriptionService } from '@ngpk/core/service';
+import { ToastService, FirestoreDbSubscriptionService } from '@ngpk/core/service';
 
 @Injectable()
 export class ConfigEffects {
@@ -13,7 +13,7 @@ export class ConfigEffects {
   private readonly toastService = inject(ToastService);
   private readonly configApiService = inject(ConfigApiService);
   private readonly translateService = inject(TranslateService);
-  private readonly dbSubscriptionService = inject(DbSubscriptionService);
+  private readonly firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
 
   loadConfig$ = createEffect(() => {
     return this.actions$.pipe(
@@ -21,7 +21,7 @@ export class ConfigEffects {
       exhaustMap(({ uid }) => {
         return this.configApiService.loadConfig$(uid).pipe(
           map((config) => ConfigActions.loadConfigSuccess({ config })),
-          takeUntil(this.dbSubscriptionService.unsubscribe$),
+          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage('error', this.tr('success'), this.tr('loadDataError'));
             return of(ConfigActions.loadConfigFailure());
@@ -37,7 +37,7 @@ export class ConfigEffects {
       exhaustMap(({ config }) => {
         return from(this.configApiService.updateConfig(config)).pipe(
           map(() => ConfigActions.updateConfigSuccess()),
-          takeUntil(this.dbSubscriptionService.unsubscribe$),
+          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage('error', this.tr('success'), this.tr('loadDataError'));
             return of(ConfigActions.updateConfigFailure());

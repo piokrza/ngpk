@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PathFragment } from '@ngpk/core/enum';
+import { OrganizerPathFragment } from '@ngpk/core/enum';
 
 const routes: Routes = [
   {
@@ -9,7 +9,7 @@ const routes: Routes = [
     loadComponent: async () => (await import('@ngpk/tasker/shared')).BoardListComponent,
   },
   {
-    path: PathFragment.ID,
+    path: OrganizerPathFragment.ID,
     loadComponent: async () => (await import('@ngpk/tasker/shared')).BoardComponent,
   },
 ];

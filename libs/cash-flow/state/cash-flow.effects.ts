@@ -6,7 +6,7 @@ import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 import { CashFlowApiService } from '@ngpk/cash-flow/api';
 import { CashFlowActions } from '@ngpk/cash-flow/state';
 import { ToastStatus } from '@ngpk/core/enum/';
-import { DbSubscriptionService, ToastService } from '@ngpk/core/service';
+import { FirestoreDbSubscriptionService, ToastService } from '@ngpk/core/service';
 
 @Injectable()
 export class CashFlowEffects {
@@ -14,7 +14,7 @@ export class CashFlowEffects {
   private readonly toastService = inject(ToastService);
   private readonly translateService = inject(TranslateService);
   private readonly cashFlowApiService = inject(CashFlowApiService);
-  private readonly dbSubscriptionService = inject(DbSubscriptionService);
+  private readonly firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
 
   loadCashFlow$ = createEffect(() => {
     return this.actions$.pipe(
@@ -22,7 +22,7 @@ export class CashFlowEffects {
       exhaustMap(({ uid }) => {
         return this.cashFlowApiService.loadCashFlow$(uid).pipe(
           map((cashFlow) => CashFlowActions.loadCashFlowSuccess({ cashFlow })),
-          takeUntil(this.dbSubscriptionService.unsubscribe$),
+          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUserError'));
             return of(CashFlowActions.loadCashFlowFailure());

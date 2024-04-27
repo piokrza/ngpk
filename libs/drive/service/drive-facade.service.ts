@@ -5,7 +5,7 @@ import { Observable, map, switchMap } from 'rxjs';
 
 import { IUser } from '@ngpk/auth-organizer/model';
 import { AuthSelectors } from '@ngpk/auth-organizer/state';
-import { AppPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/core/enum';
 import { FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/drive/model';
 import { DriveService } from '@ngpk/drive/service';
 import { DriveActions, DriveSelectors } from '@ngpk/drive/state';
@@ -64,7 +64,7 @@ export class DriveFacadeService {
     if (file.type === 'file') {
       window.open(file.url);
     } else {
-      this.router.navigate([AppPaths.DRIVE, file.id]);
+      this.router.navigate([OrganizerPaths.DRIVE, file.id]);
     }
   }
 }

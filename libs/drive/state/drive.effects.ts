@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
-import { DbSubscriptionService, ToastService } from '@ngpk/core//service';
+import { FirestoreDbSubscriptionService, ToastService } from '@ngpk/core//service';
 import { ToastStatus } from '@ngpk/core/enum';
 import { DriveApiService } from '@ngpk/drive/api';
 import { IFile } from '@ngpk/drive/model';
@@ -15,7 +15,7 @@ export class DriveEffects {
   private readonly toastService = inject(ToastService);
   private readonly driveApiService = inject(DriveApiService);
   private readonly translateService = inject(TranslateService);
-  private readonly dbSubscriptionService = inject(DbSubscriptionService);
+  private readonly firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
 
   loadFiles$ = createEffect(() => {
     return this.actions$.pipe(
@@ -23,7 +23,7 @@ export class DriveEffects {
       exhaustMap(({ uid }) => {
         return this.driveApiService.loadFiles$(uid).pipe(
           map((files: IFile[]) => DriveActions.loadFilesSuccess({ files })),
-          takeUntil(this.dbSubscriptionService.unsubscribe$),
+          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
             return of(DriveActions.loadFilesFailure());
           })

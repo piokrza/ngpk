@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 import { Observable, switchMap } from 'rxjs';
 
-import { Collection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/core/enum';
 import { AddTaskPayload, Board, DeleteTaskPayload, DragDropTaskPayload, Task, TaskList } from '@ngpk/tasker/model';
 
 @Injectable({ providedIn: 'root' })
@@ -11,7 +11,7 @@ export class BoardsApiService {
 
   loadBoards$(uid: string): Observable<Board[]> {
     return this.angularFirestore
-      .collection<Board>(Collection.BOARDS, (ref) => {
+      .collection<Board>(OrganizerCollection.BOARDS, (ref) => {
         return ref.where('uid', '==', uid);
       })
       .valueChanges({ idField: 'id' });
@@ -19,7 +19,7 @@ export class BoardsApiService {
 
   async addBoard(name: string, uid: string): Promise<DocumentReference<Board>> {
     return await this.angularFirestore
-      .collection<Board>(Collection.BOARDS)
+      .collection<Board>(OrganizerCollection.BOARDS)
       .add({ name, uid, tasksLists: [], id: this.angularFirestore.createId() } satisfies Board);
   }
 
@@ -83,7 +83,7 @@ export class BoardsApiService {
   }
 
   private getBoardById(boardId: string): AngularFirestoreDocument<Board> {
-    return this.angularFirestore.collection<Board>(Collection.BOARDS).doc(boardId);
+    return this.angularFirestore.collection<Board>(OrganizerCollection.BOARDS).doc(boardId);
   }
 
   private addTaskToTaskList(tasksLists: TaskList[], payload: AddTaskPayload): TaskList[] {

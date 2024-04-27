@@ -9,10 +9,9 @@ import { AuthApiService } from '@ngpk/auth-organizer/api';
 import { ConfigActions } from '@ngpk/auth-organizer/config/store';
 import { AuthActions } from '@ngpk/auth-organizer/state';
 import { CashFlowActions } from '@ngpk/cash-flow/state';
-import { ThemeService } from '@ngpk/core/service';
+import { OrganizerThemeService } from '@ngpk/core/service';
 import { DriveActions } from '@ngpk/drive/state';
 import { TaskerActions } from '@ngpk/tasker/state';
-
 @Component({
   selector: 'org-root',
   template: `
@@ -23,15 +22,15 @@ import { TaskerActions } from '@ngpk/tasker/state';
 })
 export class AppComponent implements OnInit {
   private readonly store = inject(Store);
-  private readonly themeService = inject(ThemeService);
   private readonly primengConfig = inject(PrimeNGConfig);
-  private readonly translateService = inject(TranslateService);
   private readonly authApiService = inject(AuthApiService);
+  private readonly translateService = inject(TranslateService);
+  private readonly organizerThemeService = inject(OrganizerThemeService);
 
   ngOnInit(): void {
     this.setPrimeNgConfig();
     this.loadUserData$().subscribe();
-    this.themeService.applyTheme$().subscribe();
+    this.organizerThemeService.applyTheme$().subscribe();
   }
 
   private loadUserData$(): Observable<firebase.User> {

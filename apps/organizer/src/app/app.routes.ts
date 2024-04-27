@@ -1,7 +1,7 @@
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { Routes } from '@angular/router';
 
-import { AppPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/core/enum';
 import { getTitle } from '@ngpk/core/util';
 
 export const routes: Routes = [
@@ -11,35 +11,35 @@ export const routes: Routes = [
     loadComponent: async () => (await import('@ngpk/search/feature')).SearchComponent,
   },
   {
-    path: AppPaths.TASKER,
+    path: OrganizerPaths.TASKER,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('tasker'),
-    data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
+    data: { authGuardPipe: () => redirectUnauthorizedTo([OrganizerPaths.AUTHENTICATION]) },
     loadChildren: async () => (await import('@ngpk/tasker/feature')).TaskerModule,
   },
   {
-    path: AppPaths.CASH_FLOW,
+    path: OrganizerPaths.CASH_FLOW,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('cashFlow'),
-    data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
+    data: { authGuardPipe: () => redirectUnauthorizedTo([OrganizerPaths.AUTHENTICATION]) },
     loadChildren: async () => (await import('@ngpk/cash-flow/feature')).CashFlowModule,
   },
   {
-    path: AppPaths.DRIVE,
+    path: OrganizerPaths.DRIVE,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('drive'),
-    data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
+    data: { authGuardPipe: () => redirectUnauthorizedTo([OrganizerPaths.AUTHENTICATION]) },
     loadChildren: async () => (await import('@ngpk/drive/feature')).DriveModule,
   },
   {
-    path: AppPaths.SETTINGS,
+    path: OrganizerPaths.SETTINGS,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('settings'),
-    data: { authGuardPipe: () => redirectUnauthorizedTo([AppPaths.AUTHENTICATION]) },
+    data: { authGuardPipe: () => redirectUnauthorizedTo([OrganizerPaths.AUTHENTICATION]) },
     loadChildren: async () => (await import('@ngpk/settings-organizer/feature')).SettingsModule,
   },
   {
-    path: AppPaths.AUTHENTICATION,
+    path: OrganizerPaths.AUTHENTICATION,
     canActivate: [AngularFireAuthGuard],
     title: getTitle('auth'),
     data: { authGuardPipe: () => redirectLoggedInTo(['']) },

@@ -4,8 +4,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
-import { AppPaths } from '@ngpk/core/enum';
-import { DbSubscriptionService, ToastService } from '@ngpk/core/service';
+import { OrganizerPaths } from '@ngpk/core/enum';
+import { FirestoreDbSubscriptionService, ToastService } from '@ngpk/core/service';
 import { BoardsApiService } from '@ngpk/tasker/api';
 import { TaskerActions } from '@ngpk/tasker/state';
 
@@ -16,7 +16,7 @@ export class TaskerEffects {
   private readonly toastService = inject(ToastService);
   private readonly translateService = inject(TranslateService);
   private readonly boardsApiService = inject(BoardsApiService);
-  private readonly dbSubscriptionService = inject(DbSubscriptionService);
+  private readonly firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
 
   loadBoards$ = createEffect(() => {
     return this.actions$.pipe(
@@ -24,7 +24,7 @@ export class TaskerEffects {
       exhaustMap(({ uid }) => {
         return this.boardsApiService.loadBoards$(uid).pipe(
           map((boards) => TaskerActions.loadBoardsSuccess({ boards })),
-          takeUntil(this.dbSubscriptionService.unsubscribe$),
+          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage('error', 'Error!', 'Something went wrong during fetching boards data');
             return of(TaskerActions.loadBoardsFailure());
@@ -56,7 +56,7 @@ export class TaskerEffects {
         return from(this.boardsApiService.deleteBoard(boardId)).pipe(
           map(() => {
             this.toastService.showMessage('success', this.tr('success'), this.tr('deleteBoardSuccess'));
-            this.router.navigate([AppPaths.TASKER]);
+            this.router.navigate([OrganizerPaths.TASKER]);
             return TaskerActions.deleteBoardSuccess();
           }),
           catchError(() => of(TaskerActions.deleteBoardFailure()))

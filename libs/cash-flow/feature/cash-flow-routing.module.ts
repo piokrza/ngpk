@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CashFlowComponent } from '@ngpk/cash-flow/feature';
-import { PathFragment } from '@ngpk/core/enum';
+import { OrganizerPathFragment } from '@ngpk/core/enum';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
     component: CashFlowComponent,
   },
   {
-    path: `${PathFragment.DETAILS}/${PathFragment.ID}`,
+    path: `${OrganizerPathFragment.DETAILS}/${OrganizerPathFragment.ID}`,
     loadComponent: async () => (await import('@ngpk/cash-flow/shared')).CashFlowDetailsComponent,
   },
 ];

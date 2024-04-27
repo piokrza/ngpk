@@ -9,9 +9,8 @@ import { catchError, EMPTY, exhaustMap, from, map, of, takeUntil, tap } from 'rx
 import { AuthApiService, UserService } from '@ngpk/auth-organizer/api';
 import { AuthActions } from '@ngpk/auth-organizer/state';
 import { ActionTypes } from '@ngpk/auth-organizer/state/action-types';
-
 import { ToastStatus } from '@ngpk/core/enum';
-import { DbSubscriptionService, ToastService } from '@ngpk/core/service';
+import { FirestoreDbSubscriptionService, ToastService } from '@ngpk/core/service';
 
 @Injectable()
 export class AuthEffects {
@@ -21,7 +20,7 @@ export class AuthEffects {
   private readonly toastService = inject(ToastService);
   private readonly authApiService = inject(AuthApiService);
   private readonly translateService = inject(TranslateService);
-  private readonly dbSubscriptionService = inject(DbSubscriptionService);
+  private readonly firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
 
   signInWithGoogle$ = createEffect(() => {
     return this.actions$.pipe(
@@ -54,7 +53,7 @@ export class AuthEffects {
       ofType(AuthActions.signOut),
       exhaustMap((): Promise<void> => this.authApiService.signOut()),
       map(() => AuthActions.userNotAuthenticated()),
-      tap(() => this.dbSubscriptionService.unsubscribe()),
+      tap(() => this.firestoreDbSubscriptionService.unsubscribe()),
       tap(() => {
         this.router.navigateByUrl('');
         this.toastService.showMessage('success', this.tr('success'), this.tr('logoutSuccess'));
@@ -116,7 +115,7 @@ export class AuthEffects {
       exhaustMap(({ uid }) =>
         this.authApiService.loadUserData$(uid).pipe(
           map((user) => AuthActions.loadUserDataSuccess({ user })),
-          takeUntil(this.dbSubscriptionService.unsubscribe$)
+          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$)
         )
       )
     );
