@@ -7,7 +7,6 @@
   "tags": ["domain:email", "project:email"],
   "implicitDependencies": [
     "email-api",
-    "email-config",
     "email-constant",
     "email-enum",
     "email-feature",

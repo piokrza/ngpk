@@ -1,26 +1,24 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Environment } from 'apps/email-client/src/environments';
 import { Observable } from 'rxjs';
 
-import { APP_SERVICE_CONFIG } from '@ngpk/email/config';
-import { EmailSummary, Email, AppConfig } from '@ngpk/email/model';
+import { EmailSummary, Email } from '@ngpk/email/model';
 
 @Injectable()
 export class InboxApi {
-  constructor(
-    @Inject(APP_SERVICE_CONFIG) private readonly appConfig: AppConfig,
-    private readonly http: HttpClient
-  ) {}
+  private readonly http = inject(HttpClient);
+  private readonly environment = inject(Environment);
 
   loadEmails$(): Observable<EmailSummary[]> {
-    return this.http.get<EmailSummary[]>(`${this.appConfig.BASE_URL}/emails`);
+    return this.http.get<EmailSummary[]>(`${this.environment.baseUrl}/emails`);
   }
 
   loadEmailById$(id: string): Observable<Email> {
-    return this.http.get<Email>(`${this.appConfig.BASE_URL}/emails/${id}`);
+    return this.http.get<Email>(`${this.environment.baseUrl}/emails/${id}`);
   }
 
   sendEmail(email: Email): Observable<any> {
-    return this.http.post(`${this.appConfig.BASE_URL}/emails`, email);
+    return this.http.post(`${this.environment.baseUrl}/emails`, email);
   }
 }
