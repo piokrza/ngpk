@@ -15,12 +15,6 @@
     "watch:email-client": "nx build email-client --watch --configuration development",
     "test:email-client": "nx test email-client",
     "lint:email-client": "nx lint email-client",
-    "---------WORD-KEEPER-CLIENT---------": "exit 0",
-    "start:word-keeper-client": "nx serve word-keeper-client",
-    "build:word-keeper-client": "nx build word-keeper-client --configuration development",
-    "watch:word-keeper-client": "nx build word-keeper-client --watch --configuration development",
-    "test:word-keeper-client": "nx test word-keeper-client",
-    "lint:word-keeper-client": "nx lint word-keeper-client",
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
