@@ -1,5 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef, inject } from '@angular/core';
-import { Environment } from 'apps/organizer/src/environments';
+import { Environment } from 'apps/organizer-client/src/environments';
 
 import { Feature } from '@ngpk/core/model';
 

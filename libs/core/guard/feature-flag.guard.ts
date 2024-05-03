@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanMatchFn } from '@angular/router';
-import { Environment } from 'apps/organizer/src/environments';
+import { Environment } from 'apps/organizer-client/src/environments';
 
 import { Feature } from '@ngpk/core/model';
 

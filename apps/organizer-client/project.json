@@ -29,12 +29,12 @@
         "styles": [
           "apps/organizer-client/src/styles.scss",
           {
-            "input": "apps/organizer/src/assets/styles/themes/dark-theme.scss",
+            "input": "apps/organizer-client/src/assets/styles/themes/dark-theme.scss",
             "bundleName": "dark-theme",
             "inject": false
           },
           {
-            "input": "apps/organizer/src/assets/styles/themes/light-theme.scss",
+            "input": "apps/organizer-client/src/assets/styles/themes/light-theme.scss",
             "bundleName": "light-theme",
             "inject": false
           }

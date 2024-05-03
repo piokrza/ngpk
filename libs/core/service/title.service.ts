@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Environment } from 'apps/organizer/src/environments';
+import { Environment } from 'apps/organizer-client/src/environments';
 import { BehaviorSubject, Observable, filter, tap } from 'rxjs';
 
 import { OrganizerPaths } from '@ngpk/core/enum';

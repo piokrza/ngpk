@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, WritableSignal, inject, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Environment } from 'apps/organizer/src/environments';
+import { Environment } from 'apps/organizer-client/src/environments';
 import { PrimeIcons } from 'primeng/api';
 import { FileUploadEvent } from 'primeng/fileupload';
 import { filter } from 'rxjs';
