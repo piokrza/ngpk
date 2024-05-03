@@ -1,9 +1,10 @@
-import { Component, DestroyRef, OnInit, Self } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { tap } from 'rxjs';
 
 import { EmailForm } from '@ngpk/email/model';
 import { EmailFormService } from '@ngpk/email/service';
@@ -20,38 +21,25 @@ const providers = [EmailFormService];
   imports,
 })
 export class EmailCreateComponent implements OnInit {
-  constructor(
-    private readonly destroyRef: DestroyRef,
-    private readonly dialogRef: DynamicDialogRef,
-    @Self() private readonly emailFormService: EmailFormService
-  ) {}
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly dialogRef = inject(DynamicDialogRef);
+  private readonly emailFormService = inject(EmailFormService);
 
   createEmailForm!: FormGroup<EmailForm>;
 
-  get to(): FormControl<string> {
-    return this.createEmailForm.controls.to;
-  }
-
-  get from(): FormControl<string> {
-    return this.createEmailForm.controls.from;
-  }
-
-  get subject(): FormControl<string> {
-    return this.createEmailForm.controls.subject;
-  }
-
-  get text(): FormControl<string> {
-    return this.createEmailForm.controls.text;
+  get formControls(): EmailForm {
+    return this.createEmailForm.controls;
   }
 
   ngOnInit(): void {
     this.emailFormService.buildForm();
     this.emailFormService
       .form$()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (form: FormGroup<EmailForm>) => (this.createEmailForm = form),
-      });
+      .pipe(
+        tap((form: FormGroup<EmailForm>) => (this.createEmailForm = form)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   onSubmit(): void {

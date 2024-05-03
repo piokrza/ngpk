@@ -5,7 +5,7 @@ import { Timestamp } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, filter } from 'rxjs';
+import { Observable, filter, tap } from 'rxjs';
 
 import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 import { IUser } from '@ngpk/auth-organizer/model';
@@ -31,17 +31,19 @@ export class AddFormComponent implements OnInit {
   readonly categories$: Observable<Category[]> = this.getCategories$();
   readonly currency$: Observable<string> = this.store.select(ConfigSelectors.currency);
 
-  readonly trPath: string = 'cashFlow.form.';
+  readonly trPath = 'cashFlow.form.';
   readonly form: FormGroup<CashFlowForm> = this.cashFlowService.form;
   private userId!: string;
 
   ngOnInit(): void {
     this.store
       .select(AuthSelectors.user)
-      .pipe(filter(Boolean), takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: ({ uid }: IUser) => (this.userId = uid),
-      });
+      .pipe(
+        filter(Boolean),
+        tap(({ uid }: IUser) => (this.userId = uid)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   onSubmit(): void {

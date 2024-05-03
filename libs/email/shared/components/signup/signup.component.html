@@ -1,27 +1,43 @@
 @if (signupForm) {
   <ngpk-form-container title="Create an Account">
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" class="mt-6">
-      <ngpk-form-input [control]="username" label="Username" id="username" />
-      <ngpk-form-input [control]="password" inputType="password" label="Password" id="password" />
-      <ngpk-form-input [control]="passwordConfirmation" label="Password confirmation" inputType="password" id="passwordConfirmation" />
+    <form class="mt-6" [formGroup]="signupForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
+      <ngpk-form-input label="Username" id="username" [control]="formControls.username" />
+      <ngpk-form-input inputType="password" label="Password" id="password" [control]="formControls.password" />
+      <ngpk-form-input
+        [control]="formControls.passwordConfirmation"
+        label="Password confirmation"
+        inputType="password"
+        id="passwordConfirmation" />
 
-      <ng-container *ngIf="password?.touched && passwordConfirmation?.touched">
+      @if (formControls.password.touched && formControls.passwordConfirmation.touched) {
         <ul class="text-pink-500 text-sm">
-          <li *ngIf="signupForm.errors?.['passwordsDontMatch']">Password and Password Confirmation must match</li>
-          <li *ngIf="signupForm.errors?.['noConnection']">No internet connection detected, failed to sign up</li>
-          <li *ngIf="signupForm.errors?.['unknownError']">Failed to sign up</li>
+          @if (signupForm.errors?.['passwordsDontMatch']) {
+            <li>Password and Password Confirmation must match</li>
+          }
+
+          @if (signupForm.errors?.['noConnection']) {
+            <li>No internet connection detected, failed to sign up</li>
+          }
+
+          @if (signupForm.errors?.['unknownError']) {
+            <li>Failed to sign up</li>
+          }
         </ul>
-      </ng-container>
+      }
 
       <div class="my-5 cursor-pointer">
         <p-button
+          label="Sign up!"
+          styleClass="w-full"
           [disabled]="signupForm.invalid"
           [icon]="(isLoading$ | async) ? 'pi pi-spin pi-spinner' : ''"
-          (onClick)="onSubmit()"
-          styleClass="w-full"
-          label="Sign up!" />
+          (onClick)="onSubmit()" />
       </div>
-      <div class="text-center">Have an account? <a routerLink="/signin">Sign in</a></div>
+
+      <div class="text-center">
+        Have an account?
+        <a routerLink="/signin">Sign in</a>
+      </div>
     </form>
   </ngpk-form-container>
 }

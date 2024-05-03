@@ -2,10 +2,11 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, DestroyRef, OnInit, Self } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { tap } from 'rxjs';
 
 import { SignupForm, SignupCredentials } from '@ngpk/email/model';
 import { AuthService, SignupFormService } from '@ngpk/email/service';
@@ -13,13 +14,14 @@ import { FormContainerComponent, FormInputComponent } from '@ngpk/email/shared/c
 import { AuthStateService } from '@ngpk/email/state/auth';
 
 const imports = [FormContainerComponent, ButtonModule, FormInputComponent, ProgressSpinnerModule, NgIf, ReactiveFormsModule, AsyncPipe];
+const providers = [SignupFormService];
 
 @Component({
   selector: 'ngpk-signup',
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   standalone: true,
-  providers: [SignupFormService],
+  providers,
   imports,
 })
 export class SignupComponent implements OnInit {
@@ -34,16 +36,8 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup<SignupForm>;
   readonly isLoading$ = this.authStateService.select('isLoading');
 
-  get username(): FormControl<string> {
-    return this.signupForm.controls.username;
-  }
-
-  get password(): FormControl<string> {
-    return this.signupForm.controls.password;
-  }
-
-  get passwordConfirmation(): FormControl<string> {
-    return this.signupForm.controls.passwordConfirmation;
+  get formControls(): SignupForm {
+    return this.signupForm.controls;
   }
 
   ngOnInit(): void {
@@ -54,10 +48,11 @@ export class SignupComponent implements OnInit {
     this.signupFormService.buildForm();
     this.signupFormService
       .form$()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (form: FormGroup<SignupForm>) => (this.signupForm = form),
-      });
+      .pipe(
+        tap((form: FormGroup<SignupForm>) => (this.signupForm = form)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   onSubmit(): void {
@@ -74,11 +69,11 @@ export class SignupComponent implements OnInit {
 
   handleSignup(signUpPayload: SignupCredentials): void {
     this.authService.signUp$(signUpPayload).subscribe({
-      next: (): void => {
+      next: () => {
         this.router.navigateByUrl('inbox');
       },
 
-      error: (err: HttpErrorResponse): void => {
+      error: (err: HttpErrorResponse) => {
         if (!err.status) {
           this.signupForm.setErrors({ noConnection: true });
         } else {

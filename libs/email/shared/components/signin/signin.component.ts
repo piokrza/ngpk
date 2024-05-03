@@ -6,6 +6,7 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { tap } from 'rxjs';
 
 import { ToastStatus } from '@ngpk/email/enum';
 import { SigninForm, SigninCredencials } from '@ngpk/email/model';
@@ -22,13 +23,14 @@ const imports = [
   ReactiveFormsModule,
   AsyncPipe,
 ];
+const providers = [SigninFormService];
 
 @Component({
   selector: 'ngpk-signin',
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss',
-  providers: [SigninFormService],
   standalone: true,
+  providers,
   imports,
 })
 export class SigninComponent implements OnInit {
@@ -42,7 +44,7 @@ export class SigninComponent implements OnInit {
   ) {}
 
   signinForm!: FormGroup<SigninForm>;
-  isLoading$ = this.authStateService.select('isLoading');
+  readonly isLoading$ = this.authStateService.select('isLoading');
 
   ngOnInit(): void {
     this.initializeForm();
@@ -52,10 +54,11 @@ export class SigninComponent implements OnInit {
     this.signinFormService.buildForm();
     this.signinFormService
       .form$()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (form: FormGroup<SigninForm>) => (this.signinForm = form),
-      });
+      .pipe(
+        tap((form: FormGroup<SigninForm>) => (this.signinForm = form)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   onSubmit(): void {
@@ -68,20 +71,24 @@ export class SigninComponent implements OnInit {
   }
 
   handleSignIn(signInPayload: SigninCredencials): void {
-    this.authService.signIn$(signInPayload).subscribe({
-      next: () => this.router.navigateByUrl('/inbox'),
+    this.authService
+      .signIn$(signInPayload)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/inbox');
+        },
+        error: ({ error }: HttpErrorResponse) => {
+          let messageDetails: string;
 
-      error: ({ error }: HttpErrorResponse) => {
-        let messageDetails: string;
+          if (error.username) {
+            messageDetails = 'Username not found';
+          } else messageDetails = 'Invalid password';
 
-        if (error.username) {
-          messageDetails = 'Username not found';
-        } else messageDetails = 'Invalid password';
-
-        this.toastService.showInfoMessage(ToastStatus.WARN, 'Incorrect credentials', messageDetails);
-        this.password.reset();
-      },
-    });
+          this.toastService.showInfoMessage(ToastStatus.WARN, 'Incorrect credentials', messageDetails);
+          this.password.reset();
+        },
+      });
   }
 
   get username(): FormControl<string> {

@@ -1,16 +1,16 @@
 @if (createEmailForm) {
   <form [formGroup]="createEmailForm" (ngSubmit)="onSubmit()">
     <div class="my-3">
-      <ngpk-form-input [control]="to" label="To" id="to" />
+      <ngpk-form-input [control]="formControls.to" label="To" id="to" />
     </div>
     <div class="my-3">
-      <ngpk-form-input [control]="from" label="From" id="from" />
+      <ngpk-form-input [control]="formControls.from" label="From" id="from" />
     </div>
     <div class="my-3">
-      <ngpk-form-input [control]="subject" label="Subject" id="subject" />
+      <ngpk-form-input [control]="formControls.subject" label="Subject" id="subject" />
     </div>
     <div class="my-3">
-      <textarea [formControl]="text" class="w-full" placeholder="Enter message" pInputTextarea></textarea>
+      <textarea [formControl]="formControls.text" class="w-full" placeholder="Enter message" pInputTextarea></textarea>
     </div>
 
     <div class="mt-4">
