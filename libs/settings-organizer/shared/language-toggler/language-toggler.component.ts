@@ -13,12 +13,13 @@ const imports = [FormsModule, TranslateModule, DropdownModule];
 @Component({
   selector: 'ngpk-language-toggler',
   template: `
-    <div class="flex justify-content-between align-items-center">
+    <div #container class="flex justify-content-between align-items-center">
       {{ 'settings.selectLanguage' | translate }}
       <p-dropdown
         optionLabel="label"
         optionValue="value"
         [options]="options"
+        [appendTo]="container"
         [(ngModel)]="languageValue"
         (onChange)="onLangChange($event)" />
     </div>

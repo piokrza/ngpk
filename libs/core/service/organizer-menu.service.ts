@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Environment } from 'apps/organizer/src/environments';
+import { Environment } from 'apps/organizer-client/src/environments';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { Observable, map } from 'rxjs';
 

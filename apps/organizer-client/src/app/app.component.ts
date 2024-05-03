@@ -1,9 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase/compat';
 import { PrimeNGConfig } from 'primeng/api';
-import { filter, Observable, tap } from 'rxjs';
+import { Observable, filter, tap } from 'rxjs';
 
 import { AuthApiService } from '@ngpk/auth-organizer/api';
 import { ConfigActions } from '@ngpk/auth-organizer/config/store';
@@ -11,14 +12,20 @@ import { AuthActions } from '@ngpk/auth-organizer/state';
 import { CashFlowActions } from '@ngpk/cash-flow/state';
 import { OrganizerThemeService } from '@ngpk/core/service';
 import { DriveActions } from '@ngpk/drive/state';
+import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
 import { TaskerActions } from '@ngpk/tasker/state';
+
+const imports = [RouterModule, OrganizerLayoutComponent];
+
 @Component({
-  selector: 'org-root',
+  selector: 'app-root',
   template: `
     <ngpk-organizer-layout>
       <router-outlet />
     </ngpk-organizer-layout>
   `,
+  standalone: true,
+  imports,
 })
 export class AppComponent implements OnInit {
   private readonly store = inject(Store);

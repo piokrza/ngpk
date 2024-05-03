@@ -1,4 +1,4 @@
-import { Environment, FeatureFlags, FirebaseConfig } from 'apps/organizer/src/environments';
+import { Environment, FeatureFlags, FirebaseConfig } from 'apps/organizer-client/src/environments';
 
 class EnvironmentImpl implements Environment {
   firebase: FirebaseConfig = {
