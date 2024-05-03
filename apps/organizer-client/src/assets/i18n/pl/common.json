@@ -1,0 +1,83 @@
+{
+  "menu": {
+    "home": "Strona główna",
+    "cashFlow": "Przepływ środków",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj się",
+    "tasker": "Zadania",
+    "web3": "Web3",
+    "auth": "Logowanie",
+    "drive": "Dysk",
+    "pageNotFound": "Strona nieznana"
+  },
+
+  "toastMessage": {
+    "success": "Sukces!",
+    "error": "Błąd!",
+    "fetchUserError": "Coś poszło nie tak przy próbie pobrania Twoich danych",
+    "addCashFlowSuccess": "Zapisano!",
+    "loadDataError": "Coś poszło nie tak przy próbie zapisu w bazie danych",
+    "fetchTasksError": "Coś poszło nie tak przy próbie pobrania danych",
+    "fetchNotesError": "Coś poszło nie tak przy próbie pobrania danych",
+    "addTaskError": "Cos poszło nie tak przy próbie usunięcia zadania z bazy danych",
+    "addFileSuccess": "Plik poprawnie zapisany w bazie danych",
+    "addFileError": "Coś poszło nie tak przy próbie zapisu pliku",
+    "addFolderSuccess": "Folder poprawnie zapisany w bazie danych",
+    "addFolderError": "Coś poszło nie tak przy próbie zapisu folderu",
+    "accUpdateSuccess": "Konto poprawnie zaktualizowane",
+    "urlCopied": "Url zapisany do schowka",
+    "editTaskSuccess": "Zadanie zaktualizowane",
+    "removeTaskError": "Coś poszło nie tak podczas usuwania zadania",
+    "editTaskError": "Coś poszło nie tak podczas edycji zadania",
+    "editNoteError": "Coś poszło nie tak podczas edycji notatki",
+    "loginSuccess": "Zalogowano",
+    "logoutSuccess": "Wylogowano",
+    "addBoardSuccess": "Dodano tablicę",
+    "deleteBoardSuccess": "Usunięto tablicę"
+  },
+
+  "pageNotFound": {
+    "title": "Strona nieznaleziona",
+    "redirectText": "Zostaniesz przeniesiony na strone glówną za ",
+    "sec": "sekund"
+  },
+
+  "common": {
+    "enterName": "Wprowadź nazwę",
+    "of": "z",
+    "enterText": "Wprowadź tekst",
+    "emptyMessage": "Lista jest pusta",
+    "name": "Nazwa",
+    "categories": "Kategorie",
+    "status": "Status",
+    "description": "Opis",
+    "searchIn": "Wyszukaj w "
+  },
+
+  "primeng": {
+    "accept": "Tak",
+    "reject": "Nie",
+    "pl": "Polski",
+    "en": "Angielski",
+    "emptyMessage": "Lista jest pusta",
+    "emptyFilterMessage": "Brak wyników",
+    "dayNames": ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"],
+    "dayNamesShort": ["Niedz", "Pn", "Wt", "Śr", "Czw", "Pt", "Sob"],
+    "dayNamesMin": ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"],
+    "monthNames": [
+      "Styczeń",
+      "Luty",
+      "Marzec",
+      "Kwiecień",
+      "Maj",
+      "Czerwiec",
+      "Lipiec",
+      "Sierpień",
+      "Wrzesień",
+      "Październik",
+      "Listopad",
+      "Grudzień"
+    ],
+    "monthNamesShort": ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"]
+  }
+}

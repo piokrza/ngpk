@@ -1,0 +1,6 @@
+.sidebar__link {
+  &:hover,
+  &.active {
+    border: 1px solid var(--highlight-bg) !important;
+  }
+}
