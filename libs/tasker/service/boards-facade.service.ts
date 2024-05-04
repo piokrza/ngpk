@@ -8,9 +8,8 @@ import { filter, map } from 'rxjs';
 
 import { AuthSelectors } from '@ngpk/auth-organizer/state';
 import { OrganizerPaths } from '@ngpk/core/enum';
-import { TaskerActions, TaskerSelectors } from '@ngpk/tasker/state';
-
 import { AddTaskPayload, DeleteTaskPayload, DragDropTaskPayload } from '@ngpk/tasker/model';
+import { TaskerActions, TaskerSelectors } from '@ngpk/tasker/state';
 
 @Injectable()
 export class BoardsFacadeService {

@@ -1,12 +1,12 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, DestroyRef, OnInit, Self } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { tap } from 'rxjs';
+import { EMPTY, catchError, tap } from 'rxjs';
 
 import { SignupForm, SignupCredentials } from '@ngpk/email/model';
 import { AuthService, SignupFormService } from '@ngpk/email/service';
@@ -25,13 +25,11 @@ const providers = [SignupFormService];
   imports,
 })
 export class SignupComponent implements OnInit {
-  constructor(
-    private readonly router: Router,
-    private readonly destroyRef: DestroyRef,
-    private readonly authService: AuthService,
-    private readonly authStateService: AuthStateService,
-    @Self() private readonly signupFormService: SignupFormService
-  ) {}
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly authService = inject(AuthService);
+  private readonly authStateService = inject(AuthStateService);
+  private readonly signupFormService = inject(SignupFormService);
 
   signupForm!: FormGroup<SignupForm>;
   readonly isLoading$ = this.authStateService.select('isLoading');
@@ -68,18 +66,20 @@ export class SignupComponent implements OnInit {
   }
 
   handleSignup(signUpPayload: SignupCredentials): void {
-    this.authService.signUp$(signUpPayload).subscribe({
-      next: () => {
-        this.router.navigateByUrl('inbox');
-      },
-
-      error: (err: HttpErrorResponse) => {
-        if (!err.status) {
-          this.signupForm.setErrors({ noConnection: true });
-        } else {
-          this.signupForm.setErrors({ unknownError: true });
-        }
-      },
-    });
+    this.authService
+      .signUp$(signUpPayload)
+      .pipe(
+        tap(() => void this.router.navigateByUrl('inbox')),
+        catchError((err: unknown) => {
+          if (!(err as HttpErrorResponse).status) {
+            this.signupForm.setErrors({ noConnection: true });
+          } else {
+            this.signupForm.setErrors({ unknownError: true });
+          }
+          return EMPTY;
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 }

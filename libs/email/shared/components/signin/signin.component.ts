@@ -1,12 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, DestroyRef, OnInit, Self } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { tap } from 'rxjs';
+import { EMPTY, catchError, tap } from 'rxjs';
 
 import { ToastStatus } from '@ngpk/email/enum';
 import { SigninForm, SigninCredencials } from '@ngpk/email/model';
@@ -34,23 +34,17 @@ const providers = [SigninFormService];
   imports,
 })
 export class SigninComponent implements OnInit {
-  constructor(
-    private readonly router: Router,
-    private readonly destroyRef: DestroyRef,
-    private readonly authService: AuthService,
-    private readonly toastService: ToastService,
-    private readonly authStateService: AuthStateService,
-    @Self() private readonly signinFormService: SigninFormService
-  ) {}
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly authService = inject(AuthService);
+  private readonly toastService = inject(ToastService);
+  private readonly authStateService = inject(AuthStateService);
+  private readonly signinFormService = inject(SigninFormService);
 
   signinForm!: FormGroup<SigninForm>;
   readonly isLoading$ = this.authStateService.select('isLoading');
 
   ngOnInit(): void {
-    this.initializeForm();
-  }
-
-  initializeForm(): void {
     this.signinFormService.buildForm();
     this.signinFormService
       .form$()
@@ -73,22 +67,23 @@ export class SigninComponent implements OnInit {
   handleSignIn(signInPayload: SigninCredencials): void {
     this.authService
       .signIn$(signInPayload)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: () => {
-          this.router.navigateByUrl('/inbox');
-        },
-        error: ({ error }: HttpErrorResponse) => {
+      .pipe(
+        tap(() => void this.router.navigateByUrl('/inbox')),
+        catchError((err: unknown) => {
           let messageDetails: string;
 
-          if (error.username) {
+          if ((err as HttpErrorResponse).error.username) {
             messageDetails = 'Username not found';
           } else messageDetails = 'Invalid password';
 
           this.toastService.showInfoMessage(ToastStatus.WARN, 'Incorrect credentials', messageDetails);
           this.password.reset();
-        },
-      });
+
+          return EMPTY;
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   get username(): FormControl<string> {

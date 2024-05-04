@@ -1,10 +1,10 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { take } from 'rxjs';
+import { EMPTY, switchMap, take } from 'rxjs';
 
 import { connectState } from '@ngpk/core/util';
 import { EmailService } from '@ngpk/email/service';
@@ -20,12 +20,10 @@ const imports = [ButtonModule, RouterOutlet, ProgressSpinnerModule, EmailIndexCo
   imports,
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private readonly emailService: EmailService,
-    private readonly inboxStateService: InboxStateService,
-    private readonly dialogService: DialogService,
-    private readonly destroyRef: DestroyRef
-  ) {}
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly emailService = inject(EmailService);
+  private readonly dialogService = inject(DialogService);
+  private readonly inboxStateService = inject(InboxStateService);
 
   readonly state = connectState(this.destroyRef, {
     emails: this.inboxStateService.select('emails'),
@@ -42,10 +40,11 @@ export class HomeComponent implements OnInit {
       style: { width: '90%', maxWidth: '400px' },
     });
 
-    dialogRef.onClose.subscribe({
-      next: (createEmailFormPayload) => {
-        createEmailFormPayload && this.emailService.sendEmail(createEmailFormPayload).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
-      },
-    });
+    dialogRef.onClose
+      .pipe(
+        switchMap((createEmailFormPayload) => (createEmailFormPayload ? this.emailService.sendEmail(createEmailFormPayload) : EMPTY)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 }
