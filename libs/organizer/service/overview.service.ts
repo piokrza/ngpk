@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { ChartData } from 'chart.js';
 import { Observable, combineLatest, map } from 'rxjs';
 
-import { LabeledData, ObservableDictionary } from '@ngpk/core/model';
+import { LabeledData } from '@ngpk/core/model';
 import { getRandomNumber } from '@ngpk/core/util';
-import { CashFlowDataSet, OverviewStateModel, CashFlow, Category, ChartColor } from '@ngpk/organizer/model';
+import { CashFlowDataSet, CashFlow, Category, ChartColor } from '@ngpk/organizer/model';
 import { CashFlowSelectors } from '@ngpk/organizer/state/cash-flow';
 import { ConfigSelectors } from '@ngpk/organizer/state/config';
 
@@ -13,30 +13,25 @@ import { ConfigSelectors } from '@ngpk/organizer/state/config';
 export class OverviewService {
   private readonly store = inject(Store);
 
-  get state(): ObservableDictionary<OverviewStateModel> {
-    return {
-      cashFlowDataSet: this.cashFlowData$,
-      incomesChartData: this.incomesChartData$,
-      expensesChartData: this.expensesChartData$,
-      isLoading: this.store.select(CashFlowSelectors.isLoading),
-    };
+  get isLoading$(): Observable<boolean> {
+    return this.store.select(CashFlowSelectors.isLoading);
   }
 
-  private get incomesChartData$(): Observable<ChartData | undefined> {
+  get incomesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
       incomes: this.store.select(CashFlowSelectors.cashFlow('income')),
       categories: this.store.select(ConfigSelectors.cashFlowCategories('income')),
     }).pipe(map(({ incomes, categories }) => this.generateCashFlowChartData(incomes, categories, 'green')));
   }
 
-  private get expensesChartData$(): Observable<ChartData | undefined> {
+  get expensesChartData$(): Observable<ChartData | undefined> {
     return combineLatest({
       expenses: this.store.select(CashFlowSelectors.cashFlow('expense')),
       categories: this.store.select(ConfigSelectors.cashFlowCategories('expense')),
     }).pipe(map(({ expenses, categories }) => this.generateCashFlowChartData(expenses, categories, 'pink')));
   }
 
-  private get cashFlowData$(): Observable<LabeledData<CashFlowDataSet>[]> {
+  get cashFlowData$(): Observable<LabeledData<CashFlowDataSet>[]> {
     return combineLatest({
       totalBalance: this.totalBalance$,
       totalIncome: this.store.select(CashFlowSelectors.totalCashFlow('income')),

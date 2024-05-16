@@ -27,7 +27,6 @@
       "@ngpk/email/*": ["libs/email/*"],
       "@ngpk/organizer/*": ["libs/organizer/*"],
       "@ngpk/search/*": ["libs/search/*"],
-      "@ngpk/settings-organizer/*": ["libs/settings-organizer/*"],
       "@ngpk/shared-ui/*": ["libs/shared-ui/*"],
       "@ngpk/weather/*": ["libs/weather/*"],
       "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]

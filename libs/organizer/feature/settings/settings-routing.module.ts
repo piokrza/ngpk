@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { OrganizerPathFragment } from '@ngpk/core/enum';
-import { AccountSettingsFormComponent, PanelComponent } from '@ngpk/settings-organizer/shared';
+import { OrganizerPathFragment } from '@ngpk/organizer/enum';
+import { AccountSettingsFormComponent, PanelComponent } from '@ngpk/organizer/shared';
 
 const routes: Routes = [
   {

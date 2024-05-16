@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
 import { filter, Observable } from 'rxjs';
 
-import { OrganizerCollection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/organizer/enum';
 import { AuthFormPayload, IUser } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })

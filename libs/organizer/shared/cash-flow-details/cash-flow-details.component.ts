@@ -7,9 +7,10 @@ import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { Observable, first, map, switchMap, tap } from 'rxjs';
 
-import { OrganizerPaths, DateFormats } from '@ngpk/core/enum';
+import { DateFormats } from '@ngpk/core/enum';
 import { TimestampPipe } from '@ngpk/core/pipe';
 import { connectState } from '@ngpk/core/util';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { CashFlow, Category } from '@ngpk/organizer/model';
 import { CashFlowFacadeService } from '@ngpk/organizer/service';
 import { ConfigSelectors } from '@ngpk/organizer/state/config';

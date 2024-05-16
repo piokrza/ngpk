@@ -8,7 +8,7 @@ import { PaginatorState } from 'primeng/paginator';
 import { Observable, combineLatestWith, map, tap } from 'rxjs';
 
 import { baseDialogStyles } from '@ngpk/core/constant';
-import { OrganizerPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { CashFlow, CashFlowData, Category, CategoryType } from '@ngpk/organizer/model';
 import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } from '@ngpk/organizer/service';
 import { AddFormComponent, UpdateFormComponent } from '@ngpk/organizer/shared';

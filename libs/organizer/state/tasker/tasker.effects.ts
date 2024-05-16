@@ -4,9 +4,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
-import { OrganizerPaths } from '@ngpk/core/enum';
-import { FirestoreDbSubscriptionService, ToastService } from '@ngpk/core/service';
+import { ToastService } from '@ngpk/core/service';
 import { BoardsApiService } from '@ngpk/organizer/api';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
+import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service';
 import { TaskerActions } from '@ngpk/organizer/state/tasker';
 
 @Injectable()

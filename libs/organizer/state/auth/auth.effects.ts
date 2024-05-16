@@ -7,8 +7,10 @@ import firebase from 'firebase/compat';
 import { catchError, EMPTY, exhaustMap, from, map, of, takeUntil, tap } from 'rxjs';
 
 import { ToastStatus } from '@ngpk/core/enum';
-import { FirestoreDbSubscriptionService, ToastService } from '@ngpk/core/service';
+import { ToastService } from '@ngpk/core/service';
 import { AuthApiService, UserService } from '@ngpk/organizer/api';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
+import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service';
 import { AuthActions } from '@ngpk/organizer/state/auth';
 import { ActionTypes } from '@ngpk/organizer/state/auth/action-types';
 
@@ -55,7 +57,7 @@ export class AuthEffects {
       map(() => AuthActions.userNotAuthenticated()),
       tap(() => this.firestoreDbSubscriptionService.unsubscribe()),
       tap(() => {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl(OrganizerPaths.AUTHENTICATION);
         this.toastService.showMessage('success', this.tr('success'), this.tr('logoutSuccess'));
       })
     );

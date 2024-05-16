@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { OrganizerPaths, DateFormats, OrganizerPathFragment } from '@ngpk/core/enum';
+import { DateFormats } from '@ngpk/core/enum';
+import { OrganizerPaths, OrganizerPathFragment } from '@ngpk/organizer/enum';
 import { CashFlow } from '@ngpk/organizer/model';
 
 @Component({

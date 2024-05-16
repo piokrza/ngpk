@@ -1,14 +1,14 @@
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { Route } from '@angular/router';
 
-import { OrganizerPaths } from '@ngpk/core/enum';
 import { getTitle } from '@ngpk/core/util';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
 
 export const appRoutes: Route[] = [
   {
     path: '',
-    title: getTitle('home'),
-    loadComponent: async () => (await import('@ngpk/search/feature')).SearchComponent,
+    pathMatch: 'full',
+    redirectTo: OrganizerPaths.TASKER,
   },
   {
     path: OrganizerPaths.TASKER,
@@ -36,7 +36,7 @@ export const appRoutes: Route[] = [
     canActivate: [AngularFireAuthGuard],
     title: getTitle('settings'),
     data: { authGuardPipe: () => redirectUnauthorizedTo([OrganizerPaths.AUTHENTICATION]) },
-    loadChildren: async () => (await import('@ngpk/settings-organizer/feature')).SettingsModule,
+    loadChildren: async () => (await import('@ngpk/organizer/feature/settings')).SettingsModule,
   },
   {
     path: OrganizerPaths.AUTHENTICATION,

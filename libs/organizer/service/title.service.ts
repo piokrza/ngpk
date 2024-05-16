@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Environment } from 'apps/organizer-client/src/environments';
 import { BehaviorSubject, Observable, filter, tap } from 'rxjs';
 
-import { OrganizerPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
 
 @Injectable({ providedIn: 'root' })
 export class TitleService {

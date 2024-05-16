@@ -10,9 +10,9 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
 import { Observable, filter, map } from 'rxjs';
 
-import { OrganizerPaths } from '@ngpk/core/enum';
-import { OrganizerMenuService, TitleService } from '@ngpk/core/service';
 import { connectState } from '@ngpk/core/util';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
+import { OrganizerMenuService, TitleService } from '@ngpk/organizer/service';
 import { AuthActions, AuthSelectors } from '@ngpk/organizer/state/auth';
 import { ContainerComponent } from '@ngpk/shared-ui/components';
 import { WeatherWidgetComponent } from '@ngpk/weather/feature';
@@ -31,14 +31,14 @@ const imports = [
 ];
 
 @Component({
-  selector: 'ngpk-organizer-layout',
-  templateUrl: './organizer-layout.component.html',
-  styleUrl: './organizer-layout.component.scss',
+  selector: 'ngpk-layout',
+  templateUrl: './layout.component.html',
+  styleUrl: './layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,
 })
-export class OrganizerLayoutComponent {
+export class LayoutComponent {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);

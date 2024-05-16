@@ -3,8 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
-import { ToastService, FirestoreDbSubscriptionService } from '@ngpk/core/service';
+import { ToastService } from '@ngpk/core/service';
 import { ConfigApiService } from '@ngpk/organizer/api';
+import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service';
 import { ConfigActions } from '@ngpk/organizer/state/config';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
-import { OrganizerPathFragment } from '@ngpk/core/enum';
+import { OrganizerPathFragment } from '@ngpk/organizer/enum';
 
 @Component({
   selector: 'ngpk-account-settings',

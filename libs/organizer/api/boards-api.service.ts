@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 import { Observable, switchMap } from 'rxjs';
 
-import { OrganizerCollection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/organizer/enum';
 import { AddTaskPayload, Board, DeleteTaskPayload, DragDropTaskPayload, Task, TaskList } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })

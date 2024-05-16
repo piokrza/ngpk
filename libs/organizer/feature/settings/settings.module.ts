@@ -8,14 +8,14 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { SettingsRoutingModule } from '@ngpk/settings-organizer/feature';
+import { SettingsRoutingModule } from '@ngpk/organizer/feature/settings';
 import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
   LanguageTogglerComponent,
   PanelComponent,
   ThemeTogglerComponent,
-} from '@ngpk/settings-organizer/shared';
+} from '@ngpk/organizer/shared';
 import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const declarations = [ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];

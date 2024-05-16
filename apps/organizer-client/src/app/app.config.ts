@@ -22,12 +22,12 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
+import { LayoutComponent } from '@ngpk/organizer/shared';
 import { AuthEffects } from '@ngpk/organizer/state/auth';
 import { CashFlowEffects } from '@ngpk/organizer/state/cash-flow';
 import { ConfigEffects } from '@ngpk/organizer/state/config';
 import { DriveEffects } from '@ngpk/organizer/state/drive';
 import { TaskerEffects } from '@ngpk/organizer/state/tasker';
-import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
 
 const interceptors = [httpErrorInterceptor];
 const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, DriveEffects, TaskerEffects];
@@ -42,7 +42,7 @@ export const appConfig: ApplicationConfig = {
     UserTrackingService,
     AngularFireAuthModule,
     ScreenTrackingService,
-    OrganizerLayoutComponent,
+    LayoutComponent,
     provideStore(STORE_ROOT_REDUCERS),
     provideEffects(storeEffects),
     provideStoreDevtools({

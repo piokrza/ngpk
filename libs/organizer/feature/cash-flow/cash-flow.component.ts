@@ -28,7 +28,12 @@ export class CashFlowComponent {
     isLoading: this.cashFlowFacadeService.isLoading$,
   });
 
-  readonly overviewState = connectState(this.destroyRef, this.overviewService.state);
+  readonly overviewState = connectState(this.destroyRef, {
+    cashFlowDataSet: this.overviewService.cashFlowData$,
+    incomesChartData: this.overviewService.incomesChartData$,
+    expensesChartData: this.overviewService.expensesChartData$,
+    isLoading: this.overviewService.isLoading$,
+  });
 
   readonly activeTabIndex$: Observable<number> = this.cashFlowFacadeService.activeTabIndex$;
 

@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import firebase from 'firebase/compat';
 import { EMPTY, forkJoin, switchMap } from 'rxjs';
 
-import { OrganizerCollection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/organizer/enum';
 import { AppConfig, IUser, Category } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })

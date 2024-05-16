@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map, switchMap } from 'rxjs';
 
-import { OrganizerPaths } from '@ngpk/core/enum';
-import { IUser , FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/organizer/model';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
+import { IUser, FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/organizer/model';
 import { DriveService } from '@ngpk/organizer/service';
 import { AuthSelectors } from '@ngpk/organizer/state/auth';
 import { DriveActions, DriveSelectors } from '@ngpk/organizer/state/drive';

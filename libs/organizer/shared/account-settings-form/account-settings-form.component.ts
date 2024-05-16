@@ -6,9 +6,8 @@ import { Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
 import { filter, tap } from 'rxjs';
 
-import { IUser } from '@ngpk/organizer/model';
+import { IUser, AccountSettingsForm } from '@ngpk/organizer/model';
 import { AuthActions, AuthSelectors } from '@ngpk/organizer/state/auth';
-import { AccountSettingsForm } from '@ngpk/settings-organizer/model';
 
 @Component({
   selector: 'ngpk-account-settings-form',
@@ -21,7 +20,7 @@ export class AccountSettingsFormComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
 
   private user!: IUser;
-  readonly trPath: string = 'settings.accountForm.';
+  readonly trPath = 'settings.accountForm.';
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly form: FormGroup<AccountSettingsForm> = this.accountSettingsForm;
 

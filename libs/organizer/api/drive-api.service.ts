@@ -4,7 +4,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { UploadTaskSnapshot } from '@angular/fire/compat/storage/interfaces';
 import { Observable } from 'rxjs';
 
-import { OrganizerCollection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/organizer/enum';
 import { FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })

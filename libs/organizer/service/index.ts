@@ -7,3 +7,7 @@ export * from './cash-flow-filter.service';
 export * from './overview.service';
 export * from './auth-form.service';
 export * from './boards-facade.service';
+export * from './organizer-menu.service';
+export * from './firestore-db-subscription.service';
+export * from './title.service';
+export * from './organizer-theme.service';

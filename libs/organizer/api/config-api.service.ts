@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
 
-import { OrganizerCollection } from '@ngpk/core/enum';
+import { OrganizerCollection } from '@ngpk/organizer/enum';
 import { AppConfig } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { OrganizerPathFragment } from '@ngpk/core/enum';
+import { OrganizerPathFragment } from '@ngpk/organizer/enum';
 import { CashFlowComponent } from '@ngpk/organizer/feature/cash-flow';
 
 const routes: Routes = [

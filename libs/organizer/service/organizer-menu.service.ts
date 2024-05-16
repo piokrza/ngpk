@@ -4,7 +4,7 @@ import { Environment } from 'apps/organizer-client/src/environments';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { Observable, map } from 'rxjs';
 
-import { OrganizerPaths } from '@ngpk/core/enum';
+import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { AuthSelectors } from '@ngpk/organizer/state/auth';
 
 @Injectable({ providedIn: 'root' })
