@@ -7,12 +7,12 @@ import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { Observable, first, map, switchMap, tap } from 'rxjs';
 
-import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 import { OrganizerPaths, DateFormats } from '@ngpk/core/enum';
 import { TimestampPipe } from '@ngpk/core/pipe';
 import { connectState } from '@ngpk/core/util';
 import { CashFlow, Category } from '@ngpk/organizer/model';
 import { CashFlowFacadeService } from '@ngpk/organizer/service';
+import { ConfigSelectors } from '@ngpk/organizer/state/config';
 import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const imports = [TranslateModule, AsyncPipe, TimestampPipe, ContainerComponent, ButtonModule];

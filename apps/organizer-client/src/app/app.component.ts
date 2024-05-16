@@ -6,11 +6,11 @@ import firebase from 'firebase/compat';
 import { PrimeNGConfig } from 'primeng/api';
 import { Observable, filter, tap } from 'rxjs';
 
-import { AuthApiService } from '@ngpk/auth-organizer/api';
-import { ConfigActions } from '@ngpk/auth-organizer/config/store';
-import { AuthActions } from '@ngpk/auth-organizer/state';
 import { OrganizerThemeService } from '@ngpk/core/service';
+import { AuthApiService } from '@ngpk/organizer/api';
+import { AuthActions } from '@ngpk/organizer/state/auth';
 import { CashFlowActions } from '@ngpk/organizer/state/cash-flow';
+import { ConfigActions } from '@ngpk/organizer/state/config';
 import { DriveActions } from '@ngpk/organizer/state/drive';
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
 import { TaskerActions } from '@ngpk/tasker/state';

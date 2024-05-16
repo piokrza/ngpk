@@ -6,9 +6,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CardModule } from 'primeng/card';
 import { Observable } from 'rxjs';
 
-import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 import { LabeledData } from '@ngpk/core/model';
 import { CashFlowDataSet } from '@ngpk/organizer/model';
+import { ConfigSelectors } from '@ngpk/organizer/state/config';
 import { ContainerComponent } from '@ngpk/shared-ui/components';
 
 const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent, AsyncPipe];

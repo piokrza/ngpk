@@ -20,11 +20,11 @@ import { environment } from 'apps/organizer-client/src/environments/environment'
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { ConfigEffects } from '@ngpk/auth-organizer/config/store';
-import { AuthEffects } from '@ngpk/auth-organizer/state';
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
+import { AuthEffects } from '@ngpk/organizer/state/auth';
 import { CashFlowEffects } from '@ngpk/organizer/state/cash-flow';
+import { ConfigEffects } from '@ngpk/organizer/state/config';
 import { DriveEffects } from '@ngpk/organizer/state/drive';
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
 import { TaskerEffects } from '@ngpk/tasker/state';

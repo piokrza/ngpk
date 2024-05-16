@@ -5,9 +5,9 @@ import { Store } from '@ngrx/store';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 
-import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 import { CashFlow, CashFlowForm, Category } from '@ngpk/organizer/model';
 import { CashFlowService } from '@ngpk/organizer/service';
+import { ConfigSelectors } from '@ngpk/organizer/state/config';
 
 @Component({
   selector: 'ngpk-update-form',

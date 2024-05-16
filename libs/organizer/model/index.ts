@@ -9,3 +9,8 @@ export * from './cash-flow-filters.model';
 export * from './cash-flow-type.model';
 export * from './chart-colors.model';
 export * from './overview-state.model';
+export * from './auth-form-payload.model';
+export * from './login-form.model';
+export * from './register-form.model';
+export * from './user.model';
+export * from './app-config.model';

@@ -3,11 +3,10 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map, switchMap } from 'rxjs';
 
-import { IUser } from '@ngpk/auth-organizer/model';
-import { AuthSelectors } from '@ngpk/auth-organizer/state';
 import { OrganizerPaths } from '@ngpk/core/enum';
-import { FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/organizer/model';
+import { IUser , FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/organizer/model';
 import { DriveService } from '@ngpk/organizer/service';
+import { AuthSelectors } from '@ngpk/organizer/state/auth';
 import { DriveActions, DriveSelectors } from '@ngpk/organizer/state/drive';
 
 @Injectable()

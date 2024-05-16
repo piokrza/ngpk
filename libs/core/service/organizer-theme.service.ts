@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
 
-import { ThemeType } from '@ngpk/auth-organizer/config/models';
-import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
+import { ThemeType } from '@ngpk/organizer/model';
+import { ConfigSelectors } from '@ngpk/organizer/state/config';
 
 @Injectable({ providedIn: 'root' })
 export class OrganizerThemeService {

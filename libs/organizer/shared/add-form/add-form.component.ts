@@ -7,11 +7,10 @@ import { Store } from '@ngrx/store';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, filter, tap } from 'rxjs';
 
-import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
-import { IUser } from '@ngpk/auth-organizer/model';
-import { AuthSelectors } from '@ngpk/auth-organizer/state';
-import { CashFlow, CashFlowForm, Category } from '@ngpk/organizer/model';
+import { IUser, CashFlow, CashFlowForm, Category } from '@ngpk/organizer/model';
 import { CashFlowService } from '@ngpk/organizer/service';
+import { AuthSelectors } from '@ngpk/organizer/state/auth';
+import { ConfigSelectors } from '@ngpk/organizer/state/config';
 
 @Component({
   selector: 'ngpk-add-form',

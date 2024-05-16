@@ -43,7 +43,7 @@ export const appRoutes: Route[] = [
     canActivate: [AngularFireAuthGuard],
     title: getTitle('auth'),
     data: { authGuardPipe: () => redirectLoggedInTo(['']) },
-    loadChildren: async () => (await import('@ngpk/auth-organizer/feature')).AuthModule,
+    loadChildren: async () => (await import('@ngpk/organizer/feature/auth')).AuthModule,
   },
   {
     path: '**',

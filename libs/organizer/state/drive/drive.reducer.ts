@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { AuthActions } from '@ngpk/auth-organizer/state';
 import { IFile } from '@ngpk/organizer/model';
+import { AuthActions } from '@ngpk/organizer/state/auth';
 import { DriveActions } from '@ngpk/organizer/state/drive';
 
 export const FeatureKey = 'drive';

@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { AuthActions } from '@ngpk/auth-organizer/state';
 import { CashFlow } from '@ngpk/organizer/model';
+import { AuthActions } from '@ngpk/organizer/state/auth';
 import { CashFlowActions } from '@ngpk/organizer/state/cash-flow';
 
 export const FeatureKey = 'cashflow';

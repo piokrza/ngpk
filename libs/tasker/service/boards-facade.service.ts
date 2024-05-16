@@ -6,8 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from 'primeng/api';
 import { filter, map } from 'rxjs';
 
-import { AuthSelectors } from '@ngpk/auth-organizer/state';
 import { OrganizerPaths } from '@ngpk/core/enum';
+import { AuthSelectors } from '@ngpk/organizer/state/auth';
 import { AddTaskPayload, DeleteTaskPayload, DragDropTaskPayload } from '@ngpk/tasker/model';
 import { TaskerActions, TaskerSelectors } from '@ngpk/tasker/state';
 

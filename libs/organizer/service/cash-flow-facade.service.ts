@@ -7,13 +7,13 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { Observable, combineLatestWith, map, tap } from 'rxjs';
 
-import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 import { baseDialogStyles } from '@ngpk/core/constant';
 import { OrganizerPaths } from '@ngpk/core/enum';
 import { CashFlow, CashFlowData, Category, CategoryType } from '@ngpk/organizer/model';
 import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } from '@ngpk/organizer/service';
 import { AddFormComponent, UpdateFormComponent } from '@ngpk/organizer/shared';
 import { CashFlowActions, CashFlowSelectors } from '@ngpk/organizer/state/cash-flow';
+import { ConfigSelectors } from '@ngpk/organizer/state/config';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowFacadeService {

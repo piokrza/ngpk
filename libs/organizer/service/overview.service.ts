@@ -3,11 +3,11 @@ import { Store } from '@ngrx/store';
 import { ChartData } from 'chart.js';
 import { Observable, combineLatest, map } from 'rxjs';
 
-import { ConfigSelectors } from '@ngpk/auth-organizer/config/store';
 import { LabeledData, ObservableDictionary } from '@ngpk/core/model';
 import { getRandomNumber } from '@ngpk/core/util';
 import { CashFlowDataSet, OverviewStateModel, CashFlow, Category, ChartColor } from '@ngpk/organizer/model';
 import { CashFlowSelectors } from '@ngpk/organizer/state/cash-flow';
+import { ConfigSelectors } from '@ngpk/organizer/state/config';
 
 @Injectable()
 export class OverviewService {

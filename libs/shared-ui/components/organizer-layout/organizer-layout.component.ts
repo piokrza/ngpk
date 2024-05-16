@@ -10,10 +10,10 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
 import { Observable, filter, map } from 'rxjs';
 
-import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
 import { OrganizerPaths } from '@ngpk/core/enum';
 import { OrganizerMenuService, TitleService } from '@ngpk/core/service';
 import { connectState } from '@ngpk/core/util';
+import { AuthActions, AuthSelectors } from '@ngpk/organizer/state/auth';
 import { ContainerComponent } from '@ngpk/shared-ui/components';
 import { WeatherWidgetComponent } from '@ngpk/weather/feature';
 

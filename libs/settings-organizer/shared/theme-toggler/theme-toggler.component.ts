@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
 import { map } from 'rxjs';
 
-import { ThemeType, AppConfig } from '@ngpk/auth-organizer/config/models';
-import { ConfigSelectors, ConfigActions } from '@ngpk/auth-organizer/config/store';
 import { themeLink } from '@ngpk/core/constant';
 import { connectState } from '@ngpk/core/util';
+import { ThemeType, AppConfig } from '@ngpk/organizer/model';
+import { ConfigSelectors, ConfigActions } from '@ngpk/organizer/state/config';
 
 @Component({
   selector: 'ngpk-theme-toggler',

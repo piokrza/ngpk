@@ -6,8 +6,8 @@ import { Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
 import { filter, tap } from 'rxjs';
 
-import { IUser } from '@ngpk/auth-organizer/model';
-import { AuthActions, AuthSelectors } from '@ngpk/auth-organizer/state';
+import { IUser } from '@ngpk/organizer/model';
+import { AuthActions, AuthSelectors } from '@ngpk/organizer/state/auth';
 import { AccountSettingsForm } from '@ngpk/settings-organizer/model';
 
 @Component({
