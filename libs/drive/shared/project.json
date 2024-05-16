@@ -1,8 +1,0 @@
-{
-  "name": "drive-shared",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:drive", "project:drive-shared", "public:drive", "sub-domain:shared", "type:api"],
-  "sourceRoot": "libs/drive/shared",
-  "prefix": "ngpk"
-}

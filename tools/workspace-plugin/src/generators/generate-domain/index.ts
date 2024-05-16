@@ -1,6 +1,6 @@
-import { Tree, formatFiles, names, readProjectConfiguration, updateProjectConfiguration } from '@nx/devkit';
 import generateAngularLibrary from '../generate-angular-library';
 import { generateSubDomain } from '../generate-sub-domain';
+import { Tree, formatFiles, names, readProjectConfiguration, updateProjectConfiguration } from '@nx/devkit';
 
 export const domainLibs = [
   {
@@ -17,6 +17,18 @@ export const domainLibs = [
   },
   {
     lib: 'feature',
+    pathAlias: 'single',
+  },
+  {
+    lib: 'enum',
+    pathAlias: 'single',
+  },
+  {
+    lib: 'constant',
+    pathAlias: 'single',
+  },
+  {
+    lib: 'service',
     pathAlias: 'single',
   },
   {
@@ -97,6 +109,9 @@ const LIB_SETUP: Record<
     // const fileName = names(schema.domainName).fileName;
   },
   api: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
+  enum: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
+  service: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
+  constant: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
   feature: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
   shared: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
   testing: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},

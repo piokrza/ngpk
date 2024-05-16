@@ -1,8 +1,0 @@
-{
-  "name": "drive-service",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:drive", "project:drive-service", "public:drive", "sub-domain:service", "type:api"],
-  "sourceRoot": "libs/drive/service",
-  "prefix": "ngpk"
-}

@@ -20,14 +20,14 @@ import { environment } from 'apps/organizer-client/src/environments/environment'
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
-import { ConfigEffects } from '@ngpk/auth-organizer/config/store';
-import { AuthEffects } from '@ngpk/auth-organizer/state';
-import { CashFlowEffects } from '@ngpk/cash-flow/state';
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
-import { DriveEffects } from '@ngpk/drive/state';
-import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
-import { TaskerEffects } from '@ngpk/tasker/state';
+import { LayoutComponent } from '@ngpk/organizer/shared';
+import { AuthEffects } from '@ngpk/organizer/state/auth';
+import { CashFlowEffects } from '@ngpk/organizer/state/cash-flow';
+import { ConfigEffects } from '@ngpk/organizer/state/config';
+import { DriveEffects } from '@ngpk/organizer/state/drive';
+import { TaskerEffects } from '@ngpk/organizer/state/tasker';
 
 const interceptors = [httpErrorInterceptor];
 const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, DriveEffects, TaskerEffects];
@@ -42,7 +42,7 @@ export const appConfig: ApplicationConfig = {
     UserTrackingService,
     AngularFireAuthModule,
     ScreenTrackingService,
-    OrganizerLayoutComponent,
+    LayoutComponent,
     provideStore(STORE_ROOT_REDUCERS),
     provideEffects(storeEffects),
     provideStoreDevtools({

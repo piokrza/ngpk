@@ -8,5 +8,11 @@
     "types": []
   },
   "exclude": ["**/*.spec.ts", "test-setup.ts", "jest.config.ts"],
-  "include": ["**/*.ts"]
+  "include": [
+    "**/*.ts",
+    "../organizer/enum/organizer-collection.enum.ts",
+    "../organizer/enum/organizer-path-fragment.enum.ts",
+    "../organizer/enum/organizer-paths.enum.ts",
+    "../organizer/service/title.service.ts"
+  ]
 }

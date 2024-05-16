@@ -1,8 +1,0 @@
-{
-  "name": "search-shared",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:search", "project:search-shared", "public:search", "sub-domain:shared", "type:api"],
-  "sourceRoot": "libs/search/shared",
-  "prefix": "ngpk"
-}

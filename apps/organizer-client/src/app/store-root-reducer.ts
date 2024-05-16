@@ -1,11 +1,11 @@
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromConfig from '@ngpk/auth-organizer/config/store';
-import * as fromAuth from '@ngpk/auth-organizer/state';
-import * as fromCashFlow from '@ngpk/cash-flow/state';
-import * as fromDrive from '@ngpk/drive/state';
-import * as fromTasker from '@ngpk/tasker/state';
+import * as fromAuth from '@ngpk/organizer/state/auth';
+import * as fromCashFlow from '@ngpk/organizer/state/cash-flow';
+import * as fromConfig from '@ngpk/organizer/state/config';
+import * as fromDrive from '@ngpk/organizer/state/drive';
+import * as fromTasker from '@ngpk/organizer/state/tasker';
 
 export interface AppState {
   [fromConfig.FeatureKey]: fromConfig.State;

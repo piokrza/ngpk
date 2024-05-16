@@ -1,8 +1,0 @@
-{
-  "name": "auth-organizer-api",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:auth-organizer", "project:auth-organizer-api", "public:auth-organizer", "sub-domain:api", "type:api"],
-  "sourceRoot": "libs/auth-organizer/api",
-  "prefix": "ngpk"
-}
