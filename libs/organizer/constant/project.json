@@ -1,0 +1,8 @@
+{
+  "name": "organizer-constant",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:organizer", "project:organizer-constant", "public:organizer", "sub-domain:constant", "type:api"],
+  "sourceRoot": "libs/organizer/constant",
+  "prefix": "ngpk"
+}

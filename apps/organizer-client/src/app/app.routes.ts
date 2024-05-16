@@ -29,7 +29,7 @@ export const appRoutes: Route[] = [
     canActivate: [AngularFireAuthGuard],
     title: getTitle('drive'),
     data: { authGuardPipe: () => redirectUnauthorizedTo([OrganizerPaths.AUTHENTICATION]) },
-    loadChildren: async () => (await import('@ngpk/drive/feature')).DriveModule,
+    loadChildren: async () => (await import('@ngpk/organizer/feature/drive')).DriveModule,
   },
   {
     path: OrganizerPaths.SETTINGS,

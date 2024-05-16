@@ -1,0 +1,8 @@
+{
+  "name": "organizer-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:organizer", "project:organizer-api", "public:organizer", "sub-domain:api", "type:api"],
+  "sourceRoot": "libs/organizer/api",
+  "prefix": "ngpk"
+}

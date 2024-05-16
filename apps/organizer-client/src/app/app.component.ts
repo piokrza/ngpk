@@ -11,7 +11,7 @@ import { ConfigActions } from '@ngpk/auth-organizer/config/store';
 import { AuthActions } from '@ngpk/auth-organizer/state';
 import { CashFlowActions } from '@ngpk/cash-flow/state';
 import { OrganizerThemeService } from '@ngpk/core/service';
-import { DriveActions } from '@ngpk/drive/state';
+import { DriveActions } from '@ngpk/organizer/state/drive';
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
 import { TaskerActions } from '@ngpk/tasker/state';
 

@@ -1,0 +1,8 @@
+{
+  "name": "organizer-testing",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:organizer", "project:organizer-testing", "public:organizer", "sub-domain:testing", "type:api"],
+  "sourceRoot": "libs/organizer/testing",
+  "prefix": "ngpk"
+}
