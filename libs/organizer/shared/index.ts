@@ -11,3 +11,5 @@ export * from './cash-flow-chart/cash-flow-chart.component';
 export * from './cash-flow-details/cash-flow-details.component';
 export * from './login-form/login-form.component';
 export * from './register-form/register-form.component';
+export * from './board/board.component';
+export * from './board-list/board-list.component';

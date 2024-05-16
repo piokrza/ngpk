@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { Board } from '@ngpk/tasker/model';
-import { TaskerActions } from '@ngpk/tasker/state';
+import { Board } from '@ngpk/organizer/model';
+import { TaskerActions } from '@ngpk/organizer/state/tasker';
 
 export const FeatureKey = 'tasker';
 

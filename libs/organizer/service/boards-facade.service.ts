@@ -7,9 +7,9 @@ import { ConfirmationService } from 'primeng/api';
 import { filter, map } from 'rxjs';
 
 import { OrganizerPaths } from '@ngpk/core/enum';
+import { AddTaskPayload, DeleteTaskPayload, DragDropTaskPayload } from '@ngpk/organizer/model';
 import { AuthSelectors } from '@ngpk/organizer/state/auth';
-import { AddTaskPayload, DeleteTaskPayload, DragDropTaskPayload } from '@ngpk/tasker/model';
-import { TaskerActions, TaskerSelectors } from '@ngpk/tasker/state';
+import { TaskerActions, TaskerSelectors } from '@ngpk/organizer/state/tasker';
 
 @Injectable()
 export class BoardsFacadeService {

@@ -1,4 +1,4 @@
-import { TaskList } from '@ngpk/tasker/model';
+import { TaskList } from '@ngpk/organizer/model';
 
 export interface Board {
   name: string;

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ConfirmDialog, ConfirmDialogModule } from 'primeng/confirmdialog';
 
-import { TaskerRoutingModule } from '@ngpk/tasker/feature';
-import { BoardsFacadeService } from '@ngpk/tasker/service';
+import { TaskerRoutingModule } from '@ngpk/organizer/feature/tasker';
+import { BoardsFacadeService } from '@ngpk/organizer/service';
 
 const imports = [TaskerRoutingModule, ConfirmDialogModule];
 const providers = [BoardsFacadeService, ConfirmDialog];

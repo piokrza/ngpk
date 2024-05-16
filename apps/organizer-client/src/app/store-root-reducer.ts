@@ -5,7 +5,7 @@ import * as fromAuth from '@ngpk/organizer/state/auth';
 import * as fromCashFlow from '@ngpk/organizer/state/cash-flow';
 import * as fromConfig from '@ngpk/organizer/state/config';
 import * as fromDrive from '@ngpk/organizer/state/drive';
-import * as fromTasker from '@ngpk/tasker/state';
+import * as fromTasker from '@ngpk/organizer/state/tasker';
 
 export interface AppState {
   [fromConfig.FeatureKey]: fromConfig.State;

@@ -26,8 +26,8 @@ import { AuthEffects } from '@ngpk/organizer/state/auth';
 import { CashFlowEffects } from '@ngpk/organizer/state/cash-flow';
 import { ConfigEffects } from '@ngpk/organizer/state/config';
 import { DriveEffects } from '@ngpk/organizer/state/drive';
+import { TaskerEffects } from '@ngpk/organizer/state/tasker';
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
-import { TaskerEffects } from '@ngpk/tasker/state';
 
 const interceptors = [httpErrorInterceptor];
 const storeEffects = [ConfigEffects, CashFlowEffects, AuthEffects, DriveEffects, TaskerEffects];

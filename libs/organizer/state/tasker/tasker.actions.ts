@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-import { AddTaskPayload, Board, DeleteTaskPayload, DragDropTaskPayload } from '@ngpk/tasker/model';
-import { ActionTypes } from '@ngpk/tasker/state/action-types';
+import { AddTaskPayload, Board, DeleteTaskPayload, DragDropTaskPayload } from '@ngpk/organizer/model';
+import { ActionTypes } from '@ngpk/organizer/state/tasker/action-types';
 
 export const loadBoards = createAction(ActionTypes.LOAD_BOARDS, props<{ uid: string }>());
 export const loadBoardsSuccess = createAction(ActionTypes.LOAD_BOARDS_SUCCESS, props<{ boards: Board[] }>());

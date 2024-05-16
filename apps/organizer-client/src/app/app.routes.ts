@@ -15,7 +15,7 @@ export const appRoutes: Route[] = [
     canActivate: [AngularFireAuthGuard],
     title: getTitle('tasker'),
     data: { authGuardPipe: () => redirectUnauthorizedTo([OrganizerPaths.AUTHENTICATION]) },
-    loadChildren: async () => (await import('@ngpk/tasker/feature')).TaskerModule,
+    loadChildren: async () => (await import('@ngpk/organizer/feature/tasker')).TaskerModule,
   },
   {
     path: OrganizerPaths.CASH_FLOW,

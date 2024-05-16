@@ -29,7 +29,6 @@
       "@ngpk/search/*": ["libs/search/*"],
       "@ngpk/settings-organizer/*": ["libs/settings-organizer/*"],
       "@ngpk/shared-ui/*": ["libs/shared-ui/*"],
-      "@ngpk/tasker/*": ["libs/tasker/*"],
       "@ngpk/weather/*": ["libs/weather/*"],
       "workspace-plugin": ["tools/workspace-plugin/src/index.ts"]
     },

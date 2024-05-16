@@ -12,8 +12,8 @@ import { AuthActions } from '@ngpk/organizer/state/auth';
 import { CashFlowActions } from '@ngpk/organizer/state/cash-flow';
 import { ConfigActions } from '@ngpk/organizer/state/config';
 import { DriveActions } from '@ngpk/organizer/state/drive';
+import { TaskerActions } from '@ngpk/organizer/state/tasker';
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
-import { TaskerActions } from '@ngpk/tasker/state';
 
 const imports = [RouterModule, OrganizerLayoutComponent];
 
