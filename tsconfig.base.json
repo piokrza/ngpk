@@ -24,7 +24,6 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "@ngpk/auth-organizer/*": ["libs/auth-organizer/*"],
-      "@ngpk/cash-flow/*": ["libs/cash-flow/*"],
       "@ngpk/core/*": ["libs/core/*"],
       "@ngpk/email/*": ["libs/email/*"],
       "@ngpk/organizer/*": ["libs/organizer/*"],

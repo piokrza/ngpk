@@ -5,8 +5,8 @@ import { EMPTY, forkJoin, switchMap } from 'rxjs';
 
 import { AppConfig } from '@ngpk/auth-organizer/config/models';
 import { IUser } from '@ngpk/auth-organizer/model';
-import { Category } from '@ngpk/cash-flow/model';
 import { OrganizerCollection } from '@ngpk/core/enum';
+import { Category } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

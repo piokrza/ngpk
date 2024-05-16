@@ -1,8 +1,0 @@
-{
-  "name": "cash-flow-shared",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:cash-flow", "project:cash-flow-shared", "public:cash-flow", "sub-domain:shared", "type:api"],
-  "sourceRoot": "libs/cash-flow/shared",
-  "prefix": "ngpk"
-}

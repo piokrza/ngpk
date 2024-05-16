@@ -22,9 +22,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { ConfigEffects } from '@ngpk/auth-organizer/config/store';
 import { AuthEffects } from '@ngpk/auth-organizer/state';
-import { CashFlowEffects } from '@ngpk/cash-flow/state';
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
+import { CashFlowEffects } from '@ngpk/organizer/state/cash-flow';
 import { DriveEffects } from '@ngpk/organizer/state/drive';
 import { OrganizerLayoutComponent } from '@ngpk/shared-ui/components';
 import { TaskerEffects } from '@ngpk/tasker/state';
