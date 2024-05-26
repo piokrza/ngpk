@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,12 +14,13 @@ import { AuthService } from '@ngpk/email/service';
 import { LayoutComponent } from '@ngpk/email/shared/components';
 
 const declarations = [AppComponent];
-const imports = [BrowserModule, AppRoutingModule, RouterModule, HttpClientModule, BrowserAnimationsModule, LayoutComponent];
+const imports = [RouterModule, BrowserModule, LayoutComponent, AppRoutingModule, BrowserAnimationsModule];
 const providers = [
   { provide: Environment, useValue: environment },
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   AuthService,
   MessageService,
+  provideHttpClient(withInterceptorsFromDi()),
 ];
 
 @NgModule({ declarations, imports, providers, bootstrap: [AppComponent] })
