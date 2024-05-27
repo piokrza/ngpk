@@ -8,13 +8,15 @@
           }
         </h1>
 
-        <p-button
-          class="sidebar-btn"
-          size="large"
-          [text]="true"
-          [rounded]="true"
-          [icon]="PrimeIcons.BARS"
-          (onClick)="sidebarVisible.set(true)" />
+        @if (state.user) {
+          <p-button
+            class="sidebar-btn"
+            size="large"
+            [text]="true"
+            [rounded]="true"
+            [icon]="PrimeIcons.BARS"
+            (onClick)="sidebarVisible.set(true)" />
+        }
       </div>
 
       <main class="overflow-x-hidden">
@@ -23,44 +25,49 @@
     </div>
   </ngpk-container>
 
-  <p-sidebar position="right" styleClass="w-24rem" [(visible)]="sidebarVisible">
-    <ng-template pTemplate="header">
-      @if (state.user) {
-        <div class="flex justify-content-center align-items-center gap-3">
-          <img [src]="state.user.photoURL" class="border-circle h-3rem w-3rem" alt="userImg" />
-          <div>
-            <p class="my-0 font-semibold">{{ state.user.displayName }}</p>
-            <small>{{ state.user.email }}</small>
-          </div>
-        </div>
-      }
-    </ng-template>
-
-    <div class="h-full flex flex-column justify-content-between">
-      <div>
+  @if (state.user) {
+    <p-sidebar position="right" styleClass="w-24rem" [(visible)]="sidebarVisible">
+      <ng-template pTemplate="header">
         @if (state.user) {
-          <ngpk-weather-widget />
+          <div class="flex justify-content-center align-items-center gap-3">
+            <img [src]="state.user.photoURL" class="border-circle h-3rem w-3rem" alt="userImg" />
+            <div>
+              <p class="my-0 font-semibold">{{ state.user.displayName }}</p>
+              <small>{{ state.user.email }}</small>
+            </div>
+          </div>
         }
+      </ng-template>
 
-        <ul class="sidebar__list">
-          @for (link of state.links; track $index) {
-            <li
-              routerLinkActive="active"
-              class="sidebar__link"
-              [routerLinkActiveOptions]="{ exact: true }"
-              (click)="sidebarVisible.set(false)">
-              <a [routerLink]="link.routerLink" class="block p-3">
-                <i [class]="link.icon + ' mr-2'"></i>
-                {{ link.label ?? '' | translate }}
-              </a>
-            </li>
+      <div class="h-full flex flex-column justify-content-between">
+        <div>
+          @if (state.user) {
+            <ngpk-weather-widget />
           }
-        </ul>
-      </div>
 
-      <p-button styleClass="w-full mt-3" [label]="'auth.' + (state.user ? 'signout' : 'loginLabel') | translate" (onClick)="authorize()" />
-    </div>
-  </p-sidebar>
+          <ul class="sidebar__list">
+            @for (link of state.links; track $index) {
+              <li
+                routerLinkActive="active"
+                class="sidebar__link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="sidebarVisible.set(false)">
+                <a [routerLink]="link.routerLink" class="block p-3">
+                  <i [class]="link.icon + ' mr-2'"></i>
+                  {{ link.label ?? '' | translate }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <p-button
+          styleClass="w-full mt-3"
+          [label]="'auth.' + (state.user ? 'signout' : 'loginLabel') | translate"
+          (onClick)="authorize()" />
+      </div>
+    </p-sidebar>
+  }
 </div>
 
 <p-toast position="top-right" />
