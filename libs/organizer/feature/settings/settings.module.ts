@@ -1,38 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
-import { ButtonModule } from 'primeng/button';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { InputTextModule } from 'primeng/inputtext';
-import { ToggleButtonModule } from 'primeng/togglebutton';
 
-import { SettingsRoutingModule } from '@ngpk/organizer/feature/settings';
 import {
   AccountSettingsComponent,
   AccountSettingsFormComponent,
   LanguageTogglerComponent,
   PanelComponent,
   ThemeTogglerComponent,
-} from '@ngpk/organizer/shared';
+} from '@ngpk/organizer/component/settings';
+import { SettingsRoutingModule } from '@ngpk/organizer/feature/settings';
 import { ContainerComponent } from '@ngpk/shared-ui/components';
 
-const declarations = [ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];
 const imports = [
   CommonModule,
-  SettingsRoutingModule,
-  FormsModule,
+  PanelComponent,
   ContainerComponent,
-  DynamicDialogModule,
-  ButtonModule,
-  ReactiveFormsModule,
-  InputTextModule,
-  InputNumberModule,
+  ThemeTogglerComponent,
+  SettingsRoutingModule,
+  AccountSettingsComponent,
   LanguageTogglerComponent,
-  TranslateModule,
-  ToggleButtonModule,
+  AccountSettingsFormComponent,
 ];
 
-@NgModule({ declarations, imports })
+@NgModule({ imports })
 export class SettingsModule {}

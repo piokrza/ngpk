@@ -19,13 +19,6 @@ export class OrganizerMenuService {
   private setMenuLinks(isLoggedIn: boolean): MenuItem[] {
     return [
       {
-        label: 'menu.home',
-        routerLink: '',
-        icon: PrimeIcons.FOLDER,
-        visible: this.environment.featureFlags['home'],
-        state: { isVisible: true },
-      },
-      {
         label: 'menu.tasker',
         routerLink: OrganizerPaths.TASKER,
         icon: PrimeIcons.SIGN_IN,

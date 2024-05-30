@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PanelComponent } from '@ngpk/organizer/component/settings';
 import { OrganizerPathFragment } from '@ngpk/organizer/enum';
-import { AccountSettingsFormComponent, PanelComponent } from '@ngpk/organizer/shared';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: OrganizerPathFragment.EDIT_PROFILE,
-    component: AccountSettingsFormComponent,
+    loadComponent: async () => (await import('@ngpk/organizer/component/settings')).AccountSettingsFormComponent,
   },
 ];
 

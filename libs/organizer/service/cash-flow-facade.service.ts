@@ -8,14 +8,14 @@ import { PaginatorState } from 'primeng/paginator';
 import { Observable, combineLatestWith, map, tap } from 'rxjs';
 
 import { baseDialogStyles } from '@ngpk/core/constant';
+import { AddFormComponent, UpdateFormComponent } from '@ngpk/organizer/component/cash-flow';
 import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { CashFlow, CashFlowData, Category, CategoryType } from '@ngpk/organizer/model';
 import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } from '@ngpk/organizer/service';
-import { AddFormComponent, UpdateFormComponent } from '@ngpk/organizer/shared';
 import { CashFlowActions, CashFlowSelectors } from '@ngpk/organizer/state/cash-flow';
 import { ConfigSelectors } from '@ngpk/organizer/state/config';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class CashFlowFacadeService {
   private readonly store = inject(Store);
   private readonly router = inject(Router);

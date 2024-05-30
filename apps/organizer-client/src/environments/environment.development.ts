@@ -16,7 +16,6 @@ class EnvironmentImpl implements Environment {
     settings: true,
     tasker: true,
     overview: true,
-    home: true,
     pageNotFound: true,
     auth: true,
   };

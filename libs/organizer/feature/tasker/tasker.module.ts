@@ -1,10 +1,22 @@
 import { NgModule } from '@angular/core';
-import { ConfirmDialog, ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RouterModule, Routes } from '@angular/router';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
-import { TaskerRoutingModule } from '@ngpk/organizer/feature/tasker';
+import { OrganizerPathFragment } from '@ngpk/organizer/enum';
 import { BoardsFacadeService } from '@ngpk/organizer/service';
 
-const imports = [TaskerRoutingModule, ConfirmDialogModule];
+const routes: Routes = [
+  {
+    path: '',
+    loadComponent: async () => (await import('@ngpk/organizer/component/tasker')).BoardListComponent,
+  },
+  {
+    path: OrganizerPathFragment.ID,
+    loadComponent: async () => (await import('@ngpk/organizer/component/tasker')).BoardComponent,
+  },
+];
+
+const imports = [RouterModule.forChild(routes)];
 const providers = [BoardsFacadeService, ConfirmDialog];
 
 @NgModule({ imports, providers })

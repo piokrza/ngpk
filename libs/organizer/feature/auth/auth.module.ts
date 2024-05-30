@@ -1,19 +1,24 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AuthApiService } from '@ngpk/organizer/api';
-import { AuthRoutingModule, AuthComponent } from '@ngpk/organizer/feature/auth';
+import { AuthPaths } from '@ngpk/organizer/enum';
 import { AuthFormService } from '@ngpk/organizer/service';
-import { LoginFormComponent, RegisterFormComponent } from '@ngpk/organizer/shared';
 
-const declarations = [AuthComponent, LoginFormComponent, RegisterFormComponent];
-const imports = [CommonModule, AuthRoutingModule, ReactiveFormsModule, InputTextModule, ButtonModule, PasswordModule, TranslateModule];
+const routes: Routes = [
+  {
+    path: '',
+    loadComponent: async () => (await import('@ngpk/organizer/component/auth')).AuthViewComponent,
+    children: [
+      { path: '', redirectTo: AuthPaths.LOGIN, pathMatch: 'full' },
+      { path: AuthPaths.LOGIN, loadComponent: async () => (await import('@ngpk/organizer/component/auth')).LoginFormComponent },
+      { path: AuthPaths.REGISTER, loadComponent: async () => (await import('@ngpk/organizer/component/auth')).RegisterFormComponent },
+    ],
+  },
+];
+
+const imports = [RouterModule.forChild(routes)];
 const providers = [AuthFormService, AuthApiService];
 
-@NgModule({ declarations, imports, providers })
+@NgModule({ imports, providers })
 export class AuthModule {}
