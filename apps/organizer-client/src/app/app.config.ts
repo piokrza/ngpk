@@ -1,4 +1,4 @@
-import { STORE_ROOT_REDUCERS, appRoutes } from '.';
+import { appRoutes } from '.';
 import { DatePipe } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
@@ -23,6 +23,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
 import { LayoutComponent } from '@ngpk/organizer/component/shared';
+import { STORE_ROOT_REDUCERS } from '@ngpk/organizer/state';
 import { AuthEffects } from '@ngpk/organizer/state/auth';
 import { CashFlowEffects } from '@ngpk/organizer/state/cash-flow';
 import { ConfigEffects } from '@ngpk/organizer/state/config';
