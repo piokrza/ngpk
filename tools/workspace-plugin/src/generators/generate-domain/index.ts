@@ -32,7 +32,7 @@ export const domainLibs = [
     pathAlias: 'single',
   },
   {
-    lib: 'shared',
+    lib: 'component',
     pathAlias: 'single',
   },
   {
@@ -113,6 +113,6 @@ const LIB_SETUP: Record<
   service: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
   constant: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
   feature: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
-  shared: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
+  component: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
   testing: (tree, { schema, lib, domainRoot, libraryRoot, projectName }) => {},
 };

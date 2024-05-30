@@ -17,7 +17,6 @@ class EnvironmentImpl implements Environment {
     tasker: true,
     overview: true,
     auth: true,
-    home: true,
     pageNotFound: true,
   };
   uploadUrl = 'https://www.primefaces.org/cdn/api/upload.php';

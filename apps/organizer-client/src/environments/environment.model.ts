@@ -14,7 +14,6 @@ export interface FeatureFlags {
   settings: boolean;
   tasker: boolean;
   overview: boolean;
-  home: boolean;
   pageNotFound: boolean;
   auth: boolean;
 }

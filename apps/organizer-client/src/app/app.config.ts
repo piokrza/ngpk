@@ -22,7 +22,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 
 import { httpErrorInterceptor } from '@ngpk/core/interceptor';
 import { CustomTranslateHttpLoader, initializeTranslations } from '@ngpk/core/util';
-import { LayoutComponent } from '@ngpk/organizer/shared';
+import { LayoutComponent } from '@ngpk/organizer/component/shared';
 import { AuthEffects } from '@ngpk/organizer/state/auth';
 import { CashFlowEffects } from '@ngpk/organizer/state/cash-flow';
 import { ConfigEffects } from '@ngpk/organizer/state/config';

@@ -32,6 +32,7 @@
     "editNoteError": "Something went wrong during note edit",
     "loginSuccess": "Successfully logged in",
     "logoutSuccess": "Successfully logged out",
+    "addIncomeSuccess": "Income successfully added",
     "addBoardSuccess": "Board added",
     "deleteBoardSuccess": "Board deleted"
   },

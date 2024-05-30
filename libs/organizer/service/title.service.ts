@@ -24,7 +24,6 @@ export class TitleService {
   }
 
   private handleTitle(url: string): void {
-    if (!url.length) this.setTitle('home');
     if (url.includes(OrganizerPaths.DRIVE)) this.setTitle('drive');
     if (url.includes(OrganizerPaths.TASKER)) this.setTitle('tasker');
     if (url.includes(OrganizerPaths.SETTINGS)) this.setTitle('settings');

@@ -1,38 +1,20 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
-import { ButtonModule } from 'primeng/button';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { InputTextModule } from 'primeng/inputtext';
-import { ToggleButtonModule } from 'primeng/togglebutton';
+import { RouterModule, Routes } from '@angular/router';
 
-import { SettingsRoutingModule } from '@ngpk/organizer/feature/settings';
-import {
-  AccountSettingsComponent,
-  AccountSettingsFormComponent,
-  LanguageTogglerComponent,
-  PanelComponent,
-  ThemeTogglerComponent,
-} from '@ngpk/organizer/shared';
-import { ContainerComponent } from '@ngpk/shared-ui/components';
+import { OrganizerPathFragment } from '@ngpk/organizer/enum';
 
-const declarations = [ThemeTogglerComponent, AccountSettingsComponent, AccountSettingsFormComponent, PanelComponent];
-const imports = [
-  CommonModule,
-  SettingsRoutingModule,
-  FormsModule,
-  ContainerComponent,
-  DynamicDialogModule,
-  ButtonModule,
-  ReactiveFormsModule,
-  InputTextModule,
-  InputNumberModule,
-  LanguageTogglerComponent,
-  TranslateModule,
-  ToggleButtonModule,
+const routes: Routes = [
+  {
+    path: '',
+    loadComponent: async () => (await import('@ngpk/organizer/component/settings')).PanelComponent,
+  },
+  {
+    path: OrganizerPathFragment.EDIT_PROFILE,
+    loadComponent: async () => (await import('@ngpk/organizer/component/settings')).AccountSettingsFormComponent,
+  },
 ];
 
-@NgModule({ declarations, imports })
+const imports = [RouterModule.forChild(routes)];
+
+@NgModule({ imports })
 export class SettingsModule {}
