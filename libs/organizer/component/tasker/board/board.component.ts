@@ -1,5 +1,6 @@
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -21,13 +22,15 @@ const imports = [TranslateModule, DragDropModule, ButtonModule, ContainerCompone
 })
 export class BoardComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly boardsFacadeService = inject(BoardsFacadeService);
 
-  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly state = connectState(this.destroyRef, this.boardsFacadeService.boardState);
 
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
+
   ngOnInit(): void {
-    if (!this.state.board) this.boardsFacadeService.navigateToTaskerPage();
+    this.boardsFacadeService.getActiveBoard(this.activatedRoute.snapshot.paramMap.get('id'));
   }
 
   onDrop(event: CdkDragDrop<string>): void {

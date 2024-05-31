@@ -79,8 +79,13 @@ export class BoardsFacadeService {
     this.store.dispatch(TaskerActions.dragDropTask({ payload }));
   }
 
-  navigateToTaskerPage(): void {
-    this.router.navigate([OrganizerPaths.TASKER]);
+  getActiveBoard(boardId: string | null): void {
+    if (!boardId) {
+      this.router.navigate([OrganizerPaths.TASKER]);
+      return;
+    }
+
+    this.store.dispatch(TaskerActions.setActiveBoard({ id: boardId }));
   }
 
   navigateBack(): void {
