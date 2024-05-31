@@ -3,8 +3,8 @@
     <div class="wrapper">
       <div class="flex justify-content-between align-items-center mb-4">
         <h1>
-          @if (state.isTitleVisible) {
-            {{ state.title | translate }}
+          @if (title().length) {
+            {{ title() | translate }}
           }
         </h1>
 

@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Environment } from 'apps/organizer-client/src/environments';
-import { BehaviorSubject, Observable, filter, tap } from 'rxjs';
+import { filter, tap } from 'rxjs';
 
 import { OrganizerPaths } from '@ngpk/organizer/enum';
 
@@ -11,16 +11,16 @@ export class TitleService {
     this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-        tap((event) => this.handleTitle(event.url))
+        tap(({ url, urlAfterRedirects }) => this.handleTitle(url === '/' ? urlAfterRedirects : url))
       )
       .subscribe();
   }
 
-  private readonly title$$ = new BehaviorSubject<string>('');
-  readonly title$: Observable<string> = this.title$$.asObservable();
+  readonly #title = signal<string>('');
+  readonly title: Signal<string> = this.#title.asReadonly();
 
   private setTitle(title: keyof Environment['featureFlags']): void {
-    this.title$$.next(`menu.${title}`);
+    this.#title.set(`menu.${title}`);
   }
 
   private handleTitle(url: string): void {

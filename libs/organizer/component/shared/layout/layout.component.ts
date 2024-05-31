@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, Signal, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
@@ -8,7 +8,6 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
-import { Observable, filter, map } from 'rxjs';
 
 import { connectState } from '@ngpk/core/util';
 import { OrganizerPaths } from '@ngpk/organizer/enum';
@@ -48,9 +47,9 @@ export class LayoutComponent {
   readonly state = connectState(this.destroyRef, {
     user: this.store.select(AuthSelectors.user),
     links: this.organizerMenuService.links$,
-    title: this.titleService.title$,
-    isTitleVisible: this.isTitleVisible$,
   });
+
+  readonly title: Signal<string> = this.titleService.title;
 
   readonly sidebarVisible = signal(false);
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
@@ -67,12 +66,5 @@ export class LayoutComponent {
     }
 
     this.sidebarVisible.set(false);
-  }
-
-  get isTitleVisible$(): Observable<boolean> {
-    return this.router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map(({ url }) => !(url.includes(OrganizerPaths.AUTHENTICATION) || url === '/'))
-    );
   }
 }
