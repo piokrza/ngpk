@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PaginatorState } from 'primeng/paginator';
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 
-import { cashFlowActiveTabIndex } from '@ngpk/core/constant';
+import { cashFlowActiveTabIndex } from '@ngpk/organizer/constant';
 import { CashFlow, CashFlowData, CashFlowForm } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })

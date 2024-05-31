@@ -7,7 +7,7 @@ import { ObservableDictionary } from '@ngpk/core/model';
 
 export type StateObject<T = unknown> = Readonly<T> & object;
 
-export function connectState<T>(destroyRef: DestroyRef, sourceObject: ObservableDictionary<T>) {
+export function connectState<T>(destroyRef: DestroyRef, sourceObject: ObservableDictionary<T>): StateObject<T> {
   const cdRef = inject(ChangeDetectorRef);
 
   const stateObject = {} as StateObject<T>;

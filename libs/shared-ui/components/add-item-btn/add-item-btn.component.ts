@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output, WritableSignal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, Signal, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { PrimeIcons } from 'primeng/api';
@@ -20,19 +20,21 @@ const imports = [TranslateModule, ContainerComponent, ReactiveFormsModule, Input
 export class AddItemBtnComponent {
   @Output() itemNameSubmit = new EventEmitter<string>();
 
+  readonly #isEditing = signal<boolean>(false);
+  readonly isEditing: Signal<boolean> = this.#isEditing.asReadonly();
+
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  readonly isEditing: WritableSignal<boolean> = signal<boolean>(false);
   readonly boardNameControl = new FormControl<string>('', { nonNullable: true });
 
   emitItemName(): void {
     if (!this.boardNameControl.value.length) return;
 
     this.itemNameSubmit.emit(this.boardNameControl.value);
-    this.isEditing.set(false);
+    this.#isEditing.set(false);
   }
 
   setIsEditing(isEditing: boolean): void {
-    this.isEditing.set(isEditing);
+    this.#isEditing.set(isEditing);
     !isEditing && this.boardNameControl.setValue('');
   }
 }

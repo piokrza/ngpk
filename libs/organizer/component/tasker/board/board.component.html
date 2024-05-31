@@ -1,7 +1,10 @@
 @if (state.board) {
-  <div class="flex justify-content-between align-items-center">
+  <div class="flex align-items-center gap-3">
     <p-button size="large" [icon]="PrimeIcons.ARROW_LEFT" [text]="true" [rounded]="true" (onClick)="navigateBack()" />
-    <p-button size="large" severity="danger" [icon]="PrimeIcons.TRASH" [text]="true" [rounded]="true" (onClick)="deleteBoard()" />
+    <div class="flex align-items-center gap-1">
+      <p class="text-2xl">{{ state.board.name }}</p>
+      <p-button size="large" severity="danger" [icon]="PrimeIcons.TRASH" [text]="true" [rounded]="true" (onClick)="deleteBoard()" />
+    </div>
   </div>
 
   <div cdkDropListGroup class="flex gap-4 overflow-x-scroll mt-6">
