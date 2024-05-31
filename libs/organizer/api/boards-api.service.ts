@@ -64,11 +64,11 @@ export class BoardsApiService {
 
   deleteTask$(payload: DeleteTaskPayload): Observable<void> {
     const boardRef = this.getBoardById(payload.boardId);
-    return boardRef
-      .get()
-      .pipe(
-        switchMap((boardData) => boardRef.update({ tasksLists: this.deleteTaskFromTaskList(boardData.data()?.tasksLists ?? [], payload) }))
-      );
+    return boardRef.get().pipe(
+      switchMap((boardData) => {
+        return boardRef.update({ tasksLists: this.deleteTaskFromTaskList(boardData.data()?.tasksLists ?? [], payload) });
+      })
+    );
   }
 
   dragDropTask$(payload: DragDropTaskPayload) {

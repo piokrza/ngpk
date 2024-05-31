@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
+import { DEFAULT_NGPK_ANGULAR_LIB_OPTIONS, type NgPkAngularLibrarySchema } from './schema';
+import { getDomainProjectName, getRelativeRoot } from '../../utils';
+import addTypeCheck from '../add-type-check';
 import { libraryGenerator, UnitTestRunner } from '@nx/angular/generators';
 import { formatFiles, readJson, readProjectConfiguration, writeJson } from '@nx/devkit';
 import type { Tree } from 'nx/src/devkit-exports';
 
-import { getDomainProjectName, getRelativeRoot } from '../../utils';
-import addTypeCheck from '../add-type-check';
-import { DEFAULT_NGPK_ANGULAR_LIB_OPTIONS, type NgPkAngularLibrarySchema } from './schema';
 
 export default async function (tree: Tree, schema: NgPkAngularLibrarySchema) {
   await generateAngularLibrary(tree, {
@@ -17,6 +17,7 @@ export default async function (tree: Tree, schema: NgPkAngularLibrarySchema) {
   await sanitizeTsConfigs(tree, schema);
   //   await addLintChanged(tree, { name: getDomainProjectName(schema) });
   await adjustESLint(tree, schema);
+  await adjustTsConfig(tree, schema);
   await formatFiles(tree);
 
   return () => {};
@@ -71,16 +72,7 @@ async function setupUnitTests(tree: Tree, schema: NgPkAngularLibrarySchema) {
         `
   );
 
-  tree.write(
-    `${libraryRoot}/src/test-setup.ts`,
-    `
-        /* eslint-disable */
-        // Don't change the order {
-        import 'jest-plugin-must-assert';
-        import 'jest-preset-angular/setup-jest';
-        // }
-        `
-  );
+  tree.write(`${libraryRoot}/src/test-setup.ts`, 'import "jest-preset-angular/setup-jest";');
 
   const tsconfigSpec = readJson(tree, `${libraryRoot}/tsconfig.spec.json`);
   tsconfigSpec.include = tsconfigSpec.include
@@ -125,5 +117,14 @@ async function adjustESLint(tree: Tree, schema: NgPkAngularLibrarySchema) {
   eslint.overrides[0].extends = ['plugin:@nrwl/nx/angular', 'plugin:@angular-eslint/template/process-inline-templates'];
   eslint.overrides[0].rules['@typescript-eslint/no-non-null-assertion'] = 'warn';
   eslint.overrides[0].rules['no-restricted-syntax'] = 'off';
+  eslint.ignorePatterns = ['!**/*', '**/*.spec.ts'];
   writeJson(tree, `${libraryRoot}/.eslintrc.json`, eslint);
+}
+
+async function adjustTsConfig(tree: Tree, schema: NgPkAngularLibrarySchema) {
+  const libraryRoot = readProjectConfiguration(tree, getDomainProjectName(schema)).root;
+  const tsConfig = readJson(tree, `${libraryRoot}/tsconfig.json`);
+
+  tsConfig.extends = '../../tsconfig.json';
+  writeJson(tree, `${libraryRoot}/tsconfig.json`, tsConfig);
 }
