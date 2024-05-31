@@ -10,7 +10,6 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { tap } from 'rxjs';
 
 import { StateObject, connectState } from '@ngpk/core/util';
-import { ContainerComponent } from '@ngpk/shared-ui/components';
 import { WeatherApiService } from '@ngpk/weather/api';
 import { isWidgetOpen } from '@ngpk/weather/constant';
 import { WeatherStateModel } from '@ngpk/weather/model';
@@ -27,7 +26,6 @@ const imports = [
   InputTextModule,
   TranslateModule,
   DetailsComponent,
-  ContainerComponent,
   ReactiveFormsModule,
 ];
 const providers = [WeatherFacadeService, WeatherApiService, WeatherState];

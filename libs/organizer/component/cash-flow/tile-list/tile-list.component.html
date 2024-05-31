@@ -21,19 +21,17 @@
       @for (item of cashFlowList; track item.id) {
         <li>
           <ngpk-tile
-            [isIncomeMode]="isIncomeMode"
             [details]="item"
+            [isIncomeMode]="isIncomeMode"
             (removeCashFlow)="removeCashFlow.emit($event)"
             (updateCashFlow)="updateCashFlow.emit($event)" />
         </li>
       }
     }
     <li class="max-w-19rem">
-      <ngpk-container
-        [styleClass]="['h-full', 'hover', 'flex', 'justify-content-center', 'align-items-center']"
-        (click)="addCashFlow.emit(isIncomeMode)">
+      <div class="section-wrapper h-full hover flex justify-content-center align-items-center" (click)="addCashFlow.emit(isIncomeMode)">
         <i [class]="PrimeIcons.PLUS"></i>
-      </ngpk-container>
+      </div>
     </li>
   </ul>
 }

@@ -7,9 +7,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { TileComponent } from '@ngpk/organizer/component/cash-flow';
 import { CashFlow, Category } from '@ngpk/organizer/model';
-import { ContainerComponent } from '@ngpk/shared-ui/components';
 
-const imports = [TranslateModule, MultiSelectModule, ButtonModule, TileComponent, ContainerComponent, ProgressSpinnerModule];
+const imports = [TranslateModule, MultiSelectModule, ButtonModule, TileComponent, ProgressSpinnerModule];
 
 @Component({
   selector: 'ngpk-tile-list',

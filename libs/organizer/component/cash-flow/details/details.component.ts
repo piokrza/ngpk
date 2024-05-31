@@ -14,9 +14,8 @@ import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { CashFlow, Category } from '@ngpk/organizer/model';
 import { CashFlowFacadeService } from '@ngpk/organizer/service';
 import { ConfigSelectors } from '@ngpk/organizer/state/config';
-import { ContainerComponent } from '@ngpk/shared-ui/components';
 
-const imports = [TranslateModule, AsyncPipe, TimestampPipe, ContainerComponent, ButtonModule];
+const imports = [TranslateModule, AsyncPipe, TimestampPipe, ButtonModule];
 
 @Component({
   selector: 'ngpk-details',

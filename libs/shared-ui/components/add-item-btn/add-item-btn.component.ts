@@ -5,9 +5,7 @@ import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { ContainerComponent } from '@ngpk/shared-ui/components';
-
-const imports = [TranslateModule, ContainerComponent, ReactiveFormsModule, InputTextModule, ButtonModule];
+const imports = [TranslateModule, ReactiveFormsModule, InputTextModule, ButtonModule];
 
 @Component({
   selector: 'ngpk-add-item-btn',

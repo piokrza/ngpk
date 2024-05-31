@@ -9,9 +9,8 @@ import { Observable } from 'rxjs';
 import { LabeledData } from '@ngpk/core/model';
 import { CashFlowDataSet } from '@ngpk/organizer/model';
 import { ConfigSelectors } from '@ngpk/organizer/state/config';
-import { ContainerComponent } from '@ngpk/shared-ui/components';
 
-const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, ContainerComponent, AsyncPipe];
+const imports = [CardModule, NgClass, RouterLink, TranslateModule, DecimalPipe, AsyncPipe];
 
 @Component({
   selector: 'ngpk-cards',

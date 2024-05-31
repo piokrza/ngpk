@@ -14,7 +14,6 @@ import { connectState } from '@ngpk/core/util';
 import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { OrganizerMenuService, TitleService } from '@ngpk/organizer/service';
 import { AuthActions, AuthSelectors } from '@ngpk/organizer/state/auth';
-import { ContainerComponent } from '@ngpk/shared-ui/components';
 import { WeatherWidgetComponent } from '@ngpk/weather/feature';
 
 const imports = [
@@ -25,7 +24,6 @@ const imports = [
   SidebarModule,
   TranslateModule,
   RouterLinkActive,
-  ContainerComponent,
   ConfirmDialogModule,
   WeatherWidgetComponent,
 ];

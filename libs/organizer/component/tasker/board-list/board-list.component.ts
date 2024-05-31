@@ -5,9 +5,9 @@ import { TooltipModule } from 'primeng/tooltip';
 
 import { connectState } from '@ngpk/core/util';
 import { BoardsFacadeService } from '@ngpk/organizer/service';
-import { ContainerComponent, AddItemBtnComponent } from '@ngpk/shared-ui/components';
+import { AddItemBtnComponent } from '@ngpk/shared-ui/components';
 
-const imports = [ContainerComponent, TranslateModule, AddItemBtnComponent, TooltipModule];
+const imports = [TranslateModule, AddItemBtnComponent, TooltipModule];
 
 @Component({
   selector: 'ngpk-board-list',

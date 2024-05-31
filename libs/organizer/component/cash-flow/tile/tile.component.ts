@@ -7,9 +7,8 @@ import { TimestampPipe } from '@ngpk/core/pipe';
 import { DetailsBoxComponent } from '@ngpk/organizer/component/cash-flow';
 import { OrganizerPaths, OrganizerPathFragment } from '@ngpk/organizer/enum';
 import { CashFlow } from '@ngpk/organizer/model';
-import { ContainerComponent } from '@ngpk/shared-ui/components';
 
-const imports = [TitleCasePipe, DetailsBoxComponent, ContainerComponent, TimestampPipe];
+const imports = [TitleCasePipe, DetailsBoxComponent, TimestampPipe];
 
 @Component({
   selector: 'ngpk-tile',

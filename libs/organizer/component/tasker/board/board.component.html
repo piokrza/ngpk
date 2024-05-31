@@ -9,7 +9,7 @@
 
   <div cdkDropListGroup class="flex gap-4 overflow-x-scroll mt-6">
     @for (taskList of state.board.tasksLists; track taskList.id) {
-      <ngpk-container>
+      <div class="section-wrapper">
         <div class="container">
           <div class="flex justify-content-between align-items-center">
             <h2 class="my-2">{{ taskList.name }}</h2>
@@ -24,7 +24,7 @@
 
           <div cdkDropList class="list mt-5" [cdkDropListData]="taskList.id" (cdkDropListDropped)="onDrop($event)">
             @for (task of taskList.tasks; track task.id) {
-              <ngpk-container cdkDrag [cdkDragData]="task" [styleClass]="['mb-3']">
+              <div cdkDrag [cdkDragData]="task" class="section-wrapper mb-3">
                 <div class="flex justify-content-between align-items-center">
                   <span> {{ task.name }}</span>
                   <p-button
@@ -35,7 +35,7 @@
                     [rounded]="true"
                     (onClick)="deleteTask(task.id, taskList.id)" />
                 </div>
-              </ngpk-container>
+              </div>
             }
 
             <ngpk-add-item-btn (itemNameSubmit)="addTask($event, taskList.id)">
@@ -46,7 +46,7 @@
             </ngpk-add-item-btn>
           </div>
         </div>
-      </ngpk-container>
+      </div>
     }
 
     <div class="container">

@@ -8,9 +8,8 @@ import { Nullable } from 'primeng/ts-helpers';
 import { Observable } from 'rxjs';
 
 import { ConfigSelectors } from '@ngpk/organizer/state/config';
-import { ContainerComponent } from '@ngpk/shared-ui/components';
 
-const imports = [ChartModule, ContainerComponent, TranslateModule, AsyncPipe];
+const imports = [ChartModule, TranslateModule, AsyncPipe];
 
 @Component({
   selector: 'ngpk-chart',
