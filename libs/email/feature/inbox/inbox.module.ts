@@ -4,8 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { InboxApi } from '@ngpk/email/api';
-import { InboxRoutingModule } from '@ngpk/email/feature/inbox';
-import { EmailService } from '@ngpk/email/service';
 import {
   HomeComponent,
   EmailCreateComponent,
@@ -13,7 +11,9 @@ import {
   EmailReplyComponent,
   EmailShowComponent,
   PlaceholderComponent,
-} from '@ngpk/email/shared/components';
+} from '@ngpk/email/component/inbox';
+import { InboxRoutingModule } from '@ngpk/email/feature/inbox';
+import { EmailService } from '@ngpk/email/service';
 import { InboxStateService } from '@ngpk/email/state/inbox';
 
 const imports = [

@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 export abstract class FormBase {
   #form!: FormGroup<any>;
-  readonly #fb: FormBuilder = inject(FormBuilder);
-  readonly #form$: BehaviorSubject<FormGroup<any>> = new BehaviorSubject<FormGroup<any>>(this.#form);
+  readonly #fb = inject(FormBuilder);
+  readonly #form$ = new BehaviorSubject<FormGroup<any>>(this.#form);
 
   protected customValidators = {};
   abstract get config(): any;

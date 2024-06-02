@@ -9,9 +9,9 @@ import { Environment } from 'apps/email-client/src/environments';
 import { environment } from 'apps/email-client/src/environments/environment';
 import { MessageService } from 'primeng/api';
 
+import { LayoutComponent } from '@ngpk/email/component/shared';
 import { AuthInterceptor } from '@ngpk/email/interceptor';
 import { AuthService } from '@ngpk/email/service';
-import { LayoutComponent } from '@ngpk/email/shared/components';
 
 const declarations = [AppComponent];
 const imports = [RouterModule, BrowserModule, LayoutComponent, AppRoutingModule, BrowserAnimationsModule];
