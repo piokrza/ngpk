@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { DateFormats } from '@ngpk/core/enum';
 import { TimestampPipe } from '@ngpk/core/pipe';
 import { DetailsBoxComponent } from '@ngpk/organizer/component/cash-flow';
-import { OrganizerPaths, OrganizerPathFragment } from '@ngpk/organizer/enum';
+import { OrganizerPaths, PathFragment } from '@ngpk/organizer/enum';
 import { CashFlow } from '@ngpk/organizer/model';
 
 const imports = [TitleCasePipe, DetailsBoxComponent, TimestampPipe];
@@ -30,6 +30,6 @@ export class TileComponent {
   readonly DateFormats: typeof DateFormats = DateFormats;
 
   navigateToDetails(): void {
-    this.router.navigate([OrganizerPaths.CASH_FLOW, OrganizerPathFragment.DETAILS, this.details.id]);
+    this.router.navigate([OrganizerPaths.CASH_FLOW, PathFragment.DETAILS, this.details.id]);
   }
 }

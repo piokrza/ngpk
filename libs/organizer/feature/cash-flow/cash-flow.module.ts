@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { OrganizerPathFragment } from '@ngpk/organizer/enum';
+import { PathFragment } from '@ngpk/organizer/enum';
 import { CashFlowFacadeService, CashFlowFilterService, CashFlowPaginationService, OverviewService } from '@ngpk/organizer/service';
 
 const routes: Routes = [
@@ -10,7 +10,7 @@ const routes: Routes = [
     loadComponent: async () => (await import('@ngpk/organizer/component/cash-flow')).CashFlowViewComponent,
   },
   {
-    path: `${OrganizerPathFragment.DETAILS}/${OrganizerPathFragment.ID}`,
+    path: `${PathFragment.DETAILS}/${PathFragment.ID}`,
     loadComponent: async () => (await import('@ngpk/organizer/component/cash-flow')).DetailsComponent,
   },
 ];

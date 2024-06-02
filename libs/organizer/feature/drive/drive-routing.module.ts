@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { OrganizerPathFragment } from '@ngpk/organizer/enum';
+import { PathFragment } from '@ngpk/organizer/enum';
 
 const routes: Routes = [
   {
@@ -9,7 +9,7 @@ const routes: Routes = [
     loadComponent: async () => (await import('@ngpk/organizer/component/drive')).DriveComponent,
   },
   {
-    path: OrganizerPathFragment.ID,
+    path: PathFragment.ID,
     loadComponent: async () => (await import('@ngpk/organizer/component/drive')).DriveComponent,
   },
 ];

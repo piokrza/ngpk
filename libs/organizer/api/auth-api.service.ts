@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
 import { filter, Observable } from 'rxjs';
 
-import { OrganizerCollection } from '@ngpk/organizer/enum';
+import { Collection } from '@ngpk/organizer/enum';
 import { AuthFormPayload, IUser } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })
@@ -30,7 +30,7 @@ export class AuthApiService {
   }
 
   loadUserData$(uid: string): Observable<IUser> {
-    return this.angularFirestore.doc<IUser>(`${OrganizerCollection.USERS}/${uid}`).valueChanges().pipe(filter(Boolean));
+    return this.angularFirestore.doc<IUser>(`${Collection.USERS}/${uid}`).valueChanges().pipe(filter(Boolean));
   }
 
   get authState$(): Observable<firebase.User | null> {

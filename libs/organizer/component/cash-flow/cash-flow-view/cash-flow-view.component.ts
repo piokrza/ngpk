@@ -1,10 +1,10 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, Signal, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { PrimeIcons } from 'primeng/api';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { TabViewChangeEvent, TabViewModule } from 'primeng/tabview';
-import { Observable, first } from 'rxjs';
+import { first } from 'rxjs';
 
 import { rowsPerPageOptions } from '@ngpk/core/constant';
 import { connectState } from '@ngpk/core/util';
@@ -42,7 +42,7 @@ export class CashFlowViewComponent {
     isLoading: this.overviewService.isLoading$,
   });
 
-  readonly activeTabIndex$: Observable<number> = this.cashFlowFacadeService.activeTabIndex$;
+  readonly activeTabIndex: Signal<number> = this.cashFlowFacadeService.activeTabIndex;
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions;

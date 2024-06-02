@@ -1,4 +1,4 @@
-<p-tabView [activeIndex]="(activeTabIndex$ | async) ?? 0" (onChange)="setActiveIndex($event)">
+<p-tabView [activeIndex]="activeTabIndex()" (onChange)="setActiveIndex($event)">
   <p-tabPanel [header]="'cashFlow.overview' | translate">
     <div class="mb-4">
       <ngpk-cards [cashFlowDataset]="overviewState.cashFlowDataSet" (setTabIdx)="setActiveIndex($event)" />

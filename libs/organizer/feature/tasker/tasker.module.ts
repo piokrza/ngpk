@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 
-import { OrganizerPathFragment } from '@ngpk/organizer/enum';
+import { PathFragment } from '@ngpk/organizer/enum';
 import { BoardsFacadeService } from '@ngpk/organizer/service';
 
 const routes: Routes = [
@@ -11,7 +11,7 @@ const routes: Routes = [
     loadComponent: async () => (await import('@ngpk/organizer/component/tasker')).BoardListComponent,
   },
   {
-    path: OrganizerPathFragment.ID,
+    path: PathFragment.ID,
     loadComponent: async () => (await import('@ngpk/organizer/component/tasker')).BoardComponent,
   },
 ];

@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 
-import { OrganizerPathFragment } from '@ngpk/organizer/enum';
+import { PathFragment } from '@ngpk/organizer/enum';
 
 const imports = [ButtonModule, TranslateModule, RouterLink];
 
@@ -17,5 +17,5 @@ const imports = [ButtonModule, TranslateModule, RouterLink];
 })
 export class AccountSettingsComponent {
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  readonly PathFragment: typeof OrganizerPathFragment = OrganizerPathFragment;
+  readonly PathFragment: typeof PathFragment = PathFragment;
 }

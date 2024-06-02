@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,8 +34,8 @@ export class CashFlowFacadeService {
     return this.cashFlowService.setCashFlowData(this.expenses$, this.cashFlowPaginationService.expensesPaginatorState$);
   }
 
-  get activeTabIndex$(): Observable<number> {
-    return this.cashFlowService.activeTabIndex$;
+  get activeTabIndex(): Signal<number> {
+    return this.cashFlowService.activeTabIndex;
   }
 
   get isLoading$(): Observable<boolean> {

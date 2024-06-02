@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import firebase from 'firebase/compat';
 import { EMPTY, forkJoin, switchMap } from 'rxjs';
 
-import { OrganizerCollection } from '@ngpk/organizer/enum';
+import { Collection } from '@ngpk/organizer/enum';
 import { AppConfig, IUser, Category } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })
@@ -11,8 +11,8 @@ export class UserService {
   private readonly angularFirestore = inject(AngularFirestore);
 
   addUserToDatabase$(user: Partial<IUser>) {
-    const usersOrganizerCollectionRef = this.angularFirestore.collection(OrganizerCollection.USERS);
-    const configOrganizerCollectionRef = this.angularFirestore.collection(OrganizerCollection.CONFIG);
+    const usersOrganizerCollectionRef = this.angularFirestore.collection(Collection.USERS);
+    const configOrganizerCollectionRef = this.angularFirestore.collection(Collection.CONFIG);
 
     return usersOrganizerCollectionRef
       .doc(user.uid)
@@ -36,9 +36,7 @@ export class UserService {
   }
 
   async updateUser$(updatedUserData: IUser): Promise<void> {
-    const user: AngularFirestoreDocument<IUser> = this.angularFirestore
-      .collection<IUser>(OrganizerCollection.USERS)
-      .doc(updatedUserData.uid);
+    const user: AngularFirestoreDocument<IUser> = this.angularFirestore.collection<IUser>(Collection.USERS).doc(updatedUserData.uid);
     return await user.update(updatedUserData);
   }
 

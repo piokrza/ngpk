@@ -20,6 +20,7 @@ const imports = [TranslateModule, AsyncPipe, TimestampPipe, ButtonModule];
 @Component({
   selector: 'ngpk-details',
   templateUrl: './details.component.html',
+  styleUrl: './details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports,

@@ -1,21 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PaginatorState } from 'primeng/paginator';
-import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
+import { Observable, combineLatest, map } from 'rxjs';
 
 import { cashFlowActiveTabIndex } from '@ngpk/organizer/constant';
 import { CashFlow, CashFlowData, CashFlowForm } from '@ngpk/organizer/model';
 
 @Injectable({ providedIn: 'root' })
 export class CashFlowService {
-  private readonly activeTabIndex$$ = new BehaviorSubject<number>(parseInt(sessionStorage.getItem(cashFlowActiveTabIndex) ?? '0'));
+  readonly #activeTabIndex = signal<number>(parseInt(sessionStorage.getItem(cashFlowActiveTabIndex) ?? '0'));
 
-  get activeTabIndex$(): Observable<number> {
-    return this.activeTabIndex$$.asObservable();
+  get activeTabIndex(): Signal<number> {
+    return this.#activeTabIndex.asReadonly();
   }
 
   setActiveTabIndex(idx: number): void {
-    this.activeTabIndex$$.next(idx);
+    this.#activeTabIndex.set(idx);
     sessionStorage.setItem(cashFlowActiveTabIndex, `${idx}`);
   }
 

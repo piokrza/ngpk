@@ -1,4 +1,4 @@
-export enum OrganizerCollection {
+export enum Collection {
   USERS = 'users',
   NOTES = 'notes',
   FILES = 'files',
