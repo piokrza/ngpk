@@ -4,7 +4,7 @@
 
 Technologies used:
 
-- Angular 17,
+- Angular 18,
 - Nx
 - NgRx,
 - Firebase,
