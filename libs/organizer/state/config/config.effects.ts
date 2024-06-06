@@ -5,7 +5,7 @@ import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 
 import { ToastService } from '@ngpk/core/service';
 import { ConfigApiService } from '@ngpk/organizer/api';
-import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service';
+import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service/shared';
 import { ConfigActions } from '@ngpk/organizer/state/config';
 
 @Injectable()

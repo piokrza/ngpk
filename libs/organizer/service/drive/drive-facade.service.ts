@@ -5,7 +5,7 @@ import { Observable, map, switchMap } from 'rxjs';
 
 import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { IUser, FileUploadPayload, FolderUploadPayload, IFile } from '@ngpk/organizer/model';
-import { DriveService } from '@ngpk/organizer/service';
+import { DriveService } from '@ngpk/organizer/service/drive';
 import { AuthSelectors } from '@ngpk/organizer/state/auth';
 import { DriveActions, DriveSelectors } from '@ngpk/organizer/state/drive';
 

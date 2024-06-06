@@ -8,7 +8,7 @@ import { Observable, filter, tap } from 'rxjs';
 
 import { AuthApiService } from '@ngpk/organizer/api';
 import { LayoutComponent } from '@ngpk/organizer/component/shared';
-import { OrganizerThemeService } from '@ngpk/organizer/service';
+import { OrganizerThemeService } from '@ngpk/organizer/service/shared';
 import { AuthActions } from '@ngpk/organizer/state/auth';
 import { CashFlowActions } from '@ngpk/organizer/state/cash-flow';
 import { ConfigActions } from '@ngpk/organizer/state/config';

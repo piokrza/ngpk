@@ -11,7 +11,7 @@ import { baseDialogStyles } from '@ngpk/core/constant';
 import { AddFormComponent, UpdateFormComponent } from '@ngpk/organizer/component/cash-flow';
 import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { CashFlow, CashFlowData, Category, CategoryType } from '@ngpk/organizer/model';
-import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } from '@ngpk/organizer/service';
+import { CashFlowFilterService, CashFlowPaginationService, CashFlowService } from '@ngpk/organizer/service/cash-flow';
 import { CashFlowActions, CashFlowSelectors } from '@ngpk/organizer/state/cash-flow';
 import { ConfigSelectors } from '@ngpk/organizer/state/config';
 

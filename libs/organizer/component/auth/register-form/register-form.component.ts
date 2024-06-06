@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 
 import { AuthPaths } from '@ngpk/organizer/enum';
 import { RegisterForm } from '@ngpk/organizer/model';
-import { AuthFormService } from '@ngpk/organizer/service';
+import { AuthFormService } from '@ngpk/organizer/service/auth';
 import { AuthActions, AuthSelectors } from '@ngpk/organizer/state/auth';
 
 const imports = [TranslateModule, ReactiveFormsModule, ButtonModule, PasswordModule, RouterLink, AsyncPipe, InputTextModule];

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 
 import { PathFragment } from '@ngpk/organizer/enum';
-import { BoardsFacadeService } from '@ngpk/organizer/service';
+import { BoardsFacadeService } from '@ngpk/organizer/service/tasker';
 
 const routes: Routes = [
   {

@@ -10,7 +10,7 @@ import { rowsPerPageOptions } from '@ngpk/core/constant';
 import { connectState } from '@ngpk/core/util';
 import { CardsComponent, ChartComponent, TileListComponent } from '@ngpk/organizer/component/cash-flow';
 import { CashFlow } from '@ngpk/organizer/model';
-import { CashFlowFacadeService, OverviewService } from '@ngpk/organizer/service';
+import { CashFlowFacadeService, OverviewService } from '@ngpk/organizer/service/cash-flow';
 
 const imports = [TranslateModule, ChartComponent, CardsComponent, PaginatorModule, TileListComponent, TabViewModule, AsyncPipe];
 

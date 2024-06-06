@@ -9,7 +9,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TruncatePipe } from '@ngpk/core/pipe';
 import { connectState } from '@ngpk/core/util';
 import { IFile } from '@ngpk/organizer/model';
-import { DriveFacadeService } from '@ngpk/organizer/service';
+import { DriveFacadeService } from '@ngpk/organizer/service/drive';
 
 const imports = [TooltipModule, ButtonModule, UpperCasePipe, TruncatePipe, ProgressSpinnerModule, TranslateModule];
 

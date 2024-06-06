@@ -16,7 +16,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Observable, filter, tap } from 'rxjs';
 
 import { IUser, CashFlow, CashFlowForm, Category } from '@ngpk/organizer/model';
-import { CashFlowService } from '@ngpk/organizer/service';
+import { CashFlowService } from '@ngpk/organizer/service/cash-flow';
 import { AuthSelectors } from '@ngpk/organizer/state/auth';
 import { ConfigSelectors } from '@ngpk/organizer/state/config';
 

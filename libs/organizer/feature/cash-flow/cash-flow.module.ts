@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PathFragment } from '@ngpk/organizer/enum';
-import { CashFlowFacadeService, CashFlowFilterService, CashFlowPaginationService, OverviewService } from '@ngpk/organizer/service';
+import {
+  CashFlowFacadeService,
+  CashFlowFilterService,
+  CashFlowPaginationService,
+  OverviewService,
+} from '@ngpk/organizer/service/cash-flow';
 
 const routes: Routes = [
   {

@@ -4,7 +4,7 @@ import { PrimeIcons } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 
 import { connectState } from '@ngpk/core/util';
-import { BoardsFacadeService } from '@ngpk/organizer/service';
+import { BoardsFacadeService } from '@ngpk/organizer/service/tasker';
 import { AddItemBtnComponent } from '@ngpk/shared-ui/components';
 
 const imports = [TranslateModule, AddItemBtnComponent, TooltipModule];

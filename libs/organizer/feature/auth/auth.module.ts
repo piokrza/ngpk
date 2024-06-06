@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthApiService } from '@ngpk/organizer/api';
 import { AuthPaths } from '@ngpk/organizer/enum';
-import { AuthFormService } from '@ngpk/organizer/service';
+import { AuthFormService } from '@ngpk/organizer/service/auth';
 
 const routes: Routes = [
   {

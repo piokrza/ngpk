@@ -11,7 +11,7 @@ import { ToastModule } from 'primeng/toast';
 
 import { connectState } from '@ngpk/core/util';
 import { OrganizerPaths } from '@ngpk/organizer/enum';
-import { OrganizerMenuService, TitleService } from '@ngpk/organizer/service';
+import { OrganizerMenuService, TitleService } from '@ngpk/organizer/service/shared';
 import { AuthActions, AuthSelectors } from '@ngpk/organizer/state/auth';
 import { WeatherWidgetComponent } from '@ngpk/weather/feature';
 

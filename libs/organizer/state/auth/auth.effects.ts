@@ -10,7 +10,7 @@ import { ToastStatus } from '@ngpk/core/enum';
 import { ToastService } from '@ngpk/core/service';
 import { AuthApiService, UserService } from '@ngpk/organizer/api';
 import { OrganizerPaths } from '@ngpk/organizer/enum';
-import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service';
+import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service/shared';
 import { AuthActions } from '@ngpk/organizer/state/auth';
 import { ActionTypes } from '@ngpk/organizer/state/auth/action-types';
 

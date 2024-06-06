@@ -12,7 +12,7 @@ import { TimestampPipe } from '@ngpk/core/pipe';
 import { connectState } from '@ngpk/core/util';
 import { OrganizerPaths } from '@ngpk/organizer/enum';
 import { CashFlow, Category } from '@ngpk/organizer/model';
-import { CashFlowFacadeService } from '@ngpk/organizer/service';
+import { CashFlowFacadeService } from '@ngpk/organizer/service/cash-flow';
 import { ConfigSelectors } from '@ngpk/organizer/state/config';
 
 const imports = [TranslateModule, AsyncPipe, TimestampPipe, ButtonModule];

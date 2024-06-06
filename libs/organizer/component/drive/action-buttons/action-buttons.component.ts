@@ -9,7 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { filter } from 'rxjs';
 
 import { connectState } from '@ngpk/core/util';
-import { DriveFacadeService } from '@ngpk/organizer/service';
+import { DriveFacadeService } from '@ngpk/organizer/service/drive';
 
 const imports = [FileUploadModule, ButtonModule, ReactiveFormsModule, TranslateModule, InputTextModule];
 

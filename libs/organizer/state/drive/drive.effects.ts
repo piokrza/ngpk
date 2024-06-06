@@ -7,7 +7,7 @@ import { ToastService } from '@ngpk/core//service';
 import { ToastStatus } from '@ngpk/core/enum';
 import { DriveApiService } from '@ngpk/organizer/api';
 import { IFile } from '@ngpk/organizer/model';
-import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service';
+import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service/shared';
 import { DriveActions } from '@ngpk/organizer/state/drive';
 
 @Injectable()

@@ -5,7 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { tap } from 'rxjs';
 
 import { ActionButtonsComponent } from '@ngpk/organizer/component/drive';
-import { DriveFacadeService } from '@ngpk/organizer/service';
+import { DriveFacadeService } from '@ngpk/organizer/service/drive';
 
 const imports = [ActionButtonsComponent, FileListComponent];
 

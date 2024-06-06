@@ -6,7 +6,7 @@ import { catchError, exhaustMap, from, map, of, takeUntil } from 'rxjs';
 import { ToastStatus } from '@ngpk/core/enum/';
 import { ToastService } from '@ngpk/core/service';
 import { CashFlowApiService } from '@ngpk/organizer/api';
-import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service';
+import { FirestoreDbSubscriptionService } from '@ngpk/organizer/service/shared';
 import { CashFlowActions } from '@ngpk/organizer/state/cash-flow';
 
 @Injectable()

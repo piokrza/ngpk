@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { connectState } from '@ngpk/core/util';
 import { AddTaskPayload, DeleteTaskPayload, Task } from '@ngpk/organizer/model';
-import { BoardsFacadeService } from '@ngpk/organizer/service';
+import { BoardsFacadeService } from '@ngpk/organizer/service/tasker';
 import { AddItemBtnComponent } from '@ngpk/shared-ui/components';
 
 const imports = [TranslateModule, DragDropModule, ButtonModule, AddItemBtnComponent];
