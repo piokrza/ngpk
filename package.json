@@ -50,7 +50,7 @@
     "jest-preset-angular": "14.1.0",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
-    "primeng": "^17.16.1",
+    "primeng": "^17.18.0",
     "rxjs": "7.8.1",
     "ts-jest": "^29.1.0",
     "tslib": "^2.3.0",
