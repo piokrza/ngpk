@@ -85,17 +85,17 @@ export class OverviewService {
     });
   }
 
-  private generateBgColors(amountOfColors: number, color: ChartColor) {
+  private generateBgColors(colorsAmout: number, color: ChartColor) {
     const getClr = (clr: string): string => {
       return getComputedStyle(document.documentElement).getPropertyValue(clr);
     };
 
     return {
-      backgroundColor: Array.from({ length: amountOfColors }, () => {
+      backgroundColor: Array.from({ length: colorsAmout }, () => {
         const colorScale = getRandomNumber(4, 9);
         return getClr(`--${color}-${colorScale}00`);
       }),
-      hoverBackgroundColor: Array.from({ length: amountOfColors }, () => {
+      hoverBackgroundColor: Array.from({ length: colorsAmout }, () => {
         const colorScale = getRandomNumber(4, 9);
         return getClr(`--${color}-${colorScale - 2}00`);
       }),
