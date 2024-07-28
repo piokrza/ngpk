@@ -51,5 +51,6 @@ Thumbs.db
 
 
 .nx/cache
+.nx/workspace-data
 .angular
 jest_cache

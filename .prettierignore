@@ -1,2 +1,4 @@
 ./dist
 .angular
+
+/.nx/workspace-data

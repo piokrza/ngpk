@@ -23,11 +23,11 @@ export class CashFlowEffects {
       exhaustMap(({ uid }) => {
         return this.cashFlowApiService.loadCashFlow$(uid).pipe(
           map((cashFlow) => CashFlowActions.loadCashFlowSuccess({ cashFlow })),
-          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
             this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('fetchUserError'));
             return of(CashFlowActions.loadCashFlowFailure());
-          })
+          }),
+          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$)
         );
       })
     );
