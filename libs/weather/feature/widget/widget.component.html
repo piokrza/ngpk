@@ -36,12 +36,12 @@
       <p>{{ state.weatherData!.weather[0].description | titlecase }}</p>
 
       <div class="flex gap-3 justify-content-between my-3">
-        <org-details
+        <ngpk-details
           icon="assets/img/weather-icons/humidity.png"
           [name]="'weather.humidity' | translate"
           [amount]="(state.weatherData.main.humidity | number: '1.0-0') + '%'" />
 
-        <org-details
+        <ngpk-details
           icon="assets/img/weather-icons/wind.png"
           [amount]="(state.weatherData.wind.speed | number: '1.0-0') + ' km/h'"
           [name]="'weather.wind' | translate" />
