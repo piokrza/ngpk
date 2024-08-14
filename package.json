@@ -15,6 +15,12 @@
     "watch:email-client": "nx build email-client --watch --configuration development",
     "test:email-client": "nx test email-client",
     "lint:email-client": "nx lint email-client",
+    "---------ZONELESS---------": "exit 0",
+    "start:zoneless": "nx serve zoneless",
+    "build:zoneless": "nx build zoneless --configuration development",
+    "watch:zoneless": "nx build zoneless --watch --configuration development",
+    "test:zoneless": "nx test zoneless",
+    "lint:zoneless": "nx lint zoneless",
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
