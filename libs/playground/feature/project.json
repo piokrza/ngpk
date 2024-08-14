@@ -1,0 +1,8 @@
+{
+  "name": "playground-feature",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "tags": ["domain:playground", "project:playground-feature", "public:playground", "sub-domain:feature", "type:api"],
+  "sourceRoot": "libs/playground/feature",
+  "prefix": "ngpk"
+}

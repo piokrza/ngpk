@@ -26,6 +26,7 @@
       "@ngpk/core/*": ["libs/core/*"],
       "@ngpk/email/*": ["libs/email/*"],
       "@ngpk/organizer/*": ["libs/organizer/*"],
+      "@ngpk/playground/*": ["libs/playground/*"],
       "@ngpk/search/*": ["libs/search/*"],
       "@ngpk/shared-ui/*": ["libs/shared-ui/*"],
       "@ngpk/weather/*": ["libs/weather/*"],

@@ -1,0 +1,37 @@
+{
+  "name": "playground",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/playground",
+  "prefix": "ngpk",
+  "projectType": "library",
+  "tags": ["domain:playground", "project:playground"],
+  "implicitDependencies": [
+    "playground-api",
+    "playground-component",
+    "playground-constant",
+    "playground-enum",
+    "playground-feature",
+    "playground-model",
+    "playground-service",
+    "playground-state",
+    "playground-testing"
+  ],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/playground/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc -p libs/playground/tsconfig.spec.json --noEmit"]
+      }
+    }
+  }
+}
