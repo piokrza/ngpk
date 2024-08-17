@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -8,10 +8,9 @@ import { PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
 
 import { TodoComponent } from '@ngpk/playground/component/crud';
-import { Todo } from '@ngpk/playground/model';
-import { TodoFileterPipe } from '@ngpk/playground/pipe';
+import { TodosStore } from '@ngpk/playground/state';
 
-const imports = [PanelModule, TabViewModule, ButtonModule, NgClass, InputTextModule, FormsModule, TodoFileterPipe, TodoComponent];
+const imports = [PanelModule, TabViewModule, ButtonModule, NgClass, InputTextModule, FormsModule, TodoComponent];
 
 @Component({
   selector: 'ngpk-home',
@@ -21,48 +20,29 @@ const imports = [PanelModule, TabViewModule, ButtonModule, NgClass, InputTextMod
   imports,
 })
 export class HomeComponent {
+  protected readonly todosStore = inject(TodosStore);
+
   todoName = '';
   isEditing = false;
 
   readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
-  todos: Todo[] = [
-    {
-      id: Math.random() * 999999,
-      name: 'obiad',
-      status: 'undone',
-    },
-    {
-      id: Math.random() * 999999,
-      name: 'trening',
-      status: 'undone',
-    },
-    {
-      id: Math.random() * 999999,
-      name: 'zakupy',
-      status: 'done',
-    },
-    {
-      id: Math.random() * 999999,
-      name: 'posprzatac',
-      status: 'undone',
-    },
-  ];
 
   removeTodo(id: number): void {
-    this.todos = this.todos.filter((t) => t.id !== id);
+    this.todosStore.removeTodo(id);
   }
 
   addTodo(): void {
     if (!this.todoName) return;
-
-    const newTodo: Todo = {
-      name: this.todoName,
-      id: Math.random() * 999999,
-      status: 'undone',
-    };
-
-    this.todos = [...this.todos, newTodo];
+    this.todosStore.addTodo(this.todoName);
     this.todoName = '';
+  }
+
+  cancelEditing(): void {
     this.isEditing = false;
+    this.todoName = '';
+  }
+
+  toggleIsTodoCompleted(id: number, status: boolean): void {
+    this.todosStore.toggleIsCompleted(id, status);
   }
 }

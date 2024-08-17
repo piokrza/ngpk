@@ -11,12 +11,12 @@ const imports = [ButtonModule];
   template: `
   @let t = todo();
     <div class="flex justify-content-between align-items-center">
-      <span> {{t.name}}</span>
+      <span [class.line-through]="t.completed">{{t.name}}</span>
       <div class="flex gap-1">
         <p-button
-          [severity]="t.status === 'done' ? 'help' : 'success'"
-          [icon]="t.status === 'done' ? PrimeIcons.MINUS : PrimeIcons.PLUS"
-          (onClick)="toggleTodoStatus.emit(this.todo().status === 'done' ? 'undone' : 'done')" />
+          [severity]="t.completed ? 'help' : 'success'"
+          [icon]="t.completed ? PrimeIcons.MINUS : PrimeIcons.PLUS"
+          (onClick)="toggleIsTodoCompleted.emit(!this.todo().completed)" />
         <p-button severity="secondary" [icon]="PrimeIcons.TIMES" (onClick)="removeTodo.emit(t.id)" />
       </div>
     </div>
@@ -28,7 +28,7 @@ export class TodoComponent {
   readonly todo = input.required<Todo>();
 
   readonly removeTodo = output<number>();
-  readonly toggleTodoStatus = output<Todo['status']>();
+  readonly toggleIsTodoCompleted = output<boolean>();
 
-  readonly PrimeIcons = PrimeIcons;
+  readonly PrimeIcons: typeof PrimeIcons = PrimeIcons;
 }
