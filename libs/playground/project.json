@@ -12,6 +12,7 @@
     "playground-enum",
     "playground-feature",
     "playground-model",
+    "playground-pipe",
     "playground-service",
     "playground-state",
     "playground-testing"

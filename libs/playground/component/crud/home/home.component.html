@@ -1,0 +1,49 @@
+<div class="flex justify-content-center">
+  <p-panel class="w-full mw">
+    <p-header class="w-full">
+      <div class="flex justify-content-between align-items-center w-full">
+        <span>TODO list</span>
+
+        <p-button size="small" [icon]="PrimeIcons.PLUS" (onClick)="isEditing = true" />
+      </div>
+    </p-header>
+
+    @if (isEditing) {
+      @defer {
+        <div class="flex align-items-center">
+          <input type="text" pInputText placeholder="Wpisz nazwę zadania" [(ngModel)]="todoName" />
+          <p-button severity="success" size="small" [icon]="PrimeIcons.CHECK" (onClick)="addTodo()" />
+          <p-button severity="help" size="small" [icon]="PrimeIcons.TIMES" (onClick)="isEditing = false" />
+        </div>
+      }
+    }
+
+    <p-tabView>
+      <p-tabPanel header="Wszystkie">
+        <div class="grid grid-nogutter">
+          @for (todo of todos; track todo.id) {
+            <div class="col-12 py-3" [ngClass]="{ 'border-top-1 surface-border': !$first }">
+              <ngpk-todo [todo]="todo" (removeTodo)="removeTodo($event)" />
+            </div>
+          }
+        </div>
+      </p-tabPanel>
+
+      <p-tabPanel header="Ukończone">
+        @for (todo of todos | todoFilter: 'done'; track todo.id) {
+          <div class="col-12 py-3" [ngClass]="{ 'border-top-1 surface-border': !$first }">
+            <ngpk-todo [todo]="todo" />
+          </div>
+        }
+      </p-tabPanel>
+
+      <p-tabPanel header="Nieukończone">
+        @for (todo of todos | todoFilter: 'undone'; track todo.id) {
+          <div class="col-12 py-3" [ngClass]="{ 'border-top-1 surface-border': !$first }">
+            <ngpk-todo [todo]="todo" />
+          </div>
+        }
+      </p-tabPanel>
+    </p-tabView>
+  </p-panel>
+</div>
