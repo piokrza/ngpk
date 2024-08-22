@@ -9,19 +9,19 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { EMPTY, catchError, tap } from 'rxjs';
 
 import { FormContainerComponent, FormInputComponent } from '@ngpk/email/component/inbox';
-import { ToastStatus } from '@ngpk/email/enum';
+import { EmailPath, ToastStatus } from '@ngpk/email/enum';
 import { SigninForm, SigninCredencials } from '@ngpk/email/model';
 import { SigninFormService, AuthService, ToastService } from '@ngpk/email/service';
 import { AuthStateService } from '@ngpk/email/state/auth';
 
 const imports = [
-  ButtonModule,
-  FormContainerComponent,
-  FormInputComponent,
-  ProgressSpinnerModule,
-  RouterLink,
-  ReactiveFormsModule,
   AsyncPipe,
+  RouterLink,
+  ButtonModule,
+  FormInputComponent,
+  ReactiveFormsModule,
+  ProgressSpinnerModule,
+  FormContainerComponent,
 ];
 const providers = [SigninFormService];
 
@@ -42,6 +42,7 @@ export class SigninComponent implements OnInit {
   private readonly signinFormService = inject(SigninFormService);
 
   signinForm!: FormGroup<SigninForm>;
+  readonly EmailPath: typeof EmailPath = EmailPath;
   readonly isLoading$ = this.authStateService.select('isLoading');
 
   ngOnInit(): void {

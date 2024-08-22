@@ -1,1 +1,1 @@
-export * from './inbox.api';
+export * from './inbox-http.service';

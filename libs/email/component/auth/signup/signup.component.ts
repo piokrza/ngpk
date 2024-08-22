@@ -1,19 +1,28 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { EMPTY, catchError, tap } from 'rxjs';
 
 import { FormContainerComponent, FormInputComponent } from '@ngpk/email/component/inbox';
+import { EmailPath } from '@ngpk/email/enum';
 import { SignupForm, SignupCredentials } from '@ngpk/email/model';
 import { AuthService, SignupFormService } from '@ngpk/email/service';
 import { AuthStateService } from '@ngpk/email/state/auth';
 
-const imports = [FormContainerComponent, ButtonModule, FormInputComponent, ProgressSpinnerModule, NgIf, ReactiveFormsModule, AsyncPipe];
+const imports = [
+  AsyncPipe,
+  RouterLink,
+  ButtonModule,
+  FormInputComponent,
+  ReactiveFormsModule,
+  ProgressSpinnerModule,
+  FormContainerComponent,
+];
 const providers = [SignupFormService];
 
 @Component({
@@ -32,6 +41,7 @@ export class SignupComponent implements OnInit {
   private readonly signupFormService = inject(SignupFormService);
 
   signupForm!: FormGroup<SignupForm>;
+  readonly EmailPath: typeof EmailPath = EmailPath;
   readonly isLoading$ = this.authStateService.select('isLoading');
 
   get formControls(): SignupForm {

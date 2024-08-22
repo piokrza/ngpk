@@ -1,25 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { EmailPath } from '@ngpk/email/enum';
 import { AuthService } from '@ngpk/email/service';
 import { UniqueUsername, MatchPassword } from '@ngpk/email/validator';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'signin',
+    redirectTo: EmailPath.SIGNIN,
     pathMatch: 'full',
   },
   {
-    path: 'signin', // TODO: add path
+    path: EmailPath.SIGNIN,
     loadComponent: async () => (await import('@ngpk/email/component/auth')).SigninComponent,
   },
   {
-    path: 'signup',
+    path: EmailPath.SIGNUP,
     loadComponent: async () => (await import('@ngpk/email/component/auth')).SignupComponent,
   },
   {
-    path: 'signout',
+    path: EmailPath.SIGNOUT,
     loadComponent: async () => (await import('@ngpk/email/component/auth')).SignoutComponent,
   },
 ];

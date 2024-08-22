@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 import { EmailSummary, Email } from '@ngpk/email/model';
 
-@Injectable()
-export class InboxApi {
+@Injectable({ providedIn: 'root' })
+export class InboxHttpService {
   private readonly http = inject(HttpClient);
   private readonly environment = inject(Environment);
 

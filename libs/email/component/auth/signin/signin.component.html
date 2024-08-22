@@ -12,7 +12,7 @@
           styleClass="w-full"
           label="Sign in!" />
       </div>
-      <div class="text-center">Don't have an account? <a [routerLink]="['/signup']">Join for free</a></div>
+      <div class="text-center">Don't have an account? <a [routerLink]="['../', EmailPath.SIGNUP]">Join for free</a></div>
     </form>
   </ngpk-form-container>
 } @else {
