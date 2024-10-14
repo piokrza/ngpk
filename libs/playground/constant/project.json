@@ -1,8 +1,0 @@
-{
-  "name": "playground-constant",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:playground", "project:playground-constant", "public:playground", "sub-domain:constant", "type:api"],
-  "sourceRoot": "libs/playground/constant",
-  "prefix": "ngpk"
-}
