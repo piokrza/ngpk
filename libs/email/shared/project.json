@@ -1,8 +1,0 @@
-{
-  "name": "email-shared",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:email", "project:email-shared", "public:email", "sub-domain:shared", "type:api"],
-  "sourceRoot": "libs/email/shared",
-  "prefix": "ngpk"
-}

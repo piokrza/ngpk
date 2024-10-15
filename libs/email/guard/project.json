@@ -1,8 +1,0 @@
-{
-  "name": "email-guard",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:email", "project:email-guard", "public:email", "sub-domain:guard", "type:api"],
-  "sourceRoot": "libs/email/guard",
-  "prefix": "ngpk"
-}

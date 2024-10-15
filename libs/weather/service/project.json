@@ -1,8 +1,0 @@
-{
-  "name": "weather-service",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:weather", "project:weather-service", "public:weather", "sub-domain:service", "type:api"],
-  "sourceRoot": "libs/weather/service",
-  "prefix": "ngpk"
-}

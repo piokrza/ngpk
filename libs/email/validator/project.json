@@ -1,8 +1,0 @@
-{
-  "name": "email-validator",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "tags": ["domain:email", "project:email-validator", "public:email", "sub-domain:validator", "type:api"],
-  "sourceRoot": "libs/email/validator",
-  "prefix": "ngpk"
-}
