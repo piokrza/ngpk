@@ -12,22 +12,24 @@ import { TaskerActions } from '@ngpk/organizer/state/tasker';
 
 @Injectable()
 export class TaskerEffects {
-  private readonly router = inject(Router);
-  private readonly actions$ = inject(Actions);
-  private readonly toastService = inject(ToastService);
-  private readonly translateService = inject(TranslateService);
-  private readonly boardsApiService = inject(BoardsApiService);
-  private readonly firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
+  readonly #router = inject(Router);
+  readonly #actions$ = inject(Actions);
+  readonly #toastService = inject(ToastService);
+  readonly #translateService = inject(TranslateService);
+  readonly #boardsApiService = inject(BoardsApiService);
+  readonly #firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
+
+  readonly #tr = (path: string) => this.#translateService.instant('toastMessage.' + path);
 
   loadBoards$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(TaskerActions.loadBoards),
       exhaustMap(({ uid }) => {
-        return this.boardsApiService.loadBoards$(uid).pipe(
+        return this.#boardsApiService.loadBoards$(uid).pipe(
           map((boards) => TaskerActions.loadBoardsSuccess({ boards })),
-          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
+          takeUntil(this.#firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
-            this.toastService.showMessage('error', 'Error!', 'Something went wrong during fetching boards data');
+            this.#toastService.showMessage('error', 'Error!', 'Something went wrong during fetching boards data');
             return of(TaskerActions.loadBoardsFailure());
           })
         );
@@ -36,12 +38,12 @@ export class TaskerEffects {
   });
 
   addBoard$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(TaskerActions.addBoard),
       exhaustMap(({ uid, name }) => {
-        return from(this.boardsApiService.addBoard(name, uid)).pipe(
+        return from(this.#boardsApiService.addBoard(name, uid)).pipe(
           map(() => {
-            this.toastService.showMessage('success', this.tr('success'), this.tr('addBoardSuccess'));
+            this.#toastService.showMessage('success', this.#tr('success'), this.#tr('addBoardSuccess'));
             return TaskerActions.addBoardSuccess();
           }),
           catchError(() => of(TaskerActions.addBoardFailure()))
@@ -51,13 +53,13 @@ export class TaskerEffects {
   });
 
   deleteBoard$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(TaskerActions.deleteBoard),
       exhaustMap(({ boardId }) => {
-        return from(this.boardsApiService.deleteBoard(boardId)).pipe(
+        return from(this.#boardsApiService.deleteBoard(boardId)).pipe(
           map(() => {
-            this.toastService.showMessage('success', this.tr('success'), this.tr('deleteBoardSuccess'));
-            this.router.navigate([OrganizerPaths.TASKER]);
+            this.#toastService.showMessage('success', this.#tr('success'), this.#tr('deleteBoardSuccess'));
+            this.#router.navigate([OrganizerPaths.TASKER]);
             return TaskerActions.deleteBoardSuccess();
           }),
           catchError(() => of(TaskerActions.deleteBoardFailure()))
@@ -67,10 +69,10 @@ export class TaskerEffects {
   });
 
   addTaskList$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(TaskerActions.addTaskList),
       exhaustMap(({ boardId, taskListName }) => {
-        return this.boardsApiService.addTaskList$(boardId, taskListName).pipe(
+        return this.#boardsApiService.addTaskList$(boardId, taskListName).pipe(
           map(() => TaskerActions.addTaskListSuccess()),
           catchError(() => of(TaskerActions.addTaskListFailure()))
         );
@@ -79,10 +81,10 @@ export class TaskerEffects {
   });
 
   deleteTaskList$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(TaskerActions.deleteTaskList),
       exhaustMap(({ boardId, taskListId }) => {
-        return this.boardsApiService.deleteTaskList$(boardId, taskListId).pipe(
+        return this.#boardsApiService.deleteTaskList$(boardId, taskListId).pipe(
           map(() => TaskerActions.deleteTaskListSuccess()),
           catchError(() => of(TaskerActions.deleteTaskListFailure()))
         );
@@ -91,18 +93,18 @@ export class TaskerEffects {
   });
 
   addTask$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(TaskerActions.addTask),
-      exhaustMap(({ payload }) => this.boardsApiService.addTask$(payload)),
+      exhaustMap(({ payload }) => this.#boardsApiService.addTask$(payload)),
       map(() => TaskerActions.addTaskSuccess())
     );
   });
 
   deleteTask$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(TaskerActions.deleteTask),
       exhaustMap(({ payload }) =>
-        this.boardsApiService.deleteTask$(payload).pipe(
+        this.#boardsApiService.deleteTask$(payload).pipe(
           map(() => TaskerActions.deleteTaskSuccess()),
           catchError(() => of(TaskerActions.deleteTaskFailure()))
         )
@@ -111,18 +113,14 @@ export class TaskerEffects {
   });
 
   dragDropTask$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(TaskerActions.dragDropTask),
       exhaustMap(({ payload }) =>
-        this.boardsApiService.dragDropTask$(payload).pipe(
+        this.#boardsApiService.dragDropTask$(payload).pipe(
           map(() => TaskerActions.dragDropTaskSuccess()),
           catchError(() => of(TaskerActions.dragDropTaskFailure()))
         )
       )
     );
   });
-
-  private tr(path: string): string {
-    return this.translateService.instant('toastMessage.' + path);
-  }
 }

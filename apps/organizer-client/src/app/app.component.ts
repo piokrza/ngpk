@@ -28,33 +28,33 @@ const imports = [RouterModule, LayoutComponent];
   imports,
 })
 export class AppComponent implements OnInit {
-  private readonly store = inject(Store);
-  private readonly primengConfig = inject(PrimeNGConfig);
-  private readonly authApiService = inject(AuthApiService);
-  private readonly translateService = inject(TranslateService);
-  private readonly organizerThemeService = inject(OrganizerThemeService);
+  readonly #store = inject(Store);
+  readonly #primengConfig = inject(PrimeNGConfig);
+  readonly #authApiService = inject(AuthApiService);
+  readonly #translateService = inject(TranslateService);
+  readonly #organizerThemeService = inject(OrganizerThemeService);
 
   ngOnInit(): void {
     this.setPrimeNgConfig();
     this.loadUserData$().subscribe();
-    this.organizerThemeService.applyTheme$().subscribe();
+    this.#organizerThemeService.applyTheme$().subscribe();
   }
 
   private loadUserData$(): Observable<firebase.User> {
-    return this.authApiService.authState$.pipe(
+    return this.#authApiService.authState$.pipe(
       filter(Boolean),
       tap(({ uid }) => {
-        this.store.dispatch(DriveActions.loadFiles({ uid }));
-        this.store.dispatch(AuthActions.loadUserData({ uid }));
-        this.store.dispatch(ConfigActions.loadConfig({ uid }));
-        this.store.dispatch(TaskerActions.loadBoards({ uid }));
-        this.store.dispatch(CashFlowActions.loadCashFlow({ uid }));
+        this.#store.dispatch(DriveActions.loadFiles({ uid }));
+        this.#store.dispatch(AuthActions.loadUserData({ uid }));
+        this.#store.dispatch(ConfigActions.loadConfig({ uid }));
+        this.#store.dispatch(TaskerActions.loadBoards({ uid }));
+        this.#store.dispatch(CashFlowActions.loadCashFlow({ uid }));
       })
     );
   }
 
   private setPrimeNgConfig(): void {
-    this.primengConfig.ripple = true;
-    this.translateService.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
+    this.#primengConfig.ripple = true;
+    this.#translateService.get('primeng').subscribe((res) => this.#primengConfig.setTranslation(res));
   }
 }

@@ -12,19 +12,21 @@ import { DriveActions } from '@ngpk/organizer/state/drive';
 
 @Injectable()
 export class DriveEffects {
-  private readonly actions$ = inject(Actions);
-  private readonly toastService = inject(ToastService);
-  private readonly driveApiService = inject(DriveApiService);
-  private readonly translateService = inject(TranslateService);
-  private readonly firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
+  readonly #actions$ = inject(Actions);
+  readonly #toastService = inject(ToastService);
+  readonly #driveApiService = inject(DriveApiService);
+  readonly #translateService = inject(TranslateService);
+  readonly #firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
+
+  readonly #tr = (path: string) => this.#translateService.instant('toastMessage.' + path);
 
   loadFiles$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(DriveActions.loadFiles),
       exhaustMap(({ uid }) => {
-        return this.driveApiService.loadFiles$(uid).pipe(
+        return this.#driveApiService.loadFiles$(uid).pipe(
           map((files: IFile[]) => DriveActions.loadFilesSuccess({ files })),
-          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
+          takeUntil(this.#firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
             return of(DriveActions.loadFilesFailure());
           })
@@ -34,14 +36,14 @@ export class DriveEffects {
   });
 
   uploadFile$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(DriveActions.uploadFile),
       exhaustMap(({ payload }) => {
-        return from(this.driveApiService.uploadFile(payload)).pipe(
-          tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addFileSuccess'))),
+        return from(this.#driveApiService.uploadFile(payload)).pipe(
+          tap(() => this.#toastService.showMessage(ToastStatus.SUCCESS, this.#tr('success'), this.#tr('addFileSuccess'))),
           map(() => DriveActions.uploadFileSuccess()),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addFileError'));
+            this.#toastService.showMessage(ToastStatus.ERROR, this.#tr('error'), this.#tr('addFileError'));
             return of(DriveActions.uploadFileFailure());
           })
         );
@@ -50,22 +52,18 @@ export class DriveEffects {
   });
 
   uploadFolder$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(DriveActions.uploadFolder),
       exhaustMap(({ payload }) => {
-        return from(this.driveApiService.uploadFolder(payload)).pipe(
-          tap(() => this.toastService.showMessage(ToastStatus.SUCCESS, this.tr('success'), this.tr('addFolderSuccess'))),
+        return from(this.#driveApiService.uploadFolder(payload)).pipe(
+          tap(() => this.#toastService.showMessage(ToastStatus.SUCCESS, this.#tr('success'), this.#tr('addFolderSuccess'))),
           map(() => DriveActions.uploadFolderSuccess()),
           catchError(() => {
-            this.toastService.showMessage(ToastStatus.ERROR, this.tr('error'), this.tr('addFolderError'));
+            this.#toastService.showMessage(ToastStatus.ERROR, this.#tr('error'), this.#tr('addFolderError'));
             return of(DriveActions.uploadFolderFailure());
           })
         );
       })
     );
   });
-
-  private tr(path: string): string {
-    return this.translateService.instant('toastMessage.' + path);
-  }
 }

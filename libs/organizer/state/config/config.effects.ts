@@ -10,21 +10,23 @@ import { ConfigActions } from '@ngpk/organizer/state/config';
 
 @Injectable()
 export class ConfigEffects {
-  private readonly actions$ = inject(Actions);
-  private readonly toastService = inject(ToastService);
-  private readonly configApiService = inject(ConfigApiService);
-  private readonly translateService = inject(TranslateService);
-  private readonly firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
+  readonly #actions$ = inject(Actions);
+  readonly #toastService = inject(ToastService);
+  readonly #configApiService = inject(ConfigApiService);
+  readonly #translateService = inject(TranslateService);
+  readonly #firestoreDbSubscriptionService = inject(FirestoreDbSubscriptionService);
+
+  readonly #tr = (path: string) => this.#translateService.instant('toastMessage.' + path);
 
   loadConfig$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(ConfigActions.loadConfig),
       exhaustMap(({ uid }) => {
-        return this.configApiService.loadConfig$(uid).pipe(
+        return this.#configApiService.loadConfig$(uid).pipe(
           map((config) => ConfigActions.loadConfigSuccess({ config })),
-          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
+          takeUntil(this.#firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
-            this.toastService.showMessage('error', this.tr('success'), this.tr('loadDataError'));
+            this.#toastService.showMessage('error', this.#tr('success'), this.#tr('loadDataError'));
             return of(ConfigActions.loadConfigFailure());
           })
         );
@@ -33,22 +35,18 @@ export class ConfigEffects {
   });
 
   updateConfig$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.#actions$.pipe(
       ofType(ConfigActions.updateConfig),
       exhaustMap(({ config }) => {
-        return from(this.configApiService.updateConfig(config)).pipe(
+        return from(this.#configApiService.updateConfig(config)).pipe(
           map(() => ConfigActions.updateConfigSuccess()),
-          takeUntil(this.firestoreDbSubscriptionService.unsubscribe$),
+          takeUntil(this.#firestoreDbSubscriptionService.unsubscribe$),
           catchError(() => {
-            this.toastService.showMessage('error', this.tr('success'), this.tr('loadDataError'));
+            this.#toastService.showMessage('error', this.#tr('success'), this.#tr('loadDataError'));
             return of(ConfigActions.updateConfigFailure());
           })
         );
       })
     );
   });
-
-  private tr(path: string): string {
-    return this.translateService.instant('toastMessage.' + path);
-  }
 }
