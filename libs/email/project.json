@@ -16,7 +16,6 @@
     "email-model",
     "email-resolver",
     "email-service",
-    "email-shared",
     "email-state",
     "email-testing",
     "email-validator"

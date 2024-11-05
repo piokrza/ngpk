@@ -1,22 +1,20 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
-  constructor(private readonly messageService: MessageService) {}
+  readonly #messageService = inject(MessageService);
 
   showInfoMessage(severity: string, summary: string, detail: string): void {
-    this.messageService.clear();
-    this.messageService.add({
+    this.#messageService.clear();
+    this.#messageService.add({
       severity,
       summary,
       detail,
     });
 
-    setTimeout((): void => {
-      this.messageService.clear();
+    setTimeout(() => {
+      this.#messageService.clear();
     }, 5000);
   }
 }
-
-// TODO: replace with core toast
